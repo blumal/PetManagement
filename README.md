@@ -9,6 +9,7 @@
 3. crear el fichero `.env` en el directorio principal del proyecto con el contenido pertinente
 
    > se puede utilizar el fichero `.env.example` para generar el nuevo `.env`
+   > mv .env.example .env
 
 4. finalmente, Laravel puede pedir que se ejecute el comando `php artisan key:generate` para generar una nueva variable de entorno APP_KEY
 
