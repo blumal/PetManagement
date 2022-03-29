@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\mapas;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
+
+Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
+
+Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
+
+Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);
