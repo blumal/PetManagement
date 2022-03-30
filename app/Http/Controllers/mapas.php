@@ -30,5 +30,17 @@ class mapas extends Controller
         return response()->json($datos);
     }
 
+    public function adminMapasEstablecimientos(){
+        //Lo llevamos a la vista de admin
+        return view('admin_mapa_establecimientos');
+    }
+
+
+    public function filtroMapasEstablecimientos(){
+        //Guardamos en la variable datos los resultados de la consulta de la tabla establecimientos
+        $datos=DB::select('select * from tbl_establecimientos');
+        //Devolvemos por json los datos guardados en la variable datos
+        return response()->json($datos);
+    }
     
 }
