@@ -1,0 +1,26 @@
+* {
+    margin: 0%;
+    font-family: 'Open Sans', sans-serif;
+    color: #333333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {}
+
+.btn-volver {
+    background-color: #35B8B2;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-volver:hover {
+    background-color: #1d9690;
+    color: white;
+}
+
+.btn-volver i {
+    color: white;
+}
