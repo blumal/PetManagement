@@ -18,11 +18,26 @@ class FacturaCompraController extends Controller
         $id_clinica=1;
         try{
             DB::beginTransaction();
-                $clinica = DB::table('tbl_clinic')->where('id_clinic','=',$id_clinica)->get();
-                $factura = DB::table('tbl_shop_invoice')->where('id_shop_invoice','=',$id_factura)->get();
+                $clinica = DB::table('tbl_clinic')
+                ->join('tbl_address', 'tbl_clinic.id_address_clinic', '=', 'tbl_address.id_address')
+                ->join('tbl_phone', 'tbl_clinic.id_phone_clinic', '=', 'tbl_phone.id_phone')
+                ->where('id_clinic','=',$id_clinica)
+                ->get();
+
+                $factura = DB::table('tbl_shop_invoice')
+                ->where('id_shop_invoice','=',$id_factura)
+                ->get();
+
+                $id_user=$factura[0]->id_user_shop_invoice;
+
+                $cliente = DB::table('tbl_usuario')
+                ->join('tbl_address', 'tbl_usuario.id_address', '=', 'tbl_address.id_address')
+                ->join('tbl_phone', 'tbl_usuario.id_phone', '=', 'tbl_phone.id_phone')
+                ->where('id_user','=',$id_user)
+                ->get();
                 //return $factura;
             DB::commit();
-            return view('facturas/factura_compra', compact('factura','clinica'));
+            return view('facturas/factura_compra', compact('factura','clinica','cliente'));
         }catch(\Exception $e){
             DB::rollBack();
             return $e->getMessage();
