@@ -35,9 +35,17 @@ class FacturaCompraController extends Controller
                 ->join('tbl_phone', 'tbl_usuario.id_phone', '=', 'tbl_phone.id_phone')
                 ->where('id_user','=',$id_user)
                 ->get();
+
+                $items_compra=DB::table('tbl_shop_invoice_detail')
+                ->where('id_invoice_shop_invoice_detail','=',$id_factura)
+                ->join('tbl_product', 'tbl_shop_invoice_detail.id_product_shop_invoice', '=', 'tbl_product.id_product')
+                ->get();
+                //return $items_compra;
                 //return $factura;
             DB::commit();
-            return view('facturas/factura_compra', compact('factura','clinica','cliente'));
+
+            return view('facturas/factura_compra', compact('factura','clinica','cliente','items_compra'));
+
         }catch(\Exception $e){
             DB::rollBack();
             return $e->getMessage();
