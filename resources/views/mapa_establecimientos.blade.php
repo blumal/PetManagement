@@ -21,6 +21,24 @@
     crossorigin=""></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <!--INICIO POSIBLE PRESCINDIBLE -->
+    <!-- Esri Leaflet Geocoder 
+
+        CREO QUE ESTOS DOS ENLACES SON PRESCINDIBLES
+
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css" />
+    <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+
+    -->
+    <!--FINAL POSIBLE PRESCINDIBLE -->
+
+
+    <!-- Enlace a API para hacer el geocoding NO TOCAR  -->
+    <script src="https://unpkg.com/esri-leaflet"></script>
+
+    <!-- Enlace a API para hacer el geocidng Direcciones <-> Coordanedadas  NO TOCAR -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.js"></script>
     <script src="js/mapa_establecimientos.js"></script>
 </body>
 </html>
