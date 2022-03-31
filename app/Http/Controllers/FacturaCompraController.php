@@ -14,32 +14,32 @@ class FacturaCompraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function vistaFactura(){
-        $id_factura=1;
+        $id_factura=3;
         $id_clinica=1;
         try{
             DB::beginTransaction();
-                $clinica = DB::table('tbl_clinic')
-                ->join('tbl_address', 'tbl_clinic.id_address_clinic', '=', 'tbl_address.id_address')
-                ->join('tbl_phone', 'tbl_clinic.id_phone_clinic', '=', 'tbl_phone.id_phone')
-                ->where('id_clinic','=',$id_clinica)
+                $clinica = DB::table('tbl_sociedad')
+                ->join('tbl_direccion', 'tbl_sociedad.id_direccion_fk', '=', 'tbl_direccion.id_di')
+                ->join('tbl_telefono', 'tbl_sociedad.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                ->where('id_s','=',$id_clinica)
                 ->get();
 
-                $factura = DB::table('tbl_shop_invoice')
-                ->where('id_shop_invoice','=',$id_factura)
-                ->join('tbl_promo', 'tbl_shop_invoice.id_promo_shop_invoice', '=', 'tbl_promo.id_promo')
+                $factura = DB::table('tbl_factura_tienda')
+                ->where('id_ft','=',$id_factura)
+                ->join('tbl_promocion', 'tbl_factura_tienda.id_promocion_fk', '=', 'tbl_promocion.id_pro')
                 ->get();
-
-                $id_user=$factura[0]->id_user_shop_invoice;
+                //return $factura;
+                $id_user=$factura[0]->id_usuario_fk;
 
                 $cliente = DB::table('tbl_usuario')
-                ->join('tbl_address', 'tbl_usuario.id_address', '=', 'tbl_address.id_address')
-                ->join('tbl_phone', 'tbl_usuario.id_phone', '=', 'tbl_phone.id_phone')
-                ->where('id_user','=',$id_user)
+                ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+                ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                ->where('id_us','=',$id_user)
                 ->get();
 
-                $items_compra=DB::table('tbl_shop_invoice_detail')
-                ->where('id_invoice_shop_invoice_detail','=',$id_factura)
-                ->join('tbl_product', 'tbl_shop_invoice_detail.id_product_shop_invoice', '=', 'tbl_product.id_product')
+                $items_compra=DB::table('tbl_detallefactura_tienda')
+                ->where('id_factura_tienda_fk','=',$id_factura)
+                ->join('tbl_articulo_tienda', 'tbl_detallefactura_tienda.id_articulo_fk', '=', 'tbl_articulo_tienda.id_art')
                 ->get();
                 //return $items_compra;
                 //return $factura;
