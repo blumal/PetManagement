@@ -26,6 +26,7 @@ class FacturaCompraController extends Controller
 
                 $factura = DB::table('tbl_shop_invoice')
                 ->where('id_shop_invoice','=',$id_factura)
+                ->join('tbl_promo', 'tbl_shop_invoice.id_promo_shop_invoice', '=', 'tbl_promo.id_promo')
                 ->get();
 
                 $id_user=$factura[0]->id_user_shop_invoice;

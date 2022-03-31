@@ -11,6 +11,16 @@
 
     <?php 
     $numero_items=count($items_compra);
+    print_r($factura[0]);
+    echo "<br>";  
+    echo "<br>"; 
+    print_r($clinica[0]);
+    echo "<br>";  
+    echo "<br>";  
+    print_r($cliente[0]);
+    echo "<br>";  
+    echo "<br>";  
+    print_r($items_compra);
     ?>
 
 <div class="invoice-box">
@@ -25,6 +35,7 @@
                         <td>
                             <?php echo $clinica[0]->name_clinic ?><br />
                             Fecha de compra: <?php echo $factura[0]->date_shop_invoice ?><br />
+                            ID Factura: <?php echo $clinica[0]->id_clinic; echo " - ".$factura[0]->id_shop_invoice ?><br />
                         </td>
                     </tr>
                 </table>
@@ -89,7 +100,25 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Total compra: <?php echo $factura[0]->total_shop_invoice ?>€</b></td>
+            <td><b> Subtotal: <?php echo $factura[0]->total_shop_invoice ?>€</b></td>
+        </tr>
+        <tr class="heading">
+            <td>Descuento</td>
+            <td>Nombre</td>
+            <td>Porcentaje</td>
+            <td>Precio descontado</td>
+        </tr>
+        <tr class="item">
+            <td></td>
+            <td><?php echo $factura[0]->name_promo ?></td>
+            <td><?php echo $factura[0]->percentage_promo ?>%</td>
+            <td><?php echo "-".($factura[0]->total_shop_invoice*($factura[0]->percentage_promo/100)) ?>€</td>
+        </tr>
+        <tr class="total">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b> Total: <?php echo ($factura[0]->total_shop_invoice-($factura[0]->total_shop_invoice*($factura[0]->percentage_promo/100))) ?>€</b></td>
         </tr>
     </table>
     Estimado, <?php echo $cliente[0]->firstname_user;?>:<br>
