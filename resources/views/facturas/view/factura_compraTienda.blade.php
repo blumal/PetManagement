@@ -247,7 +247,7 @@ img {
     }else{
 
     ?>
-    <a class="btn btn-primary" href="{{url('/Factura/download/'.$factura[0]->id_ft)}}">Descargar PDF</a>
+    <a class="btn btn-primary" href="{{url('/FacturaTienda/download/'.$factura[0]->id_ft)}}">Descargar PDF</a>
     <?php } ?>
 </div>
 </body>

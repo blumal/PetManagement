@@ -14,8 +14,8 @@ class FacturaCompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function vistaFacturaTienda($id){
-        $id_factura=$id;
+    public function vistaFacturaTienda($id_factura_tienda){
+        $id_factura=$id_factura_tienda;
         $id_clinica=1;
         try{
             DB::beginTransaction();
@@ -54,8 +54,8 @@ class FacturaCompraController extends Controller
         }
     }
 
-    public function createPDFTienda($id) {
-        $id_factura=$id;
+    public function createPDFTienda($id_factura_tienda) {
+        $id_factura=$id_factura_tienda;
         $id_clinica=1;
         // retreive all records from db
         $clinica = DB::table('tbl_sociedad')

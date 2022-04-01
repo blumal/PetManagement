@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacturaCompraController;
+use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
 
@@ -16,12 +17,19 @@ use App\Http\Controllers\ItemController;
 |
 */
 
+//FACTURAS TIENDA//
 
 //Ruta para entrar a facturas
-Route::get('/Facturas', [FacturaCompraController::class, 'directorioFacturasTienda']);
+Route::get('/FacturasTienda', [FacturaCompraController::class, 'directorioFacturasTienda']);
 //Ruta para ver cada factura
-Route::get('/Factura/view/{id}', [FacturaCompraController::class, 'vistaFacturaTienda']);
+Route::get('/FacturaTienda/view/{id_factura_tienda}', [FacturaCompraController::class, 'vistaFacturaTienda']);
 //Ruta para generar Facturas
-Route::get('/Factura/download/{id}', [FacturaCompraController::class, 'createPDFTienda']);
+Route::get('/FacturaTienda/download/{id_factura_tienda}', [FacturaCompraController::class, 'createPDFTienda']);
 
+//FACTURAS VISITAS//
+
+//Ruta para entrar a facturas visitas
+Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+
+Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 
