@@ -14,8 +14,8 @@ class FacturaCompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function vistaFactura(){
-        $id_factura=3;
+    public function vistaFactura($id){
+        $id_factura=$id;
         $id_clinica=1;
         try{
             DB::beginTransaction();
@@ -54,8 +54,8 @@ class FacturaCompraController extends Controller
         }
     }
 
-    public function createPDF() {
-        $id_factura=3;
+    public function createPDF($id) {
+        $id_factura=$id;
         $id_clinica=1;
         // retreive all records from db
         $clinica = DB::table('tbl_sociedad')
@@ -91,11 +91,11 @@ class FacturaCompraController extends Controller
     }
 
     public function directorioFacturas(){
-        $facturas = DB::table('tbl_usuario')
-                ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
-                ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
-                ->where('id_us','=',$id_user)
+        $facturas = DB::table('tbl_factura_tienda')
                 ->get();
+
+        return view('facturas/directorioFacturas', compact('facturas'));
+        
     }
     /**
      * Show the form for creating a new resource.

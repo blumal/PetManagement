@@ -238,6 +238,7 @@ img {
     Nunca habría sido posible crecer, ni llegar hasta donde estamos, sin tu apoyo. 
     Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
     <?php echo $clinica[0]->nombre_s ?>.
+    <br>
     <a class="btn btn-primary" href="{{ URL::to('/Factura/pdf') }}">Descargar PDF</a>
 
 </div>
