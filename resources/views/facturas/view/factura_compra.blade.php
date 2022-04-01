@@ -141,7 +141,13 @@ img {
                 <table>
                     <tr>
                         <td class="title">
-                            <img src="../storage/img/logo.jpeg" alt="">
+                            <?php if (isset($download)) {
+                                echo "<img src='../storage/img/logo.jpeg' >";
+                            }else {
+                                echo "<img src='../../storage/img/logo.jpeg' >";
+                            }
+                            ?>
+                            
                         </td>
                         <td>
                             <?php echo $clinica[0]->nombre_s ?><br />
@@ -239,7 +245,7 @@ img {
     Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
     <?php echo $clinica[0]->nombre_s ?>.
     <br>
-    <a class="btn btn-primary" href="{{ URL::to('/Factura/pdf') }}">Descargar PDF</a>
+    <a class="btn btn-primary" href="{{url('/Factura/download/'.$factura[0]->id_ft)}}">Descargar PDF</a>
 
 </div>
 </body>

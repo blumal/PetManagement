@@ -19,12 +19,12 @@ use App\Http\Controllers\ItemController;
 
 //Ruta para entrar a facturas
 Route::get('/Facturas', [FacturaCompraController::class, 'directorioFacturas']);
-Route::get('/Factura/{id}', [FacturaCompraController::class, 'vistaFactura']);
+Route::get('/Factura/view/{id}', [FacturaCompraController::class, 'vistaFactura']);
 
 //Route::get('generate-html-to-pdf', 'HtmlToPDFController@index')->name('generate-html-to-pdf');
 
 //Route::get('generate-html-to-pdf', [HtmlToPDFController::class, 'index']);
 
-Route::get('/Factura/{id}', [FacturaCompraController::class, 'createPDF']);
+Route::get('/Factura/download/{id}', [FacturaCompraController::class, 'createPDF']);
 
 

@@ -46,7 +46,7 @@ class FacturaCompraController extends Controller
                 //return $factura;
             DB::commit();
 
-            return view('facturas/factura_compra', compact('factura','clinica','cliente','items_compra'));
+            return view('facturas/view/factura_compra', compact('factura','clinica','cliente','items_compra'));
 
         }catch(\Exception $e){
             DB::rollBack();
@@ -81,11 +81,11 @@ class FacturaCompraController extends Controller
                 ->where('id_factura_tienda_fk','=',$id_factura)
                 ->join('tbl_articulo_tienda', 'tbl_detallefactura_tienda.id_articulo_fk', '=', 'tbl_articulo_tienda.id_art')
                 ->get();
-        
+        $download=1;
         //$data = Employee::all();
         // share data to view
         //view()->share('clinica',$clinica);
-        $pdf = PDF::loadView('facturas/factura_compra',compact('factura','clinica','cliente','items_compra'));
+        $pdf = PDF::loadView('facturas/view/factura_compra',compact('factura','clinica','cliente','items_compra','download'));
         // download PDF file with download method
         return $pdf->download('pdf_file.pdf');
     }
