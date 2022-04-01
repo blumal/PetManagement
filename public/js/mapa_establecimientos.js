@@ -24,7 +24,7 @@ function objetoAjax() {
 
 /*MOSTRAR MAPA*/
 
-map = L.map('map').setView([41.3882842630049, 2.167713726307117], 15);
+map = L.map('map').setView([41.35255013466578, 2.1086745025454907], 15);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -66,7 +66,7 @@ function markers() {
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<span>" + respuesta[i].nombre_s + "</span>", { maxWidth: 190 }).openPopup();
+                    marker.bindPopup("<span>" + respuesta[i].nombre_s + "</span><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button>", { maxWidth: 190 }).openPopup();
                 })
             }
         }
@@ -75,12 +75,12 @@ function markers() {
 }
 
 //Creamos un marcador de la persona donde este en el mapa
-var markerIcon = L.icon({
-    iconUrl: src = '../public/img/person.png',
+var markerIconPerson = L.icon({
+    iconUrl: src = 'https://cdn-icons-png.flaticon.com/512/57/57117.png',
     iconSize: [30, 30]
 });
 //Lo seteamos manualmente
-marker_person = L.marker([0, 0], { icon: markerIcon });
+marker_person = L.marker([0, 0], { icon: markerIconPerson });
 //Lo añadimos al mapa
 
 //Creamos la funcion ruta para trazar una ruta hasta el lugar que elijamos

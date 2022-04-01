@@ -43,15 +43,16 @@
     <br>
     <input type="search" onkeyup="leerJS()" id="filtro" placeholder="Filtrar por nombre">
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
-    <table id="contenido">
+    <table id="tabla">
 
     </table>
-    {{-- Modal --}}
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
           <span id="cerrar" class="close">&times;</span>
-          <p id="contenido"></p>
+          <div id="contenido">
+
+          </div>
         </div>
       </div>
     {{-- Link con el ajax --}}

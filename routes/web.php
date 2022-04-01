@@ -25,3 +25,7 @@ Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);
 Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimientos']);
 
 Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
+
+Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
+
+Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
