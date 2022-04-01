@@ -9,7 +9,7 @@
 <body>
     
 
-    </form>
+    
     @for ($i = 0; $i < count($facturas); $i++)
         
         <a href="{{url('Factura/view/'.$facturas[$i]->id_ft)}}" class="btn btn-primary" >Ver Factura <?php echo $facturas[$i]->id_ft ?></a>

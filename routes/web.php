@@ -18,13 +18,10 @@ use App\Http\Controllers\ItemController;
 
 
 //Ruta para entrar a facturas
-Route::get('/Facturas', [FacturaCompraController::class, 'directorioFacturas']);
-Route::get('/Factura/view/{id}', [FacturaCompraController::class, 'vistaFactura']);
-
-//Route::get('generate-html-to-pdf', 'HtmlToPDFController@index')->name('generate-html-to-pdf');
-
-//Route::get('generate-html-to-pdf', [HtmlToPDFController::class, 'index']);
-
-Route::get('/Factura/download/{id}', [FacturaCompraController::class, 'createPDF']);
+Route::get('/Facturas', [FacturaCompraController::class, 'directorioFacturasTienda']);
+//Ruta para ver cada factura
+Route::get('/Factura/view/{id}', [FacturaCompraController::class, 'vistaFacturaTienda']);
+//Ruta para generar Facturas
+Route::get('/Factura/download/{id}', [FacturaCompraController::class, 'createPDFTienda']);
 
 

@@ -1,10 +1,4 @@
-<?php 
-    $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML('<h1>Test</h1>');
-    
-    //return $pdf->stream();
-    //return $pdf->download('invoice.pdf');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -248,8 +242,13 @@ img {
     Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
     <?php echo $clinica[0]->nombre_s ?>.
     <br>
-    <a class="btn btn-primary" href="{{url('/Factura/download/'.$factura[0]->id_ft)}}">Descargar PDF</a>
+    <?php if (isset($download)) {
+        # code...
+    }else{
 
+    ?>
+    <a class="btn btn-primary" href="{{url('/Factura/download/'.$factura[0]->id_ft)}}">Descargar PDF</a>
+    <?php } ?>
 </div>
 </body>
 </html>

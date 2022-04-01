@@ -14,7 +14,7 @@ class FacturaCompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function vistaFactura($id){
+    public function vistaFacturaTienda($id){
         $id_factura=$id;
         $id_clinica=1;
         try{
@@ -46,7 +46,7 @@ class FacturaCompraController extends Controller
                 //return $factura;
             DB::commit();
 
-            return view('facturas/view/factura_compra', compact('factura','clinica','cliente','items_compra'));
+            return view('facturas/view/factura_compraTienda', compact('factura','clinica','cliente','items_compra'));
 
         }catch(\Exception $e){
             DB::rollBack();
@@ -54,7 +54,7 @@ class FacturaCompraController extends Controller
         }
     }
 
-    public function createPDF($id) {
+    public function createPDFTienda($id) {
         $id_factura=$id;
         $id_clinica=1;
         // retreive all records from db
@@ -85,16 +85,16 @@ class FacturaCompraController extends Controller
         //$data = Employee::all();
         // share data to view
         //view()->share('clinica',$clinica);
-        $pdf = PDF::loadView('facturas/view/factura_compra',compact('factura','clinica','cliente','items_compra','download'));
+        $pdf = PDF::loadView('facturas/view/factura_compraTienda',compact('factura','clinica','cliente','items_compra','download'));
         // download PDF file with download method
         return $pdf->download('pdf_file.pdf');
     }
 
-    public function directorioFacturas(){
+    public function directorioFacturasTienda(){
         $facturas = DB::table('tbl_factura_tienda')
                 ->get();
 
-        return view('facturas/directorioFacturas', compact('facturas'));
+        return view('facturas/directorioFacturasTienda', compact('facturas'));
         
     }
     /**
