@@ -119,6 +119,7 @@ img {
     <?php 
 
     $numero_items=count($items_compra);
+    $subtotal=0
     /*
     
     print_r($factura[0]);
@@ -142,9 +143,9 @@ img {
                     <tr>
                         <td class="title">
                             <?php if (isset($download)) {
-                                echo "<img src='../storage/img/logo.jpeg' >";
+                                echo "<img src='../storage/img/Logo.jpeg' >";
                             }else {
-                                echo "<img src='../../storage/img/logo.jpeg' >";
+                                echo "<img src='../../storage/img/Logo.png' >";
                             }
                             ?>
                             
@@ -204,6 +205,7 @@ img {
             <td><?php echo $items_compra[$i]->cantidad_dft ?></td>
             <td><?php echo $items_compra[$i]->precio_art ?>€</td>
             <td><?php echo ($items_compra[$i]->precio_art*$items_compra[$i]->cantidad_dft) ?>€</td>
+            <?php $subtotal=$subtotal+($items_compra[$i]->cantidad_dft*$items_compra[$i]->precio_art)?>
         </tr>
         @endfor
         <tr class="item last">
@@ -211,13 +213,14 @@ img {
             <td><?php echo $items_compra[$numero_items-1]->cantidad_dft ?></td>
             <td><?php echo $items_compra[$numero_items-1]->precio_art ?></td>
             <td><?php echo ($items_compra[$numero_items-1]->precio_art*$items_compra[$numero_items-1]->cantidad_dft) ?>€</td>
+            <?php $subtotal=$subtotal+($items_compra[$numero_items-1]->cantidad_dft*$items_compra[$numero_items-1]->precio_art)?>
         </tr>
 
         <tr class="total">
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Subtotal: <?php echo $factura[0]->total_ft ?>€</b></td>
+            <td><b> Subtotal: <?php echo $subtotal ?>€</b></td>
         </tr>
         <tr class="heading">
             <td>Descuento</td>
@@ -229,15 +232,15 @@ img {
             <td><?php echo $factura[0]->promocion_pro ?></td>
             <td></td>
             <td><?php echo $factura[0]->porcentaje_pro ?>%</td>
-            <?php $descuento = bcdiv($factura[0]->total_ft*($factura[0]->porcentaje_pro/100),1,2);?>
-            <td><?php echo "-"; echo $descuento;?>€</td>
+            <?php $descuento = $factura[0]->porcentaje_pro/100*$subtotal?>
+            <td><?php echo "-"; echo bcdiv($descuento,1,2);?>€</td>
 
         </tr>
         <tr class="total">
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Total: <?php echo $factura[0]->total_ft-($descuento) ?>€</b></td>
+            <td><b> Total: <?php echo $factura[0]->total_ft ?>€</b></td>
         </tr>
     </table>
     Estimado, <?php echo $cliente[0]->nombre_us;?>:<br>
