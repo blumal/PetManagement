@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacturaCompraController;
+use App\Http\Controllers\HtmlToPDFController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,15 @@ use App\Http\Controllers\FacturaCompraController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //Ruta para entrar a facturas
-Route::get('/', [FacturaCompraController::class, 'vistaFactura']);
+//Route::get('/Facturas', [FacturaCompraController::class, 'directorioFacturas']);
+Route::get('/Factura/2', [FacturaCompraController::class, 'vistaFactura']);
+
+//Route::get('generate-html-to-pdf', 'HtmlToPDFController@index')->name('generate-html-to-pdf');
+
+//Route::get('generate-html-to-pdf', [HtmlToPDFController::class, 'index']);
+
+Route::get('/Factura/pdf', [FacturaCompraController::class, 'createPDF']);
+
+
