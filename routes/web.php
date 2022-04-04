@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('login', [CitasController::class, 'login']);
+Route::get('/login', [CitasController::class, 'login']);
 
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::post('/logout', [CitasController::class, 'logout']);

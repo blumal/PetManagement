@@ -15,11 +15,11 @@
         <!--Menu header-->
         <ul class="main-menu">
             <li class="menu-item">Home</li>
-            <li class="menu-item" href="./views/tienda.blade.php?">Tienda</li>
+            <li class="menu-item" href="./views/tienda.blade.php">Tienda</li>
             <li class="menu-item">Clínica</li>
             <li class="menu-item">Contacto</li>
             <li class="menu-item">Sobre Nosotros</li>
-            <li class="cta">Login</li>
+            <li class="cta"><a href="{{url("citas")}}">JOSE</a></li>
         </ul>
         <script src="./js/home.js"></script>
     </header>

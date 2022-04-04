@@ -23,7 +23,7 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
-
+    <h1>HOLA TIENDA</h1>
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <div class="social-icons-container">
