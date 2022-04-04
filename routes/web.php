@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CitasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
@@ -17,6 +18,14 @@ use App\Http\Controllers\ItemController;
 |
 */
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('login', [CitasController::class, 'login']);
+Route::post('login-proc', [CitasController::class, 'loginProc']);
+Route::get('citas', [CitasController::class, 'index']);
 //FACTURAS TIENDA//
 
 //Ruta para entrar a facturas
@@ -34,4 +43,3 @@ Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFactu
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 
 Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
-
