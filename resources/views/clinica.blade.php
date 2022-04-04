@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/style-home.css">
     <link rel="icon" href="./img/imagenesWeb/logo.png">
-    <title>Home</title>
+    <title>Clínica</title>
 </head>
 <body>
     <header id="Header">
@@ -18,6 +18,7 @@
             <li class="menu-item">Tienda</li>
             <li class="menu-item">Clínica</li>
             <li class="menu-item">Contacto</li>
+            <li class="menu-item">Sobre Nosotros</li>
             <li class="cta">Login</li>
         </ul>
         <script src="./js/home.js"></script>
@@ -26,39 +27,19 @@
     
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-content-container">
-                <h3 class="website-logo">Krey Academy</h3>
-                <span class="footer-info">111 111 111</span>
-                <span class="footer-info">academy@itskrey.com</span>
-            </div>
-            <div class="footer-menus">
-                <div class="footer-content-container">
-                    <span class="menu-title">menu</span>
-                    <a href="" class="menu-item-footer">Home</a>
-                    <a href="" class="menu-item-footer">Courses</a>
-                    <a href="" class="menu-item-footer">Testimonials</a>
-                </div>
-                <div class="footer-content-container">
-                    <span class="menu-title">legal</span>
-                    <a href="" class="menu-item-footer">Privacy Policy</a>
-                    <a href="" class="menu-item-footer">Cookies</a>
-                    <a href="" class="menu-item-footer">Legal Advice</a>
-                </div>
-            </div>
-            
-            <div class="footer-content-container">
-                <span class="menu-title">follow us</span>
-                <div class="social-container">
-                    <a href="" class="social-link"></a>
-                    <a href="" class="social-link"></a>
-                    <a href="" class="social-link"></a>
-                </div>
-            </div>
+        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <div class="social-icons-container">
+            <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+            <a href="https://www.t.me/petmanagement" class="social-icon"></a>
         </div>
-        <div class="copyright-container">
-            <span class="copyright">Copyright 2021, itskrey.com. All rights reserved.</span>
-        </div>
+        <ul class="footer-menu-container">
+            <li class="footer-item">Legal</li>
+            <li class="footer-item">Cookies</li>
+            <li class="footer-item">Privacy</li>
+            <li class="footer-item">Shipping</li>
+            <li class="footer-item">Refunds</li>
+        </ul>
+        <span class="copyright">&copy;2021, Krey Academy. All rights reserved.</span>
     </footer>
 </body>
 </html>

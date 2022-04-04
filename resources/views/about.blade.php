@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/style-home.css">
     <link rel="icon" href="./img/imagenesWeb/logo.png">
-    <title>Tienda</title>
+    <title>About Us</title>
 </head>
 <body>
     <header id="Header">
@@ -23,6 +23,8 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
+
+    
 
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
