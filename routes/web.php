@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,17 @@ Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
 Route::get('/carritoview',[ProductoController::class, 'CartCheckout']);
 
 Route::get('/carritovaciar',[ProductoController::class, 'CartClearOut']);
+
+Route::get('vistaprueba',[ProductoController::class,'mostrarProducto']);
+
+/*Crud */
+
+Route::get('admincrud',[ProductoController::class,'mostrarProductoCrud']);
+
+Route::post('filtro',[ProductoController::class,'show']);
+
+Route::post('crear',[ProductoController::class,'crear']);
+
+Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
+
+Route::put('actualizar',[ProductoController::class,'update']);

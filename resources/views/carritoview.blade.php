@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-
-<header>
-    <p>OFERTA GRUPOS: COMPRA 10 CAMISETAS, LLÉVATE 1 PACK BOLAS CHINAS GRATIS 📲 WhatsApp +34 660 63 64 27 📲</p>
-</header>
 <div class="row">
     <h1 class="titulo">Su carrito</h1>
 </div>
@@ -24,13 +20,13 @@
         @php
         $suma=0;
         if (is_null($array3)){
-            return redirect()->to('/principal')->send();
+            return redirect()->to('/vistaprueba')->send();
         }
         $numbb = count($array3);
         print_r('Productos añadidos: '.$numbb);
         @endphp
     </div>
-    <a href="{{ url('principal')}}" class="seguir">
+    <a href="{{ url('vistaprueba')}}" class="seguir">
         <p><b>Seguir comprando ></b></p>
     </a>
     <div class="row">
@@ -39,25 +35,27 @@
             <div class="one-column-top"></div>
             @foreach ($array3 as $datosprod)
             <?php
-            $listainfo = DB::table('camisetas')->select('*')->where('id','=',$datosprod)->get();
+            $listainfo = DB::table('tbl_articulo_tienda')->select('*')->where('id_art','=',$datosprod)->get();
+            // $cnt = DB::select('select count(id_art) as repetidos, id_art from tbl_articulo_tienda as E where id_art=? group by id_art',[$datosprod]);
+            
             foreach ($listainfo as $info){
                 ?>
                 <div class="one-column">
-                    <div class="three-column">
+                    {{-- <div class="three-column">
                         <p><img src="{{asset('storage').'/'.$info->foto_cami}}" width="100" class="zoom"></p>
+                    </div> --}}
+
+                    <div class="three-column">
+                        <p style="padding-top: 50px"><b><?php echo $info->nombre_art;?></b></p>
                     </div>
 
                     <div class="three-column">
-                        <p style="padding-top: 50px"><b><?php echo $info->nombre_cami;?></b></p>
-                    </div>
-
-                    <div class="three-column">
-                        <p style="color: red; font-size:20px; padding: 50px 75px 0px 0px;"><b><?php echo $info->precio_cami;?>€</b></p>
+                        <p style="color: red; font-size:20px; padding: 50px 75px 0px 0px;"><b><?php echo $info->precio_art;?>€</b></p>
                     </div> 
                 </div>
                 <?php 
                 
-                $suma = $suma + $info->precio_cami; ?>
+                $suma = $suma + $info->precio_art; ?>
                 <?php } ?>
             @endforeach
             <?php $precio = $suma;
@@ -84,47 +82,3 @@
 
 
 </div>
-
-<footer>
-    <div class="row" id="footer2">
-        <div class="four-column-footer">
-            <h3 style="font-weight:500">Descargar aplicación móvil</h3>
-            <p><img src="../public/img/applestore.png" alt="applestore" style="cursor: pointer"></p>
-            <p><img src="../public/img/playstore.png" alt="googleplay" style="cursor: pointer"></p>
-        </div>
-
-        <div class="four-column-footer">
-            <b>
-                <p>¿Quiénes somos?</p>
-                <p>Información de contacto</p>
-                <p>Preguntas frecuentes</p>
-            </b>
-
-        </div>
-
-        <div class="four-column-footer">
-            <b>
-                <p>Condiciones de uso</p>
-                <p>Declaración de Privacidad y Cookies</p>
-                <p>Aceptación de cookies</p>                
-            </b>
-
-        </div>
-
-        <div class="four-column-footer">
-            <p><img src="../public/img/instagram.png" alt="instagram" width="25px"><img src="../public/img/facebook.png" alt="facebook" width="38px" style="padding-left: 10px;"></p>
-            <p>© BBB CAMISETAS DE FUTBOL - TODOS LOS DERECHOS RESERVADOS</p>
-        </div>
-    </div>
-
-    <div class="row" id="footer2">
-        <center>
-            <div class="one-column-footer">
-                <p style="text-align: center; font-size: .88rem; padding: 0px 5% 0px 5%; font-weight:100">Recuerda que la compra de camisetas de fútbol es adictiva. Compra con responsabilidad... pero COMPRA!
-                </p>
-            </div>
-        </center>
-    </div>
-</footer>
-</body>
-</html>

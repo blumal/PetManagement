@@ -1,0 +1,200 @@
+/* Modal box */
+
+.modalbox {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalregistro {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    width: 30%;
+    height: 80vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.close {
+    font-size: 2.5vh;
+    margin-left: 61vh;
+    margin-bottom: 11vh;
+    cursor: pointer;
+}
+
+.close:hover {
+    opacity: 50%;
+}
+
+
+/* Zona admin */
+
+.tabla {
+    color: rgb(0, 0, 0);
+    width: 200vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    background-color: rgb(255, 255, 255);
+    padding: 10vh;
+}
+
+
+/* Titulo Zona Admin */
+
+.titulo-admin {
+    padding-top: 4vh;
+    padding-left: 2vh;
+    text-align: left;
+    font-size: 3vh;
+    color: #ffffff;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    float: left;
+    width: 140vh;
+    font-weight: normal;
+}
+
+.header {
+    align-content: center;
+    display: block;
+    display: flex;
+    background-color: #383838;
+}
+
+
+/* Modal box crear */
+
+.modalbox_crear {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-left: 55vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.titulomodal {
+    color: white;
+    padding-left: 1vh;
+}
+
+.modalcrear_header {
+    background-color: #383838;
+    margin-bottom: 0;
+    padding: 1vh;
+    width: 100vh;
+    height: 15vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.modalcrear {
+    background-color: #fefefe;
+    margin-top: 0;
+    padding: 20px;
+    width: 100vh;
+    height: 90vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.close_crear {
+    font-size: 2.5vh;
+    margin-left: 95vh;
+    margin-bottom: 11vh;
+    cursor: pointer;
+    color: white;
+}
+
+.close_crear:hover {
+    opacity: 50%;
+}
+
+.inputcrear {
+    color: rgb(0, 0, 0);
+    width: 95vh;
+    border-radius: 1vh;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    padding: 2vh;
+}
+
+.contraseñacrear {
+    color: rgb(0, 0, 0);
+    width: 89vh;
+    border-radius: 1vh;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    padding: 2vh;
+}
+
+.botoncrear {
+    color: rgb(0, 0, 0);
+    width: 95vh;
+    border-radius: 1vh;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    padding: 2vh;
+}
+
+.botoncrear:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transition: 0.5s;
+}
+
+
+/* Modal box editar */
+
+.modalbox_editar {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-left: 55vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modaleditar {
+    background-color: #fefefe;
+    margin-top: 0;
+    padding: 20px;
+    width: 100vh;
+    height: 90vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.close {
+    font-size: 2.5vh;
+    margin-left: 95vh;
+    margin-bottom: 11vh;
+    cursor: pointer;
+    color: black;
+}
+
+.close:hover {
+    opacity: 50%;
+}
