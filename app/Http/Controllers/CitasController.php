@@ -14,12 +14,20 @@ class CitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     
 
     //Login view
     public function login()
     {
         return view('login');
+
+    }
+
+    //Funcion para limpiar todas las sesiones que tengamos encima
+    public function logout(Request $request){
+        $request->session()->flush();
+        return redirect('/');
     }
     //Método encargado de hacer el proceso de login
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
@@ -46,7 +54,7 @@ class CitasController extends Controller
                 //return $user[0]->id_us;
                 session()->put('id_user_session', $user[0]->id_us);
 
-                return view('citas');
+                return redirect('citas');
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('login');
@@ -56,72 +64,7 @@ class CitasController extends Controller
         }
     }
 
-    public function showCitas(){
-        
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Citas $citas)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Citas $citas)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Citas $citas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Citas $citas)
-    {
-        //
+    public function Citas(){
+        return view('citas');
     }
 }

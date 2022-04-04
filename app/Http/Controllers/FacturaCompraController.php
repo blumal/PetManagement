@@ -14,6 +14,19 @@ class FacturaCompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //FUNCION PARA MOSTRAR TODAS LAS FACTURAS DE COMPRAS DE UN USER
+    public function directorioFacturasTienda(Request $request){
+        $id_user= $request['id_user'];
+
+        $facturas = DB::table('tbl_factura_tienda')
+        ->where('id_usuario_fk','=',$id_user)
+        ->get();
+
+        return view('facturas/directorioFacturasTienda', compact('facturas'));
+        
+    }
+    //FUNCION PARA MOSTRAR UNA FACTURA DE COMPRA DE UN USER
     public function vistaFacturaTienda(Request $request){
         $id_factura= $request['id_factura_tienda'];
         $id_clinica=1;
@@ -54,6 +67,7 @@ class FacturaCompraController extends Controller
         }
     }
 
+    //FUNCION PARA DESCARGAR UNA FACTURA DE COMPRA DE UN USER
     public function createPDFTienda(Request $request) {
         $id_factura= $request['id_factura_tienda'];
         $id_clinica=1;
@@ -96,80 +110,6 @@ class FacturaCompraController extends Controller
         }catch(\Exception $e){
             DB::rollBack();
             return $e->getMessage();
-        }
-            
-    }
-
-    public function directorioFacturasTienda(){
-        $facturas = DB::table('tbl_factura_tienda')
-                ->get();
-
-        return view('facturas/directorioFacturasTienda', compact('facturas'));
-        
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FacturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FacturaCompra $facturaCompra)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FacturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FacturaCompra $facturaCompra)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FacturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FacturaCompra $facturaCompra)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FacturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FacturaCompra $facturaCompra)
-    {
-        //
+        }         
     }
 }

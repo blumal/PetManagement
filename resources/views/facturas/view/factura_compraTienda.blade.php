@@ -237,7 +237,7 @@ img {
             <td><b> Total: <?php echo $factura[0]->total_ft ?>€</b></td>
         </tr>
     </table>
-    Estimado, <?php echo $cliente[0]->nombre_us;?>:<br>
+    Estimado, <?php echo $cliente[0]->nombre_us;?>:<br><br>
     Nunca habría sido posible crecer, ni llegar hasta donde estamos, sin tu apoyo. 
     Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
     <?php echo $clinica[0]->nombre_s ?>.

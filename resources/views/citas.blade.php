@@ -17,6 +17,13 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
+    <div>
+        <form action="{{url("/logout")}}" method="post">
+            @csrf
+            ID Usuario -> {{ session()->get('id_user_session') }}
+            <input type="submit" value="Logout">
+        </form>
+    </div>
     <h1>Citas</h1>
     <div class="form-citas">
         <form action="{{url("citas-proc")}}" method="post">
@@ -25,13 +32,25 @@
             </br></br>
             <input type="submit" value="reservar">
         </form>
-        <form action="{{url("/FacturasClinica")}}" method="post">
-            @csrf
-            <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-            </br></br>
-            </br></br>
-            <input type="submit" value="Ver mis Visitas Anteriores">
-        </form>
     </div>
+    <form action="{{url("/FacturasClinica")}}" method="post">
+        @csrf
+        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+        </br></br>
+        </br></br>
+        <input type="submit" value="Ver mis Visitas Anteriores">
+    </form>
+
+    
+    <form action="{{url("/FacturasTienda")}}" method="post">
+        @csrf
+        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+        </br></br>
+        </br></br>
+        /////// ESTO ES SOLO TEST //////////
+        <BR>
+        <input type="submit" value="Ver mis Compras Anteriores">
+    </form>
+    ////// ESTO ES SOLO TEST //////////
 </body>
 </html>

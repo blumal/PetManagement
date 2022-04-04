@@ -14,6 +14,8 @@ class FacturaVisitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //FUNCION PARA MOSTRAR TODAS LAS FACTURAS CLINICAS DE UN USER
     public function directorioFacturasClinica(Request $request){
         $id_user= $request['id_user'];
         $facturas = DB::table('tbl_factura_clinica')
@@ -22,6 +24,7 @@ class FacturaVisitaController extends Controller
 
         return view('facturas/directorioFacturasClinica', compact('facturas'));
     }
+    //FUNCION PARA MOSTRAR VER UNA FACTURA CLINICA
     public function vistaFacturaClinica(Request $request){
         $id_factura= $request['id_factura_clinica'];
         $id_clinica=1;
@@ -64,6 +67,7 @@ class FacturaVisitaController extends Controller
 
     }
 
+    //FUNCION PARA DESCRAGAR UNA FACTURAS CLINICA DE UN USER
     public function createPDFClinica(Request $request) {
         try{
             DB::beginTransaction();
@@ -106,71 +110,5 @@ class FacturaVisitaController extends Controller
             DB::rollBack();
             return $e->getMessage();
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FacturaVisita  $facturaVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FacturaVisita $facturaVisita)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FacturaVisita  $facturaVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FacturaVisita $facturaVisita)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FacturaVisita  $facturaVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FacturaVisita $facturaVisita)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FacturaVisita  $facturaVisita
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FacturaVisita $facturaVisita)
-    {
-        //
     }
 }
