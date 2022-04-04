@@ -12,8 +12,13 @@
     
     @for ($i = 0; $i < count($facturas); $i++)
         
-        <a href="{{url('FacturaTienda/view/'.$facturas[$i]->id_ft)}}" class="btn btn-primary" >Ver Factura <?php echo $facturas[$i]->id_ft ?></a>
-        <br>
+    <form action="FacturaTienda/view" method="post">
+        @csrf
+        Factura <?php echo $facturas[$i]->fecha_ft?>
+        <input type="hidden" name="id_factura_tienda" value="<?php echo $facturas[$i]->id_ft?>">
+        <input type="submit" value="Ver factura">
+    </form>
+    <br>
     @endfor
 </body>
 </html>

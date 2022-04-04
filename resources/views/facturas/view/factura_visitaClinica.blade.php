@@ -112,8 +112,9 @@ img {
     
     <?php 
 
-    $numero_items=count($items_compra);
-    $subtotal=0
+    $numero_items=count($items_clinica);
+    //print_r($numero_items);
+    $subtotal=0;
     /*
     
     print_r($factura[0]);
@@ -125,7 +126,7 @@ img {
     print_r($cliente[0]);
     echo "<br>";  
     echo "<br>";  
-    print_r($items_compra);
+    print_r($items_clinica);
     */
     ?>
 
@@ -146,8 +147,8 @@ img {
                         </td>
                         <td>
                             <?php echo $clinica[0]->nombre_s ?><br />
-                            Fecha de compra: <?php echo $factura[0]->fecha_ft ?><br />
-                            ID Factura: <?php echo 'Compra '; echo " - ".$factura[0]->id_ft ?><br />
+                            Fecha de compra: <?php echo $factura[0]->fecha_fc ?><br />
+                            ID Factura: <?php echo 'Visita '; echo " - ".$factura[0]->id_fc ?><br />
                         </td>
                     </tr>
                 </table>
@@ -181,7 +182,7 @@ img {
             <td>Fecha de compra</td>
             <td></td>
             <td></td>
-            <td><?php echo $factura[0]->fecha_ft ?></td>
+            <td><?php echo $factura[0]->fecha_fc ?></td>
             
         </tr>
         <tr>
@@ -195,20 +196,23 @@ img {
         </tr>
         @for ($i = 0; $i < $numero_items-1; $i++)
         <tr class="item">
-            <td><?php echo $items_compra[$i]->nombre_art ?></td>
-            <td><?php echo $items_compra[$i]->cantidad_dft ?></td>
-            <td><?php echo $items_compra[$i]->precio_art ?>€</td>
-            <td><?php echo ($items_compra[$i]->precio_art*$items_compra[$i]->cantidad_dft) ?>€</td>
-            <?php $subtotal=$subtotal+($items_compra[$i]->cantidad_dft*$items_compra[$i]->precio_art)?>
+            <td><?php echo $items_clinica[$i]->producto_pro ?></td>
+            <td><?php echo $items_clinica[$i]->cant_dfc ?></td>
+            <td><?php echo $items_clinica[$i]->precio_pro ?>€</td>
+            <td><?php echo ($items_clinica[$i]->precio_pro*$items_clinica[$i]->cant_dfc) ?>€</td>
+            <?php $subtotal=$subtotal+($items_clinica[$i]->cant_dfc*$items_clinica[$i]->precio_pro)?>
         </tr>
         @endfor
+    
         <tr class="item last">
-            <td><?php echo $items_compra[$numero_items-1]->nombre_art ?></td>
-            <td><?php echo $items_compra[$numero_items-1]->cantidad_dft ?></td>
-            <td><?php echo $items_compra[$numero_items-1]->precio_art ?></td>
-            <td><?php echo ($items_compra[$numero_items-1]->precio_art*$items_compra[$numero_items-1]->cantidad_dft) ?>€</td>
-            <?php $subtotal=$subtotal+($items_compra[$numero_items-1]->cantidad_dft*$items_compra[$numero_items-1]->precio_art)?>
+            <td><?php echo $items_clinica[$numero_items-1]->producto_pro ?></td>
+            <td><?php echo $items_clinica[$numero_items-1]->cant_dfc ?></td>
+            <td><?php echo $items_clinica[$numero_items-1]->precio_pro ?></td>
+            <td><?php echo ($items_clinica[$numero_items-1]->precio_pro*$items_clinica[$numero_items-1]->cant_dfc) ?>€</td>
+            <?php $subtotal=$subtotal+($items_clinica[$numero_items-1]->precio_pro*$items_clinica[$numero_items-1]->precio_pro)?>
+            <?php $subtotal= bcdiv($subtotal,1,2);?>
         </tr>
+    
 
         <tr class="total">
             <td></td>
@@ -234,7 +238,7 @@ img {
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Total: <?php echo $factura[0]->total_ft ?>€</b></td>
+            <td><b> Total: <?php echo $factura[0]->total_fc ?>€</b></td>
         </tr>
     </table>
     Estimado, <?php echo $cliente[0]->nombre_us;?>:<br>
@@ -248,11 +252,12 @@ img {
 
     ?>
     <br>
-    <form action="/FacturaTienda/download" method="post">
+    <form action="/FacturaClinica/download" method="post">
         @csrf
-        <input type="hidden" name="id_factura_tienda" value="<?php echo $factura[0]->id_ft?>">
+        <input type="hidden" name="id_factura_clinica" value="<?php echo $factura[0]->id_fc?>">
         <input type="submit" value="Descargar">
     </form>
+    
     <?php } ?>
 </div>
 </body>

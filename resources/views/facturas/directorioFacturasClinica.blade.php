@@ -15,7 +15,7 @@
 
         <form action="FacturaClinica/view" method="post">
             @csrf
-            Factura 1
+            Factura <?php echo $facturas[$i]->fecha_fc?>
             <input type="hidden" name="id_factura_clinica" value="<?php echo $facturas[$i]->id_fc?>">
             <input type="submit" value="Ver factura">
         </form>

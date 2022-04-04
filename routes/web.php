@@ -22,9 +22,9 @@ use App\Http\Controllers\ItemController;
 //Ruta para entrar a facturas
 Route::get('/FacturasTienda', [FacturaCompraController::class, 'directorioFacturasTienda']);
 //Ruta para ver cada factura
-Route::get('/FacturaTienda/view/{id_factura_tienda}', [FacturaCompraController::class, 'vistaFacturaTienda']);
+Route::post('/FacturaTienda/view', [FacturaCompraController::class, 'vistaFacturaTienda']);
 //Ruta para generar Facturas
-Route::get('/FacturaTienda/download/{id_factura_tienda}', [FacturaCompraController::class, 'createPDFTienda']);
+Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createPDFTienda']);
 
 //FACTURAS VISITAS//
 
@@ -32,4 +32,6 @@ Route::get('/FacturaTienda/download/{id_factura_tienda}', [FacturaCompraControll
 Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
+
+Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
 

@@ -14,8 +14,8 @@ class FacturaCompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function vistaFacturaTienda($id_factura_tienda){
-        $id_factura=$id_factura_tienda;
+    public function vistaFacturaTienda(Request $request){
+        $id_factura= $request['id_factura_tienda'];
         $id_clinica=1;
         try{
             DB::beginTransaction();
@@ -54,8 +54,8 @@ class FacturaCompraController extends Controller
         }
     }
 
-    public function createPDFTienda($id_factura_tienda) {
-        $id_factura=$id_factura_tienda;
+    public function createPDFTienda(Request $request) {
+        $id_factura= $request['id_factura_tienda'];
         $id_clinica=1;
         // retreive all records from db
         $clinica = DB::table('tbl_sociedad')
@@ -87,7 +87,7 @@ class FacturaCompraController extends Controller
         //view()->share('clinica',$clinica);
         $pdf = PDF::loadView('facturas/view/factura_compraTienda',compact('factura','clinica','cliente','items_compra','download'));
         // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('facturaCompra-'.$id_factura.'.pdf');
     }
 
     public function directorioFacturasTienda(){
