@@ -43,6 +43,7 @@ class CitasController extends Controller
             if ($userId == 1){
                 //Establecemos sesión
                 $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $request->id_us);
                 return redirect('citas');
             }else{
                 //No establecemos sesión y lo devolvemos a login
