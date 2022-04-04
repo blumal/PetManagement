@@ -26,17 +26,33 @@
     <p id="mensaje"></p>
     <form onsubmit="crear(); return false;">
         <input type="text" id="nombre" placeholder="Nombre">
-        <input type="text" id="direccion" placeholder="Dirección">
-        <input type="number" id="telf" placeholder="Teléfono">
+        <input type="text" id="nif" placeholder="NIF">
+        <input type="email" id="email" placeholder="Email empresa">
+        <input type="text" id="direccion" placeholder="Calle">
+        <input type="number" id="num" placeholder="N Calle">
+        <input type="number" id="cp" placeholder="CP">
+        <input type="number" id="telf" placeholder="Teléfono 1">
+        <input type="number" id="telf2" placeholder="Teléfono 2">
         <span>Horario de apertura</span>
         <input type="time" id="horario_aper" placeholder="Horario apertura">
         <span>Horario de cierre</span>
         <input type="time" id="horario_cierre" placeholder="Horario cierre">
         <input type="text" id="url_web" placeholder="Web(url)">
-        <input type="file" id="foto" placeholder="Foto">
+        <span>Foto</span>
+        <input type="file" id="foto">
+        <span>Foto icono</span>
+        <input type="file" id="foto_icono">
+        <span>Tipo sociedad</span>
         <select name="tipo" id="tipo">
+            <option value="null">---</option>
             <option value="clinica">Clínica</option>
             <option value="protectora">Protectora de animales</option>
+        </select>
+        <span>Operatividad</span>
+        <select name="operativo" id="operativo">
+            <option value="null">---</option>
+            <option value="0">Inactivo</option>
+            <option value="1">Activo</option>
         </select>
         <input type="submit" value="Crear">
     </form>

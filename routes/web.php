@@ -26,6 +26,8 @@ Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimient
 
 Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
 
+Route::post('crearMapasEstablecimientos',[mapas::class, 'crearMapasEstablecimientos']);
+
 Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
 
 Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);

@@ -40,7 +40,7 @@ class mapas extends Controller
 
     public function filtroMapasEstablecimientos(Request $request){
         //Guardamos en la variable datos los resultados de la consulta de la tabla establecimientos
-        $datos=DB::select('SELECT tbl_sociedad.id_s, tbl_sociedad.nombre_s, tbl_sociedad.nif_s, tbl_sociedad.email_s, tbl_sociedad.horario_apertura_s, tbl_sociedad.horario_cierre_s, tbl_telefono.id_tel, tbl_telefono.contacto1_tel, tbl_telefono.contacto2_tel, tbl_direccion.id_di, tbl_direccion.nombre_di, tbl_direccion.numero_di, tbl_direccion.cp_di, tbl_tipo_sociedad.id_ts, tbl_tipo_sociedad.sociedad_ts FROM `tbl_sociedad` 
+        $datos=DB::select('SELECT tbl_sociedad.*, tbl_telefono.*, tbl_direccion.*, tbl_tipo_sociedad.* FROM `tbl_sociedad` 
         INNER JOIN tbl_telefono ON tbl_sociedad.id_telefono_fk = tbl_telefono.id_tel 
         INNER JOIN tbl_direccion ON tbl_sociedad.id_direccion_fk = tbl_direccion.id_di
         INNER JOIN tbl_tipo_sociedad ON tbl_sociedad.id_tipo_sociedad_fk = tbl_tipo_sociedad.id_ts
@@ -52,17 +52,68 @@ class mapas extends Controller
     public function modificarMapasEstablecimientos(Request $request){
         try {
             DB::table('tbl_tipo_sociedad')->where('id_ts','=',$request['id_ts'])
-            ->update(['sociedad_ts' => $request['tipo_s']]);
+            ->update(['sociedad_ts' => $request['sociedad_ts']]);
             DB::table('tbl_direccion')->where('id_di','=',$request['id_di'])
             ->update(['nombre_di' => $request['nombre_di'], 'numero_di' => $request['numero_di'], 'puerta_di' => $request['puerta_di'], 'cp_di' => $request['cp_di']]);
             DB::table('tbl_telefono')->where('id_tel','=',$request['id_tel'])
             ->update(['contacto1_tel' => $request['contacto1_tel'], 'contacto2_tel' => $request['contacto2_tel']]);
-            DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
-            ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s']]);
+            if ($request['foto_sociedad'] == '') {
+                DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+            ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+            'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+            'url_web' => $request['url_web'], 'foto_icono_sociedad' => $request['foto_icono_sociedad'],
+            'operatividad_s' => $request['operatividad_ts']]);
+            }else if ($request['foto_icono_sociedad'] == '') {
+                DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                'url_web' => $request['url_web'],'foto_sociedad' => $request['foto_sociedad'],
+                'operatividad_s' => $request['operatividad_ts']]);
+            }else if ($request['foto_sociedad'] == '' && $request['foto_icono_sociedad'] == '') {
+                DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                'url_web' => $request['url_web'],'foto_sociedad' => $request['foto_sociedad'],'foto_icono_sociedad' => $request['foto_icono_sociedad'],
+                'operatividad_s' => $request['operatividad_ts']]);
+            }
             return response()->json(array('resultado'=> 'OK'));
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
     
+    public function crearMapasEstablecimientos(Request $request){
+        try {
+            DB::insert('insert into tbl_tipo_sociedad (sociedad_ts) values (?)',
+            [$request->input('tipo')]);
+            $id_tipo = DB::getPdo()->lastInsertId();
+            DB::insert('insert into tbl_direccion (nombre_di, numero_di, cp_di) values (?, ?, ?)',
+            [$request->input('direccion'), $request->input('num'), $request->input('cp')]);
+            $id_direccion = DB::getPdo()->lastInsertId();
+            DB::insert('insert into tbl_telefono (contacto1_tel, contacto2_tel) values (?, ?)',
+            [$request->input('telf'), $request->input('telf2')]);
+            $id_tlf = DB::getPdo()->lastInsertId();
+            DB::insert('insert into tbl_sociedad (nombre_s, nif_s, email_s, id_tipo_sociedad_fk, id_direccion_fk, id_telefono_fk, 
+            horario_apertura_s, horario_cierre_s, url_web, foto_sociedad, foto_icono_sociedad, operatividad_s) 
+            values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [$request->input('nombre'),  $request->input('nif'),  $request->input('email'), $id_tipo, $id_direccion, $id_tlf, 
+            $request->input('horario_aper'), $request->input('horario_cierre'), $request->input('url_web'), $request->input('foto'),
+            $request->input('foto_icono'), $request->input('operativo')]);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function eliminarMapasEstablecimientos(Request $request){
+        try {
+            DB::delete('delete from tbl_sociedad where id_s = ?', [$request->input('id_s')]);
+            DB::delete('delete from tbl_tipo_sociedad where id_ts = ?', [$request->input('id_ts')]);
+            DB::delete('delete from tbl_direccion where id_di = ?', [$request->input('id_di')]);
+            DB::delete('delete from tbl_telefono where id_tel = ?', [$request->input('id_tel')]);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 }
