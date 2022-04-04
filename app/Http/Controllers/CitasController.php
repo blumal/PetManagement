@@ -14,10 +14,7 @@ class CitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('citas');
-    }
+    
 
     //Login view
     public function login()
@@ -28,6 +25,7 @@ class CitasController extends Controller
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
     public function loginProc(Request $request)
     {
+        //return $request;
         //Validación de datos enviados desde el form, en este caso se verifica en el server
         $request->validate([
             'email_us' => 'required|string|max:70',
@@ -42,9 +40,13 @@ class CitasController extends Controller
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
             if ($userId == 1){
                 //Establecemos sesión
-                $request->session()->put('email_session', $request->email_us);
-                $request->session()->put('id_user_session', $request->id_us);
-                return redirect('citas');
+                $user = DB::table('tbl_usuario')->where('email_us', '=', $request['email_us'])->get();
+                //return $user;
+                session()->put('email_session', $user[0]->email_us);
+                //return $user[0]->id_us;
+                session()->put('id_user_session', $user[0]->id_us);
+
+                return view('citas');
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('login');

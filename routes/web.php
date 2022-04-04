@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('login', [CitasController::class, 'login']);
 Route::post('login-proc', [CitasController::class, 'loginProc']);
-Route::get('citas', [CitasController::class, 'index']);
+Route::get('citas', [CitasController::class, 'loginProc']);
 //FACTURAS TIENDA//
 
 //Ruta para entrar a facturas
@@ -38,7 +38,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //FACTURAS VISITAS//
 
 //Ruta para entrar a facturas visitas
-Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 

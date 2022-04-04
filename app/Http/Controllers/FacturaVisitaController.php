@@ -15,7 +15,7 @@ class FacturaVisitaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function directorioFacturasClinica(Request $request){
-        $id_user=1;
+        $id_user= $request['id_user'];
         $facturas = DB::table('tbl_factura_clinica')
         ->where('id_usuario_fk','=',$id_user)
         ->get();
