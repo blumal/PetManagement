@@ -19,7 +19,7 @@
         <form method="post" onsubmit="return false;">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
-               <input type="search" id="search" name="nombre" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
+               <input type="search" id="search" name="nombre_art" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
             </div>
          </form>
     </div>
@@ -29,6 +29,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Código de barras</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Tipo de Artículo</th>
                 <th scope="col" colspan="2">Acciones</th>
@@ -38,11 +39,12 @@
                 <td scope="row">{{$prod->id_art}}</td>
                 <td>{{$prod->nombre_art}}</td>
                 <td>{{$prod->precio_art}}</td>
+                <td>{{$prod->codigobarras_art}}</td>
                 <td>{{$prod->marca_ma}}</td>
                 <td>{{$prod->tipo_articulo_ta}}</td>
                 <td>
                     {{-- Route::get('/clientes/{cliente}/edit',[ClienteController::class,'edit'])->name('clientes.edit'); --}}
-                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="modalbox({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->precio_art}}','{{$prod->marca_ma}}','{{$prod->tipo_articulo_ta}}');return false;">Editar</button>
+                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
                 </td>
                 <td>
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
@@ -63,23 +65,26 @@
             <h2><b>EDITAR USUARIO</b></h2>
             <form id="formUpdate" method="post" onsubmit="actualizar();closeModal_editar();return false;" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" id="modifNote">
-                <input class="inputcrear" type="text" name="nombre_us" id="nombre_us_e" placeholder="Nombre">
-                <input class="inputcrear" type="text" name="apellido1_us" id="apellido1_us_e" placeholder="Apellido 1">
-                <input class="inputcrear" type="text" name="apellido2_us" id="apellido2_us_e" placeholder="Apellido 2">
-                <div class="hr1">
-                    <hr>
-                </div>
-                <div class="no-cuenta-text">
-                    <p>Datos de inicio de sesion</p>
-                </div>
-                <div class="hr2">
-                    <hr>
-                </div>
-                <input class="inputcrear" type="email" name="email_us" id="email_us_e" placeholder="Usuario">
-                <input class="contraseñacrear" type="password" name="pass_us" id="pass_us_e" placeholder="Contraseña">
-                <button class="mostrarcontraseña" type="button" onclick=""><i id="eye" class="fa-solid fa-eye"></i></button>
+                <input class="inputcrear" type="text" name="nombre_art_e" id="nombre_art_e" placeholder="Nombre">
+                <input class="inputcrear" type="number" name="precio_art_e" id="precio_art_e" placeholder="Precio">
+                <input class="inputcrear" type="text" name="codigobarras_art_e" id="codigobarras_art_e" placeholder="Codigo de barras">
+                <input class="inputcrear" type="file" name="foto_e" id="foto_e" placeholder="Foto">
+                <h4>Marca</h4>
+                <select class="inputcrear" name="id_marca_fk_e" id="id_marca_fk_e">
+                    <option></option>
+                     @foreach ($dbMarcas as $item)
+                        <option value="{{$item->id_ma}}">{{$item->marca_ma}}</option>
+                    @endforeach
+                </select>
+                <h4>Tipo</h4>
+                <select class="inputcrear" name="id_tipo_articulo_fk_e" id="id_tipo_articulo_fk_e">
+                    <option></option>
+                     @foreach ($dbTipos as $item2)
+                        <option value="{{$item2->id_ta}}">{{$item2->tipo_articulo_ta}}</option>
+                    @endforeach
+                </select>
                 <button class="botoncrear" type="submit" value="Editar"><b>EDITAR</b></button>
-                <input type="hidden" name="id_us" id="idUpdate">
+                <input type="hidden" name="id_art_e" id="idUpdate">
             </form>
         </div>
     </div>
@@ -91,7 +96,8 @@
         <div class="modalcrear" id="modalcrear">
             <form onsubmit="crear();closeModal_crear();return false;" method="post" id="formcrear" enctype="multipart/form-data">
                 <input class="inputcrear" type="text" name="nombre_art" id="nombre_us" placeholder="Nombre">
-                <input class="inputcrear" type="number" name="precio_art" id="apellido1_us" placeholder="Precio">
+                <input class="inputcrear" type="number" name="precio_art" id="precio_art" placeholder="Precio">
+                <input class="inputcrear" type="text" name="codigobarras_art" id="codigobarras_art" placeholder="Codigo de barras">
                 <input class="inputcrear" type="file" name="foto" id="foto" placeholder="Foto">
                 <h4>Marca</h4>
                 <select class="inputcrear" name="id_marca_fk" id="id_marca_fk">

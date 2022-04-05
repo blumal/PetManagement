@@ -25,7 +25,7 @@ class ProductoController extends Controller
     }
 
     public function show(Request $request){
-        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
+        $listaProducto=DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk where nombre_art like ?',['%'.$request->input('nombre_art').'%']);
         return response()->json($listaProducto);
     }
     /*Mostrar productos prueba*/
@@ -78,14 +78,10 @@ class ProductoController extends Controller
         //return $id2[0]->id_direccion_fk;
         try {
             DB::beginTransaction();
-            $id2=DB::select('select id_direccion_fk from tbl_lugar where id_lu =?',[$id]);
-            $id3=DB::select('select id_foto_fk from tbl_lugar where id_lu =?',[$id]);
-            $id4=DB::select('select id_icono_fk from tbl_lugar where id_lu =?',[$id]);
+            $id3=DB::select('select id_foto_fk from tbl_articulo_tienda where id_art =?',[$id]);
             // return $id2[0]->id_direccion_fk;
-            DB::table('tbl_lugar')->where('id_lu','=',$id)->delete();
-            DB::table('tbl_direccion')->where('id_di','=',$id2[0]->id_direccion_fk)->delete();
-            DB::table('tbl_foto')->where('id_fo','=',$id3[0]->id_foto_fk)->delete();
-            DB::table('tbl_icono')->where('id_ic','=',$id4[0]->id_icono_fk)->delete();
+            DB::table('tbl_articulo_tienda')->where('id_art','=',$id)->delete();
+            DB::table('tbl_foto')->where('id_f','=',$id3[0]->id_foto_fk)->delete();
             DB::commit();
             return response()->json(array('resultado'=> 'OK'));
         }catch(\Exception $th){
@@ -97,7 +93,15 @@ class ProductoController extends Controller
     public function crear(Request $request){
 
         try{
-            DB::insert('insert into tbl_usuario (nombre_us,apellido1_us,apellido2_us,email_us,pass_us,id_rol_fk) values (?,?,?,?,?,?)',[$request->input('nombre_us'),$request->input('apellido1_us'),$request->input('apellido2_us'),$request->input('email_us'),$request->input('pass_us'),('2')]);  
+            $datos = $request->except('_token');
+            if($request->hasFile('foto')){
+                $ffoto = $request->file('foto')->store('uploads','public');
+            }else{
+                $datos['foto'] = NULL;
+            }
+            DB::insert('insert into tbl_foto (foto_f) values(?)',[$ffoto]);
+            $id4 = DB::select('select id_f from tbl_foto where foto_f =?',[$ffoto]);
+            DB::insert('insert into tbl_articulo_tienda (nombre_art,precio_art,codigobarras_art,id_foto_fk,id_marca_fk,id_tipo_articulo_fk) values (?,?,?,?,?,?)',[$request->input('nombre_art'),$request->input('precio_art'),$request->input('codigobarras_art'),($id4[0]->id_f),$request->input('id_marca_fk'),$request->input('id_tipo_articulo_fk')]);  
             return response()->json(array('resultado'=> 'OK'));
         }catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
@@ -106,7 +110,21 @@ class ProductoController extends Controller
 
     public function update(Request $request) {
         try {
-            DB::update('update tbl_usuario set nombre_us=?, apellido1_us=?, apellido2_us=?, email_us=?, pass_us =? where id_us=?',[$request->input('nombre_us'),$request->input('apellido1_us'),$request->input('apellido2_us'),$request->input('email_us'),$request->input('pass_us'),$request->input('id_us')]);
+            $id6 = DB::select('select id_foto_fk from tbl_articulo_tienda where id_art=?',[$request->input('id_art_e')]);
+            $datos = $request->except('_token');
+            if ($request->hasFile('foto_e')) {
+                $foto = DB::select('select foto_f from tbl_foto where id_f =?',[$id6[0]->id_foto_fk]);
+                if ($foto[0]->foto_f != null) {
+                    Storage::delete('public/'.$foto[0]->foto_f);
+                }
+                $ffoto2 = $request->file('foto_e')->store('uploads','public');
+            }else{
+                $foto = DB::select('select foto_f from tbl_foto where id_f =?',[$id6[0]->id_foto_fk]);
+                $ffoto2 = $foto[0]->foto_f;
+            }
+            DB::update('update tbl_foto set foto_f=? where id_f=?',[$ffoto2,$id6[0]->id_foto_fk]);
+            $id4 = DB::select('select id_f from tbl_foto where foto_f =?',[$ffoto2]);
+            DB::update('update tbl_articulo_tienda set nombre_art=?, precio_art=?, codigobarras_art=?, id_foto_fk=?, id_marca_fk =?, id_tipo_articulo_fk=? where id_art=?',[$request->input('nombre_art_e'),$request->input('precio_art_e'),$request->input('codigobarras_art_e'),($id4[0]->id_f),$request->input('id_marca_fk_e'),$request->input('id_tipo_articulo_fk_e'),$request->input('id_art_e')]);
             //return response()->json(array('resultado'=> 'NOK: '.$request->input('id_us')));
             return response()->json(array('resultado'=> 'OK'));
         } catch (\Throwable $th) {

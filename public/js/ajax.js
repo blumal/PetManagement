@@ -39,7 +39,7 @@ function filtro() {
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', method);
-    formData.append('nombre', filtro);
+    formData.append('nombre_art', filtro);
 
     /* Inicializar un objeto AJAX */
     var ajax = objetoAjax();
@@ -60,6 +60,7 @@ function filtro() {
                 recarga += '<th scope="col">#</th>';
                 recarga += '<th scope="col">Nombre</th>';
                 recarga += '<th scope="col">Precio</th>';
+                recarga += '<th scope="col">Código de Barras</th>';
                 recarga += '<th scope="col">Marca</th>';
                 recarga += '<th scope="col">Tipo de Artículo</th>';
                 recarga += '<th scope="col" colspan="2">Acciones</th>';
@@ -69,11 +70,12 @@ function filtro() {
                     recarga += '<td scope="row">' + respuesta[i].id_art + '</td>';
                     recarga += '<td>' + respuesta[i].nombre_art + '</td>';
                     recarga += '<td>' + respuesta[i].precio_art + '</td>';
+                    recarga += '<td>' + respuesta[i].codigobarras_art + '</td>';
                     recarga += '<td>' + respuesta[i].marca_ma + '</td>';
                     recarga += '<td>' + respuesta[i].tipo_articulo_ta + '</td>';
                     recarga += '<td>';
                     // editar
-                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
                     recarga += '</td>';
                     recarga += '<td>';
                     // eliminar
@@ -126,7 +128,7 @@ function crear() {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Nota creada correctamente.</p>';
+                    message.innerHTML = '<p>Producto creado correctamente.</p>';
 
                 } else {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
@@ -174,7 +176,7 @@ function eliminar(id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Usuario eliminado correctamente.</p>';
+                    message.innerHTML = '<p>Producto eliminado correctamente.</p>';
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
@@ -223,7 +225,7 @@ function actualizar() {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Nota modificada correctamente.</p>';
+                    message.innerHTML = '<p>Producto modificado correctamente.</p>';
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
