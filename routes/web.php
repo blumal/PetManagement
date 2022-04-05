@@ -4,6 +4,7 @@ use App\Http\Controllers\CitasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
+use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
 
@@ -61,3 +62,7 @@ Route::get('/FacturaClinica/download', [FacturaVisitaController::class, 'directo
 Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
 
 //FIN FACTURAS
+
+//TEST
+
+Route::get('/hello', [VisitaController::class, 'preRellenarVisitaClinica']);

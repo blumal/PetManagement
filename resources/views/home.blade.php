@@ -19,7 +19,7 @@
             <li class="menu-item">Clínica</li>
             <li class="menu-item">Contacto</li>
             <li class="menu-item">Sobre Nosotros</li>
-            <li class="cta"><a href="{{url("citas")}}">JOSE</a></li>
+            <li class="cta"><a href="{{url("citas")}}">LOGIN</a></li>
         </ul>
         <script src="./js/home.js"></script>
     </header>
