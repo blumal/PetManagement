@@ -23,11 +23,11 @@
                 <p>Precio:</p>
                 <form  method="post">
                     <label>
-                        <input type="radio" name="precio" checked value="ASC"/>
+                        <input type="radio" name="precio" checked value="ASC" onclick='filtro4()'/>
                         <span> Más barato</span>
                     </label>
                     <label>
-                        <input type="radio" name="precio" value="DESC"/>
+                        <input type="radio" name="precio" value="DESC" onclick='filtro4()'/>
                         <span> Más caro</span>
                     </label>
                 </form>

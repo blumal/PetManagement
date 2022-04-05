@@ -243,7 +243,7 @@ function filtro3() {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
             divProductos.innerHTML = "";
-            var html = "<p>Resultados por '" + document.getElementById("search").value + "'</p>";
+            var html = "<p></p>";
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
@@ -268,4 +268,46 @@ function filtro3() {
 
     ajax.send(formData);
 
+}
+
+function filtro4() {
+    var orden = document.querySelector('input[name="precio"]:checked').value;
+    var divProductos = document.getElementsByClassName("productos")[0];
+    var productos = [];
+    $(".producto").each(function() {
+        var producto = []
+
+        var href = $(this).find('a').attr('href');
+        var id = $(this).attr('data-id');
+        var nombre = $(this).find('h5').text();
+        var descripcion = $(this).find('.caption-descripcion').find('p').text();
+        var precio = $(this).find('.producto-precio').find('p').text();
+        var precio2 = precio.substring(0, precio.length - 1);
+        producto.push(href)
+        producto.push(id)
+        producto.push(nombre)
+        producto.push(descripcion)
+        producto.push(precio)
+        producto.push(precio2)
+        productos.push(producto)
+    });
+    alert(orden)
+    if (orden = "ASC") {
+
+        productos.sort(function(a, b) {
+            a = a[5];
+            b = b[5];
+
+            return parseFloat(a) - parseFloat(b);
+        });
+    } else {
+        productos.sort(function(a, b) {
+            a = a[5];
+            b = b[5];
+
+            return parseFloat(b) - parseFloat(a);
+        });
+    }
+
+    console.log(productos)
 }
