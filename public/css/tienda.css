@@ -130,6 +130,10 @@ body {}
     border: 3px solid #35B8B2;
 }
 
+.container input~.checkmark {
+    transition: all 0.5s;
+}
+
 .container input:checked~.checkmark {
     background-color: #35B8B2;
     border: 3px solid #35B8B2;
@@ -230,6 +234,15 @@ body {}
     margin-right: 3%;
     cursor: pointer;
     transition: all 0.5s;
+    height: 75vh;
+}
+
+.caption-titulo {
+    height: 15vh;
+}
+
+.caption-descripcion {
+    height: 7vh;
 }
 
 .thumbnail {
@@ -267,6 +280,10 @@ body {}
     font-size: 3vh;
     color: #d124ba;
     font-weight: bold;
+}
+
+.productos a {
+    text-decoration: none;
 }
 
 

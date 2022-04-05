@@ -23,11 +23,11 @@
                 <p>Precio:</p>
                 <form  method="post">
                     <label>
-                        <input type="radio" name="precio" checked/>
+                        <input type="radio" name="precio" checked value="ASC"/>
                         <span> Más barato</span>
                     </label>
                     <label>
-                        <input type="radio" name="precio"/>
+                        <input type="radio" name="precio" value="DESC"/>
                         <span> Más caro</span>
                     </label>
                 </form>
@@ -46,7 +46,7 @@
         </div>
         <div class="filtro-search-bar">
             <i class="fa fa-search"></i> 
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" id="search" aria-label="Search" onkeyup="filtro(); return false;">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto o categoria" id="search" aria-label="Search" onkeyup="filtro(); return false;">
         </div>
         <div class="div-dropmenu">
             <div class="dropdown">
@@ -117,10 +117,10 @@
             <p>Lo más vendido</p>
             <div class="producto">
                 <div class="thumbnail">
-                    <div class="thumbnail-img"><img src="" width="500" height="250"></div>
+                    <div class="thumbnail-img"><img src="" width="500" height="200"></div>
                     <div class="caption">
-                        <h5>Pienso Criadores para perros adultos Cordero y arroz</h5>
-                        <p>El pienso natural super premium Criadores Adulto con cordero...</p>
+                        <div class="caption-titulo"><h5>Pienso Criadores para perros adultos Cordero y arroz</h5></div>
+                        <div class="caption-descripcion"><p>El pienso natural super premium Criadores Adulto con cordero...</p></div>
                         <div class="producto-precio"><p>59.99€</p></div>
                         <p class="btn-holder"><a href="" class="btn btn-block btn-carrito" role="button">Añadir al carrito</a> </p>
                     </div>

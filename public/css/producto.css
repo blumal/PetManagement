@@ -1,0 +1,148 @@
+* {
+    margin: 0%;
+    font-family: 'Open Sans', sans-serif;
+    color: #333333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {}
+
+
+/*Fotos*/
+
+.container_prod {
+    width: 30%;
+    height: 100vh;
+    margin-top: 7%;
+    margin-left: 10%;
+    float: left;
+}
+
+.img_pral {
+    width: 100%;
+    height: 70%;
+    border: 1px solid #000;
+}
+
+[class *="subImg_"] {
+    width: 25%;
+    height: 15%;
+    border: 1px solid #000;
+    float: left;
+}
+
+
+/*descripcion*/
+
+.producto {
+    width: 50%;
+    height: 100vh;
+    margin-top: 7%;
+    margin-left: 2%;
+    float: left;
+    color: #333333;
+}
+
+.nombre h4 {
+    font-weight: 700;
+}
+
+.producto p {
+    text-align: justify;
+    font-size: 2.3vh;
+}
+
+.marca {
+    font-size: 1.8vh;
+}
+
+.precio p {
+    font-size: 5vh;
+    color: #d124ba;
+    font-weight: bold;
+}
+
+.btn-holder {
+    text-align: center;
+}
+
+.btn-carrito {
+    background-color: #35B8B2;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-carrito:hover {
+    background-color: #1d9690;
+    color: white;
+}
+
+.carrito-cantidad {
+    width: 100%;
+    margin-top: 10%;
+}
+
+.anadir-carrito {
+    width: 50%;
+    float: left;
+}
+
+.cantidad {
+    width: 50%;
+    float: left;
+}
+
+.input-cantidad {
+    margin-right: 2%;
+    width: 30%;
+    margin: 0%;
+    float: left;
+}
+
+.quantity {
+    width: 15vh;
+}
+
+.cantidad-precio {
+    float: left;
+    width: 10%;
+    margin-left: 5%;
+}
+
+.cantidad-precio p {
+    font-size: 5vh;
+    color: #d124ba;
+    font-weight: bold;
+}
+
+
+/*dropmenu*/
+
+.div-dropmenu {
+    position: absolute;
+    top: 3%;
+    right: 8%;
+}
+
+.div-dropmenu i {
+    color: white;
+}
+
+.dropdown .dropdown-menu {
+    padding: 20px;
+    top: 30px !important;
+    width: 350px !important;
+    left: -110px !important;
+    box-shadow: 0px 5px 30px black;
+}
+
+.btn-carrito {
+    background-color: #35B8B2;
+}
+
+.total-header-section i {
+    color: black;
+}

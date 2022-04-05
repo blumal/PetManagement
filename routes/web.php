@@ -8,3 +8,11 @@ use App\Models\Producto;
 
 Route::get('tienda',[ProductoController::class,'tienda']);
 Route::get('carrito',[ProductoController::class,'carrito']);
+Route::post('marcas',[ProductoController::class,'marcas']);
+Route::post('tiposPrincipales',[ProductoController::class,'tiposPrincipales']);
+Route::post('productos',[ProductoController::class,'productos']);
+Route::get('producto/{id}',[ProductoController::class,'producto']);
+Route::post('marcaProducto',[ProductoController::class,'marcaProducto']);
+Route::post('filtroSearchBar',[ProductoController::class,'filtroSearchBar']);
+Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);
+
