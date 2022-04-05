@@ -51,8 +51,8 @@
         <span>Operatividad</span>
         <select name="operativo" id="operativo">
             <option value="null">---</option>
-            <option value="0">Inactivo</option>
             <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
         </select>
         <input type="submit" value="Crear">
     </form>

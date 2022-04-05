@@ -57,7 +57,7 @@ function markers() {
                     //Creo una variable local donde almaceno la imagen del marcador
                     var markerIcon = L.icon({
                         //Url de la imagen
-                        iconUrl: src = 'https://cdn-icons-png.flaticon.com/512/376/376433.png',
+                        iconUrl: src = 'img/' + respuesta[i].foto_icono_sociedad,
                         //Tamaño del icono
                         iconSize: [30, 30]
                     });

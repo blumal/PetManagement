@@ -53,7 +53,7 @@ function leerJS() {
             var recarga = '';
             recarga += '<br>'
             recarga += '<div>';
-            recarga += '<tr><th>NOMBRE</th><th>NIF</th><th>EMAIL</th><th>DIRECCION</th><th>NÚMERO</th><th>CP</th><th>TELF 1</th><th>TELF 2</th><th>HORARIO APERTURA</th><th>HORARIO CIERRE</th><th>URL</th><th>FOTO</th><th>ICONO</th><th>TIPO</th><th>MODIFICAR</th><th>OPERATIVO</th></th>';
+            recarga += '<tr class="thead-dark"><th>NOMBRE</th><th>NIF</th><th>EMAIL</th><th>DIRECCION</th><th>NÚMERO</th><th>CP</th><th>TELF 1</th><th>TELF 2</th><th>HORARIO APERTURA</th><th>HORARIO CIERRE</th><th>URL</th><th>FOTO</th><th>ICONO</th><th>TIPO</th><th>MODIFICAR</th><th>OPERATIVO</th></th>';
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += '<tr>';
                 recarga += '<td>' + respuesta[i].nombre_s + '</td>'
@@ -70,11 +70,11 @@ function leerJS() {
                 recarga += '<td><img src="img/' + respuesta[i].foto_sociedad + '"></td>'
                 recarga += '<td><img src="img/' + respuesta[i].foto_icono_sociedad + '"></td>'
                 recarga += '<td>' + respuesta[i].sociedad_ts + '</td>'
-                recarga += '<td><button onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
+                recarga += '<td><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
                     '\',\'' + respuesta[i].email_s + '\',\'' + respuesta[i].nombre_di + '\',' + respuesta[i].numero_di + ',' +
                     respuesta[i].cp_di + ',' + respuesta[i].contacto1_tel + ',' + respuesta[i].contacto2_tel + ',\'' +
                     respuesta[i].horario_apertura_s + '\',\'' + respuesta[i].horario_cierre_s + '\',\'' + respuesta[i].url_web + '\',\'' +
-                    respuesta[i].foto_sociedad + '\',\'' + respuesta[i].foto_icono_sociedad + '\',\'' + respuesta[i].sociedad_ts + '\',' + respuesta[i].operatividad_s + ',' +
+                    respuesta[i].sociedad_ts + '\',' + respuesta[i].operatividad_s + ',' +
                     respuesta[i].id_tel + ',' + respuesta[i].id_di + ',' + respuesta[i].id_ts + '); return false;">Modificar</button></td>'
                     /* recarga += '<td><button onclick="borrar(' + respuesta[i].id_s + ',' + respuesta[i].id_ts + ',' + respuesta[i].id_di + ',' + respuesta[i].id_tel + '); return false;">Eliminar</button></td>' */
                     //Activo =1 inactivo=0 1 verde 0 rojo hacer if
@@ -94,11 +94,11 @@ function leerJS() {
 }
 
 function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, contacto1_tel, contacto2_tel, horario_apertura_s,
-    horario_cierre_s, url_web, foto_sociedad, foto_icono_sociedad, sociedad_ts, operatividad_s, id_tel, id_di, id_ts) {
+    horario_cierre_s, url_web, sociedad_ts, operatividad_s, id_tel, id_di, id_ts) {
     modal.style.display = "block";
     enter = document.getElementById("contenido")
     var contenido = ''
-    contenido += '<form id="form_modif" onsubmit="editar(); return false;">'
+    contenido += '<form id="form_modif" onsubmit="editar(); return false;" enctype="multipart/form-data">'
     contenido += '<h3><b>Modificar</b></h3><br>'
     contenido += '<p><b>Nombre</b><p>'
     contenido += '<input type="text" name="nombre_s" id="nombre_s" value="' + nombre_s + '"><br>'
@@ -120,20 +120,20 @@ function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, 
     contenido += '<input type="time" name="horario_cierre_s" id="horario_cierre_s" value="' + horario_cierre_s + '">'
     contenido += '<p><b>URL Web</b><p>'
     contenido += '<input type="text" name="url_web" id="url_web" value="' + url_web + '"><br>'
-    contenido += '<p><b>Foto sociedad</b><p>'
+    contenido += '<p><b>Foto sociedad(Si no queres cambiar la foto deja el campo vacio)</b><p>'
     contenido += '<input type="file" name="foto_sociedad" id="foto_sociedad"><br>'
-    contenido += '<p><b>Foto icono sociedad</b><p>'
+    contenido += '<p><b>Foto icono sociedad(Si no queres cambiar la foto deja el campo vacio)</b><p>'
     contenido += '<input type="file" name="foto_icono_sociedad" id="foto_icono_sociedad"><br>'
     contenido += '<p><b>CP</b><p>'
     contenido += '<input type="number" name="cp_di" id="cp_di" value="' + cp_di + '">'
     contenido += '<p><b>Tipo Sociedad</b><p>'
-    if (sociedad_ts == 'clinica') {
+    if (sociedad_ts == "clinica") {
         contenido += '<select name="sociedad_ts" id="sociedad_ts">'
         contenido += '<option value="clinica" selected>Clínica</option>'
         contenido += '<option value="protectora">Protectora de animales</option>'
         contenido += '</select>'
-    } else {
-        contenido += '<select name="sociedad_ts" id="sociedad_ts'
+    } else if (sociedad_ts == "protectora") {
+        contenido += '<select name="sociedad_ts" id="sociedad_ts">'
         contenido += '<option value="protectora" selected>Protectora de animales</option>'
         contenido += '<option value="clinica">Clínica</option>'
         contenido += '</select>'
@@ -144,7 +144,7 @@ function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, 
         contenido += '<option value="0" selected>Inactivo</option>'
         contenido += '<option value="1">Activo</option>'
         contenido += '</select>'
-    } else {
+    } else if (operatividad_s == 1) {
         contenido += '<select name="operatividad_ts" id="operatividad_ts">'
         contenido += '<option value="1" selected>Activo</option>'
         contenido += '<option value="0">Inactivo</option>'
