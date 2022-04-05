@@ -62,7 +62,7 @@
     <div class="modalbox_editar" id="modalbox_editar">
         <div class="modaleditar" id="modaleditar">
             <span class="close" onclick="closeModal_editar(); return false;">&times;</span>             
-            <h2><b>EDITAR USUARIO</b></h2>
+            <h2><b>EDITAR PRODUCTO</b></h2>
             <form id="formUpdate" method="post" onsubmit="actualizar();closeModal_editar();return false;" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" id="modifNote">
                 <input class="inputcrear" type="text" name="nombre_art_e" id="nombre_art_e" placeholder="Nombre">
