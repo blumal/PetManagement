@@ -13,12 +13,12 @@
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
         <ul class="main-menu">
-            <li class="menu-item">Home</li>
+            <li class="menu-item" href="./views/home.blade.php?">Home</li>
             <li class="menu-item" href="./views/tienda.blade.php?">Tienda</li>
-            <li class="menu-item">Clínica</li>
-            <li class="menu-item">Contacto</li>
-            <li class="menu-item">Sobre Nosotros</li>
-            <li class="cta">Login</li>
+            <li class="menu-item" href="./views/clinica.blade.php?">Clínica</li>
+            <li class="menu-item" href="./views/contacto.blade.php?">Contacto</li>
+            <li class="menu-item" href="./views/about.blade.php?">Sobre Nosotros</li>
+            <li class="cta" href="./views/tienda.blade.php?">Login</li>
         </ul>
         <script src="./js/home.js"></script>
     </header>
