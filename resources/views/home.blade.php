@@ -11,7 +11,6 @@
 <body>
     <header id="Header">
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-
         <!--Menu header-->
         <ul class="main-menu">
             <li class="menu-item">Home</li>
