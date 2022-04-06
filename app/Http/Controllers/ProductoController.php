@@ -170,7 +170,7 @@ class ProductoController extends Controller
             abort(404);
         }
         $cart = session()->get('cart');
-        // if cart is empty then this the first product
+        //
         if(!$cart) {
             $cart = [
                     $id => [
@@ -182,13 +182,13 @@ class ProductoController extends Controller
             session()->put('cart', $cart);
             return response()->json(array('resultado'=> 'OK'));
         }
-        // if cart not empty then check if this product exist then increment quantity
+        //
         if(isset($cart[$id])) {
             $cart[$id]['cantidad']==$cantidad;
             session()->put('cart', $cart);
             return response()->json(array('resultado'=> 'OK'));
         }
-        // if item not exist in cart then add to cart with quantity = 1
+        //
         $cart[$id] = [
             "nombre" => $product[0]->nombre_art,
             "cantidad" => $cantidad,
