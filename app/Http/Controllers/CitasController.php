@@ -16,13 +16,13 @@ class CitasController extends Controller
      */
     public function index()
     {
-        return view('citas');
+        return view('clinica/vistas/citas');
     }
 
     //Login view
     public function login()
     {
-        return view('login');
+        return view('login/login');
     }
     //Método encargado de hacer el proceso de login
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
@@ -44,19 +44,22 @@ class CitasController extends Controller
                 //Establecemos sesión
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $request->id_us);
-                return redirect('citas');
+                return redirect('/citas');
             }else{
                 //No establecemos sesión y lo devolvemos a login
-                return redirect('login');
+                return redirect('/login');
             }
         } catch (\Throwable $e) {
             return $e->getMessage();
         }
     }
 
-    public function showCitas(){
-        
+    public function showcitas(){
+        $today = now()->format('Y-m-d');
+        $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");
+        return response()->json($citas);
     }
+
     /**
      * Show the form for creating a new resource.
      *

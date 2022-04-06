@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', [CitasController::class, 'login']);
-Route::post('login-proc', [CitasController::class, 'loginProc']);
-Route::get('citas', [CitasController::class, 'index']);
+Route::get('/login', [CitasController::class, 'login']);
+Route::post('/login-proc', [CitasController::class, 'loginProc']);
+Route::get('/citas', [CitasController::class, 'index']);
+
+//Api
+Route::get('showcitas', [CitasController::class, 'showcitas']);
+
