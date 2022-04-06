@@ -31,3 +31,9 @@ function calcularPrecio() {
     $("#precio-final").text(final + "€")
 
 }
+
+function addToCart() {
+    var cantidad = $('#input-cantidad').val();
+    var id = $('.producto').attr('id-producto');
+
+}

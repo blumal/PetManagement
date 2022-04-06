@@ -51,7 +51,7 @@
         <div class="div-dropmenu">
             <div class="dropdown">
                 <button type="button" class="btn btn-info" data-toggle="dropdown">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito <span class="badge badge-pill badge-danger">0</span>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                 </button>
                 <div class="dropdown-menu">
                     <div class="row total-header-section">
@@ -60,7 +60,7 @@
                         </div>
                         <?php $total = 0 ?>
                         @foreach((array) session('cart') as $id => $details)
-                            <?php $total += $details['price'] * $details['quantity'] ?>
+                            <?php $total += $details['precio'] * $details['cantidad'] ?>
                         @endforeach
                         <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                             <p>Total: <span class="text-info"> {{ $total }}€</span></p>
@@ -70,11 +70,11 @@
                         @foreach(session('cart') as $id => $details)
                             <div class="row cart-detail">
                                 <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                    <img src="{{ $details['photo'] }}" />
+                                    <img src="" />
                                 </div>
                                 <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                    <p>{{ $details['name'] }}</p>
-                                    <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Cantidad:{{ $details['quantity'] }}</span>
+                                    <p>{{ $details['nombre'] }}</p>
+                                    <span class="price text-info"> ${{ $details['precio'] }}</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
                                 </div>
                             </div>
                         @endforeach

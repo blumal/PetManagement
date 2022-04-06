@@ -25,7 +25,7 @@
             <div class="subImg_3" name="thumb" id=""><img src=""></div>
             <div class="subImg_4" name="thumb" id=""><img src=""></div>
         </div>
-        <div class="producto">
+        <div class="producto" id-producto="{{$producto[0]->id_art}}">
             <div class="nombre"><h4>{{$producto[0]->nombre_art}}</h4></div>
             <div class="descripcion"><p>Royal Canin Maxi Adult es un alimento para perros de 26 a 44 kg, desde los 15 meses a los 5 años; que ayudará a tu mascota a mantener el peso ideal y un óptimo estado de salud, cubriendo las</p></div>
             <div class="marca"><p>Vendido por <strong>{{$producto[0]->marca_ma}}</strong></p></div>
@@ -35,12 +35,12 @@
                     <div class="input-cantidad"><input type="number" value="1" class="form-control quantity" max="5001" min="1" id="input-cantidad"/></div>
                     <div class="cantidad-precio"><p id="precio-final">{{$producto[0]->precio_art}}€</p></div>
                 </div>
-                <div class="anadir-carrito"><a href="" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
+                <div class="anadir-carrito"><a onclick="addToCart()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
             </div>
             <div class="div-dropmenu">
                 <div class="dropdown">
                     <button type="button" class="btn btn-info" data-toggle="dropdown">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito <span class="badge badge-pill badge-danger">0</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                     </button>
                     <div class="dropdown-menu">
                         <div class="row total-header-section">
@@ -49,7 +49,7 @@
                             </div>
                             <?php $total = 0 ?>
                             @foreach((array) session('cart') as $id => $details)
-                                <?php $total += $details['price'] * $details['quantity'] ?>
+                                <?php $total += $details['precio'] * $details['cantidad'] ?>
                             @endforeach
                             <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                                 <p>Total: <span class="text-info"> {{ $total }}€</span></p>
@@ -59,11 +59,11 @@
                             @foreach(session('cart') as $id => $details)
                                 <div class="row cart-detail">
                                     <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                        <img src="{{ $details['photo'] }}" />
+                                        <img src="" />
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                        <p>{{ $details['name'] }}</p>
-                                        <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Cantidad:{{ $details['quantity'] }}</span>
+                                        <p>{{ $details['nombre'] }}</p>
+                                        <span class="price text-info"> ${{ $details['precio'] }}</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
                                     </div>
                                 </div>
                             @endforeach
