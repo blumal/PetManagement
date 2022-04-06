@@ -67,8 +67,8 @@ function leerJS() {
                 recarga += '<td>' + respuesta[i].horario_apertura_s + '</td>'
                 recarga += '<td>' + respuesta[i].horario_cierre_s + '</td>'
                 recarga += '<td>' + respuesta[i].url_web + '</td>'
-                recarga += '<td><img src="img/' + respuesta[i].foto_sociedad + '"></td>'
-                recarga += '<td><img src="img/' + respuesta[i].foto_icono_sociedad + '"></td>'
+                recarga += '<td><img src="storage/' + respuesta[i].foto_sociedad + '" alt=""></td>'
+                recarga += '<td><img src="storage/' + respuesta[i].foto_icono_sociedad + '"></td>'
                 recarga += '<td>' + respuesta[i].sociedad_ts + '</td>'
                 recarga += '<td><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
                     '\',\'' + respuesta[i].email_s + '\',\'' + respuesta[i].nombre_di + '\',' + respuesta[i].numero_di + ',' +
@@ -248,9 +248,9 @@ function borrar(id_s, id_ts, id_di, id_tel) {
 
 /* Función implementada con AJAX que inserta un archivo */
 function crear() {
-    var formData = new FormData();
+    var formData = new FormData(document.getElementById('form_crear'));
     formData.append('_token', document.getElementById('token').getAttribute("content"));
-    formData.append('nombre', document.getElementById('nombre').value);
+    /*formData.append('nombre', document.getElementById('nombre').value);
     formData.append('nif', document.getElementById('nif').value);
     formData.append('email', document.getElementById('email').value);
     formData.append('direccion', document.getElementById('direccion').value);
@@ -264,7 +264,7 @@ function crear() {
     formData.append('foto', document.getElementById('foto').files[0].name);
     formData.append('foto_icono', document.getElementById('foto_icono').files[0].name);
     formData.append('tipo', document.getElementById('tipo').value);
-    formData.append('operativo', document.getElementById('operativo').value);
+    formData.append('operativo', document.getElementById('operativo').value); */
 
     /* Inicializar un objeto AJAX */
     var ajax = objetoAjax();

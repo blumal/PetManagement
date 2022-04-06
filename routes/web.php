@@ -22,6 +22,8 @@ Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
 
 Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);
 
+Route::get('animales_perdidos', [mapas::class,'animales_perdidos']);
+
 Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimientos']);
 
 Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
