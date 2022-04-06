@@ -375,12 +375,21 @@ function filtro4() {
 
 function searchBarEmpty() {
     if (document.getElementById("search").value == "") {
-        $('.productos').find('p:first').text("Lo más vendido")
+        //$('.productos').find('p:first').text("Lo más vendido")
+        marcasEmpty()
     }
 }
 
 function marcasEmpty() {
     if ($('input[name="marcas"]:checkbox:checked').length == 0) {
         $('.productos').find('p:first').text("Lo más vendido")
+    } else {
+        var marcasHTML = []
+        $('input[name="marcas"]:checked').each(function() {
+            marcasHTML.push(this.getAttribute("data-nombre"));
+        });
+        marcasHTML = marcasHTML.join(" '");
+        marcasHTML = marcasHTML.toString();
+        $('.productos').find('p:first').text("Resultados por marcas '" + marcasHTML + "'")
     }
 }
