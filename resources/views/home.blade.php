@@ -25,7 +25,7 @@
     <div>
         <img src="./img/imagenesWeb/home.jpg" class="foto">
     </div>
-    <div class="row flex">
+        
         <div class="column-2">
             <div class="twitter">
                 <a class="twitter-timeline" data-lang="es" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/auronplay?ref_src=twsrc%5Etfw">Tweets by auronplay</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
