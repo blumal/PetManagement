@@ -364,7 +364,7 @@ function filtro4() {
         html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
         html += "<div class='caption-descripcion'><p>" + productos[i][3] + "</p></div>";
         html += "<div class='producto-precio'><p>" + productos[i][4] + "</p></div>";
-        html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+        html += "<p class='btn-holder'><a href='' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
         html += "</div>";
         html += "</div>";
         html += "</div>";
@@ -393,3 +393,6 @@ function marcasEmpty() {
         $('.productos').find('p:first').text("Resultados por marcas '" + marcasHTML + "'")
     }
 }
+
+
+//MIRAR EL ORDEN METER EL ID PARA SESIONES
