@@ -160,5 +160,43 @@ class ProductoController extends Controller
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
+    public function addToCartProducto(Request $request)
+    {
+        $datos = $request->except('_token');
+        $id=$datos['id'];
+        $cantidad=$datos['cantidad'];
+        $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_foto_fk,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        if(!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if(!$cart) {
+            $cart = [
+                    $id => [
+                        "nombre" => $product[0]->nombre_art,
+                        "cantidad" => $cantidad,
+                        "precio" => $product[0]->precio_art
+                    ]
+            ];
+            session()->put('cart', $cart);
+            return response()->json(array('resultado'=> 'OK'));
+        }
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['cantidad']==$cantidad;
+            session()->put('cart', $cart);
+            return response()->json(array('resultado'=> 'OK'));
+        }
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "nombre" => $product[0]->nombre_art,
+            "cantidad" => $cantidad,
+            "precio" => $product[0]->precio_art
+        ];
+        session()->put('cart', $cart);
+        return response()->json(array('resultado'=> 'OK'));
+    }
+
     
 }

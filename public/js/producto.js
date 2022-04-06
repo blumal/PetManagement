@@ -35,5 +35,20 @@ function calcularPrecio() {
 function addToCart() {
     var cantidad = $('#input-cantidad').val();
     var id = $('.producto').attr('id-producto');
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id);
+    formData.append('cantidad', cantidad);
+    var ajax = objetoAjax();
+
+    ajax.open("POST", "add-to-cart-producto", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            window.location.reload();
+        }
+    }
+
+    ajax.send(formData);
 
 }
