@@ -2,6 +2,9 @@ window.onload = function() {
     marcas();
     tiposPrincipales()
     productos()
+    document.getElementById('search').addEventListener("input", function(event) {
+        searchBarEmpty()
+    });
 }
 
 window.back = function() {
@@ -42,7 +45,7 @@ function marcas() {
             var html = "<p>Marca:</p>";
             for (let i = 0; i < respuesta.length; i++) {
                 html += "<label class='container'>" + respuesta[i].marca_ma + "";
-                html += "<input type='checkbox' id='marca" + respuesta[i].id_ma + "' name='marcas' value=" + respuesta[i].id_ma + " onclick='filtro3()'>";
+                html += "<input type='checkbox' id='marca" + respuesta[i].id_ma + "' name='marcas' value=" + respuesta[i].id_ma + " onclick='filtro3()' data-nombre='" + respuesta[i].marca_ma + "'>";
                 html += "<span class='checkmark'></span>";
                 html += "</label>";
             }
@@ -139,7 +142,17 @@ function filtro() {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
             divProductos.innerHTML = "";
-            var html = "<p>Resultados por '" + document.getElementById("search").value + "'</p>";
+            var marcasHTML = []
+            $('input[name="marcas"]:checked').each(function() {
+                marcasHTML.push(this.getAttribute("data-nombre"));
+            });
+            marcasHTML = marcasHTML.join(" '");
+            marcasHTML = marcasHTML.toString();
+            if (marcasHTML == "") {
+                var html = "<p>Resultados por '" + document.getElementById("search").value + "'</p>";
+            } else {
+                var html = "<p>Resultados por '" + document.getElementById("search").value + "' en marcas '" + marcasHTML + "'</p>";
+            }
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
@@ -158,6 +171,7 @@ function filtro() {
                 html += "</a>";
             }
             divProductos.innerHTML = html;
+            searchBarEmpty()
 
         }
     }
@@ -190,7 +204,18 @@ function filtro2(categoria) {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
             divProductos.innerHTML = "";
-            var html = "<p>Resultados por '" + categoria + "'</p>";
+            var marcasHTML = []
+            $('input[name="marcas"]:checked').each(function() {
+                marcasHTML.push(this.getAttribute("data-nombre"));
+            });
+            marcasHTML = marcasHTML.join(" '");
+            marcasHTML = marcasHTML.toString();
+            if (marcasHTML == "") {
+                var html = "<p>Resultados por '" + categoria + "'</p>";
+            } else {
+                var html = "<p>Resultados por '" + categoria + "' en marcas '" + marcasHTML + "'</p>";
+            }
+
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
@@ -221,9 +246,7 @@ function filtro2(categoria) {
 function filtro3() {
     var nombre = document.getElementById("search").value;
     var formData = new FormData();
-    //var selected = [];
     $('input[name="marcas"]:checked').each(function() {
-        //selected.push(this.value);
         formData.append('marcas[]', this.value);
     });
     var orden = document.querySelector('input[name="precio"]:checked').value;
@@ -243,7 +266,18 @@ function filtro3() {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
             divProductos.innerHTML = "";
-            var html = "<p></p>";
+            var marcasHTML = []
+            $('input[name="marcas"]:checked').each(function() {
+                marcasHTML.push(this.getAttribute("data-nombre"));
+            });
+            marcasHTML = marcasHTML.join(" '");
+            marcasHTML = marcasHTML.toString();
+            if (document.getElementById("search").value == "") {
+                resultado = "Resultados por marcas '" + marcasHTML + "'"
+            } else {
+                resultado = "Resultados por '" + document.getElementById("search").value + "' y marcas '" + marcasHTML + "' "
+            }
+            var html = "<p>" + resultado + "</p>";
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
@@ -262,6 +296,7 @@ function filtro3() {
                 html += "</a>";
             }
             divProductos.innerHTML = html;
+            marcasEmpty()
 
         }
     }
@@ -272,6 +307,7 @@ function filtro3() {
 
 function filtro4() {
     var orden = document.querySelector('input[name="precio"]:checked').value;
+    var resultadoBusqueda = $('.productos').find('p:first').text();
     var divProductos = document.getElementsByClassName("productos")[0];
     var productos = [];
     $(".producto").each(function() {
@@ -291,8 +327,8 @@ function filtro4() {
         producto.push(precio2)
         productos.push(producto)
     });
-    alert(orden)
-    if (orden = "ASC") {
+
+    if (orden == "ASC") {
 
         productos.sort(function(a, b) {
             a = a[5];
@@ -308,6 +344,43 @@ function filtro4() {
             return parseFloat(b) - parseFloat(a);
         });
     }
+    var divProductos = document.getElementsByClassName("productos")[0];
+    divProductos.innerHTML = "";
+    console.log(productos[0][0])
+    console.log(productos[0][1])
+    console.log(productos[0][2])
+    console.log(productos[0][3])
+    console.log(productos[0][4])
+    console.log(productos[0][5])
+    var html = "<p>" + resultadoBusqueda + "</p>";
+    for (let i = 0; i < productos.length; i++) {
+        var nombre = productos[i][2];
+        if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
+        html += "<a href='" + productos[i][0] + "'>";
+        html += " <div class='producto' data-id='" + productos[i][1] + "'>";
+        html += "<div class='thumbnail'>";
+        html += "<div class='thumbnail-img'><img src='' width='500' height='200'></div>";
+        html += "<div class='caption'>";
+        html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
+        html += "<div class='caption-descripcion'><p>" + productos[i][3] + "</p></div>";
+        html += "<div class='producto-precio'><p>" + productos[i][4] + "</p></div>";
+        html += "<p class='btn-holder'><a href='' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        html += "</a>";
+    }
+    divProductos.innerHTML = html;
+}
 
-    console.log(productos)
+function searchBarEmpty() {
+    if (document.getElementById("search").value == "") {
+        $('.productos').find('p:first').text("Lo más vendido")
+    }
+}
+
+function marcasEmpty() {
+    if ($('input[name="marcas"]:checkbox:checked').length == 0) {
+        $('.productos').find('p:first').text("Lo más vendido")
+    }
 }
