@@ -87,7 +87,7 @@ class CitasController extends Controller
      * @param  \App\Models\Citas  $citas
      * @return \Illuminate\Http\Response
      */
-    public function show(Citas $citas)
+    public function show()
     {
         //
     }
@@ -98,7 +98,7 @@ class CitasController extends Controller
      * @param  \App\Models\Citas  $citas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Citas $citas)
+    public function edit()
     {
         //
     }
@@ -110,7 +110,7 @@ class CitasController extends Controller
      * @param  \App\Models\Citas  $citas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Citas $citas)
+    public function update()
     {
         //
     }
@@ -121,7 +121,7 @@ class CitasController extends Controller
      * @param  \App\Models\Citas  $citas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Citas $citas)
+    public function destroy()
     {
         //
     }
