@@ -66,3 +66,4 @@ Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'create
 //TEST
 
 Route::get('/hello', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);

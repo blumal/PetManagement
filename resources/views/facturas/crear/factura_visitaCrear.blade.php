@@ -11227,32 +11227,71 @@
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" action="{{url("cerrarVisita")}}">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="label" for="name">Nombre Animal (ID? NOMBRE?)</label>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                                <label class="label" for="name">Nombre Animal</label>
+                                                <p name="name" id="name" placeholder="Name">{{$paciente[0]->nombre_pa}}</p>
+                                                <!--<input type="text" class="form-control" name="name" id="name" placeholder="Name">-->
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="email">Total Factura</label>
-                                                <input type="number" class="form-control" name="email" id="email" placeholder="69,69">
+                                                <input type="number" class="form-control" name="total_factura" id="email" placeholder="69,69">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Asunto</label>
-                                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto de la visita..." value="{{$visita[0]->asunto_vi}}">
+                                                <p name="name" id="name" placeholder="Name">{{$visita[0]->asunto_vi}}</p>
+                                                <!--<input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto de la visita..." value="">-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Fecha intervención</label>
+                                                <input type="date" class="form-control" name="fecha_factura" id="subject" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Hora intervención</label>
+                                                <input type="time" class="form-control" name="hora_factura" id="subject" >
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="#">Diagnostico</label>
-                                                <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Aqui vendria el diagnostico del veterinario..."></textarea>
+                                                <textarea name="diagnostico" class="form-control" id="message" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
                                             </div>
                                         </div>
+
+
+                                        <div class="col-md-12">
+                                            <label for="productos" class="label" for="#">Selecciona producto:</label>
+                                                <select id="productos" name="productos[]">        
+                                                    @for ($i = 0; $i < count($items_clinica); $i++)
+                                                        <option class="form-control"  value="{{$items_clinica[$i]->id_prod}}">{{$items_clinica[$i]->producto_pro}}</option>
+                                                    @endfor
+                                                </select>
+                                                <label class="label" for="#">Selecciona cantidad de producto</label>
+                                                <input type="number" class="form-control" name='cantidad[]' value=1>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <button onclick="alert('polla'); return false;" class="btn btn-dark">+</button>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="promociones" class="label" for="#">Selecciona promocion de la visita:</label>
+                                                <select id="promociones" name="promocion">        
+                                                    @for ($i = 0; $i < count($promociones); $i++)
+                                                        <option class="form-control"  value="{{$promociones[$i]->id_pro}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
+                                                    @endfor
+                                                </select>
+                                        </div>
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="submit" value="Generar factura" class="btn btn-primary">
@@ -11264,7 +11303,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex align-items-stretch">
-                            <div class="info-wrap w-100 p-5 img" style="background-image:url(https://i.gyazo.com/1a98baa3f626cebf9c7815c6575ca233.jpg)">
+                            <div class="info-wrap w-100 p-5 img" style="background-image:url({{$paciente[0]->foto_pa}})">
                             </div>
                         </div>
                     </div>
