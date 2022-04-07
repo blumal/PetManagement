@@ -14,14 +14,15 @@ class CitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    
+    public function index()
+    {
+        /**/
+    }
 
     //Login view
     public function login()
     {
-        return view('login');
-
+        return view('login/login');
     }
 
     //Funcion para limpiar todas las sesiones que tengamos encima
@@ -29,6 +30,7 @@ class CitasController extends Controller
         $request->session()->flush();
         return redirect('/');
     }
+
     //Método encargado de hacer el proceso de login
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
     public function loginProc(Request $request)
@@ -48,16 +50,12 @@ class CitasController extends Controller
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
             if ($userId == 1){
                 //Establecemos sesión
-                $user = DB::table('tbl_usuario')->where('email_us', '=', $request['email_us'])->get();
-                //return $user;
-                session()->put('email_session', $user[0]->email_us);
-                //return $user[0]->id_us;
-                session()->put('id_user_session', $user[0]->id_us);
-
-                return redirect('citas');
+                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $request->id_us);
+                return redirect('/citas');
             }else{
                 //No establecemos sesión y lo devolvemos a login
-                return redirect('login');
+                return redirect('/login');
             }
         } catch (\Throwable $e) {
             return $e->getMessage();
@@ -65,6 +63,12 @@ class CitasController extends Controller
     }
 
     public function Citas(){
-        return view('citas');
+        return view('clinica/vistas/citas');
+    }
+    
+    public function showcitas(){
+        $today = now()->format('Y-m-d');
+        $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");
+        return response()->json($citas);
     }
 }

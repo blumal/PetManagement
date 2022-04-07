@@ -1,13 +1,12 @@
 <?php
 
-use App\Http\Controllers\CitasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
-
+use App\Http\Controllers\CitasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,16 +24,11 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [CitasController::class, 'login']);
-
+Route::post('/login-proc', [CitasController::class, 'loginProc']);
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::post('/logout', [CitasController::class, 'logout']);
-
-
-Route::post('login-proc', [CitasController::class, 'loginProc']);
+//Citas
 Route::get('citas', [CitasController::class, 'Citas']);
-
-
-
 
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
@@ -67,3 +61,7 @@ Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'create
 
 Route::get('/hello', [VisitaController::class, 'preRellenarVisitaClinica']);
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
+
+//Api
+Route::get('showcitas', [CitasController::class, 'showcitas']);
+
