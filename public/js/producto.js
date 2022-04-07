@@ -2,7 +2,7 @@ window.onload = function() {
     $("#input-cantidad").bind('keyup mouseup', function() {
         calcularPrecio();
     });
-
+    fotos();
 }
 
 function objetoAjax() {
@@ -51,4 +51,44 @@ function addToCart() {
 
     ajax.send(formData);
 
+}
+
+function fotos() {
+    var prin = document.getElementById("principal")
+    var uno = document.getElementById("1")
+    var dos = document.getElementById("2")
+    var tres = document.getElementById("3")
+    var cuatro = document.getElementById("4")
+
+    var fotoPrinc = $('.img_pral:first').find('img').attr('src');
+    var foto1 = $('.subImg_1:first').find('img').attr('src');
+    var foto2 = $('.subImg_1:eq(1)').find('img').attr('src');
+    var foto3 = $('.subImg_1:eq(2)').find('img').attr('src');
+    var foto4 = $('.subImg_1:eq(3)').find('img').attr('src');
+
+    uno.addEventListener('mouseover', function(event) {
+        prin.innerHTML = "<img src='" + foto1 + "'>"
+    });
+    dos.addEventListener('mouseover', function(event) {
+        prin.innerHTML = "<img src='" + foto2 + "'>"
+    });
+    tres.addEventListener('mouseover', function(event) {
+        prin.innerHTML = "<img src='" + foto3 + "'>"
+    });
+    cuatro.addEventListener('mouseover', function(event) {
+        prin.innerHTML = "<img src='" + foto4 + "'>"
+    });
+
+    uno.addEventListener('mouseout', function(event) {
+        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    });
+    dos.addEventListener('mouseout', function(event) {
+        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    });
+    tres.addEventListener('mouseout', function(event) {
+        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    });
+    cuatro.addEventListener('mouseout', function(event) {
+        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    });
 }

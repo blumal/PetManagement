@@ -24,13 +24,27 @@ body {}
 .img_pral {
     width: 100%;
     height: 70%;
-    border: 1px solid #000;
+    cursor: pointer;
+    /*border: 1px solid #000;*/
+}
+
+.img_pral img {
+    width: 100%;
+    height: 100%;
 }
 
 [class *="subImg_"] {
     width: 25%;
     height: 15%;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
+    float: left;
+    cursor: pointer;
+}
+
+[class *="subImg_"] img {
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid #000;*/
     float: left;
 }
 
@@ -153,7 +167,7 @@ body {}
 
 .cart-detail-img img {
     width: 100%;
-    height: 100%;
+    height: 10vh;
     padding-left: 15px;
 }
 

@@ -19,15 +19,17 @@
 <body>
     <div class="div1">
         <div class="container_prod" id="galeria">
-            <div class="img_pral" id="principal"><img src=""></div>
-            <div class="subImg_1" name="thumb" id=""><img src=""></div>
-            <div class="subImg_2" name="thumb" id=""><img src=""></div>
-            <div class="subImg_3" name="thumb" id=""><img src=""></div>
-            <div class="subImg_4" name="thumb" id=""><img src=""></div>
+            <div class="img_pral" id="principal"><img src="../storage/uploads/{{$producto[0]->foto_art}}"></div>
+            @php
+                $cont=1
+            @endphp
+            @foreach ($fotos as $foto)
+                <div class="subImg_1" name="thumb" id="@php echo $cont; $cont++; @endphp"><img src="../storage/uploads/{{$foto->foto_f}}"></div>
+            @endforeach
         </div>
         <div class="producto" id-producto="{{$producto[0]->id_art}}">
             <div class="nombre"><h4>{{$producto[0]->nombre_art}}</h4></div>
-            <div class="descripcion"><p>Royal Canin Maxi Adult es un alimento para perros de 26 a 44 kg, desde los 15 meses a los 5 años; que ayudará a tu mascota a mantener el peso ideal y un óptimo estado de salud, cubriendo las</p></div>
+            <div class="descripcion"><p>{{$producto[0]->descripcion_art}}</p></div>
             <div class="marca"><p>Vendido por <strong>{{$producto[0]->marca_ma}}</strong></p></div>
             <div class="precio"><p>{{$producto[0]->precio_art}}€</p></div>
             <div class="carrito-cantidad">
@@ -59,7 +61,7 @@
                             @foreach(session('cart') as $id => $details)
                                 <div class="row cart-detail">
                                     <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                        <img src="" />
+                                        <img src="../storage/uploads/{{ $details['foto'] }}"/>
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                         <p>{{ $details['nombre'] }}</p>

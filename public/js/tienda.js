@@ -94,14 +94,16 @@ function productos() {
             var html = "<p>Lo más vendido</p>";
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
+                var descripcion = respuesta[i].descripcion_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
+                if (descripcion.length > 50) descripcion = descripcion.substring(0, 50) + "...";
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
-                html += "<div class='caption-descripcion'><p>El pienso natural super premium Criadores Adulto con cordero...</p></div>";
+                html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
                 html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
@@ -155,14 +157,16 @@ function filtro() {
             }
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
+                var descripcion = respuesta[i].descripcion_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
+                if (descripcion.length > 50) descripcion = descripcion.substring(0, 50) + "...";
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
-                html += "<div class='caption-descripcion'><p>El pienso natural super premium Criadores Adulto con cordero...</p></div>";
+                html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
                 html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
@@ -218,14 +222,16 @@ function filtro2(categoria) {
 
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
+                var descripcion = respuesta[i].descripcion_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
+                if (descripcion.length > 50) descripcion = descripcion.substring(0, 50) + "...";
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
-                html += "<div class='caption-descripcion'><p>El pienso natural super premium Criadores Adulto con cordero...</p></div>";
+                html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
                 html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
@@ -280,14 +286,16 @@ function filtro3() {
             var html = "<p>" + resultado + "</p>";
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
+                var descripcion = respuesta[i].descripcion_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
+                if (descripcion.length > 50) descripcion = descripcion.substring(0, 50) + "...";
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
-                html += "<div class='caption-descripcion'><p>El pienso natural super premium Criadores Adulto con cordero...</p></div>";
+                html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
                 html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
@@ -319,6 +327,7 @@ function filtro4() {
         var descripcion = $(this).find('.caption-descripcion').find('p').text();
         var precio = $(this).find('.producto-precio').find('p').text();
         var precio2 = precio.substring(0, precio.length - 1);
+        var foto = $(this).find('.thumbnail-img').find('img').attr('src');
         producto.push(href)
         producto.push(id)
         producto.push(nombre)
@@ -326,6 +335,7 @@ function filtro4() {
         producto.push(precio)
         producto.push(precio2)
         productos.push(producto)
+        producto.push(foto)
     });
 
     if (orden == "ASC") {
@@ -352,6 +362,7 @@ function filtro4() {
     console.log(productos[0][3])
     console.log(productos[0][4])
     console.log(productos[0][5])
+    console.log(productos[0][6])
     var html = "<p>" + resultadoBusqueda + "</p>";
     for (let i = 0; i < productos.length; i++) {
         var nombre = productos[i][2];
@@ -359,7 +370,7 @@ function filtro4() {
         html += "<a href='" + productos[i][0] + "'>";
         html += " <div class='producto' data-id='" + productos[i][1] + "'>";
         html += "<div class='thumbnail'>";
-        html += "<div class='thumbnail-img'><img src='' width='500' height='200'></div>";
+        html += "<div class='thumbnail-img'><img src='" + productos[i][6] + "' width='500' height='200'></div>";
         html += "<div class='caption'>";
         html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
         html += "<div class='caption-descripcion'><p>" + productos[i][3] + "</p></div>";
@@ -382,7 +393,11 @@ function searchBarEmpty() {
 
 function marcasEmpty() {
     if ($('input[name="marcas"]:checkbox:checked').length == 0) {
-        $('.productos').find('p:first').text("Lo más vendido")
+        if (document.getElementById("search").value == "") {
+            $('.productos').find('p:first').text("Lo más vendido")
+        } else {
+            $('.productos').find('p:first').text("Resultados por '" + document.getElementById("search").value + "'")
+        }
     } else {
         var marcasHTML = []
         $('input[name="marcas"]:checked').each(function() {
@@ -390,7 +405,12 @@ function marcasEmpty() {
         });
         marcasHTML = marcasHTML.join(" '");
         marcasHTML = marcasHTML.toString();
-        $('.productos').find('p:first').text("Resultados por marcas '" + marcasHTML + "'")
+        if (document.getElementById("search").value == "") {
+            $('.productos').find('p:first').text("Resultados por marcas '" + marcasHTML + "'")
+        } else {
+            $('.productos').find('p:first').text("Resultados por '" + document.getElementById("search").value + "' y marcas '" + marcasHTML + "'")
+        }
+
     }
 }
 
