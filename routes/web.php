@@ -33,3 +33,5 @@ Route::post('crearMapasEstablecimientos',[mapas::class, 'crearMapasEstablecimien
 Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
 
 Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
+
+Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);

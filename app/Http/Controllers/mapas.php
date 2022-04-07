@@ -201,4 +201,88 @@ class mapas extends Controller
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     } */
+
+    public function crearAnimalPerdido(Request $request){
+        try {
+            $datos = DB::select('SELECT tbl_animales_perdidos.*, tbl_telefono.*, tbl_direccion.*, tbl_tipo_sociedad.* FROM `tbl_sociedad` 
+            INNER JOIN tbl_telefono ON tbl_sociedad.id_telefono_fk = tbl_telefono.id_tel 
+            WHERE tbl_sociedad.nif_s like ?', ['%'.$request->input('nif').'%']);
+            if ($datos != NULL) {
+                return response()->json(array('resultado'=> 'NOK: Sociedad ya existente(NIF repetido)'));
+            }else{
+                if ($request->hasFile('foto') && $request->hasFile('foto_icono')) {
+                    $path = $request->foto->store('img','public');
+                    $path2 = $request->foto_icono->store('img','public');
+                    DB::insert('insert into tbl_tipo_sociedad (sociedad_ts) values (?)',
+                    [$request->input('tipo')]);
+                    $id_tipo = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_direccion (nombre_di, numero_di, cp_di) values (?, ?, ?)',
+                    [$request->input('direccion'), $request->input('num'), $request->input('cp')]);
+                    $id_direccion = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_telefono (contacto1_tel, contacto2_tel) values (?, ?)',
+                    [$request->input('telf'), $request->input('telf2')]);
+                    $id_tlf = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_sociedad (nombre_s, nif_s, email_s, id_tipo_sociedad_fk, id_direccion_fk, id_telefono_fk, 
+                    horario_apertura_s, horario_cierre_s, url_web, foto_sociedad, foto_icono_sociedad, operatividad_s) 
+                    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                    [$request->input('nombre'),  $request->input('nif'),  $request->input('email'), $id_tipo, $id_direccion, $id_tlf, 
+                    $request->input('horario_aper'), $request->input('horario_cierre'), $request->input('url_web'), $path,
+                    $path2, $request->input('operativo')]); 
+                }else if ($request->hasFile('foto')) {
+                    $path = $request->foto->store('img','public');
+                    DB::insert('insert into tbl_tipo_sociedad (sociedad_ts) values (?)',
+                    [$request->input('tipo')]);
+                    $id_tipo = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_direccion (nombre_di, numero_di, cp_di) values (?, ?, ?)',
+                    [$request->input('direccion'), $request->input('num'), $request->input('cp')]);
+                    $id_direccion = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_telefono (contacto1_tel, contacto2_tel) values (?, ?)',
+                    [$request->input('telf'), $request->input('telf2')]);
+                    $id_tlf = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_sociedad (nombre_s, nif_s, email_s, id_tipo_sociedad_fk, id_direccion_fk, id_telefono_fk, 
+                    horario_apertura_s, horario_cierre_s, url_web, foto_sociedad, operatividad_s) 
+                    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                    [$request->input('nombre'),  $request->input('nif'),  $request->input('email'), $id_tipo, $id_direccion, $id_tlf, 
+                    $request->input('horario_aper'), $request->input('horario_cierre'), $request->input('url_web'), $path,
+                    $request->input('operativo')]); 
+                }else if ($request->hasFile('foto_icono')) {
+                    $path2 = $request->foto_icono->store('img','public');
+                    DB::insert('insert into tbl_tipo_sociedad (sociedad_ts) values (?)',
+                    [$request->input('tipo')]);
+                    $id_tipo = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_direccion (nombre_di, numero_di, cp_di) values (?, ?, ?)',
+                    [$request->input('direccion'), $request->input('num'), $request->input('cp')]);
+                    $id_direccion = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_telefono (contacto1_tel, contacto2_tel) values (?, ?)',
+                    [$request->input('telf'), $request->input('telf2')]);
+                    $id_tlf = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_sociedad (nombre_s, nif_s, email_s, id_tipo_sociedad_fk, id_direccion_fk, id_telefono_fk, 
+                    horario_apertura_s, horario_cierre_s, url_web, foto_icono_sociedad, operatividad_s) 
+                    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                    [$request->input('nombre'),  $request->input('nif'),  $request->input('email'), $id_tipo, $id_direccion, $id_tlf, 
+                    $request->input('horario_aper'), $request->input('horario_cierre'), $request->input('url_web'), 
+                    $path2, $request->input('operativo')]); 
+                }else{
+                    DB::insert('insert into tbl_tipo_sociedad (sociedad_ts) values (?)',
+                    [$request->input('tipo')]);
+                    $id_tipo = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_direccion (nombre_di, numero_di, cp_di) values (?, ?, ?)',
+                    [$request->input('direccion'), $request->input('num'), $request->input('cp')]);
+                    $id_direccion = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_telefono (contacto1_tel, contacto2_tel) values (?, ?)',
+                    [$request->input('telf'), $request->input('telf2')]);
+                    $id_tlf = DB::getPdo()->lastInsertId();
+                    DB::insert('insert into tbl_sociedad (nombre_s, nif_s, email_s, id_tipo_sociedad_fk, id_direccion_fk, id_telefono_fk, 
+                    horario_apertura_s, horario_cierre_s, url_web, operatividad_s) 
+                    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                    [$request->input('nombre'),  $request->input('nif'),  $request->input('email'), $id_tipo, $id_direccion, $id_tlf, 
+                    $request->input('horario_aper'), $request->input('horario_cierre'), $request->input('url_web'), 
+                    $request->input('operativo')]); 
+                }
+                return response()->json(array('resultado'=> 'OK'));
+            }
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 }

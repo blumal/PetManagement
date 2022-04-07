@@ -22,5 +22,6 @@
         <input type="hidden" name="estado" id="estado" value="0">
         <input type="submit" value="Crear">
     </form>
+    <script src="js/crear_animales_perdidos.js"></script>
 </body>
 </html>
