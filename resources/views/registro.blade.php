@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group mx-sm-4 text-left">
                         <span class="">Ya tienes una cuenta?</span>
-                        <span><a href="./views/login.blade.php?" class="olvide1">Iniciar sesión</a></span>
+                        <span><a href="login.blade.php" class="olvide1">Iniciar sesión</a></span>
                     </div>
                 </form>
             </div>

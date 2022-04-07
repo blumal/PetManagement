@@ -60,15 +60,19 @@
             <input type="submit">
         </form>
 
-    <div class="row flex">
-        <div class="column-60">
-            <div class="slider-frame">
-                <ul>
-                    <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-1.jpg" alt=""></li>
-                    <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-2.jpg" alt=""></li>
-                    <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-3.jpg" alt=""></li>
-                    <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-4.jpg" alt=""></li>
-                </ul> --}}
+        <div class="row flex">
+            <div class="column-60">
+                <div class="slider-frame">
+                    <ul>
+                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-1.jpg" alt=""></li>
+                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-2.jpg" alt=""></li>
+                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-3.jpg" alt=""></li>
+                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-4.jpg" alt=""></li>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+    </div>--}}
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@ use App\Http\Controllers\DB;
 
 
 Route::get('', function () {
-    return view('about');
+    return view('contacto');
 });
 
 Route::get('login', [CitasController::class, 'login']);
