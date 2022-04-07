@@ -61,6 +61,9 @@
         <tr>
             <td><a href="{{ url('tienda') }}" class="btn btn-volver"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
             <td colspan="2" class="hidden-xs"></td>
+            <td><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+                <button class= "pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart"> </i> Pagar</button>
+            </form></td>
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
         </tr>
         </tfoot>
