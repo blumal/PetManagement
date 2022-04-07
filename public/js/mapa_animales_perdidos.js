@@ -47,23 +47,27 @@ function markers() {
             //recogemos los datos que nos devuelve el json en la variable respuesta
             var respuesta = JSON.parse(this.responseText);
             //hacemos un bucle for para mostrar los datos guardados en el array respuesta
+            var geocoder = L.esri.Geocoding.geocodeService();
             for (let i = 0; i < respuesta.length; i++) {
-                //Creo una variable local donde almaceno la imagen del marcador
-                var markerIcon = L.icon({
-                    //Url de la imagen
-                    iconUrl: src = '../public/img/' + respuesta[i].foto_icon + '',
-                    //Tamaño del icono
-                    iconSize: [30, 30]
-                });
-                //Le asignamos al marcador la coordenadas del marcador y la variable que le asigna la imagen
-                marker = L.marker([respuesta[i].latitud, respuesta[i].longitud], { icon: markerIcon });
-                //Añadimos el marcador al mapa
-                marker.addTo(map);
-                //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                marker.bindPopup("", { maxWidth: 190 }).openPopup();
+                geocoder.geocode().text(respuesta[i].direccion_perdida_ape + ', ' + respuesta[i].calle_ape + ' ' + respuesta[i].cp_ape).run(function(error, response) {
+                    cooordenadas = response.results[0].latlng;
+                    console.log(cooordenadas);
+                    //Creo una variable local donde almaceno la imagen del marcador
+                    var markerIcon = L.icon({
+                        //Url de la imagen
+                        iconUrl: src = 'storage/' + respuesta[i].foto_ape,
+                        //Tamaño del icono
+                        iconSize: [30, 30]
+                    });
+                    //Le asignamos al marcador la coordenadas del marcador y la variable que le asigna la imagen
+                    marker = L.marker([cooordenadas.lat, cooordenadas.lng], { icon: markerIcon });
+                    //Añadimos el marcador al mapa
+                    marker.addTo(map);
+                    //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
+                    marker.bindPopup("<span>" + respuesta[i].nombre_ape + "</span><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button>", { maxWidth: 190 }).openPopup();
+                })
             }
         }
-        mapa.innerHTML = recarga;
     }
     ajax.send(formData);
 }

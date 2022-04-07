@@ -17,7 +17,7 @@ function objetoAjax() {
 
 /* Función implementada con AJAX que inserta un archivo */
 function crear() {
-    var formData = new FormData(document.getElementById('form_crear'));
+    var formData = new FormData(document.getElementById('form_an_perd'));
     formData.append('_token', document.getElementById('token').getAttribute("content"));
 
     /* Inicializar un objeto AJAX */

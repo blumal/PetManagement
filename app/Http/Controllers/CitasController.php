@@ -45,16 +45,30 @@ class CitasController extends Controller
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
             $userId = $request->except('_token', '_method');
-            //Hacemos la consulta con la DB, la cual contará nuestros resultados
-            $userId_compr = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->count();
+            $userId_compr=DB::table("tbl_usuario")->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')->where('tbl_usuario.email_us','=',
+            $userId['email_us'])->where('tbl_usuario.pass_us','=',$userId['pass_us'])->get();
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
-            if ($userId_compr == 1){
+            if ($userId_compr[0]->rol_ro=='trabajador'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 return redirect('/citas');
+            }else if($userId_compr[0]->rol_ro=='admin'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $id_usuario=$usuario[0]->id_us;
+                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                return redirect('/adminMapasEstablecimientos');
+            }else if($userId_compr[0]->rol_ro=='cliente'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $id_usuario=$usuario[0]->id_us;
+                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                return redirect('/animales_perdidos');
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('/login');
@@ -63,6 +77,19 @@ class CitasController extends Controller
             return $e->getMessage();
         }
     }
+
+    /* public function loginP(Request $request){
+        $datos= $request->except('_token','_method');
+        $user=DB::table("tbl_rol")->join('tbl_user', 'tbl_rol.id', '=', 'tbl_user.id_rol')->where('correo_user','=',$datos['correo_user'])->where('pass_user','=',$datos['pass_user'])->first();
+        if($user->nombre_rol=='Administrador'){
+           $request->session()->put('nombre_admin',$request->correo_user);
+           return redirect('cPanelAdmin');
+        }if($user->nombre_rol=='Usuario'){
+            $request->session()->put('nombre_user',$request->correo_user);
+            return redirect('');
+        }
+        return redirect('');
+    } */
 
     public function Citas(){
         return view('clinica/vistas/citas');

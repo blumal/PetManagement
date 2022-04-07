@@ -1,3 +1,10 @@
+<!--Método comprobación de sesión-->
+@if (!Session::get('email_session'))
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +29,9 @@
     </div>
     @endif
     <h1><b>Establecimientos</b></h1>
-    <a href="">Log Out</a>
+    <form action="{{url('/logout')}}" method="GET">
+        <button type="submit" value="logout">LOGOUT</button><br><br>
+    </form>
     <p id="mensaje"></p>
     <form id="form_crear" onsubmit="crear(); return false;" enctype="multipart/form-data">
         <input type="text" name="nombre" id="nombre" placeholder="Nombre">

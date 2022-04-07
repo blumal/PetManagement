@@ -49,7 +49,7 @@ Route::get('/', function () {
 Route::get('/login', [CitasController::class, 'login']);
 Route::post('/login-proc', [CitasController::class, 'loginProc']);
 //Ruta que nos lleva a funcion que elimina todas las sesiones
-Route::post('/logout', [CitasController::class, 'logout']);
+Route::get('/logout', [CitasController::class, 'logout']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
 
