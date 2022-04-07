@@ -13,7 +13,7 @@ use App\Http\Controllers\mapas;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Mapas
 Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
 Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
