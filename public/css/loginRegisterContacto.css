@@ -5,7 +5,7 @@
 }
 body {
     position: relative;
-    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/fotosSlider/foto-slider-5.jpg);
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/fotosSlider/foto-slider-4.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
