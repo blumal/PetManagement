@@ -29,12 +29,20 @@
             <h1>Citas</h1>
             <div id="calendar"></div>
             <h1>Solicitud de Citas</h1>
-                <form action="" method="post">
-                    <input type="text">
-                    <input type="date">
-                    <input type="time">
-                </form>
+            <form onsubmit="insertDatas(); return false;">
+                @csrf
+                <input type="date" name="fecha_vi" id="fecha_vi">
+                <input type="time" name="hora_vi" id="hora_vi" >
+                <input type="submit">
+              </form>
         </div>
     </div>
+    <form action="{{url("/FacturasClinica")}}" method="post">
+        @csrf
+        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+        </br></br>
+        </br></br>
+        <input type="submit" value="Ver mis Visitas Anteriores">
+    </form>
 </body>
 </html>

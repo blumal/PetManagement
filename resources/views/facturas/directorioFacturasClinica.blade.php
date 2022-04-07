@@ -1,3 +1,11 @@
+<!--Método comprobación de sesión-->
+@if (!Session::get('email_session'))
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +16,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    
-
-    
     @for ($i = 0; $i < count($facturas); $i++)
 
         <form action="FacturaClinica/view" method="post">

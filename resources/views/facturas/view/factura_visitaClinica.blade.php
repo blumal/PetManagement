@@ -1,3 +1,10 @@
+<!--Método comprobación de sesión-->
+@if (!Session::get('email_session'))
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 
 <!DOCTYPE html>
 <html lang="en">
@@ -241,7 +248,7 @@ img {
             <td><b> Total: <?php echo $factura[0]->total_fc ?>€</b></td>
         </tr>
     </table>
-    Estimado, <?php echo $cliente[0]->nombre_us;?>:<br>
+    Estimado <?php echo $cliente[0]->nombre_us;?>,<br><br>
     Nunca habría sido posible crecer, ni llegar hasta donde estamos, sin tu apoyo. 
     Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
     <?php echo $clinica[0]->nombre_s ?>.
