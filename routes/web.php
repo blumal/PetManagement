@@ -5,7 +5,7 @@ use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
-
+use App\Http\Controllers\CitasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
