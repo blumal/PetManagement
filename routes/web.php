@@ -16,7 +16,7 @@ use App\Http\Controllers\DB;
 */
 
 Route::get('/', function () {
-    return view('secciones');
+    return view('about');
 });
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
