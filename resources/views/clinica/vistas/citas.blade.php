@@ -36,5 +36,12 @@
                 </form>
         </div>
     </div>
+    <form action="{{url("/FacturasClinica")}}" method="post">
+        @csrf
+        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+        </br></br>
+        </br></br>
+        <input type="submit" value="Ver mis Visitas Anteriores">
+    </form>
 </body>
 </html>
