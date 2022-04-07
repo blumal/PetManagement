@@ -22,7 +22,7 @@ use App\Http\Controllers\DB;
 
 
 Route::get('', function () {
-    return view('admincrud');
+    return view('about');
 });
 
 Route::get('login', [CitasController::class, 'login']);

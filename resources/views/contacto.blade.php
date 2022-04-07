@@ -23,6 +23,15 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
+    <div class="column-1">
+        <img src="./img/imagenesWeb/logo.png" class="foto">
+    </div>
+<h2>gwuethwpohgnw`hn`wnhòwet</h2>
+    <p>nombre</p>
+    <p>apellido</p>
+    <p>correo</p>
+    <span class="wpcf7-spinner">
+    </span>
 
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
@@ -33,11 +42,11 @@
         <ul class="footer-menu-container">
             <li class="footer-item">Legal</li>
             <li class="footer-item">Cookies</li>
-            <li class="footer-item">Privacy</li>
+            <li class="footer-item">Privacidad</li>
             <li class="footer-item">Shipping</li>
-            <li class="footer-item">Refunds</li>
+            <li class="footer-item">Equipo</li>
         </ul>
-        <span class="copyright">&copy;2021, Krey Academy. All rights reserved.</span>
+        <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
     </footer>
 </body>
 </html>

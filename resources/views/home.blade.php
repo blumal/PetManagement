@@ -28,7 +28,7 @@
     <div class="row-c flex">
         <div class="column-2">
             <div class="twitter">
-                <a class="twitter-timeline" data-lang="es" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/auronplay?ref_src=twsrc%5Etfw">Tweets by auronplay</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <a class="twitter-timeline" data-lang="es" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/twitter?ref_src=twsrc%5Etfw">Tweets by auronplay</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
         </div>
 
@@ -48,11 +48,11 @@
         <ul class="footer-menu-container">
             <li class="footer-item">Legal</li>
             <li class="footer-item">Cookies</li>
-            <li class="footer-item">Privacy</li>
+            <li class="footer-item">Privacidad</li>
             <li class="footer-item">Shipping</li>
-            <li class="footer-item">Refunds</li>
+            <li class="footer-item">Equipo</li>
         </ul>
-        <span class="copyright">&copy;2021, Krey Academy. All rights reserved.</span>
+        <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
     </footer>
 </body>
 </html>
