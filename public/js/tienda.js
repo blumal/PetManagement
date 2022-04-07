@@ -328,6 +328,7 @@ function filtro4() {
         var precio = $(this).find('.producto-precio').find('p').text();
         var precio2 = precio.substring(0, precio.length - 1);
         var foto = $(this).find('.thumbnail-img').find('img').attr('src');
+        var id2 = id.substring(precio.length, precio.length + 1);
         producto.push(href)
         producto.push(id)
         producto.push(nombre)
@@ -336,6 +337,7 @@ function filtro4() {
         producto.push(precio2)
         productos.push(producto)
         producto.push(foto)
+        producto.push(id2)
     });
 
     if (orden == "ASC") {
@@ -363,6 +365,7 @@ function filtro4() {
     console.log(productos[0][4])
     console.log(productos[0][5])
     console.log(productos[0][6])
+    console.log(productos[0][7])
     var html = "<p>" + resultadoBusqueda + "</p>";
     for (let i = 0; i < productos.length; i++) {
         var nombre = productos[i][2];
@@ -375,7 +378,7 @@ function filtro4() {
         html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
         html += "<div class='caption-descripcion'><p>" + productos[i][3] + "</p></div>";
         html += "<div class='producto-precio'><p>" + productos[i][4] + "</p></div>";
-        html += "<p class='btn-holder'><a href='' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+        html += "<p class='btn-holder'><a href='add-to-cart/" + productos[i][7] + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
         html += "</div>";
         html += "</div>";
         html += "</div>";
@@ -413,6 +416,3 @@ function marcasEmpty() {
 
     }
 }
-
-
-//MIRAR EL ORDEN METER EL ID PARA SESIONES
