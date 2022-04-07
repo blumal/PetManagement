@@ -30,7 +30,7 @@ function calendar() {
     formdata.append('_method', 'GET');
 
     //Datos fichero web que apunta a la función que recoge el JSON
-    ajax.open("GET", "/showcitas", true);
+    ajax.open("GET", "showcitas", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             //Json enviado desde el controler
@@ -54,9 +54,9 @@ function calendar() {
 
 //* /Inserción de citas
 function insertDatas() {
-    alert("Hola")
-        //Recogemos los datos del Form
-        //formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
+    alert("Hola");
+    //Recogemos los datos del Form
+    //formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
     var fecha_vi = document.getElementById('fecha_vi').value;
     var hora_vi = document.getElementById('hora_vi').value;
     //inicializamos objeto ajax
@@ -78,6 +78,11 @@ function insertDatas() {
             } else {
                 alert("Error:" + respuesta.resultado);
             }
+            //Limpiamos Array
+            vaciarArrEventos();
+            //Iteramos eventos
+            calendar();
+            //Montamos el calendario
             montarCalendario();
         }
     }
@@ -87,18 +92,25 @@ function insertDatas() {
 //API
 function montarCalendario() {
     var calendarEl = document.getElementById('calendar');
+    //calendarEl = "";
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
+        initialView: 'dayGridMonth',
         //Language
         locale: "es",
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth, timeGridWeek, listWeek',
-            color: 'Yellow'
         },
         //Recogemos los campos previamente rellenados
         events: eventos
     });
     calendar.render();
+}
+
+//Sin esta función cada vez que añadamos nuevos datos se duplicarán, por eso
+function vaciarArrEventos() {
+    eventos = [];
+    var calendarEl = document.getElementById('calendar');
+    calendarEl = "";
 }
