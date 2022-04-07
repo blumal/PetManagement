@@ -53,7 +53,7 @@ class CitasController extends Controller
             return $e->getMessage();
         }
     }
-
+    //Obtenemos todas las citas de fecha actual y futuras, envíandolo por JSON
     public function showcitas(){
         $today = now()->format('Y-m-d');
         $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");

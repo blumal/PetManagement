@@ -29,22 +29,24 @@ function calendar() {
     formdata.append('_token', document.getElementById('token').getAttribute("content"));
     formdata.append('_method', 'GET');
 
-    //Datos fichero web
-    ajax.open("GET", "showcitas", true);
+    //Datos fichero web que apunta a la función que recoge el JSON
+    ajax.open("GET", "/showcitas", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             //Json enviado desde el controler
             console.log(this.responseText);
+            //JSON desde web file
             var citas = JSON.parse(this.responseText);
             //console.log(citas);
             for (let i = 0; i < citas.length; i++) {
-                /* fechasArr.push(citas[i].fecha_vi);
-                horasArr.push(citas[i].hora_vi); */
+                //Array global
                 eventos.push({
+                    //Propiedades del atributo
                     title: "Testing" + i,
                     start: citas[i].fecha_vi + 'T' + citas[i].hora_vi
                 })
             }
+            //Funcion API
             montarCalendario();
         }
     }
@@ -65,6 +67,7 @@ function montarCalendario() {
             right: 'dayGridMonth, timeGridWeek, listWeek',
             color: 'Yellow'
         },
+        //Recogemos los campos previamente rellenados
         events: eventos
     });
     calendar.render();

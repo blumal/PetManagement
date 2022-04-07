@@ -17,28 +17,11 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-//FACTURAS TIENDA//
-
-//Ruta para entrar a facturas
-Route::get('/FacturasTienda', [FacturaCompraController::class, 'directorioFacturasTienda']);
-//Ruta para ver cada factura
-Route::post('/FacturaTienda/view', [FacturaCompraController::class, 'vistaFacturaTienda']);
-//Ruta para generar Facturas
-Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createPDFTienda']);
-
-//FACTURAS VISITAS//
-
-//Ruta para entrar a facturas visitas
-Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
-
-Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
-
-Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
-
+//LOGIN
 Route::get('/login', [CitasController::class, 'login']);
 Route::post('/login-proc', [CitasController::class, 'loginProc']);
+//Citas
 Route::get('/citas', [CitasController::class, 'index']);
-
-//Api
-Route::get('showcitas', [CitasController::class, 'showcitas']);
+//Uso de api
+Route::get('/showcitas', [CitasController::class, 'showcitas']);
 
