@@ -18,7 +18,7 @@ Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);
 //sesiones
 Route::get('add-to-cart/{id}',[ProductoController::class,'addToCart']);
 Route::post('add-to-cart-producto',[ProductoController::class,'addToCartProducto']);
-//Route::patch('update-cart',[ProductoController::class,'update-cart']);
-//Route::delete('remove-from-cart',[ProductoController::class,'remove-from-cart']);
+Route::patch('update-cart',[ProductoController::class,'updateCart']);
+Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
 
 
