@@ -67,10 +67,19 @@ class CitasController extends Controller
     public function Citas(){
         return view('clinica/vistas/citas');
     }
-    
+
     public function showcitas(){
         $today = now()->format('Y-m-d');
         $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");
         return response()->json($citas);
     }
+
+    public function insertCita(Request $request){
+        try {
+            DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+      }  
 }

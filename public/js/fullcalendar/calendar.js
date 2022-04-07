@@ -20,8 +20,8 @@ function objetoAjax() {
     return xmlhttp;
 }
 
+//Recogida de datos SQL + inserción de los mismo en la API
 function calendar() {
-    alert('hola');
     //Inicialización objeto Ajax
     var ajax = objetoAjax();
     //Nuevo objeto
@@ -41,7 +41,7 @@ function calendar() {
                 /* fechasArr.push(citas[i].fecha_vi);
                 horasArr.push(citas[i].hora_vi); */
                 eventos.push({
-                    title: "Testing" + i,
+                    title: "Agendada",
                     start: citas[i].fecha_vi + 'T' + citas[i].hora_vi
                 })
             }
@@ -49,7 +49,38 @@ function calendar() {
         }
     }
     ajax.send(formdata);
+}
 
+//* /Inserción de citas
+function insertDatas() {
+    alert("Hola")
+        //Recogemos los datos del Form
+        //formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
+    var fecha_vi = document.getElementById('fecha_vi').value;
+    var hora_vi = document.getElementById('hora_vi').value;
+    //inicializamos objeto ajax
+    var ajax = objetoAjax();
+    //Nuevo objeto, añadimos datos al objeto, como las variables previamente recogidas, token, método..., etc
+    formdata = new FormData();
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('fecha_vi', fecha_vi);
+    formdata.append('hora_vi', hora_vi);
+    formdata.append('_method', 'POST');
+
+    ajax.open("POST", "insertcita", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(this.responseText);
+            var respuesta = JSON.parse(this.responseText);
+            if (respuesta.resultado == "OK") {
+                alert("Success");
+            } else {
+                alert("Error:" + respuesta.resultado);
+            }
+            montarCalendario();
+        }
+    }
+    ajax.send(formdata);
 }
 
 //API
