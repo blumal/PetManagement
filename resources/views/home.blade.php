@@ -25,7 +25,7 @@
     <div>
         <img src="./img/imagenesWeb/home.jpg" class="foto">
     </div>
-        
+    <div class="row-c flex">
         <div class="column-2">
             <div class="twitter">
                 <a class="twitter-timeline" data-lang="es" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/auronplay?ref_src=twsrc%5Etfw">Tweets by auronplay</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -38,7 +38,7 @@
 
         The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
         </div>
-
+    </div>
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <div class="social-icons-container">

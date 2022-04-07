@@ -90,6 +90,7 @@ header{
 }
 
 .menu-item:hover{
+    border:2px solid rgb(255, 0, 0);
     color: #ffffff;
     background-color: #000000;
     border-radius: 30px;
