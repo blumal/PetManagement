@@ -1,17 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\mapas;
 
-=======
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CitasController;
->>>>>>> origin/gerard
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +22,6 @@ use App\Http\Controllers\CitasController;
 //Mapas
 Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
-<<<<<<< HEAD
 Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
 
 Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
@@ -45,7 +41,6 @@ Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstabl
 Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
 
 Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);
-=======
 
 Route::get('/', function () {
     return view('home');
@@ -93,4 +88,3 @@ Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 //Api
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 
->>>>>>> origin/gerard
