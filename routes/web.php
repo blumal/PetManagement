@@ -6,6 +6,8 @@ use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +61,23 @@ Route::get('/FacturaClinica/download', [FacturaVisitaController::class, 'directo
 Route::post('FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
 
 //FIN FACTURAS
+/*Carrito */
+Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
+
+Route::get('/carritoview',[ProductoController::class, 'CartCheckout']);
+
+Route::get('/carritovaciar',[ProductoController::class, 'CartClearOut']);
+
+Route::get('vistaprueba',[ProductoController::class,'mostrarProducto']);
+
+/*Crud */
+
+Route::get('admincrud',[ProductoController::class,'mostrarProductoCrud']);
+
+Route::post('filtro',[ProductoController::class,'show']);
+
+Route::post('crear',[ProductoController::class,'crear']);
+
+Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
+
+Route::put('actualizar',[ProductoController::class,'update']);
