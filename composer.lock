@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "e55e94d09c1e643368616b940d24a717",
+
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2264,6 +2266,7 @@
             "time": "2022-01-27T09:35:39+00:00"
         },
         {
+
             "name": "phenx/php-font-lib",
             "version": "0.5.4",
             "source": {
@@ -8194,5 +8197,7 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+
+    "plugin-api-version": "2.1.0"
+
 }
