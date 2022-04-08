@@ -68,4 +68,4 @@ Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 
 //Api
 Route::get('showcitas', [CitasController::class, 'showcitas']);
-
+Route::post('insertcita', [CitasController::class, 'insertCita']);
