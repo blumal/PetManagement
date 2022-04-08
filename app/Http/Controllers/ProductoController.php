@@ -210,7 +210,7 @@ class ProductoController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["cantidad"] = $request->quantity;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            session()->flash('success', 'Cart updated successfully');
         }
     }
 
