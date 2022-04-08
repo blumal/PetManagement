@@ -21,4 +21,12 @@ Route::get('add-to-cart-producto/{id}/{cantidad}',[ProductoController::class,'ad
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
 
+//compra
+Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
+
+Route::get('comprado',[ProductoController::class, 'compra']);
+
+Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
+
+
 

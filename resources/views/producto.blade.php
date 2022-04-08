@@ -16,6 +16,19 @@
     <link rel="stylesheet" href="../css/producto.css">
     <title>PetManagment - {{$producto[0]->nombre_art}}</title>
 </head>
+<header id="Header">
+    <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">
+    <!--Menu header-->
+    <ul class="main-menu">
+        <form action="{{url("home")}}" method="get"><li class="menu-item">Home</li></form>
+        <form action="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></form>
+        <form action="{{url("clinica")}}" method="get"><li class="menu-item">Clínica</li></form>
+        <form action="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></form>
+        <form action="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></form>
+        <form action="{{url("login")}}" method="get"><li class="cta">Login</li></form>
+    </ul>
+    <script src="./js/home.js"></script>
+</header>
 <body>
     <div class="div1">
         <div class="container_prod" id="galeria">
@@ -41,7 +54,7 @@
             </div>
             <div class="div-dropmenu">
                 <div class="dropdown">
-                    <button type="button" class="btn btn-info" data-toggle="dropdown">
+                    <button type="button" class="btn btn-info carrito-drop" data-toggle="dropdown">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                     </button>
                     <div class="dropdown-menu">
@@ -54,7 +67,7 @@
                                 <?php $total += $details['precio'] * $details['cantidad'] ?>
                             @endforeach
                             <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
-                                <p>Total: <span class="text-info"> {{ $total }}€</span></p>
+                                <p>Total: <span class="color"> {{ $total }}€</span></p>
                             </div>
                         </div>
                         @if(session('cart'))
@@ -65,7 +78,7 @@
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                         <p>{{ $details['nombre'] }}</p>
-                                        <span class="price text-info"> ${{ $details['precio'] }}</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
+                                        <span class="price color"> ${{ $details['precio'] }}</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
                                     </div>
                                 </div>
                             @endforeach
@@ -81,4 +94,19 @@
         </div>
     </div>
 </body>
+<footer>
+    <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">
+    <div class="social-icons-container">
+        <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+        <a href="https://www.t.me/petmanagement" class="social-icon"></a>
+    </div>
+    <ul class="footer-menu-container">
+        <li class="footer-item">Legal</li>
+        <li class="footer-item">Cookies</li>
+        <li class="footer-item">Privacidad</li>
+        <li class="footer-item">Shipping</li>
+        <li class="footer-item">Equipo</li>
+    </ul>
+    <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
+</footer>
 </html>

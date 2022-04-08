@@ -16,8 +16,22 @@
     <link rel="stylesheet" href="css/carrito.css">
     <title>PetManagment - Carrito</title>
 </head>
+<header id="Header">
+    <img src="storage/img/imagenesWeb/logo.png" alt="" class="logo">
+    <!--Menu header-->
+    <ul class="main-menu">
+        <form action="{{url("home")}}" method="get"><li class="menu-item">Home</li></form>
+        <form action="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></form>
+        <form action="{{url("clinica")}}" method="get"><li class="menu-item">Clínica</li></form>
+        <form action="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></form>
+        <form action="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></form>
+        <form action="{{url("login")}}" method="get"><li class="cta">Login</li></form>
+    </ul>
+    <script src="./js/home.js"></script>
+</header>
 <body>
-    <table id="cart" class="table table-hover table-condensed">
+    <div class="div-1">
+    <table id="cart" class="table table-hover table-condensed border">
         <thead>
         <tr>
             <th style="width:50%">Producto</th>
@@ -50,6 +64,7 @@
                         <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
                         <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fa fa-trash-o"></i></button>
                     </td>
+                    <td></td>
                 </tr>
             @endforeach
         @endif
@@ -62,11 +77,30 @@
             <td><a href="{{ url('tienda') }}" class="btn btn-volver"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
+            <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+                <button class= "btn btn-volver pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart i-pagar"> </i> Pagar</button>
+            </form></td>
         </tr>
         </tfoot>
     </table>
+</div>
     
 </body>
+<footer>
+    <img src="storage/img/imagenesWeb/logo.png" alt="" class="logo">
+    <div class="social-icons-container">
+        <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+        <a href="https://www.t.me/petmanagement" class="social-icon"></a>
+    </div>
+    <ul class="footer-menu-container">
+        <li class="footer-item">Legal</li>
+        <li class="footer-item">Cookies</li>
+        <li class="footer-item">Privacidad</li>
+        <li class="footer-item">Shipping</li>
+        <li class="footer-item">Equipo</li>
+    </ul>
+    <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
+</footer>
 <script type="text/javascript">
     $(".update-cart").click(function (e) {
        e.preventDefault();
@@ -92,5 +126,17 @@
                 }
             });
     });
+    var header = document.getElementById('Header')
+
+    window.addEventListener("scroll", function() {
+        var scroll = window.scrollY;
+        if (scrollY > 0) {
+            header.style.backgroundColor = '#8590ff';
+
+        } else {
+            header.style.backgroundColor = '#8590ff';
+        }
+
+    })
 </script>
 </html>

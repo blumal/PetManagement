@@ -227,5 +227,64 @@ class ProductoController extends Controller
         }
     }
 
+    /*Dinero*/
+    public function enviarDinero($total){
+        //$resultado = $precio.','.$id;
+        //return $resultado;
+
+        //Aqui generamos la clase ApiContext que es la que hace la conexión
+        $apiContext = new \PayPal\Rest\ApiContext(
+        new \PayPal\Auth\OAuthTokenCredential(
+            config('services.paypal.client_id'),     // ClientID
+            config('services.paypal.client_secret')      // ClientSecret
+        ));
+
+        //Generamos otra clase Payer
+        $payer = new \PayPal\Api\Payer();
+        $payer->setPaymentMethod('paypal');
+
+        //Generamos la tercera clase (Amount) que dice la cantidad a pagar
+        $amount = new \PayPal\Api\Amount();
+
+        //precio a pagar
+        $amount->setTotal($total);
+        $amount->setCurrency('EUR');
+
+        //Generamos otra clase donde le pasamos el precio y la moneda
+        $transaction = new \PayPal\Api\Transaction();
+        $transaction->setAmount($amount);
+
+        //le envioa la pagina informacion del id
+        //si se cancela lo llevo a la pagina que quiero
+        $redirectUrls = new \PayPal\Api\RedirectUrls();
+        $redirectUrls->setReturnUrl(url("comprado"))->setCancelUrl(url("/"));
+
+        $payment = new \PayPal\Api\Payment();
+        $payment->setIntent('sale')
+            ->setPayer($payer)
+            ->setTransactions(array($transaction))
+            ->setRedirectUrls($redirectUrls);
+
+        try {
+            $payment->create($apiContext);
+            //me redirige a la pagina de compra
+            return redirect()->away( $payment->getApprovalLink());
+
+        }catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            // This will print the detailed information on the exception.
+            //REALLY HELPFUL FOR DEBUGGING
+            echo $ex->getData();
+        }
+
+    }
+
+    public function compra(Request $request){
+        $request->session()->forget('cart');
+        return redirect('comprafinalizada');
+    }
+    public function mostrarCompra(){
+        return view('comprafinalizada');
+    } 
+
     
 }
