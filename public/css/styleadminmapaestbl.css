@@ -9,7 +9,37 @@ body {
 
 .head_admin {
     display: flex;
-    flex-flow: row wrap;
+    width: 100%;
+    position: relative;
+    justify-content: space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.back {
+    display: flex;
+    text-align: center;
+    width: 25%;
+    top: 0;
+}
+
+.ttl {
+    display: flex;
+    text-align: center;
+    width: 50%;
+    top: 0;
+}
+
+.log_out {
+    display: flex;
+    text-align: center;
+    margin: 0;
+    top: 0;
+}
+
+.logout {
+    float: right;
 }
 
 img {
