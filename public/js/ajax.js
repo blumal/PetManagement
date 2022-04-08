@@ -59,6 +59,7 @@ function filtro() {
                 recarga += '<tr>';
                 recarga += '<th scope="col">#</th>';
                 recarga += '<th scope="col">Nombre</th>';
+                recarga += '<th scope="col">Descripcion</th>';
                 recarga += '<th scope="col">Precio</th>';
                 recarga += '<th scope="col">Código de Barras</th>';
                 recarga += '<th scope="col">Marca</th>';
@@ -69,13 +70,14 @@ function filtro() {
                     recarga += '<tr>';
                     recarga += '<td scope="row">' + respuesta[i].id_art + '</td>';
                     recarga += '<td>' + respuesta[i].nombre_art + '</td>';
+                    recarga += '<td>' + respuesta[i].descripcion_art + '</td>';
                     recarga += '<td>' + respuesta[i].precio_art + '</td>';
                     recarga += '<td>' + respuesta[i].codigobarras_art + '</td>';
                     recarga += '<td>' + respuesta[i].marca_ma + '</td>';
                     recarga += '<td>' + respuesta[i].tipo_articulo_ta + '</td>';
                     recarga += '<td>';
                     // editar
-                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
                     recarga += '</td>';
                     recarga += '<td>';
                     // eliminar
