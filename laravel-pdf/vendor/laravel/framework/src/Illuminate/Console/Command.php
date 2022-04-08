@@ -3,7 +3,10 @@
 namespace Illuminate\Console;
 
 use Illuminate\Support\Traits\Macroable;
+<<<<<<< HEAD
 use ReflectionClass;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -88,6 +91,7 @@ class Command extends SymfonyCommand
     }
 
     /**
+<<<<<<< HEAD
      * Return the command name.
      *
      * @return string|null
@@ -122,6 +126,8 @@ class Command extends SymfonyCommand
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Configure the console command using a fluent definition.
      *
      * @return void
@@ -146,7 +152,11 @@ class Command extends SymfonyCommand
      * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @return int
      */
+<<<<<<< HEAD
     public function run(InputInterface $input, OutputInterface $output): int
+=======
+    public function run(InputInterface $input, OutputInterface $output)
+>>>>>>> origin/New-FakeMain
     {
         $this->output = $this->laravel->make(
             OutputStyle::class, ['input' => $input, 'output' => $output]
@@ -201,15 +211,26 @@ class Command extends SymfonyCommand
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function isHidden(): bool
+=======
+    public function isHidden()
+>>>>>>> origin/New-FakeMain
     {
         return $this->hidden;
     }
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      */
     public function setHidden(bool $hidden = true): static
+=======
+     *
+     * @return static
+     */
+    public function setHidden(bool $hidden)
+>>>>>>> origin/New-FakeMain
     {
         parent::setHidden($this->hidden = $hidden);
 

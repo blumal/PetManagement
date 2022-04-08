@@ -34,17 +34,30 @@ class FileLinkFormatter
         'vscode' => 'vscode://file/%f:%l',
     ];
 
+<<<<<<< HEAD
     private array|false $fileLinkFormat;
     private $requestStack = null;
     private ?string $baseDir = null;
     private \Closure|string|null $urlFormat;
+=======
+    private $fileLinkFormat;
+    private $requestStack;
+    private $baseDir;
+    private $urlFormat;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string|\Closure $urlFormat the URL format, or a closure that returns it on-demand
      */
+<<<<<<< HEAD
     public function __construct(string $fileLinkFormat = null, RequestStack $requestStack = null, string $baseDir = null, string|\Closure $urlFormat = null)
     {
         $fileLinkFormat = (self::FORMATS[$fileLinkFormat] ?? $fileLinkFormat) ?: ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format') ?: false;
+=======
+    public function __construct(string $fileLinkFormat = null, RequestStack $requestStack = null, string $baseDir = null, $urlFormat = null)
+    {
+        $fileLinkFormat = (self::FORMATS[$fileLinkFormat] ?? $fileLinkFormat) ?: ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format');
+>>>>>>> origin/New-FakeMain
         if ($fileLinkFormat && !\is_array($fileLinkFormat)) {
             $i = strpos($f = $fileLinkFormat, '&', max(strrpos($f, '%f'), strrpos($f, '%l'))) ?: \strlen($f);
             $fileLinkFormat = [substr($f, 0, $i)] + preg_split('/&([^>]++)>/', substr($f, $i), -1, \PREG_SPLIT_DELIM_CAPTURE);
@@ -94,7 +107,11 @@ class FileLinkFormatter
         }
     }
 
+<<<<<<< HEAD
     private function getFileLinkFormat(): array|false
+=======
+    private function getFileLinkFormat()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->fileLinkFormat) {
             return $this->fileLinkFormat;
@@ -111,6 +128,10 @@ class FileLinkFormatter
             }
         }
 
+<<<<<<< HEAD
         return false;
+=======
+        return null;
+>>>>>>> origin/New-FakeMain
     }
 }

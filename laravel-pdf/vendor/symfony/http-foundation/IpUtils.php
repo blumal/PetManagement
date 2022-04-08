@@ -18,7 +18,11 @@ namespace Symfony\Component\HttpFoundation;
  */
 class IpUtils
 {
+<<<<<<< HEAD
     private static array $checkedIps = [];
+=======
+    private static $checkedIps = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * This class should not be instantiated.
@@ -31,9 +35,23 @@ class IpUtils
      * Checks if an IPv4 or IPv6 address is contained in the list of given IPs or subnets.
      *
      * @param string|array $ips List of IPs or subnets (can be a string if only a single one)
+<<<<<<< HEAD
      */
     public static function checkIp(string $requestIp, string|array $ips): bool
     {
+=======
+     *
+     * @return bool
+     */
+    public static function checkIp(?string $requestIp, $ips)
+    {
+        if (null === $requestIp) {
+            trigger_deprecation('symfony/http-foundation', '5.4', 'Passing null as $requestIp to "%s()" is deprecated, pass an empty string instead.', __METHOD__);
+
+            return false;
+        }
+
+>>>>>>> origin/New-FakeMain
         if (!\is_array($ips)) {
             $ips = [$ips];
         }
@@ -57,8 +75,19 @@ class IpUtils
      *
      * @return bool Whether the request IP matches the IP, or whether the request IP is within the CIDR subnet
      */
+<<<<<<< HEAD
     public static function checkIp4(string $requestIp, string $ip): bool
     {
+=======
+    public static function checkIp4(?string $requestIp, string $ip)
+    {
+        if (null === $requestIp) {
+            trigger_deprecation('symfony/http-foundation', '5.4', 'Passing null as $requestIp to "%s()" is deprecated, pass an empty string instead.', __METHOD__);
+
+            return false;
+        }
+
+>>>>>>> origin/New-FakeMain
         $cacheKey = $requestIp.'-'.$ip;
         if (isset(self::$checkedIps[$cacheKey])) {
             return self::$checkedIps[$cacheKey];
@@ -100,10 +129,25 @@ class IpUtils
      *
      * @param string $ip IPv6 address or subnet in CIDR notation
      *
+<<<<<<< HEAD
      * @throws \RuntimeException When IPV6 support is not enabled
      */
     public static function checkIp6(string $requestIp, string $ip): bool
     {
+=======
+     * @return bool
+     *
+     * @throws \RuntimeException When IPV6 support is not enabled
+     */
+    public static function checkIp6(?string $requestIp, string $ip)
+    {
+        if (null === $requestIp) {
+            trigger_deprecation('symfony/http-foundation', '5.4', 'Passing null as $requestIp to "%s()" is deprecated, pass an empty string instead.', __METHOD__);
+
+            return false;
+        }
+
+>>>>>>> origin/New-FakeMain
         $cacheKey = $requestIp.'-'.$ip;
         if (isset(self::$checkedIps[$cacheKey])) {
             return self::$checkedIps[$cacheKey];

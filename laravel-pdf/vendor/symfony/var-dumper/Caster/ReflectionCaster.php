@@ -96,7 +96,11 @@ class ReflectionCaster
     {
         $prefix = Caster::PREFIX_VIRTUAL;
 
+<<<<<<< HEAD
         if ($c instanceof \ReflectionNamedType) {
+=======
+        if ($c instanceof \ReflectionNamedType || \PHP_VERSION_ID < 80000) {
+>>>>>>> origin/New-FakeMain
             $a += [
                 $prefix.'name' => $c instanceof \ReflectionNamedType ? $c->getName() : (string) $c,
                 $prefix.'allowsNull' => $c->allowsNull(),
@@ -421,7 +425,11 @@ class ReflectionCaster
     private static function addMap(array &$a, object $c, array $map, string $prefix = Caster::PREFIX_VIRTUAL)
     {
         foreach ($map as $k => $m) {
+<<<<<<< HEAD
             if ('isDisabled' === $k) {
+=======
+            if (\PHP_VERSION_ID >= 80000 && 'isDisabled' === $k) {
+>>>>>>> origin/New-FakeMain
                 continue;
             }
 
@@ -433,8 +441,15 @@ class ReflectionCaster
 
     private static function addAttributes(array &$a, \Reflector $c, string $prefix = Caster::PREFIX_VIRTUAL): void
     {
+<<<<<<< HEAD
         foreach ($c->getAttributes() as $n) {
             $a[$prefix.'attributes'][] = $n;
+=======
+        if (\PHP_VERSION_ID >= 80000) {
+            foreach ($c->getAttributes() as $n) {
+                $a[$prefix.'attributes'][] = $n;
+            }
+>>>>>>> origin/New-FakeMain
         }
     }
 }

@@ -34,9 +34,18 @@ class JsonResponse extends Response
     protected $encodingOptions = self::DEFAULT_ENCODING_OPTIONS;
 
     /**
+<<<<<<< HEAD
      * @param bool $json If the data is already a JSON string
      */
     public function __construct(mixed $data = null, int $status = 200, array $headers = [], bool $json = false)
+=======
+     * @param mixed $data    The response data
+     * @param int   $status  The response status code
+     * @param array $headers An array of response headers
+     * @param bool  $json    If the data is already a JSON string
+     */
+    public function __construct($data = null, int $status = 200, array $headers = [], bool $json = false)
+>>>>>>> origin/New-FakeMain
     {
         parent::__construct('', $status, $headers);
 
@@ -56,14 +65,47 @@ class JsonResponse extends Response
      *
      * Example:
      *
+<<<<<<< HEAD
+=======
+     *     return JsonResponse::create(['key' => 'value'])
+     *         ->setSharedMaxAge(300);
+     *
+     * @param mixed $data    The JSON response data
+     * @param int   $status  The response status code
+     * @param array $headers An array of response headers
+     *
+     * @return static
+     *
+     * @deprecated since Symfony 5.1, use __construct() instead.
+     */
+    public static function create($data = null, int $status = 200, array $headers = [])
+    {
+        trigger_deprecation('symfony/http-foundation', '5.1', 'The "%s()" method is deprecated, use "new %s()" instead.', __METHOD__, static::class);
+
+        return new static($data, $status, $headers);
+    }
+
+    /**
+     * Factory method for chainability.
+     *
+     * Example:
+     *
+>>>>>>> origin/New-FakeMain
      *     return JsonResponse::fromJsonString('{"key": "value"}')
      *         ->setSharedMaxAge(300);
      *
      * @param string $data    The JSON response string
      * @param int    $status  The response status code
      * @param array  $headers An array of response headers
+<<<<<<< HEAD
      */
     public static function fromJsonString(string $data, int $status = 200, array $headers = []): static
+=======
+     *
+     * @return static
+     */
+    public static function fromJsonString(string $data, int $status = 200, array $headers = [])
+>>>>>>> origin/New-FakeMain
     {
         return new static($data, $status, $headers, true);
     }
@@ -77,7 +119,11 @@ class JsonResponse extends Response
      *
      * @throws \InvalidArgumentException When the callback name is not valid
      */
+<<<<<<< HEAD
     public function setCallback(string $callback = null): static
+=======
+    public function setCallback(string $callback = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $callback) {
             // partially taken from https://geekality.net/2011/08/03/valid-javascript-identifier/
@@ -108,7 +154,11 @@ class JsonResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setJson(string $json): static
+=======
+    public function setJson(string $json)
+>>>>>>> origin/New-FakeMain
     {
         $this->data = $json;
 
@@ -118,11 +168,20 @@ class JsonResponse extends Response
     /**
      * Sets the data to be sent as JSON.
      *
+<<<<<<< HEAD
+=======
+     * @param mixed $data
+     *
+>>>>>>> origin/New-FakeMain
      * @return $this
      *
      * @throws \InvalidArgumentException
      */
+<<<<<<< HEAD
     public function setData(mixed $data = []): static
+=======
+    public function setData($data = [])
+>>>>>>> origin/New-FakeMain
     {
         try {
             $data = json_encode($data, $this->encodingOptions);
@@ -133,7 +192,11 @@ class JsonResponse extends Response
             throw $e;
         }
 
+<<<<<<< HEAD
         if (\JSON_THROW_ON_ERROR & $this->encodingOptions) {
+=======
+        if (\PHP_VERSION_ID >= 70300 && (\JSON_THROW_ON_ERROR & $this->encodingOptions)) {
+>>>>>>> origin/New-FakeMain
             return $this->setJson($data);
         }
 
@@ -146,8 +209,15 @@ class JsonResponse extends Response
 
     /**
      * Returns options used while encoding data to JSON.
+<<<<<<< HEAD
      */
     public function getEncodingOptions(): int
+=======
+     *
+     * @return int
+     */
+    public function getEncodingOptions()
+>>>>>>> origin/New-FakeMain
     {
         return $this->encodingOptions;
     }
@@ -157,7 +227,11 @@ class JsonResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setEncodingOptions(int $encodingOptions): static
+=======
+    public function setEncodingOptions(int $encodingOptions)
+>>>>>>> origin/New-FakeMain
     {
         $this->encodingOptions = $encodingOptions;
 
@@ -169,7 +243,11 @@ class JsonResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     protected function update(): static
+=======
+    protected function update()
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $this->callback) {
             // Not using application/javascript for compatibility reasons with older browsers.

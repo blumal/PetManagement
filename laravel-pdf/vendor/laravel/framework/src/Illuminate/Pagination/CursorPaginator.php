@@ -37,7 +37,11 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
             $this->{$key} = $value;
         }
 
+<<<<<<< HEAD
         $this->perPage = (int) $perPage;
+=======
+        $this->perPage = $perPage;
+>>>>>>> origin/New-FakeMain
         $this->cursor = $cursor;
         $this->path = $this->path !== '/' ? rtrim($this->path, '/') : $this->path;
 
@@ -132,9 +136,13 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
             'data' => $this->items->toArray(),
             'path' => $this->path(),
             'per_page' => $this->perPage(),
+<<<<<<< HEAD
             'next_cursor' => $this->nextCursor()?->encode(),
             'next_page_url' => $this->nextPageUrl(),
             'prev_cursor' => $this->previousCursor()?->encode(),
+=======
+            'next_page_url' => $this->nextPageUrl(),
+>>>>>>> origin/New-FakeMain
             'prev_page_url' => $this->previousPageUrl(),
         ];
     }
@@ -144,7 +152,12 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
      *
      * @return array
      */
+<<<<<<< HEAD
     public function jsonSerialize(): array
+=======
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
+>>>>>>> origin/New-FakeMain
     {
         return $this->toArray();
     }

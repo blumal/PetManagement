@@ -2,15 +2,23 @@
 
 namespace Illuminate\Database\DBAL;
 
+<<<<<<< HEAD
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\PhpDateTimeMappingType;
 use Doctrine\DBAL\Types\Type;
+=======
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\PhpDateTimeMappingType;
+use Doctrine\DBAL\Types\Type;
+use RuntimeException;
+>>>>>>> origin/New-FakeMain
 
 class TimestampType extends Type implements PhpDateTimeMappingType
 {
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -25,6 +33,35 @@ class TimestampType extends Type implements PhpDateTimeMappingType
             'sqlite3' => $this->getSQLitePlatformSQLDeclaration($fieldDeclaration),
             default => throw new DBALException('Invalid platform: '.$name),
         };
+=======
+     *
+     * @return string
+     */
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    {
+        $name = $platform->getName();
+
+        switch ($name) {
+            case 'mysql':
+            case 'mysql2':
+                return $this->getMySqlPlatformSQLDeclaration($fieldDeclaration);
+
+            case 'postgresql':
+            case 'pgsql':
+            case 'postgres':
+                return $this->getPostgresPlatformSQLDeclaration($fieldDeclaration);
+
+            case 'mssql':
+                return $this->getSqlServerPlatformSQLDeclaration($fieldDeclaration);
+
+            case 'sqlite':
+            case 'sqlite3':
+                return $this->getSQLitePlatformSQLDeclaration($fieldDeclaration);
+
+            default:
+                throw new RuntimeException('Invalid platform: '.$name);
+        }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -87,6 +124,11 @@ class TimestampType extends Type implements PhpDateTimeMappingType
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
+=======
+     *
+     * @return string
+>>>>>>> origin/New-FakeMain
      */
     public function getName()
     {

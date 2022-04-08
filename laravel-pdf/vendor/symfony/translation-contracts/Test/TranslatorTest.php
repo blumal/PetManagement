@@ -43,7 +43,14 @@ class TranslatorTest extends TestCase
         \Locale::setDefault($this->defaultLocale);
     }
 
+<<<<<<< HEAD
     public function getTranslator(): TranslatorInterface
+=======
+    /**
+     * @return TranslatorInterface
+     */
+    public function getTranslator()
+>>>>>>> origin/New-FakeMain
     {
         return new class() implements TranslatorInterface {
             use TranslatorTrait;
@@ -314,8 +321,15 @@ class TranslatorTest extends TestCase
      * This array should contain all currently known langcodes.
      *
      * As it is impossible to have this ever complete we should try as hard as possible to have it almost complete.
+<<<<<<< HEAD
      */
     public function successLangcodes(): array
+=======
+     *
+     * @return array
+     */
+    public function successLangcodes()
+>>>>>>> origin/New-FakeMain
     {
         return [
             ['1', ['ay', 'bo', 'cgg', 'dz', 'id', 'ja', 'jbo', 'ka', 'kk', 'km', 'ko', 'ky']],
@@ -334,7 +348,11 @@ class TranslatorTest extends TestCase
      *
      * @return array with nplural together with langcodes
      */
+<<<<<<< HEAD
     public function failingLangcodes(): array
+=======
+    public function failingLangcodes()
+>>>>>>> origin/New-FakeMain
     {
         return [
             ['1', ['fa']],
@@ -348,10 +366,18 @@ class TranslatorTest extends TestCase
     /**
      * We validate only on the plural coverage. Thus the real rules is not tested.
      *
+<<<<<<< HEAD
      * @param string $nplural Plural expected
      * @param array  $matrix  Containing langcodes and their plural index values
      */
     protected function validateMatrix(string $nplural, array $matrix, bool $expectSuccess = true)
+=======
+     * @param string $nplural       Plural expected
+     * @param array  $matrix        Containing langcodes and their plural index values
+     * @param bool   $expectSuccess
+     */
+    protected function validateMatrix($nplural, $matrix, $expectSuccess = true)
+>>>>>>> origin/New-FakeMain
     {
         foreach ($matrix as $langCode => $data) {
             $indexes = array_flip($data);

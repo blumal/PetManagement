@@ -66,6 +66,7 @@ class SendQueuedMailable
     }
 
     /**
+<<<<<<< HEAD
      * Get the number of seconds before a released mailable will be available.
      *
      * @return mixed
@@ -91,6 +92,15 @@ class SendQueuedMailable
         }
 
         return $this->mailable->retryUntil ?? $this->mailable->retryUntil();
+=======
+     * Get the display name for the queued job.
+     *
+     * @return string
+     */
+    public function displayName()
+    {
+        return get_class($this->mailable);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -107,6 +117,7 @@ class SendQueuedMailable
     }
 
     /**
+<<<<<<< HEAD
      * Get the display name for the queued job.
      *
      * @return string
@@ -114,6 +125,19 @@ class SendQueuedMailable
     public function displayName()
     {
         return get_class($this->mailable);
+=======
+     * Get the number of seconds before a released mailable will be available.
+     *
+     * @return mixed
+     */
+    public function backoff()
+    {
+        if (! method_exists($this->mailable, 'backoff') && ! isset($this->mailable->backoff)) {
+            return;
+        }
+
+        return $this->mailable->backoff ?? $this->mailable->backoff();
+>>>>>>> origin/New-FakeMain
     }
 
     /**

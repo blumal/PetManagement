@@ -145,7 +145,11 @@ trait ManagesEvents
      */
     protected function classEventMethodForPrefix($prefix)
     {
+<<<<<<< HEAD
         return str_contains($prefix, 'composing') ? 'compose' : 'create';
+=======
+        return Str::contains($prefix, 'composing') ? 'compose' : 'create';
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -157,7 +161,11 @@ trait ManagesEvents
      */
     protected function addEventListener($name, $callback)
     {
+<<<<<<< HEAD
         if (str_contains($name, '*')) {
+=======
+        if (Str::contains($name, '*')) {
+>>>>>>> origin/New-FakeMain
             $callback = function ($name, array $data) use ($callback) {
                 return $callback($data[0]);
             };

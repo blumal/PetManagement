@@ -94,6 +94,7 @@ class SplCaster
         unset($a["\0SplFileInfo\0fileName"]);
         unset($a["\0SplFileInfo\0pathName"]);
 
+<<<<<<< HEAD
         try {
             $c->isReadable();
         } catch (\RuntimeException $e) {
@@ -112,6 +113,34 @@ class SplCaster
             $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
 
             return $a;
+=======
+        if (\PHP_VERSION_ID < 80000) {
+            if (false === $c->getPathname()) {
+                $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
+
+                return $a;
+            }
+        } else {
+            try {
+                $c->isReadable();
+            } catch (\RuntimeException $e) {
+                if ('Object not initialized' !== $e->getMessage()) {
+                    throw $e;
+                }
+
+                $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
+
+                return $a;
+            } catch (\Error $e) {
+                if ('Object not initialized' !== $e->getMessage()) {
+                    throw $e;
+                }
+
+                $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
+
+                return $a;
+            }
+>>>>>>> origin/New-FakeMain
         }
 
         foreach ($map as $key => $accessor) {
@@ -211,7 +240,11 @@ class SplCaster
         return $a;
     }
 
+<<<<<<< HEAD
     private static function castSplArray(\ArrayObject|\ArrayIterator $c, array $a, Stub $stub, bool $isNested): array
+=======
+    private static function castSplArray($c, array $a, Stub $stub, bool $isNested): array
+>>>>>>> origin/New-FakeMain
     {
         $prefix = Caster::PREFIX_VIRTUAL;
         $flags = $c->getFlags();
@@ -221,6 +254,12 @@ class SplCaster
             $a = Caster::castObject($c, \get_class($c), method_exists($c, '__debugInfo'), $stub->class);
             $c->setFlags($flags);
         }
+<<<<<<< HEAD
+=======
+        if (\PHP_VERSION_ID < 70400) {
+            $a[$prefix.'storage'] = $c->getArrayCopy();
+        }
+>>>>>>> origin/New-FakeMain
         $a += [
             $prefix.'flag::STD_PROP_LIST' => (bool) ($flags & \ArrayObject::STD_PROP_LIST),
             $prefix.'flag::ARRAY_AS_PROPS' => (bool) ($flags & \ArrayObject::ARRAY_AS_PROPS),

@@ -116,7 +116,11 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
+<<<<<<< HEAD
      * Push a new job onto the queue after (n) seconds.
+=======
+     * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job
@@ -142,6 +146,7 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
+<<<<<<< HEAD
      * Push an array of jobs onto the queue.
      *
      * @param  array  $jobs
@@ -161,6 +166,8 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Pop the next job off of the queue.
      *
      * @param  string|null  $queue
@@ -220,7 +227,11 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
      */
     protected function suffixQueue($queue, $suffix = '')
     {
+<<<<<<< HEAD
         if (str_ends_with($queue, '.fifo')) {
+=======
+        if (Str::endsWith($queue, '.fifo')) {
+>>>>>>> origin/New-FakeMain
             $queue = Str::beforeLast($queue, '.fifo');
 
             return rtrim($this->prefix, '/').'/'.Str::finish($queue, $suffix).'.fifo';

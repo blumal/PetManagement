@@ -99,11 +99,15 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
         $this->getConnection()->pipeline(function () use ($jobs, $data, $queue) {
             $this->getConnection()->transaction(function () use ($jobs, $data, $queue) {
                 foreach ((array) $jobs as $job) {
+<<<<<<< HEAD
                     if (isset($job->delay)) {
                         $this->later($job->delay, $job, $data, $queue);
                     } else {
                         $this->push($job, $data, $queue);
                     }
+=======
+                    $this->push($job, $data, $queue);
+>>>>>>> origin/New-FakeMain
                 }
             });
         });
@@ -171,7 +175,11 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
+<<<<<<< HEAD
      * Push a raw job onto the queue after (n) seconds.
+=======
+     * Push a raw job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $payload

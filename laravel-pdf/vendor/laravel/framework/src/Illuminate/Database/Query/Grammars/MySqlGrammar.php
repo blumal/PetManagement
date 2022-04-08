@@ -101,6 +101,7 @@ class MySqlGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a "JSON contains key" statement into SQL.
      *
      * @param  string  $column
@@ -114,6 +115,8 @@ class MySqlGrammar extends Grammar
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile a "JSON length" statement into SQL.
      *
      * @param  string  $column

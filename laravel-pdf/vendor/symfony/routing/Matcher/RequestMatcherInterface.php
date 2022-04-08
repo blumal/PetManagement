@@ -29,9 +29,18 @@ interface RequestMatcherInterface
      * If the matcher cannot find information, it must throw one of the exceptions documented
      * below.
      *
+<<<<<<< HEAD
+=======
+     * @return array
+     *
+>>>>>>> origin/New-FakeMain
      * @throws NoConfigurationException  If no routing configuration could be found
      * @throws ResourceNotFoundException If no matching resource could be found
      * @throws MethodNotAllowedException If a matching resource was found but the request method is not allowed
      */
+<<<<<<< HEAD
     public function matchRequest(Request $request): array;
+=======
+    public function matchRequest(Request $request);
+>>>>>>> origin/New-FakeMain
 }

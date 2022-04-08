@@ -2,6 +2,11 @@
 
 namespace Illuminate\Database\Eloquent\Concerns;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+
+>>>>>>> origin/New-FakeMain
 trait GuardsAttributes
 {
     /**
@@ -185,8 +190,13 @@ trait GuardsAttributes
         }
 
         return empty($this->getFillable()) &&
+<<<<<<< HEAD
             ! str_contains($key, '.') &&
             ! str_starts_with($key, '_');
+=======
+            strpos($key, '.') === false &&
+            ! Str::startsWith($key, '_');
+>>>>>>> origin/New-FakeMain
     }
 
     /**

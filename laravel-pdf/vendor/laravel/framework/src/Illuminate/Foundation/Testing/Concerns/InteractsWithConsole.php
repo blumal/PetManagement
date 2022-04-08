@@ -23,6 +23,7 @@ trait InteractsWithConsole
     public $expectedOutput = [];
 
     /**
+<<<<<<< HEAD
      * All of the expected text to be present on the output.
      *
      * @var array
@@ -30,6 +31,8 @@ trait InteractsWithConsole
     public $expectedOutputSubstrings = [];
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * All of the output lines that aren't expected to be displayed.
      *
      * @var array

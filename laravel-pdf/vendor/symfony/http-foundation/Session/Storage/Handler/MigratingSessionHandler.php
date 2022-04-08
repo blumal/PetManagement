@@ -25,12 +25,20 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
     /**
      * @var \SessionHandlerInterface&\SessionUpdateTimestampHandlerInterface
      */
+<<<<<<< HEAD
     private \SessionHandlerInterface $currentHandler;
+=======
+    private $currentHandler;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var \SessionHandlerInterface&\SessionUpdateTimestampHandlerInterface
      */
+<<<<<<< HEAD
     private \SessionHandlerInterface $writeOnlyHandler;
+=======
+    private $writeOnlyHandler;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(\SessionHandlerInterface $currentHandler, \SessionHandlerInterface $writeOnlyHandler)
     {
@@ -45,7 +53,15 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         $this->writeOnlyHandler = $writeOnlyHandler;
     }
 
+<<<<<<< HEAD
     public function close(): bool
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function close()
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->currentHandler->close();
         $this->writeOnlyHandler->close();
@@ -53,7 +69,15 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
+<<<<<<< HEAD
     public function destroy(string $sessionId): bool
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function destroy($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->currentHandler->destroy($sessionId);
         $this->writeOnlyHandler->destroy($sessionId);
@@ -61,7 +85,15 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
+<<<<<<< HEAD
     public function gc(int $maxlifetime): int|false
+=======
+    /**
+     * @return int|false
+     */
+    #[\ReturnTypeWillChange]
+    public function gc($maxlifetime)
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->currentHandler->gc($maxlifetime);
         $this->writeOnlyHandler->gc($maxlifetime);
@@ -69,7 +101,15 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
+<<<<<<< HEAD
     public function open(string $savePath, string $sessionName): bool
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function open($savePath, $sessionName)
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->currentHandler->open($savePath, $sessionName);
         $this->writeOnlyHandler->open($savePath, $sessionName);
@@ -77,13 +117,29 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
+<<<<<<< HEAD
     public function read(string $sessionId): string
+=======
+    /**
+     * @return string
+     */
+    #[\ReturnTypeWillChange]
+    public function read($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         // No reading from new handler until switch-over
         return $this->currentHandler->read($sessionId);
     }
 
+<<<<<<< HEAD
     public function write(string $sessionId, string $sessionData): bool
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function write($sessionId, $sessionData)
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->currentHandler->write($sessionId, $sessionData);
         $this->writeOnlyHandler->write($sessionId, $sessionData);
@@ -91,13 +147,29 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
+<<<<<<< HEAD
     public function validateId(string $sessionId): bool
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function validateId($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         // No reading from new handler until switch-over
         return $this->currentHandler->validateId($sessionId);
     }
 
+<<<<<<< HEAD
     public function updateTimestamp(string $sessionId, string $sessionData): bool
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function updateTimestamp($sessionId, $sessionData)
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->currentHandler->updateTimestamp($sessionId, $sessionData);
         $this->writeOnlyHandler->updateTimestamp($sessionId, $sessionData);

@@ -2,12 +2,17 @@
 
 namespace Illuminate\Foundation\Testing\Concerns;
 
+<<<<<<< HEAD
+=======
+use DateTimeInterface;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Foundation\Testing\Wormhole;
 use Illuminate\Support\Carbon;
 
 trait InteractsWithTime
 {
     /**
+<<<<<<< HEAD
      * Freeze time.
      *
      * @param  callable|null  $callback
@@ -30,6 +35,8 @@ trait InteractsWithTime
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Begin travelling to another time.
      *
      * @param  int  $value
@@ -43,16 +50,28 @@ trait InteractsWithTime
     /**
      * Travel to another time.
      *
+<<<<<<< HEAD
      * @param  \DateTimeInterface|\Closure|\Illuminate\Support\Carbon|string|bool|null  $date
      * @param  callable|null  $callback
      * @return mixed
      */
     public function travelTo($date, $callback = null)
+=======
+     * @param  \DateTimeInterface  $date
+     * @param  callable|null  $callback
+     * @return mixed
+     */
+    public function travelTo(DateTimeInterface $date, $callback = null)
+>>>>>>> origin/New-FakeMain
     {
         Carbon::setTestNow($date);
 
         if ($callback) {
+<<<<<<< HEAD
             return tap($callback($date), function () {
+=======
+            return tap($callback(), function () {
+>>>>>>> origin/New-FakeMain
                 Carbon::setTestNow();
             });
         }

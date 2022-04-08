@@ -22,8 +22,15 @@ class ServerBag extends ParameterBag
 {
     /**
      * Gets the HTTP headers.
+<<<<<<< HEAD
      */
     public function getHeaders(): array
+=======
+     *
+     * @return array
+     */
+    public function getHeaders()
+>>>>>>> origin/New-FakeMain
     {
         $headers = [];
         foreach ($this->parameters as $key => $value) {

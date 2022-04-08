@@ -7,6 +7,10 @@ use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Illuminate\Contracts\Support\Arrayable;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 
 class EloquentUserProvider implements UserProvider
 {
@@ -80,7 +84,11 @@ class EloquentUserProvider implements UserProvider
     /**
      * Update the "remember me" token for the given user in storage.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+=======
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|\Illuminate\Database\Eloquent\Model  $user
+>>>>>>> origin/New-FakeMain
      * @param  string  $token
      * @return void
      */
@@ -107,7 +115,11 @@ class EloquentUserProvider implements UserProvider
     {
         if (empty($credentials) ||
            (count($credentials) === 1 &&
+<<<<<<< HEAD
             str_contains($this->firstCredentialKey($credentials), 'password'))) {
+=======
+            Str::contains($this->firstCredentialKey($credentials), 'password'))) {
+>>>>>>> origin/New-FakeMain
             return;
         }
 
@@ -117,7 +129,11 @@ class EloquentUserProvider implements UserProvider
         $query = $this->newModelQuery();
 
         foreach ($credentials as $key => $value) {
+<<<<<<< HEAD
             if (str_contains($key, 'password')) {
+=======
+            if (Str::contains($key, 'password')) {
+>>>>>>> origin/New-FakeMain
                 continue;
             }
 
@@ -141,7 +157,13 @@ class EloquentUserProvider implements UserProvider
      */
     protected function firstCredentialKey(array $credentials)
     {
+<<<<<<< HEAD
         return array_key_first($credentials);
+=======
+        foreach ($credentials as $key => $value) {
+            return $key;
+        }
+>>>>>>> origin/New-FakeMain
     }
 
     /**

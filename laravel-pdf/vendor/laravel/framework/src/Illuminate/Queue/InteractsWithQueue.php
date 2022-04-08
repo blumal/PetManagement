@@ -49,7 +49,11 @@ trait InteractsWithQueue
     }
 
     /**
+<<<<<<< HEAD
      * Release the job back into the queue after (n) seconds.
+=======
+     * Release the job back into the queue.
+>>>>>>> origin/New-FakeMain
      *
      * @param  int  $delay
      * @return void

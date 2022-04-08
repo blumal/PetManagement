@@ -27,6 +27,7 @@ interface ContextualBindingBuilder
      * @return void
      */
     public function giveTagged($tag);
+<<<<<<< HEAD
 
     /**
      * Specify the configuration item to bind as a primitive.
@@ -36,4 +37,6 @@ interface ContextualBindingBuilder
      * @return void
      */
     public function giveConfig($key, $default = null);
+=======
+>>>>>>> origin/New-FakeMain
 }

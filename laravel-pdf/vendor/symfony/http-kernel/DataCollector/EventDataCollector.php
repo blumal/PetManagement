@@ -22,15 +22,24 @@ use Symfony\Contracts\Service\ResetInterface;
 /**
  * @author Fabien Potencier <fabien@symfony.com>
  *
+<<<<<<< HEAD
  * @see TraceableEventDispatcher
  *
+=======
+>>>>>>> origin/New-FakeMain
  * @final
  */
 class EventDataCollector extends DataCollector implements LateDataCollectorInterface
 {
+<<<<<<< HEAD
     private $dispatcher;
     private $requestStack;
     private $currentRequest = null;
+=======
+    protected $dispatcher;
+    private $requestStack;
+    private $currentRequest;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(EventDispatcherInterface $dispatcher = null, RequestStack $requestStack = null)
     {
@@ -72,6 +81,11 @@ class EventDataCollector extends DataCollector implements LateDataCollectorInter
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @param array $listeners An array of called listeners
+     *
+>>>>>>> origin/New-FakeMain
      * @see TraceableEventDispatcher
      */
     public function setCalledListeners(array $listeners)
@@ -81,8 +95,15 @@ class EventDataCollector extends DataCollector implements LateDataCollectorInter
 
     /**
      * @see TraceableEventDispatcher
+<<<<<<< HEAD
      */
     public function getCalledListeners(): array|Data
+=======
+     *
+     * @return array|Data
+     */
+    public function getCalledListeners()
+>>>>>>> origin/New-FakeMain
     {
         return $this->data['called_listeners'];
     }
@@ -97,8 +118,15 @@ class EventDataCollector extends DataCollector implements LateDataCollectorInter
 
     /**
      * @see TraceableEventDispatcher
+<<<<<<< HEAD
      */
     public function getNotCalledListeners(): array|Data
+=======
+     *
+     * @return array|Data
+     */
+    public function getNotCalledListeners()
+>>>>>>> origin/New-FakeMain
     {
         return $this->data['not_called_listeners'];
     }
@@ -115,8 +143,15 @@ class EventDataCollector extends DataCollector implements LateDataCollectorInter
 
     /**
      * @see TraceableEventDispatcher
+<<<<<<< HEAD
      */
     public function getOrphanedEvents(): array|Data
+=======
+     *
+     * @return array|Data
+     */
+    public function getOrphanedEvents()
+>>>>>>> origin/New-FakeMain
     {
         return $this->data['orphaned_events'];
     }

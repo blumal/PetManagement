@@ -14,6 +14,7 @@ class CastMakeCommand extends GeneratorCommand
     protected $name = 'make:cast';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -25,6 +26,8 @@ class CastMakeCommand extends GeneratorCommand
     protected static $defaultName = 'make:cast';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

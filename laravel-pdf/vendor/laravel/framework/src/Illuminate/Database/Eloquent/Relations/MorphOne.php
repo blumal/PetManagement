@@ -101,7 +101,11 @@ class MorphOne extends MorphOneOrMany implements SupportsPartialRelations
     /**
      * Add join query constraints for one of many relationships.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Database\Query\JoinClause  $join
+=======
+     * @param  \Illuminate\Database\Eloquent\JoinClause  $join
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public function addOneOfManyJoinSubQueryConstraints(JoinClause $join)

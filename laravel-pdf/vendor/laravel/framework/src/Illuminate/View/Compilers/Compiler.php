@@ -3,26 +3,38 @@
 namespace Illuminate\View\Compilers;
 
 use Illuminate\Filesystem\Filesystem;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> origin/New-FakeMain
 use InvalidArgumentException;
 
 abstract class Compiler
 {
     /**
+<<<<<<< HEAD
      * The filesystem instance.
+=======
+     * The Filesystem instance.
+>>>>>>> origin/New-FakeMain
      *
      * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
 
     /**
+<<<<<<< HEAD
      * The cache path for the compiled views.
+=======
+     * Get the cache path for the compiled views.
+>>>>>>> origin/New-FakeMain
      *
      * @var string
      */
     protected $cachePath;
 
     /**
+<<<<<<< HEAD
      * The base path that should be removed from paths before hashing.
      *
      * @var string
@@ -30,16 +42,25 @@ abstract class Compiler
     protected $basePath;
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Create a new compiler instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  string  $cachePath
+<<<<<<< HEAD
      * @param  string  $basePath
+=======
+>>>>>>> origin/New-FakeMain
      * @return void
      *
      * @throws \InvalidArgumentException
      */
+<<<<<<< HEAD
     public function __construct(Filesystem $files, $cachePath, $basePath = '')
+=======
+    public function __construct(Filesystem $files, $cachePath)
+>>>>>>> origin/New-FakeMain
     {
         if (! $cachePath) {
             throw new InvalidArgumentException('Please provide a valid cache path.');
@@ -47,7 +68,10 @@ abstract class Compiler
 
         $this->files = $files;
         $this->cachePath = $cachePath;
+<<<<<<< HEAD
         $this->basePath = $basePath;
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -58,7 +82,11 @@ abstract class Compiler
      */
     public function getCompiledPath($path)
     {
+<<<<<<< HEAD
         return $this->cachePath.'/'.sha1('v2'.Str::after($path, $this->basePath)).'.php';
+=======
+        return $this->cachePath.'/'.sha1('v2'.$path).'.php';
+>>>>>>> origin/New-FakeMain
     }
 
     /**

@@ -4,7 +4,10 @@ namespace Illuminate\Broadcasting;
 
 use Ably\AblyRest;
 use Closure;
+<<<<<<< HEAD
 use GuzzleHttp\Client as GuzzleClient;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Broadcasting\Broadcasters\AblyBroadcaster;
 use Illuminate\Broadcasting\Broadcasters\LogBroadcaster;
 use Illuminate\Broadcasting\Broadcasters\NullBroadcaster;
@@ -214,6 +217,7 @@ class BroadcastManager implements FactoryContract
      */
     protected function createPusherDriver(array $config)
     {
+<<<<<<< HEAD
         return new PusherBroadcaster($this->pusher($config));
     }
 
@@ -233,13 +237,22 @@ class BroadcastManager implements FactoryContract
             isset($config['client_options']) && ! empty($config['client_options'])
                     ? new GuzzleClient($config['client_options'])
                     : null,
+=======
+        $pusher = new Pusher(
+            $config['key'], $config['secret'],
+            $config['app_id'], $config['options'] ?? []
+>>>>>>> origin/New-FakeMain
         );
 
         if ($config['log'] ?? false) {
             $pusher->setLogger($this->app->make(LoggerInterface::class));
         }
 
+<<<<<<< HEAD
         return $pusher;
+=======
+        return new PusherBroadcaster($pusher);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -250,6 +263,7 @@ class BroadcastManager implements FactoryContract
      */
     protected function createAblyDriver(array $config)
     {
+<<<<<<< HEAD
         return new AblyBroadcaster($this->ably($config));
     }
 
@@ -262,6 +276,9 @@ class BroadcastManager implements FactoryContract
     public function ably(array $config)
     {
         return new AblyRest($config);
+=======
+        return new AblyBroadcaster(new AblyRest($config));
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -346,7 +363,11 @@ class BroadcastManager implements FactoryContract
      */
     public function purge($name = null)
     {
+<<<<<<< HEAD
         $name ??= $this->getDefaultDriver();
+=======
+        $name = $name ?? $this->getDefaultDriver();
+>>>>>>> origin/New-FakeMain
 
         unset($this->drivers[$name]);
     }

@@ -2,8 +2,11 @@
 
 namespace Illuminate\View\Compilers\Concerns;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 
+=======
+>>>>>>> origin/New-FakeMain
 trait CompilesStacks
 {
     /**
@@ -29,6 +32,7 @@ trait CompilesStacks
     }
 
     /**
+<<<<<<< HEAD
      * Compile the push-once statements into valid PHP.
      *
      * @param  string  $expression
@@ -47,6 +51,8 @@ $__env->startPush('.$stack.'); ?>';
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile the end-push statements into valid PHP.
      *
      * @return string
@@ -57,6 +63,7 @@ $__env->startPush('.$stack.'); ?>';
     }
 
     /**
+<<<<<<< HEAD
      * Compile the end-push-once statements into valid PHP.
      *
      * @return string
@@ -67,6 +74,8 @@ $__env->startPush('.$stack.'); ?>';
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile the prepend statements into valid PHP.
      *
      * @param  string  $expression
@@ -78,6 +87,7 @@ $__env->startPush('.$stack.'); ?>';
     }
 
     /**
+<<<<<<< HEAD
      * Compile the prepend-once statements into valid PHP.
      *
      * @param  string  $expression
@@ -96,6 +106,8 @@ $__env->startPrepend('.$stack.'); ?>';
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile the end-prepend statements into valid PHP.
      *
      * @return string
@@ -104,6 +116,7 @@ $__env->startPrepend('.$stack.'); ?>';
     {
         return '<?php $__env->stopPrepend(); ?>';
     }
+<<<<<<< HEAD
 
     /**
      * Compile the end-prepend-once statements into valid PHP.
@@ -114,4 +127,6 @@ $__env->startPrepend('.$stack.'); ?>';
     {
         return '<?php $__env->stopPrepend(); endif; ?>';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

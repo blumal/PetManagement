@@ -3,10 +3,15 @@
 namespace Illuminate\Database\Query;
 
 use BackedEnum;
+<<<<<<< HEAD
 use Carbon\CarbonPeriod;
 use Closure;
 use DateTimeInterface;
 use Illuminate\Contracts\Database\Query\Builder as BuilderContract;
+=======
+use Closure;
+use DateTimeInterface;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Concerns\BuildsQueries;
 use Illuminate\Database\Concerns\ExplainsQueries;
@@ -26,7 +31,11 @@ use InvalidArgumentException;
 use LogicException;
 use RuntimeException;
 
+<<<<<<< HEAD
 class Builder implements BuilderContract
+=======
+class Builder
+>>>>>>> origin/New-FakeMain
 {
     use BuildsQueries, ExplainsQueries, ForwardsCalls, Macroable {
         __call as macroCall;
@@ -248,7 +257,10 @@ class Builder implements BuilderContract
     {
         $this->columns = [];
         $this->bindings['select'] = [];
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/New-FakeMain
         $columns = is_array($columns) ? $columns : func_get_args();
 
         foreach ($columns as $as => $column) {
@@ -385,7 +397,11 @@ class Builder implements BuilderContract
             $this->getConnection()->getDatabaseName()) {
             $databaseName = $query->getConnection()->getDatabaseName();
 
+<<<<<<< HEAD
             if (! str_starts_with($query->from, $databaseName) && ! str_contains($query->from, '.')) {
+=======
+            if (strpos($query->from, $databaseName) !== 0 && strpos($query->from, '.') === false) {
+>>>>>>> origin/New-FakeMain
                 $query->from($databaseName.'.'.$query->from);
             }
         }
@@ -421,6 +437,10 @@ class Builder implements BuilderContract
     /**
      * Force the query to only return distinct results.
      *
+<<<<<<< HEAD
+=======
+     * @param  mixed  ...$distinct
+>>>>>>> origin/New-FakeMain
      * @return $this
      */
     public function distinct()
@@ -687,8 +707,11 @@ class Builder implements BuilderContract
         $this->bindings['where'] = array_values(
             array_merge($this->bindings['where'], (array) $bindings)
         );
+<<<<<<< HEAD
 
         return $this;
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -716,9 +739,15 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
         // If the column is actually a Closure instance, we will assume the developer
         // wants to begin a nested where statement which is wrapped in parentheses.
         // We will add that Closure to the query and return back out immediately.
+=======
+        // If the columns is actually a Closure instance, we will assume the developer
+        // wants to begin a nested where statement which is wrapped in parenthesis.
+        // We'll add that Closure to the query then return back out immediately.
+>>>>>>> origin/New-FakeMain
         if ($column instanceof Closure && is_null($operator)) {
             return $this->whereNested($column, $boolean);
         }
@@ -759,7 +788,11 @@ class Builder implements BuilderContract
         // If the column is making a JSON reference we'll check to see if the value
         // is a boolean. If it is, we'll add the raw boolean string as an actual
         // value to the query to ensure this is properly handled by the query.
+<<<<<<< HEAD
         if (str_contains($column, '->') && is_bool($value)) {
+=======
+        if (Str::contains($column, '->') && is_bool($value)) {
+>>>>>>> origin/New-FakeMain
             $value = new Expression($value ? 'true' : 'false');
 
             if (is_string($column)) {
@@ -850,8 +883,13 @@ class Builder implements BuilderContract
      */
     protected function invalidOperator($operator)
     {
+<<<<<<< HEAD
         return ! is_string($operator) || (! in_array(strtolower($operator), $this->operators, true) &&
                ! in_array(strtolower($operator), $this->grammar->getOperators(), true));
+=======
+        return ! in_array(strtolower($operator), $this->operators, true) &&
+               ! in_array(strtolower($operator), $this->grammar->getOperators(), true);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -884,6 +922,7 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Add a basic "where not" clause to the query.
      *
      * @param  \Closure|string|array  $column
@@ -911,6 +950,8 @@ class Builder implements BuilderContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add a "where" clause comparing two columns to the query.
      *
      * @param  string|array  $first
@@ -1003,7 +1044,11 @@ class Builder implements BuilderContract
         $type = $not ? 'NotIn' : 'In';
 
         // If the value is a query builder instance we will assume the developer wants to
+<<<<<<< HEAD
         // look for any values that exist within this given query. So, we will add the
+=======
+        // look for any values that exists within this given query. So we will add the
+>>>>>>> origin/New-FakeMain
         // query accordingly so that this query is properly executed when it is run.
         if ($this->isQueryable($values)) {
             [$query, $bindings] = $this->createSub($values);
@@ -1022,7 +1067,11 @@ class Builder implements BuilderContract
 
         $this->wheres[] = compact('type', 'column', 'values', 'boolean');
 
+<<<<<<< HEAD
         // Finally, we'll add a binding for each value unless that value is an expression
+=======
+        // Finally we'll add a binding for each values unless that value is an expression
+>>>>>>> origin/New-FakeMain
         // in which case we will just skip over it since it will be the query as a raw
         // string and not as a parameterized place-holder to be replaced by the PDO.
         $this->addBinding($this->cleanBindings($values), 'where');
@@ -1176,11 +1225,16 @@ class Builder implements BuilderContract
      * Add a where between statement to the query.
      *
      * @param  string|\Illuminate\Database\Query\Expression  $column
+<<<<<<< HEAD
      * @param  iterable  $values
+=======
+     * @param  array  $values
+>>>>>>> origin/New-FakeMain
      * @param  string  $boolean
      * @param  bool  $not
      * @return $this
      */
+<<<<<<< HEAD
     public function whereBetween($column, iterable $values, $boolean = 'and', $not = false)
     {
         $type = 'between';
@@ -1189,6 +1243,12 @@ class Builder implements BuilderContract
             $values = $values->toArray();
         }
 
+=======
+    public function whereBetween($column, array $values, $boolean = 'and', $not = false)
+    {
+        $type = 'between';
+
+>>>>>>> origin/New-FakeMain
         $this->wheres[] = compact('type', 'column', 'values', 'boolean', 'not');
 
         $this->addBinding(array_slice($this->cleanBindings(Arr::flatten($values)), 0, 2), 'where');
@@ -1218,10 +1278,17 @@ class Builder implements BuilderContract
      * Add an or where between statement to the query.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  iterable  $values
      * @return $this
      */
     public function orWhereBetween($column, iterable $values)
+=======
+     * @param  array  $values
+     * @return $this
+     */
+    public function orWhereBetween($column, array $values)
+>>>>>>> origin/New-FakeMain
     {
         return $this->whereBetween($column, $values, 'or');
     }
@@ -1242,11 +1309,19 @@ class Builder implements BuilderContract
      * Add a where not between statement to the query.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  iterable  $values
      * @param  string  $boolean
      * @return $this
      */
     public function whereNotBetween($column, iterable $values, $boolean = 'and')
+=======
+     * @param  array  $values
+     * @param  string  $boolean
+     * @return $this
+     */
+    public function whereNotBetween($column, array $values, $boolean = 'and')
+>>>>>>> origin/New-FakeMain
     {
         return $this->whereBetween($column, $values, $boolean, true);
     }
@@ -1268,10 +1343,17 @@ class Builder implements BuilderContract
      * Add an or where not between statement to the query.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  iterable  $values
      * @return $this
      */
     public function orWhereNotBetween($column, iterable $values)
+=======
+     * @param  array  $values
+     * @return $this
+     */
+    public function orWhereNotBetween($column, array $values)
+>>>>>>> origin/New-FakeMain
     {
         return $this->whereNotBetween($column, $values, 'or');
     }
@@ -1302,7 +1384,11 @@ class Builder implements BuilderContract
     /**
      * Add a "where date" statement to the query.
      *
+<<<<<<< HEAD
      * @param  string  $column
+=======
+     * @param  \Illuminate\Database\Query\Expression|string  $column
+>>>>>>> origin/New-FakeMain
      * @param  string  $operator
      * @param  \DateTimeInterface|string|null  $value
      * @param  string  $boolean
@@ -1542,7 +1628,11 @@ class Builder implements BuilderContract
      */
     public function whereNested(Closure $callback, $boolean = 'and')
     {
+<<<<<<< HEAD
         $callback($query = $this->forNestedWhere());
+=======
+        call_user_func($callback, $query = $this->forNestedWhere());
+>>>>>>> origin/New-FakeMain
 
         return $this->addNestedWhereQuery($query, $boolean);
     }
@@ -1593,7 +1683,11 @@ class Builder implements BuilderContract
         // Once we have the query instance we can simply execute it so it can add all
         // of the sub-select's conditions to itself, and then we can cache it off
         // in the array of where clauses for the "main" parent query instance.
+<<<<<<< HEAD
         $callback($query = $this->forSubQuery());
+=======
+        call_user_func($callback, $query = $this->forSubQuery());
+>>>>>>> origin/New-FakeMain
 
         $this->wheres[] = compact(
             'type', 'column', 'operator', 'query', 'boolean'
@@ -1619,7 +1713,11 @@ class Builder implements BuilderContract
         // Similar to the sub-select clause, we will create a new query instance so
         // the developer may cleanly specify the entire exists query and we will
         // compile the whole thing in the grammar and insert it into the SQL.
+<<<<<<< HEAD
         $callback($query);
+=======
+        call_user_func($callback, $query);
+>>>>>>> origin/New-FakeMain
 
         return $this->addWhereExistsQuery($query, $boolean, $not);
     }
@@ -1777,6 +1875,7 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Add a clause that determines if a JSON path exists to the query.
      *
      * @param  string  $column
@@ -1828,6 +1927,8 @@ class Builder implements BuilderContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add a "where JSON length" clause to the query.
      *
      * @param  string  $column
@@ -2002,7 +2103,11 @@ class Builder implements BuilderContract
     /**
      * Add a "having" clause to the query.
      *
+<<<<<<< HEAD
      * @param  \Closure|string  $column
+=======
+     * @param  string  $column
+>>>>>>> origin/New-FakeMain
      * @param  string|null  $operator
      * @param  string|null  $value
      * @param  string  $boolean
@@ -2019,10 +2124,13 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
         if ($column instanceof Closure && is_null($operator)) {
             return $this->havingNested($column, $boolean);
         }
 
+=======
+>>>>>>> origin/New-FakeMain
         // If the given operator is not found in the list of valid operators we will
         // assume that the developer is just short-cutting the '=' operators and
         // we will set the operators to '=' and set the values appropriately.
@@ -2046,7 +2154,11 @@ class Builder implements BuilderContract
     /**
      * Add an "or having" clause to the query.
      *
+<<<<<<< HEAD
      * @param  \Closure|string  $column
+=======
+     * @param  string  $column
+>>>>>>> origin/New-FakeMain
      * @param  string|null  $operator
      * @param  string|null  $value
      * @return $this
@@ -2061,6 +2173,7 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Add a nested having statement to the query.
      *
      * @param  \Closure  $callback
@@ -2148,6 +2261,8 @@ class Builder implements BuilderContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add a "having between " clause to the query.
      *
      * @param  string  $column
@@ -2201,7 +2316,11 @@ class Builder implements BuilderContract
     /**
      * Add an "order by" clause to the query.
      *
+<<<<<<< HEAD
      * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+=======
+     * @param  \Closure|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+>>>>>>> origin/New-FakeMain
      * @param  string  $direction
      * @return $this
      *
@@ -2234,7 +2353,11 @@ class Builder implements BuilderContract
     /**
      * Add a descending "order by" clause to the query.
      *
+<<<<<<< HEAD
      * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+=======
+     * @param  \Closure|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+>>>>>>> origin/New-FakeMain
      * @return $this
      */
     public function orderByDesc($column)
@@ -2245,7 +2368,11 @@ class Builder implements BuilderContract
     /**
      * Add an "order by" clause for a timestamp to the query.
      *
+<<<<<<< HEAD
      * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+=======
+     * @param  \Closure|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+>>>>>>> origin/New-FakeMain
      * @return $this
      */
     public function latest($column = 'created_at')
@@ -2256,7 +2383,11 @@ class Builder implements BuilderContract
     /**
      * Add an "order by" clause for a timestamp to the query.
      *
+<<<<<<< HEAD
      * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+=======
+     * @param  \Closure|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string  $column
+>>>>>>> origin/New-FakeMain
      * @return $this
      */
     public function oldest($column = 'created_at')
@@ -2445,7 +2576,11 @@ class Builder implements BuilderContract
     public function union($query, $all = false)
     {
         if ($query instanceof Closure) {
+<<<<<<< HEAD
             $query($query = $this->newQuery());
+=======
+            call_user_func($query, $query = $this->newQuery());
+>>>>>>> origin/New-FakeMain
         }
 
         $this->unions[] = compact('query', 'all');
@@ -2568,6 +2703,7 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Get a single column's value from the first result of a query if it's the sole matching record.
      *
      * @param  string  $column
@@ -2584,6 +2720,8 @@ class Builder implements BuilderContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Execute the query as a "select" statement.
      *
      * @param  array|string  $columns
@@ -2849,7 +2987,11 @@ class Builder implements BuilderContract
             return $column;
         }
 
+<<<<<<< HEAD
         $separator = str_contains(strtolower($column), ' as ') ? ' as ' : '\.';
+=======
+        $separator = strpos(strtolower($column), ' as ') !== false ? ' as ' : '\.';
+>>>>>>> origin/New-FakeMain
 
         return last(preg_split('~'.$separator.'~i', $column));
     }
@@ -2929,9 +3071,15 @@ class Builder implements BuilderContract
             $this->grammar->compileExists($this), $this->getBindings(), ! $this->useWritePdo
         );
 
+<<<<<<< HEAD
         // If the results have rows, we will get the row and see if the exists column is a
         // boolean true. If there are no results for this query we will return false as
         // there are no rows for this query at all, and we can return that info here.
+=======
+        // If the results has rows, we will get the row and see if the exists column is a
+        // boolean true. If there is no results for this query we will return false as
+        // there are no rows for this query at all and we can return that info here.
+>>>>>>> origin/New-FakeMain
         if (isset($results[0])) {
             $results = (array) $results[0];
 
@@ -3085,7 +3233,11 @@ class Builder implements BuilderContract
         // If the result doesn't contain a decimal place, we will assume it is an int then
         // cast it to one. When it does we will cast it to a float since it needs to be
         // cast to the expected data type for the developers out of pure convenience.
+<<<<<<< HEAD
         return ! str_contains((string) $result, '.')
+=======
+        return strpos((string) $result, '.') === false
+>>>>>>> origin/New-FakeMain
                 ? (int) $result : (float) $result;
     }
 
@@ -3622,7 +3774,11 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Use the "write" PDO connection when executing the query.
+=======
+     * Use the write pdo for query.
+>>>>>>> origin/New-FakeMain
      *
      * @return $this
      */
@@ -3724,7 +3880,11 @@ class Builder implements BuilderContract
             return $this->macroCall($method, $parameters);
         }
 
+<<<<<<< HEAD
         if (str_starts_with($method, 'where')) {
+=======
+        if (Str::startsWith($method, 'where')) {
+>>>>>>> origin/New-FakeMain
             return $this->dynamicWhere($method, $parameters);
         }
 

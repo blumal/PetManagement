@@ -67,12 +67,20 @@ class HtmlDumper extends CliDumper
     protected $lastDepth = -1;
     protected $styles;
 
+<<<<<<< HEAD
     private array $displayOptions = [
+=======
+    private $displayOptions = [
+>>>>>>> origin/New-FakeMain
         'maxDepth' => 1,
         'maxStringLength' => 160,
         'fileLinkFormat' => null,
     ];
+<<<<<<< HEAD
     private array $extraDisplayOptions = [];
+=======
+    private $extraDisplayOptions = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * {@inheritdoc}
@@ -134,7 +142,11 @@ class HtmlDumper extends CliDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function dump(Data $data, $output = null, array $extraDisplayOptions = []): ?string
+=======
+    public function dump(Data $data, $output = null, array $extraDisplayOptions = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->extraDisplayOptions = $extraDisplayOptions;
         $result = parent::dump($data, $output);
@@ -803,7 +815,11 @@ EOHTML
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function enterHash(Cursor $cursor, int $type, string|int|null $class, bool $hasChild)
+=======
+    public function enterHash(Cursor $cursor, int $type, $class, bool $hasChild)
+>>>>>>> origin/New-FakeMain
     {
         if (Cursor::HASH_OBJECT === $type) {
             $cursor->attr['depth'] = $cursor->depth;
@@ -834,7 +850,11 @@ EOHTML
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function leaveHash(Cursor $cursor, int $type, string|int|null $class, bool $hasChild, int $cut)
+=======
+    public function leaveHash(Cursor $cursor, int $type, $class, bool $hasChild, int $cut)
+>>>>>>> origin/New-FakeMain
     {
         $this->dumpEllipsis($cursor, $hasChild, $cut);
         if ($hasChild) {
@@ -846,7 +866,11 @@ EOHTML
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function style(string $style, string $value, array $attr = []): string
+=======
+    protected function style(string $style, string $value, array $attr = [])
+>>>>>>> origin/New-FakeMain
     {
         if ('' === $value) {
             return '';

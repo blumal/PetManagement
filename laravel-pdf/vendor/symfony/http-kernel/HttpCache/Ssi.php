@@ -24,7 +24,11 @@ class Ssi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName(): string
+=======
+    public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'ssi';
     }
@@ -42,7 +46,11 @@ class Ssi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = ''): string
+=======
+    public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = '')
+>>>>>>> origin/New-FakeMain
     {
         return sprintf('<!--#include virtual="%s" -->', $uri);
     }
@@ -50,7 +58,11 @@ class Ssi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function process(Request $request, Response $response): Response
+=======
+    public function process(Request $request, Response $response)
+>>>>>>> origin/New-FakeMain
     {
         $type = $response->headers->get('Content-Type');
         if (empty($type)) {

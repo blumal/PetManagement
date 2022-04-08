@@ -22,7 +22,11 @@ class OutputFormatterStyleStack implements ResetInterface
     /**
      * @var OutputFormatterStyleInterface[]
      */
+<<<<<<< HEAD
     private array $styles = [];
+=======
+    private $styles;
+>>>>>>> origin/New-FakeMain
 
     private $emptyStyle;
 
@@ -51,9 +55,17 @@ class OutputFormatterStyleStack implements ResetInterface
     /**
      * Pops a style from the stack.
      *
+<<<<<<< HEAD
      * @throws InvalidArgumentException When style tags incorrectly nested
      */
     public function pop(OutputFormatterStyleInterface $style = null): OutputFormatterStyleInterface
+=======
+     * @return OutputFormatterStyleInterface
+     *
+     * @throws InvalidArgumentException When style tags incorrectly nested
+     */
+    public function pop(OutputFormatterStyleInterface $style = null)
+>>>>>>> origin/New-FakeMain
     {
         if (empty($this->styles)) {
             return $this->emptyStyle;
@@ -76,8 +88,15 @@ class OutputFormatterStyleStack implements ResetInterface
 
     /**
      * Computes current style with stacks top codes.
+<<<<<<< HEAD
      */
     public function getCurrent(): OutputFormatterStyle
+=======
+     *
+     * @return OutputFormatterStyle
+     */
+    public function getCurrent()
+>>>>>>> origin/New-FakeMain
     {
         if (empty($this->styles)) {
             return $this->emptyStyle;
@@ -89,14 +108,25 @@ class OutputFormatterStyleStack implements ResetInterface
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setEmptyStyle(OutputFormatterStyleInterface $emptyStyle): static
+=======
+    public function setEmptyStyle(OutputFormatterStyleInterface $emptyStyle)
+>>>>>>> origin/New-FakeMain
     {
         $this->emptyStyle = $emptyStyle;
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function getEmptyStyle(): OutputFormatterStyleInterface
+=======
+    /**
+     * @return OutputFormatterStyleInterface
+     */
+    public function getEmptyStyle()
+>>>>>>> origin/New-FakeMain
     {
         return $this->emptyStyle;
     }

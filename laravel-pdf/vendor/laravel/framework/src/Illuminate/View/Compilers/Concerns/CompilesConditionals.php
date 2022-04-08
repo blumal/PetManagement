@@ -304,6 +304,7 @@ trait CompilesConditionals
     {
         return '<?php endif; ?>';
     }
+<<<<<<< HEAD
 
     /**
      * Compile a selected block into valid PHP.
@@ -337,4 +338,6 @@ trait CompilesConditionals
     {
         return "<?php if{$condition}: echo 'disabled'; endif; ?>";
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

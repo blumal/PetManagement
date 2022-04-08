@@ -4,7 +4,10 @@ namespace Illuminate\Database\Schema\Grammars;
 
 use Doctrine\DBAL\Schema\AbstractSchemaManager as SchemaManager;
 use Doctrine\DBAL\Schema\TableDiff;
+<<<<<<< HEAD
 use Illuminate\Database\Concerns\CompilesJsonPaths;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Database\Connection;
 use Illuminate\Database\Grammar as BaseGrammar;
 use Illuminate\Database\Query\Expression;
@@ -15,8 +18,11 @@ use RuntimeException;
 
 abstract class Grammar extends BaseGrammar
 {
+<<<<<<< HEAD
     use CompilesJsonPaths;
 
+=======
+>>>>>>> origin/New-FakeMain
     /**
      * If this Grammar supports schema changes wrapped in a transaction.
      *
@@ -106,12 +112,19 @@ abstract class Grammar extends BaseGrammar
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
      * @param  \Illuminate\Support\Fluent  $command
      * @return string
+<<<<<<< HEAD
      *
      * @throws \RuntimeException
      */
     public function compileDropFullText(Blueprint $blueprint, Fluent $command)
     {
         throw new RuntimeException('This database driver does not support fulltext index removal.');
+=======
+     */
+    public function compileDropFullText(Blueprint $blueprint, Fluent $command)
+    {
+        throw new RuntimeException('This database driver does not support fulltext index creation.');
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -165,7 +178,11 @@ abstract class Grammar extends BaseGrammar
         $columns = [];
 
         foreach ($blueprint->getAddedColumns() as $column) {
+<<<<<<< HEAD
             // Each of the column types has their own compiler functions, which are tasked
+=======
+            // Each of the column types have their own compiler functions which are tasked
+>>>>>>> origin/New-FakeMain
             // with turning the column definition into its SQL format for this platform
             // used by the connection. The column's modifiers are compiled and added.
             $sql = $this->wrap($column).' '.$this->getType($column);

@@ -60,9 +60,15 @@ trait ManagesFrequencies
 
         if ($endTime->lessThan($startTime)) {
             if ($startTime->greaterThan($now)) {
+<<<<<<< HEAD
                 $startTime = $startTime->subDay(1);
             } else {
                 $endTime = $endTime->addDay(1);
+=======
+                $startTime->subDay(1);
+            } else {
+                $endTime->addDay(1);
+>>>>>>> origin/New-FakeMain
             }
         }
 

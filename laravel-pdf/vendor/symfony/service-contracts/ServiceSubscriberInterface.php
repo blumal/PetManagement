@@ -49,5 +49,9 @@ interface ServiceSubscriberInterface
      *
      * @return string[] The required service types, optionally keyed by service names
      */
+<<<<<<< HEAD
     public static function getSubscribedServices(): array;
+=======
+    public static function getSubscribedServices();
+>>>>>>> origin/New-FakeMain
 }

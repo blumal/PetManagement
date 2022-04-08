@@ -21,7 +21,11 @@ use Symfony\Component\Routing\RouteCollection;
  */
 trait PrefixTrait
 {
+<<<<<<< HEAD
     final protected function addPrefix(RouteCollection $routes, string|array $prefix, bool $trailingSlashOnRoot)
+=======
+    final protected function addPrefix(RouteCollection $routes, $prefix, bool $trailingSlashOnRoot)
+>>>>>>> origin/New-FakeMain
     {
         if (\is_array($prefix)) {
             foreach ($prefix as $locale => $localePrefix) {

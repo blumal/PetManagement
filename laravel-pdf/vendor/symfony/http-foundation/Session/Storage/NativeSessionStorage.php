@@ -12,6 +12,10 @@
 namespace Symfony\Component\HttpFoundation\Session\Storage;
 
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
+<<<<<<< HEAD
+=======
+use Symfony\Component\HttpFoundation\Session\SessionUtils;
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler;
 use Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy;
 use Symfony\Component\HttpFoundation\Session\Storage\Proxy\SessionHandlerProxy;
@@ -54,6 +58,14 @@ class NativeSessionStorage implements SessionStorageInterface
     protected $metadataBag;
 
     /**
+<<<<<<< HEAD
+=======
+     * @var string|null
+     */
+    private $emulateSameSite;
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Depending on how you want the storage driver to behave you probably
      * want to override this constructor entirely.
      *
@@ -88,8 +100,15 @@ class NativeSessionStorage implements SessionStorageInterface
      * sid_bits_per_character, "5"
      * trans_sid_hosts, $_SERVER['HTTP_HOST']
      * trans_sid_tags, "a=href,area=href,frame=src,form="
+<<<<<<< HEAD
      */
     public function __construct(array $options = [], AbstractProxy|\SessionHandlerInterface $handler = null, MetadataBag $metaBag = null)
+=======
+     *
+     * @param AbstractProxy|\SessionHandlerInterface|null $handler
+     */
+    public function __construct(array $options = [], $handler = null, MetadataBag $metaBag = null)
+>>>>>>> origin/New-FakeMain
     {
         if (!\extension_loaded('session')) {
             throw new \LogicException('PHP extension "session" is required.');
@@ -112,8 +131,15 @@ class NativeSessionStorage implements SessionStorageInterface
 
     /**
      * Gets the save handler instance.
+<<<<<<< HEAD
      */
     public function getSaveHandler(): AbstractProxy|\SessionHandlerInterface
+=======
+     *
+     * @return AbstractProxy|\SessionHandlerInterface
+     */
+    public function getSaveHandler()
+>>>>>>> origin/New-FakeMain
     {
         return $this->saveHandler;
     }
@@ -121,7 +147,11 @@ class NativeSessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function start(): bool
+=======
+    public function start()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->started) {
             return true;
@@ -140,6 +170,16 @@ class NativeSessionStorage implements SessionStorageInterface
             throw new \RuntimeException('Failed to start the session.');
         }
 
+<<<<<<< HEAD
+=======
+        if (null !== $this->emulateSameSite) {
+            $originalCookie = SessionUtils::popSessionCookie(session_name(), session_id());
+            if (null !== $originalCookie) {
+                header(sprintf('%s; SameSite=%s', $originalCookie, $this->emulateSameSite), false);
+            }
+        }
+
+>>>>>>> origin/New-FakeMain
         $this->loadSession();
 
         return true;
@@ -148,7 +188,11 @@ class NativeSessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getId(): string
+=======
+    public function getId()
+>>>>>>> origin/New-FakeMain
     {
         return $this->saveHandler->getId();
     }
@@ -164,7 +208,11 @@ class NativeSessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName(): string
+=======
+    public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->saveHandler->getName();
     }
@@ -180,7 +228,11 @@ class NativeSessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function regenerate(bool $destroy = false, int $lifetime = null): bool
+=======
+    public function regenerate(bool $destroy = false, int $lifetime = null)
+>>>>>>> origin/New-FakeMain
     {
         // Cannot regenerate the session ID for non-active sessions.
         if (\PHP_SESSION_ACTIVE !== session_status()) {
@@ -201,7 +253,20 @@ class NativeSessionStorage implements SessionStorageInterface
             $this->metadataBag->stampNew();
         }
 
+<<<<<<< HEAD
         return session_regenerate_id($destroy);
+=======
+        $isRegenerated = session_regenerate_id($destroy);
+
+        if (null !== $this->emulateSameSite) {
+            $originalCookie = SessionUtils::popSessionCookie(session_name(), session_id());
+            if (null !== $originalCookie) {
+                header(sprintf('%s; SameSite=%s', $originalCookie, $this->emulateSameSite), false);
+            }
+        }
+
+        return $isRegenerated;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -278,7 +343,11 @@ class NativeSessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getBag(string $name): SessionBagInterface
+=======
+    public function getBag(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->bags[$name])) {
             throw new \InvalidArgumentException(sprintf('The SessionBagInterface "%s" is not registered.', $name));
@@ -304,8 +373,15 @@ class NativeSessionStorage implements SessionStorageInterface
 
     /**
      * Gets the MetadataBag.
+<<<<<<< HEAD
      */
     public function getMetadataBag(): MetadataBag
+=======
+     *
+     * @return MetadataBag
+     */
+    public function getMetadataBag()
+>>>>>>> origin/New-FakeMain
     {
         return $this->metadataBag;
     }
@@ -313,7 +389,11 @@ class NativeSessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isStarted(): bool
+=======
+    public function isStarted()
+>>>>>>> origin/New-FakeMain
     {
         return $this->started;
     }
@@ -340,16 +420,42 @@ class NativeSessionStorage implements SessionStorageInterface
             'gc_divisor', 'gc_maxlifetime', 'gc_probability',
             'lazy_write', 'name', 'referer_check',
             'serialize_handler', 'use_strict_mode', 'use_cookies',
+<<<<<<< HEAD
             'use_only_cookies', 'use_trans_sid',
+=======
+            'use_only_cookies', 'use_trans_sid', 'upload_progress.enabled',
+            'upload_progress.cleanup', 'upload_progress.prefix', 'upload_progress.name',
+            'upload_progress.freq', 'upload_progress.min_freq', 'url_rewriter.tags',
+>>>>>>> origin/New-FakeMain
             'sid_length', 'sid_bits_per_character', 'trans_sid_hosts', 'trans_sid_tags',
         ]);
 
         foreach ($options as $key => $value) {
             if (isset($validOptions[$key])) {
+<<<<<<< HEAD
                 if ('cookie_secure' === $key && 'auto' === $value) {
                     continue;
                 }
                 ini_set('session.'.$key, $value);
+=======
+                if (str_starts_with($key, 'upload_progress.')) {
+                    trigger_deprecation('symfony/http-foundation', '5.4', 'Support for the "%s" session option is deprecated. The settings prefixed with "session.upload_progress." can not be changed at runtime.', $key);
+                    continue;
+                }
+                if ('url_rewriter.tags' === $key) {
+                    trigger_deprecation('symfony/http-foundation', '5.4', 'Support for the "%s" session option is deprecated. Use "trans_sid_tags" instead.', $key);
+                }
+                if ('cookie_samesite' === $key && \PHP_VERSION_ID < 70300) {
+                    // PHP < 7.3 does not support same_site cookies. We will emulate it in
+                    // the start() method instead.
+                    $this->emulateSameSite = $value;
+                    continue;
+                }
+                if ('cookie_secure' === $key && 'auto' === $value) {
+                    continue;
+                }
+                ini_set('url_rewriter.tags' !== $key ? 'session.'.$key : $key, $value);
+>>>>>>> origin/New-FakeMain
             }
         }
     }
@@ -370,9 +476,17 @@ class NativeSessionStorage implements SessionStorageInterface
      * @see https://php.net/sessionhandlerinterface
      * @see https://php.net/sessionhandler
      *
+<<<<<<< HEAD
      * @throws \InvalidArgumentException
      */
     public function setSaveHandler(AbstractProxy|\SessionHandlerInterface $saveHandler = null)
+=======
+     * @param AbstractProxy|\SessionHandlerInterface|null $saveHandler
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function setSaveHandler($saveHandler = null)
+>>>>>>> origin/New-FakeMain
     {
         if (!$saveHandler instanceof AbstractProxy &&
             !$saveHandler instanceof \SessionHandlerInterface &&

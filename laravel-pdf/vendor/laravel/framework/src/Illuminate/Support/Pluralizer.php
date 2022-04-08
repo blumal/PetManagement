@@ -2,6 +2,10 @@
 
 namespace Illuminate\Support;
 
+<<<<<<< HEAD
+=======
+use Doctrine\Inflector\Inflector;
+>>>>>>> origin/New-FakeMain
 use Doctrine\Inflector\InflectorFactory;
 
 class Pluralizer

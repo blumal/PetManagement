@@ -34,12 +34,33 @@ abstract class Helper implements HelperInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getHelperSet(): ?HelperSet
+=======
+    public function getHelperSet()
+>>>>>>> origin/New-FakeMain
     {
         return $this->helperSet;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Returns the length of a string, using mb_strwidth if it is available.
+     *
+     * @deprecated since Symfony 5.3
+     *
+     * @return int
+     */
+    public static function strlen(?string $string)
+    {
+        trigger_deprecation('symfony/console', '5.3', 'Method "%s()" is deprecated and will be removed in Symfony 6.0. Use Helper::width() or Helper::length() instead.', __METHOD__);
+
+        return self::width($string);
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Returns the width of a string, using mb_strwidth if it is available.
      * The width is how many characters positions the string will use.
      */
@@ -79,8 +100,15 @@ abstract class Helper implements HelperInterface
 
     /**
      * Returns the subset of a string, using mb_substr if it is available.
+<<<<<<< HEAD
      */
     public static function substr(?string $string, int $from, int $length = null): string
+=======
+     *
+     * @return string
+     */
+    public static function substr(?string $string, int $from, int $length = null)
+>>>>>>> origin/New-FakeMain
     {
         $string ?? $string = '';
 
@@ -91,7 +119,11 @@ abstract class Helper implements HelperInterface
         return mb_substr($string, $from, $length, $encoding);
     }
 
+<<<<<<< HEAD
     public static function formatTime(int|float $secs)
+=======
+    public static function formatTime($secs)
+>>>>>>> origin/New-FakeMain
     {
         static $timeFormats = [
             [0, '< 1 sec'],
@@ -137,6 +169,19 @@ abstract class Helper implements HelperInterface
         return sprintf('%d B', $memory);
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * @deprecated since Symfony 5.3
+     */
+    public static function strlenWithoutDecoration(OutputFormatterInterface $formatter, ?string $string)
+    {
+        trigger_deprecation('symfony/console', '5.3', 'Method "%s()" is deprecated and will be removed in Symfony 6.0. Use Helper::removeDecoration() instead.', __METHOD__);
+
+        return self::width(self::removeDecoration($formatter, $string));
+    }
+
+>>>>>>> origin/New-FakeMain
     public static function removeDecoration(OutputFormatterInterface $formatter, ?string $string)
     {
         $isDecorated = $formatter->isDecorated();

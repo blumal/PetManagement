@@ -33,8 +33,13 @@ class Logger extends AbstractLogger
         LogLevel::EMERGENCY => 7,
     ];
 
+<<<<<<< HEAD
     private int $minLevelIndex;
     private \Closure $formatter;
+=======
+    private $minLevelIndex;
+    private $formatter;
+>>>>>>> origin/New-FakeMain
 
     /** @var resource|null */
     private $handle;
@@ -62,7 +67,11 @@ class Logger extends AbstractLogger
         }
 
         $this->minLevelIndex = self::LEVELS[$minLevel];
+<<<<<<< HEAD
         $this->formatter = $formatter instanceof \Closure ? $formatter : \Closure::fromCallable($formatter ?? [$this, 'format']);
+=======
+        $this->formatter = $formatter ?: [$this, 'format'];
+>>>>>>> origin/New-FakeMain
         if ($output && false === $this->handle = \is_resource($output) ? $output : @fopen($output, 'a')) {
             throw new InvalidArgumentException(sprintf('Unable to open "%s".', $output));
         }
@@ -70,8 +79,15 @@ class Logger extends AbstractLogger
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      */
     public function log($level, $message, array $context = []): void
+=======
+     *
+     * @return void
+     */
+    public function log($level, $message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         if (!isset(self::LEVELS[$level])) {
             throw new InvalidArgumentException(sprintf('The log level "%s" does not exist.', $level));
@@ -94,7 +110,11 @@ class Logger extends AbstractLogger
         if (str_contains($message, '{')) {
             $replacements = [];
             foreach ($context as $key => $val) {
+<<<<<<< HEAD
                 if (null === $val || is_scalar($val) || $val instanceof \Stringable) {
+=======
+                if (null === $val || is_scalar($val) || (\is_object($val) && method_exists($val, '__toString'))) {
+>>>>>>> origin/New-FakeMain
                     $replacements["{{$key}}"] = $val;
                 } elseif ($val instanceof \DateTimeInterface) {
                     $replacements["{{$key}}"] = $val->format(\DateTime::RFC3339);

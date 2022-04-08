@@ -29,7 +29,11 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
  */
 abstract class Output implements OutputInterface
 {
+<<<<<<< HEAD
     private int $verbosity;
+=======
+    private $verbosity;
+>>>>>>> origin/New-FakeMain
     private $formatter;
 
     /**
@@ -55,7 +59,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getFormatter(): OutputFormatterInterface
+=======
+    public function getFormatter()
+>>>>>>> origin/New-FakeMain
     {
         return $this->formatter;
     }
@@ -71,7 +79,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isDecorated(): bool
+=======
+    public function isDecorated()
+>>>>>>> origin/New-FakeMain
     {
         return $this->formatter->isDecorated();
     }
@@ -87,7 +99,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getVerbosity(): int
+=======
+    public function getVerbosity()
+>>>>>>> origin/New-FakeMain
     {
         return $this->verbosity;
     }
@@ -95,7 +111,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isQuiet(): bool
+=======
+    public function isQuiet()
+>>>>>>> origin/New-FakeMain
     {
         return self::VERBOSITY_QUIET === $this->verbosity;
     }
@@ -103,7 +123,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isVerbose(): bool
+=======
+    public function isVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return self::VERBOSITY_VERBOSE <= $this->verbosity;
     }
@@ -111,7 +135,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isVeryVerbose(): bool
+=======
+    public function isVeryVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return self::VERBOSITY_VERY_VERBOSE <= $this->verbosity;
     }
@@ -119,7 +147,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isDebug(): bool
+=======
+    public function isDebug()
+>>>>>>> origin/New-FakeMain
     {
         return self::VERBOSITY_DEBUG <= $this->verbosity;
     }
@@ -127,7 +159,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function writeln(string|iterable $messages, int $options = self::OUTPUT_NORMAL)
+=======
+    public function writeln($messages, int $options = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         $this->write($messages, true, $options);
     }
@@ -135,7 +171,11 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function write(string|iterable $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
+=======
+    public function write($messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         if (!is_iterable($messages)) {
             $messages = [$messages];

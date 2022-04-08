@@ -26,7 +26,11 @@ final class ConsoleCommandEvent extends ConsoleEvent
     /**
      * Indicates if the command should be run or skipped.
      */
+<<<<<<< HEAD
     private bool $commandShouldRun = true;
+=======
+    private $commandShouldRun = true;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Disables the command, so it won't be run.

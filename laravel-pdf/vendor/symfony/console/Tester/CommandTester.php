@@ -46,7 +46,11 @@ class CommandTester
      *
      * @return int The command exit code
      */
+<<<<<<< HEAD
     public function execute(array $input, array $options = []): int
+=======
+    public function execute(array $input, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         // set the command name automatically if the application requires
         // this argument and no command name was passed

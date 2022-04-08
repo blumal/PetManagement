@@ -26,7 +26,11 @@ class HandleExceptions
      *
      * @var \Illuminate\Contracts\Foundation\Application
      */
+<<<<<<< HEAD
     protected static $app;
+=======
+    protected $app;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Bootstrap the given application.
@@ -38,6 +42,7 @@ class HandleExceptions
     {
         self::$reservedMemory = str_repeat('x', 10240);
 
+<<<<<<< HEAD
         static::$app = $app;
 
         error_reporting(-1);
@@ -47,6 +52,17 @@ class HandleExceptions
         set_exception_handler($this->forwardsTo('handleException'));
 
         register_shutdown_function($this->forwardsTo('handleShutdown'));
+=======
+        $this->app = $app;
+
+        error_reporting(-1);
+
+        set_error_handler([$this, 'handleError']);
+
+        set_exception_handler([$this, 'handleException']);
+
+        register_shutdown_function([$this, 'handleShutdown']);
+>>>>>>> origin/New-FakeMain
 
         if (! $app->environment('testing')) {
             ini_set('display_errors', 'Off');
@@ -87,14 +103,23 @@ class HandleExceptions
     public function handleDeprecation($message, $file, $line)
     {
         if (! class_exists(LogManager::class)
+<<<<<<< HEAD
             || ! static::$app->hasBeenBootstrapped()
             || static::$app->runningUnitTests()
+=======
+            || ! $this->app->hasBeenBootstrapped()
+            || $this->app->runningUnitTests()
+>>>>>>> origin/New-FakeMain
         ) {
             return;
         }
 
         try {
+<<<<<<< HEAD
             $logger = static::$app->make(LogManager::class);
+=======
+            $logger = $this->app->make(LogManager::class);
+>>>>>>> origin/New-FakeMain
         } catch (Exception $e) {
             return;
         }
@@ -115,7 +140,11 @@ class HandleExceptions
      */
     protected function ensureDeprecationLoggerIsConfigured()
     {
+<<<<<<< HEAD
         with(static::$app['config'], function ($config) {
+=======
+        with($this->app['config'], function ($config) {
+>>>>>>> origin/New-FakeMain
             if ($config->get('logging.channels.deprecations')) {
                 return;
             }
@@ -135,7 +164,11 @@ class HandleExceptions
      */
     protected function ensureNullLogDriverIsConfigured()
     {
+<<<<<<< HEAD
         with(static::$app['config'], function ($config) {
+=======
+        with($this->app['config'], function ($config) {
+>>>>>>> origin/New-FakeMain
             if ($config->get('logging.channels.null')) {
                 return;
             }
@@ -167,7 +200,11 @@ class HandleExceptions
             //
         }
 
+<<<<<<< HEAD
         if (static::$app->runningInConsole()) {
+=======
+        if ($this->app->runningInConsole()) {
+>>>>>>> origin/New-FakeMain
             $this->renderForConsole($e);
         } else {
             $this->renderHttpResponse($e);
@@ -193,7 +230,11 @@ class HandleExceptions
      */
     protected function renderHttpResponse(Throwable $e)
     {
+<<<<<<< HEAD
         $this->getExceptionHandler()->render(static::$app['request'], $e)->send();
+=======
+        $this->getExceptionHandler()->render($this->app['request'], $e)->send();
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -221,6 +262,7 @@ class HandleExceptions
     }
 
     /**
+<<<<<<< HEAD
      * Forward a method call to the given method if an application instance exists.
      *
      * @return callable
@@ -233,6 +275,8 @@ class HandleExceptions
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Determine if the error level is a deprecation.
      *
      * @param  int  $level
@@ -261,6 +305,7 @@ class HandleExceptions
      */
     protected function getExceptionHandler()
     {
+<<<<<<< HEAD
         return static::$app->make(ExceptionHandler::class);
     }
 
@@ -272,5 +317,8 @@ class HandleExceptions
     public static function forgetApp()
     {
         static::$app = null;
+=======
+        return $this->app->make(ExceptionHandler::class);
+>>>>>>> origin/New-FakeMain
     }
 }

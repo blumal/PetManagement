@@ -26,6 +26,7 @@ class CookieValuePrefix
     {
         return substr($cookieValue, 41);
     }
+<<<<<<< HEAD
 
     /**
      * Validate a cookie value contains a valid prefix. If it does, return the cookie value with the prefix removed. Otherwise, return null.
@@ -41,4 +42,6 @@ class CookieValuePrefix
 
         return $hasValidPrefix ? static::remove($cookieValue) : null;
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

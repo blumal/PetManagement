@@ -16,7 +16,11 @@ final class TestResult
     public const FAIL       = 'failed';
     public const SKIPPED    = 'skipped';
     public const INCOMPLETE = 'incompleted';
+<<<<<<< HEAD
     public const RISKY      = 'risky';
+=======
+    public const RISKY      = 'risked';
+>>>>>>> origin/New-FakeMain
     public const WARN       = 'warnings';
     public const RUNS       = 'pending';
     public const PASS       = 'passed';

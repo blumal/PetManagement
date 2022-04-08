@@ -34,10 +34,17 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
      */
     private const INHERIT_DIRECTIVES = ['public', 'immutable'];
 
+<<<<<<< HEAD
     private int $embeddedResponses = 0;
     private bool $isNotCacheableResponseEmbedded = false;
     private int $age = 0;
     private array $flagDirectives = [
+=======
+    private $embeddedResponses = 0;
+    private $isNotCacheableResponseEmbedded = false;
+    private $age = 0;
+    private $flagDirectives = [
+>>>>>>> origin/New-FakeMain
         'no-cache' => null,
         'no-store' => null,
         'no-transform' => null,
@@ -47,7 +54,11 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
         'private' => null,
         'immutable' => null,
     ];
+<<<<<<< HEAD
     private array $ageDirectives = [
+=======
+    private $ageDirectives = [
+>>>>>>> origin/New-FakeMain
         'max-age' => null,
         's-maxage' => null,
         'expires' => null,

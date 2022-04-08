@@ -37,16 +37,28 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
      */
     protected $catalogues = [];
 
+<<<<<<< HEAD
     private string $locale;
+=======
+    /**
+     * @var string
+     */
+    private $locale;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var string[]
      */
+<<<<<<< HEAD
     private array $fallbackLocales = [];
+=======
+    private $fallbackLocales = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var LoaderInterface[]
      */
+<<<<<<< HEAD
     private array $loaders = [];
 
     private array $resources = [];
@@ -64,6 +76,43 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
     private array $parentLocales;
 
     private bool $hasIntlFormatter;
+=======
+    private $loaders = [];
+
+    /**
+     * @var array
+     */
+    private $resources = [];
+
+    /**
+     * @var MessageFormatterInterface
+     */
+    private $formatter;
+
+    /**
+     * @var string
+     */
+    private $cacheDir;
+
+    /**
+     * @var bool
+     */
+    private $debug;
+
+    private $cacheVary;
+
+    /**
+     * @var ConfigCacheFactoryInterface|null
+     */
+    private $configCacheFactory;
+
+    /**
+     * @var array|null
+     */
+    private $parentLocales;
+
+    private $hasIntlFormatter;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @throws InvalidArgumentException If a locale contains invalid characters
@@ -106,7 +155,11 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
      *
      * @throws InvalidArgumentException If the locale contains invalid characters
      */
+<<<<<<< HEAD
     public function addResource(string $format, mixed $resource, string $locale, string $domain = null)
+=======
+    public function addResource(string $format, $resource, string $locale, string $domain = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $domain) {
             $domain = 'messages';
@@ -136,7 +189,11 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getLocale(): string
+=======
+    public function getLocale()
+>>>>>>> origin/New-FakeMain
     {
         return $this->locale ?: (class_exists(\Locale::class) ? \Locale::getDefault() : 'en');
     }
@@ -173,7 +230,11 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function trans(?string $id, array $parameters = [], string $domain = null, string $locale = null): string
+=======
+    public function trans(?string $id, array $parameters = [], string $domain = null, string $locale = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $id || '' === $id) {
             return '';
@@ -208,7 +269,11 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getCatalogue(string $locale = null): MessageCatalogueInterface
+=======
+    public function getCatalogue(string $locale = null)
+>>>>>>> origin/New-FakeMain
     {
         if (!$locale) {
             $locale = $this->getLocale();
@@ -236,7 +301,11 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
      *
      * @return LoaderInterface[]
      */
+<<<<<<< HEAD
     protected function getLoaders(): array
+=======
+    protected function getLoaders()
+>>>>>>> origin/New-FakeMain
     {
         return $this->loaders;
     }
@@ -388,7 +457,13 @@ EOF
 
     protected function computeFallbackLocales(string $locale)
     {
+<<<<<<< HEAD
         $this->parentLocales ??= json_decode(file_get_contents(__DIR__.'/Resources/data/parents.json'), true);
+=======
+        if (null === $this->parentLocales) {
+            $this->parentLocales = json_decode(file_get_contents(__DIR__.'/Resources/data/parents.json'), true);
+        }
+>>>>>>> origin/New-FakeMain
 
         $originLocale = $locale;
         $locales = [];
@@ -445,7 +520,13 @@ EOF
      */
     private function getConfigCacheFactory(): ConfigCacheFactoryInterface
     {
+<<<<<<< HEAD
         $this->configCacheFactory ??= new ConfigCacheFactory($this->debug);
+=======
+        if (!$this->configCacheFactory) {
+            $this->configCacheFactory = new ConfigCacheFactory($this->debug);
+        }
+>>>>>>> origin/New-FakeMain
 
         return $this->configCacheFactory;
     }

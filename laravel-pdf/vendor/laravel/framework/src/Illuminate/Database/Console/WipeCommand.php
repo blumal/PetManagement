@@ -18,6 +18,7 @@ class WipeCommand extends Command
     protected $name = 'db:wipe';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -29,6 +30,8 @@ class WipeCommand extends Command
     protected static $defaultName = 'db:wipe';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

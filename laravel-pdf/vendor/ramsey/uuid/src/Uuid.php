@@ -476,11 +476,18 @@ class Uuid implements UuidInterface
      */
     public static function fromString(string $uuid): UuidInterface
     {
+<<<<<<< HEAD
         $uuid = strtolower($uuid);
         if (! self::$factoryReplaced && preg_match(LazyUuidFromString::VALID_REGEX, $uuid) === 1) {
             assert($uuid !== '');
 
             return new LazyUuidFromString($uuid);
+=======
+        if (! self::$factoryReplaced && preg_match(LazyUuidFromString::VALID_REGEX, $uuid) === 1) {
+            assert($uuid !== '');
+
+            return new LazyUuidFromString(strtolower($uuid));
+>>>>>>> origin/New-FakeMain
         }
 
         return self::getFactory()->fromString($uuid);

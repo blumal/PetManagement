@@ -397,6 +397,7 @@ class DatabaseManager implements ConnectionResolverInterface
     }
 
     /**
+<<<<<<< HEAD
      * Remove an extension connection resolver.
      *
      * @param  string  $name
@@ -408,6 +409,8 @@ class DatabaseManager implements ConnectionResolverInterface
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Return all of the created connections.
      *
      * @return array

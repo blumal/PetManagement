@@ -31,11 +31,19 @@ class Profiler implements ResetInterface
     /**
      * @var DataCollectorInterface[]
      */
+<<<<<<< HEAD
     private array $collectors = [];
 
     private $logger;
     private bool $initiallyEnabled = true;
     private bool $enabled = true;
+=======
+    private $collectors = [];
+
+    private $logger;
+    private $initiallyEnabled = true;
+    private $enabled = true;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(ProfilerStorageInterface $storage, LoggerInterface $logger = null, bool $enable = true)
     {
@@ -62,8 +70,15 @@ class Profiler implements ResetInterface
 
     /**
      * Loads the Profile for the given Response.
+<<<<<<< HEAD
      */
     public function loadProfileFromResponse(Response $response): ?Profile
+=======
+     *
+     * @return Profile|null
+     */
+    public function loadProfileFromResponse(Response $response)
+>>>>>>> origin/New-FakeMain
     {
         if (!$token = $response->headers->get('X-Debug-Token')) {
             return null;
@@ -74,16 +89,30 @@ class Profiler implements ResetInterface
 
     /**
      * Loads the Profile for the given token.
+<<<<<<< HEAD
      */
     public function loadProfile(string $token): ?Profile
+=======
+     *
+     * @return Profile|null
+     */
+    public function loadProfile(string $token)
+>>>>>>> origin/New-FakeMain
     {
         return $this->storage->read($token);
     }
 
     /**
      * Saves a Profile.
+<<<<<<< HEAD
      */
     public function saveProfile(Profile $profile): bool
+=======
+     *
+     * @return bool
+     */
+    public function saveProfile(Profile $profile)
+>>>>>>> origin/New-FakeMain
     {
         // late collect
         foreach ($profile->getCollectors() as $collector) {
@@ -114,17 +143,32 @@ class Profiler implements ResetInterface
      * @param string|null $start The start date to search from
      * @param string|null $end   The end date to search to
      *
+<<<<<<< HEAD
      * @see https://php.net/datetime.formats for the supported date/time formats
      */
     public function find(?string $ip, ?string $url, ?string $limit, ?string $method, ?string $start, ?string $end, string $statusCode = null): array
+=======
+     * @return array
+     *
+     * @see https://php.net/datetime.formats for the supported date/time formats
+     */
+    public function find(?string $ip, ?string $url, ?string $limit, ?string $method, ?string $start, ?string $end, string $statusCode = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->storage->find($ip, $url, $limit, $method, $this->getTimestamp($start), $this->getTimestamp($end), $statusCode);
     }
 
     /**
      * Collects data for the given Response.
+<<<<<<< HEAD
      */
     public function collect(Request $request, Response $response, \Throwable $exception = null): ?Profile
+=======
+     *
+     * @return Profile|null
+     */
+    public function collect(Request $request, Response $response, \Throwable $exception = null)
+>>>>>>> origin/New-FakeMain
     {
         if (false === $this->enabled) {
             return null;
@@ -167,8 +211,15 @@ class Profiler implements ResetInterface
 
     /**
      * Gets the Collectors associated with this profiler.
+<<<<<<< HEAD
      */
     public function all(): array
+=======
+     *
+     * @return array
+     */
+    public function all()
+>>>>>>> origin/New-FakeMain
     {
         return $this->collectors;
     }
@@ -198,8 +249,15 @@ class Profiler implements ResetInterface
      * Returns true if a Collector for the given name exists.
      *
      * @param string $name A collector name
+<<<<<<< HEAD
      */
     public function has(string $name): bool
+=======
+     *
+     * @return bool
+     */
+    public function has(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->collectors[$name]);
     }
@@ -209,9 +267,17 @@ class Profiler implements ResetInterface
      *
      * @param string $name A collector name
      *
+<<<<<<< HEAD
      * @throws \InvalidArgumentException if the collector does not exist
      */
     public function get(string $name): DataCollectorInterface
+=======
+     * @return DataCollectorInterface
+     *
+     * @throws \InvalidArgumentException if the collector does not exist
+     */
+    public function get(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->collectors[$name])) {
             throw new \InvalidArgumentException(sprintf('Collector "%s" does not exist.', $name));

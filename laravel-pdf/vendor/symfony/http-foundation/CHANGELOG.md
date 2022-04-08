@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 6.0
 ---
 
@@ -19,6 +20,8 @@ CHANGELOG
  * Passing non-scalar, non-array value as the second argument `InputBag::set()` will throw `\InvalidArgumentException`
  * Passing `null` as `$requestIp` to `IpUtils::__checkIp()`, `IpUtils::__checkIp4()` or `IpUtils::__checkIp6()` is not supported anymore.
 
+=======
+>>>>>>> origin/New-FakeMain
 5.4
 ---
 

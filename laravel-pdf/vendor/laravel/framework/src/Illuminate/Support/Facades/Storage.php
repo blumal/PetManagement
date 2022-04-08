@@ -70,9 +70,13 @@ class Storage extends Facade
             'root' => $root,
         ])));
 
+<<<<<<< HEAD
         return tap($fake)->buildTemporaryUrlsUsing(function ($path, $expiration) {
             return URL::to($path.'?expiration='.$expiration->getTimestamp());
         });
+=======
+        return $fake;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

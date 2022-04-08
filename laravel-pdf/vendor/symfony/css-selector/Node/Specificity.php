@@ -29,9 +29,15 @@ class Specificity
     public const B_FACTOR = 10;
     public const C_FACTOR = 1;
 
+<<<<<<< HEAD
     private int $a;
     private int $b;
     private int $c;
+=======
+    private $a;
+    private $b;
+    private $c;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(int $a, int $b, int $c)
     {

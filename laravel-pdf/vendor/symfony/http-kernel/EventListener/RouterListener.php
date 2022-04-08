@@ -46,6 +46,7 @@ class RouterListener implements EventSubscriberInterface
     private $context;
     private $logger;
     private $requestStack;
+<<<<<<< HEAD
     private ?string $projectDir;
     private bool $debug;
 
@@ -56,6 +57,23 @@ class RouterListener implements EventSubscriberInterface
      */
     public function __construct(UrlMatcherInterface|RequestMatcherInterface $matcher, RequestStack $requestStack, RequestContext $context = null, LoggerInterface $logger = null, string $projectDir = null, bool $debug = true)
     {
+=======
+    private $projectDir;
+    private $debug;
+
+    /**
+     * @param UrlMatcherInterface|RequestMatcherInterface $matcher The Url or Request matcher
+     * @param RequestContext|null                         $context The RequestContext (can be null when $matcher implements RequestContextAwareInterface)
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function __construct($matcher, RequestStack $requestStack, RequestContext $context = null, LoggerInterface $logger = null, string $projectDir = null, bool $debug = true)
+    {
+        if (!$matcher instanceof UrlMatcherInterface && !$matcher instanceof RequestMatcherInterface) {
+            throw new \InvalidArgumentException('Matcher must either implement UrlMatcherInterface or RequestMatcherInterface.');
+        }
+
+>>>>>>> origin/New-FakeMain
         if (null === $context && !$matcher instanceof RequestContextAwareInterface) {
             throw new \InvalidArgumentException('You must either pass a RequestContext or the matcher must implement RequestContextAwareInterface.');
         }

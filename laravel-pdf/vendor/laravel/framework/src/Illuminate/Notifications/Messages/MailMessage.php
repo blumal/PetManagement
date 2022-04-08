@@ -83,6 +83,7 @@ class MailMessage extends SimpleMessage implements Renderable
     public $rawAttachments = [];
 
     /**
+<<<<<<< HEAD
      * The tags for the message.
      *
      * @var array
@@ -97,6 +98,8 @@ class MailMessage extends SimpleMessage implements Renderable
     public $metadata = [];
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Priority level of the message.
      *
      * @var int
@@ -268,6 +271,7 @@ class MailMessage extends SimpleMessage implements Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Add a tag header to the message when supported by the underlying transport.
      *
      * @param  string  $value
@@ -295,6 +299,8 @@ class MailMessage extends SimpleMessage implements Renderable
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Set the priority of this message.
      *
      * The value is an integer where 1 is the highest priority and 5 is the lowest.
@@ -363,12 +369,20 @@ class MailMessage extends SimpleMessage implements Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Register a callback to be called with the Symfony message instance.
+=======
+     * Register a callback to be called with the Swift message instance.
+>>>>>>> origin/New-FakeMain
      *
      * @param  callable  $callback
      * @return $this
      */
+<<<<<<< HEAD
     public function withSymfonyMessage($callback)
+=======
+    public function withSwiftMessage($callback)
+>>>>>>> origin/New-FakeMain
     {
         $this->callbacks[] = $callback;
 

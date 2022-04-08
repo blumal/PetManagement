@@ -43,7 +43,11 @@ class InlineFragmentRenderer extends RoutableFragmentRenderer
      *
      *  * alt: an alternative URI to render in case of an error
      */
+<<<<<<< HEAD
     public function render(string|ControllerReference $uri, Request $request, array $options = []): Response
+=======
+    public function render($uri, Request $request, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         $reference = null;
         if ($uri instanceof ControllerReference) {
@@ -138,7 +142,11 @@ class InlineFragmentRenderer extends RoutableFragmentRenderer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName(): string
+=======
+    public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'inline';
     }

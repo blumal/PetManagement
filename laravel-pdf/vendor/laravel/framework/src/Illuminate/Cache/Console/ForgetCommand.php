@@ -15,6 +15,7 @@ class ForgetCommand extends Command
     protected $signature = 'cache:forget {key : The key to remove} {store? : The store to remove the key from}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -26,6 +27,8 @@ class ForgetCommand extends Command
     protected static $defaultName = 'cache:forget';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

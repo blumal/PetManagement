@@ -15,7 +15,11 @@ if (!function_exists('dump')) {
     /**
      * @author Nicolas Grekas <p@tchwork.com>
      */
+<<<<<<< HEAD
     function dump(mixed $var, mixed ...$moreVars): mixed
+=======
+    function dump($var, ...$moreVars)
+>>>>>>> origin/New-FakeMain
     {
         VarDumper::dump($var);
 
@@ -35,7 +39,11 @@ if (!function_exists('dd')) {
     /**
      * @return never
      */
+<<<<<<< HEAD
     function dd(...$vars): void
+=======
+    function dd(...$vars)
+>>>>>>> origin/New-FakeMain
     {
         if (!in_array(\PHP_SAPI, ['cli', 'phpdbg'], true) && !headers_sent()) {
             header('HTTP/1.1 500 Internal Server Error');

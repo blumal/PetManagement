@@ -6,12 +6,18 @@ use Illuminate\Contracts\Routing\ResponseFactory as FactoryContract;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+<<<<<<< HEAD
 use Illuminate\Routing\Exceptions\StreamedResponseException;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+<<<<<<< HEAD
 use Throwable;
+=======
+>>>>>>> origin/New-FakeMain
 
 class ResponseFactory implements FactoryContract
 {
@@ -140,6 +146,7 @@ class ResponseFactory implements FactoryContract
      */
     public function streamDownload($callback, $name = null, array $headers = [], $disposition = 'attachment')
     {
+<<<<<<< HEAD
         $withWrappedException = function () use ($callback) {
             try {
                 $callback();
@@ -149,6 +156,9 @@ class ResponseFactory implements FactoryContract
         };
 
         $response = new StreamedResponse($withWrappedException, 200, $headers);
+=======
+        $response = new StreamedResponse($callback, 200, $headers);
+>>>>>>> origin/New-FakeMain
 
         if (! is_null($name)) {
             $response->headers->set('Content-Disposition', $response->headers->makeDisposition(

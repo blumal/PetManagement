@@ -63,12 +63,20 @@ class ValidationRuleParser
     protected function explodeRules($rules)
     {
         foreach ($rules as $key => $rule) {
+<<<<<<< HEAD
             if (str_contains($key, '*')) {
+=======
+            if (Str::contains($key, '*')) {
+>>>>>>> origin/New-FakeMain
                 $rules = $this->explodeWildcardRules($rules, $key, [$rule]);
 
                 unset($rules[$key]);
             } else {
+<<<<<<< HEAD
                 $rules[$key] = $this->explodeExplicitRule($rule, $key);
+=======
+                $rules[$key] = $this->explodeExplicitRule($rule);
+>>>>>>> origin/New-FakeMain
             }
         }
 
@@ -79,6 +87,7 @@ class ValidationRuleParser
      * Explode the explicit rule into an array if necessary.
      *
      * @param  mixed  $rule
+<<<<<<< HEAD
      * @param  string  $attribute
      * @return array
      */
@@ -99,16 +108,35 @@ class ValidationRuleParser
             $rule,
             array_fill(array_key_first($rule), count($rule), $attribute)
         );
+=======
+     * @return array
+     */
+    protected function explodeExplicitRule($rule)
+    {
+        if (is_string($rule)) {
+            return explode('|', $rule);
+        } elseif (is_object($rule)) {
+            return [$this->prepareRule($rule)];
+        }
+
+        return array_map([$this, 'prepareRule'], $rule);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
      * Prepare the given rule for the Validator.
      *
      * @param  mixed  $rule
+<<<<<<< HEAD
      * @param  string  $attribute
      * @return mixed
      */
     protected function prepareRule($rule, $attribute)
+=======
+     * @return mixed
+     */
+    protected function prepareRule($rule)
+>>>>>>> origin/New-FakeMain
     {
         if ($rule instanceof Closure) {
             $rule = new ClosureValidationRule($rule);
@@ -121,12 +149,15 @@ class ValidationRuleParser
             return $rule;
         }
 
+<<<<<<< HEAD
         if ($rule instanceof NestedRules) {
             return $rule->compile(
                 $attribute, $this->data[$attribute] ?? null, Arr::dot($this->data)
             )->rules[$attribute];
         }
 
+=======
+>>>>>>> origin/New-FakeMain
         return (string) $rule;
     }
 
@@ -146,6 +177,7 @@ class ValidationRuleParser
 
         foreach ($data as $key => $value) {
             if (Str::startsWith($key, $attribute) || (bool) preg_match('/^'.$pattern.'\z/', $key)) {
+<<<<<<< HEAD
                 foreach (Arr::flatten((array) $rules) as $rule) {
                     if ($rule instanceof NestedRules) {
                         $compiled = $rule->compile($key, $value, $data);
@@ -162,6 +194,12 @@ class ValidationRuleParser
 
                         $results = $this->mergeRules($results, $key, $rule);
                     }
+=======
+                foreach ((array) $rules as $rule) {
+                    $this->implicitAttributes[$attribute][] = $key;
+
+                    $results = $this->mergeRules($results, $key, $rule);
+>>>>>>> origin/New-FakeMain
                 }
             }
         }
@@ -205,7 +243,11 @@ class ValidationRuleParser
         $merge = head($this->explodeRules([$rules]));
 
         $results[$attribute] = array_merge(
+<<<<<<< HEAD
             isset($results[$attribute]) ? $this->explodeExplicitRule($results[$attribute], $attribute) : [], $merge
+=======
+            isset($results[$attribute]) ? $this->explodeExplicitRule($results[$attribute]) : [], $merge
+>>>>>>> origin/New-FakeMain
         );
 
         return $results;
@@ -219,7 +261,11 @@ class ValidationRuleParser
      */
     public static function parse($rule)
     {
+<<<<<<< HEAD
         if ($rule instanceof RuleContract || $rule instanceof NestedRules) {
+=======
+        if ($rule instanceof RuleContract) {
+>>>>>>> origin/New-FakeMain
             return [$rule, []];
         }
 
@@ -258,7 +304,11 @@ class ValidationRuleParser
         // The format for specifying validation rules and parameters follows an
         // easy {rule}:{parameters} formatting convention. For instance the
         // rule "Max:3" states that the value may only be three letters.
+<<<<<<< HEAD
         if (str_contains($rule, ':')) {
+=======
+        if (strpos($rule, ':') !== false) {
+>>>>>>> origin/New-FakeMain
             [$rule, $parameter] = explode(':', $rule, 2);
 
             $parameters = static::parseParameters($rule, $parameter);
@@ -276,6 +326,7 @@ class ValidationRuleParser
      */
     protected static function parseParameters($rule, $parameter)
     {
+<<<<<<< HEAD
         return static::ruleIsRegex($rule) ? [$parameter] : str_getcsv($parameter);
     }
 
@@ -288,6 +339,15 @@ class ValidationRuleParser
     protected static function ruleIsRegex($rule)
     {
         return in_array(strtolower($rule), ['regex', 'not_regex', 'notregex'], true);
+=======
+        $rule = strtolower($rule);
+
+        if (in_array($rule, ['regex', 'not_regex', 'notregex'], true)) {
+            return [$parameter];
+        }
+
+        return str_getcsv($parameter);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -298,11 +358,22 @@ class ValidationRuleParser
      */
     protected static function normalizeRule($rule)
     {
+<<<<<<< HEAD
         return match ($rule) {
             'Int' => 'Integer',
             'Bool' => 'Boolean',
             default => $rule,
         };
+=======
+        switch ($rule) {
+            case 'Int':
+                return 'Integer';
+            case 'Bool':
+                return 'Boolean';
+            default:
+                return $rule;
+        }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -322,8 +393,13 @@ class ValidationRuleParser
 
             if ($attributeRules instanceof ConditionalRules) {
                 return [$attribute => $attributeRules->passes($data)
+<<<<<<< HEAD
                                 ? array_filter($attributeRules->rules($data))
                                 : array_filter($attributeRules->defaultRules($data)), ];
+=======
+                                ? array_filter($attributeRules->rules())
+                                : array_filter($attributeRules->defaultRules()), ];
+>>>>>>> origin/New-FakeMain
             }
 
             return [$attribute => collect($attributeRules)->map(function ($rule) use ($data) {
@@ -331,7 +407,11 @@ class ValidationRuleParser
                     return [$rule];
                 }
 
+<<<<<<< HEAD
                 return $rule->passes($data) ? $rule->rules($data) : $rule->defaultRules($data);
+=======
+                return $rule->passes($data) ? $rule->rules() : $rule->defaultRules();
+>>>>>>> origin/New-FakeMain
             })->filter()->flatten(1)->values()->all()];
         })->all();
     }

@@ -188,6 +188,7 @@ class Event
      *
      * @param  \Illuminate\Contracts\Container\Container  $container
      * @return void
+<<<<<<< HEAD
      *
      * @throws \Throwable
      */
@@ -223,19 +224,62 @@ class Event
      * @throws \Throwable
      */
     protected function start($container)
+=======
+     */
+    public function run(Container $container)
+    {
+        if ($this->withoutOverlapping &&
+            ! $this->mutex->create($this)) {
+            return;
+        }
+
+        $this->runInBackground
+                    ? $this->runCommandInBackground($container)
+                    : $this->runCommandInForeground($container);
+    }
+
+    /**
+     * Get the mutex name for the scheduled command.
+     *
+     * @return string
+     */
+    public function mutexName()
+    {
+        return 'framework'.DIRECTORY_SEPARATOR.'schedule-'.sha1($this->expression.$this->command);
+    }
+
+    /**
+     * Run the command in the foreground.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @return void
+     */
+    protected function runCommandInForeground(Container $container)
+>>>>>>> origin/New-FakeMain
     {
         try {
             $this->callBeforeCallbacks($container);
 
+<<<<<<< HEAD
             return $this->execute($container);
         } catch (Throwable $exception) {
             $this->removeMutex();
 
             throw $exception;
+=======
+            $this->exitCode = Process::fromShellCommandline(
+                $this->buildCommand(), base_path(), null, null, null
+            )->run();
+
+            $this->callAfterCallbacks($container);
+        } finally {
+            $this->removeMutex();
+>>>>>>> origin/New-FakeMain
         }
     }
 
     /**
+<<<<<<< HEAD
      * Run the command process.
      *
      * @param  \Illuminate\Contracts\Container\Container  $container
@@ -263,6 +307,23 @@ class Event
             $this->callAfterCallbacks($container);
         } finally {
             $this->removeMutex();
+=======
+     * Run the command in the background.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @return void
+     */
+    protected function runCommandInBackground(Container $container)
+    {
+        try {
+            $this->callBeforeCallbacks($container);
+
+            Process::fromShellCommandline($this->buildCommand(), base_path(), null, null, null)->run();
+        } catch (Throwable $exception) {
+            $this->removeMutex();
+
+            throw $exception;
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -293,6 +354,27 @@ class Event
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Call all of the "after" callbacks for the event.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @param  int  $exitCode
+     * @return void
+     */
+    public function callAfterCallbacksWithExitCode(Container $container, $exitCode)
+    {
+        $this->exitCode = (int) $exitCode;
+
+        try {
+            $this->callAfterCallbacks($container);
+        } finally {
+            $this->removeMutex();
+        }
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Build the command string.
      *
      * @return string
@@ -780,7 +862,11 @@ class Event
         }
 
         return $this->then(function (Container $container) use ($callback) {
+<<<<<<< HEAD
             if ($this->exitCode === 0) {
+=======
+            if (0 === $this->exitCode) {
+>>>>>>> origin/New-FakeMain
                 $container->call($callback);
             }
         });
@@ -815,7 +901,11 @@ class Event
         }
 
         return $this->then(function (Container $container) use ($callback) {
+<<<<<<< HEAD
             if ($this->exitCode !== 0) {
+=======
+            if (0 !== $this->exitCode) {
+>>>>>>> origin/New-FakeMain
                 $container->call($callback);
             }
         });
@@ -929,6 +1019,7 @@ class Event
     }
 
     /**
+<<<<<<< HEAD
      * Get the mutex name for the scheduled command.
      *
      * @return string
@@ -939,6 +1030,8 @@ class Event
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Delete the mutex for the event.
      *
      * @return void

@@ -30,7 +30,11 @@ abstract class MatcherDumper implements MatcherDumperInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getRoutes(): RouteCollection
+=======
+    public function getRoutes()
+>>>>>>> origin/New-FakeMain
     {
         return $this->routes;
     }

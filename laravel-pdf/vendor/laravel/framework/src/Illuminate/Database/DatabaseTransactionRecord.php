@@ -57,7 +57,11 @@ class DatabaseTransactionRecord
     public function executeCallbacks()
     {
         foreach ($this->callbacks as $callback) {
+<<<<<<< HEAD
             $callback();
+=======
+            call_user_func($callback);
+>>>>>>> origin/New-FakeMain
         }
     }
 

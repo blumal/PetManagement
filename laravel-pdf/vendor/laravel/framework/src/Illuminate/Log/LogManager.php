@@ -160,7 +160,11 @@ class LogManager implements LoggerInterface
      */
     protected function parseTap($tap)
     {
+<<<<<<< HEAD
         return str_contains($tap, ':') ? explode(':', $tap, 2) : [$tap, ''];
+=======
+        return Str::contains($tap, ':') ? explode(':', $tap, 2) : [$tap, ''];
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -194,7 +198,11 @@ class LogManager implements LoggerInterface
      */
     protected function resolve($name, ?array $config = null)
     {
+<<<<<<< HEAD
         $config ??= $this->configurationFor($name);
+=======
+        $config = $config ?? $this->configurationFor($name);
+>>>>>>> origin/New-FakeMain
 
         if (is_null($config)) {
             throw new InvalidArgumentException("Log [{$name}] is not defined.");
@@ -517,10 +525,17 @@ class LogManager implements LoggerInterface
      */
     protected function parseDriver($driver)
     {
+<<<<<<< HEAD
         $driver ??= $this->getDefaultDriver();
 
         if ($this->app->runningUnitTests()) {
             $driver ??= 'null';
+=======
+        $driver = $driver ?? $this->getDefaultDriver();
+
+        if ($this->app->runningUnitTests()) {
+            $driver = $driver ?? 'null';
+>>>>>>> origin/New-FakeMain
         }
 
         return $driver;
@@ -543,7 +558,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function emergency($message, array $context = []): void
+=======
+    public function emergency($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->emergency($message, $context);
     }
@@ -558,7 +577,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function alert($message, array $context = []): void
+=======
+    public function alert($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->alert($message, $context);
     }
@@ -572,7 +595,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function critical($message, array $context = []): void
+=======
+    public function critical($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->critical($message, $context);
     }
@@ -585,7 +612,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function error($message, array $context = []): void
+=======
+    public function error($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->error($message, $context);
     }
@@ -600,7 +631,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function warning($message, array $context = []): void
+=======
+    public function warning($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->warning($message, $context);
     }
@@ -612,7 +647,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function notice($message, array $context = []): void
+=======
+    public function notice($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->notice($message, $context);
     }
@@ -626,7 +665,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function info($message, array $context = []): void
+=======
+    public function info($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->info($message, $context);
     }
@@ -638,7 +681,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function debug($message, array $context = []): void
+=======
+    public function debug($message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->debug($message, $context);
     }
@@ -651,7 +698,11 @@ class LogManager implements LoggerInterface
      * @param  array  $context
      * @return void
      */
+<<<<<<< HEAD
     public function log($level, $message, array $context = []): void
+=======
+    public function log($level, $message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->driver()->log($level, $message, $context);
     }

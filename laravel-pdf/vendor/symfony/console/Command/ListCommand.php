@@ -65,7 +65,11 @@ EOF
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function execute(InputInterface $input, OutputInterface $output): int
+=======
+    protected function execute(InputInterface $input, OutputInterface $output)
+>>>>>>> origin/New-FakeMain
     {
         $helper = new DescriptorHelper();
         $helper->describe($output, $this->getApplication(), [

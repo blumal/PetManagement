@@ -166,7 +166,11 @@ class RdKafkaCaster
         return $a;
     }
 
+<<<<<<< HEAD
     private static function extractMetadata(KafkaConsumer|\RdKafka $c)
+=======
+    private static function extractMetadata($c)
+>>>>>>> origin/New-FakeMain
     {
         $prefix = Caster::PREFIX_VIRTUAL;
 

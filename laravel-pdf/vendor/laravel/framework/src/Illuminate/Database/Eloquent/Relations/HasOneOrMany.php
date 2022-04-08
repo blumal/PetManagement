@@ -268,6 +268,7 @@ abstract class HasOneOrMany extends Relation
     }
 
     /**
+<<<<<<< HEAD
      * Attach a model instance without raising any events to the parent model.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
@@ -281,6 +282,8 @@ abstract class HasOneOrMany extends Relation
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Attach a collection of models to the parent instance.
      *
      * @param  iterable  $models

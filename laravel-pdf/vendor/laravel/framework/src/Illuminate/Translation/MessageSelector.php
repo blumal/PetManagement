@@ -2,6 +2,11 @@
 
 namespace Illuminate\Translation;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+
+>>>>>>> origin/New-FakeMain
 class MessageSelector
 {
     /**
@@ -66,7 +71,11 @@ class MessageSelector
 
         $value = $matches[2];
 
+<<<<<<< HEAD
         if (str_contains($condition, ',')) {
+=======
+        if (Str::contains($condition, ',')) {
+>>>>>>> origin/New-FakeMain
             [$from, $to] = explode(',', $condition, 2);
 
             if ($to === '*' && $number >= $from) {

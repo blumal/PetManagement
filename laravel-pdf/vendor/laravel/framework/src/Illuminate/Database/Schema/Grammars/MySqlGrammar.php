@@ -959,6 +959,7 @@ class MySqlGrammar extends Grammar
      */
     protected function modifyVirtualAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($virtualAs = $column->virtualAsJson)) {
             if ($this->isJsonSelector($virtualAs)) {
                 $virtualAs = $this->wrapJsonSelector($virtualAs);
@@ -969,6 +970,10 @@ class MySqlGrammar extends Grammar
 
         if (! is_null($virtualAs = $column->virtualAs)) {
             return " as ({$virtualAs})";
+=======
+        if (! is_null($column->virtualAs)) {
+            return " as ({$column->virtualAs})";
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -981,6 +986,7 @@ class MySqlGrammar extends Grammar
      */
     protected function modifyStoredAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($storedAs = $column->storedAsJson)) {
             if ($this->isJsonSelector($storedAs)) {
                 $storedAs = $this->wrapJsonSelector($storedAs);
@@ -991,6 +997,10 @@ class MySqlGrammar extends Grammar
 
         if (! is_null($storedAs = $column->storedAs)) {
             return " as ({$storedAs}) stored";
+=======
+        if (! is_null($column->storedAs)) {
+            return " as ({$column->storedAs}) stored";
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -1045,10 +1055,14 @@ class MySqlGrammar extends Grammar
      */
     protected function modifyNullable(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (is_null($column->virtualAs) &&
             is_null($column->virtualAsJson) &&
             is_null($column->storedAs) &&
             is_null($column->storedAsJson)) {
+=======
+        if (is_null($column->virtualAs) && is_null($column->storedAs)) {
+>>>>>>> origin/New-FakeMain
             return $column->nullable ? ' null' : ' not null';
         }
 
@@ -1150,7 +1164,11 @@ class MySqlGrammar extends Grammar
      */
     protected function modifySrid(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (is_int($column->srid) && $column->srid > 0) {
+=======
+        if (! is_null($column->srid) && is_int($column->srid) && $column->srid > 0) {
+>>>>>>> origin/New-FakeMain
             return ' srid '.$column->srid;
         }
     }
@@ -1169,6 +1187,7 @@ class MySqlGrammar extends Grammar
 
         return $value;
     }
+<<<<<<< HEAD
 
     /**
      * Wrap the given JSON selector.
@@ -1182,4 +1201,6 @@ class MySqlGrammar extends Grammar
 
         return 'json_unquote(json_extract('.$field.$path.'))';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

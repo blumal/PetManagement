@@ -24,7 +24,11 @@ class RequestStack
     /**
      * @var Request[]
      */
+<<<<<<< HEAD
     private array $requests = [];
+=======
+    private $requests = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * Pushes a Request on the stack.
@@ -44,8 +48,15 @@ class RequestStack
      *
      * This method should generally not be called directly as the stack
      * management should be taken care of by the application itself.
+<<<<<<< HEAD
      */
     public function pop(): ?Request
+=======
+     *
+     * @return Request|null
+     */
+    public function pop()
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->requests) {
             return null;
@@ -54,7 +65,14 @@ class RequestStack
         return array_pop($this->requests);
     }
 
+<<<<<<< HEAD
     public function getCurrentRequest(): ?Request
+=======
+    /**
+     * @return Request|null
+     */
+    public function getCurrentRequest()
+>>>>>>> origin/New-FakeMain
     {
         return end($this->requests) ?: null;
     }
@@ -76,6 +94,23 @@ class RequestStack
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Gets the master request.
+     *
+     * @return Request|null
+     *
+     * @deprecated since symfony/http-foundation 5.3, use getMainRequest() instead
+     */
+    public function getMasterRequest()
+    {
+        trigger_deprecation('symfony/http-foundation', '5.3', '"%s()" is deprecated, use "getMainRequest()" instead.', __METHOD__);
+
+        return $this->getMainRequest();
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Returns the parent request of the current.
      *
      * Be warned that making your code aware of the parent request
@@ -83,8 +118,15 @@ class RequestStack
      * like ESI support.
      *
      * If current Request is the main request, it returns null.
+<<<<<<< HEAD
      */
     public function getParentRequest(): ?Request
+=======
+     *
+     * @return Request|null
+     */
+    public function getParentRequest()
+>>>>>>> origin/New-FakeMain
     {
         $pos = \count($this->requests) - 2;
 

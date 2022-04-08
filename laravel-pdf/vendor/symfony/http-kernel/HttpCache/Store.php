@@ -26,9 +26,15 @@ class Store implements StoreInterface
 {
     protected $root;
     /** @var \SplObjectStorage<Request, string> */
+<<<<<<< HEAD
     private \SplObjectStorage $keyCache;
     /** @var array<string, resource> */
     private array $locks = [];
+=======
+    private $keyCache;
+    /** @var array<string, resource> */
+    private $locks = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @throws \RuntimeException
@@ -61,7 +67,11 @@ class Store implements StoreInterface
      *
      * @return bool|string true if the lock is acquired, the path to the current lock otherwise
      */
+<<<<<<< HEAD
     public function lock(Request $request): bool|string
+=======
+    public function lock(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $key = $this->getCacheKey($request);
 
@@ -88,7 +98,11 @@ class Store implements StoreInterface
      *
      * @return bool False if the lock file does not exist or cannot be unlocked, true otherwise
      */
+<<<<<<< HEAD
     public function unlock(Request $request): bool
+=======
+    public function unlock(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $key = $this->getCacheKey($request);
 
@@ -103,7 +117,11 @@ class Store implements StoreInterface
         return false;
     }
 
+<<<<<<< HEAD
     public function isLocked(Request $request): bool
+=======
+    public function isLocked(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $key = $this->getCacheKey($request);
 
@@ -125,8 +143,15 @@ class Store implements StoreInterface
 
     /**
      * Locates a cached Response for the Request provided.
+<<<<<<< HEAD
      */
     public function lookup(Request $request): ?Response
+=======
+     *
+     * @return Response|null
+     */
+    public function lookup(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $key = $this->getCacheKey($request);
 
@@ -165,9 +190,17 @@ class Store implements StoreInterface
      * Existing entries are read and any that match the response are removed. This
      * method calls write with the new list of cache entries.
      *
+<<<<<<< HEAD
      * @throws \RuntimeException
      */
     public function write(Request $request, Response $response): string
+=======
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    public function write(Request $request, Response $response)
+>>>>>>> origin/New-FakeMain
     {
         $key = $this->getCacheKey($request);
         $storedEnv = $this->persistRequest($request);
@@ -223,8 +256,15 @@ class Store implements StoreInterface
 
     /**
      * Returns content digest for $response.
+<<<<<<< HEAD
      */
     protected function generateContentDigest(Response $response): string
+=======
+     *
+     * @return string
+     */
+    protected function generateContentDigest(Response $response)
+>>>>>>> origin/New-FakeMain
     {
         return 'en'.hash('sha256', $response->getContent());
     }
@@ -303,7 +343,11 @@ class Store implements StoreInterface
      *
      * @return bool true if the URL exists with either HTTP or HTTPS scheme and has been purged, false otherwise
      */
+<<<<<<< HEAD
     public function purge(string $url): bool
+=======
+    public function purge(string $url)
+>>>>>>> origin/New-FakeMain
     {
         $http = preg_replace('#^https:#', 'http:', $url);
         $https = preg_replace('#^http:#', 'https:', $url);
@@ -412,8 +456,15 @@ class Store implements StoreInterface
      * If the same URI can have more than one representation, based on some
      * headers, use a Vary header to indicate them, and each representation will
      * be stored independently under the same cache key.
+<<<<<<< HEAD
      */
     protected function generateCacheKey(Request $request): string
+=======
+     *
+     * @return string
+     */
+    protected function generateCacheKey(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         return 'md'.hash('sha256', $request->getUri());
     }

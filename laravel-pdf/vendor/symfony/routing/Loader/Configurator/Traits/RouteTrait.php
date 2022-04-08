@@ -26,7 +26,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function defaults(array $defaults): static
+=======
+    final public function defaults(array $defaults): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addDefaults($defaults);
 
@@ -38,7 +42,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function requirements(array $requirements): static
+=======
+    final public function requirements(array $requirements): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addRequirements($requirements);
 
@@ -50,7 +58,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function options(array $options): static
+=======
+    final public function options(array $options): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addOptions($options);
 
@@ -62,7 +74,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function utf8(bool $utf8 = true): static
+=======
+    final public function utf8(bool $utf8 = true): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addOptions(['utf8' => $utf8]);
 
@@ -74,7 +90,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function condition(string $condition): static
+=======
+    final public function condition(string $condition): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->setCondition($condition);
 
@@ -86,7 +106,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function host(string $pattern): static
+=======
+    final public function host(string $pattern): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->setHost($pattern);
 
@@ -101,7 +125,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function schemes(array $schemes): static
+=======
+    final public function schemes(array $schemes): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->setSchemes($schemes);
 
@@ -116,7 +144,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function methods(array $methods): static
+=======
+    final public function methods(array $methods): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->setMethods($methods);
 
@@ -130,7 +162,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function controller(callable|string|array $controller): static
+=======
+    final public function controller($controller): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addDefaults(['_controller' => $controller]);
 
@@ -142,7 +178,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function locale(string $locale): static
+=======
+    final public function locale(string $locale): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addDefaults(['_locale' => $locale]);
 
@@ -154,7 +194,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function format(string $format): static
+=======
+    final public function format(string $format): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addDefaults(['_format' => $format]);
 
@@ -166,7 +210,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function stateless(bool $stateless = true): static
+=======
+    final public function stateless(bool $stateless = true): self
+>>>>>>> origin/New-FakeMain
     {
         $this->route->addDefaults(['_stateless' => $stateless]);
 

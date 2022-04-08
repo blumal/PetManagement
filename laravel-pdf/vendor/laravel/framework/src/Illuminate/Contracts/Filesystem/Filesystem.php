@@ -30,7 +30,13 @@ interface Filesystem
      * Get the contents of a file.
      *
      * @param  string  $path
+<<<<<<< HEAD
      * @return string|null
+=======
+     * @return string
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function get($path);
 
@@ -39,6 +45,11 @@ interface Filesystem
      *
      * @param  string  $path
      * @return resource|null The path resource or null on failure.
+<<<<<<< HEAD
+=======
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function readStream($path);
 
@@ -59,6 +70,12 @@ interface Filesystem
      * @param  resource  $resource
      * @param  array  $options
      * @return bool
+<<<<<<< HEAD
+=======
+     *
+     * @throws \InvalidArgumentException If $resource is not a file handle.
+     * @throws \Illuminate\Contracts\Filesystem\FileExistsException
+>>>>>>> origin/New-FakeMain
      */
     public function writeStream($path, $resource, array $options = []);
 

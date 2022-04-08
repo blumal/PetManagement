@@ -6,6 +6,7 @@ use RuntimeException;
 
 class MultipleItemsFoundException extends RuntimeException
 {
+<<<<<<< HEAD
     /**
      * The number of items found.
      *
@@ -37,4 +38,6 @@ class MultipleItemsFoundException extends RuntimeException
     {
         return $this->count;
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

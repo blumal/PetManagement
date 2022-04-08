@@ -3,6 +3,7 @@
 namespace Illuminate\Mail\Transport;
 
 use Illuminate\Support\Collection;
+<<<<<<< HEAD
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\TransportInterface;
@@ -12,6 +13,14 @@ class ArrayTransport implements TransportInterface
 {
     /**
      * The collection of Symfony Messages.
+=======
+use Swift_Mime_SimpleMessage;
+
+class ArrayTransport extends Transport
+{
+    /**
+     * The collection of Swift Messages.
+>>>>>>> origin/New-FakeMain
      *
      * @var \Illuminate\Support\Collection
      */
@@ -29,10 +38,23 @@ class ArrayTransport implements TransportInterface
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      */
     public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
     {
         return $this->messages[] = new SentMessage($message, $envelope ?? Envelope::create($message));
+=======
+     *
+     * @return int
+     */
+    public function send(Swift_Mime_SimpleMessage $message, &$failedRecipients = null)
+    {
+        $this->beforeSendPerformed($message);
+
+        $this->messages[] = $message;
+
+        return $this->numberOfRecipients($message);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -54,6 +76,7 @@ class ArrayTransport implements TransportInterface
     {
         return $this->messages = new Collection;
     }
+<<<<<<< HEAD
 
     /**
      * Get the string representation of the transport.
@@ -64,4 +87,6 @@ class ArrayTransport implements TransportInterface
     {
         return 'array';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

@@ -18,8 +18,13 @@ use Symfony\Component\Mime\RawMessage;
 
 final class EmailAddressContains extends Constraint
 {
+<<<<<<< HEAD
     private string $headerName;
     private string $expectedValue;
+=======
+    private $headerName;
+    private $expectedValue;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $headerName, string $expectedValue)
     {

@@ -11,7 +11,10 @@
 
 namespace Symfony\Component\Translation\Command;
 
+<<<<<<< HEAD
 use Symfony\Component\Console\Attribute\AsCommand;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\Console\CI\GithubActionReporter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
@@ -32,6 +35,7 @@ use Symfony\Component\Translation\Util\XliffUtils;
  * @author Robin Chalas <robin.chalas@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
+<<<<<<< HEAD
 #[AsCommand(name: 'lint:xliff', description: 'Lint an XLIFF file and outputs encountered errors')]
 class XliffLintCommand extends Command
 {
@@ -40,13 +44,30 @@ class XliffLintCommand extends Command
     private ?\Closure $directoryIteratorProvider;
     private ?\Closure $isReadableProvider;
     private bool $requireStrictFileNames;
+=======
+class XliffLintCommand extends Command
+{
+    protected static $defaultName = 'lint:xliff';
+    protected static $defaultDescription = 'Lint an XLIFF file and outputs encountered errors';
+
+    private $format;
+    private $displayCorrectFiles;
+    private $directoryIteratorProvider;
+    private $isReadableProvider;
+    private $requireStrictFileNames;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $name = null, callable $directoryIteratorProvider = null, callable $isReadableProvider = null, bool $requireStrictFileNames = true)
     {
         parent::__construct($name);
 
+<<<<<<< HEAD
         $this->directoryIteratorProvider = null === $directoryIteratorProvider || $directoryIteratorProvider instanceof \Closure ? $directoryIteratorProvider : \Closure::fromCallable($directoryIteratorProvider);
         $this->isReadableProvider = null === $isReadableProvider || $isReadableProvider instanceof \Closure ? $isReadableProvider : \Closure::fromCallable($isReadableProvider);
+=======
+        $this->directoryIteratorProvider = $directoryIteratorProvider;
+        $this->isReadableProvider = $isReadableProvider;
+>>>>>>> origin/New-FakeMain
         $this->requireStrictFileNames = $requireStrictFileNames;
     }
 
@@ -56,6 +77,10 @@ class XliffLintCommand extends Command
     protected function configure()
     {
         $this
+<<<<<<< HEAD
+=======
+            ->setDescription(self::$defaultDescription)
+>>>>>>> origin/New-FakeMain
             ->addArgument('filename', InputArgument::IS_ARRAY, 'A file, a directory or "-" for reading from STDIN')
             ->addOption('format', null, InputOption::VALUE_REQUIRED, 'The output format')
             ->setHelp(<<<EOF
@@ -80,7 +105,11 @@ EOF
         ;
     }
 
+<<<<<<< HEAD
     protected function execute(InputInterface $input, OutputInterface $output): int
+=======
+    protected function execute(InputInterface $input, OutputInterface $output)
+>>>>>>> origin/New-FakeMain
     {
         $io = new SymfonyStyle($input, $output);
         $filenames = (array) $input->getArgument('filename');

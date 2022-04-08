@@ -25,14 +25,24 @@ use Ramsey\Uuid\Type\Hexadecimal;
 class FallbackNodeProvider implements NodeProviderInterface
 {
     /**
+<<<<<<< HEAD
      * @var iterable<NodeProviderInterface>
+=======
+     * @var NodeProviderCollection
+>>>>>>> origin/New-FakeMain
      */
     private $nodeProviders;
 
     /**
+<<<<<<< HEAD
      * @param iterable<NodeProviderInterface> $providers Array of node providers
      */
     public function __construct(iterable $providers)
+=======
+     * @param NodeProviderCollection $providers Array of node providers
+     */
+    public function __construct(NodeProviderCollection $providers)
+>>>>>>> origin/New-FakeMain
     {
         $this->nodeProviders = $providers;
     }

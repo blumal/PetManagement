@@ -5,15 +5,23 @@ namespace Illuminate\Http;
 use ArrayAccess;
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
+<<<<<<< HEAD
 use Illuminate\Session\SymfonySessionDecorator;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use RuntimeException;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+=======
+use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+>>>>>>> origin/New-FakeMain
 
 /**
  * @method array validate(array $rules, ...$params)
@@ -139,7 +147,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Get the full URL for the request without the given query string parameters.
      *
+<<<<<<< HEAD
      * @param  array|string  $keys
+=======
+     * @param  array|string  $query
+>>>>>>> origin/New-FakeMain
      * @return string
      */
     public function fullUrlWithoutQuery($keys)
@@ -211,7 +223,17 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     {
         $path = $this->decodedPath();
 
+<<<<<<< HEAD
         return collect($patterns)->contains(fn ($pattern) => Str::is($pattern, $path));
+=======
+        foreach ($patterns as $pattern) {
+            if (Str::is($pattern, $path)) {
+                return true;
+            }
+        }
+
+        return false;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -235,7 +257,17 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     {
         $url = $this->fullUrl();
 
+<<<<<<< HEAD
         return collect($patterns)->contains(fn ($pattern) => Str::is($pattern, $url));
+=======
+        foreach ($patterns as $pattern) {
+            if (Str::is($pattern, $url)) {
+                return true;
+            }
+        }
+
+        return false;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -357,7 +389,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @param  mixed  $default
      * @return mixed
      */
+<<<<<<< HEAD
     public function get(string $key, mixed $default = null): mixed
+=======
+    public function get(string $key, $default = null)
+>>>>>>> origin/New-FakeMain
     {
         return parent::get($key, $default);
     }
@@ -407,7 +443,13 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     {
         $request = $to ?: new static;
 
+<<<<<<< HEAD
         $files = array_filter($from->files->all());
+=======
+        $files = $from->files->all();
+
+        $files = is_array($files) ? array_filter($files) : $files;
+>>>>>>> origin/New-FakeMain
 
         $request->initialize(
             $from->query->all(),
@@ -423,7 +465,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         $request->setJson($from->json());
 
+<<<<<<< HEAD
         if ($from->hasSession() && $session = $from->session()) {
+=======
+        if ($session = $from->getSession()) {
+>>>>>>> origin/New-FakeMain
             $request->setLaravelSession($session);
         }
 
@@ -451,9 +497,13 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         $newRequest->content = $request->content;
 
+<<<<<<< HEAD
         if ($newRequest->isJson()) {
             $newRequest->request = $newRequest->json();
         }
+=======
+        $newRequest->request = $newRequest->getInputSource();
+>>>>>>> origin/New-FakeMain
 
         return $newRequest;
     }
@@ -463,7 +513,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      *
      * @return static
      */
+<<<<<<< HEAD
     public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null): static
+=======
+    public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
+>>>>>>> origin/New-FakeMain
     {
         return parent::duplicate($query, $request, $attributes, $cookies, $this->filterFiles($files), $server);
     }
@@ -494,6 +548,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
+<<<<<<< HEAD
      * {@inheritdoc}
      */
     public function hasSession(bool $skipIfUninitialized = false): bool
@@ -515,6 +570,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * Get the session associated with the request.
      *
      * @return \Illuminate\Contracts\Session\Session
+=======
+     * Get the session associated with the request.
+     *
+     * @return \Illuminate\Session\Store
+>>>>>>> origin/New-FakeMain
      *
      * @throws \RuntimeException
      */
@@ -528,6 +588,19 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Get the session associated with the request.
+     *
+     * @return \Illuminate\Session\Store|null
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Set the session instance on the request.
      *
      * @param  \Illuminate\Contracts\Session\Session  $session
@@ -654,7 +727,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      *
      * @return array
      */
+<<<<<<< HEAD
     public function toArray(): array
+=======
+    public function toArray()
+>>>>>>> origin/New-FakeMain
     {
         return $this->all();
     }
@@ -665,7 +742,12 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @param  string  $offset
      * @return bool
      */
+<<<<<<< HEAD
     public function offsetExists($offset): bool
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return Arr::has(
             $this->all() + $this->route()->parameters(),
@@ -679,7 +761,12 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @param  string  $offset
      * @return mixed
      */
+<<<<<<< HEAD
     public function offsetGet($offset): mixed
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->__get($offset);
     }
@@ -691,7 +778,12 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     public function offsetSet($offset, $value): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->getInputSource()->set($offset, $value);
     }
@@ -702,7 +794,12 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @param  string  $offset
      * @return void
      */
+<<<<<<< HEAD
     public function offsetUnset($offset): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         $this->getInputSource()->remove($offset);
     }

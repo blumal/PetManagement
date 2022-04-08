@@ -24,7 +24,11 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class DumpServer
 {
+<<<<<<< HEAD
     private string $host;
+=======
+    private $host;
+>>>>>>> origin/New-FakeMain
     private $logger;
 
     /**

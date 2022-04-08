@@ -24,6 +24,7 @@ class DownCommand extends Command
                                  {--status=503 : The status code that should be used when returning the maintenance mode response}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -35,6 +36,8 @@ class DownCommand extends Command
     protected static $defaultName = 'down';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -49,13 +52,24 @@ class DownCommand extends Command
     public function handle()
     {
         try {
+<<<<<<< HEAD
             if ($this->laravel->maintenanceMode()->active()) {
+=======
+            if (is_file(storage_path('framework/down'))) {
+>>>>>>> origin/New-FakeMain
                 $this->comment('Application is already down.');
 
                 return 0;
             }
 
+<<<<<<< HEAD
             $this->laravel->maintenanceMode()->activate($this->getDownFilePayload());
+=======
+            file_put_contents(
+                storage_path('framework/down'),
+                json_encode($this->getDownFilePayload(), JSON_PRETTY_PRINT)
+            );
+>>>>>>> origin/New-FakeMain
 
             file_put_contents(
                 storage_path('framework/maintenance.php'),

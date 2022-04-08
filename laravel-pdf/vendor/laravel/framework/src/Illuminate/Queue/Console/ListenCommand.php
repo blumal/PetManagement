@@ -26,6 +26,7 @@ class ListenCommand extends Command
                             {--tries=1 : Number of times to attempt a job before logging it failed}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -37,6 +38,8 @@ class ListenCommand extends Command
     protected static $defaultName = 'queue:listen';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

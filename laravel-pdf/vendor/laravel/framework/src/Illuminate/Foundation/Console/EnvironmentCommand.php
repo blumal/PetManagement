@@ -14,6 +14,7 @@ class EnvironmentCommand extends Command
     protected $name = 'env';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -25,6 +26,8 @@ class EnvironmentCommand extends Command
     protected static $defaultName = 'env';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

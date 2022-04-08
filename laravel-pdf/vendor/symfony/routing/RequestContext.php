@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RequestContext
 {
+<<<<<<< HEAD
     private string $baseUrl;
     private string $pathInfo;
     private string $method;
@@ -32,6 +33,17 @@ class RequestContext
     private int $httpsPort;
     private string $queryString;
     private array $parameters = [];
+=======
+    private $baseUrl;
+    private $pathInfo;
+    private $method;
+    private $host;
+    private $scheme;
+    private $httpPort;
+    private $httpsPort;
+    private $queryString;
+    private $parameters = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $baseUrl = '', string $method = 'GET', string $host = 'localhost', string $scheme = 'http', int $httpPort = 80, int $httpsPort = 443, string $path = '/', string $queryString = '')
     {
@@ -67,7 +79,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function fromRequest(Request $request): static
+=======
+    public function fromRequest(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $this->setBaseUrl($request->getBaseUrl());
         $this->setPathInfo($request->getPathInfo());
@@ -83,8 +99,15 @@ class RequestContext
 
     /**
      * Gets the base URL.
+<<<<<<< HEAD
      */
     public function getBaseUrl(): string
+=======
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+>>>>>>> origin/New-FakeMain
     {
         return $this->baseUrl;
     }
@@ -94,7 +117,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setBaseUrl(string $baseUrl): static
+=======
+    public function setBaseUrl(string $baseUrl)
+>>>>>>> origin/New-FakeMain
     {
         $this->baseUrl = $baseUrl;
 
@@ -103,8 +130,15 @@ class RequestContext
 
     /**
      * Gets the path info.
+<<<<<<< HEAD
      */
     public function getPathInfo(): string
+=======
+     *
+     * @return string
+     */
+    public function getPathInfo()
+>>>>>>> origin/New-FakeMain
     {
         return $this->pathInfo;
     }
@@ -114,7 +148,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setPathInfo(string $pathInfo): static
+=======
+    public function setPathInfo(string $pathInfo)
+>>>>>>> origin/New-FakeMain
     {
         $this->pathInfo = $pathInfo;
 
@@ -125,8 +163,15 @@ class RequestContext
      * Gets the HTTP method.
      *
      * The method is always an uppercased string.
+<<<<<<< HEAD
      */
     public function getMethod(): string
+=======
+     *
+     * @return string
+     */
+    public function getMethod()
+>>>>>>> origin/New-FakeMain
     {
         return $this->method;
     }
@@ -136,7 +181,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setMethod(string $method): static
+=======
+    public function setMethod(string $method)
+>>>>>>> origin/New-FakeMain
     {
         $this->method = strtoupper($method);
 
@@ -147,8 +196,15 @@ class RequestContext
      * Gets the HTTP host.
      *
      * The host is always lowercased because it must be treated case-insensitive.
+<<<<<<< HEAD
      */
     public function getHost(): string
+=======
+     *
+     * @return string
+     */
+    public function getHost()
+>>>>>>> origin/New-FakeMain
     {
         return $this->host;
     }
@@ -158,7 +214,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setHost(string $host): static
+=======
+    public function setHost(string $host)
+>>>>>>> origin/New-FakeMain
     {
         $this->host = strtolower($host);
 
@@ -167,8 +227,15 @@ class RequestContext
 
     /**
      * Gets the HTTP scheme.
+<<<<<<< HEAD
      */
     public function getScheme(): string
+=======
+     *
+     * @return string
+     */
+    public function getScheme()
+>>>>>>> origin/New-FakeMain
     {
         return $this->scheme;
     }
@@ -178,7 +245,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setScheme(string $scheme): static
+=======
+    public function setScheme(string $scheme)
+>>>>>>> origin/New-FakeMain
     {
         $this->scheme = strtolower($scheme);
 
@@ -187,8 +258,15 @@ class RequestContext
 
     /**
      * Gets the HTTP port.
+<<<<<<< HEAD
      */
     public function getHttpPort(): int
+=======
+     *
+     * @return int
+     */
+    public function getHttpPort()
+>>>>>>> origin/New-FakeMain
     {
         return $this->httpPort;
     }
@@ -198,7 +276,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setHttpPort(int $httpPort): static
+=======
+    public function setHttpPort(int $httpPort)
+>>>>>>> origin/New-FakeMain
     {
         $this->httpPort = $httpPort;
 
@@ -207,8 +289,15 @@ class RequestContext
 
     /**
      * Gets the HTTPS port.
+<<<<<<< HEAD
      */
     public function getHttpsPort(): int
+=======
+     *
+     * @return int
+     */
+    public function getHttpsPort()
+>>>>>>> origin/New-FakeMain
     {
         return $this->httpsPort;
     }
@@ -218,7 +307,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setHttpsPort(int $httpsPort): static
+=======
+    public function setHttpsPort(int $httpsPort)
+>>>>>>> origin/New-FakeMain
     {
         $this->httpsPort = $httpsPort;
 
@@ -227,8 +320,15 @@ class RequestContext
 
     /**
      * Gets the query string without the "?".
+<<<<<<< HEAD
      */
     public function getQueryString(): string
+=======
+     *
+     * @return string
+     */
+    public function getQueryString()
+>>>>>>> origin/New-FakeMain
     {
         return $this->queryString;
     }
@@ -238,7 +338,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setQueryString(?string $queryString): static
+=======
+    public function setQueryString(?string $queryString)
+>>>>>>> origin/New-FakeMain
     {
         // string cast to be fault-tolerant, accepting null
         $this->queryString = (string) $queryString;
@@ -248,8 +352,15 @@ class RequestContext
 
     /**
      * Returns the parameters.
+<<<<<<< HEAD
      */
     public function getParameters(): array
+=======
+     *
+     * @return array
+     */
+    public function getParameters()
+>>>>>>> origin/New-FakeMain
     {
         return $this->parameters;
     }
@@ -261,7 +372,11 @@ class RequestContext
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setParameters(array $parameters): static
+=======
+    public function setParameters(array $parameters)
+>>>>>>> origin/New-FakeMain
     {
         $this->parameters = $parameters;
 
@@ -270,16 +385,30 @@ class RequestContext
 
     /**
      * Gets a parameter value.
+<<<<<<< HEAD
      */
     public function getParameter(string $name): mixed
+=======
+     *
+     * @return mixed
+     */
+    public function getParameter(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return $this->parameters[$name] ?? null;
     }
 
     /**
      * Checks if a parameter value is set for the given parameter.
+<<<<<<< HEAD
      */
     public function hasParameter(string $name): bool
+=======
+     *
+     * @return bool
+     */
+    public function hasParameter(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return \array_key_exists($name, $this->parameters);
     }
@@ -287,9 +416,17 @@ class RequestContext
     /**
      * Sets a parameter value.
      *
+<<<<<<< HEAD
      * @return $this
      */
     public function setParameter(string $name, mixed $parameter): static
+=======
+     * @param mixed $parameter The parameter value
+     *
+     * @return $this
+     */
+    public function setParameter(string $name, $parameter)
+>>>>>>> origin/New-FakeMain
     {
         $this->parameters[$name] = $parameter;
 

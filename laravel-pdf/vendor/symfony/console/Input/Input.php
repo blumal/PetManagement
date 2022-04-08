@@ -80,7 +80,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isInteractive(): bool
+=======
+    public function isInteractive()
+>>>>>>> origin/New-FakeMain
     {
         return $this->interactive;
     }
@@ -96,7 +100,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getArguments(): array
+=======
+    public function getArguments()
+>>>>>>> origin/New-FakeMain
     {
         return array_merge($this->definition->getArgumentDefaults(), $this->arguments);
     }
@@ -104,7 +112,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getArgument(string $name): mixed
+=======
+    public function getArgument(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->definition->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));
@@ -116,7 +128,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function setArgument(string $name, mixed $value)
+=======
+    public function setArgument(string $name, $value)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->definition->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));
@@ -128,7 +144,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function hasArgument(string $name): bool
+=======
+    public function hasArgument(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return $this->definition->hasArgument($name);
     }
@@ -136,7 +156,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getOptions(): array
+=======
+    public function getOptions()
+>>>>>>> origin/New-FakeMain
     {
         return array_merge($this->definition->getOptionDefaults(), $this->options);
     }
@@ -144,7 +168,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getOption(string $name): mixed
+=======
+    public function getOption(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if ($this->definition->hasNegation($name)) {
             if (null === $value = $this->getOption($this->definition->negationToName($name))) {
@@ -164,7 +192,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function setOption(string $name, mixed $value)
+=======
+    public function setOption(string $name, $value)
+>>>>>>> origin/New-FakeMain
     {
         if ($this->definition->hasNegation($name)) {
             $this->options[$this->definition->negationToName($name)] = !$value;
@@ -180,15 +212,26 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function hasOption(string $name): bool
+=======
+    public function hasOption(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return $this->definition->hasOption($name) || $this->definition->hasNegation($name);
     }
 
     /**
      * Escapes a token through escapeshellarg if it contains unsafe chars.
+<<<<<<< HEAD
      */
     public function escapeToken(string $token): string
+=======
+     *
+     * @return string
+     */
+    public function escapeToken(string $token)
+>>>>>>> origin/New-FakeMain
     {
         return preg_match('{^[\w-]+$}', $token) ? $token : escapeshellarg($token);
     }

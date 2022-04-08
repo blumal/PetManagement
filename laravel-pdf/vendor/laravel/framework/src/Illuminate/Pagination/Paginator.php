@@ -158,7 +158,12 @@ class Paginator extends AbstractPaginator implements Arrayable, ArrayAccess, Cou
      *
      * @return array
      */
+<<<<<<< HEAD
     public function jsonSerialize(): array
+=======
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
+>>>>>>> origin/New-FakeMain
     {
         return $this->toArray();
     }

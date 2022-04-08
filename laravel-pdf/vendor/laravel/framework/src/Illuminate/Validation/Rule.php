@@ -5,11 +5,17 @@ namespace Illuminate\Validation;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Validation\Rules\Dimensions;
+<<<<<<< HEAD
 use Illuminate\Validation\Rules\ExcludeIf;
 use Illuminate\Validation\Rules\Exists;
 use Illuminate\Validation\Rules\In;
 use Illuminate\Validation\Rules\NotIn;
 use Illuminate\Validation\Rules\ProhibitedIf;
+=======
+use Illuminate\Validation\Rules\Exists;
+use Illuminate\Validation\Rules\In;
+use Illuminate\Validation\Rules\NotIn;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Validation\Rules\RequiredIf;
 use Illuminate\Validation\Rules\Unique;
 
@@ -84,6 +90,7 @@ class Rule
     }
 
     /**
+<<<<<<< HEAD
      * Create a new nested rule set.
      *
      * @param  callable  $callback
@@ -95,6 +102,8 @@ class Rule
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get a required_if constraint builder instance.
      *
      * @param  callable|bool  $callback
@@ -106,6 +115,7 @@ class Rule
     }
 
     /**
+<<<<<<< HEAD
      * Get a exclude_if constraint builder instance.
      *
      * @param  callable|bool  $callback
@@ -128,6 +138,8 @@ class Rule
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get a unique constraint builder instance.
      *
      * @param  string  $table

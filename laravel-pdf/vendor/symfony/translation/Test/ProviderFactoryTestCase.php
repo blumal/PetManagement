@@ -33,7 +33,11 @@ abstract class ProviderFactoryTestCase extends TestCase
 {
     protected $client;
     protected $logger;
+<<<<<<< HEAD
     protected string $defaultLocale;
+=======
+    protected $defaultLocale;
+>>>>>>> origin/New-FakeMain
     protected $loader;
     protected $xliffFileDumper;
 
@@ -122,26 +126,46 @@ abstract class ProviderFactoryTestCase extends TestCase
 
     protected function getClient(): HttpClientInterface
     {
+<<<<<<< HEAD
         return $this->client ??= new MockHttpClient();
+=======
+        return $this->client ?? $this->client = new MockHttpClient();
+>>>>>>> origin/New-FakeMain
     }
 
     protected function getLogger(): LoggerInterface
     {
+<<<<<<< HEAD
         return $this->logger ??= $this->createMock(LoggerInterface::class);
+=======
+        return $this->logger ?? $this->logger = $this->createMock(LoggerInterface::class);
+>>>>>>> origin/New-FakeMain
     }
 
     protected function getDefaultLocale(): string
     {
+<<<<<<< HEAD
         return $this->defaultLocale ??= 'en';
+=======
+        return $this->defaultLocale ?? $this->defaultLocale = 'en';
+>>>>>>> origin/New-FakeMain
     }
 
     protected function getLoader(): LoaderInterface
     {
+<<<<<<< HEAD
         return $this->loader ??= $this->createMock(LoaderInterface::class);
+=======
+        return $this->loader ?? $this->loader = $this->createMock(LoaderInterface::class);
+>>>>>>> origin/New-FakeMain
     }
 
     protected function getXliffFileDumper(): XliffFileDumper
     {
+<<<<<<< HEAD
         return $this->xliffFileDumper ??= $this->createMock(XliffFileDumper::class);
+=======
+        return $this->xliffFileDumper ?? $this->xliffFileDumper = $this->createMock(XliffFileDumper::class);
+>>>>>>> origin/New-FakeMain
     }
 }

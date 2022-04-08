@@ -68,7 +68,12 @@ class Optional implements ArrayAccess
      * @param  mixed  $key
      * @return bool
      */
+<<<<<<< HEAD
     public function offsetExists($key): bool
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetExists($key)
+>>>>>>> origin/New-FakeMain
     {
         return Arr::accessible($this->value) && Arr::exists($this->value, $key);
     }
@@ -79,7 +84,12 @@ class Optional implements ArrayAccess
      * @param  mixed  $key
      * @return mixed
      */
+<<<<<<< HEAD
     public function offsetGet($key): mixed
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetGet($key)
+>>>>>>> origin/New-FakeMain
     {
         return Arr::get($this->value, $key);
     }
@@ -91,7 +101,12 @@ class Optional implements ArrayAccess
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     public function offsetSet($key, $value): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetSet($key, $value)
+>>>>>>> origin/New-FakeMain
     {
         if (Arr::accessible($this->value)) {
             $this->value[$key] = $value;
@@ -104,7 +119,12 @@ class Optional implements ArrayAccess
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
     public function offsetUnset($key): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetUnset($key)
+>>>>>>> origin/New-FakeMain
     {
         if (Arr::accessible($this->value)) {
             unset($this->value[$key]);

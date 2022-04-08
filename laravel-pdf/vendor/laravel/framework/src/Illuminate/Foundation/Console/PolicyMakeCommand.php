@@ -17,6 +17,7 @@ class PolicyMakeCommand extends GeneratorCommand
     protected $name = 'make:policy';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -28,6 +29,8 @@ class PolicyMakeCommand extends GeneratorCommand
     protected static $defaultName = 'make:policy';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -116,7 +119,11 @@ class PolicyMakeCommand extends GeneratorCommand
     {
         $model = str_replace('/', '\\', $model);
 
+<<<<<<< HEAD
         if (str_starts_with($model, '\\')) {
+=======
+        if (Str::startsWith($model, '\\')) {
+>>>>>>> origin/New-FakeMain
             $namespacedModel = trim($model, '\\');
         } else {
             $namespacedModel = $this->qualifyModel($model);

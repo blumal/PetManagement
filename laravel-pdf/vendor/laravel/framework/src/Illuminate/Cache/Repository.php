@@ -65,7 +65,11 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
     public function has($key): bool
+=======
+    public function has($key)
+>>>>>>> origin/New-FakeMain
     {
         return ! is_null($this->get($key));
     }
@@ -84,11 +88,19 @@ class Repository implements ArrayAccess, CacheContract
     /**
      * Retrieve an item from the cache by key.
      *
+<<<<<<< HEAD
      * @param  array|string  $key
      * @param  mixed  $default
      * @return mixed
      */
     public function get($key, $default = null): mixed
+=======
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function get($key, $default = null)
+>>>>>>> origin/New-FakeMain
     {
         if (is_array($key)) {
             return $this->many($key);
@@ -134,7 +146,11 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return iterable
      */
+<<<<<<< HEAD
     public function getMultiple($keys, $default = null): iterable
+=======
+    public function getMultiple($keys, $default = null)
+>>>>>>> origin/New-FakeMain
     {
         $defaults = [];
 
@@ -189,7 +205,11 @@ class Repository implements ArrayAccess, CacheContract
     /**
      * Store an item in the cache.
      *
+<<<<<<< HEAD
      * @param  array|string  $key
+=======
+     * @param  string  $key
+>>>>>>> origin/New-FakeMain
      * @param  mixed  $value
      * @param  \DateTimeInterface|\DateInterval|int|null  $ttl
      * @return bool
@@ -224,7 +244,11 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function set($key, $value, $ttl = null): bool
+=======
+    public function set($key, $value, $ttl = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->put($key, $value, $ttl);
     }
@@ -283,7 +307,11 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function setMultiple($values, $ttl = null): bool
+=======
+    public function setMultiple($values, $ttl = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->putMany(is_array($values) ? $values : iterator_to_array($values), $ttl);
     }
@@ -448,7 +476,11 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function delete($key): bool
+=======
+    public function delete($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->forget($key);
     }
@@ -458,7 +490,11 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function deleteMultiple($keys): bool
+=======
+    public function deleteMultiple($keys)
+>>>>>>> origin/New-FakeMain
     {
         $result = true;
 
@@ -476,7 +512,11 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function clear(): bool
+=======
+    public function clear()
+>>>>>>> origin/New-FakeMain
     {
         return $this->store->flush();
     }
@@ -583,7 +623,13 @@ class Repository implements ArrayAccess, CacheContract
      */
     protected function event($event)
     {
+<<<<<<< HEAD
         $this->events?->dispatch($event);
+=======
+        if (isset($this->events)) {
+            $this->events->dispatch($event);
+        }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -613,7 +659,12 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
     public function offsetExists($key): bool
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetExists($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->has($key);
     }
@@ -624,7 +675,12 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return mixed
      */
+<<<<<<< HEAD
     public function offsetGet($key): mixed
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetGet($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->get($key);
     }
@@ -636,7 +692,12 @@ class Repository implements ArrayAccess, CacheContract
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     public function offsetSet($key, $value): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetSet($key, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->put($key, $value, $this->default);
     }
@@ -647,7 +708,12 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
     public function offsetUnset($key): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetUnset($key)
+>>>>>>> origin/New-FakeMain
     {
         $this->forget($key);
     }

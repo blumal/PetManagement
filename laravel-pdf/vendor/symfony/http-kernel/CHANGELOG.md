@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 6.0
 ---
 
@@ -10,6 +11,8 @@ CHANGELOG
  * Remove `KernelEvent::isMasterRequest()`, use `isMainRequest()` instead
  * Remove support for `service:action` syntax to reference controllers, use `serviceOrFqcn::method` instead
 
+=======
+>>>>>>> origin/New-FakeMain
 5.4
 ---
 

@@ -30,7 +30,11 @@ use Psr\EventDispatcher\StoppableEventInterface;
  */
 class Event implements StoppableEventInterface
 {
+<<<<<<< HEAD
     private bool $propagationStopped = false;
+=======
+    private $propagationStopped = false;
+>>>>>>> origin/New-FakeMain
 
     /**
      * {@inheritdoc}

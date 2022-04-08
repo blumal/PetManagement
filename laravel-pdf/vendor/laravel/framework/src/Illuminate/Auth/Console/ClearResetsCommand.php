@@ -14,6 +14,7 @@ class ClearResetsCommand extends Command
     protected $signature = 'auth:clear-resets {name? : The name of the password broker}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -25,6 +26,8 @@ class ClearResetsCommand extends Command
     protected static $defaultName = 'auth:clear-resets';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -40,6 +43,10 @@ class ClearResetsCommand extends Command
     {
         $this->laravel['auth.password']->broker($this->argument('name'))->getRepository()->deleteExpired();
 
+<<<<<<< HEAD
         $this->info('Expired reset tokens cleared successfully.');
+=======
+        $this->info('Expired reset tokens cleared!');
+>>>>>>> origin/New-FakeMain
     }
 }

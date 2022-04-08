@@ -34,7 +34,11 @@ class OutputStyle extends SymfonyStyle
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function isQuiet(): bool
+=======
+    public function isQuiet()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isQuiet();
     }
@@ -44,7 +48,11 @@ class OutputStyle extends SymfonyStyle
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function isVerbose(): bool
+=======
+    public function isVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isVerbose();
     }
@@ -54,7 +62,11 @@ class OutputStyle extends SymfonyStyle
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function isVeryVerbose(): bool
+=======
+    public function isVeryVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isVeryVerbose();
     }
@@ -64,7 +76,11 @@ class OutputStyle extends SymfonyStyle
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function isDebug(): bool
+=======
+    public function isDebug()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isDebug();
     }

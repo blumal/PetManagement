@@ -56,7 +56,10 @@ abstract class GeneratorCommand extends Command
         'endif',
         'endswitch',
         'endwhile',
+<<<<<<< HEAD
         'enum',
+=======
+>>>>>>> origin/New-FakeMain
         'eval',
         'exit',
         'extends',
@@ -77,7 +80,10 @@ abstract class GeneratorCommand extends Command
         'interface',
         'isset',
         'list',
+<<<<<<< HEAD
         'match',
+=======
+>>>>>>> origin/New-FakeMain
         'namespace',
         'new',
         'or',
@@ -85,7 +91,10 @@ abstract class GeneratorCommand extends Command
         'private',
         'protected',
         'public',
+<<<<<<< HEAD
         'readonly',
+=======
+>>>>>>> origin/New-FakeMain
         'require',
         'require_once',
         'return',

@@ -8,6 +8,7 @@ use Illuminate\Database\PDO\Concerns\ConnectsToDatabase;
 class PostgresDriver extends AbstractPostgreSQLDriver
 {
     use ConnectsToDatabase;
+<<<<<<< HEAD
 
     /**
      * {@inheritdoc}
@@ -16,4 +17,6 @@ class PostgresDriver extends AbstractPostgreSQLDriver
     {
         return 'pdo_pgsql';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

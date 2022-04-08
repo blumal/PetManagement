@@ -18,7 +18,11 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class Psr6CacheClearer implements CacheClearerInterface
 {
+<<<<<<< HEAD
     private array $pools = [];
+=======
+    private $pools = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param array<string, CacheItemPoolInterface> $pools
@@ -28,15 +32,30 @@ class Psr6CacheClearer implements CacheClearerInterface
         $this->pools = $pools;
     }
 
+<<<<<<< HEAD
     public function hasPool(string $name): bool
+=======
+    /**
+     * @return bool
+     */
+    public function hasPool(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->pools[$name]);
     }
 
     /**
+<<<<<<< HEAD
      * @throws \InvalidArgumentException If the cache pool with the given name does not exist
      */
     public function getPool(string $name): CacheItemPoolInterface
+=======
+     * @return CacheItemPoolInterface
+     *
+     * @throws \InvalidArgumentException If the cache pool with the given name does not exist
+     */
+    public function getPool(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->hasPool($name)) {
             throw new \InvalidArgumentException(sprintf('Cache pool not found: "%s".', $name));
@@ -46,9 +65,17 @@ class Psr6CacheClearer implements CacheClearerInterface
     }
 
     /**
+<<<<<<< HEAD
      * @throws \InvalidArgumentException If the cache pool with the given name does not exist
      */
     public function clearPool(string $name): bool
+=======
+     * @return bool
+     *
+     * @throws \InvalidArgumentException If the cache pool with the given name does not exist
+     */
+    public function clearPool(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->pools[$name])) {
             throw new \InvalidArgumentException(sprintf('Cache pool not found: "%s".', $name));

@@ -79,7 +79,11 @@ class ResourceRegistrar
         // If the resource name contains a slash, we will assume the developer wishes to
         // register these resource routes with a prefix so we will set that up out of
         // the box so they don't have to mess with it. Otherwise, we will continue.
+<<<<<<< HEAD
         if (str_contains($name, '/')) {
+=======
+        if (Str::contains($name, '/')) {
+>>>>>>> origin/New-FakeMain
             $this->prefixedResource($name, $controller, $options);
 
             return;
@@ -351,7 +355,11 @@ class ResourceRegistrar
      */
     public function getResourceUri($resource)
     {
+<<<<<<< HEAD
         if (! str_contains($resource, '.')) {
+=======
+        if (! Str::contains($resource, '.')) {
+>>>>>>> origin/New-FakeMain
             return $resource;
         }
 

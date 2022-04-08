@@ -18,7 +18,11 @@ namespace Symfony\Component\Console\Completion;
  */
 class Suggestion
 {
+<<<<<<< HEAD
     private string $value;
+=======
+    private $value;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $value)
     {

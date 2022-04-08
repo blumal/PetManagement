@@ -18,6 +18,7 @@ class JobMakeCommand extends GeneratorCommand
     protected $name = 'make:job';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -29,6 +30,8 @@ class JobMakeCommand extends GeneratorCommand
     protected static $defaultName = 'make:job';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

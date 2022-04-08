@@ -7,7 +7,10 @@ use Illuminate\Support\Reflector;
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
 use ReflectionParameter;
+<<<<<<< HEAD
 use stdClass;
+=======
+>>>>>>> origin/New-FakeMain
 
 trait RouteDependencyResolverTrait
 {
@@ -43,7 +46,11 @@ trait RouteDependencyResolverTrait
 
         $values = array_values($parameters);
 
+<<<<<<< HEAD
         $skippableValue = new stdClass;
+=======
+        $skippableValue = new \stdClass;
+>>>>>>> origin/New-FakeMain
 
         foreach ($reflector->getParameters() as $key => $parameter) {
             $instance = $this->transformDependency($parameter, $parameters, $skippableValue);

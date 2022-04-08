@@ -3,7 +3,10 @@
 namespace Illuminate\Validation\Concerns;
 
 use Egulias\EmailValidator\EmailLexer;
+<<<<<<< HEAD
 use Egulias\EmailValidator\Result\InvalidEmail;
+=======
+>>>>>>> origin/New-FakeMain
 use Egulias\EmailValidator\Validation\EmailValidation;
 
 class FilterEmailValidation implements EmailValidation
@@ -43,7 +46,11 @@ class FilterEmailValidation implements EmailValidation
      * @param  \Egulias\EmailValidator\EmailLexer  $emailLexer
      * @return bool
      */
+<<<<<<< HEAD
     public function isValid(string $email, EmailLexer $emailLexer): bool
+=======
+    public function isValid($email, EmailLexer $emailLexer)
+>>>>>>> origin/New-FakeMain
     {
         return is_null($this->flags)
                     ? filter_var($email, FILTER_VALIDATE_EMAIL) !== false
@@ -53,11 +60,19 @@ class FilterEmailValidation implements EmailValidation
     /**
      * Returns the validation error.
      *
+<<<<<<< HEAD
      * @return \Egulias\EmailValidator\Result\InvalidEmail|null
      */
     public function getError(): ?InvalidEmail
     {
         return null;
+=======
+     * @return \Egulias\EmailValidator\Exception\InvalidEmail|null
+     */
+    public function getError()
+    {
+        //
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -65,7 +80,11 @@ class FilterEmailValidation implements EmailValidation
      *
      * @return \Egulias\EmailValidator\Warning\Warning[]
      */
+<<<<<<< HEAD
     public function getWarnings(): array
+=======
+    public function getWarnings()
+>>>>>>> origin/New-FakeMain
     {
         return [];
     }

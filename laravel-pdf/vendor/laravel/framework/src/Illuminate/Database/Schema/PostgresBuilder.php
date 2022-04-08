@@ -2,6 +2,7 @@
 
 namespace Illuminate\Database\Schema;
 
+<<<<<<< HEAD
 use Illuminate\Database\Concerns\ParsesSearchPath;
 
 class PostgresBuilder extends Builder
@@ -10,6 +11,10 @@ class PostgresBuilder extends Builder
         parseSearchPath as baseParseSearchPath;
     }
 
+=======
+class PostgresBuilder extends Builder
+{
+>>>>>>> origin/New-FakeMain
     /**
      * Create a database in the schema.
      *
@@ -44,12 +49,20 @@ class PostgresBuilder extends Builder
      */
     public function hasTable($table)
     {
+<<<<<<< HEAD
         [$database, $schema, $table] = $this->parseSchemaAndTable($table);
+=======
+        [$schema, $table] = $this->parseSchemaAndTable($table);
+>>>>>>> origin/New-FakeMain
 
         $table = $this->connection->getTablePrefix().$table;
 
         return count($this->connection->select(
+<<<<<<< HEAD
             $this->grammar->compileTableExists(), [$database, $schema, $table]
+=======
+            $this->grammar->compileTableExists(), [$schema, $table]
+>>>>>>> origin/New-FakeMain
         )) > 0;
     }
 
@@ -62,15 +75,26 @@ class PostgresBuilder extends Builder
     {
         $tables = [];
 
+<<<<<<< HEAD
         $excludedTables = $this->grammar->escapeNames(
             $this->connection->getConfig('dont_drop') ?? ['spatial_ref_sys']
         );
+=======
+        $excludedTables = $this->connection->getConfig('dont_drop') ?? ['spatial_ref_sys'];
+>>>>>>> origin/New-FakeMain
 
         foreach ($this->getAllTables() as $row) {
             $row = (array) $row;
 
+<<<<<<< HEAD
             if (empty(array_intersect($this->grammar->escapeNames($row), $excludedTables))) {
                 $tables[] = $row['qualifiedname'] ?? reset($row);
+=======
+            $table = reset($row);
+
+            if (! in_array($table, $excludedTables)) {
+                $tables[] = $table;
+>>>>>>> origin/New-FakeMain
             }
         }
 
@@ -95,7 +119,11 @@ class PostgresBuilder extends Builder
         foreach ($this->getAllViews() as $row) {
             $row = (array) $row;
 
+<<<<<<< HEAD
             $views[] = $row['qualifiedname'] ?? reset($row);
+=======
+            $views[] = reset($row);
+>>>>>>> origin/New-FakeMain
         }
 
         if (empty($views)) {
@@ -139,11 +167,15 @@ class PostgresBuilder extends Builder
     public function getAllTables()
     {
         return $this->connection->select(
+<<<<<<< HEAD
             $this->grammar->compileGetAllTables(
                 $this->parseSearchPath(
                     $this->connection->getConfig('search_path') ?: $this->connection->getConfig('schema')
                 )
             )
+=======
+            $this->grammar->compileGetAllTables((array) $this->connection->getConfig('schema'))
+>>>>>>> origin/New-FakeMain
         );
     }
 
@@ -155,11 +187,15 @@ class PostgresBuilder extends Builder
     public function getAllViews()
     {
         return $this->connection->select(
+<<<<<<< HEAD
             $this->grammar->compileGetAllViews(
                 $this->parseSearchPath(
                     $this->connection->getConfig('search_path') ?: $this->connection->getConfig('schema')
                 )
             )
+=======
+            $this->grammar->compileGetAllViews((array) $this->connection->getConfig('schema'))
+>>>>>>> origin/New-FakeMain
         );
     }
 
@@ -183,18 +219,27 @@ class PostgresBuilder extends Builder
      */
     public function getColumnListing($table)
     {
+<<<<<<< HEAD
         [$database, $schema, $table] = $this->parseSchemaAndTable($table);
+=======
+        [$schema, $table] = $this->parseSchemaAndTable($table);
+>>>>>>> origin/New-FakeMain
 
         $table = $this->connection->getTablePrefix().$table;
 
         $results = $this->connection->select(
+<<<<<<< HEAD
             $this->grammar->compileColumnListing(), [$database, $schema, $table]
+=======
+            $this->grammar->compileColumnListing(), [$schema, $table]
+>>>>>>> origin/New-FakeMain
         );
 
         return $this->connection->getPostProcessor()->processColumnListing($results);
     }
 
     /**
+<<<<<<< HEAD
      * Parse the database object reference and extract the database, schema, and table.
      *
      * @param  string  $reference
@@ -244,5 +289,25 @@ class PostgresBuilder extends Builder
                 ? $this->connection->getConfig('username')
                 : $schema;
         }, $this->baseParseSearchPath($searchPath));
+=======
+     * Parse the table name and extract the schema and table.
+     *
+     * @param  string  $table
+     * @return array
+     */
+    protected function parseSchemaAndTable($table)
+    {
+        $table = explode('.', $table);
+
+        if (is_array($schema = $this->connection->getConfig('schema'))) {
+            if (in_array($table[0], $schema)) {
+                return [array_shift($table), implode('.', $table)];
+            }
+
+            $schema = head($schema);
+        }
+
+        return [$schema ?: 'public', implode('.', $table)];
+>>>>>>> origin/New-FakeMain
     }
 }

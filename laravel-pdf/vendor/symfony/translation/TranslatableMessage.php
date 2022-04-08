@@ -19,9 +19,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TranslatableMessage implements TranslatableInterface
 {
+<<<<<<< HEAD
     private string $message;
     private array $parameters;
     private ?string $domain;
+=======
+    private $message;
+    private $parameters;
+    private $domain;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $message, array $parameters = [], string $domain = null)
     {

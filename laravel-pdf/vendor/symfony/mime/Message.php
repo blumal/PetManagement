@@ -42,7 +42,11 @@ class Message extends RawMessage
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setBody(AbstractPart $body = null): static
+=======
+    public function setBody(AbstractPart $body = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->body = $body;
 
@@ -57,7 +61,11 @@ class Message extends RawMessage
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setHeaders(Headers $headers): static
+=======
+    public function setHeaders(Headers $headers)
+>>>>>>> origin/New-FakeMain
     {
         $this->headers = $headers;
 

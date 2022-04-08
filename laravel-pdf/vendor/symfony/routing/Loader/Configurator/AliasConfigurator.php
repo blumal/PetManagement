@@ -34,7 +34,11 @@ class AliasConfigurator
      *
      * @throws InvalidArgumentException when the message template is invalid
      */
+<<<<<<< HEAD
     public function deprecate(string $package, string $version, string $message): static
+=======
+    public function deprecate(string $package, string $version, string $message): self
+>>>>>>> origin/New-FakeMain
     {
         $this->alias->setDeprecated($package, $version, $message);
 

@@ -57,7 +57,11 @@ class DatabaseFailedJobProvider implements FailedJobProviderInterface, PrunableF
     {
         $failed_at = Date::now();
 
+<<<<<<< HEAD
         $exception = (string) mb_convert_encoding($exception, 'UTF-8');
+=======
+        $exception = (string) $exception;
+>>>>>>> origin/New-FakeMain
 
         return $this->getTable()->insertGetId(compact(
             'connection', 'queue', 'payload', 'exception', 'failed_at'
@@ -99,6 +103,7 @@ class DatabaseFailedJobProvider implements FailedJobProviderInterface, PrunableF
     /**
      * Flush all of the failed jobs from storage.
      *
+<<<<<<< HEAD
      * @param  int|null  $hours
      * @return void
      */
@@ -107,6 +112,13 @@ class DatabaseFailedJobProvider implements FailedJobProviderInterface, PrunableF
         $this->getTable()->when($hours, function ($query, $hours) {
             $query->where('failed_at', '<=', Date::now()->subHours($hours));
         })->delete();
+=======
+     * @return void
+     */
+    public function flush()
+    {
+        $this->getTable()->delete();
+>>>>>>> origin/New-FakeMain
     }
 
     /**

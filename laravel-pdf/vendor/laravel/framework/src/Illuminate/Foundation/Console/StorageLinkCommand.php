@@ -16,6 +16,7 @@ class StorageLinkCommand extends Command
                 {--force : Recreate existing symbolic links}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -27,6 +28,8 @@ class StorageLinkCommand extends Command
     protected static $defaultName = 'storage:link';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

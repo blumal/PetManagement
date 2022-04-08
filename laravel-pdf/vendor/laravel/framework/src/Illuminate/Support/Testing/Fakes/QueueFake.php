@@ -6,7 +6,10 @@ use BadMethodCallException;
 use Closure;
 use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Queue\QueueManager;
+<<<<<<< HEAD
 use Illuminate\Support\Collection;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Traits\ReflectsClosures;
 use PHPUnit\Framework\Assert as PHPUnit;
 
@@ -15,6 +18,7 @@ class QueueFake extends QueueManager implements Queue
     use ReflectsClosures;
 
     /**
+<<<<<<< HEAD
      * The original queue manager.
      *
      * @var \Illuminate\Contracts\Queue\Queue
@@ -29,6 +33,8 @@ class QueueFake extends QueueManager implements Queue
     protected $jobsToFake;
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * All of the jobs that have been pushed.
      *
      * @var array
@@ -36,6 +42,7 @@ class QueueFake extends QueueManager implements Queue
     protected $jobs = [];
 
     /**
+<<<<<<< HEAD
      * Create a new fake queue instance.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
@@ -52,6 +59,8 @@ class QueueFake extends QueueManager implements Queue
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Assert if a job was pushed based on a truth-test callback.
      *
      * @param  string|\Closure  $job
@@ -310,6 +319,7 @@ class QueueFake extends QueueManager implements Queue
      */
     public function push($job, $data = '', $queue = null)
     {
+<<<<<<< HEAD
         if ($this->shouldFakeJob($job)) {
             $this->jobs[is_object($job) ? get_class($job) : $job][] = [
                 'job' => $job,
@@ -337,6 +347,12 @@ class QueueFake extends QueueManager implements Queue
         return $this->jobsToFake->contains(function ($jobToFake) use ($job) {
             return $job instanceof ((string) $jobToFake);
         });
+=======
+        $this->jobs[is_object($job) ? get_class($job) : $job][] = [
+            'job' => $job,
+            'queue' => $queue,
+        ];
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -353,7 +369,11 @@ class QueueFake extends QueueManager implements Queue
     }
 
     /**
+<<<<<<< HEAD
      * Push a new job onto the queue after (n) seconds.
+=======
+     * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string|object  $job
@@ -380,7 +400,11 @@ class QueueFake extends QueueManager implements Queue
     }
 
     /**
+<<<<<<< HEAD
      * Push a new job onto a specific queue after (n) seconds.
+=======
+     * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  string  $queue
      * @param  \DateTimeInterface|\DateInterval|int  $delay

@@ -136,7 +136,11 @@ class PendingMail
     }
 
     /**
+<<<<<<< HEAD
      * Deliver the queued message after (n) seconds.
+=======
+     * Deliver the queued message after the given delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  \Illuminate\Contracts\Mail\Mailable  $mailable

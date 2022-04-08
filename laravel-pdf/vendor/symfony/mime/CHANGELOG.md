@@ -1,12 +1,15 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 6.0
 ---
 
  * Remove `Address::fromString()`, use `Address::create()` instead
  * Remove `Serializable` interface from `RawMessage`
 
+=======
+>>>>>>> origin/New-FakeMain
 5.2.0
 -----
 

@@ -239,7 +239,11 @@ class Gate implements GateContract
     protected function buildAbilityCallback($ability, $callback)
     {
         return function () use ($ability, $callback) {
+<<<<<<< HEAD
             if (str_contains($callback, '@')) {
+=======
+            if (Str::contains($callback, '@')) {
+>>>>>>> origin/New-FakeMain
                 [$class, $method] = Str::parseCallback($callback);
             } else {
                 $class = $callback;
@@ -575,7 +579,11 @@ class Gate implements GateContract
 
             $afterResult = $after($user, $ability, $result, $arguments);
 
+<<<<<<< HEAD
             $result ??= $afterResult;
+=======
+            $result = $result ?? $afterResult;
+>>>>>>> origin/New-FakeMain
         }
 
         return $result;
@@ -808,7 +816,11 @@ class Gate implements GateContract
      */
     protected function formatAbilityToMethod($ability)
     {
+<<<<<<< HEAD
         return str_contains($ability, '-') ? Str::camel($ability) : $ability;
+=======
+        return strpos($ability, '-') !== false ? Str::camel($ability) : $ability;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

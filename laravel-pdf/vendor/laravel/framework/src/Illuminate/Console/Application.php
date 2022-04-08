@@ -15,7 +15,10 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\ArrayInput;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputDefinition;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
@@ -33,6 +36,7 @@ class Application extends SymfonyApplication implements ApplicationContract
     protected $laravel;
 
     /**
+<<<<<<< HEAD
      * The event dispatcher instance.
      *
      * @var \Illuminate\Contracts\Events\Dispatcher
@@ -40,6 +44,8 @@ class Application extends SymfonyApplication implements ApplicationContract
     protected $events;
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The output from the previous command.
      *
      * @var \Symfony\Component\Console\Output\BufferedOutput
@@ -54,11 +60,19 @@ class Application extends SymfonyApplication implements ApplicationContract
     protected static $bootstrappers = [];
 
     /**
+<<<<<<< HEAD
      * A map of command names to classes.
      *
      * @var array
      */
     protected $commandMap = [];
+=======
+     * The Event Dispatcher.
+     *
+     * @var \Illuminate\Contracts\Events\Dispatcher
+     */
+    protected $events;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Create a new Artisan console application.
@@ -87,7 +101,11 @@ class Application extends SymfonyApplication implements ApplicationContract
      *
      * @return int
      */
+<<<<<<< HEAD
     public function run(InputInterface $input = null, OutputInterface $output = null): int
+=======
+    public function run(InputInterface $input = null, OutputInterface $output = null)
+>>>>>>> origin/New-FakeMain
     {
         $commandName = $this->getCommandName(
             $input = $input ?: new ArgvInput
@@ -263,6 +281,7 @@ class Application extends SymfonyApplication implements ApplicationContract
      * Add a command, resolving through the application.
      *
      * @param  string  $command
+<<<<<<< HEAD
      * @return \Symfony\Component\Console\Command\Command|null
      */
     public function resolve($command)
@@ -273,6 +292,12 @@ class Application extends SymfonyApplication implements ApplicationContract
             return null;
         }
 
+=======
+     * @return \Symfony\Component\Console\Command\Command
+     */
+    public function resolve($command)
+    {
+>>>>>>> origin/New-FakeMain
         return $this->add($this->laravel->make($command));
     }
 
@@ -294,6 +319,7 @@ class Application extends SymfonyApplication implements ApplicationContract
     }
 
     /**
+<<<<<<< HEAD
      * Set the container command loader for lazy resolution.
      *
      * @return $this
@@ -306,13 +332,19 @@ class Application extends SymfonyApplication implements ApplicationContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the default input definition for the application.
      *
      * This is used to add the --env option to every available command.
      *
      * @return \Symfony\Component\Console\Input\InputDefinition
      */
+<<<<<<< HEAD
     protected function getDefaultInputDefinition(): InputDefinition
+=======
+    protected function getDefaultInputDefinition()
+>>>>>>> origin/New-FakeMain
     {
         return tap(parent::getDefaultInputDefinition(), function ($definition) {
             $definition->addOption($this->getEnvironmentOption());

@@ -216,7 +216,11 @@ class ComponentTagCompiler
             return [Str::camel($key) => $value];
         });
 
+<<<<<<< HEAD
         // If the component doesn't exist as a class, we'll assume it's a class-less
+=======
+        // If the component doesn't exists as a class we'll assume it's a class-less
+>>>>>>> origin/New-FakeMain
         // component and pass the component as a view parameter to the data so it
         // can be accessed within the component and we can render out the view.
         if (! class_exists($class)) {
@@ -231,9 +235,12 @@ class ComponentTagCompiler
         }
 
         return "##BEGIN-COMPONENT-CLASS##@component('{$class}', '{$component}', [".$this->attributesToString($parameters, $escapeBound = false).'])
+<<<<<<< HEAD
 <?php if (isset($attributes) && $constructor = (new ReflectionClass('.$class.'::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
+=======
+>>>>>>> origin/New-FakeMain
 <?php $component->withAttributes(['.$this->attributesToString($attributes->all(), $escapeAttributes = $class !== DynamicComponent::class).']); ?>';
     }
 
@@ -296,7 +303,11 @@ class ComponentTagCompiler
 
         $prefix = $segments[0];
 
+<<<<<<< HEAD
         if (! isset($this->namespaces[$prefix], $segments[1])) {
+=======
+        if (! isset($this->namespaces[$prefix]) || ! isset($segments[1])) {
+>>>>>>> origin/New-FakeMain
             return;
         }
 
@@ -349,7 +360,11 @@ class ComponentTagCompiler
 
         $delimiter = ViewFinderInterface::HINT_PATH_DELIMITER;
 
+<<<<<<< HEAD
         if (str_contains($name, $delimiter)) {
+=======
+        if (Str::contains($name, $delimiter)) {
+>>>>>>> origin/New-FakeMain
             return Str::replaceFirst($delimiter, $delimiter.$prefix, $name);
         }
 
@@ -365,7 +380,11 @@ class ComponentTagCompiler
      */
     public function partitionDataAndAttributes($class, array $attributes)
     {
+<<<<<<< HEAD
         // If the class doesn't exist, we'll assume it is a class-less component and
+=======
+        // If the class doesn't exists, we'll assume it's a class-less component and
+>>>>>>> origin/New-FakeMain
         // return all of the attributes as both data and attributes since we have
         // now way to partition them. The user can exclude attributes manually.
         if (! class_exists($class)) {
@@ -406,8 +425,13 @@ class ComponentTagCompiler
             <
                 \s*
                 x[\-\:]slot
+<<<<<<< HEAD
                 (?:\:(?<inlineName>\w+))?
                 (?:\s+(:?)name=(?<name>(\"[^\"]+\"|\\\'[^\\\']+\\\'|[^\s>]+)))?
+=======
+                \s+
+                (:?)name=(?<name>(\"[^\"]+\"|\\\'[^\\\']+\\\'|[^\s>]+))
+>>>>>>> origin/New-FakeMain
                 (?<attributes>
                     (?:
                         \s+
@@ -438,9 +462,15 @@ class ComponentTagCompiler
         /x";
 
         $value = preg_replace_callback($pattern, function ($matches) {
+<<<<<<< HEAD
             $name = $this->stripQuotes($matches['inlineName'] ?: $matches['name']);
 
             if ($matches[2] !== ':') {
+=======
+            $name = $this->stripQuotes($matches['name']);
+
+            if ($matches[1] !== ':') {
+>>>>>>> origin/New-FakeMain
                 $name = "'{$name}'";
             }
 
@@ -498,7 +528,11 @@ class ComponentTagCompiler
 
             $value = $this->stripQuotes($value);
 
+<<<<<<< HEAD
             if (str_starts_with($attribute, 'bind:')) {
+=======
+            if (Str::startsWith($attribute, 'bind:')) {
+>>>>>>> origin/New-FakeMain
                 $attribute = Str::after($attribute, 'bind:');
 
                 $this->boundAttributes[$attribute] = true;
@@ -506,7 +540,11 @@ class ComponentTagCompiler
                 $value = "'".$this->compileAttributeEchos($value)."'";
             }
 
+<<<<<<< HEAD
             if (str_starts_with($attribute, '::')) {
+=======
+            if (Str::startsWith($attribute, '::')) {
+>>>>>>> origin/New-FakeMain
                 $attribute = substr($attribute, 1);
             }
 

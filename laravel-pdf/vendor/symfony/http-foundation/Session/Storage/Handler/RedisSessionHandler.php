@@ -26,6 +26,7 @@ class RedisSessionHandler extends AbstractSessionHandler
     private $redis;
 
     /**
+<<<<<<< HEAD
      * Key prefix for shared environments.
      */
     private string $prefix;
@@ -34,16 +35,46 @@ class RedisSessionHandler extends AbstractSessionHandler
      * Time to live in seconds.
      */
     private ?int $ttl;
+=======
+     * @var string Key prefix for shared environments
+     */
+    private $prefix;
+
+    /**
+     * @var int Time to live in seconds
+     */
+    private $ttl;
+>>>>>>> origin/New-FakeMain
 
     /**
      * List of available options:
      *  * prefix: The prefix to use for the keys in order to avoid collision on the Redis server
      *  * ttl: The time to live in seconds.
      *
+<<<<<<< HEAD
      * @throws \InvalidArgumentException When unsupported client or options are passed
      */
     public function __construct(\Redis|\RedisArray|\RedisCluster|\Predis\ClientInterface|RedisProxy|RedisClusterProxy $redis, array $options = [])
     {
+=======
+     * @param \Redis|\RedisArray|\RedisCluster|\Predis\ClientInterface|RedisProxy|RedisClusterProxy $redis
+     *
+     * @throws \InvalidArgumentException When unsupported client or options are passed
+     */
+    public function __construct($redis, array $options = [])
+    {
+        if (
+            !$redis instanceof \Redis &&
+            !$redis instanceof \RedisArray &&
+            !$redis instanceof \RedisCluster &&
+            !$redis instanceof \Predis\ClientInterface &&
+            !$redis instanceof RedisProxy &&
+            !$redis instanceof RedisClusterProxy
+        ) {
+            throw new \InvalidArgumentException(sprintf('"%s()" expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\ClientInterface, "%s" given.', __METHOD__, get_debug_type($redis)));
+        }
+
+>>>>>>> origin/New-FakeMain
         if ($diff = array_diff(array_keys($options), ['prefix', 'ttl'])) {
             throw new \InvalidArgumentException(sprintf('The following options are not supported "%s".', implode(', ', $diff)));
         }
@@ -102,13 +133,33 @@ class RedisSessionHandler extends AbstractSessionHandler
         return true;
     }
 
+<<<<<<< HEAD
     public function gc(int $maxlifetime): int|false
+=======
+    /**
+     * {@inheritdoc}
+     *
+     * @return int|false
+     */
+    #[\ReturnTypeWillChange]
+    public function gc($maxlifetime)
+>>>>>>> origin/New-FakeMain
     {
         return 0;
     }
 
+<<<<<<< HEAD
     public function updateTimestamp(string $sessionId, string $data): bool
     {
         return $this->redis->expire($this->prefix.$sessionId, (int) ($this->ttl ?? ini_get('session.gc_maxlifetime')));
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function updateTimestamp($sessionId, $data)
+    {
+        return (bool) $this->redis->expire($this->prefix.$sessionId, (int) ($this->ttl ?? ini_get('session.gc_maxlifetime')));
+>>>>>>> origin/New-FakeMain
     }
 }

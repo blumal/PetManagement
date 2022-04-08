@@ -40,7 +40,11 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function trans(?string $id, array $parameters = [], string $domain = null, string $locale = null): string
+=======
+    public function trans(?string $id, array $parameters = [], string $domain = null, string $locale = null)
+>>>>>>> origin/New-FakeMain
     {
         $trans = $this->translator->trans($id = (string) $id, $parameters, $domain, $locale);
         $this->log($id, $domain, $locale);
@@ -65,7 +69,11 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getLocale(): string
+=======
+    public function getLocale()
+>>>>>>> origin/New-FakeMain
     {
         return $this->translator->getLocale();
     }
@@ -73,7 +81,11 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getCatalogue(string $locale = null): MessageCatalogueInterface
+=======
+    public function getCatalogue(string $locale = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->translator->getCatalogue($locale);
     }
@@ -88,8 +100,15 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
 
     /**
      * Gets the fallback locales.
+<<<<<<< HEAD
      */
     public function getFallbackLocales(): array
+=======
+     *
+     * @return array
+     */
+    public function getFallbackLocales()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->translator instanceof Translator || method_exists($this->translator, 'getFallbackLocales')) {
             return $this->translator->getFallbackLocales();

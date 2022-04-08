@@ -140,7 +140,11 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException When proc_open is not installed
      */
+<<<<<<< HEAD
     public function __construct(array $command, string $cwd = null, array $env = null, mixed $input = null, ?float $timeout = 60)
+=======
+    public function __construct(array $command, string $cwd = null, array $env = null, $input = null, ?float $timeout = 60)
+>>>>>>> origin/New-FakeMain
     {
         if (!\function_exists('proc_open')) {
             throw new LogicException('The Process class relies on proc_open, which is not available on your PHP installation.');
@@ -185,9 +189,17 @@ class Process implements \IteratorAggregate
      * @param mixed          $input   The input as stream resource, scalar or \Traversable, or null for no input
      * @param int|float|null $timeout The timeout in seconds or null to disable
      *
+<<<<<<< HEAD
      * @throws LogicException When proc_open is not installed
      */
     public static function fromShellCommandline(string $command, string $cwd = null, array $env = null, mixed $input = null, ?float $timeout = 60): static
+=======
+     * @return static
+     *
+     * @throws LogicException When proc_open is not installed
+     */
+    public static function fromShellCommandline(string $command, string $cwd = null, array $env = null, $input = null, ?float $timeout = 60)
+>>>>>>> origin/New-FakeMain
     {
         $process = new static([], $cwd, $env, $input, $timeout);
         $process->commandline = $command;
@@ -195,7 +207,14 @@ class Process implements \IteratorAggregate
         return $process;
     }
 
+<<<<<<< HEAD
     public function __sleep(): array
+=======
+    /**
+     * @return array
+     */
+    public function __sleep()
+>>>>>>> origin/New-FakeMain
     {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
@@ -261,7 +280,11 @@ class Process implements \IteratorAggregate
      *
      * @final
      */
+<<<<<<< HEAD
     public function mustRun(callable $callback = null, array $env = []): static
+=======
+    public function mustRun(callable $callback = null, array $env = []): self
+>>>>>>> origin/New-FakeMain
     {
         if (0 !== $this->run($callback, $env)) {
             throw new ProcessFailedException($this);
@@ -371,6 +394,11 @@ class Process implements \IteratorAggregate
      * @param callable|null $callback A PHP callback to run whenever there is some
      *                                output available on STDOUT or STDERR
      *
+<<<<<<< HEAD
+=======
+     * @return static
+     *
+>>>>>>> origin/New-FakeMain
      * @throws RuntimeException When process can't be launched
      * @throws RuntimeException When process is already running
      *
@@ -378,7 +406,11 @@ class Process implements \IteratorAggregate
      *
      * @final
      */
+<<<<<<< HEAD
     public function restart(callable $callback = null, array $env = []): static
+=======
+    public function restart(callable $callback = null, array $env = []): self
+>>>>>>> origin/New-FakeMain
     {
         if ($this->isRunning()) {
             throw new RuntimeException('Process is already running.');
@@ -405,7 +437,11 @@ class Process implements \IteratorAggregate
      * @throws ProcessSignaledException When process stopped after receiving signal
      * @throws LogicException           When process is not yet started
      */
+<<<<<<< HEAD
     public function wait(callable $callback = null): int
+=======
+    public function wait(callable $callback = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->requireProcessIsStarted(__FUNCTION__);
 
@@ -488,7 +524,11 @@ class Process implements \IteratorAggregate
      *
      * @return int|null The process id if running, null otherwise
      */
+<<<<<<< HEAD
     public function getPid(): ?int
+=======
+    public function getPid()
+>>>>>>> origin/New-FakeMain
     {
         return $this->isRunning() ? $this->processInformation['pid'] : null;
     }
@@ -504,7 +544,11 @@ class Process implements \IteratorAggregate
      * @throws RuntimeException In case --enable-sigchild is activated and the process can't be killed
      * @throws RuntimeException In case of failure
      */
+<<<<<<< HEAD
     public function signal(int $signal): static
+=======
+    public function signal(int $signal)
+>>>>>>> origin/New-FakeMain
     {
         $this->doSignal($signal, true);
 
@@ -519,7 +563,11 @@ class Process implements \IteratorAggregate
      * @throws RuntimeException In case the process is already running
      * @throws LogicException   if an idle timeout is set
      */
+<<<<<<< HEAD
     public function disableOutput(): static
+=======
+    public function disableOutput()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->isRunning()) {
             throw new RuntimeException('Disabling output while the process is running is not possible.');
@@ -540,7 +588,11 @@ class Process implements \IteratorAggregate
      *
      * @throws RuntimeException In case the process is already running
      */
+<<<<<<< HEAD
     public function enableOutput(): static
+=======
+    public function enableOutput()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->isRunning()) {
             throw new RuntimeException('Enabling output while the process is running is not possible.');
@@ -553,8 +605,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Returns true in case the output is disabled, false otherwise.
+<<<<<<< HEAD
      */
     public function isOutputDisabled(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isOutputDisabled()
+>>>>>>> origin/New-FakeMain
     {
         return $this->outputDisabled;
     }
@@ -562,10 +621,19 @@ class Process implements \IteratorAggregate
     /**
      * Returns the current output of the process (STDOUT).
      *
+<<<<<<< HEAD
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
     public function getOutput(): string
+=======
+     * @return string
+     *
+     * @throws LogicException in case the output has been disabled
+     * @throws LogicException In case the process is not started
+     */
+    public function getOutput()
+>>>>>>> origin/New-FakeMain
     {
         $this->readPipesForOutput(__FUNCTION__);
 
@@ -582,10 +650,19 @@ class Process implements \IteratorAggregate
      * In comparison with the getOutput method which always return the whole
      * output, this one returns the new output since the last call.
      *
+<<<<<<< HEAD
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
     public function getIncrementalOutput(): string
+=======
+     * @return string
+     *
+     * @throws LogicException in case the output has been disabled
+     * @throws LogicException In case the process is not started
+     */
+    public function getIncrementalOutput()
+>>>>>>> origin/New-FakeMain
     {
         $this->readPipesForOutput(__FUNCTION__);
 
@@ -606,8 +683,16 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
+<<<<<<< HEAD
      */
     public function getIterator(int $flags = 0): \Generator
+=======
+     *
+     * @return \Generator<string, string>
+     */
+    #[\ReturnTypeWillChange]
+    public function getIterator(int $flags = 0)
+>>>>>>> origin/New-FakeMain
     {
         $this->readPipesForOutput(__FUNCTION__, false);
 
@@ -659,7 +744,11 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function clearOutput(): static
+=======
+    public function clearOutput()
+>>>>>>> origin/New-FakeMain
     {
         ftruncate($this->stdout, 0);
         fseek($this->stdout, 0);
@@ -671,10 +760,19 @@ class Process implements \IteratorAggregate
     /**
      * Returns the current error output of the process (STDERR).
      *
+<<<<<<< HEAD
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
     public function getErrorOutput(): string
+=======
+     * @return string
+     *
+     * @throws LogicException in case the output has been disabled
+     * @throws LogicException In case the process is not started
+     */
+    public function getErrorOutput()
+>>>>>>> origin/New-FakeMain
     {
         $this->readPipesForOutput(__FUNCTION__);
 
@@ -692,10 +790,19 @@ class Process implements \IteratorAggregate
      * whole error output, this one returns the new error output since the last
      * call.
      *
+<<<<<<< HEAD
      * @throws LogicException in case the output has been disabled
      * @throws LogicException In case the process is not started
      */
     public function getIncrementalErrorOutput(): string
+=======
+     * @return string
+     *
+     * @throws LogicException in case the output has been disabled
+     * @throws LogicException In case the process is not started
+     */
+    public function getIncrementalErrorOutput()
+>>>>>>> origin/New-FakeMain
     {
         $this->readPipesForOutput(__FUNCTION__);
 
@@ -714,7 +821,11 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function clearErrorOutput(): static
+=======
+    public function clearErrorOutput()
+>>>>>>> origin/New-FakeMain
     {
         ftruncate($this->stderr, 0);
         fseek($this->stderr, 0);
@@ -728,7 +839,11 @@ class Process implements \IteratorAggregate
      *
      * @return int|null The exit status code, null if the Process is not terminated
      */
+<<<<<<< HEAD
     public function getExitCode(): ?int
+=======
+    public function getExitCode()
+>>>>>>> origin/New-FakeMain
     {
         $this->updateStatus(false);
 
@@ -746,7 +861,11 @@ class Process implements \IteratorAggregate
      * @see http://tldp.org/LDP/abs/html/exitcodes.html
      * @see http://en.wikipedia.org/wiki/Unix_signal
      */
+<<<<<<< HEAD
     public function getExitCodeText(): ?string
+=======
+    public function getExitCodeText()
+>>>>>>> origin/New-FakeMain
     {
         if (null === $exitcode = $this->getExitCode()) {
             return null;
@@ -757,8 +876,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Checks if the process ended successfully.
+<<<<<<< HEAD
      */
     public function isSuccessful(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isSuccessful()
+>>>>>>> origin/New-FakeMain
     {
         return 0 === $this->getExitCode();
     }
@@ -768,9 +894,17 @@ class Process implements \IteratorAggregate
      *
      * It always returns false on Windows.
      *
+<<<<<<< HEAD
      * @throws LogicException In case the process is not terminated
      */
     public function hasBeenSignaled(): bool
+=======
+     * @return bool
+     *
+     * @throws LogicException In case the process is not terminated
+     */
+    public function hasBeenSignaled()
+>>>>>>> origin/New-FakeMain
     {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
@@ -782,10 +916,19 @@ class Process implements \IteratorAggregate
      *
      * It is only meaningful if hasBeenSignaled() returns true.
      *
+<<<<<<< HEAD
      * @throws RuntimeException In case --enable-sigchild is activated
      * @throws LogicException   In case the process is not terminated
      */
     public function getTermSignal(): int
+=======
+     * @return int
+     *
+     * @throws RuntimeException In case --enable-sigchild is activated
+     * @throws LogicException   In case the process is not terminated
+     */
+    public function getTermSignal()
+>>>>>>> origin/New-FakeMain
     {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
@@ -801,9 +944,17 @@ class Process implements \IteratorAggregate
      *
      * It always returns false on Windows.
      *
+<<<<<<< HEAD
      * @throws LogicException In case the process is not terminated
      */
     public function hasBeenStopped(): bool
+=======
+     * @return bool
+     *
+     * @throws LogicException In case the process is not terminated
+     */
+    public function hasBeenStopped()
+>>>>>>> origin/New-FakeMain
     {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
@@ -815,9 +966,17 @@ class Process implements \IteratorAggregate
      *
      * It is only meaningful if hasBeenStopped() returns true.
      *
+<<<<<<< HEAD
      * @throws LogicException In case the process is not terminated
      */
     public function getStopSignal(): int
+=======
+     * @return int
+     *
+     * @throws LogicException In case the process is not terminated
+     */
+    public function getStopSignal()
+>>>>>>> origin/New-FakeMain
     {
         $this->requireProcessIsTerminated(__FUNCTION__);
 
@@ -826,8 +985,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Checks if the process is currently running.
+<<<<<<< HEAD
      */
     public function isRunning(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isRunning()
+>>>>>>> origin/New-FakeMain
     {
         if (self::STATUS_STARTED !== $this->status) {
             return false;
@@ -840,16 +1006,30 @@ class Process implements \IteratorAggregate
 
     /**
      * Checks if the process has been started with no regard to the current state.
+<<<<<<< HEAD
      */
     public function isStarted(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isStarted()
+>>>>>>> origin/New-FakeMain
     {
         return self::STATUS_READY != $this->status;
     }
 
     /**
      * Checks if the process is terminated.
+<<<<<<< HEAD
      */
     public function isTerminated(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isTerminated()
+>>>>>>> origin/New-FakeMain
     {
         $this->updateStatus(false);
 
@@ -860,8 +1040,15 @@ class Process implements \IteratorAggregate
      * Gets the process status.
      *
      * The status is one of: ready, started, terminated.
+<<<<<<< HEAD
      */
     public function getStatus(): string
+=======
+     *
+     * @return string
+     */
+    public function getStatus()
+>>>>>>> origin/New-FakeMain
     {
         $this->updateStatus(false);
 
@@ -876,7 +1063,11 @@ class Process implements \IteratorAggregate
      *
      * @return int|null The exit-code of the process or null if it's not running
      */
+<<<<<<< HEAD
     public function stop(float $timeout = 10, int $signal = null): ?int
+=======
+    public function stop(float $timeout = 10, int $signal = null)
+>>>>>>> origin/New-FakeMain
     {
         $timeoutMicro = microtime(true) + $timeout;
         if ($this->isRunning()) {
@@ -943,24 +1134,45 @@ class Process implements \IteratorAggregate
 
     /**
      * Gets the command line to be executed.
+<<<<<<< HEAD
      */
     public function getCommandLine(): string
+=======
+     *
+     * @return string
+     */
+    public function getCommandLine()
+>>>>>>> origin/New-FakeMain
     {
         return \is_array($this->commandline) ? implode(' ', array_map([$this, 'escapeArgument'], $this->commandline)) : $this->commandline;
     }
 
     /**
      * Gets the process timeout in seconds (max. runtime).
+<<<<<<< HEAD
      */
     public function getTimeout(): ?float
+=======
+     *
+     * @return float|null
+     */
+    public function getTimeout()
+>>>>>>> origin/New-FakeMain
     {
         return $this->timeout;
     }
 
     /**
      * Gets the process idle timeout in seconds (max. time since last output).
+<<<<<<< HEAD
      */
     public function getIdleTimeout(): ?float
+=======
+     *
+     * @return float|null
+     */
+    public function getIdleTimeout()
+>>>>>>> origin/New-FakeMain
     {
         return $this->idleTimeout;
     }
@@ -974,7 +1186,11 @@ class Process implements \IteratorAggregate
      *
      * @throws InvalidArgumentException if the timeout is negative
      */
+<<<<<<< HEAD
     public function setTimeout(?float $timeout): static
+=======
+    public function setTimeout(?float $timeout)
+>>>>>>> origin/New-FakeMain
     {
         $this->timeout = $this->validateTimeout($timeout);
 
@@ -991,7 +1207,11 @@ class Process implements \IteratorAggregate
      * @throws LogicException           if the output is disabled
      * @throws InvalidArgumentException if the timeout is negative
      */
+<<<<<<< HEAD
     public function setIdleTimeout(?float $timeout): static
+=======
+    public function setIdleTimeout(?float $timeout)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $timeout && $this->outputDisabled) {
             throw new LogicException('Idle timeout cannot be set while the output is disabled.');
@@ -1009,7 +1229,11 @@ class Process implements \IteratorAggregate
      *
      * @throws RuntimeException In case the TTY mode is not supported
      */
+<<<<<<< HEAD
     public function setTty(bool $tty): static
+=======
+    public function setTty(bool $tty)
+>>>>>>> origin/New-FakeMain
     {
         if ('\\' === \DIRECTORY_SEPARATOR && $tty) {
             throw new RuntimeException('TTY mode is not supported on Windows platform.');
@@ -1026,8 +1250,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Checks if the TTY mode is enabled.
+<<<<<<< HEAD
      */
     public function isTty(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isTty()
+>>>>>>> origin/New-FakeMain
     {
         return $this->tty;
     }
@@ -1037,7 +1268,11 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setPty(bool $bool): static
+=======
+    public function setPty(bool $bool)
+>>>>>>> origin/New-FakeMain
     {
         $this->pty = $bool;
 
@@ -1046,16 +1281,30 @@ class Process implements \IteratorAggregate
 
     /**
      * Returns PTY state.
+<<<<<<< HEAD
      */
     public function isPty(): bool
+=======
+     *
+     * @return bool
+     */
+    public function isPty()
+>>>>>>> origin/New-FakeMain
     {
         return $this->pty;
     }
 
     /**
      * Gets the working directory.
+<<<<<<< HEAD
      */
     public function getWorkingDirectory(): ?string
+=======
+     *
+     * @return string|null
+     */
+    public function getWorkingDirectory()
+>>>>>>> origin/New-FakeMain
     {
         if (null === $this->cwd) {
             // getcwd() will return false if any one of the parent directories does not have
@@ -1071,7 +1320,11 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setWorkingDirectory(string $cwd): static
+=======
+    public function setWorkingDirectory(string $cwd)
+>>>>>>> origin/New-FakeMain
     {
         $this->cwd = $cwd;
 
@@ -1080,8 +1333,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Gets the environment variables.
+<<<<<<< HEAD
      */
     public function getEnv(): array
+=======
+     *
+     * @return array
+     */
+    public function getEnv()
+>>>>>>> origin/New-FakeMain
     {
         return $this->env;
     }
@@ -1093,7 +1353,11 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setEnv(array $env): static
+=======
+    public function setEnv(array $env)
+>>>>>>> origin/New-FakeMain
     {
         $this->env = $env;
 
@@ -1121,7 +1385,11 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException In case the process is running
      */
+<<<<<<< HEAD
     public function setInput(mixed $input): static
+=======
+    public function setInput($input)
+>>>>>>> origin/New-FakeMain
     {
         if ($this->isRunning()) {
             throw new LogicException('Input cannot be set while the process is running.');
@@ -1213,8 +1481,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Returns whether PTY is supported on the current operating system.
+<<<<<<< HEAD
      */
     public static function isPtySupported(): bool
+=======
+     *
+     * @return bool
+     */
+    public static function isPtySupported()
+>>>>>>> origin/New-FakeMain
     {
         static $result;
 
@@ -1253,8 +1528,15 @@ class Process implements \IteratorAggregate
      * the user callback (if present) with the received output.
      *
      * @param callable|null $callback The user defined PHP callback
+<<<<<<< HEAD
      */
     protected function buildCallback(callable $callback = null): \Closure
+=======
+     *
+     * @return \Closure
+     */
+    protected function buildCallback(callable $callback = null)
+>>>>>>> origin/New-FakeMain
     {
         if ($this->outputDisabled) {
             return function ($type, $data) use ($callback): bool {
@@ -1302,8 +1584,15 @@ class Process implements \IteratorAggregate
 
     /**
      * Returns whether PHP has been compiled with the '--enable-sigchild' option or not.
+<<<<<<< HEAD
      */
     protected function isSigchildEnabled(): bool
+=======
+     *
+     * @return bool
+     */
+    protected function isSigchildEnabled()
+>>>>>>> origin/New-FakeMain
     {
         if (null !== self::$sigchild) {
             return self::$sigchild;

@@ -4,7 +4,10 @@ namespace Illuminate\Database;
 
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Traits\Macroable;
+<<<<<<< HEAD
 use RuntimeException;
+=======
+>>>>>>> origin/New-FakeMain
 
 abstract class Grammar
 {
@@ -63,6 +66,7 @@ abstract class Grammar
             return $this->wrapAliasedValue($value, $prefixAlias);
         }
 
+<<<<<<< HEAD
         // If the given value is a JSON selector we will wrap it differently than a
         // traditional value. We will need to split this path and wrap each part
         // wrapped, etc. Otherwise, we will simply wrap the value as a string.
@@ -70,6 +74,8 @@ abstract class Grammar
             return $this->wrapJsonSelector($value);
         }
 
+=======
+>>>>>>> origin/New-FakeMain
         return $this->wrapSegments(explode('.', $value));
     }
 
@@ -125,6 +131,7 @@ abstract class Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Wrap the given JSON selector.
      *
      * @param  string  $value
@@ -149,6 +156,8 @@ abstract class Grammar
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Convert an array of column names into a delimited string.
      *
      * @param  array  $columns

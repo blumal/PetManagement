@@ -14,6 +14,7 @@ class OptimizeCommand extends Command
     protected $name = 'optimize';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -25,6 +26,8 @@ class OptimizeCommand extends Command
     protected static $defaultName = 'optimize';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -41,6 +44,10 @@ class OptimizeCommand extends Command
         $this->call('config:cache');
         $this->call('route:cache');
 
+<<<<<<< HEAD
         $this->info('Files cached successfully.');
+=======
+        $this->info('Files cached successfully!');
+>>>>>>> origin/New-FakeMain
     }
 }

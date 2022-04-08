@@ -76,14 +76,26 @@ class EncryptCookies
     protected function decrypt(Request $request)
     {
         foreach ($request->cookies as $key => $cookie) {
+<<<<<<< HEAD
             if ($this->isDisabled($key)) {
+=======
+            if ($this->isDisabled($key) || is_array($cookie)) {
+>>>>>>> origin/New-FakeMain
                 continue;
             }
 
             try {
                 $value = $this->decryptCookie($key, $cookie);
 
+<<<<<<< HEAD
                 $request->cookies->set($key, $this->validateValue($key, $value));
+=======
+                $hasValidPrefix = strpos($value, CookieValuePrefix::create($key, $this->encrypter->getKey())) === 0;
+
+                $request->cookies->set(
+                    $key, $hasValidPrefix ? CookieValuePrefix::remove($value) : null
+                );
+>>>>>>> origin/New-FakeMain
             } catch (DecryptException $e) {
                 $request->cookies->set($key, null);
             }
@@ -93,6 +105,7 @@ class EncryptCookies
     }
 
     /**
+<<<<<<< HEAD
      * Validate and remove the cookie value prefix from the value.
      *
      * @param  string  $key
@@ -125,6 +138,8 @@ class EncryptCookies
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Decrypt the given cookie and return the value.
      *
      * @param  string  $name
@@ -152,10 +167,13 @@ class EncryptCookies
             if (is_string($value)) {
                 $decrypted[$key] = $this->encrypter->decrypt($value, static::serialized($key));
             }
+<<<<<<< HEAD
 
             if (is_array($value)) {
                 $decrypted[$key] = $this->decryptArray($value);
             }
+=======
+>>>>>>> origin/New-FakeMain
         }
 
         return $decrypted;

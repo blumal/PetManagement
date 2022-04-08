@@ -6,12 +6,23 @@
 
         <title>@yield('title')</title>
 
+<<<<<<< HEAD
+=======
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+>>>>>>> origin/New-FakeMain
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
+<<<<<<< HEAD
                 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+=======
+                font-family: 'Nunito', sans-serif;
+>>>>>>> origin/New-FakeMain
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;

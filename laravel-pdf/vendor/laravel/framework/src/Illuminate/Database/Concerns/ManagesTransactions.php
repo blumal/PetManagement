@@ -31,7 +31,11 @@ trait ManagesTransactions
 
             // If we catch an exception we'll rollback this transaction and try again if we
             // are not out of attempts. If we are out of attempts we will just throw the
+<<<<<<< HEAD
             // exception back out, and let the developer handle an uncaught exception.
+=======
+            // exception back out and let the developer handle an uncaught exceptions.
+>>>>>>> origin/New-FakeMain
             catch (Throwable $e) {
                 $this->handleTransactionException(
                     $e, $currentAttempt, $attempts
@@ -48,7 +52,11 @@ trait ManagesTransactions
                 $this->transactions = max(0, $this->transactions - 1);
 
                 if ($this->transactions == 0) {
+<<<<<<< HEAD
                     $this->transactionsManager?->commit($this->getName());
+=======
+                    optional($this->transactionsManager)->commit($this->getName());
+>>>>>>> origin/New-FakeMain
                 }
             } catch (Throwable $e) {
                 $this->handleCommitTransactionException(
@@ -83,7 +91,11 @@ trait ManagesTransactions
             $this->transactions > 1) {
             $this->transactions--;
 
+<<<<<<< HEAD
             $this->transactionsManager?->rollback(
+=======
+            optional($this->transactionsManager)->rollback(
+>>>>>>> origin/New-FakeMain
                 $this->getName(), $this->transactions
             );
 
@@ -116,7 +128,11 @@ trait ManagesTransactions
 
         $this->transactions++;
 
+<<<<<<< HEAD
         $this->transactionsManager?->begin(
+=======
+        optional($this->transactionsManager)->begin(
+>>>>>>> origin/New-FakeMain
             $this->getName(), $this->transactions
         );
 
@@ -194,7 +210,11 @@ trait ManagesTransactions
         $this->transactions = max(0, $this->transactions - 1);
 
         if ($this->transactions == 0) {
+<<<<<<< HEAD
             $this->transactionsManager?->commit($this->getName());
+=======
+            optional($this->transactionsManager)->commit($this->getName());
+>>>>>>> origin/New-FakeMain
         }
 
         $this->fireConnectionEvent('committed');
@@ -258,7 +278,11 @@ trait ManagesTransactions
 
         $this->transactions = $toLevel;
 
+<<<<<<< HEAD
         $this->transactionsManager?->rollback(
+=======
+        optional($this->transactionsManager)->rollback(
+>>>>>>> origin/New-FakeMain
             $this->getName(), $this->transactions
         );
 
@@ -297,7 +321,11 @@ trait ManagesTransactions
         if ($this->causedByLostConnection($e)) {
             $this->transactions = 0;
 
+<<<<<<< HEAD
             $this->transactionsManager?->rollback(
+=======
+            optional($this->transactionsManager)->rollback(
+>>>>>>> origin/New-FakeMain
                 $this->getName(), $this->transactions
             );
         }

@@ -11,6 +11,7 @@ class FlushFailedCommand extends Command
      *
      * @var string
      */
+<<<<<<< HEAD
     protected $signature = 'queue:flush {--hours= : The number of hours to retain failed job data}';
 
     /**
@@ -23,6 +24,9 @@ class FlushFailedCommand extends Command
      * @deprecated
      */
     protected static $defaultName = 'queue:flush';
+=======
+    protected $name = 'queue:flush';
+>>>>>>> origin/New-FakeMain
 
     /**
      * The console command description.
@@ -38,6 +42,7 @@ class FlushFailedCommand extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
         $this->laravel['queue.failer']->flush($this->option('hours'));
 
         if ($this->option('hours')) {
@@ -47,5 +52,10 @@ class FlushFailedCommand extends Command
         }
 
         $this->info('All failed jobs deleted successfully.');
+=======
+        $this->laravel['queue.failer']->flush();
+
+        $this->info('All failed jobs deleted successfully!');
+>>>>>>> origin/New-FakeMain
     }
 }

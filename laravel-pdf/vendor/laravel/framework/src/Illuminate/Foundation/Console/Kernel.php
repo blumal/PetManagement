@@ -327,9 +327,14 @@ class Kernel implements KernelContract
     protected function getArtisan()
     {
         if (is_null($this->artisan)) {
+<<<<<<< HEAD
             $this->artisan = (new Artisan($this->app, $this->events, $this->app->version()))
                                     ->resolveCommands($this->commands)
                                     ->setContainerCommandLoader();
+=======
+            return $this->artisan = (new Artisan($this->app, $this->events, $this->app->version()))
+                                ->resolveCommands($this->commands);
+>>>>>>> origin/New-FakeMain
         }
 
         return $this->artisan;

@@ -23,7 +23,11 @@ class PhpFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+=======
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         return "<?php\n\nreturn ".var_export($messages->all($domain), true).";\n";
     }
@@ -31,7 +35,11 @@ class PhpFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function getExtension(): string
+=======
+    protected function getExtension()
+>>>>>>> origin/New-FakeMain
     {
         return 'php';
     }

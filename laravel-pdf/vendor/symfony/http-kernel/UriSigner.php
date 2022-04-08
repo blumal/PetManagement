@@ -20,8 +20,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UriSigner
 {
+<<<<<<< HEAD
     private string $secret;
     private string $parameter;
+=======
+    private $secret;
+    private $parameter;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $secret    A secret
@@ -38,8 +43,15 @@ class UriSigner
      *
      * The given URI is signed by adding the query string parameter
      * which value depends on the URI and the secret.
+<<<<<<< HEAD
      */
     public function sign(string $uri): string
+=======
+     *
+     * @return string
+     */
+    public function sign(string $uri)
+>>>>>>> origin/New-FakeMain
     {
         $url = parse_url($uri);
         if (isset($url['query'])) {
@@ -56,8 +68,15 @@ class UriSigner
 
     /**
      * Checks that a URI contains the correct hash.
+<<<<<<< HEAD
      */
     public function check(string $uri): bool
+=======
+     *
+     * @return bool
+     */
+    public function check(string $uri)
+>>>>>>> origin/New-FakeMain
     {
         $url = parse_url($uri);
         if (isset($url['query'])) {

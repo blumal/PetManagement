@@ -25,6 +25,7 @@ class RoutingResolverPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
+<<<<<<< HEAD
     public function process(ContainerBuilder $container)
     {
         if (false === $container->hasDefinition('routing.resolver')) {
@@ -34,6 +35,30 @@ class RoutingResolverPass implements CompilerPassInterface
         $definition = $container->getDefinition('routing.resolver');
 
         foreach ($this->findAndSortTaggedServices('routing.loader', $container) as $id) {
+=======
+    private $resolverServiceId;
+    private $loaderTag;
+
+    public function __construct(string $resolverServiceId = 'routing.resolver', string $loaderTag = 'routing.loader')
+    {
+        if (0 < \func_num_args()) {
+            trigger_deprecation('symfony/routing', '5.3', 'Configuring "%s" is deprecated.', __CLASS__);
+        }
+
+        $this->resolverServiceId = $resolverServiceId;
+        $this->loaderTag = $loaderTag;
+    }
+
+    public function process(ContainerBuilder $container)
+    {
+        if (false === $container->hasDefinition($this->resolverServiceId)) {
+            return;
+        }
+
+        $definition = $container->getDefinition($this->resolverServiceId);
+
+        foreach ($this->findAndSortTaggedServices($this->loaderTag, $container) as $id) {
+>>>>>>> origin/New-FakeMain
             $definition->addMethodCall('addLoader', [new Reference($id)]);
         }
     }

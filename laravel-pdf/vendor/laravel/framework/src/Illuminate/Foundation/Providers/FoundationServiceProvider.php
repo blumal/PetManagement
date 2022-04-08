@@ -2,8 +2,11 @@
 
 namespace Illuminate\Foundation\Providers;
 
+<<<<<<< HEAD
 use Illuminate\Contracts\Foundation\MaintenanceMode as MaintenanceModeContract;
 use Illuminate\Foundation\MaintenanceModeManager;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Http\Request;
 use Illuminate\Log\Events\MessageLogged;
 use Illuminate\Support\AggregateServiceProvider;
@@ -50,7 +53,10 @@ class FoundationServiceProvider extends AggregateServiceProvider
         $this->registerRequestValidation();
         $this->registerRequestSignatureValidation();
         $this->registerExceptionTracking();
+<<<<<<< HEAD
         $this->registerMaintenanceModeManager();
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -91,10 +97,13 @@ class FoundationServiceProvider extends AggregateServiceProvider
         Request::macro('hasValidRelativeSignature', function () {
             return URL::hasValidSignature($this, $absolute = false);
         });
+<<<<<<< HEAD
 
         Request::macro('hasValidSignatureWhileIgnoring', function ($ignoreQuery = [], $absolute = true) {
             return URL::hasValidSignature($this, $absolute, $ignoreQuery);
         });
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -120,6 +129,7 @@ class FoundationServiceProvider extends AggregateServiceProvider
             }
         });
     }
+<<<<<<< HEAD
 
     /**
      * Register the maintenance mode manager service.
@@ -135,4 +145,6 @@ class FoundationServiceProvider extends AggregateServiceProvider
             fn () => $this->app->make(MaintenanceModeManager::class)->driver()
         );
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

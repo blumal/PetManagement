@@ -461,7 +461,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      */
     public function qualifyColumn($column)
     {
+<<<<<<< HEAD
         if (str_contains($column, '.')) {
+=======
+        if (Str::contains($column, '.')) {
+>>>>>>> origin/New-FakeMain
             return $column;
         }
 
@@ -493,7 +497,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
         // This method just provides a convenient way for us to generate fresh model
         // instances of this current model. It is particularly useful during the
         // hydration of new objects via the Eloquent query builder instances.
+<<<<<<< HEAD
         $model = new static;
+=======
+        $model = new static((array) $attributes);
+>>>>>>> origin/New-FakeMain
 
         $model->exists = $exists;
 
@@ -505,8 +513,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
 
         $model->mergeCasts($this->casts);
 
+<<<<<<< HEAD
         $model->fill((array) $attributes);
 
+=======
+>>>>>>> origin/New-FakeMain
         return $model;
     }
 
@@ -562,7 +573,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * Get all of the models from the database.
      *
      * @param  array|mixed  $columns
+<<<<<<< HEAD
      * @return \Illuminate\Database\Eloquent\Collection<int, static>
+=======
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+>>>>>>> origin/New-FakeMain
      */
     public static function all($columns = ['*'])
     {
@@ -1499,7 +1514,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     {
         $json = json_encode($this->jsonSerialize(), $options);
 
+<<<<<<< HEAD
         if (json_last_error() !== JSON_ERROR_NONE) {
+=======
+        if (JSON_ERROR_NONE !== json_last_error()) {
+>>>>>>> origin/New-FakeMain
             throw JsonEncodingException::forModel($this, json_last_error_msg());
         }
 
@@ -1511,7 +1530,12 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      *
      * @return array
      */
+<<<<<<< HEAD
     public function jsonSerialize(): array
+=======
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
+>>>>>>> origin/New-FakeMain
     {
         return $this->toArray();
     }
@@ -1529,7 +1553,10 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
         }
 
         return $this->setKeysForSelectQuery($this->newQueryWithoutScopes())
+<<<<<<< HEAD
                         ->useWritePdo()
+=======
+>>>>>>> origin/New-FakeMain
                         ->with(is_string($with) ? func_get_args() : $with)
                         ->first();
     }
@@ -1546,10 +1573,14 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
         }
 
         $this->setRawAttributes(
+<<<<<<< HEAD
             $this->setKeysForSelectQuery($this->newQueryWithoutScopes())
                 ->useWritePdo()
                 ->firstOrFail()
                 ->attributes
+=======
+            $this->setKeysForSelectQuery($this->newQueryWithoutScopes())->firstOrFail()->attributes
+>>>>>>> origin/New-FakeMain
         );
 
         $this->load(collect($this->relations)->reject(function ($relation) {
@@ -1834,7 +1865,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
             }
 
             if ($relation instanceof QueueableEntity) {
+<<<<<<< HEAD
                 foreach ($relation->getQueueableRelations() as $entityValue) {
+=======
+                foreach ($relation->getQueueableRelations() as $entityKey => $entityValue) {
+>>>>>>> origin/New-FakeMain
                     $relations[] = $key.'.'.$entityValue;
                 }
             }
@@ -1950,7 +1985,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     /**
      * Retrieve the model for a bound value.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\Relation  $query
+=======
+     * @param  \Illuminate\Database\Eloquent\Model|Illuminate\Database\Eloquent\Relations\Relation  $query
+>>>>>>> origin/New-FakeMain
      * @param  mixed  $value
      * @param  string|null  $field
      * @return \Illuminate\Database\Eloquent\Relations\Relation
@@ -2052,7 +2091,12 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  mixed  $offset
      * @return bool
      */
+<<<<<<< HEAD
     public function offsetExists($offset): bool
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return ! is_null($this->getAttribute($offset));
     }
@@ -2063,7 +2107,12 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  mixed  $offset
      * @return mixed
      */
+<<<<<<< HEAD
     public function offsetGet($offset): mixed
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->getAttribute($offset);
     }
@@ -2075,7 +2124,12 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     public function offsetSet($offset, $value): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->setAttribute($offset, $value);
     }
@@ -2086,7 +2140,12 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  mixed  $offset
      * @return void
      */
+<<<<<<< HEAD
     public function offsetUnset($offset): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->attributes[$offset], $this->relations[$offset]);
     }

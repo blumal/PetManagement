@@ -16,6 +16,7 @@ class ScheduleFinishCommand extends Command
     protected $signature = 'schedule:finish {id} {code=0}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -27,6 +28,8 @@ class ScheduleFinishCommand extends Command
     protected static $defaultName = 'schedule:finish';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -51,7 +54,11 @@ class ScheduleFinishCommand extends Command
         collect($schedule->events())->filter(function ($value) {
             return $value->mutexName() == $this->argument('id');
         })->each(function ($event) {
+<<<<<<< HEAD
             $event->finish($this->laravel, $this->argument('code'));
+=======
+            $event->callafterCallbacksWithExitCode($this->laravel, $this->argument('code'));
+>>>>>>> origin/New-FakeMain
 
             $this->laravel->make(Dispatcher::class)->dispatch(new ScheduledBackgroundTaskFinished($event));
         });

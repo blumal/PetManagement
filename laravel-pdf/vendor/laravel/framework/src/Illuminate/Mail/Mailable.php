@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Localizable;
+<<<<<<< HEAD
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Testing\Constraints\SeeInOrder;
 use PHPUnit\Framework\Assert as PHPUnit;
@@ -29,6 +30,15 @@ class Mailable implements MailableContract, Renderable
     use Conditionable, ForwardsCalls, Localizable, Macroable {
         __call as macroCall;
     }
+=======
+use PHPUnit\Framework\Assert as PHPUnit;
+use ReflectionClass;
+use ReflectionProperty;
+
+class Mailable implements MailableContract, Renderable
+{
+    use Conditionable, ForwardsCalls, Localizable;
+>>>>>>> origin/New-FakeMain
 
     /**
      * The locale of the message.
@@ -136,6 +146,7 @@ class Mailable implements MailableContract, Renderable
     public $diskAttachments = [];
 
     /**
+<<<<<<< HEAD
      * The tags for the message.
      *
      * @var array
@@ -150,6 +161,8 @@ class Mailable implements MailableContract, Renderable
     protected $metadata = [];
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The callbacks for the message.
      *
      * @var array
@@ -188,11 +201,19 @@ class Mailable implements MailableContract, Renderable
      * Send the message using the given mailer.
      *
      * @param  \Illuminate\Contracts\Mail\Factory|\Illuminate\Contracts\Mail\Mailer  $mailer
+<<<<<<< HEAD
      * @return \Illuminate\Mail\SentMessage|null
      */
     public function send($mailer)
     {
         return $this->withLocale($this->locale, function () use ($mailer) {
+=======
+     * @return void
+     */
+    public function send($mailer)
+    {
+        $this->withLocale($this->locale, function () use ($mailer) {
+>>>>>>> origin/New-FakeMain
             Container::getInstance()->call([$this, 'build']);
 
             $mailer = $mailer instanceof MailFactory
@@ -203,8 +224,11 @@ class Mailable implements MailableContract, Renderable
                 $this->buildFrom($message)
                      ->buildRecipients($message)
                      ->buildSubject($message)
+<<<<<<< HEAD
                      ->buildTags($message)
                      ->buildMetadata($message)
+=======
+>>>>>>> origin/New-FakeMain
                      ->runCallbacks($message)
                      ->buildAttachments($message);
             });
@@ -233,7 +257,11 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Deliver the queued message after (n) seconds.
+=======
+     * Deliver the queued message after the given delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  \Illuminate\Contracts\Queue\Factory  $queue
@@ -465,6 +493,7 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Add all defined tags to the message.
      *
      * @param  \Illuminate\Mail\Message  $message
@@ -499,6 +528,8 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Run the callbacks for the message.
      *
      * @param  \Illuminate\Mail\Message  $message
@@ -507,7 +538,11 @@ class Mailable implements MailableContract, Renderable
     protected function runCallbacks($message)
     {
         foreach ($this->callbacks as $callback) {
+<<<<<<< HEAD
             $callback($message->getSymfonyMessage());
+=======
+            $callback($message->getSwiftMessage());
+>>>>>>> origin/New-FakeMain
         }
 
         return $this;
@@ -537,7 +572,11 @@ class Mailable implements MailableContract, Renderable
     public function priority($level = 3)
     {
         $this->callbacks[] = function ($message) use ($level) {
+<<<<<<< HEAD
             $message->priority($level);
+=======
+            $message->setPriority($level);
+>>>>>>> origin/New-FakeMain
         };
 
         return $this;
@@ -725,8 +764,11 @@ class Mailable implements MailableContract, Renderable
             return (object) $recipient;
         } elseif (is_string($recipient)) {
             return (object) ['email' => $recipient];
+<<<<<<< HEAD
         } elseif ($recipient instanceof Address) {
             return (object) ['email' => $recipient->getAddress(), 'name' => $recipient->getName()];
+=======
+>>>>>>> origin/New-FakeMain
         }
 
         return $recipient;
@@ -778,6 +820,7 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Determine if the mailable has the given subject.
      *
      * @param  string  $subject
@@ -789,6 +832,8 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Set the Markdown template for the message.
      *
      * @param  string  $view
@@ -937,6 +982,7 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Add a tag header to the message when supported by the underlying transport.
      *
      * @param  string  $value
@@ -964,6 +1010,8 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Assert that the given text is present in the HTML email body.
      *
      * @param  string  $string
@@ -974,7 +1022,11 @@ class Mailable implements MailableContract, Renderable
         [$html, $text] = $this->renderForAssertions();
 
         PHPUnit::assertTrue(
+<<<<<<< HEAD
             str_contains($html, $string),
+=======
+            Str::contains($html, $string),
+>>>>>>> origin/New-FakeMain
             "Did not see expected text [{$string}] within email body."
         );
 
@@ -992,7 +1044,11 @@ class Mailable implements MailableContract, Renderable
         [$html, $text] = $this->renderForAssertions();
 
         PHPUnit::assertFalse(
+<<<<<<< HEAD
             str_contains($html, $string),
+=======
+            Str::contains($html, $string),
+>>>>>>> origin/New-FakeMain
             "Saw unexpected text [{$string}] within email body."
         );
 
@@ -1000,6 +1056,7 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Assert that the given text strings are present in order in the HTML email body.
      *
      * @param  array  $strings
@@ -1015,6 +1072,8 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Assert that the given text is present in the plain-text email body.
      *
      * @param  string  $string
@@ -1025,7 +1084,11 @@ class Mailable implements MailableContract, Renderable
         [$html, $text] = $this->renderForAssertions();
 
         PHPUnit::assertTrue(
+<<<<<<< HEAD
             str_contains($text, $string),
+=======
+            Str::contains($text, $string),
+>>>>>>> origin/New-FakeMain
             "Did not see expected text [{$string}] within text email body."
         );
 
@@ -1043,7 +1106,11 @@ class Mailable implements MailableContract, Renderable
         [$html, $text] = $this->renderForAssertions();
 
         PHPUnit::assertFalse(
+<<<<<<< HEAD
             str_contains($text, $string),
+=======
+            Str::contains($text, $string),
+>>>>>>> origin/New-FakeMain
             "Saw unexpected text [{$string}] within text email body."
         );
 
@@ -1051,6 +1118,7 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Assert that the given text strings are present in order in the plain-text email body.
      *
      * @param  array  $strings
@@ -1066,6 +1134,8 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Render the HTML and plain-text version of the mailable into views for assertions.
      *
      * @return array
@@ -1089,7 +1159,11 @@ class Mailable implements MailableContract, Renderable
                 $text = $view[1];
             }
 
+<<<<<<< HEAD
             $text ??= $view['text'] ?? '';
+=======
+            $text = $text ?? $view['text'] ?? '';
+>>>>>>> origin/New-FakeMain
 
             if (! empty($text) && ! $text instanceof Htmlable) {
                 $text = Container::getInstance()->make('mailer')->render(
@@ -1115,12 +1189,20 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
+<<<<<<< HEAD
      * Register a callback to be called with the Symfony message instance.
+=======
+     * Register a callback to be called with the Swift message instance.
+>>>>>>> origin/New-FakeMain
      *
      * @param  callable  $callback
      * @return $this
      */
+<<<<<<< HEAD
     public function withSymfonyMessage($callback)
+=======
+    public function withSwiftMessage($callback)
+>>>>>>> origin/New-FakeMain
     {
         $this->callbacks[] = $callback;
 
@@ -1149,11 +1231,15 @@ class Mailable implements MailableContract, Renderable
      */
     public function __call($method, $parameters)
     {
+<<<<<<< HEAD
         if (static::hasMacro($method)) {
             return $this->macroCall($method, $parameters);
         }
 
         if (str_starts_with($method, 'with')) {
+=======
+        if (Str::startsWith($method, 'with')) {
+>>>>>>> origin/New-FakeMain
             return $this->with(Str::camel(substr($method, 4)), $parameters[0]);
         }
 

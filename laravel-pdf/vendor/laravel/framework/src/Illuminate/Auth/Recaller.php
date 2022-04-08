@@ -2,6 +2,11 @@
 
 namespace Illuminate\Auth;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+
+>>>>>>> origin/New-FakeMain
 class Recaller
 {
     /**
@@ -69,7 +74,11 @@ class Recaller
      */
     protected function properString()
     {
+<<<<<<< HEAD
         return is_string($this->recaller) && str_contains($this->recaller, '|');
+=======
+        return is_string($this->recaller) && Str::contains($this->recaller, '|');
+>>>>>>> origin/New-FakeMain
     }
 
     /**

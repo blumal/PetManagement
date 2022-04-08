@@ -25,7 +25,11 @@ class ChainExtractor implements ExtractorInterface
      *
      * @var ExtractorInterface[]
      */
+<<<<<<< HEAD
     private array $extractors = [];
+=======
+    private $extractors = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * Adds a loader to the translation extractor.
@@ -48,7 +52,11 @@ class ChainExtractor implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function extract(string|iterable $directory, MessageCatalogue $catalogue)
+=======
+    public function extract($directory, MessageCatalogue $catalogue)
+>>>>>>> origin/New-FakeMain
     {
         foreach ($this->extractors as $extractor) {
             $extractor->extract($directory, $catalogue);

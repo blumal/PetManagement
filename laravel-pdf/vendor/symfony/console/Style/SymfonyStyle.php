@@ -42,7 +42,11 @@ class SymfonyStyle extends OutputStyle
     private $output;
     private $questionHelper;
     private $progressBar;
+<<<<<<< HEAD
     private int $lineLength;
+=======
+    private $lineLength;
+>>>>>>> origin/New-FakeMain
     private $bufferedOutput;
 
     public function __construct(InputInterface $input, OutputInterface $output)
@@ -58,8 +62,15 @@ class SymfonyStyle extends OutputStyle
 
     /**
      * Formats a message as a block of text.
+<<<<<<< HEAD
      */
     public function block(string|array $messages, string $type = null, string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
+=======
+     *
+     * @param string|array $messages The message to write in the block
+     */
+    public function block($messages, string $type = null, string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
+>>>>>>> origin/New-FakeMain
     {
         $messages = \is_array($messages) ? array_values($messages) : [$messages];
 
@@ -111,7 +122,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function text(string|array $message)
+=======
+    public function text($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->autoPrependText();
 
@@ -123,8 +138,15 @@ class SymfonyStyle extends OutputStyle
 
     /**
      * Formats a command comment.
+<<<<<<< HEAD
      */
     public function comment(string|array $message)
+=======
+     *
+     * @param string|array $message
+     */
+    public function comment($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, null, null, '<fg=default;bg=default> // </>', false, false);
     }
@@ -132,7 +154,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function success(string|array $message)
+=======
+    public function success($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, 'OK', 'fg=black;bg=green', ' ', true);
     }
@@ -140,7 +166,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function error(string|array $message)
+=======
+    public function error($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, 'ERROR', 'fg=white;bg=red', ' ', true);
     }
@@ -148,7 +178,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function warning(string|array $message)
+=======
+    public function warning($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, 'WARNING', 'fg=black;bg=yellow', ' ', true);
     }
@@ -156,15 +190,26 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function note(string|array $message)
+=======
+    public function note($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, 'NOTE', 'fg=yellow', ' ! ');
     }
 
     /**
      * Formats an info message.
+<<<<<<< HEAD
      */
     public function info(string|array $message)
+=======
+     *
+     * @param string|array $message
+     */
+    public function info($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, 'INFO', 'fg=green', ' ', true);
     }
@@ -172,7 +217,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function caution(string|array $message)
+=======
+    public function caution($message)
+>>>>>>> origin/New-FakeMain
     {
         $this->block($message, 'CAUTION', 'fg=white;bg=red', ' ! ', true);
     }
@@ -213,8 +262,15 @@ class SymfonyStyle extends OutputStyle
      * * 'A title'
      * * ['key' => 'value']
      * * new TableSeparator()
+<<<<<<< HEAD
      */
     public function definitionList(string|array|TableSeparator ...$list)
+=======
+     *
+     * @param string|array|TableSeparator ...$list
+     */
+    public function definitionList(...$list)
+>>>>>>> origin/New-FakeMain
     {
         $headers = [];
         $row = [];
@@ -242,7 +298,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function ask(string $question, string $default = null, callable $validator = null): mixed
+=======
+    public function ask(string $question, string $default = null, callable $validator = null)
+>>>>>>> origin/New-FakeMain
     {
         $question = new Question($question, $default);
         $question->setValidator($validator);
@@ -253,7 +313,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function askHidden(string $question, callable $validator = null): mixed
+=======
+    public function askHidden(string $question, callable $validator = null)
+>>>>>>> origin/New-FakeMain
     {
         $question = new Question($question);
 
@@ -266,7 +330,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function confirm(string $question, bool $default = true): bool
+=======
+    public function confirm(string $question, bool $default = true)
+>>>>>>> origin/New-FakeMain
     {
         return $this->askQuestion(new ConfirmationQuestion($question, $default));
     }
@@ -274,7 +342,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function choice(string $question, array $choices, mixed $default = null): mixed
+=======
+    public function choice(string $question, array $choices, $default = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $default) {
             $values = array_flip($choices);
@@ -308,13 +380,21 @@ class SymfonyStyle extends OutputStyle
     {
         $this->getProgressBar()->finish();
         $this->newLine(2);
+<<<<<<< HEAD
         unset($this->progressBar);
+=======
+        $this->progressBar = null;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function createProgressBar(int $max = 0): ProgressBar
+=======
+    public function createProgressBar(int $max = 0)
+>>>>>>> origin/New-FakeMain
     {
         $progressBar = parent::createProgressBar($max);
 
@@ -337,13 +417,26 @@ class SymfonyStyle extends OutputStyle
         $this->newLine(2);
     }
 
+<<<<<<< HEAD
     public function askQuestion(Question $question): mixed
+=======
+    /**
+     * @return mixed
+     */
+    public function askQuestion(Question $question)
+>>>>>>> origin/New-FakeMain
     {
         if ($this->input->isInteractive()) {
             $this->autoPrependBlock();
         }
 
+<<<<<<< HEAD
         $this->questionHelper ??= new SymfonyQuestionHelper();
+=======
+        if (!$this->questionHelper) {
+            $this->questionHelper = new SymfonyQuestionHelper();
+        }
+>>>>>>> origin/New-FakeMain
 
         $answer = $this->questionHelper->ask($this->input, $this, $question);
 
@@ -358,7 +451,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function writeln(string|iterable $messages, int $type = self::OUTPUT_NORMAL)
+=======
+    public function writeln($messages, int $type = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         if (!is_iterable($messages)) {
             $messages = [$messages];
@@ -373,7 +470,11 @@ class SymfonyStyle extends OutputStyle
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function write(string|iterable $messages, bool $newline = false, int $type = self::OUTPUT_NORMAL)
+=======
+    public function write($messages, bool $newline = false, int $type = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         if (!is_iterable($messages)) {
             $messages = [$messages];
@@ -396,8 +497,15 @@ class SymfonyStyle extends OutputStyle
 
     /**
      * Returns a new instance which makes use of stderr if available.
+<<<<<<< HEAD
      */
     public function getErrorStyle(): self
+=======
+     *
+     * @return self
+     */
+    public function getErrorStyle()
+>>>>>>> origin/New-FakeMain
     {
         return new self($this->input, $this->getErrorOutput());
     }
@@ -413,8 +521,16 @@ class SymfonyStyle extends OutputStyle
 
     private function getProgressBar(): ProgressBar
     {
+<<<<<<< HEAD
         return $this->progressBar
             ?? throw new RuntimeException('The ProgressBar is not started.');
+=======
+        if (!$this->progressBar) {
+            throw new RuntimeException('The ProgressBar is not started.');
+        }
+
+        return $this->progressBar;
+>>>>>>> origin/New-FakeMain
     }
 
     private function autoPrependBlock(): void

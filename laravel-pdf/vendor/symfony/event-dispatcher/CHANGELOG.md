@@ -1,11 +1,14 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 6.0
 ---
 
  * Remove `LegacyEventDispatcherProxy`
 
+=======
+>>>>>>> origin/New-FakeMain
 5.4
 ---
 

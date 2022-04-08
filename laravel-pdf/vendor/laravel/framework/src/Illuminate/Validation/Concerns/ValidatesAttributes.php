@@ -2,14 +2,25 @@
 
 namespace Illuminate\Validation\Concerns;
 
+<<<<<<< HEAD
+=======
+use Countable;
+>>>>>>> origin/New-FakeMain
 use DateTime;
 use DateTimeInterface;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
+<<<<<<< HEAD
 use Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Egulias\EmailValidator\Validation\RFCValidation;
+=======
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
+use Egulias\EmailValidator\Validation\RFCValidation;
+use Egulias\EmailValidator\Validation\SpoofCheckValidation;
+>>>>>>> origin/New-FakeMain
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -865,7 +876,11 @@ trait ValidatesAttributes
      */
     protected function getUniqueIds($idColumn, $parameters)
     {
+<<<<<<< HEAD
         $idColumn ??= $parameters[3] ?? 'id';
+=======
+        $idColumn = $idColumn ?? $parameters[3] ?? 'id';
+>>>>>>> origin/New-FakeMain
 
         return [$idColumn, $this->prepareUniqueId($parameters[2])];
     }
@@ -916,6 +931,7 @@ trait ValidatesAttributes
      */
     public function parseTable($table)
     {
+<<<<<<< HEAD
         [$connection, $table] = str_contains($table, '.') ? explode('.', $table, 2) : [null, $table];
 
         if (str_contains($table, '\\') && class_exists($table) && is_a($table, Model::class, true)) {
@@ -925,6 +941,17 @@ trait ValidatesAttributes
             $connection ??= $model->getConnectionName();
 
             if (str_contains($table, '.') && Str::startsWith($table, $connection)) {
+=======
+        [$connection, $table] = Str::contains($table, '.') ? explode('.', $table, 2) : [null, $table];
+
+        if (Str::contains($table, '\\') && class_exists($table) && is_a($table, Model::class, true)) {
+            $model = new $table;
+
+            $table = $model->getTable();
+            $connection = $connection ?? $model->getConnectionName();
+
+            if (Str::contains($table, '.') && Str::startsWith($table, $connection)) {
+>>>>>>> origin/New-FakeMain
                 $connection = null;
             }
 
@@ -1455,6 +1482,22 @@ trait ValidatesAttributes
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Validate that the password of the currently authenticated user matches the given value.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  array  $parameters
+     * @return bool
+     */
+    protected function validatePassword($attribute, $value, $parameters)
+    {
+        return $this->validateCurrentPassword($attribute, $value, $parameters);
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Validate that an attribute exists even if not filled.
      *
      * @param  string  $attribute
@@ -1517,7 +1560,11 @@ trait ValidatesAttributes
             return false;
         } elseif (is_string($value) && trim($value) === '') {
             return false;
+<<<<<<< HEAD
         } elseif (is_countable($value) && count($value) < 1) {
+=======
+        } elseif ((is_array($value) || $value instanceof Countable) && count($value) < 1) {
+>>>>>>> origin/New-FakeMain
             return false;
         } elseif ($value instanceof File) {
             return (string) $value->getPath() !== '';
@@ -1556,6 +1603,10 @@ trait ValidatesAttributes
      *
      * @param  string  $attribute
      * @param  mixed  $value
+<<<<<<< HEAD
+=======
+     * @param  mixed  $parameters
+>>>>>>> origin/New-FakeMain
      * @return bool
      */
     public function validateProhibited($attribute, $value)
@@ -1688,6 +1739,7 @@ trait ValidatesAttributes
     }
 
     /**
+<<<<<<< HEAD
      * Indicate that an attribute should be excluded when another attribute presents.
      *
      * @param  string  $attribute
@@ -1707,6 +1759,8 @@ trait ValidatesAttributes
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Indicate that an attribute should be excluded when another attribute is missing.
      *
      * @param  string  $attribute
@@ -2091,6 +2145,7 @@ trait ValidatesAttributes
      */
     protected function compare($first, $second, $operator)
     {
+<<<<<<< HEAD
         return match ($operator) {
             '<' => $first < $second,
             '>' => $first > $second,
@@ -2099,6 +2154,22 @@ trait ValidatesAttributes
             '=' => $first == $second,
             default => throw new InvalidArgumentException,
         };
+=======
+        switch ($operator) {
+            case '<':
+                return $first < $second;
+            case '>':
+                return $first > $second;
+            case '<=':
+                return $first <= $second;
+            case '>=':
+                return $first >= $second;
+            case '=':
+                return $first == $second;
+            default:
+                throw new InvalidArgumentException;
+        }
+>>>>>>> origin/New-FakeMain
     }
 
     /**

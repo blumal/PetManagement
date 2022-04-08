@@ -206,6 +206,7 @@ class FormRequest extends Request implements ValidatesWhenResolved
     /**
      * Get the validated data from the request.
      *
+<<<<<<< HEAD
      * @param  string|null  $key
      * @param  mixed  $default
      * @return mixed
@@ -213,6 +214,13 @@ class FormRequest extends Request implements ValidatesWhenResolved
     public function validated($key = null, $default = null)
     {
         return data_get($this->validator->validated(), $key, $default);
+=======
+     * @return array
+     */
+    public function validated()
+    {
+        return $this->validator->validated();
+>>>>>>> origin/New-FakeMain
     }
 
     /**

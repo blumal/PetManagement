@@ -4,6 +4,10 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 
 class EventGenerateCommand extends Command
 {
@@ -15,6 +19,7 @@ class EventGenerateCommand extends Command
     protected $name = 'event:generate';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -26,6 +31,8 @@ class EventGenerateCommand extends Command
     protected static $defaultName = 'event:generate';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -47,7 +54,11 @@ class EventGenerateCommand extends Command
             }
         }
 
+<<<<<<< HEAD
         $this->info('Events and listeners generated successfully.');
+=======
+        $this->info('Events and listeners generated successfully!');
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -59,7 +70,11 @@ class EventGenerateCommand extends Command
      */
     protected function makeEventAndListeners($event, $listeners)
     {
+<<<<<<< HEAD
         if (! str_contains($event, '\\')) {
+=======
+        if (! Str::contains($event, '\\')) {
+>>>>>>> origin/New-FakeMain
             return;
         }
 

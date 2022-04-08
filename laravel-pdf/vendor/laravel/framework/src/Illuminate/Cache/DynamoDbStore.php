@@ -211,7 +211,11 @@ class DynamoDbStore implements LockProvider, Store
     }
 
     /**
+<<<<<<< HEAD
      * Store multiple items in the cache for a given number of seconds.
+=======
+     * Store multiple items in the cache for a given number of $seconds.
+>>>>>>> origin/New-FakeMain
      *
      * @param  array  $values
      * @param  int  $seconds
@@ -284,7 +288,11 @@ class DynamoDbStore implements LockProvider, Store
 
             return true;
         } catch (DynamoDbException $e) {
+<<<<<<< HEAD
             if (str_contains($e->getMessage(), 'ConditionalCheckFailed')) {
+=======
+            if (Str::contains($e->getMessage(), 'ConditionalCheckFailed')) {
+>>>>>>> origin/New-FakeMain
                 return false;
             }
 
@@ -329,7 +337,11 @@ class DynamoDbStore implements LockProvider, Store
 
             return (int) $response['Attributes'][$this->valueAttribute]['N'];
         } catch (DynamoDbException $e) {
+<<<<<<< HEAD
             if (str_contains($e->getMessage(), 'ConditionalCheckFailed')) {
+=======
+            if (Str::contains($e->getMessage(), 'ConditionalCheckFailed')) {
+>>>>>>> origin/New-FakeMain
                 return false;
             }
 
@@ -374,7 +386,11 @@ class DynamoDbStore implements LockProvider, Store
 
             return (int) $response['Attributes'][$this->valueAttribute]['N'];
         } catch (DynamoDbException $e) {
+<<<<<<< HEAD
             if (str_contains($e->getMessage(), 'ConditionalCheckFailed')) {
+=======
+            if (Str::contains($e->getMessage(), 'ConditionalCheckFailed')) {
+>>>>>>> origin/New-FakeMain
                 return false;
             }
 
@@ -529,7 +545,11 @@ class DynamoDbStore implements LockProvider, Store
     /**
      * Get the DynamoDb Client instance.
      *
+<<<<<<< HEAD
      * @return \Aws\DynamoDb\DynamoDbClient
+=======
+     * @return DynamoDbClient
+>>>>>>> origin/New-FakeMain
      */
     public function getClient()
     {

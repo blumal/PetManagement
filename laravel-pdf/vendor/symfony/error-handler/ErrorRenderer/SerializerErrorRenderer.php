@@ -25,21 +25,44 @@ use Symfony\Component\Serializer\SerializerInterface;
 class SerializerErrorRenderer implements ErrorRendererInterface
 {
     private $serializer;
+<<<<<<< HEAD
     private string|\Closure $format;
     private $fallbackErrorRenderer;
     private bool|\Closure $debug;
+=======
+    private $format;
+    private $fallbackErrorRenderer;
+    private $debug;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string|callable(FlattenException) $format The format as a string or a callable that should return it
      *                                                  formats not supported by Request::getMimeTypes() should be given as mime types
      * @param bool|callable                     $debug  The debugging mode as a boolean or a callable that should return it
      */
+<<<<<<< HEAD
     public function __construct(SerializerInterface $serializer, string|callable $format, ErrorRendererInterface $fallbackErrorRenderer = null, bool|callable $debug = false)
     {
         $this->serializer = $serializer;
         $this->format = \is_string($format) || $format instanceof \Closure ? $format : \Closure::fromCallable($format);
         $this->fallbackErrorRenderer = $fallbackErrorRenderer ?? new HtmlErrorRenderer();
         $this->debug = \is_bool($debug) || $debug instanceof \Closure ? $debug : \Closure::fromCallable($debug);
+=======
+    public function __construct(SerializerInterface $serializer, $format, ErrorRendererInterface $fallbackErrorRenderer = null, $debug = false)
+    {
+        if (!\is_string($format) && !\is_callable($format)) {
+            throw new \TypeError(sprintf('Argument 2 passed to "%s()" must be a string or a callable, "%s" given.', __METHOD__, \gettype($format)));
+        }
+
+        if (!\is_bool($debug) && !\is_callable($debug)) {
+            throw new \TypeError(sprintf('Argument 4 passed to "%s()" must be a boolean or a callable, "%s" given.', __METHOD__, \gettype($debug)));
+        }
+
+        $this->serializer = $serializer;
+        $this->format = $format;
+        $this->fallbackErrorRenderer = $fallbackErrorRenderer ?? new HtmlErrorRenderer();
+        $this->debug = $debug;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

@@ -2,6 +2,11 @@
 
 namespace Illuminate\Database\Eloquent\Concerns;
 
+<<<<<<< HEAD
+=======
+use Closure;
+
+>>>>>>> origin/New-FakeMain
 trait HidesAttributes
 {
     /**
@@ -86,7 +91,11 @@ trait HidesAttributes
     /**
      * Make the given, typically hidden, attributes visible if the given truth test passes.
      *
+<<<<<<< HEAD
      * @param  bool|\Closure  $condition
+=======
+     * @param  bool|Closure  $condition
+>>>>>>> origin/New-FakeMain
      * @param  array|string|null  $attributes
      * @return $this
      */
@@ -113,7 +122,11 @@ trait HidesAttributes
     /**
      * Make the given, typically visible, attributes hidden if the given truth test passes.
      *
+<<<<<<< HEAD
      * @param  bool|\Closure  $condition
+=======
+     * @param  bool|Closure  $condition
+>>>>>>> origin/New-FakeMain
      * @param  array|string|null  $attributes
      * @return $this
      */

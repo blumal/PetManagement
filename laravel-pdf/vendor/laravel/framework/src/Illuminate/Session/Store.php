@@ -40,6 +40,7 @@ class Store implements Session
     protected $handler;
 
     /**
+<<<<<<< HEAD
      * The session store's serialization strategy.
      *
      * @var string
@@ -47,6 +48,8 @@ class Store implements Session
     protected $serialization = 'php';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Session store started status.
      *
      * @var bool
@@ -59,15 +62,24 @@ class Store implements Session
      * @param  string  $name
      * @param  \SessionHandlerInterface  $handler
      * @param  string|null  $id
+<<<<<<< HEAD
      * @param  string  $serialization
      * @return void
      */
     public function __construct($name, SessionHandlerInterface $handler, $id = null, $serialization = 'php')
+=======
+     * @return void
+     */
+    public function __construct($name, SessionHandlerInterface $handler, $id = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->setId($id);
         $this->name = $name;
         $this->handler = $handler;
+<<<<<<< HEAD
         $this->serialization = $serialization;
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -104,6 +116,7 @@ class Store implements Session
     protected function readFromHandler()
     {
         if ($data = $this->handler->read($this->getId())) {
+<<<<<<< HEAD
             if ($this->serialization === 'json') {
                 $data = json_decode($this->prepareForUnserialize($data), true);
             } else {
@@ -111,6 +124,11 @@ class Store implements Session
             }
 
             if ($data !== false && is_array($data)) {
+=======
+            $data = @unserialize($this->prepareForUnserialize($data));
+
+            if ($data !== false && ! is_null($data) && is_array($data)) {
+>>>>>>> origin/New-FakeMain
                 return $data;
             }
         }
@@ -139,7 +157,11 @@ class Store implements Session
         $this->ageFlashData();
 
         $this->handler->write($this->getId(), $this->prepareForStorage(
+<<<<<<< HEAD
             $this->serialization === 'json' ? json_encode($this->attributes) : serialize($this->attributes)
+=======
+            serialize($this->attributes)
+>>>>>>> origin/New-FakeMain
         ));
 
         $this->started = false;

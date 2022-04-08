@@ -5,7 +5,10 @@ namespace Illuminate\Routing;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\SoftDeletes;
+<<<<<<< HEAD
 use Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Reflector;
 use Illuminate\Support\Str;
 
@@ -18,16 +21,24 @@ class ImplicitRouteBinding
      * @param  \Illuminate\Routing\Route  $route
      * @return void
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
      * @throws \Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public static function resolveForRoute($container, $route)
     {
         $parameters = $route->parameters();
 
+<<<<<<< HEAD
         $route = static::resolveBackedEnumsForRoute($route, $parameters);
 
         foreach ($route->signatureParameters(['subClass' => UrlRoutable::class]) as $parameter) {
+=======
+        foreach ($route->signatureParameters(UrlRoutable::class) as $parameter) {
+>>>>>>> origin/New-FakeMain
             if (! $parameterName = static::getParameterName($parameter->getName(), $parameters)) {
                 continue;
             }
@@ -65,6 +76,7 @@ class ImplicitRouteBinding
     }
 
     /**
+<<<<<<< HEAD
      * Resolve the Backed Enums route bindings for the route.
      *
      * @param  \Illuminate\Routing\Route  $route
@@ -97,6 +109,8 @@ class ImplicitRouteBinding
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Return the parameter name if it exists in the given parameters.
      *
      * @param  string  $name

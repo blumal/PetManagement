@@ -18,10 +18,13 @@
         "psr-4": {
             "Psr\\Container\\": "src/"
         }
+<<<<<<< HEAD
     },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
         }
+=======
+>>>>>>> origin/New-FakeMain
     }
 }

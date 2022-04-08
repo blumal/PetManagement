@@ -249,7 +249,11 @@ class RedirectResponse extends BaseRedirectResponse
             return $this->macroCall($method, $parameters);
         }
 
+<<<<<<< HEAD
         if (str_starts_with($method, 'with')) {
+=======
+        if (Str::startsWith($method, 'with')) {
+>>>>>>> origin/New-FakeMain
             return $this->with(Str::snake(substr($method, 4)), $parameters[0]);
         }
 

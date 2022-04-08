@@ -13,7 +13,10 @@ namespace Symfony\Component\HttpKernel\DependencyInjection;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
 /**
@@ -28,7 +31,11 @@ class LazyLoadingFragmentHandler extends FragmentHandler
     /**
      * @var array<string, bool>
      */
+<<<<<<< HEAD
     private array $initialized = [];
+=======
+    private $initialized = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct(ContainerInterface $container, RequestStack $requestStack, bool $debug = false)
     {
@@ -40,7 +47,11 @@ class LazyLoadingFragmentHandler extends FragmentHandler
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function render(string|ControllerReference $uri, string $renderer = 'inline', array $options = []): ?string
+=======
+    public function render($uri, string $renderer = 'inline', array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->initialized[$renderer]) && $this->container->has($renderer)) {
             $this->addRenderer($this->container->get($renderer));

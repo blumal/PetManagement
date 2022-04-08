@@ -37,10 +37,20 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getFormatter(): OutputFormatterInterface
     {
         // to comply with the interface we must return a OutputFormatterInterface
         return $this->formatter ??= new NullOutputFormatter();
+=======
+    public function getFormatter()
+    {
+        if ($this->formatter) {
+            return $this->formatter;
+        }
+        // to comply with the interface we must return a OutputFormatterInterface
+        return $this->formatter = new NullOutputFormatter();
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -54,7 +64,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isDecorated(): bool
+=======
+    public function isDecorated()
+>>>>>>> origin/New-FakeMain
     {
         return false;
     }
@@ -70,7 +84,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getVerbosity(): int
+=======
+    public function getVerbosity()
+>>>>>>> origin/New-FakeMain
     {
         return self::VERBOSITY_QUIET;
     }
@@ -78,7 +96,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isQuiet(): bool
+=======
+    public function isQuiet()
+>>>>>>> origin/New-FakeMain
     {
         return true;
     }
@@ -86,7 +108,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isVerbose(): bool
+=======
+    public function isVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return false;
     }
@@ -94,7 +120,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isVeryVerbose(): bool
+=======
+    public function isVeryVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return false;
     }
@@ -102,7 +132,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isDebug(): bool
+=======
+    public function isDebug()
+>>>>>>> origin/New-FakeMain
     {
         return false;
     }
@@ -110,7 +144,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function writeln(string|iterable $messages, int $options = self::OUTPUT_NORMAL)
+=======
+    public function writeln($messages, int $options = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         // do nothing
     }
@@ -118,7 +156,11 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function write(string|iterable $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
+=======
+    public function write($messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         // do nothing
     }

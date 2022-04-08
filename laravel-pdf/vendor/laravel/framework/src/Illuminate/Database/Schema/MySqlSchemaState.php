@@ -103,6 +103,7 @@ class MySqlSchemaState extends SchemaState
     {
         $value = ' --user="${:LARAVEL_LOAD_USER}" --password="${:LARAVEL_LOAD_PASSWORD}"';
 
+<<<<<<< HEAD
         $config = $this->connection->getConfig();
 
         $value .= $config['unix_socket'] ?? false
@@ -113,6 +114,12 @@ class MySqlSchemaState extends SchemaState
             $value .= ' --ssl-ca="${:LARAVEL_LOAD_SSL_CA}"';
         }
 
+=======
+        $value .= $this->connection->getConfig()['unix_socket'] ?? false
+                        ? ' --socket="${:LARAVEL_LOAD_SOCKET}"'
+                        : ' --host="${:LARAVEL_LOAD_HOST}" --port="${:LARAVEL_LOAD_PORT}"';
+
+>>>>>>> origin/New-FakeMain
         return $value;
     }
 
@@ -124,7 +131,11 @@ class MySqlSchemaState extends SchemaState
      */
     protected function baseVariables(array $config)
     {
+<<<<<<< HEAD
         $config['host'] ??= '';
+=======
+        $config['host'] = $config['host'] ?? '';
+>>>>>>> origin/New-FakeMain
 
         return [
             'LARAVEL_LOAD_SOCKET' => $config['unix_socket'] ?? '',
@@ -133,7 +144,10 @@ class MySqlSchemaState extends SchemaState
             'LARAVEL_LOAD_USER' => $config['username'],
             'LARAVEL_LOAD_PASSWORD' => $config['password'] ?? '',
             'LARAVEL_LOAD_DATABASE' => $config['database'],
+<<<<<<< HEAD
             'LARAVEL_LOAD_SSL_CA' => $config['options'][\PDO::MYSQL_ATTR_SSL_CA] ?? '',
+=======
+>>>>>>> origin/New-FakeMain
         ];
     }
 
@@ -156,7 +170,11 @@ class MySqlSchemaState extends SchemaState
                 ), $output, $variables);
             }
 
+<<<<<<< HEAD
             if (str_contains($e->getMessage(), 'set-gtid-purged')) {
+=======
+            if (Str::contains($e->getMessage(), ['set-gtid-purged'])) {
+>>>>>>> origin/New-FakeMain
                 return $this->executeDumpProcess(Process::fromShellCommandLine(
                     str_replace(' --set-gtid-purged=OFF', '', $process->getCommandLine())
                 ), $output, $variables);

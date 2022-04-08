@@ -34,8 +34,13 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
     /**
      * @var \SplObjectStorage<Request, callable>
      */
+<<<<<<< HEAD
     private \SplObjectStorage $controllers;
     private array $sessionUsages = [];
+=======
+    private $controllers;
+    private $sessionUsages = [];
+>>>>>>> origin/New-FakeMain
     private $requestStack;
 
     public function __construct(RequestStack $requestStack = null)
@@ -346,7 +351,11 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
      * @return array|string|Data The controller as a string or array of data
      *                           with keys 'class', 'method', 'file' and 'line'
      */
+<<<<<<< HEAD
     public function getController(): array|string|Data
+=======
+    public function getController()
+>>>>>>> origin/New-FakeMain
     {
         return $this->data['controller'];
     }
@@ -357,7 +366,11 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
      * @return array|Data|false A legacy array of data from the previous redirection response
      *                          or false otherwise
      */
+<<<<<<< HEAD
     public function getRedirect(): array|Data|false
+=======
+    public function getRedirect()
+>>>>>>> origin/New-FakeMain
     {
         return $this->data['redirect'] ?? false;
     }
@@ -431,9 +444,17 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
     }
 
     /**
+<<<<<<< HEAD
      * @return array|string An array of controller data or a simple string
      */
     private function parseController(array|object|string|null $controller): array|string
+=======
+     * @param string|object|array|null $controller The controller to parse
+     *
+     * @return array|string An array of controller data or a simple string
+     */
+    private function parseController($controller)
+>>>>>>> origin/New-FakeMain
     {
         if (\is_string($controller) && str_contains($controller, '::')) {
             $controller = explode('::', $controller);

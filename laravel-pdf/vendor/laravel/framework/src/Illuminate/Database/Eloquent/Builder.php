@@ -5,10 +5,15 @@ namespace Illuminate\Database\Eloquent;
 use BadMethodCallException;
 use Closure;
 use Exception;
+<<<<<<< HEAD
 use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Concerns\BuildsQueries;
 use Illuminate\Database\Eloquent\Concerns\QueriesRelationships;
+=======
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Concerns\BuildsQueries;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder as QueryBuilder;
@@ -22,6 +27,7 @@ use ReflectionMethod;
 
 /**
  * @property-read HigherOrderBuilderProxy $orWhere
+<<<<<<< HEAD
  * @property-read HigherOrderBuilderProxy $whereNot
  * @property-read HigherOrderBuilderProxy $orWhereNot
  *
@@ -31,6 +37,16 @@ class Builder implements BuilderContract
 {
     use BuildsQueries, ForwardsCalls, QueriesRelationships {
         BuildsQueries::sole as baseSole;
+=======
+ *
+ * @mixin \Illuminate\Database\Query\Builder
+ */
+class Builder
+{
+    use Concerns\QueriesRelationships, ForwardsCalls;
+    use BuildsQueries {
+        sole as baseSole;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -298,7 +314,11 @@ class Builder implements BuilderContract
      */
     public function firstWhere($column, $operator = null, $value = null, $boolean = 'and')
     {
+<<<<<<< HEAD
         return $this->where(...func_get_args())->first();
+=======
+        return $this->where($column, $operator, $value, $boolean)->first();
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -319,6 +339,7 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Add a basic "where not" clause to the query.
      *
      * @param  \Closure|string|array|\Illuminate\Database\Query\Expression  $column
@@ -346,6 +367,8 @@ class Builder implements BuilderContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add an "order by" clause for a timestamp to the query.
      *
      * @param  string|\Illuminate\Database\Query\Expression  $column
@@ -455,7 +478,11 @@ class Builder implements BuilderContract
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[]
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function findOrFail($id, $columns = ['*'])
     {
@@ -464,6 +491,7 @@ class Builder implements BuilderContract
         $id = $id instanceof Arrayable ? $id->toArray() : $id;
 
         if (is_array($id)) {
+<<<<<<< HEAD
             if (count($result) !== count(array_unique($id))) {
                 throw (new ModelNotFoundException)->setModel(
                     get_class($this->model), array_diff($id, $result->modelKeys())
@@ -480,6 +508,18 @@ class Builder implements BuilderContract
         }
 
         return $result;
+=======
+            if (count($result) === count(array_unique($id))) {
+                return $result;
+            }
+        } elseif (! is_null($result)) {
+            return $result;
+        }
+
+        throw (new ModelNotFoundException)->setModel(
+            get_class($this->model), $id
+        );
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -552,7 +592,11 @@ class Builder implements BuilderContract
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|static
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function firstOrFail($columns = ['*'])
     {
@@ -591,7 +635,11 @@ class Builder implements BuilderContract
      * @param  array|string  $columns
      * @return \Illuminate\Database\Eloquent\Model
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      * @throws \Illuminate\Database\MultipleRecordsFoundException
      */
     public function sole($columns = ['*'])
@@ -617,6 +665,7 @@ class Builder implements BuilderContract
     }
 
     /**
+<<<<<<< HEAD
      * Get a single column's value from the first result of a query if it's the sole matching record.
      *
      * @param  string|\Illuminate\Database\Query\Expression  $column
@@ -631,12 +680,18 @@ class Builder implements BuilderContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get a single column's value from the first result of the query or throw an exception.
      *
      * @param  string|\Illuminate\Database\Query\Expression  $column
      * @return mixed
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function valueOrFail($column)
     {
@@ -688,7 +743,11 @@ class Builder implements BuilderContract
             // For nested eager loads we'll skip loading them here and they will be set as an
             // eager load on the query to retrieve the relation so that they will be eager
             // loaded on that query, because that is where they get hydrated as models.
+<<<<<<< HEAD
             if (! str_contains($name, '.')) {
+=======
+            if (strpos($name, '.') === false) {
+>>>>>>> origin/New-FakeMain
                 $models = $this->eagerLoadRelation($models, $name, $constraints);
             }
         }
@@ -786,7 +845,11 @@ class Builder implements BuilderContract
      */
     protected function isNestedUnder($relation, $name)
     {
+<<<<<<< HEAD
         return str_contains($name, '.') && str_starts_with($name, $relation.'.');
+=======
+        return Str::contains($name, '.') && Str::startsWith($name, $relation.'.');
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -1246,7 +1309,11 @@ class Builder implements BuilderContract
         $originalWhereCount = is_null($query->wheres)
                     ? 0 : count($query->wheres);
 
+<<<<<<< HEAD
         $result = $scope(...$parameters) ?? $this;
+=======
+        $result = $scope(...array_values($parameters)) ?? $this;
+>>>>>>> origin/New-FakeMain
 
         if (count((array) $query->wheres) > $originalWhereCount) {
             $this->addNewWheresWithinGroup($query, $originalWhereCount);
@@ -1411,7 +1478,11 @@ class Builder implements BuilderContract
             if (is_numeric($name)) {
                 $name = $constraints;
 
+<<<<<<< HEAD
                 [$name, $constraints] = str_contains($name, ':')
+=======
+                [$name, $constraints] = Str::contains($name, ':')
+>>>>>>> origin/New-FakeMain
                             ? $this->createSelectWithConstraint($name)
                             : [$name, static function () {
                                 //
@@ -1439,7 +1510,11 @@ class Builder implements BuilderContract
     {
         return [explode(':', $name)[0], static function ($query) use ($name) {
             $query->select(array_map(static function ($column) use ($query) {
+<<<<<<< HEAD
                 if (str_contains($column, '.')) {
+=======
+                if (Str::contains($column, '.')) {
+>>>>>>> origin/New-FakeMain
                     return $column;
                 }
 
@@ -1657,7 +1732,11 @@ class Builder implements BuilderContract
      */
     public function __get($key)
     {
+<<<<<<< HEAD
         if (in_array($key, ['orWhere', 'whereNot', 'orWhereNot'])) {
+=======
+        if ($key === 'orWhere') {
+>>>>>>> origin/New-FakeMain
             return new HigherOrderBuilderProxy($this, $key);
         }
 

@@ -31,7 +31,11 @@ class PostgresGrammar extends Grammar
     ];
 
     /**
+<<<<<<< HEAD
      * Compile a basic where clause.
+=======
+     * {@inheritdoc}
+>>>>>>> origin/New-FakeMain
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $where
@@ -39,7 +43,11 @@ class PostgresGrammar extends Grammar
      */
     protected function whereBasic(Builder $query, $where)
     {
+<<<<<<< HEAD
         if (str_contains(strtolower($where['operator']), 'like')) {
+=======
+        if (Str::contains(strtolower($where['operator']), 'like')) {
+>>>>>>> origin/New-FakeMain
             return sprintf(
                 '%s::text %s %s',
                 $this->wrap($where['column']),
@@ -52,7 +60,11 @@ class PostgresGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a bitwise operator where clause.
+=======
+     * {@inheritdoc}
+>>>>>>> origin/New-FakeMain
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $where
@@ -217,6 +229,7 @@ class PostgresGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a "JSON contains key" statement into SQL.
      *
      * @param  string  $column
@@ -251,6 +264,8 @@ class PostgresGrammar extends Grammar
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile a "JSON length" statement into SQL.
      *
      * @param  string  $column
@@ -262,11 +277,19 @@ class PostgresGrammar extends Grammar
     {
         $column = str_replace('->>', '->', $this->wrap($column));
 
+<<<<<<< HEAD
         return 'jsonb_array_length(('.$column.')::jsonb) '.$operator.' '.$value;
     }
 
     /**
      * Compile a single having clause.
+=======
+        return 'json_array_length(('.$column.')::json) '.$operator.' '.$value;
+    }
+
+    /**
+     * {@inheritdoc}
+>>>>>>> origin/New-FakeMain
      *
      * @param  array  $having
      * @return string
@@ -292,7 +315,11 @@ class PostgresGrammar extends Grammar
 
         $parameter = $this->parameter($having['value']);
 
+<<<<<<< HEAD
         return '('.$column.' '.$having['operator'].' '.$parameter.')::bool';
+=======
+        return $having['boolean'].' ('.$column.' '.$having['operator'].' '.$parameter.')::bool';
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -409,7 +436,11 @@ class PostgresGrammar extends Grammar
 
         $field = $this->wrap(array_shift($segments));
 
+<<<<<<< HEAD
         $path = "'{".implode(',', $this->wrapJsonPathAttributes($segments, '"'))."}'";
+=======
+        $path = '\'{"'.implode('","', $segments).'"}\'';
+>>>>>>> origin/New-FakeMain
 
         return "{$field} = jsonb_set({$field}::jsonb, {$path}, {$this->parameter($value)})";
     }
@@ -658,13 +689,18 @@ class PostgresGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Wrap the attributes of the given JSON path.
+=======
+     * Wrap the attributes of the give JSON path.
+>>>>>>> origin/New-FakeMain
      *
      * @param  array  $path
      * @return array
      */
     protected function wrapJsonPathAttributes($path)
     {
+<<<<<<< HEAD
         $quote = func_num_args() === 2 ? func_get_arg(1) : "'";
 
         return collect($path)->map(function ($attribute) {
@@ -697,5 +733,12 @@ class PostgresGrammar extends Grammar
         }
 
         return [$attribute];
+=======
+        return array_map(function ($attribute) {
+            return filter_var($attribute, FILTER_VALIDATE_INT) !== false
+                        ? $attribute
+                        : "'$attribute'";
+        }, $path);
+>>>>>>> origin/New-FakeMain
     }
 }

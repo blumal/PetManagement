@@ -33,7 +33,11 @@ class ControllerResolver implements ControllerResolverInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getController(Request $request): callable|false
+=======
+    public function getController(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         if (!$controller = $request->attributes->get('_controller')) {
             if (null !== $this->logger) {
@@ -48,8 +52,20 @@ class ControllerResolver implements ControllerResolverInterface
                 try {
                     $controller[0] = $this->instantiateController($controller[0]);
                 } catch (\Error|\LogicException $e) {
+<<<<<<< HEAD
                     if (\is_callable($controller)) {
                         return $controller;
+=======
+                    try {
+                        // We cannot just check is_callable but have to use reflection because a non-static method
+                        // can still be called statically in PHP but we don't want that. This is deprecated in PHP 7, so we
+                        // could simplify this with PHP 8.
+                        if ((new \ReflectionMethod($controller[0], $controller[1]))->isStatic()) {
+                            return $controller;
+                        }
+                    } catch (\ReflectionException $reflectionException) {
+                        throw $e;
+>>>>>>> origin/New-FakeMain
                     }
 
                     throw $e;
@@ -91,9 +107,17 @@ class ControllerResolver implements ControllerResolverInterface
     /**
      * Returns a callable for the given controller.
      *
+<<<<<<< HEAD
      * @throws \InvalidArgumentException When the controller cannot be created
      */
     protected function createController(string $controller): callable
+=======
+     * @return callable
+     *
+     * @throws \InvalidArgumentException When the controller cannot be created
+     */
+    protected function createController(string $controller)
+>>>>>>> origin/New-FakeMain
     {
         if (!str_contains($controller, '::')) {
             $controller = $this->instantiateController($controller);
@@ -130,13 +154,24 @@ class ControllerResolver implements ControllerResolverInterface
 
     /**
      * Returns an instantiated controller.
+<<<<<<< HEAD
      */
     protected function instantiateController(string $class): object
+=======
+     *
+     * @return object
+     */
+    protected function instantiateController(string $class)
+>>>>>>> origin/New-FakeMain
     {
         return new $class();
     }
 
+<<<<<<< HEAD
     private function getControllerError(mixed $callable): string
+=======
+    private function getControllerError($callable): string
+>>>>>>> origin/New-FakeMain
     {
         if (\is_string($callable)) {
             if (str_contains($callable, '::')) {

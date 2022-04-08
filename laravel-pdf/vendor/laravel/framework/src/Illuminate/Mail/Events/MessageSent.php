@@ -2,6 +2,7 @@
 
 namespace Illuminate\Mail\Events;
 
+<<<<<<< HEAD
 use Exception;
 use Illuminate\Mail\SentMessage;
 
@@ -16,6 +17,18 @@ class MessageSent
      * @var \Illuminate\Mail\SentMessage
      */
     public $sent;
+=======
+use Swift_Attachment;
+
+class MessageSent
+{
+    /**
+     * The Swift message instance.
+     *
+     * @var \Swift_Message
+     */
+    public $message;
+>>>>>>> origin/New-FakeMain
 
     /**
      * The message data.
@@ -27,6 +40,7 @@ class MessageSent
     /**
      * Create a new event instance.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Mail\SentMessage  $message
      * @param  array  $data
      * @return void
@@ -35,6 +49,16 @@ class MessageSent
     {
         $this->sent = $message;
         $this->data = $data;
+=======
+     * @param  \Swift_Message  $message
+     * @param  array  $data
+     * @return void
+     */
+    public function __construct($message, $data = [])
+    {
+        $this->data = $data;
+        $this->message = $message;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -44,6 +68,7 @@ class MessageSent
      */
     public function __serialize()
     {
+<<<<<<< HEAD
         $hasAttachments = collect($this->message->getAttachments())->isNotEmpty();
 
         return $hasAttachments ? [
@@ -52,6 +77,18 @@ class MessageSent
             'hasAttachments' => true,
         ] : [
             'sent' => $this->sent,
+=======
+        $hasAttachments = collect($this->message->getChildren())
+                                ->whereInstanceOf(Swift_Attachment::class)
+                                ->isNotEmpty();
+
+        return $hasAttachments ? [
+            'message' => base64_encode(serialize($this->message)),
+            'data' => base64_encode(serialize($this->data)),
+            'hasAttachments' => true,
+        ] : [
+            'message' => $this->message,
+>>>>>>> origin/New-FakeMain
             'data' => $this->data,
             'hasAttachments' => false,
         ];
@@ -66,6 +103,7 @@ class MessageSent
     public function __unserialize(array $data)
     {
         if (isset($data['hasAttachments']) && $data['hasAttachments'] === true) {
+<<<<<<< HEAD
             $this->sent = unserialize(base64_decode($data['sent']));
             $this->data = unserialize(base64_decode($data['data']));
         } else {
@@ -90,4 +128,13 @@ class MessageSent
 
         throw new Exception('Unable to access undefined property on '.__CLASS__.': '.$key);
     }
+=======
+            $this->message = unserialize(base64_decode($data['message']));
+            $this->data = unserialize(base64_decode($data['data']));
+        } else {
+            $this->message = $data['message'];
+            $this->data = $data['data'];
+        }
+    }
+>>>>>>> origin/New-FakeMain
 }

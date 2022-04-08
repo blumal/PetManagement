@@ -25,8 +25,13 @@ class CollectionConfigurator
 
     private $parent;
     private $parentConfigurator;
+<<<<<<< HEAD
     private ?array $parentPrefixes;
     private string|array|null $host = null;
+=======
+    private $parentPrefixes;
+    private $host;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(RouteCollection $parent, string $name, self $parentConfigurator = null, array $parentPrefixes = null)
     {
@@ -38,7 +43,14 @@ class CollectionConfigurator
         $this->parentPrefixes = $parentPrefixes;
     }
 
+<<<<<<< HEAD
     public function __sleep(): array
+=======
+    /**
+     * @return array
+     */
+    public function __sleep()
+>>>>>>> origin/New-FakeMain
     {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
@@ -75,7 +87,11 @@ class CollectionConfigurator
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function prefix(string|array $prefix): static
+=======
+    final public function prefix($prefix): self
+>>>>>>> origin/New-FakeMain
     {
         if (\is_array($prefix)) {
             if (null === $this->parentPrefixes) {
@@ -108,7 +124,11 @@ class CollectionConfigurator
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function host(string|array $host): static
+=======
+    final public function host($host): self
+>>>>>>> origin/New-FakeMain
     {
         $this->host = $host;
 

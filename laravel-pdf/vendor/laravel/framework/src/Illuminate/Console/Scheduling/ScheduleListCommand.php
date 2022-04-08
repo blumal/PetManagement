@@ -4,12 +4,17 @@ namespace Illuminate\Console\Scheduling;
 
 use Cron\CronExpression;
 use DateTimeZone;
+<<<<<<< HEAD
 use Illuminate\Console\Application;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use ReflectionClass;
 use ReflectionFunction;
 use Symfony\Component\Console\Terminal;
+=======
+use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
+>>>>>>> origin/New-FakeMain
 
 class ScheduleListCommand extends Command
 {
@@ -28,6 +33,7 @@ class ScheduleListCommand extends Command
     protected $description = 'List the scheduled commands';
 
     /**
+<<<<<<< HEAD
      * The terminal width resolver callback.
      *
      * @var \Closure|null
@@ -35,6 +41,8 @@ class ScheduleListCommand extends Command
     protected static $terminalWidthResolver;
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Execute the console command.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
@@ -44,6 +52,7 @@ class ScheduleListCommand extends Command
      */
     public function handle(Schedule $schedule)
     {
+<<<<<<< HEAD
         $events = collect($schedule->events());
 
         if ($events->isEmpty()) {
@@ -192,5 +201,25 @@ class ScheduleListCommand extends Command
     public static function resolveTerminalWidthUsing($resolver)
     {
         static::$terminalWidthResolver = $resolver;
+=======
+        foreach ($schedule->events() as $event) {
+            $rows[] = [
+                $event->command,
+                $event->expression,
+                $event->description,
+                (new CronExpression($event->expression))
+                            ->getNextRunDate(Carbon::now()->setTimezone($event->timezone))
+                            ->setTimezone(new DateTimeZone($this->option('timezone') ?? config('app.timezone')))
+                            ->format('Y-m-d H:i:s P'),
+            ];
+        }
+
+        $this->table([
+            'Command',
+            'Interval',
+            'Description',
+            'Next Due',
+        ], $rows ?? []);
+>>>>>>> origin/New-FakeMain
     }
 }

@@ -28,7 +28,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * Prefix for new found message.
      */
+<<<<<<< HEAD
     private string $prefix = '';
+=======
+    private $prefix = '';
+>>>>>>> origin/New-FakeMain
 
     /**
      * The sequence that captures translation messages.
@@ -131,7 +135,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function extract(string|iterable $resource, MessageCatalogue $catalog)
+=======
+    public function extract($resource, MessageCatalogue $catalog)
+>>>>>>> origin/New-FakeMain
     {
         $files = $this->extractFiles($resource);
         foreach ($files as $file) {
@@ -151,8 +159,17 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
 
     /**
      * Normalizes a token.
+<<<<<<< HEAD
      */
     protected function normalizeToken(mixed $token): ?string
+=======
+     *
+     * @param mixed $token
+     *
+     * @return string|null
+     */
+    protected function normalizeToken($token)
+>>>>>>> origin/New-FakeMain
     {
         if (isset($token[1]) && 'b"' !== $token) {
             return $token[1];
@@ -307,9 +324,17 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     }
 
     /**
+<<<<<<< HEAD
      * @throws \InvalidArgumentException
      */
     protected function canBeExtracted(string $file): bool
+=======
+     * @return bool
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function canBeExtracted(string $file)
+>>>>>>> origin/New-FakeMain
     {
         return $this->isFile($file) && 'php' === pathinfo($file, \PATHINFO_EXTENSION);
     }
@@ -317,7 +342,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function extractFromDirectory(string|array $directory): iterable
+=======
+    protected function extractFromDirectory($directory)
+>>>>>>> origin/New-FakeMain
     {
         if (!class_exists(Finder::class)) {
             throw new \LogicException(sprintf('You cannot use "%s" as the "symfony/finder" package is not installed. Try running "composer require symfony/finder".', static::class));

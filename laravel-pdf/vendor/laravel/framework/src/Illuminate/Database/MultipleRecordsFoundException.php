@@ -6,6 +6,7 @@ use RuntimeException;
 
 class MultipleRecordsFoundException extends RuntimeException
 {
+<<<<<<< HEAD
     /**
      * The number of records found.
      *
@@ -37,4 +38,7 @@ class MultipleRecordsFoundException extends RuntimeException
     {
         return $this->count;
     }
+=======
+    //
+>>>>>>> origin/New-FakeMain
 }

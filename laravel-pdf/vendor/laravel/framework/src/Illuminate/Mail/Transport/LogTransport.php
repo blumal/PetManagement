@@ -3,12 +3,19 @@
 namespace Illuminate\Mail\Transport;
 
 use Psr\Log\LoggerInterface;
+<<<<<<< HEAD
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\RawMessage;
 
 class LogTransport implements TransportInterface
+=======
+use Swift_Mime_SimpleMessage;
+use Swift_Mime_SimpleMimeEntity;
+
+class LogTransport extends Transport
+>>>>>>> origin/New-FakeMain
 {
     /**
      * The Logger instance.
@@ -30,12 +37,44 @@ class LogTransport implements TransportInterface
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      */
     public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
     {
         $this->logger->debug($message->toString());
 
         return new SentMessage($message, $envelope ?? Envelope::create($message));
+=======
+     *
+     * @return int
+     */
+    public function send(Swift_Mime_SimpleMessage $message, &$failedRecipients = null)
+    {
+        $this->beforeSendPerformed($message);
+
+        $this->logger->debug($this->getMimeEntityString($message));
+
+        $this->sendPerformed($message);
+
+        return $this->numberOfRecipients($message);
+    }
+
+    /**
+     * Get a loggable string out of a Swiftmailer entity.
+     *
+     * @param  \Swift_Mime_SimpleMimeEntity  $entity
+     * @return string
+     */
+    protected function getMimeEntityString(Swift_Mime_SimpleMimeEntity $entity)
+    {
+        $string = (string) $entity->getHeaders().PHP_EOL.$entity->getBody();
+
+        foreach ($entity->getChildren() as $children) {
+            $string .= PHP_EOL.PHP_EOL.$this->getMimeEntityString($children);
+        }
+
+        return $string;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -47,6 +86,7 @@ class LogTransport implements TransportInterface
     {
         return $this->logger;
     }
+<<<<<<< HEAD
 
     /**
      * Get the string representation of the transport.
@@ -57,4 +97,6 @@ class LogTransport implements TransportInterface
     {
         return 'log';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

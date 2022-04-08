@@ -2,9 +2,13 @@
 
 namespace Illuminate\Console\Scheduling;
 
+<<<<<<< HEAD
 use Illuminate\Console\Application;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+=======
+use Illuminate\Console\Command;
+>>>>>>> origin/New-FakeMain
 
 class ScheduleTestCommand extends Command
 {
@@ -13,6 +17,7 @@ class ScheduleTestCommand extends Command
      *
      * @var string
      */
+<<<<<<< HEAD
     protected $signature = 'schedule:test {--name= : The name of the scheduled command to run}';
 
     /**
@@ -25,6 +30,9 @@ class ScheduleTestCommand extends Command
      * @deprecated
      */
     protected static $defaultName = 'schedule:test';
+=======
+    protected $name = 'schedule:test';
+>>>>>>> origin/New-FakeMain
 
     /**
      * The console command description.
@@ -49,6 +57,7 @@ class ScheduleTestCommand extends Command
             $commandNames[] = $command->command ?? $command->getSummaryForDisplay();
         }
 
+<<<<<<< HEAD
         if (empty($commandNames)) {
             return $this->comment('No scheduled commands have been defined.');
         }
@@ -72,6 +81,13 @@ class ScheduleTestCommand extends Command
         $event = $commands[$index];
 
         $this->line('<info>['.Carbon::now()->format('c').'] Running scheduled command:</info> '.$event->getSummaryForDisplay());
+=======
+        $index = array_search($this->choice('Which command would you like to run?', $commandNames), $commandNames);
+
+        $event = $commands[$index];
+
+        $this->line('<info>['.date('c').'] Running scheduled command:</info> '.$event->getSummaryForDisplay());
+>>>>>>> origin/New-FakeMain
 
         $event->run($this->laravel);
     }

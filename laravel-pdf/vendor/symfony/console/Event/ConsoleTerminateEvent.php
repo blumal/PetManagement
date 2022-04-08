@@ -22,7 +22,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class ConsoleTerminateEvent extends ConsoleEvent
 {
+<<<<<<< HEAD
     private int $exitCode;
+=======
+    private $exitCode;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(Command $command, InputInterface $input, OutputInterface $output, int $exitCode)
     {

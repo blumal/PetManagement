@@ -52,6 +52,7 @@
                     <div class="form-group mx-sm-4 pb-4">
                         <input type="submit" class="btn btn-block ingresar" value="ENVIAR">
                     </div>
+                    <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
                 </form>
     {{-- <h1>Login</h1>
     <div class="login-form">

@@ -7,6 +7,10 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Queue\Events\JobRetryRequested;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use RuntimeException;
 
 class RetryCommand extends Command
@@ -22,6 +26,7 @@ class RetryCommand extends Command
                             {--range=* : Range of job IDs (numeric) to be retried}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -33,6 +38,8 @@ class RetryCommand extends Command
     protected static $defaultName = 'queue:retry';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -174,7 +181,11 @@ class RetryCommand extends Command
             return json_encode($payload);
         }
 
+<<<<<<< HEAD
         if (str_starts_with($payload['data']['command'], 'O:')) {
+=======
+        if (Str::startsWith($payload['data']['command'], 'O:')) {
+>>>>>>> origin/New-FakeMain
             $instance = unserialize($payload['data']['command']);
         } elseif ($this->laravel->bound(Encrypter::class)) {
             $instance = unserialize($this->laravel->make(Encrypter::class)->decrypt($payload['data']['command']));

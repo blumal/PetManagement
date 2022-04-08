@@ -27,12 +27,23 @@ interface MetadataAwareInterface
      *
      * @return mixed The value that was set or an array with the domains/keys or null
      */
+<<<<<<< HEAD
     public function getMetadata(string $key = '', string $domain = 'messages'): mixed;
 
     /**
      * Adds metadata to a message domain.
      */
     public function setMetadata(string $key, mixed $value, string $domain = 'messages');
+=======
+    public function getMetadata(string $key = '', string $domain = 'messages');
+
+    /**
+     * Adds metadata to a message domain.
+     *
+     * @param mixed $value
+     */
+    public function setMetadata(string $key, $value, string $domain = 'messages');
+>>>>>>> origin/New-FakeMain
 
     /**
      * Deletes metadata for the given key and domain.

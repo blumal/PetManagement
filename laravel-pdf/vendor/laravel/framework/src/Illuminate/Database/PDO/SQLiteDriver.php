@@ -8,6 +8,7 @@ use Illuminate\Database\PDO\Concerns\ConnectsToDatabase;
 class SQLiteDriver extends AbstractSQLiteDriver
 {
     use ConnectsToDatabase;
+<<<<<<< HEAD
 
     /**
      * {@inheritdoc}
@@ -16,4 +17,6 @@ class SQLiteDriver extends AbstractSQLiteDriver
     {
         return 'pdo_sqlite';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

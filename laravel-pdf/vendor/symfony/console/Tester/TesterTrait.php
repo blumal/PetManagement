@@ -23,20 +23,40 @@ use Symfony\Component\Console\Tester\Constraint\CommandIsSuccessful;
  */
 trait TesterTrait
 {
+<<<<<<< HEAD
     private $output;
     private array $inputs = [];
     private bool $captureStreamsIndependently = false;
     private $input;
     private int $statusCode;
+=======
+    /** @var StreamOutput */
+    private $output;
+    private $inputs = [];
+    private $captureStreamsIndependently = false;
+    /** @var InputInterface */
+    private $input;
+    /** @var int */
+    private $statusCode;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Gets the display returned by the last execution of the command or application.
      *
      * @throws \RuntimeException If it's called before the execute method
+<<<<<<< HEAD
      */
     public function getDisplay(bool $normalize = false): string
     {
         if (!isset($this->output)) {
+=======
+     *
+     * @return string
+     */
+    public function getDisplay(bool $normalize = false)
+    {
+        if (null === $this->output) {
+>>>>>>> origin/New-FakeMain
             throw new \RuntimeException('Output not initialized, did you execute the command before requesting the display?');
         }
 
@@ -55,8 +75,15 @@ trait TesterTrait
      * Gets the output written to STDERR by the application.
      *
      * @param bool $normalize Whether to normalize end of lines to \n or not
+<<<<<<< HEAD
      */
     public function getErrorOutput(bool $normalize = false): string
+=======
+     *
+     * @return string
+     */
+    public function getErrorOutput(bool $normalize = false)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->captureStreamsIndependently) {
             throw new \LogicException('The error output is not available when the tester is run without "capture_stderr_separately" option set.');
@@ -75,16 +102,30 @@ trait TesterTrait
 
     /**
      * Gets the input instance used by the last execution of the command or application.
+<<<<<<< HEAD
      */
     public function getInput(): InputInterface
+=======
+     *
+     * @return InputInterface
+     */
+    public function getInput()
+>>>>>>> origin/New-FakeMain
     {
         return $this->input;
     }
 
     /**
      * Gets the output instance used by the last execution of the command or application.
+<<<<<<< HEAD
      */
     public function getOutput(): OutputInterface
+=======
+     *
+     * @return OutputInterface
+     */
+    public function getOutput()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output;
     }
@@ -93,10 +134,23 @@ trait TesterTrait
      * Gets the status code returned by the last execution of the command or application.
      *
      * @throws \RuntimeException If it's called before the execute method
+<<<<<<< HEAD
      */
     public function getStatusCode(): int
     {
         return $this->statusCode ?? throw new \RuntimeException('Status code not initialized, did you execute the command before requesting the status code?');
+=======
+     *
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        if (null === $this->statusCode) {
+            throw new \RuntimeException('Status code not initialized, did you execute the command before requesting the status code?');
+        }
+
+        return $this->statusCode;
+>>>>>>> origin/New-FakeMain
     }
 
     public function assertCommandIsSuccessful(string $message = ''): void
@@ -112,7 +166,11 @@ trait TesterTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setInputs(array $inputs): static
+=======
+    public function setInputs(array $inputs)
+>>>>>>> origin/New-FakeMain
     {
         $this->inputs = $inputs;
 

@@ -16,6 +16,7 @@ class ObserverMakeCommand extends GeneratorCommand
     protected $name = 'make:observer';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -27,6 +28,8 @@ class ObserverMakeCommand extends GeneratorCommand
     protected static $defaultName = 'make:observer';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

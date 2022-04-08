@@ -9,8 +9,11 @@ use Illuminate\Mail\Markdown;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Symfony\Component\Mailer\Header\MetadataHeader;
 use Symfony\Component\Mailer\Header\TagHeader;
+=======
+>>>>>>> origin/New-FakeMain
 
 class MailChannel
 {
@@ -143,6 +146,7 @@ class MailChannel
         $this->addAttachments($mailMessage, $message);
 
         if (! is_null($message->priority)) {
+<<<<<<< HEAD
             $mailMessage->priority($message->priority);
         }
 
@@ -156,6 +160,9 @@ class MailChannel
             foreach ($message->metadata as $key => $value) {
                 $mailMessage->getHeaders()->add(new MetadataHeader($key, $value));
             }
+=======
+            $mailMessage->setPriority($message->priority);
+>>>>>>> origin/New-FakeMain
         }
 
         $this->runCallbacks($mailMessage, $message);
@@ -258,7 +265,11 @@ class MailChannel
     protected function runCallbacks($mailMessage, $message)
     {
         foreach ($message->callbacks as $callback) {
+<<<<<<< HEAD
             $callback($mailMessage->getSymfonyMessage());
+=======
+            $callback($mailMessage->getSwiftMessage());
+>>>>>>> origin/New-FakeMain
         }
 
         return $this;

@@ -14,6 +14,10 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\CallQueuedClosure;
 use Illuminate\Support\ProcessUtils;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Traits\Macroable;
 use RuntimeException;
 
@@ -271,11 +275,19 @@ class Schedule
             return ProcessUtils::escapeArgument($value);
         });
 
+<<<<<<< HEAD
         if (str_starts_with($key, '--')) {
             $value = $value->map(function ($value) use ($key) {
                 return "{$key}={$value}";
             });
         } elseif (str_starts_with($key, '-')) {
+=======
+        if (Str::startsWith($key, '--')) {
+            $value = $value->map(function ($value) use ($key) {
+                return "{$key}={$value}";
+            });
+        } elseif (Str::startsWith($key, '-')) {
+>>>>>>> origin/New-FakeMain
             $value = $value->map(function ($value) use ($key) {
                 return "{$key} {$value}";
             });

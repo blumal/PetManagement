@@ -8,6 +8,7 @@ use Illuminate\Database\PDO\Concerns\ConnectsToDatabase;
 class MySqlDriver extends AbstractMySQLDriver
 {
     use ConnectsToDatabase;
+<<<<<<< HEAD
 
     /**
      * {@inheritdoc}
@@ -16,4 +17,6 @@ class MySqlDriver extends AbstractMySQLDriver
     {
         return 'pdo_mysql';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

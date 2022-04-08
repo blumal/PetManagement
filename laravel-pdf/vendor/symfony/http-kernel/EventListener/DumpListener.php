@@ -51,7 +51,11 @@ class DumpListener implements EventSubscriberInterface
         });
     }
 
+<<<<<<< HEAD
     public static function getSubscribedEvents(): array
+=======
+    public static function getSubscribedEvents()
+>>>>>>> origin/New-FakeMain
     {
         if (!class_exists(ConsoleEvents::class)) {
             return [];

@@ -3,7 +3,10 @@
 namespace Illuminate\Support;
 
 use ReflectionClass;
+<<<<<<< HEAD
 use ReflectionEnum;
+=======
+>>>>>>> origin/New-FakeMain
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionUnionType;
@@ -23,7 +26,12 @@ class Reflector
             return is_callable($var, $syntaxOnly);
         }
 
+<<<<<<< HEAD
         if (! isset($var[0], $var[1]) || ! is_string($var[1] ?? null)) {
+=======
+        if ((! isset($var[0]) || ! isset($var[1])) ||
+            ! is_string($var[1] ?? null)) {
+>>>>>>> origin/New-FakeMain
             return false;
         }
 
@@ -139,6 +147,7 @@ class Reflector
             && (class_exists($paramClassName) || interface_exists($paramClassName))
             && (new ReflectionClass($paramClassName))->isSubclassOf($className);
     }
+<<<<<<< HEAD
 
     /**
      * Determine if the parameter's type is a Backed Enum with a string backing type.
@@ -159,4 +168,6 @@ class Reflector
 
         return false;
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

@@ -44,7 +44,11 @@ class BinaryFileResponse extends Response
      * @param bool                $autoEtag           Whether the ETag header should be automatically set
      * @param bool                $autoLastModified   Whether the Last-Modified header should be automatically set
      */
+<<<<<<< HEAD
     public function __construct(\SplFileInfo|string $file, int $status = 200, array $headers = [], bool $public = true, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+=======
+    public function __construct($file, int $status = 200, array $headers = [], bool $public = true, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+>>>>>>> origin/New-FakeMain
     {
         parent::__construct(null, $status, $headers);
 
@@ -56,13 +60,44 @@ class BinaryFileResponse extends Response
     }
 
     /**
+<<<<<<< HEAD
      * Sets the file to stream.
      *
+=======
+     * @param \SplFileInfo|string $file               The file to stream
+     * @param int                 $status             The response status code
+     * @param array               $headers            An array of response headers
+     * @param bool                $public             Files are public by default
+     * @param string|null         $contentDisposition The type of Content-Disposition to set automatically with the filename
+     * @param bool                $autoEtag           Whether the ETag header should be automatically set
+     * @param bool                $autoLastModified   Whether the Last-Modified header should be automatically set
+     *
+     * @return static
+     *
+     * @deprecated since Symfony 5.2, use __construct() instead.
+     */
+    public static function create($file = null, int $status = 200, array $headers = [], bool $public = true, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+    {
+        trigger_deprecation('symfony/http-foundation', '5.2', 'The "%s()" method is deprecated, use "new %s()" instead.', __METHOD__, static::class);
+
+        return new static($file, $status, $headers, $public, $contentDisposition, $autoEtag, $autoLastModified);
+    }
+
+    /**
+     * Sets the file to stream.
+     *
+     * @param \SplFileInfo|string $file The file to stream
+     *
+>>>>>>> origin/New-FakeMain
      * @return $this
      *
      * @throws FileException
      */
+<<<<<<< HEAD
     public function setFile(\SplFileInfo|string $file, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true): static
+=======
+    public function setFile($file, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+>>>>>>> origin/New-FakeMain
     {
         if (!$file instanceof File) {
             if ($file instanceof \SplFileInfo) {
@@ -95,8 +130,15 @@ class BinaryFileResponse extends Response
 
     /**
      * Gets the file.
+<<<<<<< HEAD
      */
     public function getFile(): File
+=======
+     *
+     * @return File
+     */
+    public function getFile()
+>>>>>>> origin/New-FakeMain
     {
         return $this->file;
     }
@@ -106,7 +148,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setAutoLastModified(): static
+=======
+    public function setAutoLastModified()
+>>>>>>> origin/New-FakeMain
     {
         $this->setLastModified(\DateTime::createFromFormat('U', $this->file->getMTime()));
 
@@ -118,7 +164,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setAutoEtag(): static
+=======
+    public function setAutoEtag()
+>>>>>>> origin/New-FakeMain
     {
         $this->setEtag(base64_encode(hash_file('sha256', $this->file->getPathname(), true)));
 
@@ -134,7 +184,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setContentDisposition(string $disposition, string $filename = '', string $filenameFallback = ''): static
+=======
+    public function setContentDisposition(string $disposition, string $filename = '', string $filenameFallback = '')
+>>>>>>> origin/New-FakeMain
     {
         if ('' === $filename) {
             $filename = $this->file->getFilename();
@@ -163,7 +217,11 @@ class BinaryFileResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function prepare(Request $request): static
+=======
+    public function prepare(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->headers->has('Content-Type')) {
             $this->headers->set('Content-Type', $this->file->getMimeType() ?: 'application/octet-stream');
@@ -269,7 +327,11 @@ class BinaryFileResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function sendContent(): static
+=======
+    public function sendContent()
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->isSuccessful()) {
             return parent::sendContent();
@@ -299,7 +361,11 @@ class BinaryFileResponse extends Response
      *
      * @throws \LogicException when the content is not null
      */
+<<<<<<< HEAD
     public function setContent(?string $content): static
+=======
+    public function setContent(?string $content)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $content) {
             throw new \LogicException('The content cannot be set on a BinaryFileResponse instance.');
@@ -311,7 +377,11 @@ class BinaryFileResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getContent(): string|false
+=======
+    public function getContent()
+>>>>>>> origin/New-FakeMain
     {
         return false;
     }
@@ -330,7 +400,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function deleteFileAfterSend(bool $shouldDelete = true): static
+=======
+    public function deleteFileAfterSend(bool $shouldDelete = true)
+>>>>>>> origin/New-FakeMain
     {
         $this->deleteFileAfterSend = $shouldDelete;
 

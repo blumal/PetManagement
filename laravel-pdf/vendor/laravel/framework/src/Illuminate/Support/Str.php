@@ -170,6 +170,7 @@ class Str
     }
 
     /**
+<<<<<<< HEAD
      * Get the smallest possible portion of a string between two given values.
      *
      * @param  string  $subject
@@ -187,6 +188,8 @@ class Str
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Convert a value to camel case.
      *
      * @param  string  $value
@@ -206,6 +209,7 @@ class Str
      *
      * @param  string  $haystack
      * @param  string|string[]  $needles
+<<<<<<< HEAD
      * @param  bool  $ignoreCase
      * @return bool
      */
@@ -218,6 +222,14 @@ class Str
 
         foreach ((array) $needles as $needle) {
             if ($needle !== '' && str_contains($haystack, $needle)) {
+=======
+     * @return bool
+     */
+    public static function contains($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle !== '' && mb_strpos($haystack, $needle) !== false) {
+>>>>>>> origin/New-FakeMain
                 return true;
             }
         }
@@ -230,6 +242,7 @@ class Str
      *
      * @param  string  $haystack
      * @param  string[]  $needles
+<<<<<<< HEAD
      * @param  bool  $ignoreCase
      * @return bool
      */
@@ -240,6 +253,12 @@ class Str
             $needles = array_map('mb_strtolower', $needles);
         }
 
+=======
+     * @return bool
+     */
+    public static function containsAll($haystack, array $needles)
+    {
+>>>>>>> origin/New-FakeMain
         foreach ($needles as $needle) {
             if (! static::contains($haystack, $needle)) {
                 return false;
@@ -261,7 +280,11 @@ class Str
         foreach ((array) $needles as $needle) {
             if (
                 $needle !== '' && $needle !== null
+<<<<<<< HEAD
                 && str_ends_with($haystack, $needle)
+=======
+                && substr($haystack, -strlen($needle)) === (string) $needle
+>>>>>>> origin/New-FakeMain
             ) {
                 return true;
             }
@@ -271,6 +294,7 @@ class Str
     }
 
     /**
+<<<<<<< HEAD
      * Extracts an excerpt from text that matches the first instance of a phrase.
      *
      * @param  string  $text
@@ -307,6 +331,8 @@ class Str
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Cap a string with a single instance of a given value.
      *
      * @param  string  $value
@@ -343,7 +369,11 @@ class Str
             // If the given value is an exact match we can of course return true right
             // from the beginning. Otherwise, we will translate asterisks and do an
             // actual pattern match against the two strings to see if they match.
+<<<<<<< HEAD
             if ($pattern === $value) {
+=======
+            if ($pattern == $value) {
+>>>>>>> origin/New-FakeMain
                 return true;
             }
 
@@ -473,7 +503,11 @@ class Str
     {
         $converter = new GithubFlavoredMarkdownConverter($options);
 
+<<<<<<< HEAD
         return (string) $converter->convert($string);
+=======
+        return (string) $converter->convertToHtml($string);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -492,6 +526,13 @@ class Str
             return $string;
         }
 
+<<<<<<< HEAD
+=======
+        if (is_null($length) && PHP_MAJOR_VERSION < 8) {
+            $length = mb_strlen($string, $encoding);
+        }
+
+>>>>>>> origin/New-FakeMain
         $segment = mb_substr($string, $index, $length, $encoding);
 
         if ($segment === '') {
@@ -696,8 +737,11 @@ class Str
      */
     public static function replaceFirst($search, $replace, $subject)
     {
+<<<<<<< HEAD
         $search = (string) $search;
 
+=======
+>>>>>>> origin/New-FakeMain
         if ($search === '') {
             return $subject;
         }
@@ -809,8 +853,13 @@ class Str
         $parts = explode(' ', $value);
 
         $parts = count($parts) > 1
+<<<<<<< HEAD
             ? array_map([static::class, 'title'], $parts)
             : array_map([static::class, 'title'], static::ucsplit(implode('_', $parts)));
+=======
+            ? $parts = array_map([static::class, 'title'], $parts)
+            : $parts = array_map([static::class, 'title'], static::ucsplit(implode('_', $parts)));
+>>>>>>> origin/New-FakeMain
 
         $collapsed = static::replace(['-', '_', ' '], '_', implode('_', $parts));
 
@@ -882,6 +931,7 @@ class Str
     }
 
     /**
+<<<<<<< HEAD
      * Remove all "extra" blank space from the given string.
      *
      * @param  string  $value
@@ -893,6 +943,8 @@ class Str
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Determine if a given string starts with a given substring.
      *
      * @param  string  $haystack
@@ -902,7 +954,11 @@ class Str
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
+<<<<<<< HEAD
             if ((string) $needle !== '' && str_starts_with($haystack, $needle)) {
+=======
+            if ((string) $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0) {
+>>>>>>> origin/New-FakeMain
                 return true;
             }
         }
@@ -995,6 +1051,7 @@ class Str
     }
 
     /**
+<<<<<<< HEAD
      * Make a string's first character lowercase.
      *
      * @param  string  $string
@@ -1006,6 +1063,8 @@ class Str
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Make a string's first character uppercase.
      *
      * @param  string  $string
@@ -1031,12 +1090,20 @@ class Str
      * Get the number of words a string contains.
      *
      * @param  string  $string
+<<<<<<< HEAD
      * @param  string|null  $characters
      * @return int
      */
     public static function wordCount($string, $characters = null)
     {
         return str_word_count($string, 0, $characters);
+=======
+     * @return int
+     */
+    public static function wordCount($string)
+    {
+        return str_word_count($string);
+>>>>>>> origin/New-FakeMain
     }
 
     /**

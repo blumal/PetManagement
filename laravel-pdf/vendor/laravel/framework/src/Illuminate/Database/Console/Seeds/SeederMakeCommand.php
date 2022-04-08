@@ -3,7 +3,10 @@
 namespace Illuminate\Database\Console\Seeds;
 
 use Illuminate\Console\GeneratorCommand;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> origin/New-FakeMain
 
 class SeederMakeCommand extends GeneratorCommand
 {
@@ -15,6 +18,7 @@ class SeederMakeCommand extends GeneratorCommand
     protected $name = 'make:seeder';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -26,6 +30,8 @@ class SeederMakeCommand extends GeneratorCommand
     protected static $defaultName = 'make:seeder';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -80,6 +86,7 @@ class SeederMakeCommand extends GeneratorCommand
      */
     protected function getPath($name)
     {
+<<<<<<< HEAD
         $name = str_replace('\\', '/', Str::replaceFirst($this->rootNamespace(), '', $name));
 
         if (is_dir($this->laravel->databasePath().'/seeds')) {
@@ -97,5 +104,23 @@ class SeederMakeCommand extends GeneratorCommand
     protected function rootNamespace()
     {
         return 'Database\Seeders\\';
+=======
+        if (is_dir($this->laravel->databasePath().'/seeds')) {
+            return $this->laravel->databasePath().'/seeds/'.$name.'.php';
+        } else {
+            return $this->laravel->databasePath().'/seeders/'.$name.'.php';
+        }
+    }
+
+    /**
+     * Parse the class name and format according to the root namespace.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function qualifyClass($name)
+    {
+        return $name;
+>>>>>>> origin/New-FakeMain
     }
 }

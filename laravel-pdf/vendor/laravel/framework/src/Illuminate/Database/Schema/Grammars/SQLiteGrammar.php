@@ -858,6 +858,7 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyVirtualAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($virtualAs = $column->virtualAsJson)) {
             if ($this->isJsonSelector($virtualAs)) {
                 $virtualAs = $this->wrapJsonSelector($virtualAs);
@@ -868,6 +869,10 @@ class SQLiteGrammar extends Grammar
 
         if (! is_null($virtualAs = $column->virtualAs)) {
             return " as ({$virtualAs})";
+=======
+        if (! is_null($column->virtualAs)) {
+            return " as ({$column->virtualAs})";
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -880,6 +885,7 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyStoredAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($storedAs = $column->storedAsJson)) {
             if ($this->isJsonSelector($storedAs)) {
                 $storedAs = $this->wrapJsonSelector($storedAs);
@@ -889,6 +895,9 @@ class SQLiteGrammar extends Grammar
         }
 
         if (! is_null($storedAs = $column->storedAs)) {
+=======
+        if (! is_null($column->storedAs)) {
+>>>>>>> origin/New-FakeMain
             return " as ({$column->storedAs}) stored";
         }
     }
@@ -902,10 +911,14 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyNullable(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (is_null($column->virtualAs) &&
             is_null($column->virtualAsJson) &&
             is_null($column->storedAs) &&
             is_null($column->storedAsJson)) {
+=======
+        if (is_null($column->virtualAs) && is_null($column->storedAs)) {
+>>>>>>> origin/New-FakeMain
             return $column->nullable ? '' : ' not null';
         }
 
@@ -923,7 +936,11 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyDefault(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->default) && is_null($column->virtualAs) && is_null($column->virtualAsJson) && is_null($column->storedAs)) {
+=======
+        if (! is_null($column->default) && is_null($column->virtualAs) && is_null($column->storedAs)) {
+>>>>>>> origin/New-FakeMain
             return ' default '.$this->getDefaultValue($column->default);
         }
     }
@@ -941,6 +958,7 @@ class SQLiteGrammar extends Grammar
             return ' primary key autoincrement';
         }
     }
+<<<<<<< HEAD
 
     /**
      * Wrap the given JSON selector.
@@ -954,4 +972,6 @@ class SQLiteGrammar extends Grammar
 
         return 'json_extract('.$field.$path.')';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

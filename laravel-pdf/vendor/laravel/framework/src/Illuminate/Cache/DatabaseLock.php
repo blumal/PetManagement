@@ -56,6 +56,11 @@ class DatabaseLock extends Lock
      */
     public function acquire()
     {
+<<<<<<< HEAD
+=======
+        $acquired = false;
+
+>>>>>>> origin/New-FakeMain
         try {
             $this->connection->table($this->table)->insert([
                 'key' => $this->name,

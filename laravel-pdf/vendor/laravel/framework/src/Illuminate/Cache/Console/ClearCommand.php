@@ -18,6 +18,7 @@ class ClearCommand extends Command
     protected $name = 'cache:clear';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -29,6 +30,8 @@ class ClearCommand extends Command
     protected static $defaultName = 'cache:clear';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -87,7 +90,11 @@ class ClearCommand extends Command
             'cache:cleared', [$this->argument('store'), $this->tags()]
         );
 
+<<<<<<< HEAD
         $this->info('Application cache cleared successfully.');
+=======
+        $this->info('Application cache cleared!');
+>>>>>>> origin/New-FakeMain
     }
 
     /**

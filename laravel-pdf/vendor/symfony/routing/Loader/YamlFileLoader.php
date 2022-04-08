@@ -39,9 +39,22 @@ class YamlFileLoader extends FileLoader
     private $yamlParser;
 
     /**
+<<<<<<< HEAD
      * @throws \InvalidArgumentException When a route can't be parsed because YAML is invalid
      */
     public function load(mixed $file, string $type = null): RouteCollection
+=======
+     * Loads a Yaml file.
+     *
+     * @param string      $file A Yaml file path
+     * @param string|null $type The resource type
+     *
+     * @return RouteCollection
+     *
+     * @throws \InvalidArgumentException When a route can't be parsed because YAML is invalid
+     */
+    public function load($file, string $type = null)
+>>>>>>> origin/New-FakeMain
     {
         $path = $this->locator->locate($file);
 
@@ -53,7 +66,13 @@ class YamlFileLoader extends FileLoader
             throw new \InvalidArgumentException(sprintf('File "%s" not found.', $path));
         }
 
+<<<<<<< HEAD
         $this->yamlParser ??= new YamlParser();
+=======
+        if (null === $this->yamlParser) {
+            $this->yamlParser = new YamlParser();
+        }
+>>>>>>> origin/New-FakeMain
 
         try {
             $parsedConfig = $this->yamlParser->parseFile($path, Yaml::PARSE_CONSTANT);
@@ -108,7 +127,11 @@ class YamlFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function supports(mixed $resource, string $type = null): bool
+=======
+    public function supports($resource, string $type = null)
+>>>>>>> origin/New-FakeMain
     {
         return \is_string($resource) && \in_array(pathinfo($resource, \PATHINFO_EXTENSION), ['yml', 'yaml'], true) && (!$type || 'yaml' === $type);
     }
@@ -241,10 +264,23 @@ class YamlFileLoader extends FileLoader
     }
 
     /**
+<<<<<<< HEAD
      * @throws \InvalidArgumentException If one of the provided config keys is not supported,
      *                                   something is missing or the combination is nonsense
      */
     protected function validate(mixed $config, string $name, string $path)
+=======
+     * Validates the route configuration.
+     *
+     * @param array  $config A resource config
+     * @param string $name   The config key
+     * @param string $path   The loaded file path
+     *
+     * @throws \InvalidArgumentException If one of the provided config keys is not supported,
+     *                                   something is missing or the combination is nonsense
+     */
+    protected function validate($config, string $name, string $path)
+>>>>>>> origin/New-FakeMain
     {
         if (!\is_array($config)) {
             throw new \InvalidArgumentException(sprintf('The definition of "%s" in "%s" must be a YAML array.', $name, $path));

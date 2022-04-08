@@ -167,6 +167,7 @@ class UrlGenerator implements UrlGeneratorContract
     }
 
     /**
+<<<<<<< HEAD
      * Get the previous path info for the request.
      *
      * @param  mixed  $fallback
@@ -180,6 +181,8 @@ class UrlGenerator implements UrlGeneratorContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the previous URL from the session if possible.
      *
      * @return string|null
@@ -296,7 +299,11 @@ class UrlGenerator implements UrlGeneratorContract
     {
         $i = 'index.php';
 
+<<<<<<< HEAD
         return str_contains($root, $i) ? str_replace('/'.$i, '', $root) : $root;
+=======
+        return Str::contains($root, $i) ? str_replace('/'.$i, '', $root) : $root;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -388,12 +395,20 @@ class UrlGenerator implements UrlGeneratorContract
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  bool  $absolute
+<<<<<<< HEAD
      * @param  array  $ignoreQuery
      * @return bool
      */
     public function hasValidSignature(Request $request, $absolute = true, array $ignoreQuery = [])
     {
         return $this->hasCorrectSignature($request, $absolute, $ignoreQuery)
+=======
+     * @return bool
+     */
+    public function hasValidSignature(Request $request, $absolute = true)
+    {
+        return $this->hasCorrectSignature($request, $absolute)
+>>>>>>> origin/New-FakeMain
             && $this->signatureHasNotExpired($request);
     }
 
@@ -401,12 +416,20 @@ class UrlGenerator implements UrlGeneratorContract
      * Determine if the given request has a valid signature for a relative URL.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @param  array  $ignoreQuery
      * @return bool
      */
     public function hasValidRelativeSignature(Request $request, array $ignoreQuery = [])
     {
         return $this->hasValidSignature($request, false, $ignoreQuery);
+=======
+     * @return bool
+     */
+    public function hasValidRelativeSignature(Request $request)
+    {
+        return $this->hasValidSignature($request, false);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -414,6 +437,7 @@ class UrlGenerator implements UrlGeneratorContract
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  bool  $absolute
+<<<<<<< HEAD
      * @param  array  $ignoreQuery
      * @return bool
      */
@@ -430,6 +454,17 @@ class UrlGenerator implements UrlGeneratorContract
         $original = rtrim($url.'?'.$queryString, '?');
 
         $signature = hash_hmac('sha256', $original, call_user_func($this->keyResolver));
+=======
+     * @return bool
+     */
+    public function hasCorrectSignature(Request $request, $absolute = true)
+    {
+        $url = $absolute ? $request->url() : '/'.$request->path();
+
+        $queryString = ltrim(preg_replace('/(^|&)signature=[^&]+/', '', $request->server->get('QUERY_STRING')), '&');
+
+        $signature = hash_hmac('sha256', rtrim($url.'?'.$queryString, '?'), call_user_func($this->keyResolver));
+>>>>>>> origin/New-FakeMain
 
         return hash_equals($signature, (string) $request->query('signature', ''));
     }
@@ -520,7 +555,11 @@ class UrlGenerator implements UrlGeneratorContract
             $action = '\\'.implode('@', $action);
         }
 
+<<<<<<< HEAD
         if ($this->rootNamespace && ! str_starts_with($action, '\\')) {
+=======
+        if ($this->rootNamespace && strpos($action, '\\') !== 0) {
+>>>>>>> origin/New-FakeMain
             return $this->rootNamespace.'\\'.$action;
         } else {
             return trim($action, '\\');
@@ -581,7 +620,11 @@ class UrlGenerator implements UrlGeneratorContract
             $root = $this->cachedRoot;
         }
 
+<<<<<<< HEAD
         $start = str_starts_with($root, 'http://') ? 'http://' : 'https://';
+=======
+        $start = Str::startsWith($root, 'http://') ? 'http://' : 'https://';
+>>>>>>> origin/New-FakeMain
 
         return preg_replace('~'.$start.'~', $scheme, $root, 1);
     }
@@ -807,6 +850,7 @@ class UrlGenerator implements UrlGeneratorContract
     }
 
     /**
+<<<<<<< HEAD
      * Get the root controller namespace.
      *
      * @return string
@@ -817,6 +861,8 @@ class UrlGenerator implements UrlGeneratorContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Set the root controller namespace.
      *
      * @param  string  $rootNamespace

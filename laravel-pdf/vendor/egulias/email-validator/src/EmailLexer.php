@@ -7,6 +7,7 @@ use Doctrine\Common\Lexer\AbstractLexer;
 class EmailLexer extends AbstractLexer
 {
     //ASCII values
+<<<<<<< HEAD
     const S_EMPTY            = null;
     const C_NUL              = 0;
     const S_HTAB             = 9;
@@ -53,6 +54,39 @@ class EmailLexer extends AbstractLexer
     const INVALID            = 302;
     const CRLF               = 1310;
     const S_DOUBLECOLON      = 5858;
+=======
+    const C_DEL              = 127;
+    const C_NUL              = 0;
+    const S_AT               = 64;
+    const S_BACKSLASH        = 92;
+    const S_DOT              = 46;
+    const S_DQUOTE           = 34;
+    const S_SQUOTE           = 39;
+    const S_BACKTICK         = 96;
+    const S_OPENPARENTHESIS  = 49;
+    const S_CLOSEPARENTHESIS = 261;
+    const S_OPENBRACKET      = 262;
+    const S_CLOSEBRACKET     = 263;
+    const S_HYPHEN           = 264;
+    const S_COLON            = 265;
+    const S_DOUBLECOLON      = 266;
+    const S_SP               = 267;
+    const S_HTAB             = 268;
+    const S_CR               = 269;
+    const S_LF               = 270;
+    const S_IPV6TAG          = 271;
+    const S_LOWERTHAN        = 272;
+    const S_GREATERTHAN      = 273;
+    const S_COMMA            = 274;
+    const S_SEMICOLON        = 275;
+    const S_OPENQBRACKET     = 276;
+    const S_CLOSEQBRACKET    = 277;
+    const S_SLASH            = 278;
+    const S_EMPTY            = null;
+    const GENERIC            = 300;
+    const CRLF               = 301;
+    const INVALID            = 302;
+>>>>>>> origin/New-FakeMain
     const ASCII_INVALID_FROM = 127;
     const ASCII_INVALID_TO   = 199;
 
@@ -62,8 +96,11 @@ class EmailLexer extends AbstractLexer
      * @var array
      */
     protected $charValue = array(
+<<<<<<< HEAD
         '{'    => self::S_OPENCURLYBRACES,
         '}'    => self::S_CLOSECURLYBRACES,
+=======
+>>>>>>> origin/New-FakeMain
         '('    => self::S_OPENPARENTHESIS,
         ')'    => self::S_CLOSEPARENTHESIS,
         '<'    => self::S_LOWERTHAN,
@@ -88,6 +125,7 @@ class EmailLexer extends AbstractLexer
         "\n"   => self::S_LF,
         "\r\n" => self::CRLF,
         'IPv6' => self::S_IPV6TAG,
+<<<<<<< HEAD
         ''     => self::S_EMPTY,
         '\0'   => self::C_NUL,
         '*'    => self::ASTERISK,
@@ -105,6 +143,12 @@ class EmailLexer extends AbstractLexer
         '?'    => self::QUESTIONMARK,
         '#'    => self::NUMBER_SIGN,
         '¡'    => self::INVERT_EXCLAMATION,
+=======
+        '{'    => self::S_OPENQBRACKET,
+        '}'    => self::S_CLOSEQBRACKET,
+        ''     => self::S_EMPTY,
+        '\0'   => self::C_NUL,
+>>>>>>> origin/New-FakeMain
     );
 
     /**
@@ -124,9 +168,13 @@ class EmailLexer extends AbstractLexer
      *
      * @var array
      *
+<<<<<<< HEAD
      * @psalm-suppress NonInvariantDocblockPropertyType
      * @psalm-var array{value:string, type:null|int, position:int}
      * @psalm-suppress NonInvariantDocblockPropertyType
+=======
+     * @psalm-var array{value:string, type:null|int, position:int}
+>>>>>>> origin/New-FakeMain
      */
     public $token;
 
@@ -146,6 +194,7 @@ class EmailLexer extends AbstractLexer
         'position' => 0,
     ];
 
+<<<<<<< HEAD
     /**
      * @var string
      */
@@ -156,6 +205,8 @@ class EmailLexer extends AbstractLexer
      */
     private $hasToRecord = false;
 
+=======
+>>>>>>> origin/New-FakeMain
     public function __construct()
     {
         $this->previous = $this->token = self::$nullToken;
@@ -215,18 +266,24 @@ class EmailLexer extends AbstractLexer
      */
     public function moveNext()
     {
+<<<<<<< HEAD
         if ($this->hasToRecord && $this->previous === self::$nullToken) {
             $this->accumulator .= $this->token['value'];
         }
 
+=======
+>>>>>>> origin/New-FakeMain
         $this->previous = $this->token;
         $hasNext = parent::moveNext();
         $this->token = $this->token ?: self::$nullToken;
 
+<<<<<<< HEAD
         if ($this->hasToRecord) {
             $this->accumulator .= $this->token['value'];
         }
 
+=======
+>>>>>>> origin/New-FakeMain
         return $hasNext;
     }
 
@@ -238,7 +295,11 @@ class EmailLexer extends AbstractLexer
     protected function getCatchablePatterns()
     {
         return array(
+<<<<<<< HEAD
             '[a-zA-Z]+[46]?', //ASCII and domain literal
+=======
+            '[a-zA-Z_]+[46]?', //ASCII and domain literal
+>>>>>>> origin/New-FakeMain
             '[^\x00-\x7F]',  //UTF-8
             '[0-9]+',
             '\r\n',
@@ -255,9 +316,13 @@ class EmailLexer extends AbstractLexer
      */
     protected function getNonCatchablePatterns()
     {
+<<<<<<< HEAD
         return [
             '[\xA0-\xff]+',
         ];
+=======
+        return array('[\xA0-\xff]+');
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -269,6 +334,7 @@ class EmailLexer extends AbstractLexer
      */
     protected function getType(&$value)
     {
+<<<<<<< HEAD
         $encoded = $value;
 
         if (mb_detect_encoding($value, 'auto', true) !== 'UTF-8') {
@@ -284,10 +350,22 @@ class EmailLexer extends AbstractLexer
         }
 
         if ($this->isInvalidChar($encoded)) {
+=======
+        if ($this->isNullType($value)) {
+            return self::C_NUL;
+        }
+
+        if ($this->isValid($value)) {
+            return $this->charValue[$value];
+        }
+
+        if ($this->isUTF8Invalid($value)) {
+>>>>>>> origin/New-FakeMain
             $this->hasInvalidTokens = true;
             return self::INVALID;
         }
 
+<<<<<<< HEAD
 
         return  self::GENERIC;
     }
@@ -301,6 +379,17 @@ class EmailLexer extends AbstractLexer
     }
 
     protected function isValid(string $value) : bool
+=======
+        return  self::GENERIC;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return bool
+     */
+    protected function isValid($value)
+>>>>>>> origin/New-FakeMain
     {
         if (isset($this->charValue[$value])) {
             return true;
@@ -322,7 +411,15 @@ class EmailLexer extends AbstractLexer
         return false;
     }
 
+<<<<<<< HEAD
     protected function isUTF8Invalid(string $value) : bool
+=======
+    /**
+     * @param string $value
+     * @return bool
+     */
+    protected function isUTF8Invalid($value)
+>>>>>>> origin/New-FakeMain
     {
         if (preg_match('/\p{Cc}+/u', $value)) {
             return true;
@@ -338,6 +435,7 @@ class EmailLexer extends AbstractLexer
     {
         return 'iu';
     }
+<<<<<<< HEAD
 
     public function getAccumulatedValues() : string
     {
@@ -358,4 +456,6 @@ class EmailLexer extends AbstractLexer
     {
         $this->accumulator = '';
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

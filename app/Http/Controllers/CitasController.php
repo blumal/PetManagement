@@ -14,32 +14,15 @@ class CitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function home(){
-        return view('home');
-    }
-
-    public function tienda(){
-        return view('tienda');
-    }
-
-    public function clinica(){
-        return view('clinica');
-    }
-
-    public function contacto(){
-        return view('contacto');
-    }
-
-    public function about(){
-        return view('about');
+    public function index()
+    {
+        /**/
     }
 
     //Login view
     public function login()
-    {
-        return view('login');
-
+    {   
+        return view('login/login');
     }
 
     //Funcion para limpiar todas las sesiones que tengamos encima
@@ -47,6 +30,7 @@ class CitasController extends Controller
         $request->session()->flush();
         return redirect('/');
     }
+
     //Método encargado de hacer el proceso de login
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
     public function loginProc(Request $request)
@@ -61,28 +45,81 @@ class CitasController extends Controller
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
             $userId = $request->except('_token', '_method');
-            //Hacemos la consulta con la DB, la cual contará nuestros resultados
-            $userId = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->count();
+            $userId_compr=DB::table("tbl_usuario")->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')->where('tbl_usuario.email_us','=',
+            $userId['email_us'])->where('tbl_usuario.pass_us','=',$userId['pass_us'])->get();
+            //return $userId_compr;
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
-            if ($userId == 1){
+            if ($userId_compr[0]->rol_ro=='trabajador'){
                 //Establecemos sesión
-                $user = DB::table('tbl_usuario')->where('email_us', '=', $request['email_us'])->get();
-                //return $user;
-                session()->put('email_session', $user[0]->email_us);
-                //return $user[0]->id_us;
-                session()->put('id_user_session', $user[0]->id_us);
-
-                return redirect('citas');
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $id_usuario=$usuario[0]->id_us;
+                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                return redirect('/citas');
+            }else if($userId_compr[0]->rol_ro=='admin'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $id_usuario=$usuario[0]->id_us;
+                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                return redirect('/adminMapasEstablecimientos');
+            }else if($userId_compr[0]->rol_ro=='cliente'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $id_usuario=$usuario[0]->id_us;
+                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                return redirect('/animales_perdidos');
             }else{
                 //No establecemos sesión y lo devolvemos a login
-                return redirect('login');
+                return redirect('/login');
             }
         } catch (\Throwable $e) {
             return $e->getMessage();
         }
     }
+    //Obtenemos todas las citas de fecha actual y futuras, envíandolo por JSON
+
+    /* public function loginP(Request $request){
+        $datos= $request->except('_token','_method');
+        $user=DB::table("tbl_rol")->join('tbl_user', 'tbl_rol.id', '=', 'tbl_user.id_rol')->where('correo_user','=',$datos['correo_user'])->where('pass_user','=',$datos['pass_user'])->first();
+        if($user->nombre_rol=='Administrador'){
+           $request->session()->put('nombre_admin',$request->correo_user);
+           return redirect('cPanelAdmin');
+        }if($user->nombre_rol=='Usuario'){
+            $request->session()->put('nombre_user',$request->correo_user);
+            return redirect('');
+        }
+        return redirect('');
+    } */
 
     public function Citas(){
-        return view('citas');
+        return view('clinica/vistas/citas');
     }
+
+    public function showcitas(){
+        $today = now()->format('Y-m-d');
+        $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");
+        return response()->json($citas);
+    }
+
+
+    public function insertCita(Request $request){
+        try {
+            //$checkdatas = DB::select('SELECT fecha_vi, hora_vi FROM tbl_visitia WHERE fecha_vi = ? AND hora_vi = ?', [$request->input('fecha_vi'), $request->input('hora_vi')])->get();
+            //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            $checkdatas = $request->except('_token', '_method');
+            $checkigdatas  = DB::table('tbl_visita')->where('fecha_vi', '=', $checkdatas['fecha_vi'])->where('hora_vi', '=', $checkdatas['hora_vi'])->count();
+            if ($checkigdatas == 0) {
+                //DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
+                DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
+                return response()->json(array('resultado'=> 'OK'));
+            }else{
+                return response()->json(array('resultado'=> 'OK'));
+            }
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+      }  
 }
+

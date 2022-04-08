@@ -4,6 +4,7 @@ namespace Illuminate\Foundation;
 
 use Illuminate\Support\Collection;
 
+<<<<<<< HEAD
 /*
                                                    .~))>>
                                                   .~)>>
@@ -40,6 +41,8 @@ use Illuminate\Support\Collection;
                                                ~~~~
  */
 
+=======
+>>>>>>> origin/New-FakeMain
 class Inspiring
 {
     /**

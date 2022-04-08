@@ -32,9 +32,15 @@ class Manager
     {
         $this->setupContainer($container ?: new Container);
 
+<<<<<<< HEAD
         // Once we have the container setup, we will set up the default configuration
         // options in the container "config" bindings. This'll just make the queue
         // manager behave correctly since all the correct bindings are in place.
+=======
+        // Once we have the container setup, we will setup the default configuration
+        // options in the container "config" bindings. This just makes this queue
+        // manager behave correctly since all the correct binding are in place.
+>>>>>>> origin/New-FakeMain
         $this->setupDefaultConfiguration();
 
         $this->setupManager();
@@ -114,7 +120,11 @@ class Manager
     }
 
     /**
+<<<<<<< HEAD
      * Push a new job onto the queue after (n) seconds.
+=======
+     * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job

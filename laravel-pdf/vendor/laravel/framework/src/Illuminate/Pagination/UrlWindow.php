@@ -100,7 +100,11 @@ class UrlWindow
     }
 
     /**
+<<<<<<< HEAD
      * Get the slider of URLs when too close to the beginning of the window.
+=======
+     * Get the slider of URLs when too close to beginning of window.
+>>>>>>> origin/New-FakeMain
      *
      * @param  int  $window
      * @param  int  $onEachSide
@@ -116,7 +120,11 @@ class UrlWindow
     }
 
     /**
+<<<<<<< HEAD
      * Get the slider of URLs when too close to the ending of the window.
+=======
+     * Get the slider of URLs when too close to ending of window.
+>>>>>>> origin/New-FakeMain
      *
      * @param  int  $window
      * @param  int  $onEachSide

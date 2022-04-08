@@ -32,7 +32,11 @@ class RouteCollection implements \IteratorAggregate, \Countable
     /**
      * @var array<string, Route>
      */
+<<<<<<< HEAD
     private array $routes = [];
+=======
+    private $routes = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var array<string, Alias>
@@ -42,12 +46,20 @@ class RouteCollection implements \IteratorAggregate, \Countable
     /**
      * @var array<string, ResourceInterface>
      */
+<<<<<<< HEAD
     private array $resources = [];
+=======
+    private $resources = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var array<string, int>
      */
+<<<<<<< HEAD
     private array $priorities = [];
+=======
+    private $priorities = [];
+>>>>>>> origin/New-FakeMain
 
     public function __clone()
     {
@@ -69,26 +81,55 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @return \ArrayIterator<string, Route>
      */
+<<<<<<< HEAD
     public function getIterator(): \ArrayIterator
+=======
+    #[\ReturnTypeWillChange]
+    public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return new \ArrayIterator($this->all());
     }
 
     /**
      * Gets the number of Routes in this collection.
+<<<<<<< HEAD
      */
     public function count(): int
+=======
+     *
+     * @return int
+     */
+    #[\ReturnTypeWillChange]
+    public function count()
+>>>>>>> origin/New-FakeMain
     {
         return \count($this->routes);
     }
 
+<<<<<<< HEAD
     public function add(string $name, Route $route, int $priority = 0)
     {
+=======
+    /**
+     * @param int $priority
+     */
+    public function add(string $name, Route $route/*, int $priority = 0*/)
+    {
+        if (\func_num_args() < 3 && __CLASS__ !== static::class && __CLASS__ !== (new \ReflectionMethod($this, __FUNCTION__))->getDeclaringClass()->getName() && !$this instanceof \PHPUnit\Framework\MockObject\MockObject && !$this instanceof \Prophecy\Prophecy\ProphecySubjectInterface && !$this instanceof \Mockery\MockInterface) {
+            trigger_deprecation('symfony/routing', '5.1', 'The "%s()" method will have a new "int $priority = 0" argument in version 6.0, not defining it is deprecated.', __METHOD__);
+        }
+
+>>>>>>> origin/New-FakeMain
         unset($this->routes[$name], $this->priorities[$name], $this->aliases[$name]);
 
         $this->routes[$name] = $route;
 
+<<<<<<< HEAD
         if ($priority) {
+=======
+        if ($priority = 3 <= \func_num_args() ? func_get_arg(2) : 0) {
+>>>>>>> origin/New-FakeMain
             $this->priorities[$name] = $priority;
         }
     }
@@ -98,7 +139,11 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @return array<string, Route>
      */
+<<<<<<< HEAD
     public function all(): array
+=======
+    public function all()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->priorities) {
             $priorities = $this->priorities;
@@ -113,8 +158,15 @@ class RouteCollection implements \IteratorAggregate, \Countable
 
     /**
      * Gets a route by name.
+<<<<<<< HEAD
      */
     public function get(string $name): ?Route
+=======
+     *
+     * @return Route|null
+     */
+    public function get(string $name)
+>>>>>>> origin/New-FakeMain
     {
         $visited = [];
         while (null !== $alias = $this->aliases[$name] ?? null) {
@@ -142,7 +194,11 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @param string|string[] $name The route name or an array of route names
      */
+<<<<<<< HEAD
     public function remove(string|array $name)
+=======
+    public function remove($name)
+>>>>>>> origin/New-FakeMain
     {
         foreach ((array) $name as $n) {
             unset($this->routes[$n], $this->priorities[$n], $this->aliases[$n]);
@@ -294,7 +350,11 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @param string|string[] $schemes The scheme or an array of schemes
      */
+<<<<<<< HEAD
     public function setSchemes(string|array $schemes)
+=======
+    public function setSchemes($schemes)
+>>>>>>> origin/New-FakeMain
     {
         foreach ($this->routes as $route) {
             $route->setSchemes($schemes);
@@ -306,7 +366,11 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @param string|string[] $methods The method or an array of methods
      */
+<<<<<<< HEAD
     public function setMethods(string|array $methods)
+=======
+    public function setMethods($methods)
+>>>>>>> origin/New-FakeMain
     {
         foreach ($this->routes as $route) {
             $route->setMethods($methods);
@@ -318,7 +382,11 @@ class RouteCollection implements \IteratorAggregate, \Countable
      *
      * @return ResourceInterface[]
      */
+<<<<<<< HEAD
     public function getResources(): array
+=======
+    public function getResources()
+>>>>>>> origin/New-FakeMain
     {
         return array_values($this->resources);
     }

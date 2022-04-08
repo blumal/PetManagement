@@ -4,7 +4,10 @@ namespace Illuminate\Foundation;
 
 use Exception;
 use Illuminate\Filesystem\Filesystem;
+<<<<<<< HEAD
 use Illuminate\Support\Env;
+=======
+>>>>>>> origin/New-FakeMain
 
 class PackageManifest
 {
@@ -56,7 +59,11 @@ class PackageManifest
         $this->files = $files;
         $this->basePath = $basePath;
         $this->manifestPath = $manifestPath;
+<<<<<<< HEAD
         $this->vendorPath = Env::get('COMPOSER_VENDOR_DIR') ?: $basePath.'/vendor';
+=======
+        $this->vendorPath = $basePath.'/vendor';
+>>>>>>> origin/New-FakeMain
     }
 
     /**

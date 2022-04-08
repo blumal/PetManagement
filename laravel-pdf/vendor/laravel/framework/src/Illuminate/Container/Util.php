@@ -33,12 +33,20 @@ class Util
      * From global value() helper in Illuminate\Support.
      *
      * @param  mixed  $value
+<<<<<<< HEAD
      * @param  mixed  ...$args
      * @return mixed
      */
     public static function unwrapIfClosure($value, ...$args)
     {
         return $value instanceof Closure ? $value(...$args) : $value;
+=======
+     * @return mixed
+     */
+    public static function unwrapIfClosure($value)
+    {
+        return $value instanceof Closure ? $value() : $value;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

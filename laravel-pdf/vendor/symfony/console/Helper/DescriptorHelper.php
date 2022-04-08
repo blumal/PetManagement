@@ -29,7 +29,11 @@ class DescriptorHelper extends Helper
     /**
      * @var DescriptorInterface[]
      */
+<<<<<<< HEAD
     private array $descriptors = [];
+=======
+    private $descriptors = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct()
     {
@@ -70,7 +74,11 @@ class DescriptorHelper extends Helper
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function register(string $format, DescriptorInterface $descriptor): static
+=======
+    public function register(string $format, DescriptorInterface $descriptor)
+>>>>>>> origin/New-FakeMain
     {
         $this->descriptors[$format] = $descriptor;
 
@@ -80,7 +88,11 @@ class DescriptorHelper extends Helper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName(): string
+=======
+    public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'descriptor';
     }

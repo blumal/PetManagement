@@ -13,7 +13,11 @@ namespace Symfony\Component\Console\SignalRegistry;
 
 final class SignalRegistry
 {
+<<<<<<< HEAD
     private array $signalHandlers = [];
+=======
+    private $signalHandlers = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct()
     {

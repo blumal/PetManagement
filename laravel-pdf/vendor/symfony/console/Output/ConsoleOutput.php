@@ -30,7 +30,11 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
 {
     private $stderr;
+<<<<<<< HEAD
     private array $consoleSectionOutputs = [];
+=======
+    private $consoleSectionOutputs = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param int                           $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
@@ -94,7 +98,11 @@ class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getErrorOutput(): OutputInterface
+=======
+    public function getErrorOutput()
+>>>>>>> origin/New-FakeMain
     {
         return $this->stderr;
     }
@@ -110,8 +118,15 @@ class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
     /**
      * Returns true if current environment supports writing console output to
      * STDOUT.
+<<<<<<< HEAD
      */
     protected function hasStdoutSupport(): bool
+=======
+     *
+     * @return bool
+     */
+    protected function hasStdoutSupport()
+>>>>>>> origin/New-FakeMain
     {
         return false === $this->isRunningOS400();
     }
@@ -119,8 +134,15 @@ class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
     /**
      * Returns true if current environment supports writing console output to
      * STDERR.
+<<<<<<< HEAD
      */
     protected function hasStderrSupport(): bool
+=======
+     *
+     * @return bool
+     */
+    protected function hasStderrSupport()
+>>>>>>> origin/New-FakeMain
     {
         return false === $this->isRunningOS400();
     }

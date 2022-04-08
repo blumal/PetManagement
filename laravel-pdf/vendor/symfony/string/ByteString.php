@@ -92,7 +92,11 @@ class ByteString extends AbstractString
         return '' === $str ? [] : [\ord($str)];
     }
 
+<<<<<<< HEAD
     public function append(string ...$suffix): static
+=======
+    public function append(string ...$suffix): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string .= 1 >= \count($suffix) ? ($suffix[0] ?? '') : implode('', $suffix);
@@ -100,7 +104,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function camel(): static
+=======
+    public function camel(): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = lcfirst(str_replace(' ', '', ucwords(preg_replace('/[^a-zA-Z0-9\x7f-\xff]++/', ' ', $this->string))));
@@ -129,23 +137,45 @@ class ByteString extends AbstractString
         return $chunks;
     }
 
+<<<<<<< HEAD
     public function endsWith(string|iterable|AbstractString $suffix): bool
     {
         if ($suffix instanceof AbstractString) {
             $suffix = $suffix->string;
         } elseif (!\is_string($suffix)) {
             return parent::endsWith($suffix);
+=======
+    public function endsWith($suffix): bool
+    {
+        if ($suffix instanceof parent) {
+            $suffix = $suffix->string;
+        } elseif (\is_array($suffix) || $suffix instanceof \Traversable) {
+            return parent::endsWith($suffix);
+        } else {
+            $suffix = (string) $suffix;
+>>>>>>> origin/New-FakeMain
         }
 
         return '' !== $suffix && \strlen($this->string) >= \strlen($suffix) && 0 === substr_compare($this->string, $suffix, -\strlen($suffix), null, $this->ignoreCase);
     }
 
+<<<<<<< HEAD
     public function equalsTo(string|iterable|AbstractString $string): bool
     {
         if ($string instanceof AbstractString) {
             $string = $string->string;
         } elseif (!\is_string($string)) {
             return parent::equalsTo($string);
+=======
+    public function equalsTo($string): bool
+    {
+        if ($string instanceof parent) {
+            $string = $string->string;
+        } elseif (\is_array($string) || $string instanceof \Traversable) {
+            return parent::equalsTo($string);
+        } else {
+            $string = (string) $string;
+>>>>>>> origin/New-FakeMain
         }
 
         if ('' !== $string && $this->ignoreCase) {
@@ -155,7 +185,11 @@ class ByteString extends AbstractString
         return $string === $this->string;
     }
 
+<<<<<<< HEAD
     public function folded(): static
+=======
+    public function folded(): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = strtolower($str->string);
@@ -163,12 +197,23 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function indexOf(string|iterable|AbstractString $needle, int $offset = 0): ?int
     {
         if ($needle instanceof AbstractString) {
             $needle = $needle->string;
         } elseif (!\is_string($needle)) {
             return parent::indexOf($needle, $offset);
+=======
+    public function indexOf($needle, int $offset = 0): ?int
+    {
+        if ($needle instanceof parent) {
+            $needle = $needle->string;
+        } elseif (\is_array($needle) || $needle instanceof \Traversable) {
+            return parent::indexOf($needle, $offset);
+        } else {
+            $needle = (string) $needle;
+>>>>>>> origin/New-FakeMain
         }
 
         if ('' === $needle) {
@@ -180,12 +225,23 @@ class ByteString extends AbstractString
         return false === $i ? null : $i;
     }
 
+<<<<<<< HEAD
     public function indexOfLast(string|iterable|AbstractString $needle, int $offset = 0): ?int
     {
         if ($needle instanceof AbstractString) {
             $needle = $needle->string;
         } elseif (!\is_string($needle)) {
             return parent::indexOfLast($needle, $offset);
+=======
+    public function indexOfLast($needle, int $offset = 0): ?int
+    {
+        if ($needle instanceof parent) {
+            $needle = $needle->string;
+        } elseif (\is_array($needle) || $needle instanceof \Traversable) {
+            return parent::indexOfLast($needle, $offset);
+        } else {
+            $needle = (string) $needle;
+>>>>>>> origin/New-FakeMain
         }
 
         if ('' === $needle) {
@@ -202,7 +258,11 @@ class ByteString extends AbstractString
         return '' === $this->string || preg_match('//u', $this->string);
     }
 
+<<<<<<< HEAD
     public function join(array $strings, string $lastGlue = null): static
+=======
+    public function join(array $strings, string $lastGlue = null): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
 
@@ -217,7 +277,11 @@ class ByteString extends AbstractString
         return \strlen($this->string);
     }
 
+<<<<<<< HEAD
     public function lower(): static
+=======
+    public function lower(): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = strtolower($str->string);
@@ -254,7 +318,11 @@ class ByteString extends AbstractString
         return $matches;
     }
 
+<<<<<<< HEAD
     public function padBoth(int $length, string $padStr = ' '): static
+=======
+    public function padBoth(int $length, string $padStr = ' '): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = str_pad($this->string, $length, $padStr, \STR_PAD_BOTH);
@@ -262,7 +330,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function padEnd(int $length, string $padStr = ' '): static
+=======
+    public function padEnd(int $length, string $padStr = ' '): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = str_pad($this->string, $length, $padStr, \STR_PAD_RIGHT);
@@ -270,7 +342,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function padStart(int $length, string $padStr = ' '): static
+=======
+    public function padStart(int $length, string $padStr = ' '): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = str_pad($this->string, $length, $padStr, \STR_PAD_LEFT);
@@ -278,7 +354,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function prepend(string ...$prefix): static
+=======
+    public function prepend(string ...$prefix): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = (1 >= \count($prefix) ? ($prefix[0] ?? '') : implode('', $prefix)).$str->string;
@@ -286,7 +366,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function replace(string $from, string $to): static
+=======
+    public function replace(string $from, string $to): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
 
@@ -297,13 +381,29 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function replaceMatches(string $fromRegexp, string|callable $to): static
+=======
+    public function replaceMatches(string $fromRegexp, $to): parent
+>>>>>>> origin/New-FakeMain
     {
         if ($this->ignoreCase) {
             $fromRegexp .= 'i';
         }
 
+<<<<<<< HEAD
         $replace = \is_array($to) || $to instanceof \Closure ? 'preg_replace_callback' : 'preg_replace';
+=======
+        if (\is_array($to)) {
+            if (!\is_callable($to)) {
+                throw new \TypeError(sprintf('Argument 2 passed to "%s::replaceMatches()" must be callable, array given.', static::class));
+            }
+
+            $replace = 'preg_replace_callback';
+        } else {
+            $replace = $to instanceof \Closure ? 'preg_replace_callback' : 'preg_replace';
+        }
+>>>>>>> origin/New-FakeMain
 
         set_error_handler(static function ($t, $m) { throw new InvalidArgumentException($m); });
 
@@ -329,7 +429,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function reverse(): static
+=======
+    public function reverse(): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = strrev($str->string);
@@ -337,7 +441,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function slice(int $start = 0, int $length = null): static
+=======
+    public function slice(int $start = 0, int $length = null): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = (string) substr($this->string, $start, $length ?? \PHP_INT_MAX);
@@ -345,7 +453,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function snake(): static
+=======
+    public function snake(): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = $this->camel()->title();
         $str->string = strtolower(preg_replace(['/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'], '\1_\2', $str->string));
@@ -353,7 +465,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function splice(string $replacement, int $start = 0, int $length = null): static
+=======
+    public function splice(string $replacement, int $start = 0, int $length = null): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = substr_replace($this->string, $replacement, $start, $length ?? \PHP_INT_MAX);
@@ -388,9 +504,15 @@ class ByteString extends AbstractString
         return $chunks;
     }
 
+<<<<<<< HEAD
     public function startsWith(string|iterable|AbstractString $prefix): bool
     {
         if ($prefix instanceof AbstractString) {
+=======
+    public function startsWith($prefix): bool
+    {
+        if ($prefix instanceof parent) {
+>>>>>>> origin/New-FakeMain
             $prefix = $prefix->string;
         } elseif (!\is_string($prefix)) {
             return parent::startsWith($prefix);
@@ -399,7 +521,11 @@ class ByteString extends AbstractString
         return '' !== $prefix && 0 === ($this->ignoreCase ? strncasecmp($this->string, $prefix, \strlen($prefix)) : strncmp($this->string, $prefix, \strlen($prefix)));
     }
 
+<<<<<<< HEAD
     public function title(bool $allWords = false): static
+=======
+    public function title(bool $allWords = false): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = $allWords ? ucwords($str->string) : ucfirst($str->string);
@@ -449,7 +575,11 @@ class ByteString extends AbstractString
         return $u;
     }
 
+<<<<<<< HEAD
     public function trim(string $chars = " \t\n\r\0\x0B\x0C"): static
+=======
+    public function trim(string $chars = " \t\n\r\0\x0B\x0C"): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = trim($str->string, $chars);
@@ -457,7 +587,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function trimEnd(string $chars = " \t\n\r\0\x0B\x0C"): static
+=======
+    public function trimEnd(string $chars = " \t\n\r\0\x0B\x0C"): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = rtrim($str->string, $chars);
@@ -465,7 +599,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function trimStart(string $chars = " \t\n\r\0\x0B\x0C"): static
+=======
+    public function trimStart(string $chars = " \t\n\r\0\x0B\x0C"): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = ltrim($str->string, $chars);
@@ -473,7 +611,11 @@ class ByteString extends AbstractString
         return $str;
     }
 
+<<<<<<< HEAD
     public function upper(): static
+=======
+    public function upper(): parent
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = strtoupper($str->string);

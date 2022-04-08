@@ -14,6 +14,10 @@ declare(strict_types=1);
 
 namespace Ramsey\Uuid;
 
+<<<<<<< HEAD
+=======
+use Ramsey\Uuid\Builder\BuilderCollection;
+>>>>>>> origin/New-FakeMain
 use Ramsey\Uuid\Builder\FallbackBuilder;
 use Ramsey\Uuid\Builder\UuidBuilderInterface;
 use Ramsey\Uuid\Codec\CodecInterface;
@@ -42,6 +46,10 @@ use Ramsey\Uuid\Nonstandard\UuidBuilder as NonstandardUuidBuilder;
 use Ramsey\Uuid\Provider\Dce\SystemDceSecurityProvider;
 use Ramsey\Uuid\Provider\DceSecurityProviderInterface;
 use Ramsey\Uuid\Provider\Node\FallbackNodeProvider;
+<<<<<<< HEAD
+=======
+use Ramsey\Uuid\Provider\Node\NodeProviderCollection;
+>>>>>>> origin/New-FakeMain
 use Ramsey\Uuid\Provider\Node\RandomNodeProvider;
 use Ramsey\Uuid\Provider\Node\SystemNodeProvider;
 use Ramsey\Uuid\Provider\NodeProviderInterface;
@@ -348,10 +356,17 @@ class FeatureSet
             return new RandomNodeProvider();
         }
 
+<<<<<<< HEAD
         return new FallbackNodeProvider([
             new SystemNodeProvider(),
             new RandomNodeProvider(),
         ]);
+=======
+        return new FallbackNodeProvider(new NodeProviderCollection([
+            new SystemNodeProvider(),
+            new RandomNodeProvider(),
+        ]));
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -430,10 +445,18 @@ class FeatureSet
             return new GuidBuilder($this->numberConverter, $this->timeConverter);
         }
 
+<<<<<<< HEAD
         return new FallbackBuilder([
             new Rfc4122UuidBuilder($this->numberConverter, $this->timeConverter),
             new NonstandardUuidBuilder($this->numberConverter, $this->timeConverter),
         ]);
+=======
+        /** @psalm-suppress ImpureArgument */
+        return new FallbackBuilder(new BuilderCollection([
+            new Rfc4122UuidBuilder($this->numberConverter, $this->timeConverter),
+            new NonstandardUuidBuilder($this->numberConverter, $this->timeConverter),
+        ]));
+>>>>>>> origin/New-FakeMain
     }
 
     /**

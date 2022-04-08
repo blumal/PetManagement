@@ -31,7 +31,11 @@ use Symfony\Component\HttpFoundation\Response;
 class HttpKernelBrowser extends AbstractBrowser
 {
     protected $kernel;
+<<<<<<< HEAD
     private bool $catchExceptions = true;
+=======
+    private $catchExceptions = true;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param array $server The server parameters (equivalent of $_SERVER)
@@ -129,8 +133,15 @@ EOF;
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      */
     protected function filterRequest(DomRequest $request): Request
+=======
+     *
+     * @return Request
+     */
+    protected function filterRequest(DomRequest $request)
+>>>>>>> origin/New-FakeMain
     {
         $httpRequest = Request::create($request->getUri(), $request->getMethod(), $request->getParameters(), $request->getCookies(), $request->getFiles(), $server = $request->getServer(), $request->getContent());
         if (!isset($server['HTTP_ACCEPT'])) {
@@ -154,8 +165,15 @@ EOF;
      * an invalid UploadedFile is returned with an error set to UPLOAD_ERR_INI_SIZE.
      *
      * @see UploadedFile
+<<<<<<< HEAD
      */
     protected function filterFiles(array $files): array
+=======
+     *
+     * @return array
+     */
+    protected function filterFiles(array $files)
+>>>>>>> origin/New-FakeMain
     {
         $filtered = [];
         foreach ($files as $key => $value) {
@@ -189,8 +207,15 @@ EOF;
      * {@inheritdoc}
      *
      * @param Response $response
+<<<<<<< HEAD
      */
     protected function filterResponse(object $response): DomResponse
+=======
+     *
+     * @return DomResponse
+     */
+    protected function filterResponse(object $response)
+>>>>>>> origin/New-FakeMain
     {
         // this is needed to support StreamedResponse
         ob_start();

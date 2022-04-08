@@ -196,7 +196,10 @@ final class Style
             '/bin\/phpunit/',
             '/vendor\/coduo\/php-matcher\/src\/PHPUnit/',
             '/vendor\/sulu\/sulu\/src\/Sulu\/Bundle\/TestBundle\/Testing/',
+<<<<<<< HEAD
             '/vendor\/webmozart\/assert/',
+=======
+>>>>>>> origin/New-FakeMain
         ]);
 
         if ($throwable instanceof ExceptionWrapper && $throwable->getOriginalException() !== null) {

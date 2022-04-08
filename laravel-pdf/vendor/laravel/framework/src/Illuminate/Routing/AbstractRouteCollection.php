@@ -13,7 +13,10 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Matcher\Dumper\CompiledUrlMatcherDumper;
 use Symfony\Component\Routing\RouteCollection as SymfonyRouteCollection;
+<<<<<<< HEAD
 use Traversable;
+=======
+>>>>>>> origin/New-FakeMain
 
 abstract class AbstractRouteCollection implements Countable, IteratorAggregate, RouteCollectionInterface
 {
@@ -95,7 +98,11 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      */
     protected function getRouteForMethods($request, array $methods)
     {
+<<<<<<< HEAD
         if ($request->isMethod('OPTIONS')) {
+=======
+        if ($request->method() === 'OPTIONS') {
+>>>>>>> origin/New-FakeMain
             return (new Route('OPTIONS', $request->path(), function () use ($methods) {
                 return new Response('', 200, ['Allow' => implode(',', $methods)]);
             }))->bind($request);
@@ -205,14 +212,22 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
 
         if (
             ! is_null($name)
+<<<<<<< HEAD
             && str_ends_with($name, '.')
+=======
+            && Str::endsWith($name, '.')
+>>>>>>> origin/New-FakeMain
             && ! is_null($symfonyRoutes->get($name))
         ) {
             $name = null;
         }
 
         if (! $name) {
+<<<<<<< HEAD
             $route->name($this->generateRouteName());
+=======
+            $route->name($name = $this->generateRouteName());
+>>>>>>> origin/New-FakeMain
 
             $this->add($route);
         } elseif (! is_null($symfonyRoutes->get($name))) {
@@ -239,7 +254,12 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      *
      * @return \ArrayIterator
      */
+<<<<<<< HEAD
     public function getIterator(): Traversable
+=======
+    #[\ReturnTypeWillChange]
+    public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return new ArrayIterator($this->getRoutes());
     }
@@ -249,7 +269,12 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      *
      * @return int
      */
+<<<<<<< HEAD
     public function count(): int
+=======
+    #[\ReturnTypeWillChange]
+    public function count()
+>>>>>>> origin/New-FakeMain
     {
         return count($this->getRoutes());
     }

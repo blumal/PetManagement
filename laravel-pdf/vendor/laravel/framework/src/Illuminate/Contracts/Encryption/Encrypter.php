@@ -25,6 +25,7 @@ interface Encrypter
      * @throws \Illuminate\Contracts\Encryption\DecryptException
      */
     public function decrypt($payload, $unserialize = true);
+<<<<<<< HEAD
 
     /**
      * Get the encryption key that the encrypter is currently using.
@@ -32,4 +33,6 @@ interface Encrypter
      * @return string
      */
     public function getKey();
+=======
+>>>>>>> origin/New-FakeMain
 }

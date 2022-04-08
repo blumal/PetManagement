@@ -10,7 +10,10 @@ use Dotenv\Store\StoreBuilder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Env;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use NunoMaduro\Collision\Coverage;
+=======
+>>>>>>> origin/New-FakeMain
 use NunoMaduro\Collision\Adapters\Laravel\Exceptions\RequirementsException;
 use RuntimeException;
 use Symfony\Component\Process\Exception\ProcessSignaledException;
@@ -30,11 +33,16 @@ class TestCommand extends Command
      */
     protected $signature = 'test
         {--without-tty : Disable output to TTY}
+<<<<<<< HEAD
         {--coverage : Indicates whether code coverage information should be collected}
         {--min= : Indicates the minimum threshold enforcement for code coverage}
         {--p|parallel : Indicates if the tests should run in parallel}
         {--recreate-databases : Indicates if the test databases should be re-created}
         {--drop-databases : Indicates if the test databases should be dropped}
+=======
+        {--p|parallel : Indicates if the tests should run in parallel}
+        {--recreate-databases : Indicates if the test databases should be re-created}
+>>>>>>> origin/New-FakeMain
     ';
 
     /**
@@ -72,6 +80,7 @@ class TestCommand extends Command
             throw new RequirementsException('Running Collision ^5.0 artisan test command requires at least Laravel ^8.0.');
         }
 
+<<<<<<< HEAD
         if ($this->option('coverage') && ! Coverage::isAvailable()) {
             $this->output->writeln(sprintf(
                 "\n  <fg=white;bg=red;options=bold> ERROR </> Code coverage driver not available.%s</>",
@@ -86,6 +95,8 @@ class TestCommand extends Command
         }
 
 
+=======
+>>>>>>> origin/New-FakeMain
         if ($this->option('parallel') && !$this->isParallelDependenciesInstalled()) {
             if (!$this->confirm('Running tests in parallel requires "brianium/paratest". Do you wish to install it as a dev dependency?')) {
                 return 1;
@@ -117,10 +128,15 @@ class TestCommand extends Command
             $this->output->writeln('Warning: ' . $e->getMessage());
         }
 
+<<<<<<< HEAD
         $exitCode = 1;
 
         try {
             $exitCode = $process->run(function ($type, $line) {
+=======
+        try {
+            return $process->run(function ($type, $line) {
+>>>>>>> origin/New-FakeMain
                 $this->output->write($line);
             });
         } catch (ProcessSignaledException $e) {
@@ -128,6 +144,7 @@ class TestCommand extends Command
                 throw $e;
             }
         }
+<<<<<<< HEAD
 
         if ($exitCode === 0 && $this->option('coverage')) {
 
@@ -151,6 +168,8 @@ class TestCommand extends Command
         $this->newLine();
 
         return $exitCode;
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -160,7 +179,11 @@ class TestCommand extends Command
      */
     protected function binary()
     {
+<<<<<<< HEAD
         if ($this->usingPest()) {
+=======
+        if (class_exists(\Pest\Laravel\PestServiceProvider::class)) {
+>>>>>>> origin/New-FakeMain
             $command = $this->option('parallel') ? ['vendor/pestphp/pest/bin/pest', '--parallel'] : ['vendor/pestphp/pest/bin/pest'];
         } else {
             $command = $this->option('parallel') ? ['vendor/brianium/paratest/bin/paratest'] : ['vendor/phpunit/phpunit/phpunit'];
@@ -174,6 +197,7 @@ class TestCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * Gets the common arguments of PHPUnit and Pest.
      *
      * @return array
@@ -201,6 +225,8 @@ class TestCommand extends Command
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the array of arguments for running PHPUnit.
      *
      * @param array $options
@@ -212,16 +238,24 @@ class TestCommand extends Command
         $options = array_merge(['--printer=NunoMaduro\\Collision\\Adapters\\Phpunit\\Printer'], $options);
 
         $options = array_values(array_filter($options, function ($option) {
+<<<<<<< HEAD
             return !Str::startsWith($option, '--env=')
                 && $option != '--coverage'
                 && !Str::startsWith($option, '--min');
+=======
+            return !Str::startsWith($option, '--env=');
+>>>>>>> origin/New-FakeMain
         }));
 
         if (!file_exists($file = base_path('phpunit.xml'))) {
             $file = base_path('phpunit.xml.dist');
         }
 
+<<<<<<< HEAD
         return array_merge($this->commonArguments(), ["--configuration=$file"], $options);
+=======
+        return array_merge(["--configuration=$file"], $options);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -235,19 +269,29 @@ class TestCommand extends Command
     {
         $options = array_values(array_filter($options, function ($option) {
             return !Str::startsWith($option, '--env=')
+<<<<<<< HEAD
                 && $option != '--coverage'
                 && !Str::startsWith($option, '--min')
                 && !Str::startsWith($option, '-p')
                 && !Str::startsWith($option, '--parallel')
                 && !Str::startsWith($option, '--recreate-databases')
                 && !Str::startsWith($option, '--drop-databases');
+=======
+                && !Str::startsWith($option, '-p')
+                && !Str::startsWith($option, '--parallel')
+                && !Str::startsWith($option, '--recreate-databases');
+>>>>>>> origin/New-FakeMain
         }));
 
         if (!file_exists($file = base_path('phpunit.xml'))) {
             $file = base_path('phpunit.xml.dist');
         }
 
+<<<<<<< HEAD
         return array_merge($this->commonArguments(), [
+=======
+        return array_merge([
+>>>>>>> origin/New-FakeMain
             "--configuration=$file",
             "--runner=\Illuminate\Testing\ParallelRunner",
         ], $options);
@@ -273,7 +317,10 @@ class TestCommand extends Command
         return [
             'LARAVEL_PARALLEL_TESTING'                    => 1,
             'LARAVEL_PARALLEL_TESTING_RECREATE_DATABASES' => $this->option('recreate-databases'),
+<<<<<<< HEAD
             'LARAVEL_PARALLEL_TESTING_DROP_DATABASES' => $this->option('drop-databases'),
+=======
+>>>>>>> origin/New-FakeMain
         ];
     }
 

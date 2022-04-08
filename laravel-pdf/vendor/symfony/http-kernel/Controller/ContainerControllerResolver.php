@@ -32,10 +32,27 @@ class ContainerControllerResolver extends ControllerResolver
         parent::__construct($logger);
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     protected function instantiateController(string $class): object
+=======
+    protected function createController(string $controller)
+    {
+        if (1 === substr_count($controller, ':')) {
+            $controller = str_replace(':', '::', $controller);
+            trigger_deprecation('symfony/http-kernel', '5.1', 'Referencing controllers with a single colon is deprecated. Use "%s" instead.', $controller);
+        }
+
+        return parent::createController($controller);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function instantiateController(string $class)
+>>>>>>> origin/New-FakeMain
     {
         $class = ltrim($class, '\\');
 

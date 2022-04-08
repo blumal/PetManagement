@@ -35,11 +35,16 @@ class Translator implements TranslatorInterface
     /**
      * @var ParserInterface[]
      */
+<<<<<<< HEAD
     private array $shortcutParsers = [];
+=======
+    private $shortcutParsers = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var Extension\ExtensionInterface[]
      */
+<<<<<<< HEAD
     private array $extensions = [];
 
     private array $nodeTranslators = [];
@@ -47,6 +52,15 @@ class Translator implements TranslatorInterface
     private array $functionTranslators = [];
     private array $pseudoClassTranslators = [];
     private array $attributeMatchingTranslators = [];
+=======
+    private $extensions = [];
+
+    private $nodeTranslators = [];
+    private $combinationTranslators = [];
+    private $functionTranslators = [];
+    private $pseudoClassTranslators = [];
+    private $attributeMatchingTranslators = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct(ParserInterface $parser = null)
     {
@@ -117,7 +131,11 @@ class Translator implements TranslatorInterface
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function registerExtension(Extension\ExtensionInterface $extension): static
+=======
+    public function registerExtension(Extension\ExtensionInterface $extension): self
+>>>>>>> origin/New-FakeMain
     {
         $this->extensions[$extension->getName()] = $extension;
 
@@ -145,7 +163,11 @@ class Translator implements TranslatorInterface
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function registerParserShortcut(ParserInterface $shortcut): static
+=======
+    public function registerParserShortcut(ParserInterface $shortcut): self
+>>>>>>> origin/New-FakeMain
     {
         $this->shortcutParsers[] = $shortcut;
 

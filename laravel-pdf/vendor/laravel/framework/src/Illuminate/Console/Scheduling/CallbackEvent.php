@@ -6,7 +6,10 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Reflector;
 use InvalidArgumentException;
 use LogicException;
+<<<<<<< HEAD
 use RuntimeException;
+=======
+>>>>>>> origin/New-FakeMain
 use Throwable;
 
 class CallbackEvent extends Event
@@ -26,6 +29,7 @@ class CallbackEvent extends Event
     protected $parameters;
 
     /**
+<<<<<<< HEAD
      * The result of the callback's execution.
      *
      * @var mixed
@@ -44,6 +48,12 @@ class CallbackEvent extends Event
      *
      * @param  \Illuminate\Console\Scheduling\EventMutex  $mutex
      * @param  string|callable  $callback
+=======
+     * Create a new event instance.
+     *
+     * @param  \Illuminate\Console\Scheduling\EventMutex  $mutex
+     * @param  string  $callback
+>>>>>>> origin/New-FakeMain
      * @param  array  $parameters
      * @param  \DateTimeZone|string|null  $timezone
      * @return void
@@ -65,11 +75,16 @@ class CallbackEvent extends Event
     }
 
     /**
+<<<<<<< HEAD
      * Run the callback event.
+=======
+     * Run the given event.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \Illuminate\Contracts\Container\Container  $container
      * @return mixed
      *
+<<<<<<< HEAD
      * @throws \Throwable
      */
     public function run(Container $container)
@@ -123,6 +138,55 @@ class CallbackEvent extends Event
             $this->exception = $e;
 
             return 1;
+=======
+     * @throws \Exception
+     */
+    public function run(Container $container)
+    {
+        if ($this->description && $this->withoutOverlapping &&
+            ! $this->mutex->create($this)) {
+            return;
+        }
+
+        $pid = getmypid();
+
+        register_shutdown_function(function () use ($pid) {
+            if ($pid === getmypid()) {
+                $this->removeMutex();
+            }
+        });
+
+        parent::callBeforeCallbacks($container);
+
+        try {
+            $response = is_object($this->callback)
+                        ? $container->call([$this->callback, '__invoke'], $this->parameters)
+                        : $container->call($this->callback, $this->parameters);
+
+            $this->exitCode = $response === false ? 1 : 0;
+        } catch (Throwable $e) {
+            $this->exitCode = 1;
+
+            throw $e;
+        } finally {
+            $this->removeMutex();
+
+            parent::callAfterCallbacks($container);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Clear the mutex for the event.
+     *
+     * @return void
+     */
+    protected function removeMutex()
+    {
+        if ($this->description && $this->withoutOverlapping) {
+            $this->mutex->forget($this);
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -142,7 +206,17 @@ class CallbackEvent extends Event
             );
         }
 
+<<<<<<< HEAD
         return parent::withoutOverlapping($expiresAt);
+=======
+        $this->withoutOverlapping = true;
+
+        $this->expiresAt = $expiresAt;
+
+        return $this->skip(function () {
+            return $this->mutex->exists($this);
+        });
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -160,7 +234,23 @@ class CallbackEvent extends Event
             );
         }
 
+<<<<<<< HEAD
         return parent::onOneServer();
+=======
+        $this->onOneServer = true;
+
+        return $this;
+    }
+
+    /**
+     * Get the mutex name for the scheduled command.
+     *
+     * @return string
+     */
+    public function mutexName()
+    {
+        return 'framework/schedule-'.sha1($this->description);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -176,6 +266,7 @@ class CallbackEvent extends Event
 
         return is_string($this->callback) ? $this->callback : 'Callback';
     }
+<<<<<<< HEAD
 
     /**
      * Get the mutex name for the scheduled command.
@@ -198,4 +289,6 @@ class CallbackEvent extends Event
             parent::removeMutex();
         }
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

@@ -31,9 +31,18 @@ interface UrlMatcherInterface extends RequestContextAwareInterface
      *
      * @param string $pathinfo The path info to be parsed (raw format, i.e. not urldecoded)
      *
+<<<<<<< HEAD
+=======
+     * @return array
+     *
+>>>>>>> origin/New-FakeMain
      * @throws NoConfigurationException  If no routing configuration could be found
      * @throws ResourceNotFoundException If the resource could not be found
      * @throws MethodNotAllowedException If the resource was found but the request method is not allowed
      */
+<<<<<<< HEAD
     public function match(string $pathinfo): array;
+=======
+    public function match(string $pathinfo);
+>>>>>>> origin/New-FakeMain
 }

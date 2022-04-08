@@ -26,7 +26,11 @@ interface ExtractorInterface
      *
      * @param string|iterable<string> $resource Files, a file or a directory
      */
+<<<<<<< HEAD
     public function extract(string|iterable $resource, MessageCatalogue $catalogue);
+=======
+    public function extract($resource, MessageCatalogue $catalogue);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Sets the prefix that should be used for new found messages.

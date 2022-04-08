@@ -38,6 +38,7 @@ class Email extends Message
         self::PRIORITY_LOWEST => 'Lowest',
     ];
 
+<<<<<<< HEAD
     /**
      * @var resource|string|null
      */
@@ -52,11 +53,22 @@ class Email extends Message
 
     private ?string $htmlCharset = null;
     private array $attachments = [];
+=======
+    private $text;
+    private $textCharset;
+    private $html;
+    private $htmlCharset;
+    private $attachments = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function subject(string $subject): static
+=======
+    public function subject(string $subject)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setHeaderBody('Text', 'Subject', $subject);
     }
@@ -69,7 +81,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function date(\DateTimeInterface $dateTime): static
+=======
+    public function date(\DateTimeInterface $dateTime)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setHeaderBody('Date', 'Date', $dateTime);
     }
@@ -80,9 +96,17 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function returnPath(Address|string $address): static
+=======
+     * @param Address|string $address
+     *
+     * @return $this
+     */
+    public function returnPath($address)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setHeaderBody('Path', 'Return-Path', Address::create($address));
     }
@@ -93,9 +117,17 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function sender(Address|string $address): static
+=======
+     * @param Address|string $address
+     *
+     * @return $this
+     */
+    public function sender($address)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setHeaderBody('Mailbox', 'Sender', Address::create($address));
     }
@@ -106,17 +138,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addFrom(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function addFrom(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addListAddressHeaderBody('From', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function from(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function from(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setListAddressHeaderBody('From', $addresses);
     }
@@ -130,17 +178,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addReplyTo(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function addReplyTo(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addListAddressHeaderBody('Reply-To', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function replyTo(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function replyTo(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setListAddressHeaderBody('Reply-To', $addresses);
     }
@@ -154,17 +218,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addTo(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function addTo(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addListAddressHeaderBody('To', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function to(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function to(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setListAddressHeaderBody('To', $addresses);
     }
@@ -178,17 +258,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addCc(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function addCc(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addListAddressHeaderBody('Cc', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function cc(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function cc(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setListAddressHeaderBody('Cc', $addresses);
     }
@@ -202,17 +298,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addBcc(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function addBcc(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addListAddressHeaderBody('Bcc', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function bcc(Address|string ...$addresses): static
+=======
+     * @param Address|string ...$addresses
+     *
+     * @return $this
+     */
+    public function bcc(...$addresses)
+>>>>>>> origin/New-FakeMain
     {
         return $this->setListAddressHeaderBody('Bcc', $addresses);
     }
@@ -232,7 +344,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function priority(int $priority): static
+=======
+    public function priority(int $priority)
+>>>>>>> origin/New-FakeMain
     {
         if ($priority > 5) {
             $priority = 5;
@@ -261,7 +377,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function text($body, string $charset = 'utf-8'): static
+=======
+    public function text($body, string $charset = 'utf-8')
+>>>>>>> origin/New-FakeMain
     {
         $this->text = $body;
         $this->textCharset = $charset;
@@ -287,7 +407,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function html($body, string $charset = 'utf-8'): static
+=======
+    public function html($body, string $charset = 'utf-8')
+>>>>>>> origin/New-FakeMain
     {
         $this->html = $body;
         $this->htmlCharset = $charset;
@@ -313,7 +437,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function attach($body, string $name = null, string $contentType = null): static
+=======
+    public function attach($body, string $name = null, string $contentType = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->attachments[] = ['body' => $body, 'name' => $name, 'content-type' => $contentType, 'inline' => false];
 
@@ -323,7 +451,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function attachFromPath(string $path, string $name = null, string $contentType = null): static
+=======
+    public function attachFromPath(string $path, string $name = null, string $contentType = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->attachments[] = ['path' => $path, 'name' => $name, 'content-type' => $contentType, 'inline' => false];
 
@@ -335,7 +467,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function embed($body, string $name = null, string $contentType = null): static
+=======
+    public function embed($body, string $name = null, string $contentType = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->attachments[] = ['body' => $body, 'name' => $name, 'content-type' => $contentType, 'inline' => true];
 
@@ -345,7 +481,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function embedFromPath(string $path, string $name = null, string $contentType = null): static
+=======
+    public function embedFromPath(string $path, string $name = null, string $contentType = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->attachments[] = ['path' => $path, 'name' => $name, 'content-type' => $contentType, 'inline' => true];
 
@@ -355,7 +495,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function attachPart(DataPart $part): static
+=======
+    public function attachPart(DataPart $part)
+>>>>>>> origin/New-FakeMain
     {
         $this->attachments[] = ['part' => $part];
 
@@ -503,7 +647,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     private function setHeaderBody(string $type, string $name, $body): static
+=======
+    private function setHeaderBody(string $type, string $name, $body): object
+>>>>>>> origin/New-FakeMain
     {
         $this->getHeaders()->setHeaderBody($type, $name, $body);
 
@@ -523,7 +671,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     private function setListAddressHeaderBody(string $name, array $addresses): static
+=======
+    private function setListAddressHeaderBody(string $name, array $addresses)
+>>>>>>> origin/New-FakeMain
     {
         $addresses = Address::createArray($addresses);
         $headers = $this->getHeaders();

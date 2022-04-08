@@ -16,7 +16,11 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
         "php": ">=8.0.2"
+=======
+        "php": ">=7.2.5"
+>>>>>>> origin/New-FakeMain
     },
     "suggest": {
         "symfony/translation-implementation": ""
@@ -27,7 +31,11 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
             "dev-main": "3.0-dev"
+=======
+            "dev-main": "2.5-dev"
+>>>>>>> origin/New-FakeMain
         },
         "thanks": {
             "name": "symfony/contracts",

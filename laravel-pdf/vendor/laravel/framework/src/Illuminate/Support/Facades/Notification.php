@@ -13,7 +13,10 @@ use Illuminate\Support\Testing\Fakes\NotificationFake;
  * @method static mixed channel(string|null $name = null)
  * @method static void assertNotSentTo(mixed $notifiable, string|\Closure $notification, callable $callback = null)
  * @method static void assertNothingSent()
+<<<<<<< HEAD
  * @method static void assertNothingSentTo(mixed $notifiable)
+=======
+>>>>>>> origin/New-FakeMain
  * @method static void assertSentOnDemand(string|\Closure $notification, callable $callback = null)
  * @method static void assertSentTo(mixed $notifiable, string|\Closure $notification, callable $callback = null)
  * @method static void assertSentOnDemandTimes(string $notification, int $times = 1)

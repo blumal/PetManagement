@@ -2,8 +2,13 @@
 
 namespace Illuminate\View\Concerns;
 
+<<<<<<< HEAD
 use Illuminate\Support\Arr;
 use Illuminate\Support\LazyCollection;
+=======
+use Countable;
+use Illuminate\Support\Arr;
+>>>>>>> origin/New-FakeMain
 
 trait ManagesLoops
 {
@@ -22,9 +27,13 @@ trait ManagesLoops
      */
     public function addLoop($data)
     {
+<<<<<<< HEAD
         $length = is_countable($data) && ! $data instanceof LazyCollection
                             ? count($data)
                             : null;
+=======
+        $length = is_array($data) || $data instanceof Countable ? count($data) : null;
+>>>>>>> origin/New-FakeMain
 
         $parent = Arr::last($this->loopsStack);
 

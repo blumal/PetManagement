@@ -28,7 +28,11 @@ class StreamedResponse extends Response
 {
     protected $callback;
     protected $streamed;
+<<<<<<< HEAD
     private bool $headersSent;
+=======
+    private $headersSent;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(callable $callback = null, int $status = 200, array $headers = [])
     {
@@ -42,11 +46,34 @@ class StreamedResponse extends Response
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Factory method for chainability.
+     *
+     * @param callable|null $callback A valid PHP callback or null to set it later
+     *
+     * @return static
+     *
+     * @deprecated since Symfony 5.1, use __construct() instead.
+     */
+    public static function create($callback = null, int $status = 200, array $headers = [])
+    {
+        trigger_deprecation('symfony/http-foundation', '5.1', 'The "%s()" method is deprecated, use "new %s()" instead.', __METHOD__, static::class);
+
+        return new static($callback, $status, $headers);
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Sets the PHP callback associated with this Response.
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setCallback(callable $callback): static
+=======
+    public function setCallback(callable $callback)
+>>>>>>> origin/New-FakeMain
     {
         $this->callback = $callback;
 
@@ -60,7 +87,11 @@ class StreamedResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function sendHeaders(): static
+=======
+    public function sendHeaders()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->headersSent) {
             return $this;
@@ -78,7 +109,11 @@ class StreamedResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function sendContent(): static
+=======
+    public function sendContent()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->streamed) {
             return $this;
@@ -102,7 +137,11 @@ class StreamedResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setContent(?string $content): static
+=======
+    public function setContent(?string $content)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $content) {
             throw new \LogicException('The content cannot be set on a StreamedResponse instance.');
@@ -116,7 +155,11 @@ class StreamedResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getContent(): string|false
+=======
+    public function getContent()
+>>>>>>> origin/New-FakeMain
     {
         return false;
     }

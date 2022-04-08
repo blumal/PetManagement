@@ -18,6 +18,7 @@ class ServeCommand extends Command
     protected $name = 'serve';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -29,6 +30,8 @@ class ServeCommand extends Command
     protected static $defaultName = 'serve';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -51,6 +54,11 @@ class ServeCommand extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
+=======
+        chdir(public_path());
+
+>>>>>>> origin/New-FakeMain
         $this->line("<info>Starting Laravel development server:</info> http://{$this->host()}:{$this->port()}");
 
         $environmentFile = $this->option('env')
@@ -104,7 +112,11 @@ class ServeCommand extends Command
      */
     protected function startProcess($hasEnvironment)
     {
+<<<<<<< HEAD
         $process = new Process($this->serverCommand(), public_path(), collect($_ENV)->mapWithKeys(function ($value, $key) use ($hasEnvironment) {
+=======
+        $process = new Process($this->serverCommand(), null, collect($_ENV)->mapWithKeys(function ($value, $key) use ($hasEnvironment) {
+>>>>>>> origin/New-FakeMain
             if ($this->option('no-reload') || ! $hasEnvironment) {
                 return [$key => $value];
             }
@@ -135,15 +147,22 @@ class ServeCommand extends Command
      */
     protected function serverCommand()
     {
+<<<<<<< HEAD
         $server = file_exists(base_path('server.php'))
             ? base_path('server.php')
             : __DIR__.'/../resources/server.php';
 
+=======
+>>>>>>> origin/New-FakeMain
         return [
             (new PhpExecutableFinder)->find(false),
             '-S',
             $this->host().':'.$this->port(),
+<<<<<<< HEAD
             $server,
+=======
+            base_path('server.php'),
+>>>>>>> origin/New-FakeMain
         ];
     }
 
@@ -193,7 +212,11 @@ class ServeCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * Check if the command has reached its maximum number of port tries.
+=======
+     * Check if the command has reached its max amount of port tries.
+>>>>>>> origin/New-FakeMain
      *
      * @return bool
      */

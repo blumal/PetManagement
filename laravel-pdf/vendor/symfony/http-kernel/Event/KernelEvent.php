@@ -24,7 +24,11 @@ class KernelEvent extends Event
 {
     private $kernel;
     private $request;
+<<<<<<< HEAD
     private ?int $requestType;
+=======
+    private $requestType;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param int $requestType The request type the kernel is currently processing; one of
@@ -39,16 +43,30 @@ class KernelEvent extends Event
 
     /**
      * Returns the kernel in which this event was thrown.
+<<<<<<< HEAD
      */
     public function getKernel(): HttpKernelInterface
+=======
+     *
+     * @return HttpKernelInterface
+     */
+    public function getKernel()
+>>>>>>> origin/New-FakeMain
     {
         return $this->kernel;
     }
 
     /**
      * Returns the request the kernel is currently processing.
+<<<<<<< HEAD
      */
     public function getRequest(): Request
+=======
+     *
+     * @return Request
+     */
+    public function getRequest()
+>>>>>>> origin/New-FakeMain
     {
         return $this->request;
     }
@@ -59,7 +77,11 @@ class KernelEvent extends Event
      * @return int One of HttpKernelInterface::MAIN_REQUEST and
      *             HttpKernelInterface::SUB_REQUEST
      */
+<<<<<<< HEAD
     public function getRequestType(): int
+=======
+    public function getRequestType()
+>>>>>>> origin/New-FakeMain
     {
         return $this->requestType;
     }
@@ -71,4 +93,21 @@ class KernelEvent extends Event
     {
         return HttpKernelInterface::MAIN_REQUEST === $this->requestType;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Checks if this is a master request.
+     *
+     * @return bool
+     *
+     * @deprecated since symfony/http-kernel 5.3, use isMainRequest() instead
+     */
+    public function isMasterRequest()
+    {
+        trigger_deprecation('symfony/http-kernel', '5.3', '"%s()" is deprecated, use "isMainRequest()" instead.', __METHOD__);
+
+        return $this->isMainRequest();
+    }
+>>>>>>> origin/New-FakeMain
 }

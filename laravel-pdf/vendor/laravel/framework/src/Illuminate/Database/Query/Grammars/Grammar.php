@@ -2,17 +2,27 @@
 
 namespace Illuminate\Database\Query\Grammars;
 
+<<<<<<< HEAD
 use Illuminate\Database\Concerns\CompilesJsonPaths;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Database\Grammar as BaseGrammar;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use RuntimeException;
 
 class Grammar extends BaseGrammar
 {
+<<<<<<< HEAD
     use CompilesJsonPaths;
 
+=======
+>>>>>>> origin/New-FakeMain
     /**
      * The grammar specific operators.
      *
@@ -192,7 +202,11 @@ class Grammar extends BaseGrammar
      */
     public function compileWheres(Builder $query)
     {
+<<<<<<< HEAD
         // Each type of where clause has its own compiler function, which is responsible
+=======
+        // Each type of where clauses has its own compiler function which is responsible
+>>>>>>> origin/New-FakeMain
         // for actually creating the where clauses SQL. This helps keep the code nice
         // and maintainable since each clause has a very small method that it uses.
         if (is_null($query->wheres)) {
@@ -379,9 +393,15 @@ class Grammar extends BaseGrammar
     {
         $between = $where['not'] ? 'not between' : 'between';
 
+<<<<<<< HEAD
         $min = $this->parameter(is_array($where['values']) ? reset($where['values']) : $where['values'][0]);
 
         $max = $this->parameter(is_array($where['values']) ? end($where['values']) : $where['values'][1]);
+=======
+        $min = $this->parameter(reset($where['values']));
+
+        $max = $this->parameter(end($where['values']));
+>>>>>>> origin/New-FakeMain
 
         return $this->wrap($where['column']).' '.$between.' '.$min.' and '.$max;
     }
@@ -397,9 +417,15 @@ class Grammar extends BaseGrammar
     {
         $between = $where['not'] ? 'not between' : 'between';
 
+<<<<<<< HEAD
         $min = $this->wrap(is_array($where['values']) ? reset($where['values']) : $where['values'][0]);
 
         $max = $this->wrap(is_array($where['values']) ? end($where['values']) : $where['values'][1]);
+=======
+        $min = $this->wrap(reset($where['values']));
+
+        $max = $this->wrap(end($where['values']));
+>>>>>>> origin/New-FakeMain
 
         return $this->wrap($where['column']).' '.$between.' '.$min.' and '.$max;
     }
@@ -623,6 +649,7 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a "where JSON contains key" clause.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -652,6 +679,8 @@ class Grammar extends BaseGrammar
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile a "where JSON length" clause.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -710,6 +739,7 @@ class Grammar extends BaseGrammar
      * Compile the "having" portions of the query.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
+<<<<<<< HEAD
      * @return string
      */
     protected function compileHavings(Builder $query)
@@ -717,6 +747,16 @@ class Grammar extends BaseGrammar
         return 'having '.$this->removeLeadingBoolean(collect($query->havings)->map(function ($having) {
             return $having['boolean'].' '.$this->compileHaving($having);
         })->implode(' '));
+=======
+     * @param  array  $havings
+     * @return string
+     */
+    protected function compileHavings(Builder $query, $havings)
+    {
+        $sql = implode(' ', array_map([$this, 'compileHaving'], $havings));
+
+        return 'having '.$this->removeLeadingBoolean($sql);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -731,6 +771,7 @@ class Grammar extends BaseGrammar
         // without doing any more processing on it. Otherwise, we will compile the
         // clause into SQL based on the components that make it up from builder.
         if ($having['type'] === 'Raw') {
+<<<<<<< HEAD
             return $having['sql'];
         } elseif ($having['type'] === 'between') {
             return $this->compileHavingBetween($having);
@@ -742,6 +783,11 @@ class Grammar extends BaseGrammar
             return $this->compileHavingBit($having);
         } elseif ($having['type'] === 'Nested') {
             return $this->compileNestedHavings($having);
+=======
+            return $having['boolean'].' '.$having['sql'];
+        } elseif ($having['type'] === 'between') {
+            return $this->compileHavingBetween($having);
+>>>>>>> origin/New-FakeMain
         }
 
         return $this->compileBasicHaving($having);
@@ -759,7 +805,11 @@ class Grammar extends BaseGrammar
 
         $parameter = $this->parameter($having['value']);
 
+<<<<<<< HEAD
         return $column.' '.$having['operator'].' '.$parameter;
+=======
+        return $having['boolean'].' '.$column.' '.$having['operator'].' '.$parameter;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -778,6 +828,7 @@ class Grammar extends BaseGrammar
 
         $max = $this->parameter(last($having['values']));
 
+<<<<<<< HEAD
         return $column.' '.$between.' '.$min.' and '.$max;
     }
 
@@ -831,6 +882,9 @@ class Grammar extends BaseGrammar
     protected function compileNestedHavings($having)
     {
         return '('.substr($this->compileHavings($having['query']), 7).')';
+=======
+        return $having['boolean'].' '.$column.' '.$between.' '.$min.' and '.$max;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -1004,7 +1058,11 @@ class Grammar extends BaseGrammar
         $columns = $this->columnize(array_keys(reset($values)));
 
         // We need to build a list of parameter place-holders of values that are bound
+<<<<<<< HEAD
         // to the query. Each insert should have the exact same number of parameter
+=======
+        // to the query. Each insert should have the exact same amount of parameter
+>>>>>>> origin/New-FakeMain
         // bindings so we will loop through the record and parameterize them all.
         $parameters = collect($values)->map(function ($record) {
             return '('.$this->parameterize($record).')';
@@ -1269,6 +1327,52 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Wrap a value in keyword identifiers.
+     *
+     * @param  \Illuminate\Database\Query\Expression|string  $value
+     * @param  bool  $prefixAlias
+     * @return string
+     */
+    public function wrap($value, $prefixAlias = false)
+    {
+        if ($this->isExpression($value)) {
+            return $this->getValue($value);
+        }
+
+        // If the value being wrapped has a column alias we will need to separate out
+        // the pieces so we can wrap each of the segments of the expression on its
+        // own, and then join these both back together using the "as" connector.
+        if (stripos($value, ' as ') !== false) {
+            return $this->wrapAliasedValue($value, $prefixAlias);
+        }
+
+        // If the given value is a JSON selector we will wrap it differently than a
+        // traditional value. We will need to split this path and wrap each part
+        // wrapped, etc. Otherwise, we will simply wrap the value as a string.
+        if ($this->isJsonSelector($value)) {
+            return $this->wrapJsonSelector($value);
+        }
+
+        return $this->wrapSegments(explode('.', $value));
+    }
+
+    /**
+     * Wrap the given JSON selector.
+     *
+     * @param  string  $value
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    protected function wrapJsonSelector($value)
+    {
+        throw new RuntimeException('This database engine does not support JSON operations.');
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Wrap the given JSON selector for boolean values.
      *
      * @param  string  $value
@@ -1291,6 +1395,51 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Split the given JSON selector into the field and the optional path and wrap them separately.
+     *
+     * @param  string  $column
+     * @return array
+     */
+    protected function wrapJsonFieldAndPath($column)
+    {
+        $parts = explode('->', $column, 2);
+
+        $field = $this->wrap($parts[0]);
+
+        $path = count($parts) > 1 ? ', '.$this->wrapJsonPath($parts[1], '->') : '';
+
+        return [$field, $path];
+    }
+
+    /**
+     * Wrap the given JSON path.
+     *
+     * @param  string  $value
+     * @param  string  $delimiter
+     * @return string
+     */
+    protected function wrapJsonPath($value, $delimiter = '->')
+    {
+        $value = preg_replace("/([\\\\]+)?\\'/", "''", $value);
+
+        return '\'$."'.str_replace($delimiter, '"."', $value).'"\'';
+    }
+
+    /**
+     * Determine if the given string is a JSON selector.
+     *
+     * @param  string  $value
+     * @return bool
+     */
+    protected function isJsonSelector($value)
+    {
+        return Str::contains($value, '->');
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Concatenate an array of segments, removing empties.
      *
      * @param  array  $segments

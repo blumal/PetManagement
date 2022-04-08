@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Session\SessionUtils;
  */
 abstract class AbstractSessionHandler implements \SessionHandlerInterface, \SessionUpdateTimestampHandlerInterface
 {
+<<<<<<< HEAD
     private string $sessionName;
     private string $prefetchId;
     private string $prefetchData;
@@ -29,6 +30,19 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
     private string $igbinaryEmptyData;
 
     public function open(string $savePath, string $sessionName): bool
+=======
+    private $sessionName;
+    private $prefetchId;
+    private $prefetchData;
+    private $newSessionId;
+    private $igbinaryEmptyData;
+
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function open($savePath, $sessionName)
+>>>>>>> origin/New-FakeMain
     {
         $this->sessionName = $sessionName;
         if (!headers_sent() && !ini_get('session.cache_limiter') && '0' !== ini_get('session.cache_limiter')) {
@@ -38,6 +52,7 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
         return true;
     }
 
+<<<<<<< HEAD
     abstract protected function doRead(string $sessionId): string;
 
     abstract protected function doWrite(string $sessionId, string $data): bool;
@@ -45,10 +60,33 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
     abstract protected function doDestroy(string $sessionId): bool;
 
     public function validateId(string $sessionId): bool
+=======
+    /**
+     * @return string
+     */
+    abstract protected function doRead(string $sessionId);
+
+    /**
+     * @return bool
+     */
+    abstract protected function doWrite(string $sessionId, string $data);
+
+    /**
+     * @return bool
+     */
+    abstract protected function doDestroy(string $sessionId);
+
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function validateId($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         $this->prefetchData = $this->read($sessionId);
         $this->prefetchId = $sessionId;
 
+<<<<<<< HEAD
         return '' !== $this->prefetchData;
     }
 
@@ -58,6 +96,30 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
             $prefetchId = $this->prefetchId;
             $prefetchData = $this->prefetchData;
             unset($this->prefetchId, $this->prefetchData);
+=======
+        if (\PHP_VERSION_ID < 70317 || (70400 <= \PHP_VERSION_ID && \PHP_VERSION_ID < 70405)) {
+            // work around https://bugs.php.net/79413
+            foreach (debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS) as $frame) {
+                if (!isset($frame['class']) && isset($frame['function']) && \in_array($frame['function'], ['session_regenerate_id', 'session_create_id'], true)) {
+                    return '' === $this->prefetchData;
+                }
+            }
+        }
+
+        return '' !== $this->prefetchData;
+    }
+
+    /**
+     * @return string
+     */
+    #[\ReturnTypeWillChange]
+    public function read($sessionId)
+    {
+        if (null !== $this->prefetchId) {
+            $prefetchId = $this->prefetchId;
+            $prefetchData = $this->prefetchData;
+            $this->prefetchId = $this->prefetchData = null;
+>>>>>>> origin/New-FakeMain
 
             if ($prefetchId === $sessionId || '' === $prefetchData) {
                 $this->newSessionId = '' === $prefetchData ? $sessionId : null;
@@ -72,10 +134,23 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
         return $data;
     }
 
+<<<<<<< HEAD
     public function write(string $sessionId, string $data): bool
     {
         // see https://github.com/igbinary/igbinary/issues/146
         $this->igbinaryEmptyData ??= \function_exists('igbinary_serialize') ? igbinary_serialize([]) : '';
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function write($sessionId, $data)
+    {
+        if (null === $this->igbinaryEmptyData) {
+            // see https://github.com/igbinary/igbinary/issues/146
+            $this->igbinaryEmptyData = \function_exists('igbinary_serialize') ? igbinary_serialize([]) : '';
+        }
+>>>>>>> origin/New-FakeMain
         if ('' === $data || $this->igbinaryEmptyData === $data) {
             return $this->destroy($sessionId);
         }
@@ -84,10 +159,21 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
         return $this->doWrite($sessionId, $data);
     }
 
+<<<<<<< HEAD
     public function destroy(string $sessionId): bool
     {
         if (!headers_sent() && filter_var(ini_get('session.use_cookies'), \FILTER_VALIDATE_BOOLEAN)) {
             if (!isset($this->sessionName)) {
+=======
+    /**
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function destroy($sessionId)
+    {
+        if (!headers_sent() && filter_var(ini_get('session.use_cookies'), \FILTER_VALIDATE_BOOLEAN)) {
+            if (!$this->sessionName) {
+>>>>>>> origin/New-FakeMain
                 throw new \LogicException(sprintf('Session name cannot be empty, did you forget to call "parent::open()" in "%s"?.', static::class));
             }
             $cookie = SessionUtils::popSessionCookie($this->sessionName, $sessionId);
@@ -100,9 +186,19 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
              * started the session).
              */
             if (null === $cookie || isset($_COOKIE[$this->sessionName])) {
+<<<<<<< HEAD
                 $params = session_get_cookie_params();
                 unset($params['lifetime']);
                 setcookie($this->sessionName, '', $params);
+=======
+                if (\PHP_VERSION_ID < 70300) {
+                    setcookie($this->sessionName, '', 0, ini_get('session.cookie_path'), ini_get('session.cookie_domain'), filter_var(ini_get('session.cookie_secure'), \FILTER_VALIDATE_BOOLEAN), filter_var(ini_get('session.cookie_httponly'), \FILTER_VALIDATE_BOOLEAN));
+                } else {
+                    $params = session_get_cookie_params();
+                    unset($params['lifetime']);
+                    setcookie($this->sessionName, '', $params);
+                }
+>>>>>>> origin/New-FakeMain
             }
         }
 

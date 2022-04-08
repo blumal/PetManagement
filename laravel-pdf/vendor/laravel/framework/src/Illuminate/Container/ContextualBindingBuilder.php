@@ -86,7 +86,11 @@ class ContextualBindingBuilder implements ContextualBindingBuilderContract
      * Specify the configuration item to bind as a primitive.
      *
      * @param  string  $key
+<<<<<<< HEAD
      * @param  mixed  $default
+=======
+     * @param  ?string  $default
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public function giveConfig($key, $default = null)

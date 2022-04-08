@@ -133,6 +133,7 @@ class SQLiteGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a "JSON contains key" statement into SQL.
      *
      * @param  string  $column
@@ -146,6 +147,8 @@ class SQLiteGrammar extends Grammar
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile an update statement into SQL.
      *
      * @param  \Illuminate\Database\Query\Builder  $query

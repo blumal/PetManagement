@@ -7,12 +7,18 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Events\VendorTagPublished;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem as Flysystem;
 use League\Flysystem\Local\LocalFilesystemAdapter as LocalAdapter;
 use League\Flysystem\MountManager;
 use League\Flysystem\UnixVisibility\PortableVisibilityConverter;
 use League\Flysystem\Visibility;
+=======
+use League\Flysystem\Adapter\Local as LocalAdapter;
+use League\Flysystem\Filesystem as Flysystem;
+use League\Flysystem\MountManager;
+>>>>>>> origin/New-FakeMain
 
 class VendorPublishCommand extends Command
 {
@@ -48,6 +54,7 @@ class VendorPublishCommand extends Command
                     {--tag=* : One or many tags that have assets you want to publish}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -59,6 +66,8 @@ class VendorPublishCommand extends Command
     protected static $defaultName = 'vendor:publish';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -247,11 +256,17 @@ class VendorPublishCommand extends Command
      */
     protected function publishDirectory($from, $to)
     {
+<<<<<<< HEAD
         $visibility = PortableVisibilityConverter::fromArray([], Visibility::PUBLIC);
 
         $this->moveManagedFiles(new MountManager([
             'from' => new Flysystem(new LocalAdapter($from)),
             'to' => new Flysystem(new LocalAdapter($to, $visibility)),
+=======
+        $this->moveManagedFiles(new MountManager([
+            'from' => new Flysystem(new LocalAdapter($from)),
+            'to' => new Flysystem(new LocalAdapter($to)),
+>>>>>>> origin/New-FakeMain
         ]));
 
         $this->status($from, $to, 'Directory');
@@ -266,10 +281,15 @@ class VendorPublishCommand extends Command
     protected function moveManagedFiles($manager)
     {
         foreach ($manager->listContents('from://', true) as $file) {
+<<<<<<< HEAD
             $path = Str::after($file['path'], 'from://');
 
             if ($file['type'] === 'file' && (! $manager->fileExists('to://'.$path) || $this->option('force'))) {
                 $manager->write('to://'.$path, $manager->read($file['path']));
+=======
+            if ($file['type'] === 'file' && (! $manager->has('to://'.$file['path']) || $this->option('force'))) {
+                $manager->put('to://'.$file['path'], $manager->read('from://'.$file['path']));
+>>>>>>> origin/New-FakeMain
             }
         }
     }

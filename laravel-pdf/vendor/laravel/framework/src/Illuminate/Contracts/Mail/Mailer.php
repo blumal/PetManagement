@@ -38,4 +38,14 @@ interface Mailer
      * @return void
      */
     public function send($view, array $data = [], $callback = null);
+<<<<<<< HEAD
+=======
+
+    /**
+     * Get the array of failed recipients.
+     *
+     * @return array
+     */
+    public function failures();
+>>>>>>> origin/New-FakeMain
 }

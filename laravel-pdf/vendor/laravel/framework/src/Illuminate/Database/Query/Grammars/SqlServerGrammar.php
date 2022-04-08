@@ -166,6 +166,7 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a "JSON contains key" statement into SQL.
      *
      * @param  string  $column
@@ -191,6 +192,8 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile a "JSON length" statement into SQL.
      *
      * @param  string  $column
@@ -206,7 +209,11 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a single having clause.
+=======
+     * {@inheritdoc}
+>>>>>>> origin/New-FakeMain
      *
      * @param  array  $having
      * @return string
@@ -232,7 +239,11 @@ class SqlServerGrammar extends Grammar
 
         $parameter = $this->parameter($having['value']);
 
+<<<<<<< HEAD
         return '('.$column.' '.$having['operator'].' '.$parameter.') != 0';
+=======
+        return $having['boolean'].' ('.$column.' '.$having['operator'].' '.$parameter.') != 0';
+>>>>>>> origin/New-FakeMain
     }
 
     /**

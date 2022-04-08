@@ -20,7 +20,11 @@ class DirectoryLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function load(mixed $file, string $type = null): mixed
+=======
+    public function load($file, string $type = null)
+>>>>>>> origin/New-FakeMain
     {
         $path = $this->locator->locate($file);
 
@@ -49,7 +53,11 @@ class DirectoryLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function supports(mixed $resource, string $type = null): bool
+=======
+    public function supports($resource, string $type = null)
+>>>>>>> origin/New-FakeMain
     {
         // only when type is forced to directory, not to conflict with AnnotationLoader
 

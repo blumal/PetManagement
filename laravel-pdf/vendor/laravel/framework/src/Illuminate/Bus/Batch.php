@@ -155,7 +155,11 @@ class Batch implements Arrayable, JsonSerializable
     /**
      * Add additional jobs to the batch.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Support\Enumerable|object|array  $jobs
+=======
+     * @param  \Illuminate\Support\Enumerable|array  $jobs
+>>>>>>> origin/New-FakeMain
      * @return self
      */
     public function add($jobs)
@@ -462,7 +466,12 @@ class Batch implements Arrayable, JsonSerializable
      *
      * @return array
      */
+<<<<<<< HEAD
     public function jsonSerialize(): array
+=======
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
+>>>>>>> origin/New-FakeMain
     {
         return $this->toArray();
     }

@@ -25,7 +25,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class LazyCommand extends Command
 {
     private $command;
+<<<<<<< HEAD
     private ?bool $isEnabled;
+=======
+    private $isEnabled;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $name, array $aliases, string $description, bool $isHidden, \Closure $commandFactory, ?bool $isEnabled = true)
     {
@@ -76,7 +80,14 @@ final class LazyCommand extends Command
         $this->getCommand()->complete($input, $suggestions);
     }
 
+<<<<<<< HEAD
     public function setCode(callable $code): static
+=======
+    /**
+     * @return $this
+     */
+    public function setCode(callable $code): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->setCode($code);
 
@@ -91,7 +102,14 @@ final class LazyCommand extends Command
         $this->getCommand()->mergeApplicationDefinition($mergeArgs);
     }
 
+<<<<<<< HEAD
     public function setDefinition(array|InputDefinition $definition): static
+=======
+    /**
+     * @return $this
+     */
+    public function setDefinition($definition): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->setDefinition($definition);
 
@@ -108,28 +126,56 @@ final class LazyCommand extends Command
         return $this->getCommand()->getNativeDefinition();
     }
 
+<<<<<<< HEAD
     public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null): static
+=======
+    /**
+     * @return $this
+     */
+    public function addArgument(string $name, int $mode = null, string $description = '', $default = null): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->addArgument($name, $mode, $description, $default);
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null): static
+=======
+    /**
+     * @return $this
+     */
+    public function addOption(string $name, $shortcut = null, int $mode = null, string $description = '', $default = null): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->addOption($name, $shortcut, $mode, $description, $default);
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function setProcessTitle(string $title): static
+=======
+    /**
+     * @return $this
+     */
+    public function setProcessTitle(string $title): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->setProcessTitle($title);
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function setHelp(string $help): static
+=======
+    /**
+     * @return $this
+     */
+    public function setHelp(string $help): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->setHelp($help);
 
@@ -151,7 +197,14 @@ final class LazyCommand extends Command
         return $this->getCommand()->getSynopsis($short);
     }
 
+<<<<<<< HEAD
     public function addUsage(string $usage): static
+=======
+    /**
+     * @return $this
+     */
+    public function addUsage(string $usage): self
+>>>>>>> origin/New-FakeMain
     {
         $this->getCommand()->addUsage($usage);
 
@@ -163,7 +216,14 @@ final class LazyCommand extends Command
         return $this->getCommand()->getUsages();
     }
 
+<<<<<<< HEAD
     public function getHelper(string $name): mixed
+=======
+    /**
+     * @return mixed
+     */
+    public function getHelper(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return $this->getCommand()->getHelper($name);
     }

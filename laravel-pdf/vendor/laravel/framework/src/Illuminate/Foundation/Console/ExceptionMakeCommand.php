@@ -15,6 +15,7 @@ class ExceptionMakeCommand extends GeneratorCommand
     protected $name = 'make:exception';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -26,6 +27,8 @@ class ExceptionMakeCommand extends GeneratorCommand
     protected static $defaultName = 'make:exception';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

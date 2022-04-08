@@ -11,7 +11,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use IteratorAggregate;
+<<<<<<< HEAD
 use Traversable;
+=======
+>>>>>>> origin/New-FakeMain
 
 class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
 {
@@ -156,6 +159,7 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
     }
 
     /**
+<<<<<<< HEAD
      * Only include the given attribute from the attribute array.
      *
      * @param  mixed|array  $keys
@@ -167,6 +171,8 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Exclude the given attribute from the attribute array.
      *
      * @param  mixed|array  $keys
@@ -174,6 +180,7 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      */
     public function exceptProps($keys)
     {
+<<<<<<< HEAD
         return $this->except($this->extractPropNames($keys));
     }
 
@@ -185,6 +192,8 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      */
     protected function extractPropNames($keys)
     {
+=======
+>>>>>>> origin/New-FakeMain
         $props = [];
 
         foreach ($keys as $key => $defaultValue) {
@@ -194,7 +203,11 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
             $props[] = Str::kebab($key);
         }
 
+<<<<<<< HEAD
         return $props;
+=======
+        return $this->except($props);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -346,7 +359,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  string  $offset
      * @return bool
      */
+<<<<<<< HEAD
     public function offsetExists($offset): bool
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->attributes[$offset]);
     }
@@ -357,7 +375,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  string  $offset
      * @return mixed
      */
+<<<<<<< HEAD
     public function offsetGet($offset): mixed
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->get($offset);
     }
@@ -369,7 +392,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     public function offsetSet($offset, $value): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->attributes[$offset] = $value;
     }
@@ -380,7 +408,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  string  $offset
      * @return void
      */
+<<<<<<< HEAD
     public function offsetUnset($offset): void
+=======
+    #[\ReturnTypeWillChange]
+    public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->attributes[$offset]);
     }
@@ -390,7 +423,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      *
      * @return \ArrayIterator
      */
+<<<<<<< HEAD
     public function getIterator(): Traversable
+=======
+    #[\ReturnTypeWillChange]
+    public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return new ArrayIterator($this->attributes);
     }

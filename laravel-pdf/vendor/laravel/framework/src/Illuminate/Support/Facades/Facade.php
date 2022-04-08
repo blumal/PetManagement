@@ -3,10 +3,13 @@
 namespace Illuminate\Support\Facades;
 
 use Closure;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Js;
 use Illuminate\Support\Str;
+=======
+>>>>>>> origin/New-FakeMain
 use Mockery;
 use Mockery\LegacyMockInterface;
 use RuntimeException;
@@ -28,6 +31,7 @@ abstract class Facade
     protected static $resolvedInstance;
 
     /**
+<<<<<<< HEAD
      * Indicates if the resolved instance should be cached.
      *
      * @var bool
@@ -35,6 +39,8 @@ abstract class Facade
     protected static $cached = true;
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Run a Closure when the facade has been resolved.
      *
      * @param  \Closure  $callback
@@ -95,13 +101,19 @@ abstract class Facade
         $name = static::getFacadeAccessor();
 
         $mock = static::isMock()
+<<<<<<< HEAD
             ? static::$resolvedInstance[$name]
             : static::createFreshMockInstance();
+=======
+                    ? static::$resolvedInstance[$name]
+                    : static::createFreshMockInstance();
+>>>>>>> origin/New-FakeMain
 
         return $mock->shouldReceive(...func_get_args());
     }
 
     /**
+<<<<<<< HEAD
      * Initiate a mock expectation on the facade.
      *
      * @return \Mockery\Expectation
@@ -118,6 +130,8 @@ abstract class Facade
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Create a fresh mock instance for the given class.
      *
      * @return \Mockery\MockInterface
@@ -208,21 +222,36 @@ abstract class Facade
     /**
      * Resolve the facade root instance from the container.
      *
+<<<<<<< HEAD
      * @param  string  $name
+=======
+     * @param  object|string  $name
+>>>>>>> origin/New-FakeMain
      * @return mixed
      */
     protected static function resolveFacadeInstance($name)
     {
+<<<<<<< HEAD
+=======
+        if (is_object($name)) {
+            return $name;
+        }
+
+>>>>>>> origin/New-FakeMain
         if (isset(static::$resolvedInstance[$name])) {
             return static::$resolvedInstance[$name];
         }
 
         if (static::$app) {
+<<<<<<< HEAD
             if (static::$cached) {
                 return static::$resolvedInstance[$name] = static::$app[$name];
             }
 
             return static::$app[$name];
+=======
+            return static::$resolvedInstance[$name] = static::$app[$name];
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -248,6 +277,7 @@ abstract class Facade
     }
 
     /**
+<<<<<<< HEAD
      * Get the application default aliases.
      *
      * @return \Illuminate\Support\Collection
@@ -297,6 +327,8 @@ abstract class Facade
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the application instance behind the facade.
      *
      * @return \Illuminate\Contracts\Foundation\Application

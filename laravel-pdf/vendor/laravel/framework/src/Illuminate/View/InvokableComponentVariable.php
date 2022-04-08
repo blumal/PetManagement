@@ -7,7 +7,10 @@ use Closure;
 use Illuminate\Contracts\Support\DeferringDisplayableValue;
 use Illuminate\Support\Enumerable;
 use IteratorAggregate;
+<<<<<<< HEAD
 use Traversable;
+=======
+>>>>>>> origin/New-FakeMain
 
 class InvokableComponentVariable implements DeferringDisplayableValue, IteratorAggregate
 {
@@ -44,7 +47,12 @@ class InvokableComponentVariable implements DeferringDisplayableValue, IteratorA
      *
      * @return \ArrayIterator
      */
+<<<<<<< HEAD
     public function getIterator(): Traversable
+=======
+    #[\ReturnTypeWillChange]
+    public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         $result = $this->__invoke();
 

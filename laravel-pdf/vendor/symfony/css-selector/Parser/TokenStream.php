@@ -29,23 +29,50 @@ class TokenStream
     /**
      * @var Token[]
      */
+<<<<<<< HEAD
     private array $tokens = [];
+=======
+    private $tokens = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var Token[]
      */
+<<<<<<< HEAD
     private array $used = [];
 
     private int $cursor = 0;
     private $peeked;
     private bool $peeking = false;
+=======
+    private $used = [];
+
+    /**
+     * @var int
+     */
+    private $cursor = 0;
+
+    /**
+     * @var Token|null
+     */
+    private $peeked;
+
+    /**
+     * @var bool
+     */
+    private $peeking = false;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Pushes a token.
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function push(Token $token): static
+=======
+    public function push(Token $token): self
+>>>>>>> origin/New-FakeMain
     {
         $this->tokens[] = $token;
 
@@ -57,7 +84,11 @@ class TokenStream
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function freeze(): static
+=======
+    public function freeze(): self
+>>>>>>> origin/New-FakeMain
     {
         return $this;
     }

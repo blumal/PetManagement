@@ -22,9 +22,15 @@ class RoutingConfigurator
     use Traits\AddTrait;
 
     private $loader;
+<<<<<<< HEAD
     private string $path;
     private string $file;
     private ?string $env;
+=======
+    private $path;
+    private $file;
+    private $env;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(RouteCollection $collection, PhpFileLoader $loader, string $path, string $file, string $env = null)
     {
@@ -38,7 +44,11 @@ class RoutingConfigurator
     /**
      * @param string|string[]|null $exclude Glob patterns to exclude from the import
      */
+<<<<<<< HEAD
     final public function import(string|array $resource, string $type = null, bool $ignoreErrors = false, string|array $exclude = null): ImportConfigurator
+=======
+    final public function import($resource, string $type = null, bool $ignoreErrors = false, $exclude = null): ImportConfigurator
+>>>>>>> origin/New-FakeMain
     {
         $this->loader->setCurrentDir(\dirname($this->path));
 
@@ -68,7 +78,14 @@ class RoutingConfigurator
         return $this->env;
     }
 
+<<<<<<< HEAD
     final public function withPath(string $path): static
+=======
+    /**
+     * @return static
+     */
+    final public function withPath(string $path): self
+>>>>>>> origin/New-FakeMain
     {
         $clone = clone $this;
         $clone->path = $clone->file = $path;

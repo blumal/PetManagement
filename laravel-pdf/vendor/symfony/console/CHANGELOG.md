@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 6.0
 ---
 
@@ -10,6 +11,8 @@ CHANGELOG
  * `AddConsoleCommandPass` can not be configured anymore
  * Remove `HelperSet::setCommand()` and `getCommand()` without replacement
 
+=======
+>>>>>>> origin/New-FakeMain
 5.4
 ---
 

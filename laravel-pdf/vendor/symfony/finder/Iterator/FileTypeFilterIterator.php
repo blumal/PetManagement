@@ -23,7 +23,11 @@ class FileTypeFilterIterator extends \FilterIterator
     public const ONLY_FILES = 1;
     public const ONLY_DIRECTORIES = 2;
 
+<<<<<<< HEAD
     private int $mode;
+=======
+    private $mode;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param \Iterator $iterator The Iterator to filter
@@ -38,8 +42,16 @@ class FileTypeFilterIterator extends \FilterIterator
 
     /**
      * Filters the iterator values.
+<<<<<<< HEAD
      */
     public function accept(): bool
+=======
+     *
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function accept()
+>>>>>>> origin/New-FakeMain
     {
         $fileinfo = $this->current();
         if (self::ONLY_DIRECTORIES === (self::ONLY_DIRECTORIES & $this->mode) && $fileinfo->isFile()) {

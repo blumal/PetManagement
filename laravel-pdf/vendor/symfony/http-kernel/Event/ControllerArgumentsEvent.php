@@ -29,7 +29,11 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 final class ControllerArgumentsEvent extends KernelEvent
 {
     private $controller;
+<<<<<<< HEAD
     private array $arguments;
+=======
+    private $arguments;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(HttpKernelInterface $kernel, callable $controller, array $arguments, Request $request, ?int $requestType)
     {

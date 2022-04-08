@@ -414,6 +414,7 @@ class Blueprint
     }
 
     /**
+<<<<<<< HEAD
      * Indicate that the given foreign key should be dropped.
      *
      * @param  \Illuminate\Database\Eloquent\Model|string  $model
@@ -446,6 +447,8 @@ class Blueprint
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Indicate that the given indexes should be renamed.
      *
      * @param  string  $from
@@ -714,7 +717,11 @@ class Blueprint
      */
     public function char($column, $length = null)
     {
+<<<<<<< HEAD
         $length = ! is_null($length) ? $length : Builder::$defaultStringLength;
+=======
+        $length = $length ?: Builder::$defaultStringLength;
+>>>>>>> origin/New-FakeMain
 
         return $this->addColumn('char', $column, compact('length'));
     }
@@ -1089,7 +1096,11 @@ class Blueprint
      * Create a new date-time column on the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function dateTime($column, $precision = 0)
@@ -1101,7 +1112,11 @@ class Blueprint
      * Create a new date-time column (with time zone) on the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function dateTimeTz($column, $precision = 0)
@@ -1113,7 +1128,11 @@ class Blueprint
      * Create a new time column on the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function time($column, $precision = 0)
@@ -1125,7 +1144,11 @@ class Blueprint
      * Create a new time column (with time zone) on the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function timeTz($column, $precision = 0)
@@ -1137,7 +1160,11 @@ class Blueprint
      * Create a new timestamp column on the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function timestamp($column, $precision = 0)
@@ -1149,7 +1176,11 @@ class Blueprint
      * Create a new timestamp (with time zone) column on the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function timestampTz($column, $precision = 0)
@@ -1160,7 +1191,11 @@ class Blueprint
     /**
      * Add nullable creation and update timestamps to the table.
      *
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public function timestamps($precision = 0)
@@ -1175,7 +1210,11 @@ class Blueprint
      *
      * Alias for self::timestamps().
      *
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public function nullableTimestamps($precision = 0)
@@ -1186,7 +1225,11 @@ class Blueprint
     /**
      * Add creation and update timestampTz columns to the table.
      *
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public function timestampsTz($precision = 0)
@@ -1200,7 +1243,11 @@ class Blueprint
      * Add a "deleted at" timestamp for the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function softDeletes($column = 'deleted_at', $precision = 0)
@@ -1212,7 +1259,11 @@ class Blueprint
      * Add a "deleted at" timestampTz for the table.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  int|null  $precision
+=======
+     * @param  int  $precision
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     public function softDeletesTz($column = 'deleted_at', $precision = 0)
@@ -1248,7 +1299,11 @@ class Blueprint
      * @param  string  $column
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
+<<<<<<< HEAD
     public function uuid($column = 'uuid')
+=======
+    public function uuid($column)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addColumn('uuid', $column);
     }
@@ -1273,7 +1328,11 @@ class Blueprint
      * @param  string  $column
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
+<<<<<<< HEAD
     public function ipAddress($column = 'ip_address')
+=======
+    public function ipAddress($column)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addColumn('ipAddress', $column);
     }
@@ -1284,7 +1343,11 @@ class Blueprint
      * @param  string  $column
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
+<<<<<<< HEAD
     public function macAddress($column = 'mac_address')
+=======
+    public function macAddress($column)
+>>>>>>> origin/New-FakeMain
     {
         return $this->addColumn('macAddress', $column);
     }

@@ -23,9 +23,15 @@ namespace Symfony\Component\CssSelector\Parser;
  */
 class Reader
 {
+<<<<<<< HEAD
     private string $source;
     private int $length;
     private int $position = 0;
+=======
+    private $source;
+    private $length;
+    private $position = 0;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $source)
     {
@@ -60,7 +66,14 @@ class Reader
         return false === $position ? false : $position - $this->position;
     }
 
+<<<<<<< HEAD
     public function findPattern(string $pattern): array|false
+=======
+    /**
+     * @return array|false
+     */
+    public function findPattern(string $pattern)
+>>>>>>> origin/New-FakeMain
     {
         $source = substr($this->source, $this->position);
 

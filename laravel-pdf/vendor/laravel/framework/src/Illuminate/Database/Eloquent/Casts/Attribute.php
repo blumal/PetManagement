@@ -19,6 +19,7 @@ class Attribute
     public $set;
 
     /**
+<<<<<<< HEAD
      * Indicates if caching is enabled for this attribute.
      *
      * @var bool
@@ -26,6 +27,8 @@ class Attribute
     public $withCaching = false;
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Indicates if caching of objects is enabled for this attribute.
      *
      * @var bool
@@ -46,6 +49,7 @@ class Attribute
     }
 
     /**
+<<<<<<< HEAD
      * Create a new attribute accessor / mutator.
      *
      * @param  callable|null  $get
@@ -58,6 +62,8 @@ class Attribute
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Create a new attribute accessor.
      *
      * @param  callable  $get
@@ -90,6 +96,7 @@ class Attribute
 
         return $this;
     }
+<<<<<<< HEAD
 
     /**
      * Enable caching for the attribute.
@@ -102,4 +109,6 @@ class Attribute
 
         return $this;
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

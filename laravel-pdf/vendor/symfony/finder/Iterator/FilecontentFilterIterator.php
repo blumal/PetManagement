@@ -23,8 +23,16 @@ class FilecontentFilterIterator extends MultiplePcreFilterIterator
 {
     /**
      * Filters the iterator values.
+<<<<<<< HEAD
      */
     public function accept(): bool
+=======
+     *
+     * @return bool
+     */
+    #[\ReturnTypeWillChange]
+    public function accept()
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->matchRegexps && !$this->noMatchRegexps) {
             return true;
@@ -48,8 +56,15 @@ class FilecontentFilterIterator extends MultiplePcreFilterIterator
      * Converts string to regexp if necessary.
      *
      * @param string $str Pattern: string or regexp
+<<<<<<< HEAD
      */
     protected function toRegex(string $str): string
+=======
+     *
+     * @return string
+     */
+    protected function toRegex(string $str)
+>>>>>>> origin/New-FakeMain
     {
         return $this->isRegex($str) ? $str : '/'.preg_quote($str, '/').'/';
     }

@@ -20,11 +20,16 @@ use Symfony\Component\HttpKernel\DataCollector\DataCollectorInterface;
  */
 class Profile
 {
+<<<<<<< HEAD
     private string $token;
+=======
+    private $token;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var DataCollectorInterface[]
      */
+<<<<<<< HEAD
     private array $collectors = [];
 
     private ?string $ip = null;
@@ -33,11 +38,29 @@ class Profile
     private ?int $time = null;
     private ?int $statusCode = null;
     private ?self $parent = null;
+=======
+    private $collectors = [];
+
+    private $ip;
+    private $method;
+    private $url;
+    private $time;
+    private $statusCode;
+
+    /**
+     * @var Profile
+     */
+    private $parent;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var Profile[]
      */
+<<<<<<< HEAD
     private array $children = [];
+=======
+    private $children = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $token)
     {
@@ -51,8 +74,15 @@ class Profile
 
     /**
      * Gets the token.
+<<<<<<< HEAD
      */
     public function getToken(): string
+=======
+     *
+     * @return string
+     */
+    public function getToken()
+>>>>>>> origin/New-FakeMain
     {
         return $this->token;
     }
@@ -67,24 +97,45 @@ class Profile
 
     /**
      * Returns the parent profile.
+<<<<<<< HEAD
      */
     public function getParent(): ?self
+=======
+     *
+     * @return self|null
+     */
+    public function getParent()
+>>>>>>> origin/New-FakeMain
     {
         return $this->parent;
     }
 
     /**
      * Returns the parent token.
+<<<<<<< HEAD
      */
     public function getParentToken(): ?string
+=======
+     *
+     * @return string|null
+     */
+    public function getParentToken()
+>>>>>>> origin/New-FakeMain
     {
         return $this->parent ? $this->parent->getToken() : null;
     }
 
     /**
      * Returns the IP.
+<<<<<<< HEAD
      */
     public function getIp(): ?string
+=======
+     *
+     * @return string|null
+     */
+    public function getIp()
+>>>>>>> origin/New-FakeMain
     {
         return $this->ip;
     }
@@ -96,8 +147,15 @@ class Profile
 
     /**
      * Returns the request method.
+<<<<<<< HEAD
      */
     public function getMethod(): ?string
+=======
+     *
+     * @return string|null
+     */
+    public function getMethod()
+>>>>>>> origin/New-FakeMain
     {
         return $this->method;
     }
@@ -109,8 +167,15 @@ class Profile
 
     /**
      * Returns the URL.
+<<<<<<< HEAD
      */
     public function getUrl(): ?string
+=======
+     *
+     * @return string|null
+     */
+    public function getUrl()
+>>>>>>> origin/New-FakeMain
     {
         return $this->url;
     }
@@ -120,7 +185,14 @@ class Profile
         $this->url = $url;
     }
 
+<<<<<<< HEAD
     public function getTime(): int
+=======
+    /**
+     * @return int
+     */
+    public function getTime()
+>>>>>>> origin/New-FakeMain
     {
         return $this->time ?? 0;
     }
@@ -135,7 +207,14 @@ class Profile
         $this->statusCode = $statusCode;
     }
 
+<<<<<<< HEAD
     public function getStatusCode(): ?int
+=======
+    /**
+     * @return int|null
+     */
+    public function getStatusCode()
+>>>>>>> origin/New-FakeMain
     {
         return $this->statusCode;
     }
@@ -145,7 +224,11 @@ class Profile
      *
      * @return self[]
      */
+<<<<<<< HEAD
     public function getChildren(): array
+=======
+    public function getChildren()
+>>>>>>> origin/New-FakeMain
     {
         return $this->children;
     }
@@ -186,9 +269,17 @@ class Profile
     /**
      * Gets a Collector by name.
      *
+<<<<<<< HEAD
      * @throws \InvalidArgumentException if the collector does not exist
      */
     public function getCollector(string $name): DataCollectorInterface
+=======
+     * @return DataCollectorInterface
+     *
+     * @throws \InvalidArgumentException if the collector does not exist
+     */
+    public function getCollector(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->collectors[$name])) {
             throw new \InvalidArgumentException(sprintf('Collector "%s" does not exist.', $name));
@@ -202,7 +293,11 @@ class Profile
      *
      * @return DataCollectorInterface[]
      */
+<<<<<<< HEAD
     public function getCollectors(): array
+=======
+    public function getCollectors()
+>>>>>>> origin/New-FakeMain
     {
         return $this->collectors;
     }
@@ -228,12 +323,26 @@ class Profile
         $this->collectors[$collector->getName()] = $collector;
     }
 
+<<<<<<< HEAD
     public function hasCollector(string $name): bool
+=======
+    /**
+     * @return bool
+     */
+    public function hasCollector(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->collectors[$name]);
     }
 
+<<<<<<< HEAD
     public function __sleep(): array
+=======
+    /**
+     * @return array
+     */
+    public function __sleep()
+>>>>>>> origin/New-FakeMain
     {
         return ['token', 'parent', 'children', 'collectors', 'ip', 'method', 'url', 'time', 'statusCode'];
     }

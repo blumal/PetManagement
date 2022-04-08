@@ -22,16 +22,32 @@ class FormatterHelper extends Helper
 {
     /**
      * Formats a message within a section.
+<<<<<<< HEAD
      */
     public function formatSection(string $section, string $message, string $style = 'info'): string
+=======
+     *
+     * @return string
+     */
+    public function formatSection(string $section, string $message, string $style = 'info')
+>>>>>>> origin/New-FakeMain
     {
         return sprintf('<%s>[%s]</%s> %s', $style, $section, $style, $message);
     }
 
     /**
      * Formats a message as a block of text.
+<<<<<<< HEAD
      */
     public function formatBlock(string|array $messages, string $style, bool $large = false): string
+=======
+     *
+     * @param string|array $messages The message to write in the block
+     *
+     * @return string
+     */
+    public function formatBlock($messages, string $style, bool $large = false)
+>>>>>>> origin/New-FakeMain
     {
         if (!\is_array($messages)) {
             $messages = [$messages];
@@ -62,8 +78,15 @@ class FormatterHelper extends Helper
 
     /**
      * Truncates a message to the given length.
+<<<<<<< HEAD
      */
     public function truncate(string $message, int $length, string $suffix = '...'): string
+=======
+     *
+     * @return string
+     */
+    public function truncate(string $message, int $length, string $suffix = '...')
+>>>>>>> origin/New-FakeMain
     {
         $computedLength = $length - self::width($suffix);
 
@@ -77,7 +100,11 @@ class FormatterHelper extends Helper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName(): string
+=======
+    public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'formatter';
     }

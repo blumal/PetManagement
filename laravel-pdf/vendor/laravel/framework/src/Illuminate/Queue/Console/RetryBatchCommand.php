@@ -15,6 +15,7 @@ class RetryBatchCommand extends Command
     protected $signature = 'queue:retry-batch {id : The ID of the batch whose failed jobs should be retried}';
 
     /**
+<<<<<<< HEAD
      * The name of the console command.
      *
      * This name is used to identify the command during lazy loading.
@@ -26,6 +27,8 @@ class RetryBatchCommand extends Command
     protected static $defaultName = 'queue:retry-batch';
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

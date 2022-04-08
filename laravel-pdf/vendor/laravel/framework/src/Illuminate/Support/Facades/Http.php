@@ -6,6 +6,10 @@ use Illuminate\Http\Client\Factory;
 
 /**
  * @method static \GuzzleHttp\Promise\PromiseInterface response($body = null, $status = 200, $headers = [])
+<<<<<<< HEAD
+=======
+ * @method static \Illuminate\Http\Client\Factory fake($callback = null)
+>>>>>>> origin/New-FakeMain
  * @method static \Illuminate\Http\Client\PendingRequest accept(string $contentType)
  * @method static \Illuminate\Http\Client\PendingRequest acceptJson()
  * @method static \Illuminate\Http\Client\PendingRequest asForm()
@@ -19,7 +23,11 @@ use Illuminate\Http\Client\Factory;
  * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
  * @method static \Illuminate\Http\Client\PendingRequest dd()
  * @method static \Illuminate\Http\Client\PendingRequest dump()
+<<<<<<< HEAD
  * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0, ?callable $when = null, bool $throw = true)
+=======
+ * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0, ?callable $when = null)
+>>>>>>> origin/New-FakeMain
  * @method static \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
  * @method static \Illuminate\Http\Client\PendingRequest stub(callable $callback)
  * @method static \Illuminate\Http\Client\PendingRequest timeout(int $seconds)
@@ -42,6 +50,10 @@ use Illuminate\Http\Client\Factory;
  * @method static \Illuminate\Http\Client\Response post(string $url, array $data = [])
  * @method static \Illuminate\Http\Client\Response put(string $url, array $data = [])
  * @method static \Illuminate\Http\Client\Response send(string $method, string $url, array $options = [])
+<<<<<<< HEAD
+=======
+ * @method static \Illuminate\Http\Client\ResponseSequence fakeSequence(string $urlPattern = '*')
+>>>>>>> origin/New-FakeMain
  * @method static void assertSent(callable $callback)
  * @method static void assertSentInOrder(array $callbacks)
  * @method static void assertNotSent(callable $callback)
@@ -62,6 +74,7 @@ class Http extends Facade
     {
         return Factory::class;
     }
+<<<<<<< HEAD
 
     /**
      * Register a stub callable that will intercept requests and be able to return stub responses.
@@ -104,4 +117,6 @@ class Http extends Facade
             static::swap($fake->stubUrl($url, $callback));
         });
     }
+=======
+>>>>>>> origin/New-FakeMain
 }

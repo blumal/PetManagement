@@ -159,6 +159,7 @@ class NotificationFake implements NotificationDispatcher, NotificationFactory
     }
 
     /**
+<<<<<<< HEAD
      * Assert that no notifications were sent to the given notifiable.
      *
      * @param  mixed  $notifiable
@@ -187,6 +188,8 @@ class NotificationFake implements NotificationDispatcher, NotificationFactory
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Assert the total amount of times a notification was sent.
      *
      * @param  string  $notification

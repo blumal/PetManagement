@@ -16,12 +16,23 @@ namespace Symfony\Component\Console\Output;
  */
 class BufferedOutput extends Output
 {
+<<<<<<< HEAD
     private string $buffer = '';
 
     /**
      * Empties buffer and returns its content.
      */
     public function fetch(): string
+=======
+    private $buffer = '';
+
+    /**
+     * Empties buffer and returns its content.
+     *
+     * @return string
+     */
+    public function fetch()
+>>>>>>> origin/New-FakeMain
     {
         $content = $this->buffer;
         $this->buffer = '';

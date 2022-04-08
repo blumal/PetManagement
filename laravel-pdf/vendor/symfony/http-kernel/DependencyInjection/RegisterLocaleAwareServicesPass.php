@@ -23,26 +23,57 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class RegisterLocaleAwareServicesPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('locale_aware_listener')) {
+=======
+    private $listenerServiceId;
+    private $localeAwareTag;
+
+    public function __construct(string $listenerServiceId = 'locale_aware_listener', string $localeAwareTag = 'kernel.locale_aware')
+    {
+        if (0 < \func_num_args()) {
+            trigger_deprecation('symfony/http-kernel', '5.3', 'Configuring "%s" is deprecated.', __CLASS__);
+        }
+
+        $this->listenerServiceId = $listenerServiceId;
+        $this->localeAwareTag = $localeAwareTag;
+    }
+
+    public function process(ContainerBuilder $container)
+    {
+        if (!$container->hasDefinition($this->listenerServiceId)) {
+>>>>>>> origin/New-FakeMain
             return;
         }
 
         $services = [];
 
+<<<<<<< HEAD
         foreach ($container->findTaggedServiceIds('kernel.locale_aware') as $id => $tags) {
+=======
+        foreach ($container->findTaggedServiceIds($this->localeAwareTag) as $id => $tags) {
+>>>>>>> origin/New-FakeMain
             $services[] = new Reference($id);
         }
 
         if (!$services) {
+<<<<<<< HEAD
             $container->removeDefinition('locale_aware_listener');
+=======
+            $container->removeDefinition($this->listenerServiceId);
+>>>>>>> origin/New-FakeMain
 
             return;
         }
 
         $container
+<<<<<<< HEAD
             ->getDefinition('locale_aware_listener')
+=======
+            ->getDefinition($this->listenerServiceId)
+>>>>>>> origin/New-FakeMain
             ->setArgument(0, new IteratorArgument($services))
         ;
     }

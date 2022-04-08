@@ -45,6 +45,13 @@ interface OutputFormatterStyleInterface
 
     /**
      * Applies the style to a given text.
+<<<<<<< HEAD
      */
     public function apply(string $text): string;
+=======
+     *
+     * @return string
+     */
+    public function apply(string $text);
+>>>>>>> origin/New-FakeMain
 }

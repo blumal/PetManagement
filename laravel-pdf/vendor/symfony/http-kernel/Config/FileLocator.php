@@ -33,7 +33,11 @@ class FileLocator extends BaseFileLocator
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function locate(string $file, string $currentPath = null, bool $first = true): string|array
+=======
+    public function locate(string $file, string $currentPath = null, bool $first = true)
+>>>>>>> origin/New-FakeMain
     {
         if (isset($file[0]) && '@' === $file[0]) {
             $resource = $this->kernel->locateResource($file);

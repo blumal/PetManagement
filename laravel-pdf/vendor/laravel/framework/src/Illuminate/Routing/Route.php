@@ -16,6 +16,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Laravel\SerializableClosure\SerializableClosure;
 use LogicException;
+<<<<<<< HEAD
+=======
+use Opis\Closure\SerializableClosure as OpisSerializableClosure;
+>>>>>>> origin/New-FakeMain
 use ReflectionFunction;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 
@@ -270,7 +274,11 @@ class Route
     public function getController()
     {
         if (! $this->controller) {
+<<<<<<< HEAD
             $class = $this->getControllerClass();
+=======
+            $class = $this->parseControllerCallback()[0];
+>>>>>>> origin/New-FakeMain
 
             $this->controller = $this->container->make(ltrim($class, '\\'));
         }
@@ -279,6 +287,7 @@ class Route
     }
 
     /**
+<<<<<<< HEAD
      * Get the controller class used for the route.
      *
      * @return string
@@ -289,6 +298,8 @@ class Route
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the controller method used for the route.
      *
      * @return string
@@ -515,6 +526,7 @@ class Route
     /**
      * Get the parameters that are listed in the route / controller signature.
      *
+<<<<<<< HEAD
      * @param  array  $conditions
      * @return array
      */
@@ -525,6 +537,14 @@ class Route
         }
 
         return RouteSignatureParameters::fromAction($this->action, $conditions);
+=======
+     * @param  string|null  $subClass
+     * @return array
+     */
+    public function signatureParameters($subClass = null)
+    {
+        return RouteSignatureParameters::fromAction($this->action, $subClass);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -790,7 +810,11 @@ class Route
      */
     public function prefix($prefix)
     {
+<<<<<<< HEAD
         $prefix ??= '';
+=======
+        $prefix = $prefix ?? '';
+>>>>>>> origin/New-FakeMain
 
         $this->updatePrefixOnAction($prefix);
 
@@ -924,7 +948,11 @@ class Route
     {
         $groupStack = last($this->router->getGroupStack());
 
+<<<<<<< HEAD
         if (isset($groupStack['namespace']) && ! str_starts_with($action, '\\')) {
+=======
+        if (isset($groupStack['namespace']) && strpos($action, '\\') !== 0) {
+>>>>>>> origin/New-FakeMain
             return $groupStack['namespace'].'\\'.$action;
         }
 
@@ -990,6 +1018,10 @@ class Route
 
         return is_string($missing) &&
             Str::startsWith($missing, [
+<<<<<<< HEAD
+=======
+                'C:32:"Opis\\Closure\\SerializableClosure',
+>>>>>>> origin/New-FakeMain
                 'O:47:"Laravel\\SerializableClosure\\SerializableClosure',
             ]) ? unserialize($missing) : $missing;
     }
@@ -1110,7 +1142,11 @@ class Route
     /**
      * Indicate that the route should enforce scoping of multiple implicit Eloquent bindings.
      *
+<<<<<<< HEAD
      * @return $this
+=======
+     * @return bool
+>>>>>>> origin/New-FakeMain
      */
     public function scopeBindings()
     {
@@ -1217,7 +1253,11 @@ class Route
     {
         return new SymfonyRoute(
             preg_replace('/\{(\w+?)\?\}/', '{$1}', $this->uri()), $this->getOptionalParameterNames(),
+<<<<<<< HEAD
             $this->wheres, ['utf8' => true],
+=======
+            $this->wheres, ['utf8' => true, 'action' => $this->action],
+>>>>>>> origin/New-FakeMain
             $this->getDomain() ?: '', [], $this->methods
         );
     }
@@ -1280,14 +1320,26 @@ class Route
     public function prepareForSerialization()
     {
         if ($this->action['uses'] instanceof Closure) {
+<<<<<<< HEAD
             $this->action['uses'] = serialize(
                 new SerializableClosure($this->action['uses'])
+=======
+            $this->action['uses'] = serialize(\PHP_VERSION_ID < 70400
+                ? new OpisSerializableClosure($this->action['uses'])
+                : new SerializableClosure($this->action['uses'])
+>>>>>>> origin/New-FakeMain
             );
         }
 
         if (isset($this->action['missing']) && $this->action['missing'] instanceof Closure) {
+<<<<<<< HEAD
             $this->action['missing'] = serialize(
                 new SerializableClosure($this->action['missing'])
+=======
+            $this->action['missing'] = serialize(\PHP_VERSION_ID < 70400
+                ? new OpisSerializableClosure($this->action['missing'])
+                : new SerializableClosure($this->action['missing'])
+>>>>>>> origin/New-FakeMain
             );
         }
 

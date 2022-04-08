@@ -76,6 +76,7 @@ class Pipeline implements PipelineContract
     }
 
     /**
+<<<<<<< HEAD
      * Push additional pipes onto the pipeline.
      *
      * @param  array|mixed  $pipes
@@ -89,6 +90,8 @@ class Pipeline implements PipelineContract
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Set the method to call on the pipes.
      *
      * @param  string  $method

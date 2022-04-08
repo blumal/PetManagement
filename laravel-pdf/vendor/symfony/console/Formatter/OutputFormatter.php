@@ -21,8 +21,13 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
  */
 class OutputFormatter implements WrappableOutputFormatterInterface
 {
+<<<<<<< HEAD
     private bool $decorated;
     private array $styles = [];
+=======
+    private $decorated;
+    private $styles = [];
+>>>>>>> origin/New-FakeMain
     private $styleStack;
 
     public function __clone()
@@ -35,8 +40,15 @@ class OutputFormatter implements WrappableOutputFormatterInterface
 
     /**
      * Escapes "<" and ">" special chars in given text.
+<<<<<<< HEAD
      */
     public static function escape(string $text): string
+=======
+     *
+     * @return string
+     */
+    public static function escape(string $text)
+>>>>>>> origin/New-FakeMain
     {
         $text = preg_replace('/([^\\\\]|^)([<>])/', '$1\\\\$2', $text);
 
@@ -92,7 +104,11 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isDecorated(): bool
+=======
+    public function isDecorated()
+>>>>>>> origin/New-FakeMain
     {
         return $this->decorated;
     }
@@ -108,7 +124,11 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function hasStyle(string $name): bool
+=======
+    public function hasStyle(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->styles[strtolower($name)]);
     }
@@ -116,7 +136,11 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getStyle(string $name): OutputFormatterStyleInterface
+=======
+    public function getStyle(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->hasStyle($name)) {
             throw new InvalidArgumentException(sprintf('Undefined style: "%s".', $name));
@@ -128,7 +152,11 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function format(?string $message): ?string
+=======
+    public function format(?string $message)
+>>>>>>> origin/New-FakeMain
     {
         return $this->formatAndWrap($message, 0);
     }
@@ -184,7 +212,14 @@ class OutputFormatter implements WrappableOutputFormatterInterface
         return strtr($output, ["\0" => '\\', '\\<' => '<', '\\>' => '>']);
     }
 
+<<<<<<< HEAD
     public function getStyleStack(): OutputFormatterStyleStack
+=======
+    /**
+     * @return OutputFormatterStyleStack
+     */
+    public function getStyleStack()
+>>>>>>> origin/New-FakeMain
     {
         return $this->styleStack;
     }

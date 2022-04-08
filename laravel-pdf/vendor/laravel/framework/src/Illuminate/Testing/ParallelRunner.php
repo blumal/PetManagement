@@ -68,7 +68,11 @@ class ParallelRunner implements RunnerInterface
             return new WrapperRunner($options, $output);
         };
 
+<<<<<<< HEAD
         $this->runner = $runnerResolver($options, $output);
+=======
+        $this->runner = call_user_func($runnerResolver, $options, $output);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -172,6 +176,10 @@ class ParallelRunner implements RunnerInterface
             throw new RuntimeException('Parallel Runner unable to resolve application.');
         };
 
+<<<<<<< HEAD
         return $applicationResolver();
+=======
+        return call_user_func($applicationResolver);
+>>>>>>> origin/New-FakeMain
     }
 }

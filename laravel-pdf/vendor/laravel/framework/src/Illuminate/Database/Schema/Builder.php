@@ -34,7 +34,11 @@ class Builder
     /**
      * The default string length for migrations.
      *
+<<<<<<< HEAD
      * @var int|null
+=======
+     * @var int
+>>>>>>> origin/New-FakeMain
      */
     public static $defaultStringLength = 255;
 
@@ -171,6 +175,7 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
      * Execute a table builder callback if the given table has a given column.
      *
      * @param  string  $table
@@ -201,6 +206,8 @@ class Builder
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the data type for the given column name.
      *
      * @param  string  $table
@@ -415,6 +422,22 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Register a custom Doctrine mapping type.
+     *
+     * @param  string  $class
+     * @param  string  $name
+     * @param  string  $type
+     * @return void
+     */
+    public function registerCustomDoctrineType($class, $name, $type)
+    {
+        $this->connection->registerDoctrineType($class, $name, $type);
+    }
+
+    /**
+>>>>>>> origin/New-FakeMain
      * Get the database connection instance.
      *
      * @return \Illuminate\Database\Connection

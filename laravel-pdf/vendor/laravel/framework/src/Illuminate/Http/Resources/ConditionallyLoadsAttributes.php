@@ -145,6 +145,7 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
+<<<<<<< HEAD
      * Retrieve a model attribute if it is not null.
      *
      * @param  mixed  $value
@@ -159,6 +160,8 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
+=======
+>>>>>>> origin/New-FakeMain
      * Retrieve an accessor when it has been appended.
      *
      * @param  string  $attribute

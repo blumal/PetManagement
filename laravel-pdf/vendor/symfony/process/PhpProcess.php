@@ -53,7 +53,11 @@ class PhpProcess extends Process
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public static function fromShellCommandline(string $command, string $cwd = null, array $env = null, mixed $input = null, ?float $timeout = 60): static
+=======
+    public static function fromShellCommandline(string $command, string $cwd = null, array $env = null, $input = null, ?float $timeout = 60)
+>>>>>>> origin/New-FakeMain
     {
         throw new LogicException(sprintf('The "%s()" method cannot be called when using "%s".', __METHOD__, self::class));
     }

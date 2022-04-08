@@ -3,8 +3,13 @@
 namespace Illuminate\Validation\Rules;
 
 use Closure;
+<<<<<<< HEAD
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
+=======
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 
 trait DatabaseRule
 {
@@ -58,14 +63,22 @@ trait DatabaseRule
      */
     public function resolveTableName($table)
     {
+<<<<<<< HEAD
         if (! str_contains($table, '\\') || ! class_exists($table)) {
+=======
+        if (! Str::contains($table, '\\') || ! class_exists($table)) {
+>>>>>>> origin/New-FakeMain
             return $table;
         }
 
         if (is_subclass_of($table, Model::class)) {
             $model = new $table;
 
+<<<<<<< HEAD
             if (str_contains($model->getTable(), '.')) {
+=======
+            if (Str::contains($model->getTable(), '.')) {
+>>>>>>> origin/New-FakeMain
                 return $table;
             }
 
@@ -81,12 +94,20 @@ trait DatabaseRule
      * Set a "where" constraint on the query.
      *
      * @param  \Closure|string  $column
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Support\Arrayable|array|string|int|null  $value
+=======
+     * @param  array|string|int|null  $value
+>>>>>>> origin/New-FakeMain
      * @return $this
      */
     public function where($column, $value = null)
     {
+<<<<<<< HEAD
         if ($value instanceof Arrayable || is_array($value)) {
+=======
+        if (is_array($value)) {
+>>>>>>> origin/New-FakeMain
             return $this->whereIn($column, $value);
         }
 
@@ -107,12 +128,20 @@ trait DatabaseRule
      * Set a "where not" constraint on the query.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Support\Arrayable|array|string  $value
+=======
+     * @param  array|string  $value
+>>>>>>> origin/New-FakeMain
      * @return $this
      */
     public function whereNot($column, $value)
     {
+<<<<<<< HEAD
         if ($value instanceof Arrayable || is_array($value)) {
+=======
+        if (is_array($value)) {
+>>>>>>> origin/New-FakeMain
             return $this->whereNotIn($column, $value);
         }
 
@@ -145,10 +174,17 @@ trait DatabaseRule
      * Set a "where in" constraint on the query.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $values
      * @return $this
      */
     public function whereIn($column, $values)
+=======
+     * @param  array  $values
+     * @return $this
+     */
+    public function whereIn($column, array $values)
+>>>>>>> origin/New-FakeMain
     {
         return $this->where(function ($query) use ($column, $values) {
             $query->whereIn($column, $values);
@@ -159,10 +195,17 @@ trait DatabaseRule
      * Set a "where not in" constraint on the query.
      *
      * @param  string  $column
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $values
      * @return $this
      */
     public function whereNotIn($column, $values)
+=======
+     * @param  array  $values
+     * @return $this
+     */
+    public function whereNotIn($column, array $values)
+>>>>>>> origin/New-FakeMain
     {
         return $this->where(function ($query) use ($column, $values) {
             $query->whereNotIn($column, $values);

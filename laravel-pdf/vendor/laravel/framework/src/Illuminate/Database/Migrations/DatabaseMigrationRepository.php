@@ -54,7 +54,11 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface
     }
 
     /**
+<<<<<<< HEAD
      * Get the list of migrations.
+=======
+     * Get list of migrations.
+>>>>>>> origin/New-FakeMain
      *
      * @param  int  $steps
      * @return array
