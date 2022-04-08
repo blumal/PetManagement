@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -40,6 +39,10 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+
+//APP PARA DESCRAGAR PDFs
+
+$app->singleton(\Barryvdh\DomPDF\ServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

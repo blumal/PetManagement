@@ -1,0 +1,24 @@
+<?php
+
+<<<<<<< HEAD
+namespace {{ namespace }};
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+=======
+namespace Database\Seeders;
+
+>>>>>>> origin/New-FakeMain
+use Illuminate\Database\Seeder;
+
+class {{ class }} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        //
+    }
+}

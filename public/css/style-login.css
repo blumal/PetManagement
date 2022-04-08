@@ -1,0 +1,150 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(31, 45, 196), transparent);
+    background-repeat: no-repeat;
+}
+
+.column-1{
+    width: 100%;
+}
+
+.column-2{
+    width: 50%;
+    float: left;
+}
+
+.column-3{
+    width: 33.3%;
+    float: left;
+}
+
+.column-4{
+    width: 25%;
+    float: left;
+}
+
+.column-60{
+    width: 60%;
+    float: left;
+}
+
+.column-40{
+    width: 40%;
+    float: left;
+}
+
+.foto{
+    width: 100%;
+    height: 100%;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ----------- SLIDER --------------- */
+.slider-frame {
+	width: 100%;
+    height: auto;
+	/* margin:50px auto 0; */
+	overflow: hidden;
+}
+
+.slider-frame ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	
+	animation: slide 20s infinite alternate ease-in-out;
+}
+
+.slider-frame li {
+	width: 100%;
+	list-style: none;
+}
+
+.slider-frame img {
+    width: 120%;
+}
+
+@keyframes slide {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+}
+
+/* ----------- LOGIN --------------- */
+
+.login{
+    text-align: center;
+    border-radius: 25px;
+    background-color: #BCBED7;
+    margin: 5%;
+}
+
+h1{
+    padding-top: 3%;
+}
+
+.username{
+    margin: 3% 10% 3% 15%;
+    text-align: left;
+}
+
+.username input{
+    border-radius: 13px;
+    width: 90%;
+    padding: 5px;
+    padding-left: 2%;
+}
+
+.password input{
+    border-radius: 13px;
+    width: 90%;
+    padding: 5px;
+    padding-left: 2%;
+}
+
+.password{
+    margin: 3% 10% 3% 15%;
+    text-align: left;
+}
+
+.btn-login{
+    border-radius: 20px;
+    color: white;
+    background-color: #1f2cc4;
+    padding: 10px;
+}
+
+.fraseRegistro{
+    margin: 5% 5% 5% 15%;
+    /* margin-left: 10%;
+    margin-bottom: 5%; */
+    padding-bottom: 5%;
+    text-align: left;
+    color: #1f2cc4;
+}
