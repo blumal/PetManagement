@@ -67,6 +67,7 @@ header {
     box-sizing: border-box;
     height: 100px;
     transition: 0.5s;
+    z-index: 999;
 }
 
 .logo {
