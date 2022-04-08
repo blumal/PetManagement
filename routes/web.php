@@ -63,7 +63,7 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 //TEST
 
-Route::get('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 
 //Api

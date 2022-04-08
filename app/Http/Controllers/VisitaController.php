@@ -12,12 +12,12 @@ class VisitaController extends Controller
 {
     public function preRellenarVisitaClinica(Request $request){
         $id_user = $request->session()->get('id_user_session');
+        $id_visita=$request->id_visita;
         if ($id_user=="") {
             return redirect('/');
         }else {
             try{
                 DB::beginTransaction();
-                    $id_visita= 1;
                     $id_clinica=1;
                     // retreive all records from db
                     $clinica = DB::table('tbl_sociedad')
