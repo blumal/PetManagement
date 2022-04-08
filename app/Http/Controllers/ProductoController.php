@@ -275,7 +275,8 @@ class ProductoController extends Controller
     }
 
     public function compra(Request $request){
-        return "La compra se ha completado con exito";
+        $request->session()->forget('carrito');
+        return redirect('comprafinalizada');
     }
     
     /**
