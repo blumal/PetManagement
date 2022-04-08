@@ -9,7 +9,6 @@ use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\DB;
 

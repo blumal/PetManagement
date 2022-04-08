@@ -103,6 +103,7 @@ function productos() {
     ajax.open("POST", "productos", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(this.responseText)
             var respuesta = JSON.parse(this.responseText);
             divProductos.innerHTML = "";
             var html = "<p>Lo más vendido</p>";
