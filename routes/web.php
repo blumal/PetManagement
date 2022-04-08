@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\mapas;
+
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\VisitaController;
@@ -17,7 +19,28 @@ use App\Http\Controllers\CitasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Mapas
+Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
+Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
+
+Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
+
+Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);
+
+Route::get('animales_perdidos', [mapas::class,'animales_perdidos']);
+
+Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimientos']);
+
+Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
+
+Route::post('crearMapasEstablecimientos',[mapas::class, 'crearMapasEstablecimientos']);
+
+Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
+
+Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
+
+Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);
 
 Route::get('/', function () {
     return view('home');
