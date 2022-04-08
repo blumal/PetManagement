@@ -29,9 +29,14 @@ function calcularPrecio() {
     var final = cantidad * precio;
     final = final.toFixed(2);
     $("#precio-final").text(final + "€")
+        //sesiones
+    var id = $('.producto').attr('id-producto');
+    var divHtml = document.getElementsByClassName("anadir-carrito")[0];
+    console.log(cantidad)
+    divHtml.innerHTML = "<a href='../add-to-cart-producto/" + id + "/" + cantidad + "' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
 
 }
-
+/*
 function addToCart() {
     var cantidad = $('#input-cantidad').val();
     var id = $('.producto').attr('id-producto');
@@ -51,7 +56,7 @@ function addToCart() {
 
     ajax.send(formData);
 
-}
+}*/
 
 function fotos() {
     var prin = document.getElementById("principal")

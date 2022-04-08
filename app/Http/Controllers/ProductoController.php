@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductoController extends Controller
 {
@@ -163,11 +164,9 @@ class ProductoController extends Controller
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
-    public function addToCartProducto(Request $request)
+    public function addToCartProducto($id, $cantidad)
     {
-        $datos = $request->except('_token');
-        $id=$datos['id'];
-        $cantidad=$datos['cantidad'];
+        $path="producto/".$id;
         $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
         if(!$product) {
             abort(404);
@@ -184,13 +183,14 @@ class ProductoController extends Controller
                     ]
             ];
             session()->put('cart', $cart);
-            return response()->json(array('resultado'=> 'OK'));
+            return Redirect::to($path);
         }
         //
         if(isset($cart[$id])) {
-            $cart[$id]['cantidad']+$cantidad;
+            $cantidad=$cantidad+$cart[$id]['cantidad'];
+            $cart[$id]['cantidad']=$cantidad;
             session()->put('cart', $cart);
-            return response()->json(array('resultado'=> 'OK'));
+            return Redirect::to($path);
         }
         //
         $cart[$id] = [
@@ -200,7 +200,7 @@ class ProductoController extends Controller
             "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
-        return response()->json(array('resultado'=> 'OK'));
+        return Redirect::to($path);
     }
 
     public function updateCart(Request $request)
@@ -210,7 +210,7 @@ class ProductoController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["cantidad"] = $request->quantity;
             session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
     }
 

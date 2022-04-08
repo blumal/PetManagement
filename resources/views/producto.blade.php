@@ -37,7 +37,7 @@
                     <div class="input-cantidad"><input type="number" value="1" class="form-control quantity" max="5001" min="1" id="input-cantidad"/></div>
                     <div class="cantidad-precio"><p id="precio-final">{{$producto[0]->precio_art}}€</p></div>
                 </div>
-                <div class="anadir-carrito"><a onclick="addToCart()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
+                <div class="anadir-carrito"><a href="../add-to-cart-producto/{{$producto[0]->id_art}}/1" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
             </div>
             <div class="div-dropmenu">
                 <div class="dropdown">
