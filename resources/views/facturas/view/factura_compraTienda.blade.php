@@ -147,7 +147,7 @@ img {
                         <td>
                             <?php echo $clinica[0]->nombre_s ?><br />
                             Fecha de compra: <?php echo $factura[0]->fecha_ft ?><br />
-                            ID Factura: <?php echo 'Compra '; echo " - ".$factura[0]->id_ft ?><br />
+                            ID Factura: <?php echo 'Compra '; echo " - 000".$factura[0]->id_ft ?><br />
                         </td>
                     </tr>
                 </table>

@@ -47,6 +47,7 @@ class CitasController extends Controller
             $userId = $request->except('_token', '_method');
             $userId_compr=DB::table("tbl_usuario")->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')->where('tbl_usuario.email_us','=',
             $userId['email_us'])->where('tbl_usuario.pass_us','=',$userId['pass_us'])->get();
+            //return $userId_compr;
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
             if ($userId_compr[0]->rol_ro=='trabajador'){
                 //Establecemos sesión
