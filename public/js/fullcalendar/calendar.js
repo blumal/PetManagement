@@ -21,7 +21,6 @@ function objetoAjax() {
 }
 
 function calendar() {
-    alert('hola');
     //Inicialización objeto Ajax
     var ajax = objetoAjax();
     //Nuevo objeto

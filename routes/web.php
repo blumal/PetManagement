@@ -55,11 +55,15 @@ Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFactu
 Route::get('/FacturaClinica/download', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
 
+Route::post('anadir_item_factura_visita', [VisitaController::class, 'anadir_item_factura']);
+Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
+
+
 //FIN FACTURAS
 
 //TEST
 
-Route::get('/hello', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::get('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 
 //Api

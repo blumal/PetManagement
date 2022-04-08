@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
     <style>
     :root {
@@ -11164,6 +11164,8 @@
         font-size: 16px;
         font-weight: bold
     }    </style>
+
+
 </head>
 
 <body>
@@ -11240,7 +11242,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="email">Total Factura</label>
-                                                <input type="number" class="form-control" name="total_factura" id="email" placeholder="69,69">
+                                                <input type="number" class="form-control" name="total_factura" id="total_factura" placeholder="69,69">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -11278,22 +11280,29 @@
                                                 <label class="label" for="#">Selecciona cantidad de producto</label>
                                                 <input type="number" class="form-control" name='cantidad[]' value=1>
                                         </div>
+                                        <div id="items_adicionales">
+                                        </div>
 
                                         <div class="col-md-12">
-                                            <button onclick="alert('polla'); return false;" class="btn btn-dark">+</button>
+                                            <button onclick="anadir_item(); return false;" class="btn btn-dark">+</button>
                                         </div>
 
                                         <div class="col-md-12">
                                             <label for="promociones" class="label" for="#">Selecciona promocion de la visita:</label>
-                                                <select id="promociones" name="promocion">        
+                                                <select id="promociones" name="promocion" id="id_promocion">        
                                                     @for ($i = 0; $i < count($promociones); $i++)
-                                                        <option class="form-control"  value="{{$promociones[$i]->id_pro}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
+                                                        <option class="form-control" value="{{$promociones[$i]->id_pro}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
                                                     @endfor
                                                 </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button onclick="calcular_total(); return false;" class="btn btn-dark">Calcular total</button>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <input type="hidden" value="{{$cliente[0]->id_us}}" name="id_usuario">
+                                                <input type="hidden" value="{{$visita[0]->id_vi}}" name="id_visita">
                                                 <input type="submit" value="Generar factura" class="btn btn-primary">
                                                 <div class="submitting"></div>
                                             </div>
@@ -11312,4 +11321,5 @@
         </div>
     </div>
 </body>
+<script defer src="/js/visita/script.js"></script>
 </html>
