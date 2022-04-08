@@ -54,7 +54,6 @@ function calendar() {
 
 //* /Inserción de citas
 function insertDatas() {
-    alert("Hola");
     //Recogemos los datos del Form
     //formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
     var fecha_vi = document.getElementById('fecha_vi').value;

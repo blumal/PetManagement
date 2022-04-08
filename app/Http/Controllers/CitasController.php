@@ -77,8 +77,17 @@ class CitasController extends Controller
 
     public function insertCita(Request $request){
         try {
-            DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
-            return response()->json(array('resultado'=> 'OK'));
+            //$checkdatas = DB::select('SELECT fecha_vi, hora_vi FROM tbl_visitia WHERE fecha_vi = ? AND hora_vi = ?', [$request->input('fecha_vi'), $request->input('hora_vi')])->get();
+            //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            $checkdatas = $request->except('_token', '_method');
+            $checkigdatas  = DB::table('tbl_visita')->where('fecha_vi', '=', $checkdatas['fecha_vi'])->where('hora_vi', '=', $checkdatas['hora_vi'])->count();
+            if ($checkigdatas == 0) {
+                //DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
+                DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
+                return response()->json(array('resultado'=> 'OK'));
+            }else{
+                return response()->json(array('resultado'=> 'OK'));
+            }
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
