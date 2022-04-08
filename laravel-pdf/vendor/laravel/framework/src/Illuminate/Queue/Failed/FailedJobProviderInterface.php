@@ -41,7 +41,14 @@ interface FailedJobProviderInterface
     /**
      * Flush all of the failed jobs from storage.
      *
+<<<<<<< HEAD
+     * @param  int|null  $hours
+     * @return void
+     */
+    public function flush($hours = null);
+=======
      * @return void
      */
     public function flush();
+>>>>>>> origin/New-FakeMain
 }

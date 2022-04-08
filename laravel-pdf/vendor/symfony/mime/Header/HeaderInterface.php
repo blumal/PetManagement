@@ -22,19 +22,29 @@ interface HeaderInterface
      * Sets the body.
      *
      * The type depends on the Header concrete class.
+<<<<<<< HEAD
+     */
+    public function setBody(mixed $body);
+=======
      *
      * @param mixed $body
      */
     public function setBody($body);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Gets the body.
      *
      * The return type depends on the Header concrete class.
+<<<<<<< HEAD
+     */
+    public function getBody(): mixed;
+=======
      *
      * @return mixed
      */
     public function getBody();
+>>>>>>> origin/New-FakeMain
 
     public function setCharset(string $charset);
 

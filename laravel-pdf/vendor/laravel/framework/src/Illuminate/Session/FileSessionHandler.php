@@ -50,8 +50,12 @@ class FileSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function open($savePath, $sessionName): bool
+=======
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
+>>>>>>> origin/New-FakeMain
     {
         return true;
     }
@@ -61,8 +65,12 @@ class FileSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function close(): bool
+=======
     #[\ReturnTypeWillChange]
     public function close()
+>>>>>>> origin/New-FakeMain
     {
         return true;
     }
@@ -72,6 +80,13 @@ class FileSessionHandler implements SessionHandlerInterface
      *
      * @return string|false
      */
+<<<<<<< HEAD
+    public function read($sessionId): string|false
+    {
+        if ($this->files->isFile($path = $this->path.'/'.$sessionId) &&
+            $this->files->lastModified($path) >= Carbon::now()->subMinutes($this->minutes)->getTimestamp()) {
+            return $this->files->sharedGet($path);
+=======
     #[\ReturnTypeWillChange]
     public function read($sessionId)
     {
@@ -79,6 +94,7 @@ class FileSessionHandler implements SessionHandlerInterface
             if ($this->files->lastModified($path) >= Carbon::now()->subMinutes($this->minutes)->getTimestamp()) {
                 return $this->files->sharedGet($path);
             }
+>>>>>>> origin/New-FakeMain
         }
 
         return '';
@@ -89,8 +105,12 @@ class FileSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function write($sessionId, $data): bool
+=======
     #[\ReturnTypeWillChange]
     public function write($sessionId, $data)
+>>>>>>> origin/New-FakeMain
     {
         $this->files->put($this->path.'/'.$sessionId, $data, true);
 
@@ -102,8 +122,12 @@ class FileSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function destroy($sessionId): bool
+=======
     #[\ReturnTypeWillChange]
     public function destroy($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         $this->files->delete($this->path.'/'.$sessionId);
 
@@ -113,10 +137,16 @@ class FileSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      *
+<<<<<<< HEAD
+     * @return int
+     */
+    public function gc($lifetime): int
+=======
      * @return int|false
      */
     #[\ReturnTypeWillChange]
     public function gc($lifetime)
+>>>>>>> origin/New-FakeMain
     {
         $files = Finder::create()
                     ->in($this->path)
@@ -124,8 +154,19 @@ class FileSessionHandler implements SessionHandlerInterface
                     ->ignoreDotFiles(true)
                     ->date('<= now - '.$lifetime.' seconds');
 
+<<<<<<< HEAD
+        $deletedSessions = 0;
+
+        foreach ($files as $file) {
+            $this->files->delete($file->getRealPath());
+            $deletedSessions++;
+        }
+
+        return $deletedSessions;
+=======
         foreach ($files as $file) {
             $this->files->delete($file->getRealPath());
         }
+>>>>>>> origin/New-FakeMain
     }
 }

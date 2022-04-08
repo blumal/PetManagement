@@ -33,11 +33,19 @@ final class Address
      */
     private const FROM_STRING_PATTERN = '~(?<displayName>[^<]*)<(?<addrSpec>.*)>[^>]*~';
 
+<<<<<<< HEAD
+    private static EmailValidator $validator;
+    private static IdnAddressEncoder $encoder;
+
+    private string $address;
+    private string $name;
+=======
     private static $validator;
     private static $encoder;
 
     private $address;
     private $name;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $address, string $name = '')
     {
@@ -45,9 +53,13 @@ final class Address
             throw new LogicException(sprintf('The "%s" class cannot be used as it needs "%s"; try running "composer require egulias/email-validator".', __CLASS__, EmailValidator::class));
         }
 
+<<<<<<< HEAD
+        self::$validator ??= new EmailValidator();
+=======
         if (null === self::$validator) {
             self::$validator = new EmailValidator();
         }
+>>>>>>> origin/New-FakeMain
 
         $this->address = trim($address);
         $this->name = trim(str_replace(["\n", "\r"], '', $name));
@@ -69,9 +81,13 @@ final class Address
 
     public function getEncodedAddress(): string
     {
+<<<<<<< HEAD
+        self::$encoder ??= new IdnAddressEncoder();
+=======
         if (null === self::$encoder) {
             self::$encoder = new IdnAddressEncoder();
         }
+>>>>>>> origin/New-FakeMain
 
         return self::$encoder->encodeString($this->address);
     }
@@ -90,19 +106,26 @@ final class Address
         return sprintf('"%s"', preg_replace('/"/u', '\"', $this->getName()));
     }
 
+<<<<<<< HEAD
+    public static function create(self|string $address): self
+=======
     /**
      * @param Address|string $address
      */
     public static function create($address): self
+>>>>>>> origin/New-FakeMain
     {
         if ($address instanceof self) {
             return $address;
         }
 
+<<<<<<< HEAD
+=======
         if (!\is_string($address)) {
             throw new InvalidArgumentException(sprintf('An address can be an instance of Address or a string ("%s" given).', get_debug_type($address)));
         }
 
+>>>>>>> origin/New-FakeMain
         if (false === strpos($address, '<')) {
             return new self($address);
         }
@@ -128,6 +151,8 @@ final class Address
 
         return $addrs;
     }
+<<<<<<< HEAD
+=======
 
     /**
      * @deprecated since Symfony 5.2, use "create()" instead.
@@ -146,4 +171,5 @@ final class Address
 
         return new self($matches['addrSpec'], trim($matches['displayName'], ' \'"'));
     }
+>>>>>>> origin/New-FakeMain
 }

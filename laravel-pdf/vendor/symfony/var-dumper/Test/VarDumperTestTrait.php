@@ -22,7 +22,11 @@ trait VarDumperTestTrait
     /**
      * @internal
      */
+<<<<<<< HEAD
+    private array $varDumperConfig = [
+=======
     private $varDumperConfig = [
+>>>>>>> origin/New-FakeMain
         'casters' => [],
         'flags' => null,
     ];
@@ -42,17 +46,29 @@ trait VarDumperTestTrait
         $this->varDumperConfig['flags'] = null;
     }
 
+<<<<<<< HEAD
+    public function assertDumpEquals(mixed $expected, mixed $data, int $filter = 0, string $message = '')
+=======
     public function assertDumpEquals($expected, $data, int $filter = 0, string $message = '')
+>>>>>>> origin/New-FakeMain
     {
         $this->assertSame($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
+<<<<<<< HEAD
+    public function assertDumpMatchesFormat(mixed $expected, mixed $data, int $filter = 0, string $message = '')
+=======
     public function assertDumpMatchesFormat($expected, $data, int $filter = 0, string $message = '')
+>>>>>>> origin/New-FakeMain
     {
         $this->assertStringMatchesFormat($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
+<<<<<<< HEAD
+    protected function getDump(mixed $data, string|int $key = null, int $filter = 0): ?string
+=======
     protected function getDump($data, $key = null, int $filter = 0): ?string
+>>>>>>> origin/New-FakeMain
     {
         if (null === $flags = $this->varDumperConfig['flags']) {
             $flags = getenv('DUMP_LIGHT_ARRAY') ? CliDumper::DUMP_LIGHT_ARRAY : 0;
@@ -73,7 +89,11 @@ trait VarDumperTestTrait
         return rtrim($dumper->dump($data, true));
     }
 
+<<<<<<< HEAD
+    private function prepareExpectation(mixed $expected, int $filter): string
+=======
     private function prepareExpectation($expected, int $filter): string
+>>>>>>> origin/New-FakeMain
     {
         if (!\is_string($expected)) {
             $expected = $this->getDump($expected, null, $filter);

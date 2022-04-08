@@ -14,6 +14,20 @@ class OptimizeClearCommand extends Command
     protected $name = 'optimize:clear';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'optimize:clear';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -34,6 +48,10 @@ class OptimizeClearCommand extends Command
         $this->call('config:clear');
         $this->call('clear-compiled');
 
+<<<<<<< HEAD
+        $this->info('Caches cleared successfully.');
+=======
         $this->info('Caches cleared successfully!');
+>>>>>>> origin/New-FakeMain
     }
 }

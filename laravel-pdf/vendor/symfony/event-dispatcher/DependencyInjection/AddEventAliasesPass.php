@@ -21,6 +21,13 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class AddEventAliasesPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
+    private array $eventAliases;
+
+    public function __construct(array $eventAliases)
+    {
+        $this->eventAliases = $eventAliases;
+=======
     private $eventAliases;
     private $eventAliasesParameter;
 
@@ -32,14 +39,22 @@ class AddEventAliasesPass implements CompilerPassInterface
 
         $this->eventAliases = $eventAliases;
         $this->eventAliasesParameter = $eventAliasesParameter;
+>>>>>>> origin/New-FakeMain
     }
 
     public function process(ContainerBuilder $container): void
     {
+<<<<<<< HEAD
+        $eventAliases = $container->hasParameter('event_dispatcher.event_aliases') ? $container->getParameter('event_dispatcher.event_aliases') : [];
+
+        $container->setParameter(
+            'event_dispatcher.event_aliases',
+=======
         $eventAliases = $container->hasParameter($this->eventAliasesParameter) ? $container->getParameter($this->eventAliasesParameter) : [];
 
         $container->setParameter(
             $this->eventAliasesParameter,
+>>>>>>> origin/New-FakeMain
             array_merge($eventAliases, $this->eventAliases)
         );
     }

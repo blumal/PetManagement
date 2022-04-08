@@ -2,6 +2,10 @@
 
 namespace Illuminate\Database\Eloquent\Relations;
 
+<<<<<<< HEAD
+use Closure;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -290,7 +294,11 @@ class HasManyThrough extends Relation
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|static
      *
+<<<<<<< HEAD
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function firstOrFail($columns = ['*'])
     {
@@ -302,6 +310,31 @@ class HasManyThrough extends Relation
     }
 
     /**
+<<<<<<< HEAD
+     * Execute the query and get the first result or call a callback.
+     *
+     * @param  \Closure|array  $columns
+     * @param  \Closure|null  $callback
+     * @return \Illuminate\Database\Eloquent\Model|static|mixed
+     */
+    public function firstOr($columns = ['*'], Closure $callback = null)
+    {
+        if ($columns instanceof Closure) {
+            $callback = $columns;
+
+            $columns = ['*'];
+        }
+
+        if (! is_null($model = $this->first($columns))) {
+            return $model;
+        }
+
+        return $callback();
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Find a related model by its primary key.
      *
      * @param  mixed  $id
@@ -346,7 +379,11 @@ class HasManyThrough extends Relation
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
      *
+<<<<<<< HEAD
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function findOrFail($id, $columns = ['*'])
     {
@@ -485,9 +522,15 @@ class HasManyThrough extends Relation
      */
     public function chunkById($count, callable $callback, $column = null, $alias = null)
     {
+<<<<<<< HEAD
+        $column ??= $this->getRelated()->getQualifiedKeyName();
+
+        $alias ??= $this->getRelated()->getKeyName();
+=======
         $column = $column ?? $this->getRelated()->getQualifiedKeyName();
 
         $alias = $alias ?? $this->getRelated()->getKeyName();
+>>>>>>> origin/New-FakeMain
 
         return $this->prepareQueryBuilder()->chunkById($count, $callback, $column, $alias);
     }
@@ -541,9 +584,15 @@ class HasManyThrough extends Relation
      */
     public function lazyById($chunkSize = 1000, $column = null, $alias = null)
     {
+<<<<<<< HEAD
+        $column ??= $this->getRelated()->getQualifiedKeyName();
+
+        $alias ??= $this->getRelated()->getKeyName();
+=======
         $column = $column ?? $this->getRelated()->getQualifiedKeyName();
 
         $alias = $alias ?? $this->getRelated()->getKeyName();
+>>>>>>> origin/New-FakeMain
 
         return $this->prepareQueryBuilder()->lazyById($chunkSize, $column, $alias);
     }

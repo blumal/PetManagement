@@ -65,6 +65,20 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Append a new line to the string.
+     *
+     * @param  int  $count
+     * @return $this
+     */
+    public function newLine($count = 1)
+    {
+        return $this->append(str_repeat(PHP_EOL, $count));
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Transliterate a UTF-8 value to ASCII.
      *
      * @param  string  $language
@@ -131,6 +145,21 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Get the smallest possible portion of a string between two given values.
+     *
+     * @param  string  $from
+     * @param  string  $to
+     * @return static
+     */
+    public function betweenFirst($from, $to)
+    {
+        return new static(Str::betweenFirst($this->value, $from, $to));
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Convert a value to camel case.
      *
      * @return static
@@ -143,7 +172,11 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string contains a given substring.
      *
+<<<<<<< HEAD
+     * @param  string|string[]  $needles
+=======
      * @param  string|array  $needles
+>>>>>>> origin/New-FakeMain
      * @return bool
      */
     public function contains($needles)
@@ -176,7 +209,11 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string ends with a given substring.
      *
+<<<<<<< HEAD
+     * @param  string|string[]  $needles
+=======
      * @param  string|array  $needles
+>>>>>>> origin/New-FakeMain
      * @return bool
      */
     public function endsWith($needles)
@@ -196,6 +233,21 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Extracts an excerpt from text that matches the first instance of a phrase.
+     *
+     * @param  string  $phrase
+     * @param  array  $options
+     * @return string|null
+     */
+    public function excerpt($phrase = '', $options = [])
+    {
+        return Str::excerpt($this->value, $phrase, $options);
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Explode the string into an array.
      *
      * @param  string  $delimiter
@@ -444,7 +496,11 @@ class Stringable implements JsonSerializable
      */
     public function pipe(callable $callback)
     {
+<<<<<<< HEAD
+        return new static($callback($this));
+=======
         return new static(call_user_func($callback, $this));
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -510,7 +566,11 @@ class Stringable implements JsonSerializable
      */
     public function repeat(int $times)
     {
+<<<<<<< HEAD
+        return new static(str_repeat($this->value, $times));
+=======
         return new static(Str::repeat($this->value, $times));
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -522,7 +582,11 @@ class Stringable implements JsonSerializable
      */
     public function replace($search, $replace)
     {
+<<<<<<< HEAD
+        return new static(str_replace($search, $replace, $this->value));
+=======
         return new static(Str::replace($search, $replace, $this->value));
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -590,6 +654,19 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Remove all "extra" blank space from the given string.
+     *
+     * @return static
+     */
+    public function squish()
+    {
+        return new static(Str::squish($this->value));
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Begin a string with a single instance of a given value.
      *
      * @param  string  $prefix
@@ -677,7 +754,11 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string starts with a given substring.
      *
+<<<<<<< HEAD
+     * @param  string|string[]  $needles
+=======
      * @param  string|array  $needles
+>>>>>>> origin/New-FakeMain
      * @return bool
      */
     public function startsWith($needles)
@@ -778,6 +859,19 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Make a string's first character lowercase.
+     *
+     * @return static
+     */
+    public function lcfirst()
+    {
+        return new static(Str::lcfirst($this->value));
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Make a string's first character uppercase.
      *
      * @return static
@@ -800,7 +894,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string contains a given substring.
      *
+<<<<<<< HEAD
+     * @param  string|string[]  $needles
+=======
      * @param  string|array  $needles
+>>>>>>> origin/New-FakeMain
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -850,7 +948,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string ends with a given substring.
      *
+<<<<<<< HEAD
+     * @param  string|string[]  $needles
+=======
      * @param  string|array  $needles
+>>>>>>> origin/New-FakeMain
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -913,7 +1015,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string starts with a given substring.
      *
+<<<<<<< HEAD
+     * @param  string|string[]  $needles
+=======
      * @param  string|array  $needles
+>>>>>>> origin/New-FakeMain
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -959,6 +1065,21 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Wrap the string with the given strings.
+     *
+     * @param  string  $before
+     * @param  string|null  $after
+     * @return static
+     */
+    public function wrap($before, $after = null)
+    {
+        return new static($before.$this->value.($after ??= $before));
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Convert the string into a `HtmlString` instance.
      *
      * @return \Illuminate\Support\HtmlString
@@ -993,12 +1114,39 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+     * Get the underlying string value.
+     *
+     * @return string
+     */
+    public function value()
+    {
+        return $this->toString();
+    }
+
+    /**
+     * Get the underlying string value.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->value;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Convert the object to a string when JSON encoded.
      *
      * @return string
      */
+<<<<<<< HEAD
+    public function jsonSerialize(): string
+=======
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
+>>>>>>> origin/New-FakeMain
     {
         return $this->__toString();
     }

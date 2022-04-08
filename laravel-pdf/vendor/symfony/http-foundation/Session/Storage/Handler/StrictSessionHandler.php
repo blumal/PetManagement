@@ -18,8 +18,13 @@ namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
  */
 class StrictSessionHandler extends AbstractSessionHandler
 {
+<<<<<<< HEAD
+    private \SessionHandlerInterface $handler;
+    private bool $doDestroy;
+=======
     private $handler;
     private $doDestroy;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(\SessionHandlerInterface $handler)
     {
@@ -30,11 +35,15 @@ class StrictSessionHandler extends AbstractSessionHandler
         $this->handler = $handler;
     }
 
+<<<<<<< HEAD
+    public function open(string $savePath, string $sessionName): bool
+=======
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
+>>>>>>> origin/New-FakeMain
     {
         parent::open($savePath, $sessionName);
 
@@ -44,16 +53,24 @@ class StrictSessionHandler extends AbstractSessionHandler
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function doRead(string $sessionId): string
+=======
     protected function doRead(string $sessionId)
+>>>>>>> origin/New-FakeMain
     {
         return $this->handler->read($sessionId);
     }
 
+<<<<<<< HEAD
+    public function updateTimestamp(string $sessionId, string $data): bool
+=======
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function updateTimestamp($sessionId, $data)
+>>>>>>> origin/New-FakeMain
     {
         return $this->write($sessionId, $data);
     }
@@ -61,16 +78,24 @@ class StrictSessionHandler extends AbstractSessionHandler
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function doWrite(string $sessionId, string $data): bool
+=======
     protected function doWrite(string $sessionId, string $data)
+>>>>>>> origin/New-FakeMain
     {
         return $this->handler->write($sessionId, $data);
     }
 
+<<<<<<< HEAD
+    public function destroy(string $sessionId): bool
+=======
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function destroy($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         $this->doDestroy = true;
         $destroyed = parent::destroy($sessionId);
@@ -81,27 +106,39 @@ class StrictSessionHandler extends AbstractSessionHandler
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function doDestroy(string $sessionId): bool
+=======
     protected function doDestroy(string $sessionId)
+>>>>>>> origin/New-FakeMain
     {
         $this->doDestroy = false;
 
         return $this->handler->destroy($sessionId);
     }
 
+<<<<<<< HEAD
+    public function close(): bool
+=======
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function close()
+>>>>>>> origin/New-FakeMain
     {
         return $this->handler->close();
     }
 
+<<<<<<< HEAD
+    public function gc(int $maxlifetime): int|false
+=======
     /**
      * @return int|false
      */
     #[\ReturnTypeWillChange]
     public function gc($maxlifetime)
+>>>>>>> origin/New-FakeMain
     {
         return $this->handler->gc($maxlifetime);
     }

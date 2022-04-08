@@ -30,10 +30,17 @@ use Symfony\Component\Routing\RequestContextAwareInterface;
 class LocaleListener implements EventSubscriberInterface
 {
     private $router;
+<<<<<<< HEAD
+    private string $defaultLocale;
+    private $requestStack;
+    private bool $useAcceptLanguageHeader;
+    private array $enabledLocales;
+=======
     private $defaultLocale;
     private $requestStack;
     private $useAcceptLanguageHeader;
     private $enabledLocales;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(RequestStack $requestStack, string $defaultLocale = 'en', RequestContextAwareInterface $router = null, bool $useAcceptLanguageHeader = false, array $enabledLocales = [])
     {

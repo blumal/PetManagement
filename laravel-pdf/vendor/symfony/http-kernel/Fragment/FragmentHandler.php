@@ -29,8 +29,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class FragmentHandler
 {
+<<<<<<< HEAD
+    private bool $debug;
+    private array $renderers = [];
+=======
     private $debug;
     private $renderers = [];
+>>>>>>> origin/New-FakeMain
     private $requestStack;
 
     /**
@@ -61,6 +66,12 @@ class FragmentHandler
      *
      *  * ignore_errors: true to return an empty string in case of an error
      *
+<<<<<<< HEAD
+     * @throws \InvalidArgumentException when the renderer does not exist
+     * @throws \LogicException           when no main request is being handled
+     */
+    public function render(string|ControllerReference $uri, string $renderer = 'inline', array $options = []): ?string
+=======
      * @param string|ControllerReference $uri A URI as a string or a ControllerReference instance
      *
      * @return string|null
@@ -69,6 +80,7 @@ class FragmentHandler
      * @throws \LogicException           when no main request is being handled
      */
     public function render($uri, string $renderer = 'inline', array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($options['ignore_errors'])) {
             $options['ignore_errors'] = !$this->debug;
@@ -95,7 +107,11 @@ class FragmentHandler
      *
      * @throws \RuntimeException when the Response is not successful
      */
+<<<<<<< HEAD
+    protected function deliver(Response $response): ?string
+=======
     protected function deliver(Response $response)
+>>>>>>> origin/New-FakeMain
     {
         if (!$response->isSuccessful()) {
             $responseStatusCode = $response->getStatusCode();

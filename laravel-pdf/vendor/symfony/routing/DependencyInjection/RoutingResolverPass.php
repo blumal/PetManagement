@@ -25,6 +25,17 @@ class RoutingResolverPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
+<<<<<<< HEAD
+    public function process(ContainerBuilder $container)
+    {
+        if (false === $container->hasDefinition('routing.resolver')) {
+            return;
+        }
+
+        $definition = $container->getDefinition('routing.resolver');
+
+        foreach ($this->findAndSortTaggedServices('routing.loader', $container) as $id) {
+=======
     private $resolverServiceId;
     private $loaderTag;
 
@@ -47,6 +58,7 @@ class RoutingResolverPass implements CompilerPassInterface
         $definition = $container->getDefinition($this->resolverServiceId);
 
         foreach ($this->findAndSortTaggedServices($this->loaderTag, $container) as $id) {
+>>>>>>> origin/New-FakeMain
             $definition->addMethodCall('addLoader', [new Reference($id)]);
         }
     }

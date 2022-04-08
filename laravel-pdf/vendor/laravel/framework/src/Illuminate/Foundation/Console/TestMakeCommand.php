@@ -16,6 +16,20 @@ class TestMakeCommand extends GeneratorCommand
     protected $name = 'make:test';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:test';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string

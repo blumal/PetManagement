@@ -33,8 +33,12 @@ class ArrayObject extends BaseArrayObject implements Arrayable, JsonSerializable
      *
      * @return array
      */
+<<<<<<< HEAD
+    public function jsonSerialize(): array
+=======
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
+>>>>>>> origin/New-FakeMain
     {
         return $this->getArrayCopy();
     }

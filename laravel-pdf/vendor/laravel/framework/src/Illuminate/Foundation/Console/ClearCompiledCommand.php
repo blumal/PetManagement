@@ -14,6 +14,20 @@ class ClearCompiledCommand extends Command
     protected $name = 'clear-compiled';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'clear-compiled';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -35,6 +49,10 @@ class ClearCompiledCommand extends Command
             @unlink($packagesPath);
         }
 
+<<<<<<< HEAD
+        $this->info('Compiled services and packages files removed successfully.');
+=======
         $this->info('Compiled services and packages files removed!');
+>>>>>>> origin/New-FakeMain
     }
 }

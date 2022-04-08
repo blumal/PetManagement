@@ -15,6 +15,20 @@ class ListFailedCommand extends Command
     protected $name = 'queue:failed';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:failed';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -36,7 +50,11 @@ class ListFailedCommand extends Command
     public function handle()
     {
         if (count($jobs = $this->getFailedJobs()) === 0) {
+<<<<<<< HEAD
+            return $this->comment('No failed jobs found.');
+=======
             return $this->info('No failed jobs!');
+>>>>>>> origin/New-FakeMain
         }
 
         $this->displayFailedJobs($jobs);

@@ -72,7 +72,11 @@ class PostgresGrammar extends Grammar
      */
     public function compileTableExists()
     {
+<<<<<<< HEAD
+        return "select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'";
+=======
         return "select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'";
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -82,7 +86,11 @@ class PostgresGrammar extends Grammar
      */
     public function compileColumnListing()
     {
+<<<<<<< HEAD
+        return 'select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?';
+=======
         return 'select column_name from information_schema.columns where table_schema = ? and table_name = ?';
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -272,7 +280,11 @@ class PostgresGrammar extends Grammar
      */
     public function compileDropAllTables($tables)
     {
+<<<<<<< HEAD
+        return 'drop table '.implode(',', $this->escapeNames($tables)).' cascade';
+=======
         return 'drop table "'.implode('","', $tables).'" cascade';
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -283,7 +295,11 @@ class PostgresGrammar extends Grammar
      */
     public function compileDropAllViews($views)
     {
+<<<<<<< HEAD
+        return 'drop view '.implode(',', $this->escapeNames($views)).' cascade';
+=======
         return 'drop view "'.implode('","', $views).'" cascade';
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -294,29 +310,51 @@ class PostgresGrammar extends Grammar
      */
     public function compileDropAllTypes($types)
     {
+<<<<<<< HEAD
+        return 'drop type '.implode(',', $this->escapeNames($types)).' cascade';
+=======
         return 'drop type "'.implode('","', $types).'" cascade';
+>>>>>>> origin/New-FakeMain
     }
 
     /**
      * Compile the SQL needed to retrieve all table names.
      *
+<<<<<<< HEAD
+     * @param  string|array  $searchPath
+     * @return string
+     */
+    public function compileGetAllTables($searchPath)
+    {
+        return "select tablename, concat('\"', schemaname, '\".\"', tablename, '\"') as qualifiedname from pg_catalog.pg_tables where schemaname in ('".implode("','", (array) $searchPath)."')";
+=======
      * @param  string|array  $schema
      * @return string
      */
     public function compileGetAllTables($schema)
     {
         return "select tablename from pg_catalog.pg_tables where schemaname in ('".implode("','", (array) $schema)."')";
+>>>>>>> origin/New-FakeMain
     }
 
     /**
      * Compile the SQL needed to retrieve all view names.
      *
+<<<<<<< HEAD
+     * @param  string|array  $searchPath
+     * @return string
+     */
+    public function compileGetAllViews($searchPath)
+    {
+        return "select viewname, concat('\"', schemaname, '\".\"', viewname, '\"') as qualifiedname from pg_catalog.pg_views where schemaname in ('".implode("','", (array) $searchPath)."')";
+=======
      * @param  string|array  $schema
      * @return string
      */
     public function compileGetAllViews($schema)
     {
         return "select viewname from pg_catalog.pg_views where schemaname in ('".implode("','", (array) $schema)."')";
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -487,6 +525,24 @@ class PostgresGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
+     * Quote-escape the given tables, views, or types.
+     *
+     * @param  array  $names
+     * @return array
+     */
+    public function escapeNames($names)
+    {
+        return array_map(static function ($name) {
+            return '"'.collect(explode('.', $name))
+                ->map(fn ($segment) => trim($segment, '\'"'))
+                ->implode('"."').'"';
+        }, $names);
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Create the column definition for a char type.
      *
      * @param  \Illuminate\Support\Fluent  $column
@@ -494,7 +550,15 @@ class PostgresGrammar extends Grammar
      */
     protected function typeChar(Fluent $column)
     {
+<<<<<<< HEAD
+        if ($column->length) {
+            return "char({$column->length})";
+        }
+
+        return 'char';
+=======
         return "char({$column->length})";
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -505,7 +569,15 @@ class PostgresGrammar extends Grammar
      */
     protected function typeString(Fluent $column)
     {
+<<<<<<< HEAD
+        if ($column->length) {
+            return "varchar({$column->length})";
+        }
+
+        return 'varchar';
+=======
         return "varchar({$column->length})";
+>>>>>>> origin/New-FakeMain
     }
 
     /**

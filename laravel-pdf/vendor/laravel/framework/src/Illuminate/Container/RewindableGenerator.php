@@ -4,6 +4,10 @@ namespace Illuminate\Container;
 
 use Countable;
 use IteratorAggregate;
+<<<<<<< HEAD
+use Traversable;
+=======
+>>>>>>> origin/New-FakeMain
 
 class RewindableGenerator implements Countable, IteratorAggregate
 {
@@ -37,10 +41,16 @@ class RewindableGenerator implements Countable, IteratorAggregate
     /**
      * Get an iterator from the generator.
      *
+<<<<<<< HEAD
+     * @return \Traversable
+     */
+    public function getIterator(): Traversable
+=======
      * @return mixed
      */
     #[\ReturnTypeWillChange]
     public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return ($this->generator)();
     }
@@ -50,8 +60,12 @@ class RewindableGenerator implements Countable, IteratorAggregate
      *
      * @return int
      */
+<<<<<<< HEAD
+    public function count(): int
+=======
     #[\ReturnTypeWillChange]
     public function count()
+>>>>>>> origin/New-FakeMain
     {
         if (is_callable($count = $this->count)) {
             $this->count = $count();

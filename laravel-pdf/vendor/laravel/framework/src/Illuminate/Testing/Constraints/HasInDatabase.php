@@ -91,7 +91,11 @@ class HasInDatabase extends Constraint
             $results = $query->limit($this->show)->get();
 
             if ($results->isEmpty()) {
+<<<<<<< HEAD
+                return 'The table is empty';
+=======
                 return 'The table is empty.';
+>>>>>>> origin/New-FakeMain
             }
 
             $description = 'Found: '.json_encode($results, JSON_PRETTY_PRINT);

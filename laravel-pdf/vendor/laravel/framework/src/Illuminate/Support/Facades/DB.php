@@ -28,6 +28,10 @@ namespace Illuminate\Support\Facades;
  * @method static void enableQueryLog()
  * @method static void disableQueryLog()
  * @method static void flushQueryLog()
+<<<<<<< HEAD
+ * @method static void registerDoctrineType(string $class, string $name, string $type)
+=======
+>>>>>>> origin/New-FakeMain
  * @method static \Illuminate\Database\Connection beforeExecuting(\Closure $callback)
  * @method static void listen(\Closure $callback)
  * @method static void rollBack(int $toLevel = null)

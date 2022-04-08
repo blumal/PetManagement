@@ -24,9 +24,15 @@ interface ArgumentResolverInterface
     /**
      * Returns the arguments to pass to the controller.
      *
+<<<<<<< HEAD
+     * @throws \RuntimeException When no value could be provided for a required argument
+     */
+    public function getArguments(Request $request, callable $controller): array;
+=======
      * @return array
      *
      * @throws \RuntimeException When no value could be provided for a required argument
      */
     public function getArguments(Request $request, callable $controller);
+>>>>>>> origin/New-FakeMain
 }

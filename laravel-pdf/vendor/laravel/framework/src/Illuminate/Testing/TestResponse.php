@@ -19,6 +19,10 @@ use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\SeeInOrder;
 use Illuminate\Testing\Fluent\AssertableJson;
 use LogicException;
+<<<<<<< HEAD
+use Symfony\Component\HttpFoundation\Cookie;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -223,6 +227,11 @@ class TestResponse implements ArrayAccess
      */
     protected function statusMessageWithException($expected, $actual, $exception)
     {
+<<<<<<< HEAD
+        $message = $exception->getMessage();
+
+=======
+>>>>>>> origin/New-FakeMain
         $exception = (string) $exception;
 
         return <<<EOF
@@ -231,6 +240,14 @@ Expected response status code [$expected] but received $actual.
 The following exception occurred during the request:
 
 $exception
+<<<<<<< HEAD
+
+----------------------------------------------------------------------------------
+
+$message
+
+=======
+>>>>>>> origin/New-FakeMain
 EOF;
     }
 
@@ -465,7 +482,11 @@ EOF;
     public function assertCookie($cookieName, $value = null, $encrypted = true, $unserialize = false)
     {
         PHPUnit::assertNotNull(
+<<<<<<< HEAD
+            $cookie = $this->getCookie($cookieName, $encrypted && ! is_null($value), $unserialize),
+=======
             $cookie = $this->getCookie($cookieName),
+>>>>>>> origin/New-FakeMain
             "Cookie [{$cookieName}] not present on response."
         );
 
@@ -475,6 +496,11 @@ EOF;
 
         $cookieValue = $cookie->getValue();
 
+<<<<<<< HEAD
+        PHPUnit::assertEquals(
+            $value, $cookieValue,
+            "Cookie [{$cookieName}] was found, but value [{$cookieValue}] does not match [{$value}]."
+=======
         $actual = $encrypted
             ? CookieValuePrefix::remove(app('encrypter')->decrypt($cookieValue, $unserialize))
             : $cookieValue;
@@ -482,6 +508,7 @@ EOF;
         PHPUnit::assertEquals(
             $value, $actual,
             "Cookie [{$cookieName}] was found, but value [{$actual}] does not match [{$value}]."
+>>>>>>> origin/New-FakeMain
         );
 
         return $this;
@@ -496,14 +523,22 @@ EOF;
     public function assertCookieExpired($cookieName)
     {
         PHPUnit::assertNotNull(
+<<<<<<< HEAD
+            $cookie = $this->getCookie($cookieName, false),
+=======
             $cookie = $this->getCookie($cookieName),
+>>>>>>> origin/New-FakeMain
             "Cookie [{$cookieName}] not present on response."
         );
 
         $expiresAt = Carbon::createFromTimestamp($cookie->getExpiresTime());
 
         PHPUnit::assertTrue(
+<<<<<<< HEAD
+            $cookie->getExpiresTime() !== 0 && $expiresAt->lessThan(Carbon::now()),
+=======
             0 !== $cookie->getExpiresTime() && $expiresAt->lessThan(Carbon::now()),
+>>>>>>> origin/New-FakeMain
             "Cookie [{$cookieName}] is not expired, it expires at [{$expiresAt}]."
         );
 
@@ -519,14 +554,22 @@ EOF;
     public function assertCookieNotExpired($cookieName)
     {
         PHPUnit::assertNotNull(
+<<<<<<< HEAD
+            $cookie = $this->getCookie($cookieName, false),
+=======
             $cookie = $this->getCookie($cookieName),
+>>>>>>> origin/New-FakeMain
             "Cookie [{$cookieName}] not present on response."
         );
 
         $expiresAt = Carbon::createFromTimestamp($cookie->getExpiresTime());
 
         PHPUnit::assertTrue(
+<<<<<<< HEAD
+            $cookie->getExpiresTime() === 0 || $expiresAt->greaterThan(Carbon::now()),
+=======
             0 === $cookie->getExpiresTime() || $expiresAt->greaterThan(Carbon::now()),
+>>>>>>> origin/New-FakeMain
             "Cookie [{$cookieName}] is expired, it expired at [{$expiresAt}]."
         );
 
@@ -542,7 +585,11 @@ EOF;
     public function assertCookieMissing($cookieName)
     {
         PHPUnit::assertNull(
+<<<<<<< HEAD
+            $this->getCookie($cookieName, false),
+=======
             $this->getCookie($cookieName),
+>>>>>>> origin/New-FakeMain
             "Cookie [{$cookieName}] is present on response."
         );
 
@@ -553,6 +600,35 @@ EOF;
      * Get the given cookie from the response.
      *
      * @param  string  $cookieName
+<<<<<<< HEAD
+     * @param  bool  $decrypt
+     * @param  bool  $unserialize
+     * @return \Symfony\Component\HttpFoundation\Cookie|null
+     */
+    public function getCookie($cookieName, $decrypt = true, $unserialize = false)
+    {
+        foreach ($this->headers->getCookies() as $cookie) {
+            if ($cookie->getName() === $cookieName) {
+                if (! $decrypt) {
+                    return $cookie;
+                }
+
+                $decryptedValue = CookieValuePrefix::remove(
+                    app('encrypter')->decrypt($cookie->getValue(), $unserialize)
+                );
+
+                return new Cookie(
+                    $cookie->getName(),
+                    $decryptedValue,
+                    $cookie->getExpiresTime(),
+                    $cookie->getPath(),
+                    $cookie->getDomain(),
+                    $cookie->isSecure(),
+                    $cookie->isHttpOnly(),
+                    $cookie->isRaw(),
+                    $cookie->getSameSite()
+                );
+=======
      * @return \Symfony\Component\HttpFoundation\Cookie|null
      */
     public function getCookie($cookieName)
@@ -560,6 +636,7 @@ EOF;
         foreach ($this->headers->getCookies() as $cookie) {
             if ($cookie->getName() === $cookieName) {
                 return $cookie;
+>>>>>>> origin/New-FakeMain
             }
         }
     }
@@ -1142,8 +1219,11 @@ EOF;
 
         $this->assertSessionHas('errors');
 
+<<<<<<< HEAD
+=======
         $keys = (array) $errors;
 
+>>>>>>> origin/New-FakeMain
         $sessionErrors = $this->session()->get('errors')->getBag($errorBag)->getMessages();
 
         $errorMessage = $sessionErrors
@@ -1428,9 +1508,16 @@ EOF;
     /**
      * Dump the content from the response.
      *
+<<<<<<< HEAD
+     * @param  string|null  $key
+     * @return $this
+     */
+    public function dump($key = null)
+=======
      * @return $this
      */
     public function dump()
+>>>>>>> origin/New-FakeMain
     {
         $content = $this->getContent();
 
@@ -1440,7 +1527,15 @@ EOF;
             $content = $json;
         }
 
+<<<<<<< HEAD
+        if (! is_null($key)) {
+            dump(data_get($content, $key));
+        } else {
+            dump($content);
+        }
+=======
         dump($content);
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -1539,8 +1634,12 @@ EOF;
      * @param  string  $offset
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($offset): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->responseHasView()
                     ? isset($this->original->gatherData()[$offset])
@@ -1553,8 +1652,12 @@ EOF;
      * @param  string  $offset
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($offset): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->responseHasView()
                     ? $this->viewData($offset)
@@ -1570,8 +1673,12 @@ EOF;
      *
      * @throws \LogicException
      */
+<<<<<<< HEAD
+    public function offsetSet($offset, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }
@@ -1584,8 +1691,12 @@ EOF;
      *
      * @throws \LogicException
      */
+<<<<<<< HEAD
+    public function offsetUnset($offset): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }

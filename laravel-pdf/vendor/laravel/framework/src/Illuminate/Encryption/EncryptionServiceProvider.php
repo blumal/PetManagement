@@ -5,7 +5,10 @@ namespace Illuminate\Encryption;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\SerializableClosure\SerializableClosure;
+<<<<<<< HEAD
+=======
 use Opis\Closure\SerializableClosure as OpisSerializableClosure;
+>>>>>>> origin/New-FakeMain
 
 class EncryptionServiceProvider extends ServiceProvider
 {
@@ -17,7 +20,10 @@ class EncryptionServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerEncrypter();
+<<<<<<< HEAD
+=======
         $this->registerOpisSecurityKey();
+>>>>>>> origin/New-FakeMain
         $this->registerSerializableClosureSecurityKey();
     }
 
@@ -36,6 +42,8 @@ class EncryptionServiceProvider extends ServiceProvider
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Configure Opis Closure signing for security.
      *
      * @return void
@@ -56,6 +64,7 @@ class EncryptionServiceProvider extends ServiceProvider
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Configure Serializable Closure signing for security.
      *
      * @return void

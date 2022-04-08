@@ -7,7 +7,10 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\Engines\EngineResolver;
 use InvalidArgumentException;
@@ -231,7 +234,11 @@ class Factory implements FactoryContract
         // view. Alternatively, the "empty view" could be a raw string that begins
         // with "raw|" for convenience and to let this know that it is a string.
         else {
+<<<<<<< HEAD
+            $result = str_starts_with($empty, 'raw|')
+=======
             $result = Str::startsWith($empty, 'raw|')
+>>>>>>> origin/New-FakeMain
                         ? substr($empty, 4)
                         : $this->make($empty)->render();
         }
@@ -321,7 +328,11 @@ class Factory implements FactoryContract
         $extensions = array_keys($this->extensions);
 
         return Arr::first($extensions, function ($value) use ($path) {
+<<<<<<< HEAD
+            return str_ends_with($path, '.'.$value);
+=======
             return Str::endsWith($path, '.'.$value);
+>>>>>>> origin/New-FakeMain
         });
     }
 

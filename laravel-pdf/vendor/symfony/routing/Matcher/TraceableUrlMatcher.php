@@ -50,7 +50,11 @@ class TraceableUrlMatcher extends UrlMatcher
         return $traces;
     }
 
+<<<<<<< HEAD
+    protected function matchCollection(string $pathinfo, RouteCollection $routes): array
+=======
     protected function matchCollection(string $pathinfo, RouteCollection $routes)
+>>>>>>> origin/New-FakeMain
     {
         // HEAD and GET are equivalent as per RFC
         if ('HEAD' === $method = $this->context->getMethod()) {

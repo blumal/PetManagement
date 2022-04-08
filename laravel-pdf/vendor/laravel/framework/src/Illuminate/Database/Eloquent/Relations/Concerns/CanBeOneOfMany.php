@@ -6,7 +6,10 @@ use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use InvalidArgumentException;
 
 trait CanBeOneOfMany
@@ -52,7 +55,11 @@ trait CanBeOneOfMany
     /**
      * Add join query constraints for one of many relationships.
      *
+<<<<<<< HEAD
+     * @param  \Illuminate\Database\Query\JoinClause  $join
+=======
      * @param  \Illuminate\Database\Eloquent\JoinClause  $join
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     abstract public function addOneOfManyJoinSubQueryConstraints(JoinClause $join);
@@ -61,7 +68,11 @@ trait CanBeOneOfMany
      * Indicate that the relation is a single result of a larger one-to-many relationship.
      *
      * @param  string|array|null  $column
+<<<<<<< HEAD
+     * @param  string|\Closure|null  $aggregate
+=======
      * @param  string|Closure|null  $aggregate
+>>>>>>> origin/New-FakeMain
      * @param  string|null  $relation
      * @return $this
      *
@@ -137,7 +148,10 @@ trait CanBeOneOfMany
      * Indicate that the relation is the latest single result of a larger one-to-many relationship.
      *
      * @param  string|array|null  $column
+<<<<<<< HEAD
+=======
      * @param  string|Closure|null  $aggregate
+>>>>>>> origin/New-FakeMain
      * @param  string|null  $relation
      * @return $this
      */
@@ -152,7 +166,10 @@ trait CanBeOneOfMany
      * Indicate that the relation is the oldest single result of a larger one-to-many relationship.
      *
      * @param  string|array|null  $column
+<<<<<<< HEAD
+=======
      * @param  string|Closure|null  $aggregate
+>>>>>>> origin/New-FakeMain
      * @param  string|null  $relation
      * @return $this
      */
@@ -227,7 +244,11 @@ trait CanBeOneOfMany
     /**
      * Merge the relationship query joins to the given query builder.
      *
+<<<<<<< HEAD
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+=======
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     protected function mergeOneOfManyJoinsTo(Builder $query)
@@ -278,7 +299,11 @@ trait CanBeOneOfMany
      */
     protected function qualifyRelatedColumn($column)
     {
+<<<<<<< HEAD
+        return str_contains($column, '.') ? $column : $this->query->getModel()->getTable().'.'.$column;
+=======
         return Str::contains($column, '.') ? $column : $this->query->getModel()->getTable().'.'.$column;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

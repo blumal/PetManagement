@@ -40,8 +40,13 @@ use Symfony\Component\Console\Exception\RuntimeException;
  */
 class ArgvInput extends Input
 {
+<<<<<<< HEAD
+    private array $tokens;
+    private array $parsed;
+=======
     private $tokens;
     private $parsed;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(array $argv = null, InputDefinition $definition = null)
     {
@@ -199,7 +204,11 @@ class ArgvInput extends Input
      *
      * @throws RuntimeException When option given doesn't exist
      */
+<<<<<<< HEAD
+    private function addShortOption(string $shortcut, mixed $value)
+=======
     private function addShortOption(string $shortcut, $value)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->definition->hasShortcut($shortcut)) {
             throw new RuntimeException(sprintf('The "-%s" option does not exist.', $shortcut));
@@ -213,7 +222,11 @@ class ArgvInput extends Input
      *
      * @throws RuntimeException When option given doesn't exist
      */
+<<<<<<< HEAD
+    private function addLongOption(string $name, mixed $value)
+=======
     private function addLongOption(string $name, $value)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->definition->hasOption($name)) {
             if (!$this->definition->hasNegation($name)) {
@@ -266,7 +279,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getFirstArgument(): ?string
+=======
     public function getFirstArgument()
+>>>>>>> origin/New-FakeMain
     {
         $isOption = false;
         foreach ($this->tokens as $i => $token) {
@@ -301,7 +318,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function hasParameterOption(string|array $values, bool $onlyParams = false): bool
+=======
     public function hasParameterOption($values, bool $onlyParams = false)
+>>>>>>> origin/New-FakeMain
     {
         $values = (array) $values;
 
@@ -326,7 +347,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false): mixed
+=======
     public function getParameterOption($values, $default = false, bool $onlyParams = false)
+>>>>>>> origin/New-FakeMain
     {
         $values = (array) $values;
         $tokens = $this->tokens;
@@ -356,10 +381,15 @@ class ArgvInput extends Input
 
     /**
      * Returns a stringified representation of the args passed to the command.
+<<<<<<< HEAD
+     */
+    public function __toString(): string
+=======
      *
      * @return string
      */
     public function __toString()
+>>>>>>> origin/New-FakeMain
     {
         $tokens = array_map(function ($token) {
             if (preg_match('{^(-[^=]+=)(.+)}', $token, $match)) {

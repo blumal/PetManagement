@@ -166,6 +166,34 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
+     * Compile a "JSON contains key" statement into SQL.
+     *
+     * @param  string  $column
+     * @return string
+     */
+    protected function compileJsonContainsKey($column)
+    {
+        $segments = explode('->', $column);
+
+        $lastSegment = array_pop($segments);
+
+        if (preg_match('/\[([0-9]+)\]$/', $lastSegment, $matches)) {
+            $segments[] = Str::beforeLast($lastSegment, $matches[0]);
+
+            $key = $matches[1];
+        } else {
+            $key = "'".str_replace("'", "''", $lastSegment)."'";
+        }
+
+        [$field, $path] = $this->wrapJsonFieldAndPath(implode('->', $segments));
+
+        return $key.' in (select [key] from openjson('.$field.$path.'))';
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile a "JSON length" statement into SQL.
      *
      * @param  string  $column
@@ -181,7 +209,11 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
+     * Compile a single having clause.
+=======
      * {@inheritdoc}
+>>>>>>> origin/New-FakeMain
      *
      * @param  array  $having
      * @return string
@@ -207,7 +239,11 @@ class SqlServerGrammar extends Grammar
 
         $parameter = $this->parameter($having['value']);
 
+<<<<<<< HEAD
+        return '('.$column.' '.$having['operator'].' '.$parameter.') != 0';
+=======
         return $having['boolean'].' ('.$column.' '.$having['operator'].' '.$parameter.') != 0';
+>>>>>>> origin/New-FakeMain
     }
 
     /**

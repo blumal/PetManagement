@@ -16,7 +16,11 @@ namespace Symfony\Component\Console\Helper;
  */
 class TableRows implements \IteratorAggregate
 {
+<<<<<<< HEAD
+    private \Closure $generator;
+=======
     private $generator;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(\Closure $generator)
     {

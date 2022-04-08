@@ -2,9 +2,15 @@
 
 namespace Illuminate\Foundation\Console;
 
+<<<<<<< HEAD
+use Closure;
+use Illuminate\Console\Command;
+use ReflectionFunction;
+=======
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 
 class EventListCommand extends Command
 {
@@ -16,6 +22,20 @@ class EventListCommand extends Command
     protected $signature = 'event:list {--event= : Filter the events by name}';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'event:list';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -45,6 +65,9 @@ class EventListCommand extends Command
      */
     protected function getEvents()
     {
+<<<<<<< HEAD
+        $events = $this->getListenersOnDispatcher();
+=======
         $events = [];
 
         foreach ($this->laravel->getProviders(EventServiceProvider::class) as $provider) {
@@ -52,6 +75,7 @@ class EventListCommand extends Command
 
             $events = array_merge_recursive($events, $providerEvents);
         }
+>>>>>>> origin/New-FakeMain
 
         if ($this->filteringByEvent()) {
             $events = $this->filterEvents($events);
@@ -63,6 +87,52 @@ class EventListCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
+     * Get the event / listeners from the dispatcher object.
+     *
+     * @return array
+     */
+    protected function getListenersOnDispatcher()
+    {
+        $events = [];
+
+        foreach ($this->getRawListeners() as $event => $rawListeners) {
+            foreach ($rawListeners as $rawListener) {
+                if (is_string($rawListener)) {
+                    $events[$event][] = $rawListener;
+                } elseif ($rawListener instanceof Closure) {
+                    $events[$event][] = $this->stringifyClosure($rawListener);
+                } elseif (is_array($rawListener) && count($rawListener) === 2) {
+                    if (is_object($rawListener[0])) {
+                        $rawListener[0] = get_class($rawListener[0]);
+                    }
+
+                    $events[$event][] = implode('@', $rawListener);
+                }
+            }
+        }
+
+        return $events;
+    }
+
+    /**
+     * Get a displayable string representation of a Closure listener.
+     *
+     * @param  \Closure  $rawListener
+     * @return string
+     */
+    protected function stringifyClosure(Closure $rawListener)
+    {
+        $reflection = new ReflectionFunction($rawListener);
+
+        $path = str_replace(base_path(), '', $reflection->getFileName() ?: '');
+
+        return 'Closure at: '.$path.':'.$reflection->getStartLine();
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Filter the given events using the provided event name filter.
      *
      * @param  array  $events
@@ -75,7 +145,11 @@ class EventListCommand extends Command
         }
 
         return collect($events)->filter(function ($listeners, $event) use ($eventName) {
+<<<<<<< HEAD
+            return str_contains($event, $eventName);
+=======
             return Str::contains($event, $eventName);
+>>>>>>> origin/New-FakeMain
         })->toArray();
     }
 
@@ -88,4 +162,17 @@ class EventListCommand extends Command
     {
         return ! empty($this->option('event'));
     }
+<<<<<<< HEAD
+
+    /**
+     * Gets the raw version of event listeners from dispatcher object.
+     *
+     * @return array
+     */
+    protected function getRawListeners()
+    {
+        return $this->getLaravel()->make('events')->getRawListeners();
+    }
+=======
+>>>>>>> origin/New-FakeMain
 }

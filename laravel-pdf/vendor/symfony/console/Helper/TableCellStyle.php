@@ -32,7 +32,11 @@ class TableCellStyle
         'right' => \STR_PAD_LEFT,
     ];
 
+<<<<<<< HEAD
+    private array $options = [
+=======
     private $options = [
+>>>>>>> origin/New-FakeMain
         'fg' => 'default',
         'bg' => 'default',
         'options' => null,
@@ -63,7 +67,11 @@ class TableCellStyle
      *
      * @return string[]
      */
+<<<<<<< HEAD
+    public function getTagOptions(): array
+=======
     public function getTagOptions()
+>>>>>>> origin/New-FakeMain
     {
         return array_filter(
             $this->getOptions(),
@@ -74,10 +82,14 @@ class TableCellStyle
         );
     }
 
+<<<<<<< HEAD
+    public function getPadByAlign(): int
+=======
     /**
      * @return int
      */
     public function getPadByAlign()
+>>>>>>> origin/New-FakeMain
     {
         return self::ALIGN_MAP[$this->getOptions()['align']];
     }

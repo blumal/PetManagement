@@ -22,25 +22,44 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
  */
 class TranslatorPathsPass extends AbstractRecursivePass
 {
+<<<<<<< HEAD
+    private int $level = 0;
+=======
     private $translatorServiceId;
     private $debugCommandServiceId;
     private $updateCommandServiceId;
     private $resolverServiceId;
     private $level = 0;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var array<string, bool>
      */
+<<<<<<< HEAD
+    private array $paths = [];
+=======
     private $paths = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var array<int, Definition>
      */
+<<<<<<< HEAD
+    private array $definitions = [];
+=======
     private $definitions = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var array<string, array<string, bool>>
      */
+<<<<<<< HEAD
+    private array $controllers = [];
+
+    public function process(ContainerBuilder $container)
+    {
+        if (!$container->hasDefinition('translator')) {
+=======
     private $controllers = [];
 
     public function __construct(string $translatorServiceId = 'translator', string $debugCommandServiceId = 'console.command.translation_debug', string $updateCommandServiceId = 'console.command.translation_extract', string $resolverServiceId = 'argument_resolver.service')
@@ -58,6 +77,7 @@ class TranslatorPathsPass extends AbstractRecursivePass
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->translatorServiceId)) {
+>>>>>>> origin/New-FakeMain
             return;
         }
 
@@ -82,12 +102,21 @@ class TranslatorPathsPass extends AbstractRecursivePass
                 }
             }
             if ($paths) {
+<<<<<<< HEAD
+                if ($container->hasDefinition('console.command.translation_debug')) {
+                    $definition = $container->getDefinition('console.command.translation_debug');
+                    $definition->replaceArgument(6, array_merge($definition->getArgument(6), $paths));
+                }
+                if ($container->hasDefinition('console.command.translation_extract')) {
+                    $definition = $container->getDefinition('console.command.translation_extract');
+=======
                 if ($container->hasDefinition($this->debugCommandServiceId)) {
                     $definition = $container->getDefinition($this->debugCommandServiceId);
                     $definition->replaceArgument(6, array_merge($definition->getArgument(6), $paths));
                 }
                 if ($container->hasDefinition($this->updateCommandServiceId)) {
                     $definition = $container->getDefinition($this->updateCommandServiceId);
+>>>>>>> origin/New-FakeMain
                     $definition->replaceArgument(7, array_merge($definition->getArgument(7), $paths));
                 }
             }
@@ -98,10 +127,17 @@ class TranslatorPathsPass extends AbstractRecursivePass
         }
     }
 
+<<<<<<< HEAD
+    protected function processValue(mixed $value, bool $isRoot = false): mixed
+    {
+        if ($value instanceof Reference) {
+            if ('translator' === (string) $value) {
+=======
     protected function processValue($value, bool $isRoot = false)
     {
         if ($value instanceof Reference) {
             if ((string) $value === $this->translatorServiceId) {
+>>>>>>> origin/New-FakeMain
                 for ($i = $this->level - 1; $i >= 0; --$i) {
                     $class = $this->definitions[$i]->getClass();
 
@@ -136,8 +172,13 @@ class TranslatorPathsPass extends AbstractRecursivePass
 
     private function findControllerArguments(ContainerBuilder $container): array
     {
+<<<<<<< HEAD
+        if ($container->hasDefinition('argument_resolver.service')) {
+            $argument = $container->getDefinition('argument_resolver.service')->getArgument(0);
+=======
         if ($container->hasDefinition($this->resolverServiceId)) {
             $argument = $container->getDefinition($this->resolverServiceId)->getArgument(0);
+>>>>>>> origin/New-FakeMain
             if ($argument instanceof Reference) {
                 $argument = $container->getDefinition($argument);
             }
@@ -145,8 +186,13 @@ class TranslatorPathsPass extends AbstractRecursivePass
             return $argument->getArgument(0);
         }
 
+<<<<<<< HEAD
+        if ($container->hasDefinition('debug.'.'argument_resolver.service')) {
+            $argument = $container->getDefinition('debug.'.'argument_resolver.service')->getArgument(0);
+=======
         if ($container->hasDefinition('debug.'.$this->resolverServiceId)) {
             $argument = $container->getDefinition('debug.'.$this->resolverServiceId)->getArgument(0);
+>>>>>>> origin/New-FakeMain
             if ($argument instanceof Reference) {
                 $argument = $container->getDefinition($argument);
             }

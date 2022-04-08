@@ -21,6 +21,15 @@ namespace Symfony\Component\Console\Helper;
 class DebugFormatterHelper extends Helper
 {
     private const COLORS = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'default'];
+<<<<<<< HEAD
+    private array $started = [];
+    private int $count = -1;
+
+    /**
+     * Starts a debug formatting session.
+     */
+    public function start(string $id, string $message, string $prefix = 'RUN'): string
+=======
     private $started = [];
     private $count = -1;
 
@@ -30,6 +39,7 @@ class DebugFormatterHelper extends Helper
      * @return string
      */
     public function start(string $id, string $message, string $prefix = 'RUN')
+>>>>>>> origin/New-FakeMain
     {
         $this->started[$id] = ['border' => ++$this->count % \count(self::COLORS)];
 
@@ -38,10 +48,15 @@ class DebugFormatterHelper extends Helper
 
     /**
      * Adds progress to a formatting session.
+<<<<<<< HEAD
+     */
+    public function progress(string $id, string $buffer, bool $error = false, string $prefix = 'OUT', string $errorPrefix = 'ERR'): string
+=======
      *
      * @return string
      */
     public function progress(string $id, string $buffer, bool $error = false, string $prefix = 'OUT', string $errorPrefix = 'ERR')
+>>>>>>> origin/New-FakeMain
     {
         $message = '';
 
@@ -74,10 +89,15 @@ class DebugFormatterHelper extends Helper
 
     /**
      * Stops a formatting session.
+<<<<<<< HEAD
+     */
+    public function stop(string $id, string $message, bool $successful, string $prefix = 'RES'): string
+=======
      *
      * @return string
      */
     public function stop(string $id, string $message, bool $successful, string $prefix = 'RES')
+>>>>>>> origin/New-FakeMain
     {
         $trailingEOL = isset($this->started[$id]['out']) || isset($this->started[$id]['err']) ? "\n" : '';
 
@@ -100,7 +120,11 @@ class DebugFormatterHelper extends Helper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'debug_formatter';
     }

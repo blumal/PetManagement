@@ -18,10 +18,15 @@ interface ClonerInterface
 {
     /**
      * Clones a PHP variable.
+<<<<<<< HEAD
+     */
+    public function cloneVar(mixed $var): Data;
+=======
      *
      * @param mixed $var Any PHP variable
      *
      * @return Data
      */
     public function cloneVar($var);
+>>>>>>> origin/New-FakeMain
 }

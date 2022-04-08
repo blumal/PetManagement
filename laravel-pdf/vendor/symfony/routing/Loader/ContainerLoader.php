@@ -31,7 +31,11 @@ class ContainerLoader extends ObjectLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function supports(mixed $resource, string $type = null): bool
+=======
     public function supports($resource, string $type = null)
+>>>>>>> origin/New-FakeMain
     {
         return 'service' === $type && \is_string($resource);
     }
@@ -39,7 +43,11 @@ class ContainerLoader extends ObjectLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function getObject(string $id): object
+=======
     protected function getObject(string $id)
+>>>>>>> origin/New-FakeMain
     {
         return $this->container->get($id);
     }

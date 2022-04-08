@@ -25,7 +25,11 @@ class Arr
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
      * @param  array  $array
+<<<<<<< HEAD
+     * @param  string|int|float  $key
+=======
      * @param  string  $key
+>>>>>>> origin/New-FakeMain
      * @param  mixed  $value
      * @return array
      */
@@ -142,7 +146,11 @@ class Arr
      * Get all of the given array except for a specified array of keys.
      *
      * @param  array  $array
+<<<<<<< HEAD
+     * @param  array|string|int|float  $keys
+=======
      * @param  array|string  $keys
+>>>>>>> origin/New-FakeMain
      * @return array
      */
     public static function except($array, $keys)
@@ -169,6 +177,13 @@ class Arr
             return $array->offsetExists($key);
         }
 
+<<<<<<< HEAD
+        if (is_float($key)) {
+            $key = (string) $key;
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         return array_key_exists($key, $array);
     }
 
@@ -252,7 +267,11 @@ class Arr
      * Remove one or many array items from a given array using "dot" notation.
      *
      * @param  array  $array
+<<<<<<< HEAD
+     * @param  array|string|int|float  $keys
+=======
      * @param  array|string  $keys
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public static function forget(&$array, $keys)
@@ -314,7 +333,11 @@ class Arr
             return $array[$key];
         }
 
+<<<<<<< HEAD
+        if (! str_contains($key, '.')) {
+=======
         if (strpos($key, '.') === false) {
+>>>>>>> origin/New-FakeMain
             return $array[$key] ?? value($default);
         }
 
@@ -424,6 +447,21 @@ class Arr
     }
 
     /**
+<<<<<<< HEAD
+     * Key an associative array by a field or using a callback.
+     *
+     * @param  array  $array
+     * @param  callable|array|string
+     * @return array
+     */
+    public static function keyBy($array, $keyBy)
+    {
+        return Collection::make($array)->keyBy($keyBy)->all();
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get a subset of the items from the given array.
      *
      * @param  array  $array
@@ -587,7 +625,11 @@ class Arr
      * If no key is given to the method, the entire array will be replaced.
      *
      * @param  array  $array
+<<<<<<< HEAD
+     * @param  string|int|null  $key
+=======
      * @param  string|null  $key
+>>>>>>> origin/New-FakeMain
      * @param  mixed  $value
      * @return array
      */

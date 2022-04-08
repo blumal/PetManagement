@@ -70,7 +70,11 @@ class AliasLoader
      */
     public function load($alias)
     {
+<<<<<<< HEAD
+        if (static::$facadeNamespace && str_starts_with($alias, static::$facadeNamespace)) {
+=======
         if (static::$facadeNamespace && strpos($alias, static::$facadeNamespace) === 0) {
+>>>>>>> origin/New-FakeMain
             $this->loadFacade($alias);
 
             return true;

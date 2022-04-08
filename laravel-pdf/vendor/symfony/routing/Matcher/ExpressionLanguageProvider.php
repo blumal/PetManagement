@@ -32,7 +32,11 @@ class ExpressionLanguageProvider implements ExpressionFunctionProviderInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getFunctions(): array
+=======
     public function getFunctions()
+>>>>>>> origin/New-FakeMain
     {
         $functions = [];
 

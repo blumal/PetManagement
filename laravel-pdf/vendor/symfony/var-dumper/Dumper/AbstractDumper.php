@@ -35,7 +35,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     protected $indentPad = '  ';
     protected $flags;
 
+<<<<<<< HEAD
+    private string $charset = '';
+=======
     private $charset = '';
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param callable|resource|string|null $output  A line dumper callable, an opened stream or an output path, defaults to static::$defaultOutput
@@ -84,7 +88,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      *
      * @return string The previous charset
      */
+<<<<<<< HEAD
+    public function setCharset(string $charset): string
+=======
     public function setCharset(string $charset)
+>>>>>>> origin/New-FakeMain
     {
         $prev = $this->charset;
 
@@ -103,7 +111,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      *
      * @return string The previous indent pad
      */
+<<<<<<< HEAD
+    public function setIndentPad(string $pad): string
+=======
     public function setIndentPad(string $pad)
+>>>>>>> origin/New-FakeMain
     {
         $prev = $this->indentPad;
         $this->indentPad = $pad;
@@ -118,7 +130,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      *
      * @return string|null The dump as string when $output is true
      */
+<<<<<<< HEAD
+    public function dump(Data $data, $output = null): ?string
+=======
     public function dump(Data $data, $output = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->decimalPoint = localeconv();
         $this->decimalPoint = $this->decimalPoint['decimal_point'];
@@ -179,10 +195,15 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
 
     /**
      * Converts a non-UTF-8 string to UTF-8.
+<<<<<<< HEAD
+     */
+    protected function utf8Encode(?string $s): ?string
+=======
      *
      * @return string|null
      */
     protected function utf8Encode(?string $s)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $s || preg_match('//u', $s)) {
             return $s;

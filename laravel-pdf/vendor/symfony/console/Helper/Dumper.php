@@ -24,7 +24,11 @@ final class Dumper
     private $output;
     private $dumper;
     private $cloner;
+<<<<<<< HEAD
+    private \Closure $handler;
+=======
     private $handler;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(OutputInterface $output, CliDumper $dumper = null, ClonerInterface $cloner = null)
     {
@@ -57,7 +61,11 @@ final class Dumper
         }
     }
 
+<<<<<<< HEAD
+    public function __invoke(mixed $var): string
+=======
     public function __invoke($var): string
+>>>>>>> origin/New-FakeMain
     {
         return ($this->handler)($var);
     }

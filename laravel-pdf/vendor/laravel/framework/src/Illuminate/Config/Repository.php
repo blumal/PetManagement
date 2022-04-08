@@ -138,8 +138,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($key): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->has($key);
     }
@@ -150,8 +154,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  string  $key
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($key): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->get($key);
     }
@@ -163,8 +171,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetSet($key, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->set($key, $value);
     }
@@ -175,8 +187,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetUnset($key): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+>>>>>>> origin/New-FakeMain
     {
         $this->set($key, null);
     }

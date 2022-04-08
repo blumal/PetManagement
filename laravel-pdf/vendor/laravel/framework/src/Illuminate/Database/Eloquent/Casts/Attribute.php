@@ -19,6 +19,16 @@ class Attribute
     public $set;
 
     /**
+<<<<<<< HEAD
+     * Indicates if caching is enabled for this attribute.
+     *
+     * @var bool
+     */
+    public $withCaching = false;
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Indicates if caching of objects is enabled for this attribute.
      *
      * @var bool
@@ -39,6 +49,21 @@ class Attribute
     }
 
     /**
+<<<<<<< HEAD
+     * Create a new attribute accessor / mutator.
+     *
+     * @param  callable|null  $get
+     * @param  callable|null  $set
+     * @return static
+     */
+    public static function make(callable $get = null, callable $set = null): static
+    {
+        return new static($get, $set);
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Create a new attribute accessor.
      *
      * @param  callable  $get
@@ -71,4 +96,19 @@ class Attribute
 
         return $this;
     }
+<<<<<<< HEAD
+
+    /**
+     * Enable caching for the attribute.
+     *
+     * @return static
+     */
+    public function shouldCache()
+    {
+        $this->withCaching = true;
+
+        return $this;
+    }
+=======
+>>>>>>> origin/New-FakeMain
 }

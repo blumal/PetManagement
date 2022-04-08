@@ -221,6 +221,8 @@ class Response
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Factory method for chainability.
      *
      * Example:
@@ -240,17 +242,24 @@ class Response
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Returns the Response as an HTTP string.
      *
      * The string representation of the Response is the same as the
      * one that will be sent to the client only if the prepare() method
      * has been called before.
      *
+<<<<<<< HEAD
+     * @see prepare()
+     */
+    public function __toString(): string
+=======
      * @return string
      *
      * @see prepare()
      */
     public function __toString()
+>>>>>>> origin/New-FakeMain
     {
         return
             sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText)."\r\n".
@@ -275,7 +284,11 @@ class Response
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function prepare(Request $request): static
+=======
     public function prepare(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $headers = $this->headers;
 
@@ -345,7 +358,11 @@ class Response
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function sendHeaders(): static
+=======
     public function sendHeaders()
+>>>>>>> origin/New-FakeMain
     {
         // headers have already been sent by the developer
         if (headers_sent()) {
@@ -376,7 +393,11 @@ class Response
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function sendContent(): static
+=======
     public function sendContent()
+>>>>>>> origin/New-FakeMain
     {
         echo $this->content;
 
@@ -388,7 +409,11 @@ class Response
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function send(): static
+=======
     public function send()
+>>>>>>> origin/New-FakeMain
     {
         $this->sendHeaders();
         $this->sendContent();
@@ -409,7 +434,11 @@ class Response
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setContent(?string $content): static
+=======
     public function setContent(?string $content)
+>>>>>>> origin/New-FakeMain
     {
         $this->content = $content ?? '';
 
@@ -418,10 +447,15 @@ class Response
 
     /**
      * Gets the current response content.
+<<<<<<< HEAD
+     */
+    public function getContent(): string|false
+=======
      *
      * @return string|false
      */
     public function getContent()
+>>>>>>> origin/New-FakeMain
     {
         return $this->content;
     }
@@ -433,7 +467,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setProtocolVersion(string $version): static
+=======
     public function setProtocolVersion(string $version): object
+>>>>>>> origin/New-FakeMain
     {
         $this->version = $version;
 
@@ -462,7 +500,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setStatusCode(int $code, string $text = null): static
+=======
     public function setStatusCode(int $code, string $text = null): object
+>>>>>>> origin/New-FakeMain
     {
         $this->statusCode = $code;
         if ($this->isInvalid()) {
@@ -503,7 +545,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setCharset(string $charset): static
+=======
     public function setCharset(string $charset): object
+>>>>>>> origin/New-FakeMain
     {
         $this->charset = $charset;
 
@@ -584,7 +630,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setPrivate(): static
+=======
     public function setPrivate(): object
+>>>>>>> origin/New-FakeMain
     {
         $this->headers->removeCacheControlDirective('public');
         $this->headers->addCacheControlDirective('private');
@@ -601,7 +651,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setPublic(): static
+=======
     public function setPublic(): object
+>>>>>>> origin/New-FakeMain
     {
         $this->headers->addCacheControlDirective('public');
         $this->headers->removeCacheControlDirective('private');
@@ -616,7 +670,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setImmutable(bool $immutable = true): static
+=======
     public function setImmutable(bool $immutable = true): object
+>>>>>>> origin/New-FakeMain
     {
         if ($immutable) {
             $this->headers->addCacheControlDirective('immutable');
@@ -671,7 +729,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setDate(\DateTimeInterface $date): static
+=======
     public function setDate(\DateTimeInterface $date): object
+>>>>>>> origin/New-FakeMain
     {
         if ($date instanceof \DateTime) {
             $date = \DateTimeImmutable::createFromMutable($date);
@@ -702,7 +764,11 @@ class Response
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function expire(): static
+=======
     public function expire()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->isFresh()) {
             $this->headers->set('Age', $this->getMaxAge());
@@ -736,7 +802,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setExpires(\DateTimeInterface $date = null): static
+=======
     public function setExpires(\DateTimeInterface $date = null): object
+>>>>>>> origin/New-FakeMain
     {
         if (null === $date) {
             $this->headers->remove('Expires');
@@ -789,7 +859,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setMaxAge(int $value): static
+=======
     public function setMaxAge(int $value): object
+>>>>>>> origin/New-FakeMain
     {
         $this->headers->addCacheControlDirective('max-age', $value);
 
@@ -805,7 +879,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setSharedMaxAge(int $value): static
+=======
     public function setSharedMaxAge(int $value): object
+>>>>>>> origin/New-FakeMain
     {
         $this->setPublic();
         $this->headers->addCacheControlDirective('s-maxage', $value);
@@ -839,7 +917,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setTtl(int $seconds): static
+=======
     public function setTtl(int $seconds): object
+>>>>>>> origin/New-FakeMain
     {
         $this->setSharedMaxAge($this->getAge() + $seconds);
 
@@ -855,7 +937,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setClientTtl(int $seconds): static
+=======
     public function setClientTtl(int $seconds): object
+>>>>>>> origin/New-FakeMain
     {
         $this->setMaxAge($this->getAge() + $seconds);
 
@@ -883,7 +969,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setLastModified(\DateTimeInterface $date = null): static
+=======
     public function setLastModified(\DateTimeInterface $date = null): object
+>>>>>>> origin/New-FakeMain
     {
         if (null === $date) {
             $this->headers->remove('Last-Modified');
@@ -921,7 +1011,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setEtag(string $etag = null, bool $weak = false): static
+=======
     public function setEtag(string $etag = null, bool $weak = false): object
+>>>>>>> origin/New-FakeMain
     {
         if (null === $etag) {
             $this->headers->remove('Etag');
@@ -947,7 +1041,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setCache(array $options): static
+=======
     public function setCache(array $options): object
+>>>>>>> origin/New-FakeMain
     {
         if ($diff = array_diff(array_keys($options), array_keys(self::HTTP_RESPONSE_CACHE_CONTROL_DIRECTIVES))) {
             throw new \InvalidArgumentException(sprintf('Response does not support the following options: "%s".', implode('", "', $diff)));
@@ -1010,7 +1108,11 @@ class Response
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setNotModified(): static
+=======
     public function setNotModified(): object
+>>>>>>> origin/New-FakeMain
     {
         $this->setStatusCode(304);
         $this->setContent(null);
@@ -1055,14 +1157,22 @@ class Response
     /**
      * Sets the Vary header.
      *
+<<<<<<< HEAD
+     * @param bool $replace Whether to replace the actual value or not (true by default)
+=======
      * @param string|array $headers
      * @param bool         $replace Whether to replace the actual value or not (true by default)
+>>>>>>> origin/New-FakeMain
      *
      * @return $this
      *
      * @final
      */
+<<<<<<< HEAD
+    public function setVary(string|array $headers, bool $replace = true): static
+=======
     public function setVary($headers, bool $replace = true): object
+>>>>>>> origin/New-FakeMain
     {
         $this->headers->set('Vary', $headers, $replace);
 

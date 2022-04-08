@@ -20,10 +20,13 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
  *
  * It manages an environment made of application kernel and bundles.
  *
+<<<<<<< HEAD
+=======
  * @method string getBuildDir() Returns the build directory - not implementing it is deprecated since Symfony 5.2.
  *                              This directory should be used to store build artifacts, and can be read-only at runtime.
  *                              Caches written at runtime should be stored in the "cache directory" ({@see KernelInterface::getCacheDir()}).
  *
+>>>>>>> origin/New-FakeMain
  * @author Fabien Potencier <fabien@symfony.com>
  */
 interface KernelInterface extends HttpKernelInterface
@@ -33,7 +36,11 @@ interface KernelInterface extends HttpKernelInterface
      *
      * @return iterable<mixed, BundleInterface>
      */
+<<<<<<< HEAD
+    public function registerBundles(): iterable;
+=======
     public function registerBundles();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Loads the container configuration.
@@ -57,16 +64,26 @@ interface KernelInterface extends HttpKernelInterface
      *
      * @return array<string, BundleInterface>
      */
+<<<<<<< HEAD
+    public function getBundles(): array;
+=======
     public function getBundles();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Returns a bundle.
      *
+<<<<<<< HEAD
+     * @throws \InvalidArgumentException when the bundle is not enabled
+     */
+    public function getBundle(string $name): BundleInterface;
+=======
      * @return BundleInterface
      *
      * @throws \InvalidArgumentException when the bundle is not enabled
      */
     public function getBundle(string $name);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Returns the file path for a given bundle resource.
@@ -80,6 +97,37 @@ interface KernelInterface extends HttpKernelInterface
      * where BundleName is the name of the bundle
      * and the remaining part is the relative path in the bundle.
      *
+<<<<<<< HEAD
+     * @throws \InvalidArgumentException if the file cannot be found or the name is not valid
+     * @throws \RuntimeException         if the name contains invalid/unsafe characters
+     */
+    public function locateResource(string $name): string;
+
+    /**
+     * Gets the environment.
+     */
+    public function getEnvironment(): string;
+
+    /**
+     * Checks if debug mode is enabled.
+     */
+    public function isDebug(): bool;
+
+    /**
+     * Gets the project dir (path of the project's composer file).
+     */
+    public function getProjectDir(): string;
+
+    /**
+     * Gets the current container.
+     */
+    public function getContainer(): ContainerInterface;
+
+    /**
+     * Gets the request start time (not available if debug is disabled).
+     */
+    public function getStartTime(): float;
+=======
      * @return string
      *
      * @throws \InvalidArgumentException if the file cannot be found or the name is not valid
@@ -121,6 +169,7 @@ interface KernelInterface extends HttpKernelInterface
      * @return float
      */
     public function getStartTime();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Gets the cache directory.
@@ -128,6 +177,28 @@ interface KernelInterface extends HttpKernelInterface
      * Since Symfony 5.2, the cache directory should be used for caches that are written at runtime.
      * For caches and artifacts that can be warmed at compile-time and deployed as read-only,
      * use the new "build directory" returned by the {@see getBuildDir()} method.
+<<<<<<< HEAD
+     */
+    public function getCacheDir(): string;
+
+    /**
+     * Returns the build directory.
+     *
+     * This directory should be used to store build artifacts, and can be read-only at runtime.
+     * Caches written at runtime should be stored in the "cache directory" ({@see KernelInterface::getCacheDir()}).
+     */
+    public function getBuildDir(): string;
+
+    /**
+     * Gets the log directory.
+     */
+    public function getLogDir(): string;
+
+    /**
+     * Gets the charset of the application.
+     */
+    public function getCharset(): string;
+=======
      *
      * @return string
      */
@@ -146,4 +217,5 @@ interface KernelInterface extends HttpKernelInterface
      * @return string
      */
     public function getCharset();
+>>>>>>> origin/New-FakeMain
 }

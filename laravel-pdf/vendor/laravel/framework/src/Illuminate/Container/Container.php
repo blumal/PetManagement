@@ -191,7 +191,11 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function has(string $id): bool
+=======
     public function has($id)
+>>>>>>> origin/New-FakeMain
     {
         return $this->bound($id);
     }
@@ -609,7 +613,11 @@ class Container implements ArrayAccess, ContainerContract
         $instance = $this->make($abstract);
 
         foreach ($this->getReboundCallbacks($abstract) as $callback) {
+<<<<<<< HEAD
+            $callback($this, $instance);
+=======
             call_user_func($callback, $this, $instance);
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -699,7 +707,11 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @return mixed
      */
+<<<<<<< HEAD
+    public function get(string $id)
+=======
     public function get($id)
+>>>>>>> origin/New-FakeMain
     {
         try {
             return $this->resolve($id);
@@ -1001,7 +1013,11 @@ class Container implements ArrayAccess, ContainerContract
     protected function resolvePrimitive(ReflectionParameter $parameter)
     {
         if (! is_null($concrete = $this->getContextualConcrete('$'.$parameter->getName()))) {
+<<<<<<< HEAD
+            return Util::unwrapIfClosure($concrete, $this);
+=======
             return $concrete instanceof Closure ? $concrete($this) : $concrete;
+>>>>>>> origin/New-FakeMain
         }
 
         if ($parameter->isDefaultValueAvailable()) {
@@ -1401,8 +1417,12 @@ class Container implements ArrayAccess, ContainerContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($key): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->bound($key);
     }
@@ -1413,8 +1433,12 @@ class Container implements ArrayAccess, ContainerContract
      * @param  string  $key
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($key): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->make($key);
     }
@@ -1426,8 +1450,12 @@ class Container implements ArrayAccess, ContainerContract
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetSet($key, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->bind($key, $value instanceof Closure ? $value : function () use ($value) {
             return $value;
@@ -1440,8 +1468,12 @@ class Container implements ArrayAccess, ContainerContract
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetUnset($key): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->bindings[$key], $this->instances[$key], $this->resolved[$key]);
     }

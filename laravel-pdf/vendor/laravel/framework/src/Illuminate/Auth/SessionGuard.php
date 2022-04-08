@@ -276,6 +276,11 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      * @param  string  $field
      * @param  array  $extraConditions
      * @return \Symfony\Component\HttpFoundation\Response|null
+<<<<<<< HEAD
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
+=======
+>>>>>>> origin/New-FakeMain
      */
     public function basic($field = 'email', $extraConditions = [])
     {
@@ -299,6 +304,11 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      * @param  string  $field
      * @param  array  $extraConditions
      * @return \Symfony\Component\HttpFoundation\Response|null
+<<<<<<< HEAD
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
+=======
+>>>>>>> origin/New-FakeMain
      */
     public function onceBasic($field = 'email', $extraConditions = [])
     {
@@ -685,9 +695,13 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     public function attempting($callback)
     {
+<<<<<<< HEAD
+        $this->events?->listen(Events\Attempting::class, $callback);
+=======
         if (isset($this->events)) {
             $this->events->listen(Events\Attempting::class, $callback);
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -699,11 +713,15 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected function fireAttemptEvent(array $credentials, $remember = false)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch(new Attempting($this->name, $credentials, $remember));
+=======
         if (isset($this->events)) {
             $this->events->dispatch(new Attempting(
                 $this->name, $credentials, $remember
             ));
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -714,11 +732,15 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected function fireValidatedEvent($user)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch(new Validated($this->name, $user));
+=======
         if (isset($this->events)) {
             $this->events->dispatch(new Validated(
                 $this->name, $user
             ));
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -730,11 +752,15 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected function fireLoginEvent($user, $remember = false)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch(new Login($this->name, $user, $remember));
+=======
         if (isset($this->events)) {
             $this->events->dispatch(new Login(
                 $this->name, $user, $remember
             ));
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -745,11 +771,15 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected function fireAuthenticatedEvent($user)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch(new Authenticated($this->name, $user));
+=======
         if (isset($this->events)) {
             $this->events->dispatch(new Authenticated(
                 $this->name, $user
             ));
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -760,11 +790,15 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected function fireOtherDeviceLogoutEvent($user)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch(new OtherDeviceLogout($this->name, $user));
+=======
         if (isset($this->events)) {
             $this->events->dispatch(new OtherDeviceLogout(
                 $this->name, $user
             ));
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -776,11 +810,15 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected function fireFailedEvent($user, array $credentials)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch(new Failed($this->name, $user, $credentials));
+=======
         if (isset($this->events)) {
             $this->events->dispatch(new Failed(
                 $this->name, $user, $credentials
             ));
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**

@@ -22,7 +22,11 @@ abstract class RedirectableUrlMatcher extends UrlMatcher implements Redirectable
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function match(string $pathinfo): array
+=======
     public function match(string $pathinfo)
+>>>>>>> origin/New-FakeMain
     {
         try {
             return parent::match($pathinfo);

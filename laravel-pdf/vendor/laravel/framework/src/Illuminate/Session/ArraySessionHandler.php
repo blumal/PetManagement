@@ -39,8 +39,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function open($savePath, $sessionName): bool
+=======
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
+>>>>>>> origin/New-FakeMain
     {
         return true;
     }
@@ -50,8 +54,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function close(): bool
+=======
     #[\ReturnTypeWillChange]
     public function close()
+>>>>>>> origin/New-FakeMain
     {
         return true;
     }
@@ -61,8 +69,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return string|false
      */
+<<<<<<< HEAD
+    public function read($sessionId): string|false
+=======
     #[\ReturnTypeWillChange]
     public function read($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         if (! isset($this->storage[$sessionId])) {
             return '';
@@ -84,8 +96,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function write($sessionId, $data): bool
+=======
     #[\ReturnTypeWillChange]
     public function write($sessionId, $data)
+>>>>>>> origin/New-FakeMain
     {
         $this->storage[$sessionId] = [
             'data' => $data,
@@ -100,8 +116,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function destroy($sessionId): bool
+=======
     #[\ReturnTypeWillChange]
     public function destroy($sessionId)
+>>>>>>> origin/New-FakeMain
     {
         if (isset($this->storage[$sessionId])) {
             unset($this->storage[$sessionId]);
@@ -113,6 +133,24 @@ class ArraySessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      *
+<<<<<<< HEAD
+     * @return int
+     */
+    public function gc($lifetime): int
+    {
+        $expiration = $this->calculateExpiration($lifetime);
+
+        $deletedSessions = 0;
+
+        foreach ($this->storage as $sessionId => $session) {
+            if ($session['time'] < $expiration) {
+                unset($this->storage[$sessionId]);
+                $deletedSessions++;
+            }
+        }
+
+        return $deletedSessions;
+=======
      * @return int|false
      */
     #[\ReturnTypeWillChange]
@@ -127,6 +165,7 @@ class ArraySessionHandler implements SessionHandlerInterface
         }
 
         return true;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

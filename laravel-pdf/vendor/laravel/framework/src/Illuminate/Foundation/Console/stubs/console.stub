@@ -21,6 +21,8 @@ class {{ class }} extends Command
     protected $description = 'Command description';
 
     /**
+<<<<<<< HEAD
+=======
      * Create a new command instance.
      *
      * @return void
@@ -31,6 +33,7 @@ class {{ class }} extends Command
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Execute the console command.
      *
      * @return int

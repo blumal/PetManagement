@@ -20,6 +20,15 @@ interface HttpExceptionInterface extends \Throwable
 {
     /**
      * Returns the status code.
+<<<<<<< HEAD
+     */
+    public function getStatusCode(): int;
+
+    /**
+     * Returns response headers.
+     */
+    public function getHeaders(): array;
+=======
      *
      * @return int
      */
@@ -31,4 +40,5 @@ interface HttpExceptionInterface extends \Throwable
      * @return array
      */
     public function getHeaders();
+>>>>>>> origin/New-FakeMain
 }

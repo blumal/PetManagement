@@ -2,23 +2,41 @@
 
 namespace Illuminate\Mail;
 
+<<<<<<< HEAD
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\ForwardsCalls;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
+
+/**
+ * @mixin \Symfony\Component\Mime\Email
+=======
 use Illuminate\Support\Traits\ForwardsCalls;
 use Swift_Attachment;
 use Swift_Image;
 
 /**
  * @mixin \Swift_Message
+>>>>>>> origin/New-FakeMain
  */
 class Message
 {
     use ForwardsCalls;
 
     /**
+<<<<<<< HEAD
+     * The Symfony Email instance.
+     *
+     * @var \Symfony\Component\Mime\Email
+     */
+    protected $message;
+=======
      * The Swift Message instance.
      *
      * @var \Swift_Message
      */
     protected $swift;
+>>>>>>> origin/New-FakeMain
 
     /**
      * CIDs of files embedded in the message.
@@ -30,12 +48,21 @@ class Message
     /**
      * Create a new message instance.
      *
+<<<<<<< HEAD
+     * @param  \Symfony\Component\Mime\Email  $message
+     * @return void
+     */
+    public function __construct(Email $message)
+    {
+        $this->message = $message;
+=======
      * @param  \Swift_Message  $swift
      * @return void
      */
     public function __construct($swift)
     {
         $this->swift = $swift;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -47,7 +74,13 @@ class Message
      */
     public function from($address, $name = null)
     {
+<<<<<<< HEAD
+        is_array($address)
+            ? $this->message->from(...$address)
+            : $this->message->from(new Address($address, (string) $name));
+=======
         $this->swift->setFrom($address, $name);
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -61,7 +94,13 @@ class Message
      */
     public function sender($address, $name = null)
     {
+<<<<<<< HEAD
+        is_array($address)
+            ? $this->message->sender(...$address)
+            : $this->message->sender(new Address($address, (string) $name));
+=======
         $this->swift->setSender($address, $name);
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -74,7 +113,11 @@ class Message
      */
     public function returnPath($address)
     {
+<<<<<<< HEAD
+        $this->message->returnPath($address);
+=======
         $this->swift->setReturnPath($address);
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -90,7 +133,13 @@ class Message
     public function to($address, $name = null, $override = false)
     {
         if ($override) {
+<<<<<<< HEAD
+            is_array($address)
+                ? $this->message->to(...$address)
+                : $this->message->to(new Address($address, (string) $name));
+=======
             $this->swift->setTo($address, $name);
+>>>>>>> origin/New-FakeMain
 
             return $this;
         }
@@ -99,6 +148,25 @@ class Message
     }
 
     /**
+<<<<<<< HEAD
+     * Remove all "to" addresses from the message.
+     *
+     * @return $this
+     */
+    public function forgetTo()
+    {
+        if ($header = $this->message->getHeaders()->get('To')) {
+            $this->addAddressDebugHeader('X-To', $this->message->getTo());
+
+            $header->setAddresses([]);
+        }
+
+        return $this;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add a carbon copy to the message.
      *
      * @param  string|array  $address
@@ -109,7 +177,13 @@ class Message
     public function cc($address, $name = null, $override = false)
     {
         if ($override) {
+<<<<<<< HEAD
+            is_array($address)
+                ? $this->message->cc(...$address)
+                : $this->message->cc(new Address($address, (string) $name));
+=======
             $this->swift->setCc($address, $name);
+>>>>>>> origin/New-FakeMain
 
             return $this;
         }
@@ -118,6 +192,25 @@ class Message
     }
 
     /**
+<<<<<<< HEAD
+     * Remove all carbon copy addresses from the message.
+     *
+     * @return $this
+     */
+    public function forgetCc()
+    {
+        if ($header = $this->message->getHeaders()->get('Cc')) {
+            $this->addAddressDebugHeader('X-Cc', $this->message->getCC());
+
+            $header->setAddresses([]);
+        }
+
+        return $this;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add a blind carbon copy to the message.
      *
      * @param  string|array  $address
@@ -128,7 +221,13 @@ class Message
     public function bcc($address, $name = null, $override = false)
     {
         if ($override) {
+<<<<<<< HEAD
+            is_array($address)
+                ? $this->message->bcc(...$address)
+                : $this->message->bcc(new Address($address, (string) $name));
+=======
             $this->swift->setBcc($address, $name);
+>>>>>>> origin/New-FakeMain
 
             return $this;
         }
@@ -137,6 +236,25 @@ class Message
     }
 
     /**
+<<<<<<< HEAD
+     * Remove all of the blind carbon copy addresses from the message.
+     *
+     * @return $this
+     */
+    public function forgetBcc()
+    {
+        if ($header = $this->message->getHeaders()->get('Bcc')) {
+            $this->addAddressDebugHeader('X-Bcc', $this->message->getBcc());
+
+            $header->setAddresses([]);
+        }
+
+        return $this;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Add a "reply to" address to the message.
      *
      * @param  string|array  $address
@@ -159,15 +277,55 @@ class Message
     protected function addAddresses($address, $name, $type)
     {
         if (is_array($address)) {
+<<<<<<< HEAD
+            $type = lcfirst($type);
+
+            $addresses = collect($address)->map(function (string|array $address, $key) {
+                if (is_string($key) && is_string($address)) {
+                    return new Address($key, $address);
+                }
+
+                if (is_array($address)) {
+                    return new Address($address['email'] ?? $address['address'], $address['name'] ?? null);
+                }
+
+                return $address;
+            })->all();
+
+            $this->message->{"{$type}"}(...$addresses);
+        } else {
+            $this->message->{"add{$type}"}(new Address($address, (string) $name));
+=======
             $this->swift->{"set{$type}"}($address, $name);
         } else {
             $this->swift->{"add{$type}"}($address, $name);
+>>>>>>> origin/New-FakeMain
         }
 
         return $this;
     }
 
     /**
+<<<<<<< HEAD
+     * Add an address debug header for a list of recipients.
+     *
+     * @param  string  $header
+     * @param  \Symfony\Component\Mime\Address[]  $addresses
+     * @return $this
+     */
+    protected function addAddressDebugHeader(string $header, array $addresses)
+    {
+        $this->message->getHeaders()->addTextHeader(
+            $header,
+            implode(', ', array_map(fn ($a) => $a->toString(), $addresses)),
+        );
+
+        return $this;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Set the subject of the message.
      *
      * @param  string  $subject
@@ -175,7 +333,11 @@ class Message
      */
     public function subject($subject)
     {
+<<<<<<< HEAD
+        $this->message->subject($subject);
+=======
         $this->swift->setSubject($subject);
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -188,7 +350,11 @@ class Message
      */
     public function priority($level)
     {
+<<<<<<< HEAD
+        $this->message->priority($level);
+=======
         $this->swift->setPriority($level);
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -202,6 +368,11 @@ class Message
      */
     public function attach($file, array $options = [])
     {
+<<<<<<< HEAD
+        $this->message->attachFromPath($file, $options['as'] ?? null, $options['mime'] ?? null);
+
+        return $this;
+=======
         $attachment = $this->createAttachmentFromPath($file);
 
         return $this->prepAttachment($attachment, $options);
@@ -216,6 +387,7 @@ class Message
     protected function createAttachmentFromPath($file)
     {
         return Swift_Attachment::fromPath($file);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -228,6 +400,11 @@ class Message
      */
     public function attachData($data, $name, array $options = [])
     {
+<<<<<<< HEAD
+        $this->message->attach($data, $name, $options['mime'] ?? null);
+
+        return $this;
+=======
         $attachment = $this->createAttachmentFromData($data, $name);
 
         return $this->prepAttachment($attachment, $options);
@@ -243,6 +420,7 @@ class Message
     protected function createAttachmentFromData($data, $name)
     {
         return new Swift_Attachment($data, $name);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -253,6 +431,13 @@ class Message
      */
     public function embed($file)
     {
+<<<<<<< HEAD
+        $cid = Str::random(10);
+
+        $this->message->embedFromPath($file, $cid);
+
+        return "cid:$cid";
+=======
         if (isset($this->embeddedFiles[$file])) {
             return $this->embeddedFiles[$file];
         }
@@ -260,6 +445,7 @@ class Message
         return $this->embeddedFiles[$file] = $this->swift->embed(
             Swift_Image::fromPath($file)
         );
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -272,6 +458,25 @@ class Message
      */
     public function embedData($data, $name, $contentType = null)
     {
+<<<<<<< HEAD
+        $this->message->embed($data, $name, $contentType);
+
+        return "cid:$name";
+    }
+
+    /**
+     * Get the underlying Symfony Email instance.
+     *
+     * @return \Symfony\Component\Mime\Email
+     */
+    public function getSymfonyMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Dynamically pass missing methods to the Symfony instance.
+=======
         $image = new Swift_Image($data, $name, $contentType);
 
         return $this->swift->embed($image);
@@ -317,6 +522,7 @@ class Message
 
     /**
      * Dynamically pass missing methods to the Swift instance.
+>>>>>>> origin/New-FakeMain
      *
      * @param  string  $method
      * @param  array  $parameters
@@ -324,6 +530,10 @@ class Message
      */
     public function __call($method, $parameters)
     {
+<<<<<<< HEAD
+        return $this->forwardDecoratedCallTo($this->message, $method, $parameters);
+=======
         return $this->forwardCallTo($this->swift, $method, $parameters);
+>>>>>>> origin/New-FakeMain
     }
 }

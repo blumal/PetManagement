@@ -15,18 +15,27 @@ use Symfony\Component\Routing\Exception\InvalidArgumentException;
 
 class Alias
 {
+<<<<<<< HEAD
+    private string $id;
+    private array $deprecation = [];
+=======
     private $id;
     private $deprecation = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $id)
     {
         $this->id = $id;
     }
 
+<<<<<<< HEAD
+    public function withId(string $id): static
+=======
     /**
      * @return static
      */
     public function withId(string $id): self
+>>>>>>> origin/New-FakeMain
     {
         $new = clone $this;
 
@@ -56,7 +65,11 @@ class Alias
      *
      * @throws InvalidArgumentException when the message template is invalid
      */
+<<<<<<< HEAD
+    public function setDeprecated(string $package, string $version, string $message): static
+=======
     public function setDeprecated(string $package, string $version, string $message): self
+>>>>>>> origin/New-FakeMain
     {
         if ('' !== $message) {
             if (preg_match('#[\r\n]|\*/#', $message)) {

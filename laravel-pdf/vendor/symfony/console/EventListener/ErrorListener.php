@@ -69,7 +69,11 @@ class ErrorListener implements EventSubscriberInterface
         $this->logger->debug('Command "{command}" exited with code "{code}"', ['command' => $inputString, 'code' => $exitCode]);
     }
 
+<<<<<<< HEAD
+    public static function getSubscribedEvents(): array
+=======
     public static function getSubscribedEvents()
+>>>>>>> origin/New-FakeMain
     {
         return [
             ConsoleEvents::ERROR => ['onConsoleError', -128],
@@ -82,7 +86,11 @@ class ErrorListener implements EventSubscriberInterface
         $commandName = $event->getCommand() ? $event->getCommand()->getName() : null;
         $input = $event->getInput();
 
+<<<<<<< HEAD
+        if ($input instanceof \Stringable) {
+=======
         if (method_exists($input, '__toString')) {
+>>>>>>> origin/New-FakeMain
             if ($commandName) {
                 return str_replace(["'$commandName'", "\"$commandName\""], $commandName, (string) $input);
             }

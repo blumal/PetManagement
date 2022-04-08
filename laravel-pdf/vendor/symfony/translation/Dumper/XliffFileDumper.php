@@ -24,7 +24,11 @@ class XliffFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+=======
     public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         $xliffVersion = '1.2';
         if (\array_key_exists('xliff_version', $options)) {
@@ -50,7 +54,11 @@ class XliffFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function getExtension(): string
+=======
     protected function getExtension()
+>>>>>>> origin/New-FakeMain
     {
         return 'xlf';
     }

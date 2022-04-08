@@ -14,12 +14,21 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-openssl": "*",
+        "illuminate/contracts": "^9.0",
+        "illuminate/support": "^9.0"
+=======
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "illuminate/contracts": "^8.0",
         "illuminate/support": "^8.0"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -28,7 +37,11 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+=======
             "dev-master": "8.x-dev"
+>>>>>>> origin/New-FakeMain
         }
     },
     "config": {

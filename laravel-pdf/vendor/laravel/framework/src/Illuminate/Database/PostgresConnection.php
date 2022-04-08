@@ -2,8 +2,11 @@
 
 namespace Illuminate\Database;
 
+<<<<<<< HEAD
+=======
 use Doctrine\DBAL\Driver\PDOPgSql\Driver as DoctrineDriver;
 use Doctrine\DBAL\Version;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Database\PDO\PostgresDriver;
 use Illuminate\Database\Query\Grammars\PostgresGrammar as QueryGrammar;
 use Illuminate\Database\Query\Processors\PostgresProcessor;
@@ -11,11 +14,16 @@ use Illuminate\Database\Schema\Grammars\PostgresGrammar as SchemaGrammar;
 use Illuminate\Database\Schema\PostgresBuilder;
 use Illuminate\Database\Schema\PostgresSchemaState;
 use Illuminate\Filesystem\Filesystem;
+<<<<<<< HEAD
+=======
 use PDO;
+>>>>>>> origin/New-FakeMain
 
 class PostgresConnection extends Connection
 {
     /**
+<<<<<<< HEAD
+=======
      * Bind values to their parameters in the given statement.
      *
      * @param  \PDOStatement  $statement
@@ -42,6 +50,7 @@ class PostgresConnection extends Connection
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Get the default query grammar instance.
      *
      * @return \Illuminate\Database\Query\Grammars\PostgresGrammar
@@ -100,10 +109,18 @@ class PostgresConnection extends Connection
     /**
      * Get the Doctrine DBAL driver.
      *
+<<<<<<< HEAD
+     * @return \Illuminate\Database\PDO\PostgresDriver
+     */
+    protected function getDoctrineDriver()
+    {
+        return new PostgresDriver;
+=======
      * @return \Doctrine\DBAL\Driver\PDOPgSql\Driver|\Illuminate\Database\PDO\PostgresDriver
      */
     protected function getDoctrineDriver()
     {
         return class_exists(Version::class) ? new DoctrineDriver : new PostgresDriver;
+>>>>>>> origin/New-FakeMain
     }
 }

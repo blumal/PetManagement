@@ -137,7 +137,11 @@ class Response implements ArrayAccess
      */
     public function effectiveUri()
     {
+<<<<<<< HEAD
+        return $this->transferStats?->getEffectiveUri();
+=======
         return optional($this->transferStats)->getEffectiveUri();
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -252,7 +256,11 @@ class Response implements ArrayAccess
      */
     public function handlerStats()
     {
+<<<<<<< HEAD
+        return $this->transferStats?->getHandlerStats() ?? [];
+=======
         return optional($this->transferStats)->getHandlerStats() ?? [];
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -331,8 +339,12 @@ class Response implements ArrayAccess
      * @param  string  $offset
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($offset): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->json()[$offset]);
     }
@@ -343,8 +355,12 @@ class Response implements ArrayAccess
      * @param  string  $offset
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($offset): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->json()[$offset];
     }
@@ -358,8 +374,12 @@ class Response implements ArrayAccess
      *
      * @throws \LogicException
      */
+<<<<<<< HEAD
+    public function offsetSet($offset, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }
@@ -372,8 +392,12 @@ class Response implements ArrayAccess
      *
      * @throws \LogicException
      */
+<<<<<<< HEAD
+    public function offsetUnset($offset): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }

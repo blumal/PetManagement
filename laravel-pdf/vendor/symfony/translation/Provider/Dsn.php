@@ -20,6 +20,16 @@ use Symfony\Component\Translation\Exception\MissingRequiredOptionException;
  */
 final class Dsn
 {
+<<<<<<< HEAD
+    private ?string $scheme;
+    private ?string $host;
+    private ?string $user;
+    private ?string $password;
+    private ?int $port;
+    private ?string $path;
+    private array $options = [];
+    private string $originalDsn;
+=======
     private $scheme;
     private $host;
     private $user;
@@ -28,6 +38,7 @@ final class Dsn
     private $path;
     private $options;
     private $originalDsn;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $dsn)
     {
@@ -79,7 +90,11 @@ final class Dsn
         return $this->port ?? $default;
     }
 
+<<<<<<< HEAD
+    public function getOption(string $key, mixed $default = null)
+=======
     public function getOption(string $key, $default = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->options[$key] ?? $default;
     }

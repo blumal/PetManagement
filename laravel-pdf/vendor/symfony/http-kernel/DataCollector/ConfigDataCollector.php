@@ -24,9 +24,12 @@ use Symfony\Component\VarDumper\Caster\ClassStub;
  */
 class ConfigDataCollector extends DataCollector implements LateDataCollectorInterface
 {
+<<<<<<< HEAD
+=======
     /**
      * @var KernelInterface
      */
+>>>>>>> origin/New-FakeMain
     private $kernel;
 
     /**
@@ -108,9 +111,14 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
     }
 
     /**
+<<<<<<< HEAD
+     * Returns the state of the current Symfony release
+     * as one of: unknown, dev, stable, eom, eol.
+=======
      * Returns the state of the current Symfony release.
      *
      * @return string One of: unknown, dev, stable, eom, eol
+>>>>>>> origin/New-FakeMain
      */
     public function getSymfonyState(): string
     {
@@ -126,9 +134,12 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         return $this->data['symfony_minor_version'];
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Returns if the current Symfony version is a Long-Term Support one.
      */
+>>>>>>> origin/New-FakeMain
     public function isSymfonyLts(): bool
     {
         return $this->data['symfony_lts'];
@@ -168,9 +179,12 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         return $this->data['php_version_extra'] ?? null;
     }
 
+<<<<<<< HEAD
+=======
     /**
      * @return int The PHP architecture as number of bits (e.g. 32 or 64)
      */
+>>>>>>> origin/New-FakeMain
     public function getPhpArchitecture(): int
     {
         return $this->data['php_architecture'];
@@ -199,7 +213,11 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
      *
      * @return bool|string true if debug is enabled, false otherwise or a string if no kernel was set
      */
+<<<<<<< HEAD
+    public function isDebug(): bool|string
+=======
     public function isDebug()
+>>>>>>> origin/New-FakeMain
     {
         return $this->data['debug'];
     }
@@ -249,11 +267,14 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         return 'config';
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Tries to retrieve information about the current Symfony version.
      *
      * @return string One of: dev, stable, eom, eol
      */
+>>>>>>> origin/New-FakeMain
     private function determineSymfonyState(): string
     {
         $now = new \DateTime();

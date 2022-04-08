@@ -67,11 +67,17 @@ EOF
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $this->command ??= $this->getApplication()->find($input->getArgument('command_name'));
+=======
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (null === $this->command) {
             $this->command = $this->getApplication()->find($input->getArgument('command_name'));
         }
+>>>>>>> origin/New-FakeMain
 
         $helper = new DescriptorHelper();
         $helper->describe($output, $this->command, [
@@ -79,7 +85,11 @@ EOF
             'raw_text' => $input->getOption('raw'),
         ]);
 
+<<<<<<< HEAD
+        unset($this->command);
+=======
         $this->command = null;
+>>>>>>> origin/New-FakeMain
 
         return 0;
     }

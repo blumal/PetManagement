@@ -23,6 +23,15 @@ interface GeneratorDumperInterface
     /**
      * Dumps a set of routes to a string representation of executable code
      * that can then be used to generate a URL of such a route.
+<<<<<<< HEAD
+     */
+    public function dump(array $options = []): string;
+
+    /**
+     * Gets the routes to dump.
+     */
+    public function getRoutes(): RouteCollection;
+=======
      *
      * @return string
      */
@@ -34,4 +43,5 @@ interface GeneratorDumperInterface
      * @return RouteCollection
      */
     public function getRoutes();
+>>>>>>> origin/New-FakeMain
 }

@@ -16,6 +16,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Events\RouteMatched;
+<<<<<<< HEAD
+use Illuminate\Routing\Events\Routing;
+use Illuminate\Support\Arr;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
@@ -23,6 +28,10 @@ use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use ReflectionClass;
+<<<<<<< HEAD
+use stdClass;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
@@ -369,11 +378,27 @@ class Router implements BindingRegistrar, RegistrarContract
      * Create a route group with shared attributes.
      *
      * @param  array  $attributes
+<<<<<<< HEAD
+     * @param  \Closure|array|string  $routes
+=======
      * @param  \Closure|string  $routes
+>>>>>>> origin/New-FakeMain
      * @return void
      */
     public function group(array $attributes, $routes)
     {
+<<<<<<< HEAD
+        foreach (Arr::wrap($routes) as $groupRoutes) {
+            $this->updateGroupStack($attributes);
+
+            // Once we have updated the group stack, we'll load the provided routes and
+            // merge in the group's attributes when the routes are created. After we
+            // have created the routes, we will pop the attributes off the stack.
+            $this->loadRoutes($groupRoutes);
+
+            array_pop($this->groupStack);
+        }
+=======
         $this->updateGroupStack($attributes);
 
         // Once we have updated the group stack, we'll load the provided routes and
@@ -382,6 +407,7 @@ class Router implements BindingRegistrar, RegistrarContract
         $this->loadRoutes($routes);
 
         array_pop($this->groupStack);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -541,7 +567,11 @@ class Router implements BindingRegistrar, RegistrarContract
     {
         $group = end($this->groupStack);
 
+<<<<<<< HEAD
+        return isset($group['namespace']) && ! str_starts_with($class, '\\') && ! str_starts_with($class, $group['namespace'])
+=======
         return isset($group['namespace']) && strpos($class, '\\') !== 0
+>>>>>>> origin/New-FakeMain
                 ? $group['namespace'].'\\'.$class : $class;
     }
 
@@ -563,7 +593,11 @@ class Router implements BindingRegistrar, RegistrarContract
             return $class;
         }
 
+<<<<<<< HEAD
+        if (str_contains($class, '@')) {
+=======
         if (strpos($class, '@') !== false) {
+>>>>>>> origin/New-FakeMain
             return $class;
         }
 
@@ -670,6 +704,11 @@ class Router implements BindingRegistrar, RegistrarContract
      */
     protected function findRoute($request)
     {
+<<<<<<< HEAD
+        $this->events->dispatch(new Routing($request));
+
+=======
+>>>>>>> origin/New-FakeMain
         $this->current = $route = $this->routes->match($request);
 
         $route->setContainer($this->container);
@@ -731,6 +770,25 @@ class Router implements BindingRegistrar, RegistrarContract
      */
     public function gatherRouteMiddleware(Route $route)
     {
+<<<<<<< HEAD
+        return $this->resolveMiddleware($route->gatherMiddleware(), $route->excludedMiddleware());
+    }
+
+    /**
+     * Resolve a flat array of middleware classes from the provided array.
+     *
+     * @param  array  $middleware
+     * @param  array  $excluded
+     * @return array
+     */
+    public function resolveMiddleware(array $middleware, array $excluded = [])
+    {
+        $excluded = collect($excluded)->map(function ($name) {
+            return (array) MiddlewareNameResolver::resolve($name, $this->middleware, $this->middlewareGroups);
+        })->flatten()->values()->all();
+
+        $middleware = collect($middleware)->map(function ($name) {
+=======
         $computedMiddleware = $route->gatherMiddleware();
 
         $excluded = collect($route->excludedMiddleware())->map(function ($name) {
@@ -738,6 +796,7 @@ class Router implements BindingRegistrar, RegistrarContract
         })->flatten()->values()->all();
 
         $middleware = collect($computedMiddleware)->map(function ($name) {
+>>>>>>> origin/New-FakeMain
             return (array) MiddlewareNameResolver::resolve($name, $this->middleware, $this->middlewareGroups);
         })->flatten()->reject(function ($name) use ($excluded) {
             if (empty($excluded)) {
@@ -813,7 +872,11 @@ class Router implements BindingRegistrar, RegistrarContract
                     $response instanceof Jsonable ||
                     $response instanceof ArrayObject ||
                     $response instanceof JsonSerializable ||
+<<<<<<< HEAD
+                    $response instanceof stdClass ||
+=======
                     $response instanceof \stdClass ||
+>>>>>>> origin/New-FakeMain
                     is_array($response))) {
             $response = new JsonResponse($response);
         } elseif (! $response instanceof SymfonyResponse) {
@@ -833,7 +896,12 @@ class Router implements BindingRegistrar, RegistrarContract
      * @param  \Illuminate\Routing\Route  $route
      * @return \Illuminate\Routing\Route
      *
+<<<<<<< HEAD
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+     * @throws \Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException
+=======
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function substituteBindings($route)
     {
@@ -847,12 +915,21 @@ class Router implements BindingRegistrar, RegistrarContract
     }
 
     /**
+<<<<<<< HEAD
+     * Substitute the implicit route bindings for the given route.
+=======
      * Substitute the implicit Eloquent model bindings for the route.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \Illuminate\Routing\Route  $route
      * @return void
      *
+<<<<<<< HEAD
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+     * @throws \Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException
+=======
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     public function substituteImplicitBindings($route)
     {
@@ -867,7 +944,11 @@ class Router implements BindingRegistrar, RegistrarContract
      * @param  \Illuminate\Routing\Route  $route
      * @return mixed
      *
+<<<<<<< HEAD
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      */
     protected function performBinding($key, $value, $route)
     {
@@ -1136,7 +1217,11 @@ class Router implements BindingRegistrar, RegistrarContract
     /**
      * Check if a route with the given name exists.
      *
+<<<<<<< HEAD
+     * @param  string|array  $name
+=======
      * @param  string  $name
+>>>>>>> origin/New-FakeMain
      * @return bool
      */
     public function has($name)

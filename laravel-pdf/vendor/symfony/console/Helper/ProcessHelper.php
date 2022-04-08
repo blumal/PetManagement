@@ -32,7 +32,11 @@ class ProcessHelper extends Helper
      * @param callable|null $callback A PHP callback to run whenever there is some
      *                                output available on STDOUT or STDERR
      */
+<<<<<<< HEAD
+    public function run(OutputInterface $output, array|Process $cmd, string $error = null, callable $callback = null, int $verbosity = OutputInterface::VERBOSITY_VERY_VERBOSE): Process
+=======
     public function run(OutputInterface $output, $cmd, string $error = null, callable $callback = null, int $verbosity = OutputInterface::VERBOSITY_VERY_VERBOSE): Process
+>>>>>>> origin/New-FakeMain
     {
         if (!class_exists(Process::class)) {
             throw new \LogicException('The ProcessHelper cannot be run as the Process component is not installed. Try running "compose require symfony/process".');
@@ -48,10 +52,13 @@ class ProcessHelper extends Helper
             $cmd = [$cmd];
         }
 
+<<<<<<< HEAD
+=======
         if (!\is_array($cmd)) {
             throw new \TypeError(sprintf('The "command" argument of "%s()" must be an array or a "%s" instance, "%s" given.', __METHOD__, Process::class, get_debug_type($cmd)));
         }
 
+>>>>>>> origin/New-FakeMain
         if (\is_string($cmd[0] ?? null)) {
             $process = new Process($cmd);
             $cmd = [];
@@ -98,7 +105,11 @@ class ProcessHelper extends Helper
      *
      * @see run()
      */
+<<<<<<< HEAD
+    public function mustRun(OutputInterface $output, array|Process $cmd, string $error = null, callable $callback = null): Process
+=======
     public function mustRun(OutputInterface $output, $cmd, string $error = null, callable $callback = null): Process
+>>>>>>> origin/New-FakeMain
     {
         $process = $this->run($output, $cmd, $error, $callback);
 

@@ -34,7 +34,11 @@ use Symfony\Component\HttpKernel\UriSigner;
 class FragmentListener implements EventSubscriberInterface
 {
     private $signer;
+<<<<<<< HEAD
+    private string $fragmentPath;
+=======
     private $fragmentPath;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $fragmentPath The path that triggers this listener

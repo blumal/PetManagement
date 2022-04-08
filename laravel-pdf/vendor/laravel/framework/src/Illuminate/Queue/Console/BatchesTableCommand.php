@@ -5,7 +5,10 @@ namespace Illuminate\Queue\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 
 class BatchesTableCommand extends Command
 {
@@ -17,6 +20,20 @@ class BatchesTableCommand extends Command
     protected $name = 'queue:batches-table';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:batches-table';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -60,10 +77,17 @@ class BatchesTableCommand extends Command
         $table = $this->laravel['config']['queue.batching.table'] ?? 'job_batches';
 
         $this->replaceMigration(
+<<<<<<< HEAD
+            $this->createBaseMigration($table), $table
+        );
+
+        $this->info('Migration created successfully.');
+=======
             $this->createBaseMigration($table), $table, Str::studly($table)
         );
 
         $this->info('Migration created successfully!');
+>>>>>>> origin/New-FakeMain
 
         $this->composer->dumpAutoloads();
     }
@@ -86,6 +110,14 @@ class BatchesTableCommand extends Command
      *
      * @param  string  $path
      * @param  string  $table
+<<<<<<< HEAD
+     * @return void
+     */
+    protected function replaceMigration($path, $table)
+    {
+        $stub = str_replace(
+            '{{table}}', $table, $this->files->get(__DIR__.'/stubs/batches.stub')
+=======
      * @param  string  $tableClassName
      * @return void
      */
@@ -95,6 +127,7 @@ class BatchesTableCommand extends Command
             ['{{table}}', '{{tableClassName}}'],
             [$table, $tableClassName],
             $this->files->get(__DIR__.'/stubs/batches.stub')
+>>>>>>> origin/New-FakeMain
         );
 
         $this->files->put($path, $stub);

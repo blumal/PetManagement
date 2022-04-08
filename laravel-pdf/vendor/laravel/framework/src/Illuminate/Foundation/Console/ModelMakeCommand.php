@@ -19,6 +19,20 @@ class ModelMakeCommand extends GeneratorCommand
     protected $name = 'make:model';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:model';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -162,9 +176,21 @@ class ModelMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
+<<<<<<< HEAD
+        if ($this->option('pivot')) {
+            return $this->resolveStubPath('/stubs/model.pivot.stub');
+        }
+
+        if ($this->option('morph-pivot')) {
+            return $this->resolveStubPath('/stubs/model.morph-pivot.stub');
+        }
+
+        return $this->resolveStubPath('/stubs/model.stub');
+=======
         return $this->option('pivot')
                     ? $this->resolveStubPath('/stubs/model.pivot.stub')
                     : $this->resolveStubPath('/stubs/model.stub');
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -204,6 +230,10 @@ class ModelMakeCommand extends GeneratorCommand
             ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the model'],
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
             ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
+<<<<<<< HEAD
+            ['morph-pivot', null, InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom polymorphic intermediate table model'],
+=======
+>>>>>>> origin/New-FakeMain
             ['policy', null, InputOption::VALUE_NONE, 'Create a new policy for the model'],
             ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder for the model'],
             ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom intermediate table model'],

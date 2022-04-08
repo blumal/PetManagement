@@ -3,6 +3,10 @@
 namespace Illuminate\Database\Eloquent\Relations;
 
 use Closure;
+<<<<<<< HEAD
+use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +17,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Macroable;
 
+<<<<<<< HEAD
+abstract class Relation implements BuilderContract
+{
+    use ForwardsCalls, Macroable {
+        Macroable::__call as macroCall;
+=======
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -20,6 +30,7 @@ abstract class Relation
 {
     use ForwardsCalls, Macroable {
         __call as macroCall;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -166,19 +177,34 @@ abstract class Relation
      * @param  array|string  $columns
      * @return \Illuminate\Database\Eloquent\Model
      *
+<<<<<<< HEAD
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+=======
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+>>>>>>> origin/New-FakeMain
      * @throws \Illuminate\Database\MultipleRecordsFoundException
      */
     public function sole($columns = ['*'])
     {
         $result = $this->take(2)->get($columns);
 
+<<<<<<< HEAD
+        $count = $result->count();
+
+        if ($count === 0) {
+            throw (new ModelNotFoundException)->setModel(get_class($this->related));
+        }
+
+        if ($count > 1) {
+            throw new MultipleRecordsFoundException($count);
+=======
         if ($result->isEmpty()) {
             throw (new ModelNotFoundException)->setModel(get_class($this->related));
         }
 
         if ($result->count() > 1) {
             throw new MultipleRecordsFoundException;
+>>>>>>> origin/New-FakeMain
         }
 
         return $result->first();
@@ -301,10 +327,28 @@ abstract class Relation
     /**
      * Get the base query builder driving the Eloquent builder.
      *
+<<<<<<< HEAD
+     * @deprecated Use toBase() instead
+     *
+=======
+>>>>>>> origin/New-FakeMain
      * @return \Illuminate\Database\Query\Builder
      */
     public function getBaseQuery()
     {
+<<<<<<< HEAD
+        return $this->toBase();
+    }
+
+    /**
+     * Get a base query builder instance.
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function toBase()
+    {
+=======
+>>>>>>> origin/New-FakeMain
         return $this->query->getQuery();
     }
 

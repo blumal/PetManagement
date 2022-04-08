@@ -11321,5 +11321,5 @@
         </div>
     </div>
 </body>
-<script defer src="/js/visita/script.js"></script>
+<script defer src="./js/visita/script.js"></script>
 </html>

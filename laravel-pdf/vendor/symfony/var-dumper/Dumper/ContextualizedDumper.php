@@ -20,7 +20,11 @@ use Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
 class ContextualizedDumper implements DataDumperInterface
 {
     private $wrappedDumper;
+<<<<<<< HEAD
+    private array $contextProviders;
+=======
     private $contextProviders;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param ContextProviderInterface[] $contextProviders

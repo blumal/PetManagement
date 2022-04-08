@@ -259,7 +259,7 @@ img {
 
     ?>
     <br>
-    <form action="/FacturaClinica/download" method="post">
+    <form action="download" method="post">
         @csrf
         <input type="hidden" name="id_factura_clinica" value="<?php echo $factura[0]->id_fc?>">
         <input type="submit" value="Descargar">

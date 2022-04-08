@@ -11,7 +11,10 @@
 
 namespace Symfony\Component\Console\Helper;
 
+<<<<<<< HEAD
+=======
 use Symfony\Component\Console\Command\Command;
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 
 /**
@@ -24,8 +27,12 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 class HelperSet implements \IteratorAggregate
 {
     /** @var array<string, Helper> */
+<<<<<<< HEAD
+    private array $helpers = [];
+=======
     private $helpers = [];
     private $command;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param Helper[] $helpers An array of helper
@@ -49,10 +56,15 @@ class HelperSet implements \IteratorAggregate
 
     /**
      * Returns true if the helper if defined.
+<<<<<<< HEAD
+     */
+    public function has(string $name): bool
+=======
      *
      * @return bool
      */
     public function has(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->helpers[$name]);
     }
@@ -60,11 +72,17 @@ class HelperSet implements \IteratorAggregate
     /**
      * Gets a helper value.
      *
+<<<<<<< HEAD
+     * @throws InvalidArgumentException if the helper is not defined
+     */
+    public function get(string $name): HelperInterface
+=======
      * @return HelperInterface
      *
      * @throws InvalidArgumentException if the helper is not defined
      */
     public function get(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->has($name)) {
             throw new InvalidArgumentException(sprintf('The helper "%s" is not defined.', $name));
@@ -73,6 +91,9 @@ class HelperSet implements \IteratorAggregate
         return $this->helpers[$name];
     }
 
+<<<<<<< HEAD
+    public function getIterator(): \Traversable
+=======
     /**
      * @deprecated since Symfony 5.4
      */
@@ -102,6 +123,7 @@ class HelperSet implements \IteratorAggregate
      */
     #[\ReturnTypeWillChange]
     public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return new \ArrayIterator($this->helpers);
     }

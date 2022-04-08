@@ -82,7 +82,11 @@ class TextPart extends AbstractPart
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setDisposition(string $disposition): static
+=======
     public function setDisposition(string $disposition)
+>>>>>>> origin/New-FakeMain
     {
         $this->disposition = $disposition;
 
@@ -94,7 +98,11 @@ class TextPart extends AbstractPart
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setName(string $name): static
+=======
     public function setName(string $name)
+>>>>>>> origin/New-FakeMain
     {
         $this->name = $name;
 
@@ -189,10 +197,14 @@ class TextPart extends AbstractPart
         return 'quoted-printable';
     }
 
+<<<<<<< HEAD
+    public function __sleep(): array
+=======
     /**
      * @return array
      */
     public function __sleep()
+>>>>>>> origin/New-FakeMain
     {
         // convert resources to strings for serialization
         if (null !== $this->seekable) {

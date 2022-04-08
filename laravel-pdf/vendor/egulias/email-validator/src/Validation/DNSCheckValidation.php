@@ -3,15 +3,32 @@
 namespace Egulias\EmailValidator\Validation;
 
 use Egulias\EmailValidator\EmailLexer;
+<<<<<<< HEAD
+use Egulias\EmailValidator\Result\InvalidEmail;
+use Egulias\EmailValidator\Result\Reason\DomainAcceptsNoMail;
+use Egulias\EmailValidator\Result\Reason\LocalOrReservedDomain;
+use Egulias\EmailValidator\Result\Reason\NoDNSRecord as ReasonNoDNSRecord;
+use Egulias\EmailValidator\Result\Reason\UnableToGetDNSRecord;
+use Egulias\EmailValidator\Warning\NoDNSMXRecord;
+=======
 use Egulias\EmailValidator\Exception\InvalidEmail;
 use Egulias\EmailValidator\Exception\LocalOrReservedDomain;
 use Egulias\EmailValidator\Exception\DomainAcceptsNoMail;
 use Egulias\EmailValidator\Warning\NoDNSMXRecord;
 use Egulias\EmailValidator\Exception\NoDNSRecord;
+>>>>>>> origin/New-FakeMain
 
 class DNSCheckValidation implements EmailValidation
 {
     /**
+<<<<<<< HEAD
+     * @var int
+     */
+    protected const DNS_RECORD_TYPES_TO_CHECK = DNS_MX + DNS_A + DNS_AAAA;
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * @var array
      */
     private $warnings = [];
@@ -34,7 +51,11 @@ class DNSCheckValidation implements EmailValidation
         }
     }
 
+<<<<<<< HEAD
+    public function isValid(string $email, EmailLexer $emailLexer) : bool
+=======
     public function isValid($email, EmailLexer $emailLexer)
+>>>>>>> origin/New-FakeMain
     {
         // use the input to check DNS if we cannot extract something similar to a domain
         $host = $email;
@@ -73,19 +94,31 @@ class DNSCheckValidation implements EmailValidation
 
         // Exclude reserved top level DNS names
         if ($isLocalDomain || $isReservedTopLevel) {
+<<<<<<< HEAD
+            $this->error = new InvalidEmail(new LocalOrReservedDomain(), $host);
+=======
             $this->error = new LocalOrReservedDomain();
+>>>>>>> origin/New-FakeMain
             return false;
         }
 
         return $this->checkDns($host);
     }
 
+<<<<<<< HEAD
+    public function getError() : ?InvalidEmail
+=======
     public function getError()
+>>>>>>> origin/New-FakeMain
     {
         return $this->error;
     }
 
+<<<<<<< HEAD
+    public function getWarnings() : array
+=======
     public function getWarnings()
+>>>>>>> origin/New-FakeMain
     {
         return $this->warnings;
     }
@@ -112,6 +145,32 @@ class DNSCheckValidation implements EmailValidation
      *
      * @return bool True on success.
      */
+<<<<<<< HEAD
+    private function validateDnsRecords($host) : bool
+    {
+        // A workaround to fix https://bugs.php.net/bug.php?id=73149
+        /** @psalm-suppress InvalidArgument */
+        set_error_handler(
+            static function (int $errorLevel, string $errorMessage): ?bool {
+                throw new \RuntimeException("Unable to get DNS record for the host: $errorMessage");
+            }
+        );
+
+        try {
+            // Get all MX, A and AAAA DNS records for host
+            $dnsRecords = dns_get_record($host, static::DNS_RECORD_TYPES_TO_CHECK);
+        } catch (\RuntimeException $exception) {
+            $this->error = new InvalidEmail(new UnableToGetDNSRecord(), '');
+
+            return false;
+        } finally {
+            restore_error_handler();
+        }
+
+        // No MX, A or AAAA DNS records
+        if ($dnsRecords === [] || $dnsRecords === false) {
+            $this->error = new InvalidEmail(new ReasonNoDNSRecord(), '');
+=======
     private function validateDnsRecords($host)
     {
         // Get all MX, A and AAAA DNS records for host
@@ -122,12 +181,22 @@ class DNSCheckValidation implements EmailValidation
         // No MX, A or AAAA DNS records
         if (empty($dnsRecords)) {
             $this->error = new NoDNSRecord();
+>>>>>>> origin/New-FakeMain
             return false;
         }
 
         // For each DNS record
         foreach ($dnsRecords as $dnsRecord) {
             if (!$this->validateMXRecord($dnsRecord)) {
+<<<<<<< HEAD
+                // No MX records (fallback to A or AAAA records)
+                if (empty($this->mxRecords)) {
+                    $this->warnings[NoDNSMXRecord::CODE] = new NoDNSMXRecord();
+                }
+                return false;
+            }
+        }
+=======
                 return false;
             }
         }
@@ -137,6 +206,7 @@ class DNSCheckValidation implements EmailValidation
             $this->warnings[NoDNSMXRecord::CODE] = new NoDNSMXRecord();
         }
 
+>>>>>>> origin/New-FakeMain
         return true;
     }
 
@@ -147,7 +217,11 @@ class DNSCheckValidation implements EmailValidation
      *
      * @return bool True if valid.
      */
+<<<<<<< HEAD
+    private function validateMxRecord($dnsRecord) : bool
+=======
     private function validateMxRecord($dnsRecord)
+>>>>>>> origin/New-FakeMain
     {
         if ($dnsRecord['type'] !== 'MX') {
             return true;
@@ -155,7 +229,11 @@ class DNSCheckValidation implements EmailValidation
 
         // "Null MX" record indicates the domain accepts no mail (https://tools.ietf.org/html/rfc7505)
         if (empty($dnsRecord['target']) || $dnsRecord['target'] === '.') {
+<<<<<<< HEAD
+            $this->error = new InvalidEmail(new DomainAcceptsNoMail(), "");
+=======
             $this->error = new DomainAcceptsNoMail();
+>>>>>>> origin/New-FakeMain
             return false;
         }
 
@@ -163,4 +241,8 @@ class DNSCheckValidation implements EmailValidation
 
         return true;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/New-FakeMain

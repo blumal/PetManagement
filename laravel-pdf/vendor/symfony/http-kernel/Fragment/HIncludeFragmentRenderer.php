@@ -24,10 +24,17 @@ use Twig\Environment;
  */
 class HIncludeFragmentRenderer extends RoutableFragmentRenderer
 {
+<<<<<<< HEAD
+    private ?string $globalDefaultTemplate;
+    private $signer;
+    private $twig;
+    private string $charset;
+=======
     private $globalDefaultTemplate;
     private $signer;
     private $twig;
     private $charset;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $globalDefaultTemplate The global default content (it can be a template name or the content)
@@ -42,10 +49,15 @@ class HIncludeFragmentRenderer extends RoutableFragmentRenderer
 
     /**
      * Checks if a templating engine has been set.
+<<<<<<< HEAD
+     */
+    public function hasTemplating(): bool
+=======
      *
      * @return bool
      */
     public function hasTemplating()
+>>>>>>> origin/New-FakeMain
     {
         return null !== $this->twig;
     }
@@ -59,7 +71,11 @@ class HIncludeFragmentRenderer extends RoutableFragmentRenderer
      *  * id:         An optional hx:include tag id attribute
      *  * attributes: An optional array of hx:include tag attributes
      */
+<<<<<<< HEAD
+    public function render(string|ControllerReference $uri, Request $request, array $options = []): Response
+=======
     public function render($uri, Request $request, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         if ($uri instanceof ControllerReference) {
             $uri = (new FragmentUriGenerator($this->fragmentPath, $this->signer))->generate($uri, $request);
@@ -97,7 +113,11 @@ class HIncludeFragmentRenderer extends RoutableFragmentRenderer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'hinclude';
     }

@@ -14,6 +14,19 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "ext-json": "*",
+        "egulias/email-validator": "^3.1",
+        "illuminate/collections": "^9.0",
+        "illuminate/container": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "illuminate/macroable": "^9.0",
+        "illuminate/support": "^9.0",
+        "illuminate/translation": "^9.0",
+        "symfony/http-foundation": "^6.0",
+        "symfony/mime": "^6.0"
+=======
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "egulias/email-validator": "^2.1.10",
@@ -25,6 +38,7 @@
         "illuminate/translation": "^8.0",
         "symfony/http-foundation": "^5.4",
         "symfony/mime": "^5.4"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -33,12 +47,20 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+=======
             "dev-master": "8.x-dev"
+>>>>>>> origin/New-FakeMain
         }
     },
     "suggest": {
         "ext-bcmath": "Required to use the multiple_of validation rule.",
+<<<<<<< HEAD
+        "illuminate/database": "Required to use the database presence verifier (^9.0)."
+=======
         "illuminate/database": "Required to use the database presence verifier (^8.0)."
+>>>>>>> origin/New-FakeMain
     },
     "config": {
         "sort-packages": true

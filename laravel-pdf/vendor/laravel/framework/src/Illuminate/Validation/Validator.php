@@ -231,6 +231,10 @@ class Validator implements ValidatorContract
         'Different',
         'ExcludeIf',
         'ExcludeUnless',
+<<<<<<< HEAD
+        'ExcludeWith',
+=======
+>>>>>>> origin/New-FakeMain
         'ExcludeWithout',
         'Gt',
         'Gte',
@@ -257,7 +261,11 @@ class Validator implements ValidatorContract
      *
      * @var string[]
      */
+<<<<<<< HEAD
+    protected $excludeRules = ['Exclude', 'ExcludeIf', 'ExcludeUnless', 'ExcludeWith', 'ExcludeWithout'];
+=======
     protected $excludeRules = ['Exclude', 'ExcludeIf', 'ExcludeUnless', 'ExcludeWithout'];
+>>>>>>> origin/New-FakeMain
 
     /**
      * The size related validation rules.
@@ -667,7 +675,10 @@ class Validator implements ValidatorContract
      * Replace each field parameter which has an escaped dot with the dot placeholder.
      *
      * @param  array  $parameters
+<<<<<<< HEAD
+=======
      * @param  array  $keys
+>>>>>>> origin/New-FakeMain
      * @return array
      */
     protected function replaceDotInParameters(array $parameters)
@@ -814,7 +825,11 @@ class Validator implements ValidatorContract
         if (! $rule->passes($attribute, $value)) {
             $this->failedRules[$attribute][get_class($rule)] = [];
 
+<<<<<<< HEAD
+            $messages = $this->getFromLocalArray($attribute, get_class($rule)) ?? $rule->message();
+=======
             $messages = $rule->message();
+>>>>>>> origin/New-FakeMain
 
             $messages = $messages ? (array) $messages : [get_class($rule)];
 
@@ -1149,7 +1164,11 @@ class Validator implements ValidatorContract
             $this->implicitAttributes = array_merge($response->implicitAttributes, $this->implicitAttributes);
 
             foreach ($response->rules as $ruleKey => $ruleValue) {
+<<<<<<< HEAD
+                if ($callback($payload, $this->dataForSometimesIteration($ruleKey, ! str_ends_with($key, '.*')))) {
+=======
                 if ($callback($payload, $this->dataForSometimesIteration($ruleKey, ! Str::endsWith($key, '.*')))) {
+>>>>>>> origin/New-FakeMain
                     $this->addRules([$ruleKey => $ruleValue]);
                 }
             }

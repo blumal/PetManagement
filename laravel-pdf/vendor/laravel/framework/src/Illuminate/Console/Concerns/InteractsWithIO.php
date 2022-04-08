@@ -64,7 +64,11 @@ trait InteractsWithIO
      * Get the value of a command argument.
      *
      * @param  string|null  $key
+<<<<<<< HEAD
+     * @return array|string|bool|null
+=======
      * @return string|array|null
+>>>>>>> origin/New-FakeMain
      */
     public function argument($key = null)
     {
@@ -372,11 +376,20 @@ trait InteractsWithIO
      * Write a blank line.
      *
      * @param  int  $count
+<<<<<<< HEAD
+     * @return $this
+=======
      * @return void
+>>>>>>> origin/New-FakeMain
      */
     public function newLine($count = 1)
     {
         $this->output->newLine($count);
+<<<<<<< HEAD
+
+        return $this;
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
