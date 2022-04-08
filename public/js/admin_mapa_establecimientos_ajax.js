@@ -53,7 +53,7 @@ function leerJS() {
             var recarga = '';
             recarga += '<br>'
             recarga += '<div>';
-            recarga += '<tr class="thead-dark"><th>NOMBRE</th><th>NIF</th><th>EMAIL</th><th>DIRECCION</th><th>NÚMERO</th><th>CP</th><th>TELF 1</th><th>TELF 2</th><th>HORARIO APERTURA</th><th>HORARIO CIERRE</th><th>URL</th><th>FOTO</th><th>ICONO</th><th>TIPO</th><th>MODIFICAR</th><th>OPERATIVO</th></th>';
+            recarga += '<tr><th>NOMBRE</th><th>NIF</th><th>EMAIL</th><th>DIRECCION</th><th>NÚMERO</th><th>CP</th><th>TELF 1</th><th>TELF 2</th><th>HORARIO APERTURA</th><th>HORARIO CIERRE</th><th>URL</th><th>FOTO</th><th>ICONO</th><th>TIPO</th><th>MODIFICAR</th><th>OPERATIVO</th></th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += '<tr>';
                 recarga += '<td>' + respuesta[i].nombre_s + '</td>'
