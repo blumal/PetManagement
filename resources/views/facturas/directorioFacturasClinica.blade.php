@@ -16,9 +16,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    
-
-    
     @for ($i = 0; $i < count($facturas); $i++)
 
         <form action="FacturaClinica/view" method="post">

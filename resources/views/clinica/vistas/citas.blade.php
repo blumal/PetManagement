@@ -24,17 +24,63 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <div class="row flex">
-        <div class="column-1">
+    <header id="Header">
+        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+
+        <!--Menu header-->
+        <ul class="main-menu">
+            <li class="menu-item">Home</li>
+            <li class="menu-item" href="./views/tienda.blade.php">Tienda</li>
+            <li class="menu-item">Clínica</li>
+            <li class="menu-item">Contacto</li>
+            <li class="menu-item">Sobre Nosotros</li>
+            <li class="cta"><a href="{{url("citas")}}">LOGIN</a></li>
+        </ul>
+        <script src="./js/home.js"></script>
+    </header>
+    <div class="row-c flex">
+        <div class="calendarestructure column-1">
             <h1>Citas</h1>
             <div id="calendar"></div>
             <h1>Solicitud de Citas</h1>
-                <form action="" method="post">
-                    <input type="text">
-                    <input type="date">
-                    <input type="time">
-                </form>
+            {{-- <form action="{{url('insertcita')}}" method="post"> --}}
+            <form onsubmit="insertDatas(); return false;">
+                @csrf
+                <input type="date" name="fecha_vi" id="fecha_vi">
+                <input type="time" name="hora_vi" id="hora_vi" >
+                <input type="submit">
+            </form>
         </div>
     </div>
+    <form action="{{url("/FacturasClinica")}}" method="post">
+        @csrf
+        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+        </br></br>
+        </br></br>
+        <input type="submit" value="Ver mis Visitas Anteriores">
+    </form>
+    <form action="{{url("/generarFactura")}}" method="post">
+        @csrf
+        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+        <input type="number" name="id_visita">
+        </br></br>
+        </br></br>
+        <input type="submit" value="Rellenar Visita">
+    </form>
+    <footer>
+        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <div class="social-icons-container">
+            <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+            <a href="https://www.t.me/petmanagement" class="social-icon"></a>
+        </div>
+        <ul class="footer-menu-container">
+            <li class="footer-item">Legal</li>
+            <li class="footer-item">Cookies</li>
+            <li class="footer-item">Privacy</li>
+            <li class="footer-item">Shipping</li>
+            <li class="footer-item">Refunds</li>
+        </ul>
+        <span class="copyright">&copy;2021, Krey Academy. All rights reserved.</span>
+    </footer>
 </body>
 </html>
