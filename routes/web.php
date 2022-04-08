@@ -25,10 +25,20 @@ Route::get('', function () {
     return view('home');
 });
 
+/* Route::get('registro', [CitasController::class, 'home']); */
+
+Route::get('tienda', [CitasController::class, 'tienda']);
+
+Route::get('clinica', [CitasController::class, 'clinica']);
+
+Route::get('contacto', [CitasController::class, 'contacto']);
+
+Route::get('about', [CitasController::class, 'about']);
+
 Route::get('login', [CitasController::class, 'login']);
 
 //Ruta que nos lleva a funcion que elimina todas las sesiones
-Route::post('/logout', [CitasController::class, 'logout']);
+Route::post('logout', [CitasController::class, 'logout']);
 
 
 Route::post('login-proc', [CitasController::class, 'loginProc']);

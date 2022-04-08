@@ -15,7 +15,25 @@ class CitasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    
+    public function home(){
+        return view('home');
+    }
+
+    public function tienda(){
+        return view('tienda');
+    }
+
+    public function clinica(){
+        return view('clinica');
+    }
+
+    public function contacto(){
+        return view('contacto');
+    }
+
+    public function about(){
+        return view('about');
+    }
 
     //Login view
     public function login()
