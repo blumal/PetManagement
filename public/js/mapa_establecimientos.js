@@ -66,7 +66,7 @@ function markers() {
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<span>" + respuesta[i].nombre_s + "</span><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button>", { maxWidth: 190 }).openPopup();
+                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'storage/'" + respuesta[i].foto_sociedad + "><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn btn-info btn_quitar' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
                 })
             }
         }

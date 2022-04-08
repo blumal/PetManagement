@@ -64,7 +64,7 @@ function markers() {
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<span>" + respuesta[i].nombre_ape + "</span><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button>", { maxWidth: 190 }).openPopup();
+                    marker.bindPopup("<p>" + respuesta[i].nombre_ape + "</p><p>" + respuesta[i].descripcion_ape + "</p><p>Desaparecido: " + respuesta[i].fecha_perdida_ape + " " + respuesta[i].hora_des_ape + "</p>", { maxWidth: 200 }).openPopup();
                 })
             }
         }
