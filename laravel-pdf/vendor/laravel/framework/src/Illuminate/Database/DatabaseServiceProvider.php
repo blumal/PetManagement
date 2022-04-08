@@ -70,6 +70,13 @@ class DatabaseServiceProvider extends ServiceProvider
             return $app['db']->connection();
         });
 
+<<<<<<< HEAD
+        $this->app->bind('db.schema', function ($app) {
+            return $app['db']->connection()->getSchemaBuilder();
+        });
+
+=======
+>>>>>>> origin/New-FakeMain
         $this->app->singleton('db.transactions', function ($app) {
             return new DatabaseTransactionsManager;
         });

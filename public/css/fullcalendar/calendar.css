@@ -62,11 +62,12 @@ header {
     left: 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     padding: 0 5%;
     box-sizing: border-box;
     height: 100px;
     transition: 0.5s;
+    z-index: 999;
 }
 
 .logo {

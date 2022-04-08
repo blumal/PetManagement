@@ -26,10 +26,17 @@ use Symfony\Component\Routing\RequestContext;
  */
 trait CompiledUrlMatcherTrait
 {
+<<<<<<< HEAD
+    private bool $matchHost = false;
+    private array $staticRoutes = [];
+    private array $regexpList = [];
+    private array $dynamicRoutes = [];
+=======
     private $matchHost = false;
     private $staticRoutes = [];
     private $regexpList = [];
     private $dynamicRoutes = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var callable|null

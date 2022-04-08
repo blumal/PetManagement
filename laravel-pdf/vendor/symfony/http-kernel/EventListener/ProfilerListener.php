@@ -31,6 +31,19 @@ use Symfony\Component\HttpKernel\Profiler\Profiler;
  */
 class ProfilerListener implements EventSubscriberInterface
 {
+<<<<<<< HEAD
+    private $profiler;
+    private $matcher;
+    private bool $onlyException;
+    private bool $onlyMainRequests;
+    private ?\Throwable $exception = null;
+    /** @var \SplObjectStorage<Request, Profile> */
+    private \SplObjectStorage $profiles;
+    private $requestStack;
+    private ?string $collectParameter;
+    /** @var \SplObjectStorage<Request, Request|null> */
+    private \SplObjectStorage $parents;
+=======
     protected $profiler;
     protected $matcher;
     protected $onlyException;
@@ -42,6 +55,7 @@ class ProfilerListener implements EventSubscriberInterface
     protected $collectParameter;
     /** @var \SplObjectStorage<Request, Request|null> */
     protected $parents;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param bool $onlyException    True if the profiler only collects data when an exception occurs, false otherwise

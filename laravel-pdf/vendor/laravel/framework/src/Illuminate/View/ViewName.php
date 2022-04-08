@@ -14,7 +14,11 @@ class ViewName
     {
         $delimiter = ViewFinderInterface::HINT_PATH_DELIMITER;
 
+<<<<<<< HEAD
+        if (! str_contains($name, $delimiter)) {
+=======
         if (strpos($name, $delimiter) === false) {
+>>>>>>> origin/New-FakeMain
             return str_replace('/', '.', $name);
         }
 

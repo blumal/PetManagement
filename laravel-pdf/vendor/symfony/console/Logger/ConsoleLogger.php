@@ -30,7 +30,11 @@ class ConsoleLogger extends AbstractLogger
     public const ERROR = 'error';
 
     private $output;
+<<<<<<< HEAD
+    private array $verbosityLevelMap = [
+=======
     private $verbosityLevelMap = [
+>>>>>>> origin/New-FakeMain
         LogLevel::EMERGENCY => OutputInterface::VERBOSITY_NORMAL,
         LogLevel::ALERT => OutputInterface::VERBOSITY_NORMAL,
         LogLevel::CRITICAL => OutputInterface::VERBOSITY_NORMAL,
@@ -40,7 +44,11 @@ class ConsoleLogger extends AbstractLogger
         LogLevel::INFO => OutputInterface::VERBOSITY_VERY_VERBOSE,
         LogLevel::DEBUG => OutputInterface::VERBOSITY_DEBUG,
     ];
+<<<<<<< HEAD
+    private array $formatLevelMap = [
+=======
     private $formatLevelMap = [
+>>>>>>> origin/New-FakeMain
         LogLevel::EMERGENCY => self::ERROR,
         LogLevel::ALERT => self::ERROR,
         LogLevel::CRITICAL => self::ERROR,
@@ -50,7 +58,11 @@ class ConsoleLogger extends AbstractLogger
         LogLevel::INFO => self::INFO,
         LogLevel::DEBUG => self::INFO,
     ];
+<<<<<<< HEAD
+    private bool $errored = false;
+=======
     private $errored = false;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(OutputInterface $output, array $verbosityLevelMap = [], array $formatLevelMap = [])
     {
@@ -61,10 +73,15 @@ class ConsoleLogger extends AbstractLogger
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
+     */
+    public function log($level, $message, array $context = []): void
+=======
      *
      * @return void
      */
     public function log($level, $message, array $context = [])
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->verbosityLevelMap[$level])) {
             throw new InvalidArgumentException(sprintf('The log level "%s" does not exist.', $level));
@@ -89,10 +106,15 @@ class ConsoleLogger extends AbstractLogger
 
     /**
      * Returns true when any messages have been logged at error levels.
+<<<<<<< HEAD
+     */
+    public function hasErrored(): bool
+=======
      *
      * @return bool
      */
     public function hasErrored()
+>>>>>>> origin/New-FakeMain
     {
         return $this->errored;
     }
@@ -110,7 +132,11 @@ class ConsoleLogger extends AbstractLogger
 
         $replacements = [];
         foreach ($context as $key => $val) {
+<<<<<<< HEAD
+            if (null === $val || is_scalar($val) || $val instanceof \Stringable) {
+=======
             if (null === $val || is_scalar($val) || (\is_object($val) && method_exists($val, '__toString'))) {
+>>>>>>> origin/New-FakeMain
                 $replacements["{{$key}}"] = $val;
             } elseif ($val instanceof \DateTimeInterface) {
                 $replacements["{{$key}}"] = $val->format(\DateTime::RFC3339);

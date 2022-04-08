@@ -15,6 +15,20 @@ class EventClearCommand extends Command
     protected $name = 'event:clear';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'event:clear';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -52,6 +66,10 @@ class EventClearCommand extends Command
     {
         $this->files->delete($this->laravel->getCachedEventsPath());
 
+<<<<<<< HEAD
+        $this->info('Cached events cleared successfully.');
+=======
         $this->info('Cached events cleared!');
+>>>>>>> origin/New-FakeMain
     }
 }

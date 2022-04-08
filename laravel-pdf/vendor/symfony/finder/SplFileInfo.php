@@ -18,8 +18,13 @@ namespace Symfony\Component\Finder;
  */
 class SplFileInfo extends \SplFileInfo
 {
+<<<<<<< HEAD
+    private string $relativePath;
+    private string $relativePathname;
+=======
     private $relativePath;
     private $relativePathname;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $file             The file name
@@ -37,10 +42,15 @@ class SplFileInfo extends \SplFileInfo
      * Returns the relative path.
      *
      * This path does not contain the file name.
+<<<<<<< HEAD
+     */
+    public function getRelativePath(): string
+=======
      *
      * @return string
      */
     public function getRelativePath()
+>>>>>>> origin/New-FakeMain
     {
         return $this->relativePath;
     }
@@ -49,10 +59,15 @@ class SplFileInfo extends \SplFileInfo
      * Returns the relative path name.
      *
      * This path contains the file name.
+<<<<<<< HEAD
+     */
+    public function getRelativePathname(): string
+=======
      *
      * @return string
      */
     public function getRelativePathname()
+>>>>>>> origin/New-FakeMain
     {
         return $this->relativePathname;
     }
@@ -67,11 +82,17 @@ class SplFileInfo extends \SplFileInfo
     /**
      * Returns the contents of the file.
      *
+<<<<<<< HEAD
+     * @throws \RuntimeException
+     */
+    public function getContents(): string
+=======
      * @return string
      *
      * @throws \RuntimeException
      */
     public function getContents()
+>>>>>>> origin/New-FakeMain
     {
         set_error_handler(function ($type, $msg) use (&$error) { $error = $msg; });
         try {

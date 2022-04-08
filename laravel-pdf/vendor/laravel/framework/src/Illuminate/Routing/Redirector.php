@@ -84,7 +84,11 @@ class Redirector
     {
         $request = $this->generator->getRequest();
 
+<<<<<<< HEAD
+        $intended = $request->isMethod('GET') && $request->route() && ! $request->expectsJson()
+=======
         $intended = $request->method() === 'GET' && $request->route() && ! $request->expectsJson()
+>>>>>>> origin/New-FakeMain
                         ? $this->generator->full()
                         : $this->generator->previous();
 
@@ -115,11 +119,20 @@ class Redirector
      * Set the intended url.
      *
      * @param  string  $url
+<<<<<<< HEAD
+     * @return $this
+=======
      * @return void
+>>>>>>> origin/New-FakeMain
      */
     public function setIntendedUrl($url)
     {
         $this->session->put('url.intended', $url);
+<<<<<<< HEAD
+
+        return $this;
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**

@@ -18,7 +18,11 @@ namespace Symfony\Component\Console\Question;
  */
 class ConfirmationQuestion extends Question
 {
+<<<<<<< HEAD
+    private string $trueAnswerRegex;
+=======
     private $trueAnswerRegex;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $question        The question to ask to the user

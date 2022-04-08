@@ -37,5 +37,9 @@ interface ControllerResolverInterface
      *
      * @throws \LogicException If a controller was found based on the request but it is not callable
      */
+<<<<<<< HEAD
+    public function getController(Request $request): callable|false;
+=======
     public function getController(Request $request);
+>>>>>>> origin/New-FakeMain
 }

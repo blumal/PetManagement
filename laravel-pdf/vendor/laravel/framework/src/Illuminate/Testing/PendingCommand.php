@@ -155,6 +155,22 @@ class PendingCommand
     }
 
     /**
+<<<<<<< HEAD
+     * Specify that the given string should be contained in the command output.
+     *
+     * @param  string  $string
+     * @return $this
+     */
+    public function expectsOutputToContain($string)
+    {
+        $this->test->expectedOutputSubstrings[] = $string;
+
+        return $this;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Specify a table that should be printed when the command runs.
      *
      * @param  array  $headers
@@ -311,6 +327,13 @@ class PendingCommand
             $this->test->fail('Output "'.Arr::first($this->test->expectedOutput).'" was not printed.');
         }
 
+<<<<<<< HEAD
+        if (count($this->test->expectedOutputSubstrings)) {
+            $this->test->fail('Output does not contain "'.Arr::first($this->test->expectedOutputSubstrings).'".');
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         if ($output = array_search(true, $this->test->unexpectedOutput)) {
             $this->test->fail('Output "'.$output.'" was printed.');
         }
@@ -373,6 +396,17 @@ class PendingCommand
                 });
         }
 
+<<<<<<< HEAD
+        foreach ($this->test->expectedOutputSubstrings as $i => $text) {
+            $mock->shouldReceive('doWrite')
+                ->withArgs(fn ($output) => str_contains($output, $text))
+                ->andReturnUsing(function () use ($i) {
+                    unset($this->test->expectedOutputSubstrings[$i]);
+                });
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         foreach ($this->test->unexpectedOutput as $output => $displayed) {
             $mock->shouldReceive('doWrite')
                 ->ordered()
@@ -393,6 +427,10 @@ class PendingCommand
     protected function flushExpectations()
     {
         $this->test->expectedOutput = [];
+<<<<<<< HEAD
+        $this->test->expectedOutputSubstrings = [];
+=======
+>>>>>>> origin/New-FakeMain
         $this->test->unexpectedOutput = [];
         $this->test->expectedTables = [];
         $this->test->expectedQuestions = [];

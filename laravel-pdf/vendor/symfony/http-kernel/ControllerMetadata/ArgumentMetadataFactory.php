@@ -21,7 +21,11 @@ final class ArgumentMetadataFactory implements ArgumentMetadataFactoryInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function createArgumentMetadata(string|object|array $controller): array
+=======
     public function createArgumentMetadata($controller): array
+>>>>>>> origin/New-FakeMain
     {
         $arguments = [];
 
@@ -40,11 +44,17 @@ final class ArgumentMetadataFactory implements ArgumentMetadataFactoryInterface
 
         foreach ($reflection->getParameters() as $param) {
             $attributes = [];
+<<<<<<< HEAD
+            foreach ($param->getAttributes() as $reflectionAttribute) {
+                if (class_exists($reflectionAttribute->getName())) {
+                    $attributes[] = $reflectionAttribute->newInstance();
+=======
             if (\PHP_VERSION_ID >= 80000) {
                 foreach ($param->getAttributes() as $reflectionAttribute) {
                     if (class_exists($reflectionAttribute->getName())) {
                         $attributes[] = $reflectionAttribute->newInstance();
                     }
+>>>>>>> origin/New-FakeMain
                 }
             }
 

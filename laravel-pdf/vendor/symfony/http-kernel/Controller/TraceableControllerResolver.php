@@ -31,7 +31,11 @@ class TraceableControllerResolver implements ControllerResolverInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getController(Request $request): callable|false
+=======
     public function getController(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $e = $this->stopwatch->start('controller.get_callable');
 

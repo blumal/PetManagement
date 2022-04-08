@@ -3,7 +3,10 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\Console\Input\InputOption;
 
 class ResourceMakeCommand extends GeneratorCommand
@@ -16,6 +19,20 @@ class ResourceMakeCommand extends GeneratorCommand
     protected $name = 'make:resource';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:resource';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -63,7 +80,11 @@ class ResourceMakeCommand extends GeneratorCommand
     protected function collection()
     {
         return $this->option('collection') ||
+<<<<<<< HEAD
+               str_ends_with($this->argument('name'), 'Collection');
+=======
                Str::endsWith($this->argument('name'), 'Collection');
+>>>>>>> origin/New-FakeMain
     }
 
     /**

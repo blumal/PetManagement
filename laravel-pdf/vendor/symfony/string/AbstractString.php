@@ -92,15 +92,28 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
 
     /**
      * @param string|string[] $needle
+<<<<<<< HEAD
+     */
+    public function after(string|iterable $needle, bool $includeNeedle = false, int $offset = 0): static
+=======
      *
      * @return static
      */
     public function after($needle, bool $includeNeedle = false, int $offset = 0): self
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $i = \PHP_INT_MAX;
 
+<<<<<<< HEAD
+        if (\is_string($needle)) {
+            $needle = [$needle];
+        }
+
+        foreach ($needle as $n) {
+=======
         foreach ((array) $needle as $n) {
+>>>>>>> origin/New-FakeMain
             $n = (string) $n;
             $j = $this->indexOf($n, $offset);
 
@@ -123,15 +136,28 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
 
     /**
      * @param string|string[] $needle
+<<<<<<< HEAD
+     */
+    public function afterLast(string|iterable $needle, bool $includeNeedle = false, int $offset = 0): static
+=======
      *
      * @return static
      */
     public function afterLast($needle, bool $includeNeedle = false, int $offset = 0): self
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $i = null;
 
+<<<<<<< HEAD
+        if (\is_string($needle)) {
+            $needle = [$needle];
+        }
+
+        foreach ($needle as $n) {
+=======
         foreach ((array) $needle as $n) {
+>>>>>>> origin/New-FakeMain
             $n = (string) $n;
             $j = $this->indexOfLast($n, $offset);
 
@@ -152,6 +178,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $this->slice($i);
     }
 
+<<<<<<< HEAD
+    abstract public function append(string ...$suffix): static;
+
+    /**
+     * @param string|string[] $needle
+     */
+    public function before(string|iterable $needle, bool $includeNeedle = false, int $offset = 0): static
+=======
     /**
      * @return static
      */
@@ -163,11 +197,20 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      * @return static
      */
     public function before($needle, bool $includeNeedle = false, int $offset = 0): self
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $i = \PHP_INT_MAX;
 
+<<<<<<< HEAD
+        if (\is_string($needle)) {
+            $needle = [$needle];
+        }
+
+        foreach ($needle as $n) {
+=======
         foreach ((array) $needle as $n) {
+>>>>>>> origin/New-FakeMain
             $n = (string) $n;
             $j = $this->indexOf($n, $offset);
 
@@ -190,15 +233,28 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
 
     /**
      * @param string|string[] $needle
+<<<<<<< HEAD
+     */
+    public function beforeLast(string|iterable $needle, bool $includeNeedle = false, int $offset = 0): static
+=======
      *
      * @return static
      */
     public function beforeLast($needle, bool $includeNeedle = false, int $offset = 0): self
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $i = null;
 
+<<<<<<< HEAD
+        if (\is_string($needle)) {
+            $needle = [$needle];
+        }
+
+        foreach ($needle as $n) {
+=======
         foreach ((array) $needle as $n) {
+>>>>>>> origin/New-FakeMain
             $n = (string) $n;
             $j = $this->indexOfLast($n, $offset);
 
@@ -229,20 +285,28 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return '' === $str->string ? [] : array_values(unpack('C*', $str->string));
     }
 
+<<<<<<< HEAD
+    abstract public function camel(): static;
+=======
     /**
      * @return static
      */
     abstract public function camel(): self;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @return static[]
      */
     abstract public function chunk(int $length = 1): array;
 
+<<<<<<< HEAD
+    public function collapseWhitespace(): static
+=======
     /**
      * @return static
      */
     public function collapseWhitespace(): self
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->string = trim(preg_replace('/(?:\s{2,}+|[^\S ])/', ' ', $str->string));
@@ -253,7 +317,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     /**
      * @param string|string[] $needle
      */
+<<<<<<< HEAD
+    public function containsAny(string|iterable $needle): bool
+=======
     public function containsAny($needle): bool
+>>>>>>> origin/New-FakeMain
     {
         return null !== $this->indexOf($needle);
     }
@@ -261,9 +329,15 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     /**
      * @param string|string[] $suffix
      */
+<<<<<<< HEAD
+    public function endsWith(string|iterable $suffix): bool
+    {
+        if (\is_string($suffix)) {
+=======
     public function endsWith($suffix): bool
     {
         if (!\is_array($suffix) && !$suffix instanceof \Traversable) {
+>>>>>>> origin/New-FakeMain
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
         }
 
@@ -276,10 +350,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return false;
     }
 
+<<<<<<< HEAD
+    public function ensureEnd(string $suffix): static
+=======
     /**
      * @return static
      */
     public function ensureEnd(string $suffix): self
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->endsWith($suffix)) {
             return $this->append($suffix);
@@ -291,10 +369,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $this->replaceMatches($regex.($this->ignoreCase ? 'i' : ''), '$1');
     }
 
+<<<<<<< HEAD
+    public function ensureStart(string $prefix): static
+=======
     /**
      * @return static
      */
     public function ensureStart(string $prefix): self
+>>>>>>> origin/New-FakeMain
     {
         $prefix = new static($prefix);
 
@@ -316,9 +398,15 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     /**
      * @param string|string[] $string
      */
+<<<<<<< HEAD
+    public function equalsTo(string|iterable $string): bool
+    {
+        if (\is_string($string)) {
+=======
     public function equalsTo($string): bool
     {
         if (!\is_array($string) && !$string instanceof \Traversable) {
+>>>>>>> origin/New-FakeMain
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
         }
 
@@ -331,6 +419,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return false;
     }
 
+<<<<<<< HEAD
+    abstract public function folded(): static;
+
+    public function ignoreCase(): static
+=======
     /**
      * @return static
      */
@@ -340,6 +433,7 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      * @return static
      */
     public function ignoreCase(): self
+>>>>>>> origin/New-FakeMain
     {
         $str = clone $this;
         $str->ignoreCase = true;
@@ -350,9 +444,15 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     /**
      * @param string|string[] $needle
      */
+<<<<<<< HEAD
+    public function indexOf(string|iterable $needle, int $offset = 0): ?int
+    {
+        if (\is_string($needle)) {
+=======
     public function indexOf($needle, int $offset = 0): ?int
     {
         if (!\is_array($needle) && !$needle instanceof \Traversable) {
+>>>>>>> origin/New-FakeMain
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
         }
 
@@ -372,9 +472,15 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     /**
      * @param string|string[] $needle
      */
+<<<<<<< HEAD
+    public function indexOfLast(string|iterable $needle, int $offset = 0): ?int
+    {
+        if (\is_string($needle)) {
+=======
     public function indexOfLast($needle, int $offset = 0): ?int
     {
         if (!\is_array($needle) && !$needle instanceof \Traversable) {
+>>>>>>> origin/New-FakeMain
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
         }
 
@@ -396,10 +502,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return '' === $this->string;
     }
 
+<<<<<<< HEAD
+    abstract public function join(array $strings, string $lastGlue = null): static;
+=======
     /**
      * @return static
      */
     abstract public function join(array $strings, string $lastGlue = null): self;
+>>>>>>> origin/New-FakeMain
 
     public function jsonSerialize(): string
     {
@@ -408,10 +518,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
 
     abstract public function length(): int;
 
+<<<<<<< HEAD
+    abstract public function lower(): static;
+=======
     /**
      * @return static
      */
     abstract public function lower(): self;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Matches the string using a regular expression.
@@ -422,6 +536,17 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      */
     abstract public function match(string $regexp, int $flags = 0, int $offset = 0): array;
 
+<<<<<<< HEAD
+    abstract public function padBoth(int $length, string $padStr = ' '): static;
+
+    abstract public function padEnd(int $length, string $padStr = ' '): static;
+
+    abstract public function padStart(int $length, string $padStr = ' '): static;
+
+    abstract public function prepend(string ...$prefix): static;
+
+    public function repeat(int $multiplier): static
+=======
     /**
      * @return static
      */
@@ -446,6 +571,7 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      * @return static
      */
     public function repeat(int $multiplier): self
+>>>>>>> origin/New-FakeMain
     {
         if (0 > $multiplier) {
             throw new InvalidArgumentException(sprintf('Multiplier must be positive, %d given.', $multiplier));
@@ -457,6 +583,19 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $str;
     }
 
+<<<<<<< HEAD
+    abstract public function replace(string $from, string $to): static;
+
+    abstract public function replaceMatches(string $fromRegexp, string|callable $to): static;
+
+    abstract public function reverse(): static;
+
+    abstract public function slice(int $start = 0, int $length = null): static;
+
+    abstract public function snake(): static;
+
+    abstract public function splice(string $replacement, int $start = 0, int $length = null): static;
+=======
     /**
      * @return static
      */
@@ -488,6 +627,7 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      * @return static
      */
     abstract public function splice(string $replacement, int $start = 0, int $length = null): self;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @return static[]
@@ -540,9 +680,15 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     /**
      * @param string|string[] $prefix
      */
+<<<<<<< HEAD
+    public function startsWith(string|iterable $prefix): bool
+    {
+        if (\is_string($prefix)) {
+=======
     public function startsWith($prefix): bool
     {
         if (!\is_array($prefix) && !$prefix instanceof \Traversable) {
+>>>>>>> origin/New-FakeMain
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
         }
 
@@ -555,10 +701,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return false;
     }
 
+<<<<<<< HEAD
+    abstract public function title(bool $allWords = false): static;
+=======
     /**
      * @return static
      */
     abstract public function title(bool $allWords = false): self;
+>>>>>>> origin/New-FakeMain
 
     public function toByteString(string $toEncoding = null): ByteString
     {
@@ -606,6 +756,16 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return new UnicodeString($this->string);
     }
 
+<<<<<<< HEAD
+    abstract public function trim(string $chars = " \t\n\r\0\x0B\x0C\u{A0}\u{FEFF}"): static;
+
+    abstract public function trimEnd(string $chars = " \t\n\r\0\x0B\x0C\u{A0}\u{FEFF}"): static;
+
+    /**
+     * @param string|string[] $prefix
+     */
+    public function trimPrefix($prefix): static
+=======
     /**
      * @return static
      */
@@ -622,6 +782,7 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      * @return static
      */
     public function trimPrefix($prefix): self
+>>>>>>> origin/New-FakeMain
     {
         if (\is_array($prefix) || $prefix instanceof \Traversable) {
             foreach ($prefix as $s) {
@@ -650,6 +811,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $str;
     }
 
+<<<<<<< HEAD
+    abstract public function trimStart(string $chars = " \t\n\r\0\x0B\x0C\u{A0}\u{FEFF}"): static;
+
+    /**
+     * @param string|string[] $suffix
+     */
+    public function trimSuffix($suffix): static
+=======
     /**
      * @return static
      */
@@ -661,6 +830,7 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
      * @return static
      */
     public function trimSuffix($suffix): self
+>>>>>>> origin/New-FakeMain
     {
         if (\is_array($suffix) || $suffix instanceof \Traversable) {
             foreach ($suffix as $s) {
@@ -689,10 +859,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $str;
     }
 
+<<<<<<< HEAD
+    public function truncate(int $length, string $ellipsis = '', bool $cut = true): static
+=======
     /**
      * @return static
      */
     public function truncate(int $length, string $ellipsis = '', bool $cut = true): self
+>>>>>>> origin/New-FakeMain
     {
         $stringLength = $this->length();
 
@@ -719,20 +893,28 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $ellipsisLength ? $str->trimEnd()->append($ellipsis) : $str;
     }
 
+<<<<<<< HEAD
+    abstract public function upper(): static;
+=======
     /**
      * @return static
      */
     abstract public function upper(): self;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Returns the printable length on a terminal.
      */
     abstract public function width(bool $ignoreAnsiDecoration = true): int;
 
+<<<<<<< HEAD
+    public function wordwrap(int $width = 75, string $break = "\n", bool $cut = false): static
+=======
     /**
      * @return static
      */
     public function wordwrap(int $width = 75, string $break = "\n", bool $cut = false): self
+>>>>>>> origin/New-FakeMain
     {
         $lines = '' !== $break ? $this->split($break) : [clone $this];
         $chars = [];

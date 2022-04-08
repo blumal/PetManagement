@@ -2,11 +2,18 @@
 
 namespace Illuminate\Queue\Console;
 
+<<<<<<< HEAD
+=======
 use Carbon\Carbon;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Bus\BatchRepository;
 use Illuminate\Bus\DatabaseBatchRepository;
 use Illuminate\Bus\PrunableBatchRepository;
 use Illuminate\Console\Command;
+<<<<<<< HEAD
+use Illuminate\Support\Carbon;
+=======
+>>>>>>> origin/New-FakeMain
 
 class PruneBatchesCommand extends Command
 {
@@ -20,6 +27,20 @@ class PruneBatchesCommand extends Command
                 {--unfinished= : The number of hours to retain unfinished batch data }';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:prune-batches';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -43,7 +64,11 @@ class PruneBatchesCommand extends Command
 
         $this->info("{$count} entries deleted!");
 
+<<<<<<< HEAD
+        if ($this->option('unfinished')) {
+=======
         if ($unfinished = $this->option('unfinished')) {
+>>>>>>> origin/New-FakeMain
             $count = 0;
 
             if ($repository instanceof DatabaseBatchRepository) {

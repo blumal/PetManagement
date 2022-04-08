@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
+6.0
+---
+
+ * Remove `Comparator::setTarget()` and `Comparator::setOperator()`
+
+=======
+>>>>>>> origin/New-FakeMain
 5.4.0
 -----
 

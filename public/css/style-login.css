@@ -4,6 +4,13 @@
     padding: 0;
 }
 
+body{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(31, 45, 196), transparent);
+    background-repeat: no-repeat;
+}
+
 .column-1{
     width: 100%;
 }
@@ -72,7 +79,7 @@
 }
 
 .slider-frame img {
-	width: 100%;
+    width: 120%;
 }
 
 @keyframes slide {
@@ -87,4 +94,57 @@
 	
 	75% {margin-left: -300%;}
 	100% {margin-left: -300%;}
+}
+
+/* ----------- LOGIN --------------- */
+
+.login{
+    text-align: center;
+    border-radius: 25px;
+    background-color: #BCBED7;
+    margin: 5%;
+}
+
+h1{
+    padding-top: 3%;
+}
+
+.username{
+    margin: 3% 10% 3% 15%;
+    text-align: left;
+}
+
+.username input{
+    border-radius: 13px;
+    width: 90%;
+    padding: 5px;
+    padding-left: 2%;
+}
+
+.password input{
+    border-radius: 13px;
+    width: 90%;
+    padding: 5px;
+    padding-left: 2%;
+}
+
+.password{
+    margin: 3% 10% 3% 15%;
+    text-align: left;
+}
+
+.btn-login{
+    border-radius: 20px;
+    color: white;
+    background-color: #1f2cc4;
+    padding: 10px;
+}
+
+.fraseRegistro{
+    margin: 5% 5% 5% 15%;
+    /* margin-left: 10%;
+    margin-bottom: 5%; */
+    padding-bottom: 5%;
+    text-align: left;
+    color: #1f2cc4;
 }

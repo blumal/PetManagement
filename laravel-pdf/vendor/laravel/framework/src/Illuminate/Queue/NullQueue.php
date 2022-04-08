@@ -44,7 +44,11 @@ class NullQueue extends Queue implements QueueContract
     }
 
     /**
+<<<<<<< HEAD
+     * Push a new job onto the queue after (n) seconds.
+=======
      * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job

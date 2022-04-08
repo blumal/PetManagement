@@ -6,7 +6,10 @@ use Closure;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View as ViewContract;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -223,7 +226,11 @@ abstract class Component
      */
     protected function shouldIgnore($name)
     {
+<<<<<<< HEAD
+        return str_starts_with($name, '__') ||
+=======
         return Str::startsWith($name, '__') ||
+>>>>>>> origin/New-FakeMain
                in_array($name, $this->ignoredMethods());
     }
 

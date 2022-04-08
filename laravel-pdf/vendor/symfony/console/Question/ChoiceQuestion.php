@@ -20,17 +20,28 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
  */
 class ChoiceQuestion extends Question
 {
+<<<<<<< HEAD
+    private array $choices;
+    private bool $multiselect = false;
+    private string $prompt = ' > ';
+    private string $errorMessage = 'Value "%s" is invalid';
+=======
     private $choices;
     private $multiselect = false;
     private $prompt = ' > ';
     private $errorMessage = 'Value "%s" is invalid';
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $question The question to ask to the user
      * @param array  $choices  The list of available choices
      * @param mixed  $default  The default answer to return
      */
+<<<<<<< HEAD
+    public function __construct(string $question, array $choices, mixed $default = null)
+=======
     public function __construct(string $question, array $choices, $default = null)
+>>>>>>> origin/New-FakeMain
     {
         if (!$choices) {
             throw new \LogicException('Choice question must have at least 1 choice available.');
@@ -45,10 +56,15 @@ class ChoiceQuestion extends Question
 
     /**
      * Returns available choices.
+<<<<<<< HEAD
+     */
+    public function getChoices(): array
+=======
      *
      * @return array
      */
     public function getChoices()
+>>>>>>> origin/New-FakeMain
     {
         return $this->choices;
     }
@@ -60,7 +76,11 @@ class ChoiceQuestion extends Question
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setMultiselect(bool $multiselect): static
+=======
     public function setMultiselect(bool $multiselect)
+>>>>>>> origin/New-FakeMain
     {
         $this->multiselect = $multiselect;
         $this->setValidator($this->getDefaultValidator());
@@ -70,20 +90,30 @@ class ChoiceQuestion extends Question
 
     /**
      * Returns whether the choices are multiselect.
+<<<<<<< HEAD
+     */
+    public function isMultiselect(): bool
+=======
      *
      * @return bool
      */
     public function isMultiselect()
+>>>>>>> origin/New-FakeMain
     {
         return $this->multiselect;
     }
 
     /**
      * Gets the prompt for choices.
+<<<<<<< HEAD
+     */
+    public function getPrompt(): string
+=======
      *
      * @return string
      */
     public function getPrompt()
+>>>>>>> origin/New-FakeMain
     {
         return $this->prompt;
     }
@@ -93,7 +123,11 @@ class ChoiceQuestion extends Question
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setPrompt(string $prompt): static
+=======
     public function setPrompt(string $prompt)
+>>>>>>> origin/New-FakeMain
     {
         $this->prompt = $prompt;
 
@@ -107,7 +141,11 @@ class ChoiceQuestion extends Question
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setErrorMessage(string $errorMessage): static
+=======
     public function setErrorMessage(string $errorMessage)
+>>>>>>> origin/New-FakeMain
     {
         $this->errorMessage = $errorMessage;
         $this->setValidator($this->getDefaultValidator());

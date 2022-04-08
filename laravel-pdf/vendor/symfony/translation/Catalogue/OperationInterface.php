@@ -36,6 +36,30 @@ interface OperationInterface
 {
     /**
      * Returns domains affected by operation.
+<<<<<<< HEAD
+     */
+    public function getDomains(): array;
+
+    /**
+     * Returns all valid messages ('all') after operation.
+     */
+    public function getMessages(string $domain): array;
+
+    /**
+     * Returns new messages ('new') after operation.
+     */
+    public function getNewMessages(string $domain): array;
+
+    /**
+     * Returns obsolete messages ('obsolete') after operation.
+     */
+    public function getObsoleteMessages(string $domain): array;
+
+    /**
+     * Returns resulting catalogue ('result').
+     */
+    public function getResult(): MessageCatalogueInterface;
+=======
      *
      * @return array
      */
@@ -68,4 +92,5 @@ interface OperationInterface
      * @return MessageCatalogueInterface
      */
     public function getResult();
+>>>>>>> origin/New-FakeMain
 }

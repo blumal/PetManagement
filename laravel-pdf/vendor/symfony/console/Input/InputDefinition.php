@@ -28,6 +28,15 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class InputDefinition
 {
+<<<<<<< HEAD
+    private array $arguments = [];
+    private int $requiredCount = 0;
+    private $lastArrayArgument = null;
+    private $lastOptionalArgument = null;
+    private array $options = [];
+    private array $negations = [];
+    private array $shortcuts = [];
+=======
     private $arguments;
     private $requiredCount;
     private $lastArrayArgument;
@@ -35,6 +44,7 @@ class InputDefinition
     private $options;
     private $negations;
     private $shortcuts;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param array $definition An array of InputArgument and InputOption instance
@@ -124,6 +134,11 @@ class InputDefinition
     /**
      * Returns an InputArgument by name or by position.
      *
+<<<<<<< HEAD
+     * @throws InvalidArgumentException When argument given doesn't exist
+     */
+    public function getArgument(string|int $name): InputArgument
+=======
      * @param string|int $name The InputArgument name or position
      *
      * @return InputArgument
@@ -131,6 +146,7 @@ class InputDefinition
      * @throws InvalidArgumentException When argument given doesn't exist
      */
     public function getArgument($name)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));
@@ -143,12 +159,17 @@ class InputDefinition
 
     /**
      * Returns true if an InputArgument object exists by name or position.
+<<<<<<< HEAD
+     */
+    public function hasArgument(string|int $name): bool
+=======
      *
      * @param string|int $name The InputArgument name or position
      *
      * @return bool
      */
     public function hasArgument($name)
+>>>>>>> origin/New-FakeMain
     {
         $arguments = \is_int($name) ? array_values($this->arguments) : $this->arguments;
 
@@ -160,27 +181,41 @@ class InputDefinition
      *
      * @return InputArgument[]
      */
+<<<<<<< HEAD
+    public function getArguments(): array
+=======
     public function getArguments()
+>>>>>>> origin/New-FakeMain
     {
         return $this->arguments;
     }
 
     /**
      * Returns the number of InputArguments.
+<<<<<<< HEAD
+     */
+    public function getArgumentCount(): int
+=======
      *
      * @return int
      */
     public function getArgumentCount()
+>>>>>>> origin/New-FakeMain
     {
         return null !== $this->lastArrayArgument ? \PHP_INT_MAX : \count($this->arguments);
     }
 
     /**
      * Returns the number of required InputArguments.
+<<<<<<< HEAD
+     */
+    public function getArgumentRequiredCount(): int
+=======
      *
      * @return int
      */
     public function getArgumentRequiredCount()
+>>>>>>> origin/New-FakeMain
     {
         return $this->requiredCount;
     }
@@ -188,7 +223,11 @@ class InputDefinition
     /**
      * @return array<string|bool|int|float|array|null>
      */
+<<<<<<< HEAD
+    public function getArgumentDefaults(): array
+=======
     public function getArgumentDefaults()
+>>>>>>> origin/New-FakeMain
     {
         $values = [];
         foreach ($this->arguments as $argument) {
@@ -262,11 +301,17 @@ class InputDefinition
     /**
      * Returns an InputOption by name.
      *
+<<<<<<< HEAD
+     * @throws InvalidArgumentException When option given doesn't exist
+     */
+    public function getOption(string $name): InputOption
+=======
      * @return InputOption
      *
      * @throws InvalidArgumentException When option given doesn't exist
      */
     public function getOption(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->hasOption($name)) {
             throw new InvalidArgumentException(sprintf('The "--%s" option does not exist.', $name));
@@ -280,10 +325,15 @@ class InputDefinition
      *
      * This method can't be used to check if the user included the option when
      * executing the command (use getOption() instead).
+<<<<<<< HEAD
+     */
+    public function hasOption(string $name): bool
+=======
      *
      * @return bool
      */
     public function hasOption(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->options[$name]);
     }
@@ -293,17 +343,26 @@ class InputDefinition
      *
      * @return InputOption[]
      */
+<<<<<<< HEAD
+    public function getOptions(): array
+=======
     public function getOptions()
+>>>>>>> origin/New-FakeMain
     {
         return $this->options;
     }
 
     /**
      * Returns true if an InputOption object exists by shortcut.
+<<<<<<< HEAD
+     */
+    public function hasShortcut(string $name): bool
+=======
      *
      * @return bool
      */
     public function hasShortcut(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->shortcuts[$name]);
     }
@@ -318,10 +377,15 @@ class InputDefinition
 
     /**
      * Gets an InputOption by shortcut.
+<<<<<<< HEAD
+     */
+    public function getOptionForShortcut(string $shortcut): InputOption
+=======
      *
      * @return InputOption
      */
     public function getOptionForShortcut(string $shortcut)
+>>>>>>> origin/New-FakeMain
     {
         return $this->getOption($this->shortcutToName($shortcut));
     }
@@ -329,7 +393,11 @@ class InputDefinition
     /**
      * @return array<string|bool|int|float|array|null>
      */
+<<<<<<< HEAD
+    public function getOptionDefaults(): array
+=======
     public function getOptionDefaults()
+>>>>>>> origin/New-FakeMain
     {
         $values = [];
         foreach ($this->options as $option) {
@@ -373,10 +441,15 @@ class InputDefinition
 
     /**
      * Gets the synopsis.
+<<<<<<< HEAD
+     */
+    public function getSynopsis(bool $short = false): string
+=======
      *
      * @return string
      */
     public function getSynopsis(bool $short = false)
+>>>>>>> origin/New-FakeMain
     {
         $elements = [];
 

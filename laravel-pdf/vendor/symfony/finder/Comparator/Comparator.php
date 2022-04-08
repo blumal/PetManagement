@@ -16,6 +16,19 @@ namespace Symfony\Component\Finder\Comparator;
  */
 class Comparator
 {
+<<<<<<< HEAD
+    private string $target;
+    private string $operator;
+
+    public function __construct(string $target, string $operator = '==')
+    {
+        if (!\in_array($operator, ['>', '<', '>=', '<=', '==', '!='])) {
+            throw new \InvalidArgumentException(sprintf('Invalid operator "%s".', $operator));
+        }
+
+        $this->target = $target;
+        $this->operator = $operator;
+=======
     private $target;
     private $operator = '==';
 
@@ -27,10 +40,16 @@ class Comparator
 
         $this->target = $target;
         $this->doSetOperator($operator);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
      * Gets the target value.
+<<<<<<< HEAD
+     */
+    public function getTarget(): string
+    {
+=======
      *
      * @return string
      */
@@ -40,10 +59,16 @@ class Comparator
             trigger_deprecation('symfony/finder', '5.4', 'Calling "%s" without initializing the target is deprecated.', __METHOD__);
         }
 
+>>>>>>> origin/New-FakeMain
         return $this->target;
     }
 
     /**
+<<<<<<< HEAD
+     * Gets the comparison operator.
+     */
+    public function getOperator(): string
+=======
      * @deprecated set the target via the constructor instead
      */
     public function setTarget(string $target)
@@ -59,11 +84,18 @@ class Comparator
      * @return string
      */
     public function getOperator()
+>>>>>>> origin/New-FakeMain
     {
         return $this->operator;
     }
 
     /**
+<<<<<<< HEAD
+     * Tests against the target.
+     */
+    public function test(mixed $test): bool
+    {
+=======
      * Sets the comparison operator.
      *
      * @throws \InvalidArgumentException
@@ -90,6 +122,7 @@ class Comparator
             trigger_deprecation('symfony/finder', '5.4', 'Calling "%s" without initializing the target is deprecated.', __METHOD__);
         }
 
+>>>>>>> origin/New-FakeMain
         switch ($this->operator) {
             case '>':
                 return $test > $this->target;
@@ -105,6 +138,8 @@ class Comparator
 
         return $test == $this->target;
     }
+<<<<<<< HEAD
+=======
 
     private function doSetOperator(string $operator): void
     {
@@ -114,4 +149,5 @@ class Comparator
 
         $this->operator = $operator;
     }
+>>>>>>> origin/New-FakeMain
 }

@@ -20,6 +20,17 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class TranslationDumperPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
+    public function process(ContainerBuilder $container)
+    {
+        if (!$container->hasDefinition('translation.writer')) {
+            return;
+        }
+
+        $definition = $container->getDefinition('translation.writer');
+
+        foreach ($container->findTaggedServiceIds('translation.dumper', true) as $id => $attributes) {
+=======
     private $writerServiceId;
     private $dumperTag;
 
@@ -42,6 +53,7 @@ class TranslationDumperPass implements CompilerPassInterface
         $definition = $container->getDefinition($this->writerServiceId);
 
         foreach ($container->findTaggedServiceIds($this->dumperTag, true) as $id => $attributes) {
+>>>>>>> origin/New-FakeMain
             $definition->addMethodCall('addDumper', [$attributes[0]['alias'], new Reference($id)]);
         }
     }

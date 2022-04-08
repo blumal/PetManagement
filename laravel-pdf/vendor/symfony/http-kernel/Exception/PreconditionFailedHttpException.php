@@ -16,6 +16,10 @@ namespace Symfony\Component\HttpKernel\Exception;
  */
 class PreconditionFailedHttpException extends HttpException
 {
+<<<<<<< HEAD
+    public function __construct(string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
+    {
+=======
     /**
      * @param string|null     $message  The internal exception message
      * @param \Throwable|null $previous The previous exception
@@ -29,6 +33,7 @@ class PreconditionFailedHttpException extends HttpException
             $message = '';
         }
 
+>>>>>>> origin/New-FakeMain
         parent::__construct(412, $message, $previous, $headers, $code);
     }
 }

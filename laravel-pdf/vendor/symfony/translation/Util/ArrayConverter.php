@@ -30,10 +30,15 @@ class ArrayConverter
      * For example this array('foo.bar' => 'value') will be converted to ['foo' => ['bar' => 'value']].
      *
      * @param array $messages Linear messages array
+<<<<<<< HEAD
+     */
+    public static function expandToTree(array $messages): array
+=======
      *
      * @return array
      */
     public static function expandToTree(array $messages)
+>>>>>>> origin/New-FakeMain
     {
         $tree = [];
 

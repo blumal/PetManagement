@@ -71,6 +71,15 @@ trait SerializesModels
                 continue;
             }
 
+<<<<<<< HEAD
+            $value = $this->getPropertyValue($property);
+
+            if ($property->hasDefaultValue() && $value === $property->getDefaultValue()) {
+                continue;
+            }
+
+=======
+>>>>>>> origin/New-FakeMain
             $name = $property->getName();
 
             if ($property->isPrivate()) {
@@ -79,9 +88,13 @@ trait SerializesModels
                 $name = "\0*\0{$name}";
             }
 
+<<<<<<< HEAD
+            $values[$name] = $this->getSerializedPropertyValue($value);
+=======
             $values[$name] = $this->getSerializedPropertyValue(
                 $this->getPropertyValue($property)
             );
+>>>>>>> origin/New-FakeMain
         }
 
         return $values;

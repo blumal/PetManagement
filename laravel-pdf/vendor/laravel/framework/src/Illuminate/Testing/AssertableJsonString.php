@@ -3,6 +3,10 @@
 namespace Illuminate\Testing;
 
 use ArrayAccess;
+<<<<<<< HEAD
+use Closure;
+=======
+>>>>>>> origin/New-FakeMain
 use Countable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
@@ -219,7 +223,15 @@ class AssertableJsonString implements ArrayAccess, Countable
      */
     public function assertPath($path, $expect)
     {
+<<<<<<< HEAD
+        if ($expect instanceof Closure) {
+            PHPUnit::assertTrue($expect($this->json($path)));
+        } else {
+            PHPUnit::assertSame($expect, $this->json($path));
+        }
+=======
         PHPUnit::assertSame($expect, $this->json($path));
+>>>>>>> origin/New-FakeMain
 
         return $this;
     }
@@ -337,8 +349,12 @@ class AssertableJsonString implements ArrayAccess, Countable
      *
      * @return int
      */
+<<<<<<< HEAD
+    public function count(): int
+=======
     #[\ReturnTypeWillChange]
     public function count()
+>>>>>>> origin/New-FakeMain
     {
         return count($this->decoded);
     }
@@ -349,8 +365,12 @@ class AssertableJsonString implements ArrayAccess, Countable
      * @param  mixed  $offset
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($offset): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->decoded[$offset]);
     }
@@ -361,8 +381,12 @@ class AssertableJsonString implements ArrayAccess, Countable
      * @param  string  $offset
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($offset): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->decoded[$offset];
     }
@@ -374,8 +398,12 @@ class AssertableJsonString implements ArrayAccess, Countable
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetSet($offset, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->decoded[$offset] = $value;
     }
@@ -386,8 +414,12 @@ class AssertableJsonString implements ArrayAccess, Countable
      * @param  string  $offset
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetUnset($offset): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->decoded[$offset]);
     }

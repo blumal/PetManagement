@@ -241,7 +241,11 @@ class BladeCompiler extends Compiler implements CompilerInterface
         );
 
         foreach ($this->precompilers as $precompiler) {
+<<<<<<< HEAD
+            $value = $precompiler($value);
+=======
             $value = call_user_func($precompiler, $value);
+>>>>>>> origin/New-FakeMain
         }
 
         // Here we will loop through all of the tokens returned by the Zend lexer and
@@ -340,11 +344,19 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function storeUncompiledBlocks($value)
     {
+<<<<<<< HEAD
+        if (str_contains($value, '@verbatim')) {
+            $value = $this->storeVerbatimBlocks($value);
+        }
+
+        if (str_contains($value, '@php')) {
+=======
         if (strpos($value, '@verbatim') !== false) {
             $value = $this->storeVerbatimBlocks($value);
         }
 
         if (strpos($value, '@php') !== false) {
+>>>>>>> origin/New-FakeMain
             $value = $this->storePhpBlocks($value);
         }
 
@@ -504,7 +516,11 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileStatement($match)
     {
+<<<<<<< HEAD
+        if (str_contains($match[1], '@')) {
+=======
         if (Str::contains($match[1], '@')) {
+>>>>>>> origin/New-FakeMain
             $match[0] = isset($match[3]) ? $match[1].$match[3] : $match[1];
         } elseif (isset($this->customDirectives[$match[1]])) {
             $match[0] = $this->callCustomDirective($match[1], Arr::get($match, 3));
@@ -524,9 +540,15 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function callCustomDirective($name, $value)
     {
+<<<<<<< HEAD
+        $value ??= '';
+
+        if (str_starts_with($value, '(') && str_ends_with($value, ')')) {
+=======
         $value = $value ?? '';
 
         if (Str::startsWith($value, '(') && Str::endsWith($value, ')')) {
+>>>>>>> origin/New-FakeMain
             $value = Str::substr($value, 1, -1);
         }
 
@@ -625,12 +647,20 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     public function component($class, $alias = null, $prefix = '')
     {
+<<<<<<< HEAD
+        if (! is_null($alias) && str_contains($alias, '\\')) {
+=======
         if (! is_null($alias) && Str::contains($alias, '\\')) {
+>>>>>>> origin/New-FakeMain
             [$class, $alias] = [$alias, $class];
         }
 
         if (is_null($alias)) {
+<<<<<<< HEAD
+            $alias = str_contains($class, '\\View\\Components\\')
+=======
             $alias = Str::contains($class, '\\View\\Components\\')
+>>>>>>> origin/New-FakeMain
                             ? collect(explode('\\', Str::after($class, '\\View\\Components\\')))->map(function ($segment) {
                                 return Str::kebab($segment);
                             })->implode(':')

@@ -500,6 +500,23 @@ class Filesystem
     }
 
     /**
+<<<<<<< HEAD
+     * Determine if two files are the same by comparing their hashes.
+     *
+     * @param  string  $firstFile
+     * @param  string  $secondFile
+     * @return bool
+     */
+    public function hasSameHash($firstFile, $secondFile)
+    {
+        $hash = @md5_file($firstFile);
+
+        return $hash && $hash === @md5_file($secondFile);
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Determine if the given path is a file.
      *
      * @param  string  $file
@@ -659,10 +676,15 @@ class Filesystem
             // If the current items is just a regular file, we will just copy this to the new
             // location and keep looping. If for some reason the copy fails we'll bail out
             // and return false, so the developer is aware that the copy process failed.
+<<<<<<< HEAD
+            elseif (! $this->copy($item->getPathname(), $target)) {
+                return false;
+=======
             else {
                 if (! $this->copy($item->getPathname(), $target)) {
                     return false;
                 }
+>>>>>>> origin/New-FakeMain
             }
         }
 

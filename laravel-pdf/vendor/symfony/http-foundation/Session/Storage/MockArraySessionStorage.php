@@ -76,7 +76,11 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function start(): bool
+=======
     public function start()
+>>>>>>> origin/New-FakeMain
     {
         if ($this->started) {
             return true;
@@ -94,7 +98,11 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function regenerate(bool $destroy = false, int $lifetime = null): bool
+=======
     public function regenerate(bool $destroy = false, int $lifetime = null)
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->started) {
             $this->start();
@@ -109,7 +117,11 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getId(): string
+=======
     public function getId()
+>>>>>>> origin/New-FakeMain
     {
         return $this->id;
     }
@@ -129,7 +141,11 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->name;
     }
@@ -183,7 +199,11 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getBag(string $name): SessionBagInterface
+=======
     public function getBag(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->bags[$name])) {
             throw new \InvalidArgumentException(sprintf('The SessionBagInterface "%s" is not registered.', $name));
@@ -199,7 +219,11 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function isStarted(): bool
+=======
     public function isStarted()
+>>>>>>> origin/New-FakeMain
     {
         return $this->started;
     }
@@ -215,10 +239,15 @@ class MockArraySessionStorage implements SessionStorageInterface
 
     /**
      * Gets the MetadataBag.
+<<<<<<< HEAD
+     */
+    public function getMetadataBag(): MetadataBag
+=======
      *
      * @return MetadataBag
      */
     public function getMetadataBag()
+>>>>>>> origin/New-FakeMain
     {
         return $this->metadataBag;
     }
@@ -228,10 +257,15 @@ class MockArraySessionStorage implements SessionStorageInterface
      *
      * This doesn't need to be particularly cryptographically secure since this is just
      * a mock.
+<<<<<<< HEAD
+     */
+    protected function generateId(): string
+=======
      *
      * @return string
      */
     protected function generateId()
+>>>>>>> origin/New-FakeMain
     {
         return hash('sha256', uniqid('ss_mock_', true));
     }

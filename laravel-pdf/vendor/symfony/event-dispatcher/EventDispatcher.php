@@ -31,9 +31,15 @@ use Symfony\Component\EventDispatcher\Debug\WrappedListener;
  */
 class EventDispatcher implements EventDispatcherInterface
 {
+<<<<<<< HEAD
+    private array $listeners = [];
+    private array $sorted = [];
+    private array $optimized;
+=======
     private $listeners = [];
     private $sorted = [];
     private $optimized;
+>>>>>>> origin/New-FakeMain
 
     public function __construct()
     {
@@ -49,7 +55,11 @@ class EventDispatcher implements EventDispatcherInterface
     {
         $eventName = $eventName ?? \get_class($event);
 
+<<<<<<< HEAD
+        if (isset($this->optimized)) {
+=======
         if (null !== $this->optimized) {
+>>>>>>> origin/New-FakeMain
             $listeners = $this->optimized[$eventName] ?? (empty($this->listeners[$eventName]) ? [] : $this->optimizeListeners($eventName));
         } else {
             $listeners = $this->getListeners($eventName);
@@ -65,7 +75,11 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getListeners(string $eventName = null): array
+=======
     public function getListeners(string $eventName = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $eventName) {
             if (empty($this->listeners[$eventName])) {
@@ -91,7 +105,11 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getListenerPriority(string $eventName, callable|array $listener): ?int
+=======
     public function getListenerPriority(string $eventName, $listener)
+>>>>>>> origin/New-FakeMain
     {
         if (empty($this->listeners[$eventName])) {
             return null;
@@ -120,7 +138,11 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function hasListeners(string $eventName = null): bool
+=======
     public function hasListeners(string $eventName = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $eventName) {
             return !empty($this->listeners[$eventName]);
@@ -138,7 +160,11 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function addListener(string $eventName, callable|array $listener, int $priority = 0)
+=======
     public function addListener(string $eventName, $listener, int $priority = 0)
+>>>>>>> origin/New-FakeMain
     {
         $this->listeners[$eventName][$priority][] = $listener;
         unset($this->sorted[$eventName], $this->optimized[$eventName]);
@@ -147,7 +173,11 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function removeListener(string $eventName, callable|array $listener)
+=======
     public function removeListener(string $eventName, $listener)
+>>>>>>> origin/New-FakeMain
     {
         if (empty($this->listeners[$eventName])) {
             return;

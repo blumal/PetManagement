@@ -18,7 +18,11 @@ use Symfony\Component\Routing\RouteCollection;
  */
 trait HostTrait
 {
+<<<<<<< HEAD
+    final protected function addHost(RouteCollection $routes, string|array $hosts)
+=======
     final protected function addHost(RouteCollection $routes, $hosts)
+>>>>>>> origin/New-FakeMain
     {
         if (!$hosts || !\is_array($hosts)) {
             $routes->setHost($hosts ?: '');

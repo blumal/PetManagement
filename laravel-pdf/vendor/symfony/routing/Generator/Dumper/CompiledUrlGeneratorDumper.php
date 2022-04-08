@@ -91,7 +91,11 @@ class CompiledUrlGeneratorDumper extends GeneratorDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function dump(array $options = []): string
+=======
     public function dump(array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         return <<<EOF
 <?php

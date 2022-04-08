@@ -23,9 +23,15 @@ namespace Symfony\Component\CssSelector\XPath;
  */
 class XPathExpr
 {
+<<<<<<< HEAD
+    private string $path;
+    private string $element;
+    private string $condition;
+=======
     private $path;
     private $element;
     private $condition;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $path = '', string $element = '*', string $condition = '', bool $starPrefix = false)
     {
@@ -46,7 +52,11 @@ class XPathExpr
     /**
      * @return $this
      */
+<<<<<<< HEAD
+    public function addCondition(string $condition): static
+=======
     public function addCondition(string $condition): self
+>>>>>>> origin/New-FakeMain
     {
         $this->condition = $this->condition ? sprintf('(%s) and (%s)', $this->condition, $condition) : $condition;
 
@@ -61,7 +71,11 @@ class XPathExpr
     /**
      * @return $this
      */
+<<<<<<< HEAD
+    public function addNameTest(): static
+=======
     public function addNameTest(): self
+>>>>>>> origin/New-FakeMain
     {
         if ('*' !== $this->element) {
             $this->addCondition('name() = '.Translator::getXpathLiteral($this->element));
@@ -74,7 +88,11 @@ class XPathExpr
     /**
      * @return $this
      */
+<<<<<<< HEAD
+    public function addStarPrefix(): static
+=======
     public function addStarPrefix(): self
+>>>>>>> origin/New-FakeMain
     {
         $this->path .= '*/';
 
@@ -86,7 +104,11 @@ class XPathExpr
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function join(string $combiner, self $expr): static
+=======
     public function join(string $combiner, self $expr): self
+>>>>>>> origin/New-FakeMain
     {
         $path = $this->__toString().$combiner;
 

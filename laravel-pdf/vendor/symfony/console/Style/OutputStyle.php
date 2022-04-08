@@ -38,10 +38,14 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
         $this->output->write(str_repeat(\PHP_EOL, $count));
     }
 
+<<<<<<< HEAD
+    public function createProgressBar(int $max = 0): ProgressBar
+=======
     /**
      * @return ProgressBar
      */
     public function createProgressBar(int $max = 0)
+>>>>>>> origin/New-FakeMain
     {
         return new ProgressBar($this->output, $max);
     }
@@ -49,7 +53,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function write(string|iterable $messages, bool $newline = false, int $type = self::OUTPUT_NORMAL)
+=======
     public function write($messages, bool $newline = false, int $type = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         $this->output->write($messages, $newline, $type);
     }
@@ -57,7 +65,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function writeln(string|iterable $messages, int $type = self::OUTPUT_NORMAL)
+=======
     public function writeln($messages, int $type = self::OUTPUT_NORMAL)
+>>>>>>> origin/New-FakeMain
     {
         $this->output->writeln($messages, $type);
     }
@@ -73,7 +85,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getVerbosity(): int
+=======
     public function getVerbosity()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->getVerbosity();
     }
@@ -89,7 +105,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function isDecorated(): bool
+=======
     public function isDecorated()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isDecorated();
     }
@@ -105,7 +125,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getFormatter(): OutputFormatterInterface
+=======
     public function getFormatter()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->getFormatter();
     }
@@ -113,7 +137,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function isQuiet(): bool
+=======
     public function isQuiet()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isQuiet();
     }
@@ -121,7 +149,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function isVerbose(): bool
+=======
     public function isVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isVerbose();
     }
@@ -129,7 +161,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function isVeryVerbose(): bool
+=======
     public function isVeryVerbose()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isVeryVerbose();
     }
@@ -137,7 +173,11 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function isDebug(): bool
+=======
     public function isDebug()
+>>>>>>> origin/New-FakeMain
     {
         return $this->output->isDebug();
     }

@@ -17,6 +17,12 @@ namespace Symfony\Component\HttpKernel\Exception;
 class UnauthorizedHttpException extends HttpException
 {
     /**
+<<<<<<< HEAD
+     * @param string $challenge WWW-Authenticate challenge string
+     */
+    public function __construct(string $challenge, string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
+    {
+=======
      * @param string          $challenge WWW-Authenticate challenge string
      * @param string|null     $message   The internal exception message
      * @param \Throwable|null $previous  The previous exception
@@ -35,6 +41,7 @@ class UnauthorizedHttpException extends HttpException
             $code = 0;
         }
 
+>>>>>>> origin/New-FakeMain
         $headers['WWW-Authenticate'] = $challenge;
 
         parent::__construct(401, $message, $previous, $headers, $code);

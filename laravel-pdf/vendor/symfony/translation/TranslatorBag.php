@@ -17,7 +17,11 @@ use Symfony\Component\Translation\Catalogue\TargetOperation;
 final class TranslatorBag implements TranslatorBagInterface
 {
     /** @var MessageCatalogue[] */
+<<<<<<< HEAD
+    private array $catalogues = [];
+=======
     private $catalogues = [];
+>>>>>>> origin/New-FakeMain
 
     public function addCatalogue(MessageCatalogue $catalogue): void
     {

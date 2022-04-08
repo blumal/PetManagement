@@ -112,7 +112,11 @@ class View implements ArrayAccess, Htmlable, ViewContract
      */
     protected function renderContents()
     {
+<<<<<<< HEAD
+        // We will keep track of the number of views being rendered so we can flush
+=======
         // We will keep track of the amount of views being rendered so we can flush
+>>>>>>> origin/New-FakeMain
         // the section after the complete rendering operation is done. This will
         // clear out the sections for any separate views that may be rendered.
         $this->factory->incrementRender();
@@ -122,7 +126,11 @@ class View implements ArrayAccess, Htmlable, ViewContract
         $contents = $this->getContents();
 
         // Once we've finished rendering the view, we'll decrement the render count
+<<<<<<< HEAD
+        // so that each section gets flushed out next time a view is created and
+=======
         // so that each sections get flushed out next time a view is created and
+>>>>>>> origin/New-FakeMain
         // no old sections are staying around in the memory of an environment.
         $this->factory->decrementRender();
 
@@ -306,8 +314,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($key): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+>>>>>>> origin/New-FakeMain
     {
         return array_key_exists($key, $this->data);
     }
@@ -318,8 +330,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  string  $key
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($key): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->data[$key];
     }
@@ -331,8 +347,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetSet($key, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->with($key, $value);
     }
@@ -343,8 +363,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetUnset($key): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->data[$key]);
     }
@@ -409,7 +433,11 @@ class View implements ArrayAccess, Htmlable, ViewContract
             return $this->macroCall($method, $parameters);
         }
 
+<<<<<<< HEAD
+        if (! str_starts_with($method, 'with')) {
+=======
         if (! Str::startsWith($method, 'with')) {
+>>>>>>> origin/New-FakeMain
             throw new BadMethodCallException(sprintf(
                 'Method %s::%s does not exist.', static::class, $method
             ));

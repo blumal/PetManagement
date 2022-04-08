@@ -20,6 +20,11 @@ class TooManyRequestsHttpException extends HttpException
 {
     /**
      * @param int|string|null $retryAfter The number of seconds or HTTP-date after which the request may be retried
+<<<<<<< HEAD
+     */
+    public function __construct(int|string $retryAfter = null, string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
+    {
+=======
      * @param string|null     $message    The internal exception message
      * @param \Throwable|null $previous   The previous exception
      * @param int|null        $code       The internal exception code
@@ -37,6 +42,7 @@ class TooManyRequestsHttpException extends HttpException
             $code = 0;
         }
 
+>>>>>>> origin/New-FakeMain
         if ($retryAfter) {
             $headers['Retry-After'] = $retryAfter;
         }

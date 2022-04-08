@@ -8,6 +8,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+<<<<<<< HEAD
+use Laravel\SerializableClosure\SerializableClosure;
+=======
+>>>>>>> origin/New-FakeMain
 use ReflectionFunction;
 
 class CallQueuedClosure implements ShouldQueue
@@ -54,7 +58,11 @@ class CallQueuedClosure implements ShouldQueue
      */
     public static function create(Closure $job)
     {
+<<<<<<< HEAD
+        return new self(new SerializableClosure($job));
+=======
         return new self(SerializableClosureFactory::make($job));
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -77,7 +85,11 @@ class CallQueuedClosure implements ShouldQueue
     public function onFailure($callback)
     {
         $this->failureCallbacks[] = $callback instanceof Closure
+<<<<<<< HEAD
+                        ? new SerializableClosure($callback)
+=======
                         ? SerializableClosureFactory::make($callback)
+>>>>>>> origin/New-FakeMain
                         : $callback;
 
         return $this;

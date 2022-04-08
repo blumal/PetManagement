@@ -6,9 +6,15 @@ use Closure;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+<<<<<<< HEAD
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
+use Illuminate\Contracts\Foundation\ExceptionRenderer;
+=======
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\MultipleRecordsFoundException;
@@ -17,6 +23,10 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+<<<<<<< HEAD
+use Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Routing\Router;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Arr;
@@ -37,8 +47,11 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+<<<<<<< HEAD
+=======
 use Whoops\Handler\HandlerInterface;
 use Whoops\Run as Whoops;
+>>>>>>> origin/New-FakeMain
 
 class Handler implements ExceptionHandlerContract
 {
@@ -87,6 +100,10 @@ class Handler implements ExceptionHandlerContract
     protected $internalDontReport = [
         AuthenticationException::class,
         AuthorizationException::class,
+<<<<<<< HEAD
+        BackedEnumCaseNotFoundException::class,
+=======
+>>>>>>> origin/New-FakeMain
         HttpException::class,
         HttpResponseException::class,
         ModelNotFoundException::class,
@@ -201,7 +218,11 @@ class Handler implements ExceptionHandlerContract
      * @param  string  $class
      * @return $this
      */
+<<<<<<< HEAD
+    public function ignore(string $class)
+=======
     protected function ignore(string $class)
+>>>>>>> origin/New-FakeMain
     {
         $this->dontReport[] = $class;
 
@@ -224,6 +245,16 @@ class Handler implements ExceptionHandlerContract
             return;
         }
 
+<<<<<<< HEAD
+        if (Reflector::isCallable($reportCallable = [$e, 'report']) &&
+            $this->container->call($reportCallable) !== false) {
+            return;
+        }
+
+        foreach ($this->reportCallbacks as $reportCallback) {
+            if ($reportCallback->handles($e) && $reportCallback($e) === false) {
+                return;
+=======
         if (Reflector::isCallable($reportCallable = [$e, 'report'])) {
             if ($this->container->call($reportCallable) !== false) {
                 return;
@@ -235,6 +266,7 @@ class Handler implements ExceptionHandlerContract
                 if ($reportCallback($e) === false) {
                     return;
                 }
+>>>>>>> origin/New-FakeMain
             }
         }
 
@@ -325,12 +357,85 @@ class Handler implements ExceptionHandlerContract
     {
         if (method_exists($e, 'render') && $response = $e->render($request)) {
             return Router::toResponse($request, $response);
+<<<<<<< HEAD
+        }
+
+        if ($e instanceof Responsable) {
+=======
         } elseif ($e instanceof Responsable) {
+>>>>>>> origin/New-FakeMain
             return $e->toResponse($request);
         }
 
         $e = $this->prepareException($this->mapException($e));
 
+<<<<<<< HEAD
+        if ($response = $this->renderViaCallbacks($request, $e)) {
+            return $response;
+        }
+
+        return match (true) {
+            $e instanceof HttpResponseException => $e->getResponse(),
+            $e instanceof AuthenticationException => $this->unauthenticated($request, $e),
+            $e instanceof ValidationException => $this->convertValidationExceptionToResponse($e, $request),
+            default => $this->renderExceptionResponse($request, $e),
+        };
+    }
+
+    /**
+     * Prepare exception for rendering.
+     *
+     * @param  \Throwable  $e
+     * @return \Throwable
+     */
+    protected function prepareException(Throwable $e)
+    {
+        return match (true) {
+            $e instanceof BackedEnumCaseNotFoundException => new NotFoundHttpException($e->getMessage(), $e),
+            $e instanceof ModelNotFoundException => new NotFoundHttpException($e->getMessage(), $e),
+            $e instanceof AuthorizationException => new AccessDeniedHttpException($e->getMessage(), $e),
+            $e instanceof TokenMismatchException => new HttpException(419, $e->getMessage(), $e),
+            $e instanceof SuspiciousOperationException => new NotFoundHttpException('Bad hostname provided.', $e),
+            $e instanceof RecordsNotFoundException => new NotFoundHttpException('Not found.', $e),
+            default => $e,
+        };
+    }
+
+    /**
+     * Map the exception using a registered mapper if possible.
+     *
+     * @param  \Throwable  $e
+     * @return \Throwable
+     */
+    protected function mapException(Throwable $e)
+    {
+        if (method_exists($e, 'getInnerException') &&
+            ($inner = $e->getInnerException()) instanceof Throwable) {
+            return $inner;
+        }
+
+        foreach ($this->exceptionMap as $class => $mapper) {
+            if (is_a($e, $class)) {
+                return $mapper($e);
+            }
+        }
+
+        return $e;
+    }
+
+    /**
+     * Try to render a response from request and exception via render callbacks.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $e
+     * @return mixed
+     *
+     * @throws \ReflectionException
+     */
+    protected function renderViaCallbacks($request, Throwable $e)
+    {
+=======
+>>>>>>> origin/New-FakeMain
         foreach ($this->renderCallbacks as $renderCallback) {
             foreach ($this->firstClosureParameterTypes($renderCallback) as $type) {
                 if (is_a($e, $type)) {
@@ -342,6 +447,19 @@ class Handler implements ExceptionHandlerContract
                 }
             }
         }
+<<<<<<< HEAD
+    }
+
+    /**
+     * Render a default exception response if any.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function renderExceptionResponse($request, Throwable $e)
+    {
+=======
 
         if ($e instanceof HttpResponseException) {
             return $e->getResponse();
@@ -351,12 +469,15 @@ class Handler implements ExceptionHandlerContract
             return $this->convertValidationExceptionToResponse($e, $request);
         }
 
+>>>>>>> origin/New-FakeMain
         return $this->shouldReturnJson($request, $e)
                     ? $this->prepareJsonResponse($request, $e)
                     : $this->prepareResponse($request, $e);
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Map the exception using a registered mapper if possible.
      *
      * @param  \Throwable  $e
@@ -397,6 +518,7 @@ class Handler implements ExceptionHandlerContract
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Convert an authentication exception into a response.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -515,20 +637,36 @@ class Handler implements ExceptionHandlerContract
     protected function renderExceptionContent(Throwable $e)
     {
         try {
+<<<<<<< HEAD
+            return config('app.debug') && app()->has(ExceptionRenderer::class)
+                        ? $this->renderExceptionWithCustomRenderer($e)
+                        : $this->renderExceptionWithSymfony($e, config('app.debug'));
+        } catch (Throwable $e) {
+=======
             return config('app.debug') && class_exists(Whoops::class)
                         ? $this->renderExceptionWithWhoops($e)
                         : $this->renderExceptionWithSymfony($e, config('app.debug'));
         } catch (Exception $e) {
+>>>>>>> origin/New-FakeMain
             return $this->renderExceptionWithSymfony($e, config('app.debug'));
         }
     }
 
     /**
+<<<<<<< HEAD
+     * Render an exception to a string using the registered `ExceptionRenderer`.
+=======
      * Render an exception to a string using "Whoops".
+>>>>>>> origin/New-FakeMain
      *
      * @param  \Throwable  $e
      * @return string
      */
+<<<<<<< HEAD
+    protected function renderExceptionWithCustomRenderer(Throwable $e)
+    {
+        return app(ExceptionRenderer::class)->render($e);
+=======
     protected function renderExceptionWithWhoops(Throwable $e)
     {
         return tap(new Whoops, function ($whoops) {
@@ -552,6 +690,7 @@ class Handler implements ExceptionHandlerContract
         } catch (BindingResolutionException $e) {
             return (new WhoopsHandler)->forDebug();
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -578,7 +717,11 @@ class Handler implements ExceptionHandlerContract
     {
         $this->registerErrorViewPaths();
 
+<<<<<<< HEAD
+        if ($view = $this->getHttpExceptionView($e)) {
+=======
         if (view()->exists($view = $this->getHttpExceptionView($e))) {
+>>>>>>> origin/New-FakeMain
             return response()->view($view, [
                 'errors' => new ViewErrorBag,
                 'exception' => $e,
@@ -602,11 +745,31 @@ class Handler implements ExceptionHandlerContract
      * Get the view used to render HTTP exceptions.
      *
      * @param  \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface  $e
+<<<<<<< HEAD
+     * @return string|null
+     */
+    protected function getHttpExceptionView(HttpExceptionInterface $e)
+    {
+        $view = 'errors::'.$e->getStatusCode();
+
+        if (view()->exists($view)) {
+            return $view;
+        }
+
+        $view = substr($view, 0, -2).'xx';
+
+        if (view()->exists($view)) {
+            return $view;
+        }
+
+        return null;
+=======
      * @return string
      */
     protected function getHttpExceptionView(HttpExceptionInterface $e)
     {
         return "errors::{$e->getStatusCode()}";
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -675,6 +838,11 @@ class Handler implements ExceptionHandlerContract
      * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @param  \Throwable  $e
      * @return void
+<<<<<<< HEAD
+     *
+     * @internal This method is not meant to be used or overwritten outside the framework.
+=======
+>>>>>>> origin/New-FakeMain
      */
     public function renderForConsole($output, Throwable $e)
     {

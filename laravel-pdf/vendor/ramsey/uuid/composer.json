@@ -1,12 +1,26 @@
 {
     "name": "ramsey/uuid",
+<<<<<<< HEAD
+    "description": "A PHP library for generating and working with universally unique identifiers (UUIDs).",
+    "license": "MIT",
+    "type": "library",
+=======
     "type": "library",
     "description": "A PHP library for generating and working with universally unique identifiers (UUIDs).",
+>>>>>>> origin/New-FakeMain
     "keywords": [
         "uuid",
         "identifier",
         "guid"
     ],
+<<<<<<< HEAD
+    "require": {
+        "php": "^8.0",
+        "ext-ctype": "*",
+        "ext-json": "*",
+        "brick/math": "^0.8 || ^0.9",
+        "ramsey/collection": "^1.0"
+=======
     "license": "MIT",
     "require": {
         "php": "^7.2 || ^8.0",
@@ -18,6 +32,7 @@
     },
     "replace": {
         "rhumsaa/uuid": "self.version"
+>>>>>>> origin/New-FakeMain
     },
     "require-dev": {
         "captainhook/captainhook": "^5.10",
@@ -41,6 +56,12 @@
         "squizlabs/php_codesniffer": "^3.5",
         "vimeo/psalm": "^4.9"
     },
+<<<<<<< HEAD
+    "replace": {
+        "rhumsaa/uuid": "self.version"
+    },
+=======
+>>>>>>> origin/New-FakeMain
     "suggest": {
         "ext-bcmath": "Enables faster math with arbitrary-precision integers using BCMath.",
         "ext-ctype": "Enables faster processing of character classification using ctype functions.",
@@ -49,6 +70,10 @@
         "paragonie/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
         "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
     },
+<<<<<<< HEAD
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+=======
     "config": {
         "sort-packages": true
     },
@@ -60,6 +85,7 @@
             "force-install": true
         }
     },
+>>>>>>> origin/New-FakeMain
     "autoload": {
         "psr-4": {
             "Ramsey\\Uuid\\": "src/"
@@ -75,8 +101,25 @@
             "Ramsey\\Uuid\\Test\\": "tests/"
         }
     },
+<<<<<<< HEAD
+    "config": {
+        "allow-plugins": {
+            "captainhook/plugin-composer": true,
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "captainhook": {
+            "force-install": true
+        }
+    },
+=======
     "minimum-stability": "dev",
     "prefer-stable": true,
+>>>>>>> origin/New-FakeMain
     "scripts": {
         "analyze": [
             "@phpstan",

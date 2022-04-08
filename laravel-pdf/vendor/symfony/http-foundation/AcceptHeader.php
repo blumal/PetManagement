@@ -27,12 +27,18 @@ class AcceptHeader
     /**
      * @var AcceptHeaderItem[]
      */
+<<<<<<< HEAD
+    private array $items = [];
+
+    private bool $sorted = true;
+=======
     private $items = [];
 
     /**
      * @var bool
      */
     private $sorted = true;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param AcceptHeaderItem[] $items
@@ -46,10 +52,15 @@ class AcceptHeader
 
     /**
      * Builds an AcceptHeader instance from a string.
+<<<<<<< HEAD
+     */
+    public static function fromString(?string $headerValue): self
+=======
      *
      * @return self
      */
     public static function fromString(?string $headerValue)
+>>>>>>> origin/New-FakeMain
     {
         $index = 0;
 
@@ -68,30 +79,45 @@ class AcceptHeader
 
     /**
      * Returns header value's string representation.
+<<<<<<< HEAD
+     */
+    public function __toString(): string
+=======
      *
      * @return string
      */
     public function __toString()
+>>>>>>> origin/New-FakeMain
     {
         return implode(',', $this->items);
     }
 
     /**
      * Tests if header has given value.
+<<<<<<< HEAD
+     */
+    public function has(string $value): bool
+=======
      *
      * @return bool
      */
     public function has(string $value)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->items[$value]);
     }
 
     /**
      * Returns given value's item, if exists.
+<<<<<<< HEAD
+     */
+    public function get(string $value): ?AcceptHeaderItem
+=======
      *
      * @return AcceptHeaderItem|null
      */
     public function get(string $value)
+>>>>>>> origin/New-FakeMain
     {
         return $this->items[$value] ?? $this->items[explode('/', $value)[0].'/*'] ?? $this->items['*/*'] ?? $this->items['*'] ?? null;
     }
@@ -101,7 +127,11 @@ class AcceptHeader
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function add(AcceptHeaderItem $item): static
+=======
     public function add(AcceptHeaderItem $item)
+>>>>>>> origin/New-FakeMain
     {
         $this->items[$item->getValue()] = $item;
         $this->sorted = false;
@@ -114,7 +144,11 @@ class AcceptHeader
      *
      * @return AcceptHeaderItem[]
      */
+<<<<<<< HEAD
+    public function all(): array
+=======
     public function all()
+>>>>>>> origin/New-FakeMain
     {
         $this->sort();
 
@@ -123,10 +157,15 @@ class AcceptHeader
 
     /**
      * Filters items on their value using given regex.
+<<<<<<< HEAD
+     */
+    public function filter(string $pattern): self
+=======
      *
      * @return self
      */
     public function filter(string $pattern)
+>>>>>>> origin/New-FakeMain
     {
         return new self(array_filter($this->items, function (AcceptHeaderItem $item) use ($pattern) {
             return preg_match($pattern, $item->getValue());
@@ -135,10 +174,15 @@ class AcceptHeader
 
     /**
      * Returns first item.
+<<<<<<< HEAD
+     */
+    public function first(): ?AcceptHeaderItem
+=======
      *
      * @return AcceptHeaderItem|null
      */
     public function first()
+>>>>>>> origin/New-FakeMain
     {
         $this->sort();
 

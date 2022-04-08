@@ -14,6 +14,20 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.0",
+        "facade/ignition-contracts": "^1.0.2",
+        "filp/whoops": "^2.14.5",
+        "symfony/console": "^6.0.2"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.4.1",
+        "laravel/framework": "^9.7",
+        "nunomaduro/larastan": "^1.0.2",
+        "nunomaduro/mock-final-classes": "^1.1.0",
+        "orchestra/testbench": "^7.3.0",
+        "phpunit/phpunit": "^9.5.11"
+=======
         "php": "^7.3 || ^8.0",
         "facade/ignition-contracts": "^1.0",
         "filp/whoops": "^2.14.3",
@@ -29,6 +43,7 @@
         "orchestra/testbench": "^6.0",
         "phpstan/phpstan": "^0.12.64",
         "phpunit/phpunit": "^9.5.0"
+>>>>>>> origin/New-FakeMain
     },
     "autoload-dev": {
         "psr-4": {
@@ -50,6 +65,12 @@
         "sort-packages": true
     },
     "extra": {
+<<<<<<< HEAD
+        "branch-alias": {
+            "dev-develop": "6.x-dev"
+        },
+=======
+>>>>>>> origin/New-FakeMain
         "laravel": {
             "providers": [
                 "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"

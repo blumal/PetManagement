@@ -68,13 +68,21 @@ class MigrationCreator
         $this->files->ensureDirectoryExists(dirname($path));
 
         $this->files->put(
+<<<<<<< HEAD
+            $path, $this->populateStub($stub, $table)
+=======
             $path, $this->populateStub($name, $stub, $table)
+>>>>>>> origin/New-FakeMain
         );
 
         // Next, we will fire any hooks that are supposed to fire after a migration is
         // created. Once that is done we'll be ready to return the full path to the
         // migration file so it can be used however it's needed by the developer.
+<<<<<<< HEAD
+        $this->firePostCreateHooks($table, $path);
+=======
         $this->firePostCreateHooks($table);
+>>>>>>> origin/New-FakeMain
 
         return $path;
     }
@@ -132,11 +140,18 @@ class MigrationCreator
     /**
      * Populate the place-holders in the migration stub.
      *
+<<<<<<< HEAD
+=======
      * @param  string  $name
+>>>>>>> origin/New-FakeMain
      * @param  string  $stub
      * @param  string|null  $table
      * @return string
      */
+<<<<<<< HEAD
+    protected function populateStub($stub, $table)
+    {
+=======
     protected function populateStub($name, $stub, $table)
     {
         $stub = str_replace(
@@ -144,6 +159,7 @@ class MigrationCreator
             $this->getClassName($name), $stub
         );
 
+>>>>>>> origin/New-FakeMain
         // Here we will replace the table place-holders with the table specified by
         // the developer, which is useful for quickly creating a tables creation
         // or update migration from the console instead of typing it manually.
@@ -184,12 +200,22 @@ class MigrationCreator
      * Fire the registered post create hooks.
      *
      * @param  string|null  $table
+<<<<<<< HEAD
+     * @param  string  $path
+     * @return void
+     */
+    protected function firePostCreateHooks($table, $path)
+    {
+        foreach ($this->postCreate as $callback) {
+            $callback($table, $path);
+=======
      * @return void
      */
     protected function firePostCreateHooks($table)
     {
         foreach ($this->postCreate as $callback) {
             $callback($table);
+>>>>>>> origin/New-FakeMain
         }
     }
 

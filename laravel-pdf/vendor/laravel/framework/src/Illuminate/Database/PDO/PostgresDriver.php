@@ -8,4 +8,15 @@ use Illuminate\Database\PDO\Concerns\ConnectsToDatabase;
 class PostgresDriver extends AbstractPostgreSQLDriver
 {
     use ConnectsToDatabase;
+<<<<<<< HEAD
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'pdo_pgsql';
+    }
+=======
+>>>>>>> origin/New-FakeMain
 }

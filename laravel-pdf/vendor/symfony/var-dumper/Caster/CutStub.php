@@ -20,7 +20,11 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class CutStub extends Stub
 {
+<<<<<<< HEAD
+    public function __construct(mixed $value)
+=======
     public function __construct($value)
+>>>>>>> origin/New-FakeMain
     {
         $this->value = $value;
 

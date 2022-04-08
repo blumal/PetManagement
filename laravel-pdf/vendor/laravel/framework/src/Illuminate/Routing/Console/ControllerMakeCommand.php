@@ -19,6 +19,20 @@ class ControllerMakeCommand extends GeneratorCommand
     protected $name = 'make:controller';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:controller';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -59,7 +73,11 @@ class ControllerMakeCommand extends GeneratorCommand
             $stub = str_replace('.stub', '.api.stub', $stub);
         }
 
+<<<<<<< HEAD
+        $stub ??= '/stubs/controller.plain.stub';
+=======
         $stub = $stub ?? '/stubs/controller.plain.stub';
+>>>>>>> origin/New-FakeMain
 
         return $this->resolveStubPath($stub);
     }
@@ -126,10 +144,16 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         $parentModelClass = $this->parseModel($this->option('parent'));
 
+<<<<<<< HEAD
+        if (! class_exists($parentModelClass) &&
+            $this->confirm("A {$parentModelClass} model does not exist. Do you want to generate it?", true)) {
+            $this->call('make:model', ['name' => $parentModelClass]);
+=======
         if (! class_exists($parentModelClass)) {
             if ($this->confirm("A {$parentModelClass} model does not exist. Do you want to generate it?", true)) {
                 $this->call('make:model', ['name' => $parentModelClass]);
             }
+>>>>>>> origin/New-FakeMain
         }
 
         return [
@@ -155,10 +179,15 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         $modelClass = $this->parseModel($this->option('model'));
 
+<<<<<<< HEAD
+        if (! class_exists($modelClass) && $this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
+            $this->call('make:model', ['name' => $modelClass]);
+=======
         if (! class_exists($modelClass)) {
             if ($this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
                 $this->call('make:model', ['name' => $modelClass]);
             }
+>>>>>>> origin/New-FakeMain
         }
 
         $replace = $this->buildFormRequestReplacements($replace, $modelClass);
@@ -237,7 +266,11 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * Generate the form requests for the given model and classes.
      *
+<<<<<<< HEAD
+     * @param  string  $modelClass
+=======
      * @param  string  $modelName
+>>>>>>> origin/New-FakeMain
      * @param  string  $storeRequestClass
      * @param  string  $updateRequestClass
      * @return array

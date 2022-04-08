@@ -156,7 +156,10 @@ abstract class AbstractCloner implements ClonerInterface
         'mysqli_driver' => ['Symfony\Component\VarDumper\Caster\MysqliCaster', 'castMysqliDriver'],
 
         'CurlHandle' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castCurl'],
+<<<<<<< HEAD
+=======
         ':curl' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castCurl'],
+>>>>>>> origin/New-FakeMain
 
         ':dba' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castDba'],
         ':dba persistent' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castDba'],
@@ -201,15 +204,24 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * @var array<string, list<callable>>
      */
+<<<<<<< HEAD
+    private array $casters = [];
+=======
     private $casters = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var callable|null
      */
     private $prevErrorHandler;
 
+<<<<<<< HEAD
+    private array $classInfo = [];
+    private int $filter = 0;
+=======
     private $classInfo = [];
     private $filter = 0;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param callable[]|null $casters A map of casters
@@ -269,12 +281,18 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Clones a PHP variable.
      *
+<<<<<<< HEAD
+     * @param int $filter A bit field of Caster::EXCLUDE_* constants
+     */
+    public function cloneVar(mixed $var, int $filter = 0): Data
+=======
      * @param mixed $var    Any PHP variable
      * @param int   $filter A bit field of Caster::EXCLUDE_* constants
      *
      * @return Data
      */
     public function cloneVar($var, int $filter = 0)
+>>>>>>> origin/New-FakeMain
     {
         $this->prevErrorHandler = set_error_handler(function ($type, $msg, $file, $line, $context = []) {
             if (\E_RECOVERABLE_ERROR === $type || \E_USER_ERROR === $type) {
@@ -306,26 +324,40 @@ abstract class AbstractCloner implements ClonerInterface
 
     /**
      * Effectively clones the PHP variable.
+<<<<<<< HEAD
+     */
+    abstract protected function doClone(mixed $var): array;
+=======
      *
      * @param mixed $var Any PHP variable
      *
      * @return array
      */
     abstract protected function doClone($var);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Casts an object to an array representation.
      *
      * @param bool $isNested True if the object is nested in the dumped structure
+<<<<<<< HEAD
+     */
+    protected function castObject(Stub $stub, bool $isNested): array
+=======
      *
      * @return array
      */
     protected function castObject(Stub $stub, bool $isNested)
+>>>>>>> origin/New-FakeMain
     {
         $obj = $stub->value;
         $class = $stub->class;
 
+<<<<<<< HEAD
+        if (str_contains($class, "@anonymous\0")) {
+=======
         if (\PHP_VERSION_ID < 80000 ? "\0" === ($class[15] ?? null) : str_contains($class, "@anonymous\0")) {
+>>>>>>> origin/New-FakeMain
             $stub->class = get_debug_type($obj);
         }
         if (isset($this->classInfo[$class])) {
@@ -376,10 +408,15 @@ abstract class AbstractCloner implements ClonerInterface
      * Casts a resource to an array representation.
      *
      * @param bool $isNested True if the object is nested in the dumped structure
+<<<<<<< HEAD
+     */
+    protected function castResource(Stub $stub, bool $isNested): array
+=======
      *
      * @return array
      */
     protected function castResource(Stub $stub, bool $isNested)
+>>>>>>> origin/New-FakeMain
     {
         $a = [];
         $res = $stub->value;

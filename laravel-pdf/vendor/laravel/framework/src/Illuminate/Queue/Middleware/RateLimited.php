@@ -56,7 +56,11 @@ class RateLimited
             return $next($job);
         }
 
+<<<<<<< HEAD
+        $limiterResponse = $limiter($job);
+=======
         $limiterResponse = call_user_func($limiter, $job);
+>>>>>>> origin/New-FakeMain
 
         if ($limiterResponse instanceof Unlimited) {
             return $next($job);

@@ -14,6 +14,18 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "illuminate/broadcasting": "^9.0",
+        "illuminate/bus": "^9.0",
+        "illuminate/collections": "^9.0",
+        "illuminate/container": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "illuminate/filesystem": "^9.0",
+        "illuminate/mail": "^9.0",
+        "illuminate/queue": "^9.0",
+        "illuminate/support": "^9.0"
+=======
         "php": "^7.3|^8.0",
         "illuminate/broadcasting": "^8.0",
         "illuminate/bus": "^8.0",
@@ -24,6 +36,7 @@
         "illuminate/mail": "^8.0",
         "illuminate/queue": "^8.0",
         "illuminate/support": "^8.0"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -32,11 +45,19 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+        }
+    },
+    "suggest": {
+        "illuminate/database": "Required to use the database transport (^9.0)."
+=======
             "dev-master": "8.x-dev"
         }
     },
     "suggest": {
         "illuminate/database": "Required to use the database transport (^8.0)."
+>>>>>>> origin/New-FakeMain
     },
     "config": {
         "sort-packages": true

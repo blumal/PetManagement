@@ -3,7 +3,10 @@
 namespace Illuminate\Auth\Passwords;
 
 use Illuminate\Contracts\Auth\PasswordBrokerFactory as FactoryContract;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Str;
+>>>>>>> origin/New-FakeMain
 use InvalidArgumentException;
 
 /**
@@ -84,7 +87,11 @@ class PasswordBrokerManager implements FactoryContract
     {
         $key = $this->app['config']['app.key'];
 
+<<<<<<< HEAD
+        if (str_starts_with($key, 'base64:')) {
+=======
         if (Str::startsWith($key, 'base64:')) {
+>>>>>>> origin/New-FakeMain
             $key = base64_decode(substr($key, 7));
         }
 

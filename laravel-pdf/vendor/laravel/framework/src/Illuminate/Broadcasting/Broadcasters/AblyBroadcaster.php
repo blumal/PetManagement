@@ -3,7 +3,13 @@
 namespace Illuminate\Broadcasting\Broadcasters;
 
 use Ably\AblyRest;
+<<<<<<< HEAD
+use Ably\Exceptions\AblyException;
 use Ably\Models\Message as AblyMessage;
+use Illuminate\Broadcasting\BroadcastException;
+=======
+use Ably\Models\Message as AblyMessage;
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -63,7 +69,11 @@ class AblyBroadcaster extends Broadcaster
      */
     public function validAuthenticationResponse($request, $result)
     {
+<<<<<<< HEAD
+        if (str_starts_with($request->channel_name, 'private')) {
+=======
         if (Str::startsWith($request->channel_name, 'private')) {
+>>>>>>> origin/New-FakeMain
             $signature = $this->generateAblySignature(
                 $request->channel_name, $request->socket_id
             );
@@ -118,12 +128,29 @@ class AblyBroadcaster extends Broadcaster
      * @param  string  $event
      * @param  array  $payload
      * @return void
+<<<<<<< HEAD
+     *
+     * @throws \Illuminate\Broadcasting\BroadcastException
+     */
+    public function broadcast(array $channels, $event, array $payload = [])
+    {
+        try {
+            foreach ($this->formatChannels($channels) as $channel) {
+                $this->ably->channels->get($channel)->publish(
+                    $this->buildAblyMessage($event, $payload)
+                );
+            }
+        } catch (AblyException $e) {
+            throw new BroadcastException(
+                sprintf('Ably error: %s', $e->getMessage())
+=======
      */
     public function broadcast(array $channels, $event, array $payload = [])
     {
         foreach ($this->formatChannels($channels) as $channel) {
             $this->ably->channels->get($channel)->publish(
                 $this->buildAblyMessage($event, $payload)
+>>>>>>> origin/New-FakeMain
             );
         }
     }
@@ -164,7 +191,11 @@ class AblyBroadcaster extends Broadcaster
     public function normalizeChannelName($channel)
     {
         if ($this->isGuardedChannel($channel)) {
+<<<<<<< HEAD
+            return str_starts_with($channel, 'private-')
+=======
             return Str::startsWith($channel, 'private-')
+>>>>>>> origin/New-FakeMain
                         ? Str::replaceFirst('private-', '', $channel)
                         : Str::replaceFirst('presence-', '', $channel);
         }
@@ -184,7 +215,11 @@ class AblyBroadcaster extends Broadcaster
             $channel = (string) $channel;
 
             if (Str::startsWith($channel, ['private-', 'presence-'])) {
+<<<<<<< HEAD
+                return str_starts_with($channel, 'private-')
+=======
                 return Str::startsWith($channel, 'private-')
+>>>>>>> origin/New-FakeMain
                     ? Str::replaceFirst('private-', 'private:', $channel)
                     : Str::replaceFirst('presence-', 'presence:', $channel);
             }

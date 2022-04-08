@@ -14,6 +14,16 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "ext-json": "*",
+        "illuminate/collections": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "illuminate/filesystem": "^9.0",
+        "illuminate/support": "^9.0",
+        "symfony/finder": "^6.0",
+        "symfony/http-foundation": "^6.0"
+=======
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "illuminate/collections": "^8.0",
@@ -22,6 +32,7 @@
         "illuminate/support": "^8.0",
         "symfony/finder": "^5.4",
         "symfony/http-foundation": "^5.4"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -30,11 +41,19 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+        }
+    },
+    "suggest": {
+        "illuminate/console": "Required to use the session:table command (^9.0)."
+=======
             "dev-master": "8.x-dev"
         }
     },
     "suggest": {
         "illuminate/console": "Required to use the session:table command (^8.0)."
+>>>>>>> origin/New-FakeMain
     },
     "config": {
         "sort-packages": true

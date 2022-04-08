@@ -16,6 +16,20 @@ class FactoryMakeCommand extends GeneratorCommand
     protected $name = 'make:factory';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:factory';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -68,11 +82,17 @@ class FactoryMakeCommand extends GeneratorCommand
 
         $model = class_basename($namespaceModel);
 
+<<<<<<< HEAD
+        $namespace = $this->getNamespace(
+            Str::replaceFirst($this->rootNamespace(), 'Database\\Factories\\', $this->qualifyClass($this->getNameInput()))
+        );
+=======
         if (Str::startsWith($namespaceModel, $this->rootNamespace().'Models')) {
             $namespace = Str::beforeLast('Database\\Factories\\'.Str::after($namespaceModel, $this->rootNamespace().'Models\\'), '\\');
         } else {
             $namespace = 'Database\\Factories';
         }
+>>>>>>> origin/New-FakeMain
 
         $replace = [
             '{{ factoryNamespace }}' => $namespace,
@@ -112,7 +132,11 @@ class FactoryMakeCommand extends GeneratorCommand
      */
     protected function guessModelName($name)
     {
+<<<<<<< HEAD
+        if (str_ends_with($name, 'Factory')) {
+=======
         if (Str::endsWith($name, 'Factory')) {
+>>>>>>> origin/New-FakeMain
             $name = substr($name, 0, -7);
         }
 

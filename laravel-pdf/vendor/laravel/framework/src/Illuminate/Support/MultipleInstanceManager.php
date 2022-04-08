@@ -139,7 +139,11 @@ abstract class MultipleInstanceManager
      */
     public function forgetInstance($name = null)
     {
+<<<<<<< HEAD
+        $name ??= $this->getDefaultInstance();
+=======
         $name = $name ?? $this->getDefaultInstance();
+>>>>>>> origin/New-FakeMain
 
         foreach ((array) $name as $instanceName) {
             if (isset($this->instances[$instanceName])) {
@@ -158,7 +162,11 @@ abstract class MultipleInstanceManager
      */
     public function purge($name = null)
     {
+<<<<<<< HEAD
+        $name ??= $this->getDefaultInstance();
+=======
         $name = $name ?? $this->getDefaultInstance();
+>>>>>>> origin/New-FakeMain
 
         unset($this->instances[$name]);
     }

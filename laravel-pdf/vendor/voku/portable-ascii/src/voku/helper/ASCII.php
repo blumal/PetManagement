@@ -5,6 +5,25 @@ declare(strict_types=1);
 namespace voku\helper;
 
 /**
+<<<<<<< HEAD
+ * ## 🇷🇺 Русским гражданам
+ * В Украине сейчас идет война. Силами РФ наносятся удары по гражданской инфраструктуре в [Харькове][1], [Киеве][2], [Чернигове][3], [Сумах][4], [Ирпене][5] и десятках других городов. Гибнут люди - и гражданское население, и военные, в том числе российские призывники, которых бросили воевать. Чтобы лишить собственный народ доступа к информации, правительство РФ запретило называть войну войной, закрыло независимые СМИ и принимает сейчас ряд диктаторских законов. Эти законы призваны заткнуть рот всем, кто против войны. За обычный призыв к миру сейчас можно получить несколько лет тюрьмы.
+ * Не молчите! Молчание - знак вашего согласия с политикой российского правительства.
+ *  **Вы можете сделать выбор НЕ МОЛЧАТЬ.**
+ * ---
+ * ## 🇺🇸 To people of Russia
+ * There is a war in Ukraine right now. The forces of the Russian Federation are attacking civilian infrastructure in [Kharkiv][1], [Kyiv][2], [Chernihiv][3], [Sumy][4], [Irpin][5] and dozens of other cities. People are dying – both civilians and military servicemen, including Russian conscripts who were thrown into the fighting. In order to deprive its own people of access to information, the government of the Russian Federation has forbidden calling a war a war, shut down independent media and is passing a number of dictatorial laws. These laws are meant to silence all those who are against war. You can be jailed for multiple years for simply calling for peace.
+ * Do not be silent! Silence is a sign that you accept the Russian government's policy.
+ * **You can choose NOT TO BE SILENT.**
+ * ---
+ * - [1] https://cloudfront-us-east-2.images.arcpublishing.com/reuters/P7K2MSZDGFMIJPDD7CI2GIROJI.jpg "Kharkiv under attack"
+ * - [2] https://gdb.voanews.com/01bd0000-0aff-0242-fad0-08d9fc92c5b3_cx0_cy5_cw0_w1023_r1_s.jpg "Kyiv under attack"
+ * - [3] https://ichef.bbci.co.uk/news/976/cpsprodpb/163DD/production/_123510119_hi074310744.jpg "Chernihiv under attack"
+ * - [4] https://www.youtube.com/watch?v=8K-bkqKKf2A "Sumy under attack"
+ * - [5] https://cloudfront-us-east-2.images.arcpublishing.com/reuters/K4MTMLEHTRKGFK3GSKAT4GR3NE.jpg "Irpin under attack"
+ *
+=======
+>>>>>>> origin/New-FakeMain
  * @psalm-immutable
  */
 final class ASCII
@@ -272,9 +291,13 @@ final class ASCII
      */
     public static function charsArrayWithMultiLanguageValues(bool $replace_extra_symbols = false): array
     {
+<<<<<<< HEAD
+        /** @var array<string, array<string, array<int, string>>> */
+=======
         /**
          * @var array<string, array>
          */
+>>>>>>> origin/New-FakeMain
         static $CHARS_ARRAY = [];
         $cacheKey = '' . $replace_extra_symbols;
 
@@ -329,6 +352,10 @@ final class ASCII
      * @return array
      *               <p>An array of replacements.</p>
      *
+<<<<<<< HEAD
+     * @phpstan-param ASCII::*_LANGUAGE_CODE $language
+=======
+>>>>>>> origin/New-FakeMain
      * @phpstan-return array{orig: string[], replace: string[]}|array<string, string>
      */
     public static function charsArrayWithOneLanguage(
@@ -339,9 +366,13 @@ final class ASCII
         $language = self::get_language($language);
 
         // init
+<<<<<<< HEAD
+        /** @var array<string, array<string, array<string, string>|array{orig: string[], replace: string[]}>> */
+=======
         /**
          * @var array<string, array>
          */
+>>>>>>> origin/New-FakeMain
         static $CHARS_ARRAY = [];
         $cacheKey = '' . $replace_extra_symbols . '-' . $asOrigReplaceArray;
 
@@ -432,9 +463,13 @@ final class ASCII
         bool $asOrigReplaceArray = true
     ): array {
         // init
+<<<<<<< HEAD
+        /** @var array<string, array<string, string>|array{orig: string[], replace: string[]}> */
+=======
         /**
          * @var array<string,array>
          */
+>>>>>>> origin/New-FakeMain
         static $CHARS_ARRAY = [];
         $cacheKey = '' . $replace_extra_symbols . '-' . $asOrigReplaceArray;
 
@@ -460,6 +495,10 @@ final class ASCII
             }
         }
 
+<<<<<<< HEAD
+        /** @phpstan-ignore-next-line - ... error? */
+=======
+>>>>>>> origin/New-FakeMain
         $CHARS_ARRAY[$cacheKey] = \array_merge([], ...$CHARS_ARRAY[$cacheKey]);
 
         if ($asOrigReplaceArray) {
@@ -578,19 +617,27 @@ final class ASCII
             return '';
         }
 
+<<<<<<< HEAD
+        /** @var array{orig: string[], replace: string[]} */
+=======
         /**
          * @var array{orig: string[], replace: string[]}
          */
+>>>>>>> origin/New-FakeMain
         static $MSWORD_CACHE = ['orig' => [], 'replace' => []];
 
         if (empty($MSWORD_CACHE['orig'])) {
             self::prepareAsciiMaps();
 
+<<<<<<< HEAD
+            /** @var array<string, string> */
+=======
             /**
              * @psalm-suppress PossiblyNullArrayAccess - we use the prepare* methods here, so we don't get NULL here
              *
              * @var array<string, string>
              */
+>>>>>>> origin/New-FakeMain
             $map = self::$ASCII_MAPS[self::EXTRA_MSWORD_CHARS_LANGUAGE_CODE] ?? [];
 
             $MSWORD_CACHE = [
@@ -630,9 +677,13 @@ final class ASCII
             return '';
         }
 
+<<<<<<< HEAD
+        /** @var array<int,array<string,string>> */
+=======
         /**
          * @var array<int,array<string,string>>
          */
+>>>>>>> origin/New-FakeMain
         static $WHITESPACE_CACHE = [];
         $cacheKey = (int) $keepNonBreakingSpace;
 
@@ -665,6 +716,13 @@ final class ASCII
                 unset($WHITESPACE_CACHE[$cacheKey]["\xc2\xa0"]);
             }
 
+<<<<<<< HEAD
+            $WHITESPACE_CACHE[$cacheKey] = array_keys($WHITESPACE_CACHE[$cacheKey]);
+        }
+
+        if (!$keepBidiUnicodeControls) {
+            /** @var array<int,string>|null */
+=======
             $WHITESPACE_CACHE[$cacheKey] = \array_keys($WHITESPACE_CACHE[$cacheKey]);
         }
 
@@ -672,6 +730,7 @@ final class ASCII
             /**
              * @var array<int,string>|null
              */
+>>>>>>> origin/New-FakeMain
             static $BIDI_UNICODE_CONTROLS_CACHE = null;
 
             if ($BIDI_UNICODE_CONTROLS_CACHE === null) {
@@ -759,6 +818,8 @@ final class ASCII
     }
 
     /**
+<<<<<<< HEAD
+=======
      * WARNING: This method will return broken characters and is only for special cases.
      *
      * Convert a UTF-8 encoded string to a single-byte string suitable for
@@ -798,6 +859,7 @@ final class ASCII
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Returns an ASCII version of the string. A set of non-ASCII characters are
      * replaced with their closest ASCII counterparts, and the rest are removed
      * by default. The language or locale of the source string can be supplied
@@ -826,6 +888,11 @@ final class ASCII
      *
      * @return string
      *                <p>A string that contains only ASCII characters.</p>
+<<<<<<< HEAD
+     *
+     * @phpstan-param ASCII::*_LANGUAGE_CODE $language
+=======
+>>>>>>> origin/New-FakeMain
      */
     public static function to_ascii(
         string $str,
@@ -839,13 +906,21 @@ final class ASCII
             return '';
         }
 
+<<<<<<< HEAD
+        /** @phpstan-var ASCII::*_LANGUAGE_CODE - hack for phpstan */
+=======
+>>>>>>> origin/New-FakeMain
         $language = self::get_language($language);
 
         static $EXTRA_SYMBOLS_CACHE = null;
 
+<<<<<<< HEAD
+        /** @var array<string,array<string,string>> */
+=======
         /**
          * @var array<string,array<string,string>>
          */
+>>>>>>> origin/New-FakeMain
         static $REPLACE_HELPER_CACHE = [];
         $cacheKey = $language . '-' . $replace_extra_symbols;
 
@@ -1019,7 +1094,10 @@ final class ASCII
         }
 
         if ($use_transliterate) {
+<<<<<<< HEAD
+=======
             /** @noinspection ArgumentEqualsDefaultValueInspection */
+>>>>>>> origin/New-FakeMain
             $str = self::to_transliterate($str, null, false);
         }
 
@@ -1061,9 +1139,15 @@ final class ASCII
 
         $str = (string) \preg_replace(
             [
+<<<<<<< HEAD
+                '/[^' . $fallback_char_escaped . '.\\-a-zA-Z\d\\s]/', // 1) remove un-needed chars
+                '/\s+/u',                                             // 2) convert spaces to $fallback_char
+                '/[' . $fallback_char_escaped . ']+/u',               // 3) remove double $fallback_char's
+=======
                 '/[^' . $fallback_char_escaped . '.\\-a-zA-Z0-9\\s]/', // 1) remove un-needed chars
                 '/[\\s]+/u',                                           // 2) convert spaces to $fallback_char
                 '/[' . $fallback_char_escaped . ']+/u',                // 3) remove double $fallback_char's
+>>>>>>> origin/New-FakeMain
             ],
             [
                 '',
@@ -1098,6 +1182,11 @@ final class ASCII
      *
      * @return string
      *                <p>A string that has been converted to an URL slug.</p>
+<<<<<<< HEAD
+     *
+     * @phpstan-param ASCII::*_LANGUAGE_CODE $language
+=======
+>>>>>>> origin/New-FakeMain
      */
     public static function to_slugify(
         string $str,
@@ -1178,6 +1267,15 @@ final class ASCII
         $unknown = '?',
         bool $strict = false
     ): string {
+<<<<<<< HEAD
+        /** @var array<int,string>|null */
+        static $UTF8_TO_TRANSLIT = null;
+
+        /** null|\Transliterator */
+        static $TRANSLITERATOR = null;
+
+        /** @var bool|null */
+=======
         /**
          * @var array<int,string>|null
          */
@@ -1191,6 +1289,7 @@ final class ASCII
         /**
          * @var bool|null
          */
+>>>>>>> origin/New-FakeMain
         static $SUPPORT_INTL = null;
 
         if ($str === '') {
@@ -1225,9 +1324,13 @@ final class ASCII
         ) {
             if (!isset($TRANSLITERATOR)) {
                 // INFO: see "*-Latin" rules via "transliterator_list_ids()"
+<<<<<<< HEAD
+                /** @var \Transliterator */
+=======
                 /**
                  * @var \Transliterator
                  */
+>>>>>>> origin/New-FakeMain
                 $TRANSLITERATOR = \transliterator_create('NFKC; [:Nonspacing Mark:] Remove; NFKC; Any-Latin; Latin-ASCII;');
             }
 
@@ -1377,6 +1480,53 @@ final class ASCII
     }
 
     /**
+<<<<<<< HEAD
+     * WARNING: This method will return broken characters and is only for special cases.
+     *
+     * Convert a UTF-8 encoded string to a single-byte string suitable for
+     * functions that need the same string length after the conversion.
+     *
+     * The function simply uses (and updates) a tailored dynamic encoding
+     * (in/out map parameter) where non-ascii characters are remapped to
+     * the range [128-255] in order of appearance.
+     *
+     * Thus, it supports up to 128 different multibyte code points max over
+     * the whole set of strings sharing this encoding.
+     *
+     * Source: https://github.com/KEINOS/mb_levenshtein
+     *
+     * @param string $str <p>UTF-8 string to be converted to extended ASCII.</p>
+     * @param array  $map <p>Internal-Map of code points to ASCII characters.</p>
+     *
+     * @return string
+     *                <p>Mapped borken string.</p>
+     *
+     * @phpstan-param array<string, string> $map
+     */
+    private static function to_ascii_remap_intern(string $str, array &$map): string
+    {
+        // find all utf-8 characters
+        $matches = [];
+        if (!\preg_match_all('/[\xC0-\xF7][\x80-\xBF]+/', $str, $matches)) {
+            return $str; // plain ascii string
+        }
+
+        // update the encoding map with the characters not already met
+        $mapCount = \count($map);
+        foreach ($matches[0] as $mbc) {
+            if (!isset($map[$mbc])) {
+                $map[$mbc] = \chr(128 + $mapCount);
+                ++$mapCount;
+            }
+        }
+
+        // finally, remap non-ascii characters
+        return \strtr($str, $map);
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the language from a string.
      *
      * e.g.: de_at -> de_at

@@ -35,7 +35,11 @@ class ErrorListener implements EventSubscriberInterface
     protected $debug;
     protected $exceptionsMapping;
 
+<<<<<<< HEAD
+    public function __construct(string|object|array $controller, LoggerInterface $logger = null, bool $debug = false, array $exceptionsMapping = [])
+=======
     public function __construct($controller, LoggerInterface $logger = null, bool $debug = false, array $exceptionsMapping = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->controller = $controller;
         $this->logger = $logger;

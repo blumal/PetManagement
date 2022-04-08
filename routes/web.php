@@ -8,7 +8,10 @@ use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +22,9 @@ use App\Http\Controllers\CitasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Views
+
+
 //Mapas
 Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
@@ -42,9 +48,19 @@ Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstab
 
 Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);
 
-Route::get('/', function () {
+Route::get('', function () {
     return view('home');
 });
+
+Route::get('about', function () {
+    return view('about');
+});
+
+Route::get('contacto', function () {
+    return view('contacto');
+});
+
+/* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 Route::get('/login', [CitasController::class, 'login']);
 Route::post('/login-proc', [CitasController::class, 'loginProc']);
@@ -76,13 +92,33 @@ Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioF
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 
 Route::get('/FacturaClinica/download', [FacturaVisitaController::class, 'directorioFacturasClinica']);
-Route::post('/FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
+Route::post('FacturaClinica/download', [FacturaVisitaController::class, 'createPDFClinica']);
 
 Route::post('anadir_item_factura_visita', [VisitaController::class, 'anadir_item_factura']);
 Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+/*Carrito */
+Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
+
+Route::get('/carritoview',[ProductoController::class, 'CartCheckout']);
+
+Route::get('/carritovaciar',[ProductoController::class, 'CartClearOut']);
+
+Route::get('vistaprueba',[ProductoController::class,'mostrarProducto']);
+
+/*Crud */
+
+Route::get('admincrud',[ProductoController::class,'mostrarProductoCrud']);
+
+Route::post('filtro',[ProductoController::class,'show']);
+
+Route::post('crear',[ProductoController::class,'crear']);
+
+Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
+
+Route::put('actualizar',[ProductoController::class,'update']);
 
 //TEST
 

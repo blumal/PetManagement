@@ -2,15 +2,38 @@
 
 namespace Illuminate\Database\DBAL;
 
+<<<<<<< HEAD
+use Doctrine\DBAL\Exception as DBALException;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\PhpDateTimeMappingType;
+use Doctrine\DBAL\Types\Type;
+=======
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\PhpDateTimeMappingType;
 use Doctrine\DBAL\Types\Type;
 use RuntimeException;
+>>>>>>> origin/New-FakeMain
 
 class TimestampType extends Type implements PhpDateTimeMappingType
 {
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
+     */
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    {
+        return match ($name = $platform->getName()) {
+            'mysql',
+            'mysql2' => $this->getMySqlPlatformSQLDeclaration($fieldDeclaration),
+            'postgresql',
+            'pgsql',
+            'postgres' => $this->getPostgresPlatformSQLDeclaration($fieldDeclaration),
+            'mssql' => $this->getSqlServerPlatformSQLDeclaration($fieldDeclaration),
+            'sqlite',
+            'sqlite3' => $this->getSQLitePlatformSQLDeclaration($fieldDeclaration),
+            default => throw new DBALException('Invalid platform: '.$name),
+        };
+=======
      *
      * @return string
      */
@@ -38,6 +61,7 @@ class TimestampType extends Type implements PhpDateTimeMappingType
             default:
                 throw new RuntimeException('Invalid platform: '.$name);
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -100,8 +124,11 @@ class TimestampType extends Type implements PhpDateTimeMappingType
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
+=======
      *
      * @return string
+>>>>>>> origin/New-FakeMain
      */
     public function getName()
     {

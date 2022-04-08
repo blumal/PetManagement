@@ -23,7 +23,11 @@ interface Mailable
     public function queue(Queue $queue);
 
     /**
+<<<<<<< HEAD
+     * Deliver the queued message after (n) seconds.
+=======
      * Deliver the queued message after the given delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  \Illuminate\Contracts\Queue\Factory  $queue

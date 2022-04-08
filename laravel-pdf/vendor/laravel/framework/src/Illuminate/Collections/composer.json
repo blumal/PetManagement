@@ -14,9 +14,16 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "illuminate/conditionable": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "illuminate/macroable": "^9.0"
+=======
         "php": "^7.3|^8.0",
         "illuminate/contracts": "^8.0",
         "illuminate/macroable": "^8.0"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -28,11 +35,19 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+        }
+    },
+    "suggest": {
+        "symfony/var-dumper": "Required to use the dump method (^6.0)."
+=======
             "dev-master": "8.x-dev"
         }
     },
     "suggest": {
         "symfony/var-dumper": "Required to use the dump method (^5.4)."
+>>>>>>> origin/New-FakeMain
     },
     "config": {
         "sort-packages": true

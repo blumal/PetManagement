@@ -177,7 +177,11 @@ class ConnectionFactory
     protected function createPdoResolverWithHosts(array $config)
     {
         return function () use ($config) {
+<<<<<<< HEAD
+            foreach (Arr::shuffle($this->parseHosts($config)) as $host) {
+=======
             foreach (Arr::shuffle($hosts = $this->parseHosts($config)) as $key => $host) {
+>>>>>>> origin/New-FakeMain
                 $config['host'] = $host;
 
                 try {
@@ -218,9 +222,13 @@ class ConnectionFactory
      */
     protected function createPdoResolverWithoutHosts(array $config)
     {
+<<<<<<< HEAD
+        return fn () => $this->createConnector($config)->connect($config);
+=======
         return function () use ($config) {
             return $this->createConnector($config)->connect($config);
         };
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -241,6 +249,15 @@ class ConnectionFactory
             return $this->container->make($key);
         }
 
+<<<<<<< HEAD
+        return match ($config['driver']) {
+            'mysql' => new MySqlConnector,
+            'pgsql' => new PostgresConnector,
+            'sqlite' => new SQLiteConnector,
+            'sqlsrv' => new SqlServerConnector,
+            default => throw new InvalidArgumentException("Unsupported driver [{$config['driver']}]."),
+        };
+=======
         switch ($config['driver']) {
             case 'mysql':
                 return new MySqlConnector;
@@ -253,6 +270,7 @@ class ConnectionFactory
         }
 
         throw new InvalidArgumentException("Unsupported driver [{$config['driver']}].");
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -273,6 +291,15 @@ class ConnectionFactory
             return $resolver($connection, $database, $prefix, $config);
         }
 
+<<<<<<< HEAD
+        return match ($driver) {
+            'mysql' => new MySqlConnection($connection, $database, $prefix, $config),
+            'pgsql' => new PostgresConnection($connection, $database, $prefix, $config),
+            'sqlite' => new SQLiteConnection($connection, $database, $prefix, $config),
+            'sqlsrv' => new SqlServerConnection($connection, $database, $prefix, $config),
+            default => throw new InvalidArgumentException("Unsupported driver [{$driver}]."),
+        };
+=======
         switch ($driver) {
             case 'mysql':
                 return new MySqlConnection($connection, $database, $prefix, $config);
@@ -285,5 +312,6 @@ class ConnectionFactory
         }
 
         throw new InvalidArgumentException("Unsupported driver [{$driver}].");
+>>>>>>> origin/New-FakeMain
     }
 }

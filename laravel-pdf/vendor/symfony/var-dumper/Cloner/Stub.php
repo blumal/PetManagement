@@ -39,7 +39,11 @@ class Stub
     public $position = 0;
     public $attr = [];
 
+<<<<<<< HEAD
+    private static array $defaultProperties = [];
+=======
     private static $defaultProperties = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * @internal

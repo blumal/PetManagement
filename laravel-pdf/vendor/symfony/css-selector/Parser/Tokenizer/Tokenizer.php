@@ -31,7 +31,11 @@ class Tokenizer
     /**
      * @var Handler\HandlerInterface[]
      */
+<<<<<<< HEAD
+    private array $handlers;
+=======
     private $handlers;
+>>>>>>> origin/New-FakeMain
 
     public function __construct()
     {

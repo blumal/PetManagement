@@ -17,10 +17,14 @@ use Symfony\Contracts\Service\ServiceLocatorTrait;
 
 abstract class ServiceLocatorTest extends TestCase
 {
+<<<<<<< HEAD
+    protected function getServiceLocator(array $factories): ContainerInterface
+=======
     /**
      * @return ContainerInterface
      */
     protected function getServiceLocator(array $factories)
+>>>>>>> origin/New-FakeMain
     {
         return new class($factories) implements ContainerInterface {
             use ServiceLocatorTrait;

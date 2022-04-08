@@ -47,7 +47,11 @@ class ApplicationTester
      *
      * @return int The command exit code
      */
+<<<<<<< HEAD
+    public function run(array $input, array $options = []): int
+=======
     public function run(array $input, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         $this->input = new ArrayInput($input);
         if (isset($options['interactive'])) {

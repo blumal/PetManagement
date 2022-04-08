@@ -66,7 +66,11 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function handle(Request $request, int $type = HttpKernelInterface::MAIN_REQUEST, bool $catch = true): Response
+=======
     public function handle(Request $request, int $type = HttpKernelInterface::MAIN_REQUEST, bool $catch = true)
+>>>>>>> origin/New-FakeMain
     {
         $request->headers->set('X-Php-Ob-Level', (string) ob_get_level());
 
@@ -245,7 +249,11 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
     /**
      * Returns a human-readable string for the specified variable.
      */
+<<<<<<< HEAD
+    private function varToString(mixed $var): string
+=======
     private function varToString($var): string
+>>>>>>> origin/New-FakeMain
     {
         if (\is_object($var)) {
             return sprintf('an object of type %s', \get_class($var));

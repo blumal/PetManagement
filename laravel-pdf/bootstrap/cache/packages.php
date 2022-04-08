@@ -52,4 +52,6 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-);
+<<<<<<< HEAD
+  'spatie/laravel-ignition' => 
+  array (

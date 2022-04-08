@@ -17,6 +17,10 @@ namespace Symfony\Component\HttpKernel\Exception;
  */
 class AccessDeniedHttpException extends HttpException
 {
+<<<<<<< HEAD
+    public function __construct(string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
+    {
+=======
     /**
      * @param string|null     $message  The internal exception message
      * @param \Throwable|null $previous The previous exception
@@ -30,6 +34,7 @@ class AccessDeniedHttpException extends HttpException
             $message = '';
         }
 
+>>>>>>> origin/New-FakeMain
         parent::__construct(403, $message, $previous, $headers, $code);
     }
 }

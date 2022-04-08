@@ -46,11 +46,19 @@ class InputOption
      */
     public const VALUE_NEGATABLE = 16;
 
+<<<<<<< HEAD
+    private string $name;
+    private string|array|null $shortcut;
+    private int $mode;
+    private string|int|bool|array|null|float $default;
+    private string $description;
+=======
     private $name;
     private $shortcut;
     private $mode;
     private $default;
     private $description;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string|array|null                $shortcut The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
@@ -59,7 +67,11 @@ class InputOption
      *
      * @throws InvalidArgumentException If option mode is invalid or incompatible
      */
+<<<<<<< HEAD
+    public function __construct(string $name, string|array $shortcut = null, int $mode = null, string $description = '', string|bool|int|float|array $default = null)
+=======
     public function __construct(string $name, $shortcut = null, int $mode = null, string $description = '', $default = null)
+>>>>>>> origin/New-FakeMain
     {
         if (str_starts_with($name, '--')) {
             $name = substr($name, 2);
@@ -109,20 +121,30 @@ class InputOption
 
     /**
      * Returns the option shortcut.
+<<<<<<< HEAD
+     */
+    public function getShortcut(): ?string
+=======
      *
      * @return string|null
      */
     public function getShortcut()
+>>>>>>> origin/New-FakeMain
     {
         return $this->shortcut;
     }
 
     /**
      * Returns the option name.
+<<<<<<< HEAD
+     */
+    public function getName(): string
+=======
      *
      * @return string
      */
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->name;
     }
@@ -132,7 +154,11 @@ class InputOption
      *
      * @return bool true if value mode is not self::VALUE_NONE, false otherwise
      */
+<<<<<<< HEAD
+    public function acceptValue(): bool
+=======
     public function acceptValue()
+>>>>>>> origin/New-FakeMain
     {
         return $this->isValueRequired() || $this->isValueOptional();
     }
@@ -142,7 +168,11 @@ class InputOption
      *
      * @return bool true if value mode is self::VALUE_REQUIRED, false otherwise
      */
+<<<<<<< HEAD
+    public function isValueRequired(): bool
+=======
     public function isValueRequired()
+>>>>>>> origin/New-FakeMain
     {
         return self::VALUE_REQUIRED === (self::VALUE_REQUIRED & $this->mode);
     }
@@ -152,7 +182,11 @@ class InputOption
      *
      * @return bool true if value mode is self::VALUE_OPTIONAL, false otherwise
      */
+<<<<<<< HEAD
+    public function isValueOptional(): bool
+=======
     public function isValueOptional()
+>>>>>>> origin/New-FakeMain
     {
         return self::VALUE_OPTIONAL === (self::VALUE_OPTIONAL & $this->mode);
     }
@@ -162,7 +196,11 @@ class InputOption
      *
      * @return bool true if mode is self::VALUE_IS_ARRAY, false otherwise
      */
+<<<<<<< HEAD
+    public function isArray(): bool
+=======
     public function isArray()
+>>>>>>> origin/New-FakeMain
     {
         return self::VALUE_IS_ARRAY === (self::VALUE_IS_ARRAY & $this->mode);
     }
@@ -172,10 +210,14 @@ class InputOption
         return self::VALUE_NEGATABLE === (self::VALUE_NEGATABLE & $this->mode);
     }
 
+<<<<<<< HEAD
+    public function setDefault(string|bool|int|float|array $default = null)
+=======
     /**
      * @param string|bool|int|float|array|null $default
      */
     public function setDefault($default = null)
+>>>>>>> origin/New-FakeMain
     {
         if (self::VALUE_NONE === (self::VALUE_NONE & $this->mode) && null !== $default) {
             throw new LogicException('Cannot set a default value when using InputOption::VALUE_NONE mode.');
@@ -194,30 +236,45 @@ class InputOption
 
     /**
      * Returns the default value.
+<<<<<<< HEAD
+     */
+    public function getDefault(): string|bool|int|float|array|null
+=======
      *
      * @return string|bool|int|float|array|null
      */
     public function getDefault()
+>>>>>>> origin/New-FakeMain
     {
         return $this->default;
     }
 
     /**
      * Returns the description text.
+<<<<<<< HEAD
+     */
+    public function getDescription(): string
+=======
      *
      * @return string
      */
     public function getDescription()
+>>>>>>> origin/New-FakeMain
     {
         return $this->description;
     }
 
     /**
      * Checks whether the given option equals this one.
+<<<<<<< HEAD
+     */
+    public function equals(self $option): bool
+=======
      *
      * @return bool
      */
     public function equals(self $option)
+>>>>>>> origin/New-FakeMain
     {
         return $option->getName() === $this->getName()
             && $option->getShortcut() === $this->getShortcut()

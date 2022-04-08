@@ -45,7 +45,11 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
      *
      * @internal
      */
+<<<<<<< HEAD
+    protected array $allowSchemes = [];
+=======
     protected $allowSchemes = [];
+>>>>>>> origin/New-FakeMain
 
     protected $routes;
     protected $request;
@@ -73,7 +77,11 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getContext(): RequestContext
+=======
     public function getContext()
+>>>>>>> origin/New-FakeMain
     {
         return $this->context;
     }
@@ -81,7 +89,11 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function match(string $pathinfo): array
+=======
     public function match(string $pathinfo)
+>>>>>>> origin/New-FakeMain
     {
         $this->allow = $this->allowSchemes = [];
 
@@ -99,7 +111,11 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function matchRequest(Request $request): array
+=======
     public function matchRequest(Request $request)
+>>>>>>> origin/New-FakeMain
     {
         $this->request = $request;
 
@@ -120,13 +136,20 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
      *
      * @param string $pathinfo The path info to be parsed
      *
+<<<<<<< HEAD
+=======
      * @return array
      *
+>>>>>>> origin/New-FakeMain
      * @throws NoConfigurationException  If no routing configuration could be found
      * @throws ResourceNotFoundException If the resource could not be found
      * @throws MethodNotAllowedException If the resource was found but the request method is not allowed
      */
+<<<<<<< HEAD
+    protected function matchCollection(string $pathinfo, RouteCollection $routes): array
+=======
     protected function matchCollection(string $pathinfo, RouteCollection $routes)
+>>>>>>> origin/New-FakeMain
     {
         // HEAD and GET are equivalent as per RFC
         if ('HEAD' === $method = $this->context->getMethod()) {
@@ -204,10 +227,15 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
      * As this method requires the Route object, it is not available
      * in matchers that do not have access to the matched Route instance
      * (like the PHP and Apache matcher dumpers).
+<<<<<<< HEAD
+     */
+    protected function getAttributes(Route $route, string $name, array $attributes): array
+=======
      *
      * @return array
      */
     protected function getAttributes(Route $route, string $name, array $attributes)
+>>>>>>> origin/New-FakeMain
     {
         $defaults = $route->getDefaults();
         if (isset($defaults['_canonical_route'])) {
@@ -224,7 +252,11 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
      *
      * @return array The first element represents the status, the second contains additional information
      */
+<<<<<<< HEAD
+    protected function handleRouteRequirements(string $pathinfo, string $name, Route $route): array
+=======
     protected function handleRouteRequirements(string $pathinfo, string $name, Route $route)
+>>>>>>> origin/New-FakeMain
     {
         // expression condition
         if ($route->getCondition() && !$this->getExpressionLanguage()->evaluate($route->getCondition(), ['context' => $this->context, 'request' => $this->request ?: $this->createRequest($pathinfo)])) {
@@ -236,10 +268,15 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
 
     /**
      * Get merged default parameters.
+<<<<<<< HEAD
+     */
+    protected function mergeDefaults(array $params, array $defaults): array
+=======
      *
      * @return array
      */
     protected function mergeDefaults(array $params, array $defaults)
+>>>>>>> origin/New-FakeMain
     {
         foreach ($params as $key => $value) {
             if (!\is_int($key) && null !== $value) {

@@ -29,6 +29,11 @@ use Symfony\Component\DependencyInjection\TypedReference;
  */
 class AddConsoleCommandPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
+    public function process(ContainerBuilder $container)
+    {
+        $commandServices = $container->findTaggedServiceIds('console.command', true);
+=======
     private $commandLoaderServiceId;
     private $commandTag;
     private $noPreloadTag;
@@ -49,13 +54,18 @@ class AddConsoleCommandPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $commandServices = $container->findTaggedServiceIds($this->commandTag, true);
+>>>>>>> origin/New-FakeMain
         $lazyCommandMap = [];
         $lazyCommandRefs = [];
         $serviceIds = [];
 
         foreach ($commandServices as $id => $tags) {
             $definition = $container->getDefinition($id);
+<<<<<<< HEAD
+            $definition->addTag('container.no_preload');
+=======
             $definition->addTag($this->noPreloadTag);
+>>>>>>> origin/New-FakeMain
             $class = $container->getParameterBag()->resolveValue($definition->getClass());
 
             if (isset($tags[0]['command'])) {
@@ -65,7 +75,11 @@ class AddConsoleCommandPass implements CompilerPassInterface
                     throw new InvalidArgumentException(sprintf('Class "%s" used for service "%s" cannot be found.', $class, $id));
                 }
                 if (!$r->isSubclassOf(Command::class)) {
+<<<<<<< HEAD
+                    throw new InvalidArgumentException(sprintf('The service "%s" tagged "%s" must be a subclass of "%s".', $id, 'console.command', Command::class));
+=======
                     throw new InvalidArgumentException(sprintf('The service "%s" tagged "%s" must be a subclass of "%s".', $id, $this->commandTag, Command::class));
+>>>>>>> origin/New-FakeMain
                 }
                 $aliases = $class::getDefaultName();
             }
@@ -78,7 +92,11 @@ class AddConsoleCommandPass implements CompilerPassInterface
             }
 
             if (null === $commandName) {
+<<<<<<< HEAD
+                if (!$definition->isPublic() || $definition->isPrivate() || $definition->hasTag('container.private')) {
+=======
                 if (!$definition->isPublic() || $definition->isPrivate() || $definition->hasTag($this->privateTagName)) {
+>>>>>>> origin/New-FakeMain
                     $commandId = 'console.command.public_alias.'.$id;
                     $container->setAlias($commandId, $id)->setPublic(true);
                     $id = $commandId;
@@ -122,7 +140,11 @@ class AddConsoleCommandPass implements CompilerPassInterface
                     throw new InvalidArgumentException(sprintf('Class "%s" used for service "%s" cannot be found.', $class, $id));
                 }
                 if (!$r->isSubclassOf(Command::class)) {
+<<<<<<< HEAD
+                    throw new InvalidArgumentException(sprintf('The service "%s" tagged "%s" must be a subclass of "%s".', $id, 'console.command', Command::class));
+=======
                     throw new InvalidArgumentException(sprintf('The service "%s" tagged "%s" must be a subclass of "%s".', $id, $this->commandTag, Command::class));
+>>>>>>> origin/New-FakeMain
                 }
                 $description = $class::getDefaultDescription();
             }
@@ -138,9 +160,15 @@ class AddConsoleCommandPass implements CompilerPassInterface
         }
 
         $container
+<<<<<<< HEAD
+            ->register('console.command_loader', ContainerCommandLoader::class)
+            ->setPublic(true)
+            ->addTag('container.no_preload')
+=======
             ->register($this->commandLoaderServiceId, ContainerCommandLoader::class)
             ->setPublic(true)
             ->addTag($this->noPreloadTag)
+>>>>>>> origin/New-FakeMain
             ->setArguments([ServiceLocatorTagPass::register($container, $lazyCommandRefs), $lazyCommandMap]);
 
         $container->setParameter('console.command.ids', $serviceIds);

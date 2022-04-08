@@ -16,7 +16,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ResponseStatusCodeSame extends Constraint
 {
+<<<<<<< HEAD
+    private int $statusCode;
+=======
     private $statusCode;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(int $statusCode)
     {
