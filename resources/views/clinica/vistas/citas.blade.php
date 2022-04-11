@@ -34,10 +34,12 @@
             <li class="menu-item">Clínica</li>
             <li class="menu-item">Contacto</li>
             <li class="menu-item">Sobre Nosotros</li>
-            <li class="cta"><a href="{{url("citas")}}">LOGIN</a></li>
+            <li class="cta"><a href="{{url("/logout")}}">LOGOUT</a></li>
         </ul>
         <script src="./js/home.js"></script>
     </header>
+   
+    {{--Calendario--}}
     <div class="row-c flex">
         <div class="calendarestructure column-1">
             <h1>Citas</h1>
@@ -52,19 +54,21 @@
             </form>
         </div>
     </div>
-    <form action="{{url("/FacturasClinica")}}" method="post">
-        @csrf
-        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-        </br></br>
-        </br></br>
-        <input type="submit" value="Ver mis Visitas Anteriores">
-    </form>
+     {{--Boton para ver visitas anteriores, solo para clientes--}}
+     @if (session()->get('id_rol_session')==2)
+     <center>
+        <form action="{{url("/FacturasClinica")}}" method="post">
+            @csrf
+            <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+            <input type="submit" class="previous_visits_button" value="Ver mis Visitas Anteriores">
+        </form>
+    </center>
+     @endif
+     
     <form action="{{url("/generarFactura")}}" method="post">
         @csrf
         <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
         <input type="number" name="id_visita">
-        </br></br>
-        </br></br>
         <input type="submit" value="Rellenar Visita">
     </form>
     <footer>
