@@ -32,5 +32,9 @@ interface ContainerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
+    public function has(string $id): bool;
+=======
     public function has(string $id);
+>>>>>>> origin/New-FakeMain
 }

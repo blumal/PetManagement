@@ -24,6 +24,14 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class RequestEvent extends KernelEvent
 {
+<<<<<<< HEAD
+    private $response = null;
+
+    /**
+     * Returns the response object.
+     */
+    public function getResponse(): ?Response
+=======
     private $response;
 
     /**
@@ -32,6 +40,7 @@ class RequestEvent extends KernelEvent
      * @return Response|null
      */
     public function getResponse()
+>>>>>>> origin/New-FakeMain
     {
         return $this->response;
     }
@@ -48,10 +57,15 @@ class RequestEvent extends KernelEvent
 
     /**
      * Returns whether a response was set.
+<<<<<<< HEAD
+     */
+    public function hasResponse(): bool
+=======
      *
      * @return bool
      */
     public function hasResponse()
+>>>>>>> origin/New-FakeMain
     {
         return null !== $this->response;
     }

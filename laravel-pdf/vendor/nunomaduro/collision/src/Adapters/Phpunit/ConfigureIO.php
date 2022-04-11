@@ -25,7 +25,11 @@ final class ConfigureIO
 {
     /**
      * Configures both given input and output with
+<<<<<<< HEAD
+     * options from the environment.
+=======
      * options from the enviroment.
+>>>>>>> origin/New-FakeMain
      *
      * @throws \ReflectionException
      */

@@ -27,7 +27,11 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  */
 final class ControllerEvent extends KernelEvent
 {
+<<<<<<< HEAD
+    private string|array|object $controller;
+=======
     private $controller;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(HttpKernelInterface $kernel, callable $controller, Request $request, ?int $requestType)
     {

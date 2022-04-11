@@ -4,6 +4,10 @@ namespace Illuminate\Database\Eloquent\Concerns;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+<<<<<<< HEAD
+use DateTimeImmutable;
+=======
+>>>>>>> origin/New-FakeMain
 use DateTimeInterface;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
@@ -287,7 +291,11 @@ trait HasAttributes
                 $attributes[$key] = $attributes[$key]->format(explode(':', $value, 2)[1]);
             }
 
+<<<<<<< HEAD
+            if ($attributes[$key] instanceof DateTimeInterface &&
+=======
             if ($attributes[$key] && $attributes[$key] instanceof DateTimeInterface &&
+>>>>>>> origin/New-FakeMain
                 $this->isClassCastable($key)) {
                 $attributes[$key] = $this->serializeDate($attributes[$key]);
             }
@@ -344,7 +352,11 @@ trait HasAttributes
         $attributes = [];
 
         foreach ($this->getArrayableRelations() as $key => $value) {
+<<<<<<< HEAD
+            // If the values implement the Arrayable interface we can just call this
+=======
             // If the values implements the Arrayable interface we can just call this
+>>>>>>> origin/New-FakeMain
             // toArray method on the instances which will convert both models and
             // collections to their proper array form and we'll set the values.
             if ($value instanceof Arrayable) {
@@ -352,8 +364,13 @@ trait HasAttributes
             }
 
             // If the value is null, we'll still go ahead and set it in this list of
+<<<<<<< HEAD
+            // attributes, since null is used to represent empty relationships if
+            // it has a has one or belongs to type relationships on the models.
+=======
             // attributes since null is used to represent empty relationships if
             // if it a has one or belongs to type relationships on the models.
+>>>>>>> origin/New-FakeMain
             elseif (is_null($value)) {
                 $relation = $value;
             }
@@ -584,7 +601,11 @@ trait HasAttributes
 
         $returnType = (new ReflectionMethod($this, $method))->getReturnType();
 
+<<<<<<< HEAD
+        return static::$attributeMutatorCache[get_class($this)][$key] =
+=======
         return static::$attributeMutatorCache[get_class($this)][$key] = $returnType &&
+>>>>>>> origin/New-FakeMain
                     $returnType instanceof ReflectionNamedType &&
                     $returnType->getName() === Attribute::class;
     }
@@ -629,7 +650,11 @@ trait HasAttributes
      */
     protected function mutateAttributeMarkedAttribute($key, $value)
     {
+<<<<<<< HEAD
+        if (array_key_exists($key, $this->attributeCastCache)) {
+=======
         if (isset($this->attributeCastCache[$key])) {
+>>>>>>> origin/New-FakeMain
             return $this->attributeCastCache[$key];
         }
 
@@ -639,10 +664,17 @@ trait HasAttributes
             return $value;
         }, $value, $this->attributes);
 
+<<<<<<< HEAD
+        if ($attribute->withCaching || (is_object($value) && $attribute->withObjectCaching)) {
+            $this->attributeCastCache[$key] = $value;
+        } else {
+            unset($this->attributeCastCache[$key]);
+=======
         if (! is_object($value) || ! $attribute->withObjectCaching) {
             unset($this->attributeCastCache[$key]);
         } else {
             $this->attributeCastCache[$key] = $value;
+>>>>>>> origin/New-FakeMain
         }
 
         return $value;
@@ -867,8 +899,13 @@ trait HasAttributes
      */
     protected function isCustomDateTimeCast($cast)
     {
+<<<<<<< HEAD
+        return str_starts_with($cast, 'date:') ||
+                str_starts_with($cast, 'datetime:');
+=======
         return strncmp($cast, 'date:', 5) === 0 ||
                strncmp($cast, 'datetime:', 9) === 0;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -891,7 +928,11 @@ trait HasAttributes
      */
     protected function isDecimalCast($cast)
     {
+<<<<<<< HEAD
+        return str_starts_with($cast, 'decimal:');
+=======
         return strncmp($cast, 'decimal:', 8) === 0;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -938,7 +979,11 @@ trait HasAttributes
         // If this attribute contains a JSON ->, we'll set the proper value in the
         // attribute's underlying array. This takes care of properly nesting an
         // attribute in the array's value in the case of deeply nested items.
+<<<<<<< HEAD
+        if (str_contains($key, '->')) {
+=======
         if (Str::contains($key, '->')) {
+>>>>>>> origin/New-FakeMain
             return $this->fillJsonAttribute($key, $value);
         }
 
@@ -982,7 +1027,11 @@ trait HasAttributes
 
         $returnType = (new ReflectionMethod($this, $method))->getReturnType();
 
+<<<<<<< HEAD
+        return static::$setAttributeMutatorCache[$class][$key] =
+=======
         return static::$setAttributeMutatorCache[$class][$key] = $returnType &&
+>>>>>>> origin/New-FakeMain
                     $returnType instanceof ReflectionNamedType &&
                     $returnType->getName() === Attribute::class &&
                     is_callable($this->{$method}()->set);
@@ -1018,6 +1067,16 @@ trait HasAttributes
         $this->attributes = array_merge(
             $this->attributes,
             $this->normalizeCastClassResponse(
+<<<<<<< HEAD
+                $key, $callback($value, $this->attributes)
+            )
+        );
+
+        if ($attribute->withCaching || (is_object($value) && $attribute->withObjectCaching)) {
+            $this->attributeCastCache[$key] = $value;
+        } else {
+            unset($this->attributeCastCache[$key]);
+=======
                 $key, call_user_func($callback, $value, $this->attributes)
             )
         );
@@ -1026,6 +1085,7 @@ trait HasAttributes
             unset($this->attributeCastCache[$key]);
         } else {
             $this->attributeCastCache[$key] = $value;
+>>>>>>> origin/New-FakeMain
         }
     }
 
@@ -1074,6 +1134,14 @@ trait HasAttributes
     {
         $caster = $this->resolveCasterClass($key);
 
+<<<<<<< HEAD
+        $this->attributes = array_merge(
+            $this->attributes,
+            $this->normalizeCastClassResponse($key, $caster->set(
+                $this, $key, $value, $this->attributes
+            ))
+        );
+=======
         if (is_null($value)) {
             $this->attributes = array_merge($this->attributes, array_map(
                 function () {
@@ -1090,6 +1158,7 @@ trait HasAttributes
                 ))
             );
         }
+>>>>>>> origin/New-FakeMain
 
         if ($caster instanceof CastsInboundAttributes || ! is_object($value)) {
             unset($this->classCastCache[$key]);
@@ -1237,6 +1306,14 @@ trait HasAttributes
      */
     public function fromFloat($value)
     {
+<<<<<<< HEAD
+        return match ((string) $value) {
+            'Infinity' => INF,
+            '-Infinity' => -INF,
+            'NaN' => NAN,
+            default => (float) $value,
+        };
+=======
         switch ((string) $value) {
             case 'Infinity':
                 return INF;
@@ -1247,6 +1324,7 @@ trait HasAttributes
             default:
                 return (float) $value;
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -1367,7 +1445,11 @@ trait HasAttributes
      */
     protected function serializeDate(DateTimeInterface $date)
     {
+<<<<<<< HEAD
+        return $date instanceof DateTimeImmutable ?
+=======
         return $date instanceof \DateTimeImmutable ?
+>>>>>>> origin/New-FakeMain
             CarbonImmutable::instance($date)->toJSON() :
             Carbon::instance($date)->toJSON();
     }
@@ -1580,7 +1662,11 @@ trait HasAttributes
 
         $arguments = [];
 
+<<<<<<< HEAD
+        if (is_string($castType) && str_contains($castType, ':')) {
+=======
         if (is_string($castType) && strpos($castType, ':') !== false) {
+>>>>>>> origin/New-FakeMain
             $segments = explode(':', $castType, 2);
 
             $castType = $segments[0];
@@ -1606,7 +1692,11 @@ trait HasAttributes
      */
     protected function parseCasterClass($class)
     {
+<<<<<<< HEAD
+        return ! str_contains($class, ':')
+=======
         return strpos($class, ':') === false
+>>>>>>> origin/New-FakeMain
             ? $class
             : explode(':', $class, 2)[0];
     }
@@ -1662,7 +1752,11 @@ trait HasAttributes
             $this->attributes = array_merge(
                 $this->attributes,
                 $this->normalizeCastClassResponse(
+<<<<<<< HEAD
+                    $key, $callback($value, $this->attributes)
+=======
                     $key, call_user_func($callback, $value, $this->attributes)
+>>>>>>> origin/New-FakeMain
                 )
             );
         }
@@ -1959,7 +2053,11 @@ trait HasAttributes
             return $this->castAttribute($key, $attribute) ==
                 $this->castAttribute($key, $original);
         } elseif ($this->hasCast($key, ['real', 'float', 'double'])) {
+<<<<<<< HEAD
+            if ($original === null) {
+=======
             if (($attribute === null && $original !== null) || ($attribute !== null && $original === null)) {
+>>>>>>> origin/New-FakeMain
                 return false;
             }
 
@@ -2113,8 +2211,12 @@ trait HasAttributes
         return collect((new ReflectionClass($instance))->getMethods())->filter(function ($method) use ($instance) {
             $returnType = $method->getReturnType();
 
+<<<<<<< HEAD
+            if ($returnType instanceof ReflectionNamedType &&
+=======
             if ($returnType &&
                 $returnType instanceof ReflectionNamedType &&
+>>>>>>> origin/New-FakeMain
                 $returnType->getName() === Attribute::class) {
                 $method->setAccessible(true);
 

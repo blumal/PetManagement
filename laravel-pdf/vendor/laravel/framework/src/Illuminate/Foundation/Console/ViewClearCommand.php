@@ -16,6 +16,20 @@ class ViewClearCommand extends Command
     protected $name = 'view:clear';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'view:clear';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -61,6 +75,10 @@ class ViewClearCommand extends Command
             $this->files->delete($view);
         }
 
+<<<<<<< HEAD
+        $this->info('Compiled views cleared successfully.');
+=======
         $this->info('Compiled views cleared!');
+>>>>>>> origin/New-FakeMain
     }
 }

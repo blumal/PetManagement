@@ -20,7 +20,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class ConsoleSignalEvent extends ConsoleEvent
 {
+<<<<<<< HEAD
+    private int $handlingSignal;
+=======
     private $handlingSignal;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(Command $command, InputInterface $input, OutputInterface $output, int $handlingSignal)
     {

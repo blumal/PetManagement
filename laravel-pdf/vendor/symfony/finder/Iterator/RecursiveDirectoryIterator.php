@@ -21,6 +21,15 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 {
+<<<<<<< HEAD
+    private bool $ignoreUnreadableDirs;
+    private ?bool $rewindable = null;
+
+    // these 3 properties take part of the performance optimization to avoid redoing the same work in all iterations
+    private string $rootPath;
+    private string $subPath;
+    private string $directorySeparator = '/';
+=======
     /**
      * @var bool
      */
@@ -35,6 +44,7 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
     private $rootPath;
     private $subPath;
     private $directorySeparator = '/';
+>>>>>>> origin/New-FakeMain
 
     /**
      * @throws \RuntimeException
@@ -55,6 +65,17 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 
     /**
      * Return an instance of SplFileInfo with support for relative paths.
+<<<<<<< HEAD
+     */
+    public function current(): SplFileInfo
+    {
+        // the logic here avoids redoing the same work in all iterations
+
+        if (!isset($this->subPath)) {
+            $this->subPath = $this->getSubPath();
+        }
+        $subPathname = $this->subPath;
+=======
      *
      * @return SplFileInfo
      */
@@ -66,6 +87,7 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
         if (null === $subPathname = $this->subPath) {
             $subPathname = $this->subPath = $this->getSubPath();
         }
+>>>>>>> origin/New-FakeMain
         if ('' !== $subPathname) {
             $subPathname .= $this->directorySeparator;
         }
@@ -78,6 +100,9 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
         return new SplFileInfo($basePath.$subPathname, $this->subPath, $subPathname);
     }
 
+<<<<<<< HEAD
+    public function hasChildren(bool $allowLinks = false): bool
+=======
     /**
      * @param bool $allowLinks
      *
@@ -85,6 +110,7 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
      */
     #[\ReturnTypeWillChange]
     public function hasChildren($allowLinks = false)
+>>>>>>> origin/New-FakeMain
     {
         $hasChildren = parent::hasChildren($allowLinks);
 
@@ -103,12 +129,18 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
     }
 
     /**
+<<<<<<< HEAD
+     * @throws AccessDeniedException
+     */
+    public function getChildren(): \RecursiveDirectoryIterator
+=======
      * @return \RecursiveDirectoryIterator
      *
      * @throws AccessDeniedException
      */
     #[\ReturnTypeWillChange]
     public function getChildren()
+>>>>>>> origin/New-FakeMain
     {
         try {
             $children = parent::getChildren();
@@ -130,11 +162,16 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 
     /**
      * Do nothing for non rewindable stream.
+<<<<<<< HEAD
+     */
+    public function rewind(): void
+=======
      *
      * @return void
      */
     #[\ReturnTypeWillChange]
     public function rewind()
+>>>>>>> origin/New-FakeMain
     {
         if (false === $this->isRewindable()) {
             return;
@@ -145,10 +182,15 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 
     /**
      * Checks if the stream is rewindable.
+<<<<<<< HEAD
+     */
+    public function isRewindable(): bool
+=======
      *
      * @return bool
      */
     public function isRewindable()
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $this->rewindable) {
             return $this->rewindable;

@@ -228,7 +228,11 @@ if (! function_exists('cache')) {
      * @param  dynamic  key|key,default|data,expiration|null
      * @return mixed|\Illuminate\Cache\CacheManager
      *
+<<<<<<< HEAD
+     * @throws \InvalidArgumentException
+=======
      * @throws \Exception
+>>>>>>> origin/New-FakeMain
      */
     function cache()
     {
@@ -243,7 +247,11 @@ if (! function_exists('cache')) {
         }
 
         if (! is_array($arguments[0])) {
+<<<<<<< HEAD
+            throw new InvalidArgumentException(
+=======
             throw new Exception(
+>>>>>>> origin/New-FakeMain
                 'When setting a value in the cache, you must pass an array of key / value pairs.'
             );
         }
@@ -492,7 +500,11 @@ if (! function_exists('lang_path')) {
      */
     function lang_path($path = '')
     {
+<<<<<<< HEAD
+        return app()->langPath($path);
+=======
         return app('path.lang').($path ? DIRECTORY_SEPARATOR.$path : $path);
+>>>>>>> origin/New-FakeMain
     }
 }
 
@@ -800,7 +812,27 @@ if (! function_exists('storage_path')) {
      */
     function storage_path($path = '')
     {
+<<<<<<< HEAD
+        return app()->storagePath($path);
+    }
+}
+
+if (! function_exists('to_route')) {
+    /**
+     * Create a new redirect response to a named route.
+     *
+     * @param  string  $route
+     * @param  mixed  $parameters
+     * @param  int  $status
+     * @param  array  $headers
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    function to_route($route, $parameters = [], $status = 302, $headers = [])
+    {
+        return redirect()->route($route, $parameters, $status, $headers);
+=======
         return app('path.storage').($path ? DIRECTORY_SEPARATOR.$path : $path);
+>>>>>>> origin/New-FakeMain
     }
 }
 

@@ -41,7 +41,11 @@ class MoFileLoader extends FileLoader
      *
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function loadResource(string $resource): array
+=======
     protected function loadResource(string $resource)
+>>>>>>> origin/New-FakeMain
     {
         $stream = fopen($resource, 'r');
 

@@ -28,14 +28,24 @@ use Ramsey\Uuid\UuidInterface;
 class FallbackBuilder implements UuidBuilderInterface
 {
     /**
+<<<<<<< HEAD
+     * @var iterable<UuidBuilderInterface>
+=======
      * @var BuilderCollection
+>>>>>>> origin/New-FakeMain
      */
     private $builders;
 
     /**
+<<<<<<< HEAD
+     * @param iterable<UuidBuilderInterface> $builders An array of UUID builders
+     */
+    public function __construct(iterable $builders)
+=======
      * @param BuilderCollection $builders An array of UUID builders
      */
     public function __construct(BuilderCollection $builders)
+>>>>>>> origin/New-FakeMain
     {
         $this->builders = $builders;
     }

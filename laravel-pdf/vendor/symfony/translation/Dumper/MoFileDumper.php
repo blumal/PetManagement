@@ -24,7 +24,11 @@ class MoFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+=======
     public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = [])
+>>>>>>> origin/New-FakeMain
     {
         $sources = $targets = $sourceOffsets = $targetOffsets = '';
         $offsets = [];
@@ -70,12 +74,20 @@ class MoFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function getExtension(): string
+=======
     protected function getExtension()
+>>>>>>> origin/New-FakeMain
     {
         return 'mo';
     }
 
+<<<<<<< HEAD
+    private function writeLong(mixed $str): string
+=======
     private function writeLong($str): string
+>>>>>>> origin/New-FakeMain
     {
         return pack('V*', $str);
     }

@@ -31,6 +31,21 @@ use Symfony\Component\VarDumper\Server\Connection;
  */
 class DumpDataCollector extends DataCollector implements DataDumperInterface
 {
+<<<<<<< HEAD
+    private $stopwatch = null;
+    private string|FileLinkFormatter|false $fileLinkFormat;
+    private int $dataCount = 0;
+    private bool $isCollected = true;
+    private int $clonesCount = 0;
+    private int $clonesIndex = 0;
+    private array $rootRefs;
+    private string $charset;
+    private $requestStack;
+    private $dumper;
+    private mixed $sourceContextProvider;
+
+    public function __construct(Stopwatch $stopwatch = null, string|FileLinkFormatter $fileLinkFormat = null, string $charset = null, RequestStack $requestStack = null, DataDumperInterface|Connection $dumper = null)
+=======
     private $stopwatch;
     private $fileLinkFormat;
     private $dataCount = 0;
@@ -48,6 +63,7 @@ class DumpDataCollector extends DataCollector implements DataDumperInterface
      * @param DataDumperInterface|Connection|null $dumper
      */
     public function __construct(Stopwatch $stopwatch = null, $fileLinkFormat = null, string $charset = null, RequestStack $requestStack = null, $dumper = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->stopwatch = $stopwatch;
         $this->fileLinkFormat = $fileLinkFormat ?: ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format');

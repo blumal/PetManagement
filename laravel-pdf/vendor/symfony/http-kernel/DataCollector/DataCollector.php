@@ -13,7 +13,10 @@ namespace Symfony\Component\HttpKernel\DataCollector;
 
 use Symfony\Component\VarDumper\Caster\CutStub;
 use Symfony\Component\VarDumper\Caster\ReflectionCaster;
+<<<<<<< HEAD
+=======
 use Symfony\Component\VarDumper\Cloner\ClonerInterface;
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\VarDumper\Cloner\Data;
 use Symfony\Component\VarDumper\Cloner\Stub;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
@@ -33,9 +36,12 @@ abstract class DataCollector implements DataCollectorInterface
      */
     protected $data = [];
 
+<<<<<<< HEAD
+=======
     /**
      * @var ClonerInterface
      */
+>>>>>>> origin/New-FakeMain
     private $cloner;
 
     /**
@@ -43,17 +49,26 @@ abstract class DataCollector implements DataCollectorInterface
      *
      * This array can be displayed in the template using
      * the VarDumper component.
+<<<<<<< HEAD
+     */
+    protected function cloneVar(mixed $var): Data
+=======
      *
      * @param mixed $var
      *
      * @return Data
      */
     protected function cloneVar($var)
+>>>>>>> origin/New-FakeMain
     {
         if ($var instanceof Data) {
             return $var;
         }
+<<<<<<< HEAD
+        if (!isset($this->cloner)) {
+=======
         if (null === $this->cloner) {
+>>>>>>> origin/New-FakeMain
             $this->cloner = new VarCloner();
             $this->cloner->setMaxItems(-1);
             $this->cloner->addCasters($this->getCasters());
@@ -84,10 +99,14 @@ abstract class DataCollector implements DataCollectorInterface
         return $casters;
     }
 
+<<<<<<< HEAD
+    public function __sleep(): array
+=======
     /**
      * @return array
      */
     public function __sleep()
+>>>>>>> origin/New-FakeMain
     {
         return ['data'];
     }
@@ -106,7 +125,11 @@ abstract class DataCollector implements DataCollectorInterface
     /**
      * @internal to prevent implementing \Serializable
      */
+<<<<<<< HEAD
+    final protected function unserialize(string $data)
+=======
     final protected function unserialize($data)
+>>>>>>> origin/New-FakeMain
     {
     }
 }

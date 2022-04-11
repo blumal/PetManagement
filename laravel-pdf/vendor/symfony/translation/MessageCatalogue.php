@@ -19,12 +19,21 @@ use Symfony\Component\Translation\Exception\LogicException;
  */
 class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterface
 {
+<<<<<<< HEAD
+    private array $messages = [];
+    private array $metadata = [];
+    private array $resources = [];
+    private string $locale;
+    private $fallbackCatalogue = null;
+    private ?self $parent = null;
+=======
     private $messages = [];
     private $metadata = [];
     private $resources = [];
     private $locale;
     private $fallbackCatalogue;
     private $parent;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param array $messages An array of messages classified by domain
@@ -38,7 +47,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getLocale(): string
+=======
     public function getLocale()
+>>>>>>> origin/New-FakeMain
     {
         return $this->locale;
     }
@@ -46,7 +59,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getDomains(): array
+=======
     public function getDomains()
+>>>>>>> origin/New-FakeMain
     {
         $domains = [];
 
@@ -63,7 +80,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function all(string $domain = null): array
+=======
     public function all(string $domain = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $domain) {
             // skip messages merge if intl-icu requested explicitly
@@ -99,7 +120,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function has(string $id, string $domain = 'messages'): bool
+=======
     public function has(string $id, string $domain = 'messages')
+>>>>>>> origin/New-FakeMain
     {
         if (isset($this->messages[$domain][$id]) || isset($this->messages[$domain.self::INTL_DOMAIN_SUFFIX][$id])) {
             return true;
@@ -115,7 +140,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function defines(string $id, string $domain = 'messages'): bool
+=======
     public function defines(string $id, string $domain = 'messages')
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->messages[$domain][$id]) || isset($this->messages[$domain.self::INTL_DOMAIN_SUFFIX][$id]);
     }
@@ -123,7 +152,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function get(string $id, string $domain = 'messages'): string
+=======
     public function get(string $id, string $domain = 'messages')
+>>>>>>> origin/New-FakeMain
     {
         if (isset($this->messages[$domain.self::INTL_DOMAIN_SUFFIX][$id])) {
             return $this->messages[$domain.self::INTL_DOMAIN_SUFFIX][$id];
@@ -233,7 +266,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getFallbackCatalogue(): ?MessageCatalogueInterface
+=======
     public function getFallbackCatalogue()
+>>>>>>> origin/New-FakeMain
     {
         return $this->fallbackCatalogue;
     }
@@ -241,7 +278,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getResources(): array
+=======
     public function getResources()
+>>>>>>> origin/New-FakeMain
     {
         return array_values($this->resources);
     }
@@ -257,7 +298,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getMetadata(string $key = '', string $domain = 'messages'): mixed
+=======
     public function getMetadata(string $key = '', string $domain = 'messages')
+>>>>>>> origin/New-FakeMain
     {
         if ('' == $domain) {
             return $this->metadata;
@@ -279,7 +324,11 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function setMetadata(string $key, mixed $value, string $domain = 'messages')
+=======
     public function setMetadata(string $key, $value, string $domain = 'messages')
+>>>>>>> origin/New-FakeMain
     {
         $this->metadata[$domain][$key] = $value;
     }

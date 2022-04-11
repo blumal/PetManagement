@@ -85,11 +85,14 @@ class XliffUtils
 
     private static function shouldEnableEntityLoader(): bool
     {
+<<<<<<< HEAD
+=======
         // Version prior to 8.0 can be enabled without deprecation
         if (\PHP_VERSION_ID < 80000) {
             return true;
         }
 
+>>>>>>> origin/New-FakeMain
         static $dom, $schema;
         if (null === $dom) {
             $dom = new \DOMDocument();

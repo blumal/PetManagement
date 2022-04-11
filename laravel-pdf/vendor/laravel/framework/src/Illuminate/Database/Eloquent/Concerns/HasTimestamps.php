@@ -16,10 +16,24 @@ trait HasTimestamps
     /**
      * Update the model's update timestamp.
      *
+<<<<<<< HEAD
+     * @param  string|null  $attribute
+     * @return bool
+     */
+    public function touch($attribute = null)
+    {
+        if ($attribute) {
+            $this->$attribute = $this->freshTimestamp();
+
+            return $this->save();
+        }
+
+=======
      * @return bool
      */
     public function touch()
     {
+>>>>>>> origin/New-FakeMain
         if (! $this->usesTimestamps()) {
             return false;
         }

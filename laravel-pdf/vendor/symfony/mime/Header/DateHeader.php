@@ -18,7 +18,11 @@ namespace Symfony\Component\Mime\Header;
  */
 final class DateHeader extends AbstractHeader
 {
+<<<<<<< HEAD
+    private \DateTimeImmutable $dateTime;
+=======
     private $dateTime;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $name, \DateTimeInterface $date)
     {
@@ -30,7 +34,11 @@ final class DateHeader extends AbstractHeader
     /**
      * @param \DateTimeInterface $body
      */
+<<<<<<< HEAD
+    public function setBody(mixed $body)
+=======
     public function setBody($body)
+>>>>>>> origin/New-FakeMain
     {
         $this->setDateTime($body);
     }

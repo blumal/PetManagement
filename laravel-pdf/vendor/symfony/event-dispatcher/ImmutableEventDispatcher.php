@@ -36,7 +36,11 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function addListener(string $eventName, callable|array $listener, int $priority = 0)
+=======
     public function addListener(string $eventName, $listener, int $priority = 0)
+>>>>>>> origin/New-FakeMain
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
@@ -52,7 +56,11 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function removeListener(string $eventName, callable|array $listener)
+=======
     public function removeListener(string $eventName, $listener)
+>>>>>>> origin/New-FakeMain
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
@@ -68,7 +76,11 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getListeners(string $eventName = null): array
+=======
     public function getListeners(string $eventName = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->dispatcher->getListeners($eventName);
     }
@@ -76,7 +88,11 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getListenerPriority(string $eventName, callable|array $listener): ?int
+=======
     public function getListenerPriority(string $eventName, $listener)
+>>>>>>> origin/New-FakeMain
     {
         return $this->dispatcher->getListenerPriority($eventName, $listener);
     }
@@ -84,7 +100,11 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function hasListeners(string $eventName = null): bool
+=======
     public function hasListeners(string $eventName = null)
+>>>>>>> origin/New-FakeMain
     {
         return $this->dispatcher->hasListeners($eventName);
     }

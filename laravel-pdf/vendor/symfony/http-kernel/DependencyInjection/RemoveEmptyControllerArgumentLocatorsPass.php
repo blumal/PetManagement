@@ -21,6 +21,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class RemoveEmptyControllerArgumentLocatorsPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
+    public function process(ContainerBuilder $container)
+    {
+        $controllerLocator = $container->findDefinition('argument_resolver.controller_locator');
+=======
     private $controllerLocator;
 
     public function __construct(string $controllerLocator = 'argument_resolver.controller_locator')
@@ -35,6 +40,7 @@ class RemoveEmptyControllerArgumentLocatorsPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $controllerLocator = $container->findDefinition($this->controllerLocator);
+>>>>>>> origin/New-FakeMain
         $controllers = $controllerLocator->getArgument(0);
 
         foreach ($controllers as $controller => $argumentRef) {

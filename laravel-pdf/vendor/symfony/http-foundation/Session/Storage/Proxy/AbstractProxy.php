@@ -30,50 +30,75 @@ abstract class AbstractProxy
 
     /**
      * Gets the session.save_handler name.
+<<<<<<< HEAD
+     */
+    public function getSaveHandlerName(): ?string
+=======
      *
      * @return string|null
      */
     public function getSaveHandlerName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->saveHandlerName;
     }
 
     /**
      * Is this proxy handler and instance of \SessionHandlerInterface.
+<<<<<<< HEAD
+     */
+    public function isSessionHandlerInterface(): bool
+=======
      *
      * @return bool
      */
     public function isSessionHandlerInterface()
+>>>>>>> origin/New-FakeMain
     {
         return $this instanceof \SessionHandlerInterface;
     }
 
     /**
      * Returns true if this handler wraps an internal PHP session save handler using \SessionHandler.
+<<<<<<< HEAD
+     */
+    public function isWrapper(): bool
+=======
      *
      * @return bool
      */
     public function isWrapper()
+>>>>>>> origin/New-FakeMain
     {
         return $this->wrapper;
     }
 
     /**
      * Has a session started?
+<<<<<<< HEAD
+     */
+    public function isActive(): bool
+=======
      *
      * @return bool
      */
     public function isActive()
+>>>>>>> origin/New-FakeMain
     {
         return \PHP_SESSION_ACTIVE === session_status();
     }
 
     /**
      * Gets the session ID.
+<<<<<<< HEAD
+     */
+    public function getId(): string
+=======
      *
      * @return string
      */
     public function getId()
+>>>>>>> origin/New-FakeMain
     {
         return session_id();
     }
@@ -94,10 +119,15 @@ abstract class AbstractProxy
 
     /**
      * Gets the session name.
+<<<<<<< HEAD
+     */
+    public function getName(): string
+=======
      *
      * @return string
      */
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return session_name();
     }

@@ -18,6 +18,11 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class TranslatorPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
+    public function process(ContainerBuilder $container)
+    {
+        if (!$container->hasDefinition('translator.default')) {
+=======
     private $translatorServiceId;
     private $readerServiceId;
     private $loaderTag;
@@ -40,12 +45,17 @@ class TranslatorPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->translatorServiceId)) {
+>>>>>>> origin/New-FakeMain
             return;
         }
 
         $loaders = [];
         $loaderRefs = [];
+<<<<<<< HEAD
+        foreach ($container->findTaggedServiceIds('translation.loader', true) as $id => $attributes) {
+=======
         foreach ($container->findTaggedServiceIds($this->loaderTag, true) as $id => $attributes) {
+>>>>>>> origin/New-FakeMain
             $loaderRefs[$id] = new Reference($id);
             $loaders[$id][] = $attributes[0]['alias'];
             if (isset($attributes[0]['legacy-alias'])) {
@@ -53,8 +63,13 @@ class TranslatorPass implements CompilerPassInterface
             }
         }
 
+<<<<<<< HEAD
+        if ($container->hasDefinition('translation.reader')) {
+            $definition = $container->getDefinition('translation.reader');
+=======
         if ($container->hasDefinition($this->readerServiceId)) {
             $definition = $container->getDefinition($this->readerServiceId);
+>>>>>>> origin/New-FakeMain
             foreach ($loaders as $id => $formats) {
                 foreach ($formats as $format) {
                     $definition->addMethodCall('addLoader', [$format, $loaderRefs[$id]]);
@@ -63,7 +78,11 @@ class TranslatorPass implements CompilerPassInterface
         }
 
         $container
+<<<<<<< HEAD
+            ->findDefinition('translator.default')
+=======
             ->findDefinition($this->translatorServiceId)
+>>>>>>> origin/New-FakeMain
             ->replaceArgument(0, ServiceLocatorTagPass::register($container, $loaderRefs))
             ->replaceArgument(3, $loaders)
         ;
@@ -73,16 +92,26 @@ class TranslatorPass implements CompilerPassInterface
         }
 
         $paths = array_keys($container->getDefinition('twig.template_iterator')->getArgument(1));
+<<<<<<< HEAD
+        if ($container->hasDefinition('console.command.translation_debug')) {
+            $definition = $container->getDefinition('console.command.translation_debug');
+=======
         if ($container->hasDefinition($this->debugCommandServiceId)) {
             $definition = $container->getDefinition($this->debugCommandServiceId);
+>>>>>>> origin/New-FakeMain
             $definition->replaceArgument(4, $container->getParameter('twig.default_path'));
 
             if (\count($definition->getArguments()) > 6) {
                 $definition->replaceArgument(6, $paths);
             }
         }
+<<<<<<< HEAD
+        if ($container->hasDefinition('console.command.translation_extract')) {
+            $definition = $container->getDefinition('console.command.translation_extract');
+=======
         if ($container->hasDefinition($this->updateCommandServiceId)) {
             $definition = $container->getDefinition($this->updateCommandServiceId);
+>>>>>>> origin/New-FakeMain
             $definition->replaceArgument(5, $container->getParameter('twig.default_path'));
 
             if (\count($definition->getArguments()) > 7) {

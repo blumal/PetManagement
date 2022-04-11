@@ -113,7 +113,11 @@ class Cursor implements Arrayable
      */
     public static function fromEncoded($encodedString)
     {
+<<<<<<< HEAD
+        if (! is_string($encodedString)) {
+=======
         if (is_null($encodedString) || ! is_string($encodedString)) {
+>>>>>>> origin/New-FakeMain
             return null;
         }
 

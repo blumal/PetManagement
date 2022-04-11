@@ -29,7 +29,11 @@ abstract class Warning
      */
     public function code()
     {
+<<<<<<< HEAD
+        return self::CODE;
+=======
         return static::CODE;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

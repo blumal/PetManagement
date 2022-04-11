@@ -14,6 +14,17 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "ext-json": "*",
+        "illuminate/collections": "^9.0",
+        "illuminate/container": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "illuminate/events": "^9.0",
+        "illuminate/filesystem": "^9.0",
+        "illuminate/macroable": "^9.0",
+        "illuminate/support": "^9.0"
+=======
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "illuminate/collections": "^8.0",
@@ -23,6 +34,7 @@
         "illuminate/filesystem": "^8.0",
         "illuminate/macroable": "^8.0",
         "illuminate/support": "^8.0"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +43,11 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+=======
             "dev-master": "8.x-dev"
+>>>>>>> origin/New-FakeMain
         }
     },
     "config": {

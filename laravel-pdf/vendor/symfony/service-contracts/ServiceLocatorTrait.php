@@ -26,9 +26,15 @@ class_exists(NotFoundExceptionInterface::class);
  */
 trait ServiceLocatorTrait
 {
+<<<<<<< HEAD
+    private array $factories;
+    private array $loading = [];
+    private array $providedTypes;
+=======
     private $factories;
     private $loading = [];
     private $providedTypes;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param callable[] $factories
@@ -40,20 +46,30 @@ trait ServiceLocatorTrait
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
+     */
+    public function has(string $id): bool
+=======
      *
      * @return bool
      */
     public function has(string $id)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->factories[$id]);
     }
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
+     */
+    public function get(string $id): mixed
+=======
      *
      * @return mixed
      */
     public function get(string $id)
+>>>>>>> origin/New-FakeMain
     {
         if (!isset($this->factories[$id])) {
             throw $this->createNotFoundException($id);
@@ -80,7 +96,11 @@ trait ServiceLocatorTrait
      */
     public function getProvidedServices(): array
     {
+<<<<<<< HEAD
+        if (!isset($this->providedTypes)) {
+=======
         if (null === $this->providedTypes) {
+>>>>>>> origin/New-FakeMain
             $this->providedTypes = [];
 
             foreach ($this->factories as $name => $factory) {

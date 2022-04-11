@@ -38,8 +38,13 @@ class QuestionHelper extends Helper
      */
     private $inputStream;
 
+<<<<<<< HEAD
+    private static bool $stty = true;
+    private static bool $stdinIsInteractive;
+=======
     private static $stty = true;
     private static $stdinIsInteractive;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Asks a question to the user.
@@ -48,7 +53,11 @@ class QuestionHelper extends Helper
      *
      * @throws RuntimeException If there is no data to read in the input stream
      */
+<<<<<<< HEAD
+    public function ask(InputInterface $input, OutputInterface $output, Question $question): mixed
+=======
     public function ask(InputInterface $input, OutputInterface $output, Question $question)
+>>>>>>> origin/New-FakeMain
     {
         if ($output instanceof ConsoleOutputInterface) {
             $output = $output->getErrorOutput();
@@ -86,7 +95,11 @@ class QuestionHelper extends Helper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'question';
     }
@@ -102,11 +115,17 @@ class QuestionHelper extends Helper
     /**
      * Asks the question to the user.
      *
+<<<<<<< HEAD
+     * @throws RuntimeException In case the fallback is deactivated and the response cannot be hidden
+     */
+    private function doAsk(OutputInterface $output, Question $question): mixed
+=======
      * @return mixed
      *
      * @throws RuntimeException In case the fallback is deactivated and the response cannot be hidden
      */
     private function doAsk(OutputInterface $output, Question $question)
+>>>>>>> origin/New-FakeMain
     {
         $this->writePrompt($output, $question);
 
@@ -153,10 +172,14 @@ class QuestionHelper extends Helper
         return $ret;
     }
 
+<<<<<<< HEAD
+    private function getDefaultAnswer(Question $question): mixed
+=======
     /**
      * @return mixed
      */
     private function getDefaultAnswer(Question $question)
+>>>>>>> origin/New-FakeMain
     {
         $default = $question->getDefault();
 
@@ -204,7 +227,11 @@ class QuestionHelper extends Helper
     /**
      * @return string[]
      */
+<<<<<<< HEAD
+    protected function formatChoiceQuestionChoices(ChoiceQuestion $question, string $tag): array
+=======
     protected function formatChoiceQuestionChoices(ChoiceQuestion $question, string $tag)
+>>>>>>> origin/New-FakeMain
     {
         $messages = [];
 
@@ -456,11 +483,17 @@ class QuestionHelper extends Helper
      *
      * @param callable $interviewer A callable that will ask for a question and return the result
      *
+<<<<<<< HEAD
+     * @throws \Exception In case the max number of attempts has been reached and no valid response has been given
+     */
+    private function validateAttempts(callable $interviewer, OutputInterface $output, Question $question): mixed
+=======
      * @return mixed The validated response
      *
      * @throws \Exception In case the max number of attempts has been reached and no valid response has been given
      */
     private function validateAttempts(callable $interviewer, OutputInterface $output, Question $question)
+>>>>>>> origin/New-FakeMain
     {
         $error = null;
         $attempts = $question->getMaxAttempts();
@@ -487,7 +520,11 @@ class QuestionHelper extends Helper
             return false;
         }
 
+<<<<<<< HEAD
+        if (isset(self::$stdinIsInteractive)) {
+=======
         if (null !== self::$stdinIsInteractive) {
+>>>>>>> origin/New-FakeMain
             return self::$stdinIsInteractive;
         }
 
@@ -513,10 +550,15 @@ class QuestionHelper extends Helper
      *
      * @param resource $inputStream The handler resource
      * @param Question $question    The question being asked
+<<<<<<< HEAD
+     */
+    private function readInput($inputStream, Question $question): string|false
+=======
      *
      * @return string|false The input received, false in case input could not be read
      */
     private function readInput($inputStream, Question $question)
+>>>>>>> origin/New-FakeMain
     {
         if (!$question->isMultiline()) {
             $cp = $this->setIOCodepage();
@@ -542,11 +584,14 @@ class QuestionHelper extends Helper
         return $this->resetIOCodepage($cp, $ret);
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Sets console I/O to the host code page.
      *
      * @return int Previous code page in IBM/EBCDIC format
      */
+>>>>>>> origin/New-FakeMain
     private function setIOCodepage(): int
     {
         if (\function_exists('sapi_windows_cp_set')) {
@@ -561,12 +606,17 @@ class QuestionHelper extends Helper
 
     /**
      * Sets console I/O to the specified code page and converts the user input.
+<<<<<<< HEAD
+     */
+    private function resetIOCodepage(int $cp, string|false $input): string|false
+=======
      *
      * @param string|false $input
      *
      * @return string|false
      */
     private function resetIOCodepage(int $cp, $input)
+>>>>>>> origin/New-FakeMain
     {
         if (0 !== $cp) {
             sapi_windows_cp_set($cp);

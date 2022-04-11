@@ -4,10 +4,20 @@ namespace Illuminate\Http\Resources;
 
 use Exception;
 use Illuminate\Support\Traits\ForwardsCalls;
+<<<<<<< HEAD
+use Illuminate\Support\Traits\Macroable;
+
+trait DelegatesToResource
+{
+    use ForwardsCalls, Macroable {
+        __call as macroCall;
+    }
+=======
 
 trait DelegatesToResource
 {
     use ForwardsCalls;
+>>>>>>> origin/New-FakeMain
 
     /**
      * Get the value of the resource's route key.
@@ -64,8 +74,12 @@ trait DelegatesToResource
      * @param  mixed  $offset
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($offset): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->resource[$offset]);
     }
@@ -76,8 +90,12 @@ trait DelegatesToResource
      * @param  mixed  $offset
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($offset): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
+>>>>>>> origin/New-FakeMain
     {
         return $this->resource[$offset];
     }
@@ -89,8 +107,12 @@ trait DelegatesToResource
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetSet($offset, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
+>>>>>>> origin/New-FakeMain
     {
         $this->resource[$offset] = $value;
     }
@@ -101,8 +123,12 @@ trait DelegatesToResource
      * @param  mixed  $offset
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetUnset($offset): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->resource[$offset]);
     }
@@ -149,6 +175,13 @@ trait DelegatesToResource
      */
     public function __call($method, $parameters)
     {
+<<<<<<< HEAD
+        if (static::hasMacro($method)) {
+            return $this->macroCall($method, $parameters);
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         return $this->forwardCallTo($this->resource, $method, $parameters);
     }
 }

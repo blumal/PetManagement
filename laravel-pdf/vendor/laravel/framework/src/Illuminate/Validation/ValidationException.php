@@ -53,7 +53,11 @@ class ValidationException extends Exception
      */
     public function __construct($validator, $response = null, $errorBag = 'default')
     {
+<<<<<<< HEAD
+        parent::__construct(static::summarize($validator));
+=======
         parent::__construct('The given data was invalid.');
+>>>>>>> origin/New-FakeMain
 
         $this->response = $response;
         $this->errorBag = $errorBag;
@@ -78,6 +82,34 @@ class ValidationException extends Exception
     }
 
     /**
+<<<<<<< HEAD
+     * Create an error message summary from the validation errors.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return string
+     */
+    protected static function summarize($validator)
+    {
+        $messages = $validator->errors()->all();
+
+        if (! count($messages)) {
+            return 'The given data was invalid.';
+        }
+
+        $message = array_shift($messages);
+
+        if ($additional = count($messages)) {
+            $pluralized = $additional === 1 ? 'error' : 'errors';
+
+            $message .= " (and {$additional} more {$pluralized})";
+        }
+
+        return $message;
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get all of the validation error messages.
      *
      * @return array

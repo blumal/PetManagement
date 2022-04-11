@@ -2,7 +2,11 @@
 
 namespace Egulias\EmailValidator;
 
+<<<<<<< HEAD
+use Egulias\EmailValidator\Result\InvalidEmail;
+=======
 use Egulias\EmailValidator\Exception\InvalidEmail;
+>>>>>>> origin/New-FakeMain
 use Egulias\EmailValidator\Validation\EmailValidation;
 
 class EmailValidator
@@ -15,12 +19,21 @@ class EmailValidator
     /**
      * @var Warning\Warning[]
      */
+<<<<<<< HEAD
+    private $warnings = [];
+
+    /**
+     * @var ?InvalidEmail
+     */
+    private $error;
+=======
     protected $warnings = [];
 
     /**
      * @var InvalidEmail|null
      */
     protected $error;
+>>>>>>> origin/New-FakeMain
 
     public function __construct()
     {
@@ -32,7 +45,11 @@ class EmailValidator
      * @param EmailValidation $emailValidation
      * @return bool
      */
+<<<<<<< HEAD
+    public function isValid(string $email, EmailValidation $emailValidation)
+=======
     public function isValid($email, EmailValidation $emailValidation)
+>>>>>>> origin/New-FakeMain
     {
         $isValid = $emailValidation->isValid($email, $this->lexer);
         $this->warnings = $emailValidation->getWarnings();

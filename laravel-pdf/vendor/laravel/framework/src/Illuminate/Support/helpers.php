@@ -6,6 +6,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
 use Illuminate\Support\HigherOrderTapProxy;
 use Illuminate\Support\Optional;
+<<<<<<< HEAD
+use Illuminate\Support\Str;
+=======
+>>>>>>> origin/New-FakeMain
 
 if (! function_exists('append_config')) {
     /**
@@ -203,7 +207,11 @@ if (! function_exists('preg_replace_array')) {
     function preg_replace_array($pattern, array $replacements, $subject)
     {
         return preg_replace_callback($pattern, function () use (&$replacements) {
+<<<<<<< HEAD
+            foreach ($replacements as $value) {
+=======
             foreach ($replacements as $key => $value) {
+>>>>>>> origin/New-FakeMain
                 return array_shift($replacements);
             }
         }, $subject);
@@ -214,7 +222,11 @@ if (! function_exists('retry')) {
     /**
      * Retry an operation a given number of times.
      *
+<<<<<<< HEAD
+     * @param  int|array  $times
+=======
      * @param  int  $times
+>>>>>>> origin/New-FakeMain
      * @param  callable  $callback
      * @param  int|\Closure  $sleepMilliseconds
      * @param  callable|null  $when
@@ -226,6 +238,17 @@ if (! function_exists('retry')) {
     {
         $attempts = 0;
 
+<<<<<<< HEAD
+        $backoff = [];
+
+        if (is_array($times)) {
+            $backoff = $times;
+
+            $times = count($times) + 1;
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         beginning:
         $attempts++;
         $times--;
@@ -237,6 +260,11 @@ if (! function_exists('retry')) {
                 throw $e;
             }
 
+<<<<<<< HEAD
+            $sleepMilliseconds = $backoff[$attempts - 1] ?? $sleepMilliseconds;
+
+=======
+>>>>>>> origin/New-FakeMain
             if ($sleepMilliseconds) {
                 usleep(value($sleepMilliseconds, $attempts) * 1000);
             }
@@ -246,6 +274,37 @@ if (! function_exists('retry')) {
     }
 }
 
+<<<<<<< HEAD
+if (! function_exists('str')) {
+    /**
+     * Get a new stringable object from the given string.
+     *
+     * @param  string|null  $string
+     * @return \Illuminate\Support\Stringable|mixed
+     */
+    function str($string = null)
+    {
+        if (func_num_args() === 0) {
+            return new class
+            {
+                public function __call($method, $parameters)
+                {
+                    return Str::$method(...$parameters);
+                }
+
+                public function __toString()
+                {
+                    return '';
+                }
+            };
+        }
+
+        return Str::of($string);
+    }
+}
+
+=======
+>>>>>>> origin/New-FakeMain
 if (! function_exists('tap')) {
     /**
      * Call the given Closure with the given value then return the value.
@@ -368,9 +427,17 @@ if (! function_exists('with')) {
     /**
      * Return the given value, optionally passed through the given callback.
      *
+<<<<<<< HEAD
+     * @template TValue
+     *
+     * @param  TValue  $value
+     * @param  (callable(TValue): TValue)|null  $callback
+     * @return TValue
+=======
      * @param  mixed  $value
      * @param  callable|null  $callback
      * @return mixed
+>>>>>>> origin/New-FakeMain
      */
     function with($value, callable $callback = null)
     {

@@ -21,6 +21,21 @@ use Symfony\Component\VarDumper\Caster\ClassStub;
  */
 final class WrappedListener
 {
+<<<<<<< HEAD
+    private string|array|object $listener;
+    private ?\Closure $optimizedListener;
+    private string $name;
+    private bool $called = false;
+    private bool $stoppedPropagation = false;
+    private $stopwatch;
+    private $dispatcher;
+    private string $pretty;
+    private $stub;
+    private ?int $priority = null;
+    private static bool $hasClassStub;
+
+    public function __construct(callable|array $listener, ?string $name, Stopwatch $stopwatch, EventDispatcherInterface $dispatcher = null)
+=======
     private $listener;
     private $optimizedListener;
     private $name;
@@ -34,13 +49,17 @@ final class WrappedListener
     private static $hasClassStub;
 
     public function __construct($listener, ?string $name, Stopwatch $stopwatch, EventDispatcherInterface $dispatcher = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->listener = $listener;
         $this->optimizedListener = $listener instanceof \Closure ? $listener : (\is_callable($listener) ? \Closure::fromCallable($listener) : null);
         $this->stopwatch = $stopwatch;
         $this->dispatcher = $dispatcher;
+<<<<<<< HEAD
+=======
         $this->called = false;
         $this->stoppedPropagation = false;
+>>>>>>> origin/New-FakeMain
 
         if (\is_array($listener)) {
             $this->name = \is_object($listener[0]) ? get_debug_type($listener[0]) : $listener[0];
@@ -66,12 +85,19 @@ final class WrappedListener
             $this->name = $name;
         }
 
+<<<<<<< HEAD
+        self::$hasClassStub ??= class_exists(ClassStub::class);
+    }
+
+    public function getWrappedListener(): callable|array
+=======
         if (null === self::$hasClassStub) {
             self::$hasClassStub = class_exists(ClassStub::class);
         }
     }
 
     public function getWrappedListener()
+>>>>>>> origin/New-FakeMain
     {
         return $this->listener;
     }
@@ -93,9 +119,13 @@ final class WrappedListener
 
     public function getInfo(string $eventName): array
     {
+<<<<<<< HEAD
+        $this->stub ??= self::$hasClassStub ? new ClassStub($this->pretty.'()', $this->listener) : $this->pretty.'()';
+=======
         if (null === $this->stub) {
             $this->stub = self::$hasClassStub ? new ClassStub($this->pretty.'()', $this->listener) : $this->pretty.'()';
         }
+>>>>>>> origin/New-FakeMain
 
         return [
             'event' => $eventName,

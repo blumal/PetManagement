@@ -23,6 +23,16 @@ interface SessionInterface
     /**
      * Starts the session storage.
      *
+<<<<<<< HEAD
+     * @throws \RuntimeException if session fails to start
+     */
+    public function start(): bool;
+
+    /**
+     * Returns the session ID.
+     */
+    public function getId(): string;
+=======
      * @return bool
      *
      * @throws \RuntimeException if session fails to start
@@ -35,6 +45,7 @@ interface SessionInterface
      * @return string
      */
     public function getId();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Sets the session ID.
@@ -43,10 +54,15 @@ interface SessionInterface
 
     /**
      * Returns the session name.
+<<<<<<< HEAD
+     */
+    public function getName(): string;
+=======
      *
      * @return string
      */
     public function getName();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Sets the session name.
@@ -63,10 +79,15 @@ interface SessionInterface
      *                      will leave the system settings unchanged, 0 sets the cookie
      *                      to expire with browser session. Time is in seconds, and is
      *                      not a Unix timestamp.
+<<<<<<< HEAD
+     */
+    public function invalidate(int $lifetime = null): bool;
+=======
      *
      * @return bool
      */
     public function invalidate(int $lifetime = null);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Migrates the current session to a new session id while maintaining all
@@ -77,10 +98,15 @@ interface SessionInterface
      *                       will leave the system settings unchanged, 0 sets the cookie
      *                       to expire with browser session. Time is in seconds, and is
      *                       not a Unix timestamp.
+<<<<<<< HEAD
+     */
+    public function migrate(bool $destroy = false, int $lifetime = null): bool;
+=======
      *
      * @return bool
      */
     public function migrate(bool $destroy = false, int $lifetime = null);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Force the session to be saved and closed.
@@ -93,6 +119,25 @@ interface SessionInterface
 
     /**
      * Checks if an attribute is defined.
+<<<<<<< HEAD
+     */
+    public function has(string $name): bool;
+
+    /**
+     * Returns an attribute.
+     */
+    public function get(string $name, mixed $default = null): mixed;
+
+    /**
+     * Sets an attribute.
+     */
+    public function set(string $name, mixed $value);
+
+    /**
+     * Returns attributes.
+     */
+    public function all(): array;
+=======
      *
      * @return bool
      */
@@ -120,6 +165,7 @@ interface SessionInterface
      * @return array
      */
     public function all();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Sets attributes.
@@ -131,7 +177,11 @@ interface SessionInterface
      *
      * @return mixed The removed value or null when it does not exist
      */
+<<<<<<< HEAD
+    public function remove(string $name): mixed;
+=======
     public function remove(string $name);
+>>>>>>> origin/New-FakeMain
 
     /**
      * Clears all attributes.
@@ -140,10 +190,15 @@ interface SessionInterface
 
     /**
      * Checks if the session was started.
+<<<<<<< HEAD
+     */
+    public function isStarted(): bool;
+=======
      *
      * @return bool
      */
     public function isStarted();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Registers a SessionBagInterface with the session.
@@ -152,6 +207,15 @@ interface SessionInterface
 
     /**
      * Gets a bag instance by name.
+<<<<<<< HEAD
+     */
+    public function getBag(string $name): SessionBagInterface;
+
+    /**
+     * Gets session meta.
+     */
+    public function getMetadataBag(): MetadataBag;
+=======
      *
      * @return SessionBagInterface
      */
@@ -163,4 +227,5 @@ interface SessionInterface
      * @return MetadataBag
      */
     public function getMetadataBag();
+>>>>>>> origin/New-FakeMain
 }

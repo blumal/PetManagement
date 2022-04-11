@@ -25,10 +25,15 @@ interface HelperInterface
 
     /**
      * Gets the helper set associated with this helper.
+<<<<<<< HEAD
+     */
+    public function getHelperSet(): ?HelperSet;
+=======
      *
      * @return HelperSet|null
      */
     public function getHelperSet();
+>>>>>>> origin/New-FakeMain
 
     /**
      * Returns the canonical name of this helper.

@@ -2,6 +2,11 @@
 
 namespace Illuminate\View\Compilers\Concerns;
 
+<<<<<<< HEAD
+use Illuminate\Support\Str;
+
+=======
+>>>>>>> origin/New-FakeMain
 trait CompilesStacks
 {
     /**
@@ -27,6 +32,27 @@ trait CompilesStacks
     }
 
     /**
+<<<<<<< HEAD
+     * Compile the push-once statements into valid PHP.
+     *
+     * @param  string  $expression
+     * @return string
+     */
+    protected function compilePushOnce($expression)
+    {
+        $parts = explode(',', $this->stripParentheses($expression), 2);
+
+        [$stack, $id] = [$parts[0], $parts[1] ?? ''];
+
+        $id = trim($id) ?: "'".(string) Str::uuid()."'";
+
+        return '<?php if (! $__env->hasRenderedOnce('.$id.')): $__env->markAsRenderedOnce('.$id.');
+$__env->startPush('.$stack.'); ?>';
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile the end-push statements into valid PHP.
      *
      * @return string
@@ -37,6 +63,19 @@ trait CompilesStacks
     }
 
     /**
+<<<<<<< HEAD
+     * Compile the end-push-once statements into valid PHP.
+     *
+     * @return string
+     */
+    protected function compileEndpushOnce()
+    {
+        return '<?php $__env->stopPush(); endif; ?>';
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile the prepend statements into valid PHP.
      *
      * @param  string  $expression
@@ -48,6 +87,27 @@ trait CompilesStacks
     }
 
     /**
+<<<<<<< HEAD
+     * Compile the prepend-once statements into valid PHP.
+     *
+     * @param  string  $expression
+     * @return string
+     */
+    protected function compilePrependOnce($expression)
+    {
+        $parts = explode(',', $this->stripParentheses($expression), 2);
+
+        [$stack, $id] = [$parts[0], $parts[1] ?? ''];
+
+        $id = trim($id) ?: "'".(string) Str::uuid()."'";
+
+        return '<?php if (! $__env->hasRenderedOnce('.$id.')): $__env->markAsRenderedOnce('.$id.');
+$__env->startPrepend('.$stack.'); ?>';
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Compile the end-prepend statements into valid PHP.
      *
      * @return string
@@ -56,4 +116,17 @@ trait CompilesStacks
     {
         return '<?php $__env->stopPrepend(); ?>';
     }
+<<<<<<< HEAD
+
+    /**
+     * Compile the end-prepend-once statements into valid PHP.
+     *
+     * @return string
+     */
+    protected function compileEndprependOnce()
+    {
+        return '<?php $__env->stopPrepend(); endif; ?>';
+    }
+=======
+>>>>>>> origin/New-FakeMain
 }

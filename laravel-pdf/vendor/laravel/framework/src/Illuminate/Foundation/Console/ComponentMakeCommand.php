@@ -17,6 +17,20 @@ class ComponentMakeCommand extends GeneratorCommand
     protected $name = 'make:component';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:component';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -37,6 +51,17 @@ class ComponentMakeCommand extends GeneratorCommand
      */
     public function handle()
     {
+<<<<<<< HEAD
+        if ($this->option('view')) {
+            $this->writeView(function () {
+                $this->info($this->type.' created successfully.');
+            });
+
+            return;
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         if (parent::handle() === false && ! $this->option('force')) {
             return false;
         }
@@ -49,9 +74,16 @@ class ComponentMakeCommand extends GeneratorCommand
     /**
      * Write the view for the component.
      *
+<<<<<<< HEAD
+     * @param  callable|null  $onSuccess
+     * @return void
+     */
+    protected function writeView($onSuccess = null)
+=======
      * @return void
      */
     protected function writeView()
+>>>>>>> origin/New-FakeMain
     {
         $path = $this->viewPath(
             str_replace('.', '/', 'components.'.$this->getView()).'.blade.php'
@@ -73,6 +105,13 @@ class ComponentMakeCommand extends GeneratorCommand
     <!-- '.Inspiring::quote().' -->
 </div>'
         );
+<<<<<<< HEAD
+
+        if ($onSuccess) {
+            $onSuccess();
+        }
+=======
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -158,6 +197,10 @@ class ComponentMakeCommand extends GeneratorCommand
         return [
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the component already exists'],
             ['inline', null, InputOption::VALUE_NONE, 'Create a component that renders an inline view'],
+<<<<<<< HEAD
+            ['view', null, InputOption::VALUE_NONE, 'Create an anonymous component with only a view'],
+=======
+>>>>>>> origin/New-FakeMain
         ];
     }
 }

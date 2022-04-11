@@ -20,12 +20,16 @@ use Symfony\Component\Translation\Exception\InvalidArgumentException;
  */
 abstract class AbstractFileExtractor
 {
+<<<<<<< HEAD
+    protected function extractFiles(string|iterable $resource): iterable
+=======
     /**
      * @param string|iterable $resource Files, a file or a directory
      *
      * @return iterable
      */
     protected function extractFiles($resource)
+>>>>>>> origin/New-FakeMain
     {
         if (is_iterable($resource)) {
             $files = [];
@@ -49,11 +53,17 @@ abstract class AbstractFileExtractor
     }
 
     /**
+<<<<<<< HEAD
+     * @throws InvalidArgumentException
+     */
+    protected function isFile(string $file): bool
+=======
      * @return bool
      *
      * @throws InvalidArgumentException
      */
     protected function isFile(string $file)
+>>>>>>> origin/New-FakeMain
     {
         if (!is_file($file)) {
             throw new InvalidArgumentException(sprintf('The "%s" file does not exist.', $file));
@@ -68,9 +78,15 @@ abstract class AbstractFileExtractor
     abstract protected function canBeExtracted(string $file);
 
     /**
+<<<<<<< HEAD
+     * @return iterable
+     */
+    abstract protected function extractFromDirectory(string|array $resource);
+=======
      * @param string|array $resource Files, a file or a directory
      *
      * @return iterable
      */
     abstract protected function extractFromDirectory($resource);
+>>>>>>> origin/New-FakeMain
 }

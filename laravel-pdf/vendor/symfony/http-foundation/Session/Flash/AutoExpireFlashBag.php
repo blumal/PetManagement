@@ -18,9 +18,15 @@ namespace Symfony\Component\HttpFoundation\Session\Flash;
  */
 class AutoExpireFlashBag implements FlashBagInterface
 {
+<<<<<<< HEAD
+    private string $name = 'flashes';
+    private array $flashes = ['display' => [], 'new' => []];
+    private string $storageKey;
+=======
     private $name = 'flashes';
     private $flashes = ['display' => [], 'new' => []];
     private $storageKey;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $storageKey The key used to store flashes in the session
@@ -33,7 +39,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->name;
     }
@@ -60,7 +70,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function add(string $type, mixed $message)
+=======
     public function add(string $type, $message)
+>>>>>>> origin/New-FakeMain
     {
         $this->flashes['new'][$type][] = $message;
     }
@@ -68,7 +82,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function peek(string $type, array $default = []): array
+=======
     public function peek(string $type, array $default = [])
+>>>>>>> origin/New-FakeMain
     {
         return $this->has($type) ? $this->flashes['display'][$type] : $default;
     }
@@ -76,7 +94,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function peekAll(): array
+=======
     public function peekAll()
+>>>>>>> origin/New-FakeMain
     {
         return \array_key_exists('display', $this->flashes) ? $this->flashes['display'] : [];
     }
@@ -84,7 +106,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function get(string $type, array $default = []): array
+=======
     public function get(string $type, array $default = [])
+>>>>>>> origin/New-FakeMain
     {
         $return = $default;
 
@@ -103,7 +129,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function all(): array
+=======
     public function all()
+>>>>>>> origin/New-FakeMain
     {
         $return = $this->flashes['display'];
         $this->flashes['display'] = [];
@@ -122,7 +152,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function set(string $type, string|array $messages)
+=======
     public function set(string $type, $messages)
+>>>>>>> origin/New-FakeMain
     {
         $this->flashes['new'][$type] = (array) $messages;
     }
@@ -130,7 +164,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function has(string $type): bool
+=======
     public function has(string $type)
+>>>>>>> origin/New-FakeMain
     {
         return \array_key_exists($type, $this->flashes['display']) && $this->flashes['display'][$type];
     }
@@ -138,7 +176,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function keys(): array
+=======
     public function keys()
+>>>>>>> origin/New-FakeMain
     {
         return array_keys($this->flashes['display']);
     }
@@ -146,7 +188,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getStorageKey(): string
+=======
     public function getStorageKey()
+>>>>>>> origin/New-FakeMain
     {
         return $this->storageKey;
     }
@@ -154,7 +200,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function clear(): mixed
+=======
     public function clear()
+>>>>>>> origin/New-FakeMain
     {
         return $this->all();
     }

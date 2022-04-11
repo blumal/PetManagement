@@ -4,6 +4,10 @@ namespace Illuminate\Database;
 
 use Illuminate\Console\Command;
 use Illuminate\Container\Container;
+<<<<<<< HEAD
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
@@ -24,6 +28,16 @@ abstract class Seeder
     protected $command;
 
     /**
+<<<<<<< HEAD
+     * Seeders that have been called at least one time.
+     *
+     * @var array
+     */
+    protected static $called = [];
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Run the given seeder class.
      *
      * @param  array|string  $class
@@ -53,6 +67,11 @@ abstract class Seeder
             if ($silent === false && isset($this->command)) {
                 $this->command->getOutput()->writeln("<info>Seeded:</info>  {$name} ({$runTime}ms)");
             }
+<<<<<<< HEAD
+
+            static::$called[] = $class;
+=======
+>>>>>>> origin/New-FakeMain
         }
 
         return $this;
@@ -83,6 +102,25 @@ abstract class Seeder
     }
 
     /**
+<<<<<<< HEAD
+     * Run the given seeder class once.
+     *
+     * @param  array|string  $class
+     * @param  bool  $silent
+     * @return void
+     */
+    public function callOnce($class, $silent = false, array $parameters = [])
+    {
+        if (in_array($class, static::$called)) {
+            return;
+        }
+
+        $this->call($class, $silent, $parameters);
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Resolve an instance of the given seeder class.
      *
      * @param  string  $class
@@ -145,8 +183,22 @@ abstract class Seeder
             throw new InvalidArgumentException('Method [run] missing from '.get_class($this));
         }
 
+<<<<<<< HEAD
+        $callback = fn () => isset($this->container)
+            ? $this->container->call([$this, 'run'], $parameters)
+            : $this->run(...$parameters);
+
+        $uses = array_flip(class_uses_recursive(static::class));
+
+        if (isset($uses[WithoutModelEvents::class])) {
+            $callback = $this->withoutModelEvents($callback);
+        }
+
+        return $callback();
+=======
         return isset($this->container)
                     ? $this->container->call([$this, 'run'], $parameters)
                     : $this->run(...$parameters);
+>>>>>>> origin/New-FakeMain
     }
 }

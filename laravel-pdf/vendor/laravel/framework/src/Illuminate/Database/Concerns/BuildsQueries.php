@@ -5,6 +5,10 @@ namespace Illuminate\Database\Concerns;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\MultipleRecordsFoundException;
+<<<<<<< HEAD
+use Illuminate\Database\Query\Expression;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Pagination\Cursor;
 use Illuminate\Pagination\CursorPaginator;
@@ -12,6 +16,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
+<<<<<<< HEAD
+use Illuminate\Support\Str;
+=======
+>>>>>>> origin/New-FakeMain
 use Illuminate\Support\Traits\Conditionable;
 use InvalidArgumentException;
 use RuntimeException;
@@ -111,9 +119,15 @@ trait BuildsQueries
      */
     public function chunkById($count, callable $callback, $column = null, $alias = null)
     {
+<<<<<<< HEAD
+        $column ??= $this->defaultKeyName();
+
+        $alias ??= $column;
+=======
         $column = $column ?? $this->defaultKeyName();
 
         $alias = $alias ?? $column;
+>>>>>>> origin/New-FakeMain
 
         $lastId = null;
 
@@ -254,9 +268,15 @@ trait BuildsQueries
             throw new InvalidArgumentException('The chunk size should be at least 1');
         }
 
+<<<<<<< HEAD
+        $column ??= $this->defaultKeyName();
+
+        $alias ??= $column;
+=======
         $column = $column ?? $this->defaultKeyName();
 
         $alias = $alias ?? $column;
+>>>>>>> origin/New-FakeMain
 
         return LazyCollection::make(function () use ($chunkSize, $column, $alias, $descending) {
             $lastId = null;
@@ -307,12 +327,23 @@ trait BuildsQueries
     {
         $result = $this->take(2)->get($columns);
 
+<<<<<<< HEAD
+        $count = $result->count();
+
+        if ($count === 0) {
+            throw new RecordsNotFoundException;
+        }
+
+        if ($count > 1) {
+            throw new MultipleRecordsFoundException($count);
+=======
         if ($result->isEmpty()) {
             throw new RecordsNotFoundException;
         }
 
         if ($result->count() > 1) {
             throw new MultipleRecordsFoundException;
+>>>>>>> origin/New-FakeMain
         }
 
         return $result->first();
@@ -340,8 +371,15 @@ trait BuildsQueries
         if (! is_null($cursor)) {
             $addCursorConditions = function (self $builder, $previousColumn, $i) use (&$addCursorConditions, $cursor, $orders) {
                 if (! is_null($previousColumn)) {
+<<<<<<< HEAD
+                    $originalColumn = $this->getOriginalColumnNameForCursorPagination($this, $previousColumn);
+
+                    $builder->where(
+                        Str::contains($originalColumn, ['(', ')']) ? new Expression($originalColumn) : $originalColumn,
+=======
                     $builder->where(
                         $this->getOriginalColumnNameForCursorPagination($this, $previousColumn),
+>>>>>>> origin/New-FakeMain
                         '=',
                         $cursor->parameter($previousColumn)
                     );
@@ -350,8 +388,15 @@ trait BuildsQueries
                 $builder->where(function (self $builder) use ($addCursorConditions, $cursor, $orders, $i) {
                     ['column' => $column, 'direction' => $direction] = $orders[$i];
 
+<<<<<<< HEAD
+                    $originalColumn = $this->getOriginalColumnNameForCursorPagination($this, $column);
+
+                    $builder->where(
+                        Str::contains($originalColumn, ['(', ')']) ? new Expression($originalColumn) : $originalColumn,
+=======
                     $builder->where(
                         $this->getOriginalColumnNameForCursorPagination($this, $column),
+>>>>>>> origin/New-FakeMain
                         $direction === 'asc' ? '>' : '<',
                         $cursor->parameter($column)
                     );
@@ -394,7 +439,11 @@ trait BuildsQueries
 
                     [$original, $alias] = explode($as, $column);
 
+<<<<<<< HEAD
+                    if ($parameter === $alias || $builder->getGrammar()->wrap($parameter) === $alias) {
+=======
                     if ($parameter === $alias) {
+>>>>>>> origin/New-FakeMain
                         return $original;
                     }
                 }
@@ -457,10 +506,20 @@ trait BuildsQueries
      * Pass the query to a given callback.
      *
      * @param  callable  $callback
+<<<<<<< HEAD
+     * @return $this
+     */
+    public function tap($callback)
+    {
+        $callback($this);
+
+        return $this;
+=======
      * @return $this|mixed
      */
     public function tap($callback)
     {
         return $this->when(true, $callback);
+>>>>>>> origin/New-FakeMain
     }
 }

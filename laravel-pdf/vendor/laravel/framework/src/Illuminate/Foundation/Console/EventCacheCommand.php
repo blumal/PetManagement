@@ -15,6 +15,20 @@ class EventCacheCommand extends Command
     protected $signature = 'event:cache';
 
     /**
+<<<<<<< HEAD
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'event:cache';
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * The console command description.
      *
      * @var string
@@ -35,7 +49,11 @@ class EventCacheCommand extends Command
             '<?php return '.var_export($this->getEvents(), true).';'
         );
 
+<<<<<<< HEAD
+        $this->info('Events cached successfully.');
+=======
         $this->info('Events cached successfully!');
+>>>>>>> origin/New-FakeMain
     }
 
     /**

@@ -47,7 +47,11 @@ class WorkerOptions
     public $rest;
 
     /**
+<<<<<<< HEAD
+     * The maximum number of times a job may be attempted.
+=======
      * The maximum amount of times a job may be attempted.
+>>>>>>> origin/New-FakeMain
      *
      * @var int
      */

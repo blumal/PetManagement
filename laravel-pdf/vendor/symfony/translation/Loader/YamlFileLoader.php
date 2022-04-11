@@ -29,7 +29,11 @@ class YamlFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function loadResource(string $resource): array
+=======
     protected function loadResource(string $resource)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $this->yamlParser) {
             if (!class_exists(\Symfony\Component\Yaml\Parser::class)) {

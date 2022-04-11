@@ -123,7 +123,11 @@ class SqlServerConnection implements ServerInfoAwareConnection
         $val = $this->connection->quote($value, $type);
 
         // Fix for a driver version terminating all values with null byte...
+<<<<<<< HEAD
+        if (\is_string($val) && str_contains($val, "\0")) {
+=======
         if (\is_string($val) && \strpos($val, "\0") !== false) {
+>>>>>>> origin/New-FakeMain
             $val = \substr($val, 0, -1);
         }
 

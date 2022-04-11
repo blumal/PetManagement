@@ -27,7 +27,11 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Esi extends AbstractSurrogate
 {
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return 'esi';
     }
@@ -45,7 +49,11 @@ class Esi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = ''): string
+=======
     public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = '')
+>>>>>>> origin/New-FakeMain
     {
         $html = sprintf('<esi:include src="%s"%s%s />',
             $uri,
@@ -63,7 +71,11 @@ class Esi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function process(Request $request, Response $response): Response
+=======
     public function process(Request $request, Response $response)
+>>>>>>> origin/New-FakeMain
     {
         $type = $response->headers->get('Content-Type');
         if (empty($type)) {

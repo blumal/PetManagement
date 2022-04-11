@@ -41,7 +41,11 @@ class InputStream implements \IteratorAggregate
      * @param resource|string|int|float|bool|\Traversable|null $input The input to append as scalar,
      *                                                                stream resource or \Traversable
      */
+<<<<<<< HEAD
+    public function write(mixed $input)
+=======
     public function write($input)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $input) {
             return;
@@ -68,11 +72,15 @@ class InputStream implements \IteratorAggregate
         return !$this->open;
     }
 
+<<<<<<< HEAD
+    public function getIterator(): \Traversable
+=======
     /**
      * @return \Traversable<int, string>
      */
     #[\ReturnTypeWillChange]
     public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         $this->open = true;
 

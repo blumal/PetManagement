@@ -20,8 +20,13 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class MemcachedCaster
 {
+<<<<<<< HEAD
+    private static array $optionConstants;
+    private static array $defaultOptions;
+=======
     private static $optionConstants;
     private static $defaultOptions;
+>>>>>>> origin/New-FakeMain
 
     public static function castMemcached(\Memcached $c, array $a, Stub $stub, bool $isNested)
     {

@@ -38,10 +38,15 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the headers as a string.
+<<<<<<< HEAD
+     */
+    public function __toString(): string
+=======
      *
      * @return string
      */
     public function __toString()
+>>>>>>> origin/New-FakeMain
     {
         if (!$headers = $this->all()) {
             return '';
@@ -67,7 +72,11 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return array<string, array<int, string|null>>|array<int, string|null>
      */
+<<<<<<< HEAD
+    public function all(string $key = null): array
+=======
     public function all(string $key = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null !== $key) {
             return $this->headers[strtr($key, self::UPPER, self::LOWER)] ?? [];
@@ -81,7 +90,11 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return string[]
      */
+<<<<<<< HEAD
+    public function keys(): array
+=======
     public function keys()
+>>>>>>> origin/New-FakeMain
     {
         return array_keys($this->all());
     }
@@ -107,10 +120,15 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the first header by name or the default one.
+<<<<<<< HEAD
+     */
+    public function get(string $key, string $default = null): ?string
+=======
      *
      * @return string|null
      */
     public function get(string $key, string $default = null)
+>>>>>>> origin/New-FakeMain
     {
         $headers = $this->all($key);
 
@@ -131,7 +149,11 @@ class HeaderBag implements \IteratorAggregate, \Countable
      * @param string|string[]|null $values  The value or an array of values
      * @param bool                 $replace Whether to replace the actual value or not (true by default)
      */
+<<<<<<< HEAD
+    public function set(string $key, string|array|null $values, bool $replace = true)
+=======
     public function set(string $key, $values, bool $replace = true)
+>>>>>>> origin/New-FakeMain
     {
         $key = strtr($key, self::UPPER, self::LOWER);
 
@@ -158,20 +180,30 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns true if the HTTP header is defined.
+<<<<<<< HEAD
+     */
+    public function has(string $key): bool
+=======
      *
      * @return bool
      */
     public function has(string $key)
+>>>>>>> origin/New-FakeMain
     {
         return \array_key_exists(strtr($key, self::UPPER, self::LOWER), $this->all());
     }
 
     /**
      * Returns true if the given HTTP header contains the given value.
+<<<<<<< HEAD
+     */
+    public function contains(string $key, string $value): bool
+=======
      *
      * @return bool
      */
     public function contains(string $key, string $value)
+>>>>>>> origin/New-FakeMain
     {
         return \in_array($value, $this->all($key));
     }
@@ -193,11 +225,17 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns the HTTP header value converted to a date.
      *
+<<<<<<< HEAD
+     * @throws \RuntimeException When the HTTP header is not parseable
+     */
+    public function getDate(string $key, \DateTime $default = null): ?\DateTimeInterface
+=======
      * @return \DateTimeInterface|null
      *
      * @throws \RuntimeException When the HTTP header is not parseable
      */
     public function getDate(string $key, \DateTime $default = null)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $value = $this->get($key)) {
             return $default;
@@ -212,10 +250,15 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Adds a custom Cache-Control directive.
+<<<<<<< HEAD
+     */
+    public function addCacheControlDirective(string $key, bool|string $value = true)
+=======
      *
      * @param bool|string $value The Cache-Control directive value
      */
     public function addCacheControlDirective(string $key, $value = true)
+>>>>>>> origin/New-FakeMain
     {
         $this->cacheControl[$key] = $value;
 
@@ -224,20 +267,30 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns true if the Cache-Control directive is defined.
+<<<<<<< HEAD
+     */
+    public function hasCacheControlDirective(string $key): bool
+=======
      *
      * @return bool
      */
     public function hasCacheControlDirective(string $key)
+>>>>>>> origin/New-FakeMain
     {
         return \array_key_exists($key, $this->cacheControl);
     }
 
     /**
      * Returns a Cache-Control directive value by name.
+<<<<<<< HEAD
+     */
+    public function getCacheControlDirective(string $key): bool|string|null
+=======
      *
      * @return bool|string|null
      */
     public function getCacheControlDirective(string $key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->cacheControl[$key] ?? null;
     }
@@ -257,19 +310,28 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return \ArrayIterator<string, list<string|null>>
      */
+<<<<<<< HEAD
+    public function getIterator(): \ArrayIterator
+=======
     #[\ReturnTypeWillChange]
     public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return new \ArrayIterator($this->headers);
     }
 
     /**
      * Returns the number of headers.
+<<<<<<< HEAD
+     */
+    public function count(): int
+=======
      *
      * @return int
      */
     #[\ReturnTypeWillChange]
     public function count()
+>>>>>>> origin/New-FakeMain
     {
         return \count($this->headers);
     }
@@ -283,10 +345,15 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Parses a Cache-Control HTTP header.
+<<<<<<< HEAD
+     */
+    protected function parseCacheControl(string $header): array
+=======
      *
      * @return array
      */
     protected function parseCacheControl(string $header)
+>>>>>>> origin/New-FakeMain
     {
         $parts = HeaderUtils::split($header, ',=');
 

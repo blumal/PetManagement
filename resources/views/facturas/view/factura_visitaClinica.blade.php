@@ -155,7 +155,7 @@ img {
                         <td>
                             <?php echo $clinica[0]->nombre_s ?><br />
                             Fecha de compra: <?php echo $factura[0]->fecha_fc ?><br />
-                            ID Factura: <?php echo 'Visita '; echo " - ".$factura[0]->id_fc ?><br />
+                            ID Factura: <?php echo 'Visita '; echo " - 000".$factura[0]->id_fc ?><br />
                         </td>
                     </tr>
                 </table>
@@ -259,7 +259,7 @@ img {
 
     ?>
     <br>
-    <form action="/FacturaClinica/download" method="post">
+    <form action="download" method="post">
         @csrf
         <input type="hidden" name="id_factura_clinica" value="<?php echo $factura[0]->id_fc?>">
         <input type="submit" value="Descargar">

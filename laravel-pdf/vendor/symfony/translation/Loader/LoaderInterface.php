@@ -25,6 +25,12 @@ interface LoaderInterface
     /**
      * Loads a locale.
      *
+<<<<<<< HEAD
+     * @throws NotFoundResourceException when the resource cannot be found
+     * @throws InvalidResourceException  when the resource cannot be loaded
+     */
+    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue;
+=======
      * @param mixed  $resource A resource
      * @param string $locale   A locale
      * @param string $domain   The domain
@@ -35,4 +41,5 @@ interface LoaderInterface
      * @throws InvalidResourceException  when the resource cannot be loaded
      */
     public function load($resource, string $locale, string $domain = 'messages');
+>>>>>>> origin/New-FakeMain
 }

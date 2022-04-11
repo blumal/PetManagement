@@ -24,6 +24,15 @@ interface FragmentRendererInterface
 {
     /**
      * Renders a URI and returns the Response content.
+<<<<<<< HEAD
+     */
+    public function render(string|ControllerReference $uri, Request $request, array $options = []): Response;
+
+    /**
+     * Gets the name of the strategy.
+     */
+    public function getName(): string;
+=======
      *
      * @param string|ControllerReference $uri A URI as a string or a ControllerReference instance
      *
@@ -37,4 +46,5 @@ interface FragmentRendererInterface
      * @return string
      */
     public function getName();
+>>>>>>> origin/New-FakeMain
 }

@@ -14,7 +14,11 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2"
+=======
         "php": "^7.3|^8.0"
+>>>>>>> origin/New-FakeMain
     },
     "autoload": {
         "psr-4": {
@@ -23,7 +27,11 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+=======
             "dev-master": "8.x-dev"
+>>>>>>> origin/New-FakeMain
         }
     },
     "config": {

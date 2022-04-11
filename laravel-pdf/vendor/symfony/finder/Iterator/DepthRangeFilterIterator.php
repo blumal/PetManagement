@@ -23,7 +23,11 @@ namespace Symfony\Component\Finder\Iterator;
  */
 class DepthRangeFilterIterator extends \FilterIterator
 {
+<<<<<<< HEAD
+    private int $minDepth = 0;
+=======
     private $minDepth = 0;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param \RecursiveIteratorIterator<\RecursiveIterator<TKey, TValue>> $iterator The Iterator to filter
@@ -40,11 +44,16 @@ class DepthRangeFilterIterator extends \FilterIterator
 
     /**
      * Filters the iterator values.
+<<<<<<< HEAD
+     */
+    public function accept(): bool
+=======
      *
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function accept()
+>>>>>>> origin/New-FakeMain
     {
         return $this->getInnerIterator()->getDepth() >= $this->minDepth;
     }

@@ -82,6 +82,27 @@ interface Container extends ContainerInterface
     public function singletonIf($abstract, $concrete = null);
 
     /**
+<<<<<<< HEAD
+     * Register a scoped binding in the container.
+     *
+     * @param  string  $abstract
+     * @param  \Closure|string|null  $concrete
+     * @return void
+     */
+    public function scoped($abstract, $concrete = null);
+
+    /**
+     * Register a scoped binding if it hasn't already been registered.
+     *
+     * @param  string  $abstract
+     * @param  \Closure|string|null  $concrete
+     * @return void
+     */
+    public function scopedIf($abstract, $concrete = null);
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * "Extend" an abstract type in the container.
      *
      * @param  string  $abstract
@@ -164,6 +185,18 @@ interface Container extends ContainerInterface
     public function resolved($abstract);
 
     /**
+<<<<<<< HEAD
+     * Register a new before resolving callback.
+     *
+     * @param  \Closure|string  $abstract
+     * @param  \Closure|null  $callback
+     * @return void
+     */
+    public function beforeResolving($abstract, Closure $callback = null);
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Register a new resolving callback.
      *
      * @param  \Closure|string  $abstract

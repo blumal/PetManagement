@@ -20,14 +20,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class SingleCommandApplication extends Command
 {
+<<<<<<< HEAD
+    private string $version = 'UNKNOWN';
+    private bool $autoExit = true;
+    private bool $running = false;
+=======
     private $version = 'UNKNOWN';
     private $autoExit = true;
     private $running = false;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @return $this
      */
+<<<<<<< HEAD
+    public function setVersion(string $version): static
+=======
     public function setVersion(string $version): self
+>>>>>>> origin/New-FakeMain
     {
         $this->version = $version;
 
@@ -39,7 +49,11 @@ class SingleCommandApplication extends Command
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setAutoExit(bool $autoExit): static
+=======
     public function setAutoExit(bool $autoExit): self
+>>>>>>> origin/New-FakeMain
     {
         $this->autoExit = $autoExit;
 

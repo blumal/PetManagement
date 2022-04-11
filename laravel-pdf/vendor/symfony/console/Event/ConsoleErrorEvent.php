@@ -22,8 +22,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class ConsoleErrorEvent extends ConsoleEvent
 {
+<<<<<<< HEAD
+    private \Throwable $error;
+    private int $exitCode;
+=======
     private $error;
     private $exitCode;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(InputInterface $input, OutputInterface $output, \Throwable $error, Command $command = null)
     {

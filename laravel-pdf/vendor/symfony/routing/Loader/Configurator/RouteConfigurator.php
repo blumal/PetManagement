@@ -40,7 +40,11 @@ class RouteConfigurator
      *
      * @return $this
      */
+<<<<<<< HEAD
+    final public function host(string|array $host): static
+=======
     final public function host($host): self
+>>>>>>> origin/New-FakeMain
     {
         $this->addHost($this->route, $host);
 

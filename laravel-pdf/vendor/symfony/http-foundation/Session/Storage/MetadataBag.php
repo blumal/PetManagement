@@ -26,6 +26,10 @@ class MetadataBag implements SessionBagInterface
     public const UPDATED = 'u';
     public const LIFETIME = 'l';
 
+<<<<<<< HEAD
+    private string $name = '__metadata';
+    private string $storageKey;
+=======
     /**
      * @var string
      */
@@ -35,6 +39,7 @@ class MetadataBag implements SessionBagInterface
      * @var string
      */
     private $storageKey;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @var array
@@ -43,6 +48,12 @@ class MetadataBag implements SessionBagInterface
 
     /**
      * Unix timestamp.
+<<<<<<< HEAD
+     */
+    private int $lastUsed;
+
+    private int $updateThreshold;
+=======
      *
      * @var int
      */
@@ -52,6 +63,7 @@ class MetadataBag implements SessionBagInterface
      * @var int
      */
     private $updateThreshold;
+>>>>>>> origin/New-FakeMain
 
     /**
      * @param string $storageKey      The key used to store bag in the session
@@ -84,10 +96,15 @@ class MetadataBag implements SessionBagInterface
 
     /**
      * Gets the lifetime that the session cookie was set with.
+<<<<<<< HEAD
+     */
+    public function getLifetime(): int
+=======
      *
      * @return int
      */
     public function getLifetime()
+>>>>>>> origin/New-FakeMain
     {
         return $this->meta[self::LIFETIME];
     }
@@ -108,7 +125,11 @@ class MetadataBag implements SessionBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getStorageKey(): string
+=======
     public function getStorageKey()
+>>>>>>> origin/New-FakeMain
     {
         return $this->storageKey;
     }
@@ -118,7 +139,11 @@ class MetadataBag implements SessionBagInterface
      *
      * @return int Unix timestamp
      */
+<<<<<<< HEAD
+    public function getCreated(): int
+=======
     public function getCreated()
+>>>>>>> origin/New-FakeMain
     {
         return $this->meta[self::CREATED];
     }
@@ -128,7 +153,11 @@ class MetadataBag implements SessionBagInterface
      *
      * @return int Unix timestamp
      */
+<<<<<<< HEAD
+    public function getLastUsed(): int
+=======
     public function getLastUsed()
+>>>>>>> origin/New-FakeMain
     {
         return $this->lastUsed;
     }
@@ -136,7 +165,11 @@ class MetadataBag implements SessionBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function clear(): mixed
+=======
     public function clear()
+>>>>>>> origin/New-FakeMain
     {
         // nothing to do
         return null;
@@ -145,7 +178,11 @@ class MetadataBag implements SessionBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getName(): string
+=======
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->name;
     }

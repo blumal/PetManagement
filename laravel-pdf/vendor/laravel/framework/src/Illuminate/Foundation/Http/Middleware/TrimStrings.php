@@ -53,7 +53,11 @@ class TrimStrings extends TransformsRequest
             return $value;
         }
 
+<<<<<<< HEAD
+        return is_string($value) ? preg_replace('~^\s+|\s+$~iu', '', $value) : $value;
+=======
         return is_string($value) ? trim($value) : $value;
+>>>>>>> origin/New-FakeMain
     }
 
     /**

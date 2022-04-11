@@ -11,6 +11,10 @@
 
 namespace Symfony\Component\VarDumper\Command;
 
+<<<<<<< HEAD
+use Symfony\Component\Console\Attribute\AsCommand;
+=======
+>>>>>>> origin/New-FakeMain
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
@@ -34,6 +38,15 @@ use Symfony\Component\VarDumper\Server\DumpServer;
  *
  * @final
  */
+<<<<<<< HEAD
+#[AsCommand(name: 'server:dump', description: 'Start a dump server that collects and displays dumps in a single place')]
+class ServerDumpCommand extends Command
+{
+    private $server;
+
+    /** @var DumpDescriptorInterface[] */
+    private array $descriptors;
+=======
 class ServerDumpCommand extends Command
 {
     protected static $defaultName = 'server:dump';
@@ -43,6 +56,7 @@ class ServerDumpCommand extends Command
 
     /** @var DumpDescriptorInterface[] */
     private $descriptors;
+>>>>>>> origin/New-FakeMain
 
     public function __construct(DumpServer $server, array $descriptors = [])
     {
@@ -59,7 +73,10 @@ class ServerDumpCommand extends Command
     {
         $this
             ->addOption('format', null, InputOption::VALUE_REQUIRED, sprintf('The output format (%s)', implode(', ', $this->getAvailableFormats())), 'cli')
+<<<<<<< HEAD
+=======
             ->setDescription(self::$defaultDescription)
+>>>>>>> origin/New-FakeMain
             ->setHelp(<<<'EOF'
 <info>%command.name%</info> starts a dump server that collects and displays
 dumps in a single place for debugging you application:

@@ -132,9 +132,13 @@ abstract class Connection
      */
     protected function event($event)
     {
+<<<<<<< HEAD
+        $this->events?->dispatch($event);
+=======
         if (isset($this->events)) {
             $this->events->dispatch($event);
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -145,9 +149,13 @@ abstract class Connection
      */
     public function listen(Closure $callback)
     {
+<<<<<<< HEAD
+        $this->events?->listen(CommandExecuted::class, $callback);
+=======
         if (isset($this->events)) {
             $this->events->listen(CommandExecuted::class, $callback);
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**

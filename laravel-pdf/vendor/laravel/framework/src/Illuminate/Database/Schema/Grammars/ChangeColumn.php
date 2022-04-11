@@ -125,6 +125,13 @@ class ChangeColumn
             $options['length'] = static::calculateDoctrineTextLength($fluent['type']);
         }
 
+<<<<<<< HEAD
+        if ($fluent['type'] === 'char') {
+            $options['fixed'] = true;
+        }
+
+=======
+>>>>>>> origin/New-FakeMain
         if (static::doesntNeedCharacterOptions($fluent['type'])) {
             $options['customSchemaOptions'] = [
                 'collation' => '',
@@ -145,6 +152,17 @@ class ChangeColumn
     {
         $type = strtolower($type);
 
+<<<<<<< HEAD
+        return Type::getType(match ($type) {
+            'biginteger' => 'bigint',
+            'smallinteger' => 'smallint',
+            'mediumtext', 'longtext' => 'text',
+            'binary' => 'blob',
+            'uuid' => 'guid',
+            'char' => 'string',
+            default => $type,
+        });
+=======
         switch ($type) {
             case 'biginteger':
                 $type = 'bigint';
@@ -165,6 +183,7 @@ class ChangeColumn
         }
 
         return Type::getType($type);
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -175,6 +194,13 @@ class ChangeColumn
      */
     protected static function calculateDoctrineTextLength($type)
     {
+<<<<<<< HEAD
+        return match ($type) {
+            'mediumText' => 65535 + 1,
+            'longText' => 16777215 + 1,
+            default => 255 + 1,
+        };
+=======
         switch ($type) {
             case 'mediumText':
                 return 65535 + 1;
@@ -183,6 +209,7 @@ class ChangeColumn
             default:
                 return 255 + 1;
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -219,6 +246,15 @@ class ChangeColumn
      */
     protected static function mapFluentOptionToDoctrine($attribute)
     {
+<<<<<<< HEAD
+        return match ($attribute) {
+            'type', 'name' => null,
+            'nullable' => 'notnull',
+            'total' => 'precision',
+            'places' => 'scale',
+            default => $attribute,
+        };
+=======
         switch ($attribute) {
             case 'type':
             case 'name':
@@ -232,6 +268,7 @@ class ChangeColumn
             default:
                 return $attribute;
         }
+>>>>>>> origin/New-FakeMain
     }
 
     /**

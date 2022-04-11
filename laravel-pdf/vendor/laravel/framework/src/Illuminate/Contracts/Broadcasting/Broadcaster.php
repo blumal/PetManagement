@@ -28,6 +28,11 @@ interface Broadcaster
      * @param  string  $event
      * @param  array  $payload
      * @return void
+<<<<<<< HEAD
+     *
+     * @throws \Illuminate\Broadcasting\BroadcastException
+=======
+>>>>>>> origin/New-FakeMain
      */
     public function broadcast(array $channels, $event, array $payload = []);
 }

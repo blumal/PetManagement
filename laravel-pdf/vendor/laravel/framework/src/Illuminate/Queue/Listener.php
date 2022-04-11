@@ -30,7 +30,11 @@ class Listener
     protected $sleep = 3;
 
     /**
+<<<<<<< HEAD
+     * The number of times to try a job before logging it failed.
+=======
      * The amount of times to try a job before logging it failed.
+>>>>>>> origin/New-FakeMain
      *
      * @var int
      */

@@ -20,14 +20,24 @@ use Symfony\Component\Translation\Exception\NotFoundResourceException;
  */
 class CsvFileLoader extends FileLoader
 {
+<<<<<<< HEAD
+    private string $delimiter = ';';
+    private string $enclosure = '"';
+    private string $escape = '\\';
+=======
     private $delimiter = ';';
     private $enclosure = '"';
     private $escape = '\\';
+>>>>>>> origin/New-FakeMain
 
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    protected function loadResource(string $resource): array
+=======
     protected function loadResource(string $resource)
+>>>>>>> origin/New-FakeMain
     {
         $messages = [];
 

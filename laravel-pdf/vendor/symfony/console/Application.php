@@ -70,6 +70,25 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 class Application implements ResetInterface
 {
+<<<<<<< HEAD
+    private array $commands = [];
+    private bool $wantHelps = false;
+    private $runningCommand = null;
+    private string $name;
+    private string $version;
+    private $commandLoader = null;
+    private bool $catchExceptions = true;
+    private bool $autoExit = true;
+    private $definition;
+    private $helperSet;
+    private $dispatcher = null;
+    private $terminal;
+    private string $defaultCommand;
+    private bool $singleCommand = false;
+    private bool $initialized = false;
+    private $signalRegistry;
+    private array $signalsToDispatchEvent = [];
+=======
     private $commands = [];
     private $wantHelps = false;
     private $runningCommand;
@@ -87,6 +106,7 @@ class Application implements ResetInterface
     private $initialized;
     private $signalRegistry;
     private $signalsToDispatchEvent = [];
+>>>>>>> origin/New-FakeMain
 
     public function __construct(string $name = 'UNKNOWN', string $version = 'UNKNOWN')
     {
@@ -134,7 +154,11 @@ class Application implements ResetInterface
      *
      * @throws \Exception When running fails. Bypass this when {@link setCatchExceptions()}.
      */
+<<<<<<< HEAD
+    public function run(InputInterface $input = null, OutputInterface $output = null): int
+=======
     public function run(InputInterface $input = null, OutputInterface $output = null)
+>>>>>>> origin/New-FakeMain
     {
         if (\function_exists('putenv')) {
             @putenv('LINES='.$this->terminal->getHeight());
@@ -316,6 +340,12 @@ class Application implements ResetInterface
 
     /**
      * Get the helper set associated with the command.
+<<<<<<< HEAD
+     */
+    public function getHelperSet(): HelperSet
+    {
+        return $this->helperSet ??= $this->getDefaultHelperSet();
+=======
      *
      * @return HelperSet
      */
@@ -326,6 +356,7 @@ class Application implements ResetInterface
         }
 
         return $this->helperSet;
+>>>>>>> origin/New-FakeMain
     }
 
     public function setDefinition(InputDefinition $definition)
@@ -335,6 +366,12 @@ class Application implements ResetInterface
 
     /**
      * Gets the InputDefinition related to this Application.
+<<<<<<< HEAD
+     */
+    public function getDefinition(): InputDefinition
+    {
+        $this->definition ??= $this->getDefaultInputDefinition();
+=======
      *
      * @return InputDefinition
      */
@@ -343,6 +380,7 @@ class Application implements ResetInterface
         if (!$this->definition) {
             $this->definition = $this->getDefaultInputDefinition();
         }
+>>>>>>> origin/New-FakeMain
 
         if ($this->singleCommand) {
             $inputDefinition = $this->definition;
@@ -379,20 +417,30 @@ class Application implements ResetInterface
 
     /**
      * Gets the help message.
+<<<<<<< HEAD
+     */
+    public function getHelp(): string
+=======
      *
      * @return string
      */
     public function getHelp()
+>>>>>>> origin/New-FakeMain
     {
         return $this->getLongVersion();
     }
 
     /**
      * Gets whether to catch exceptions or not during commands execution.
+<<<<<<< HEAD
+     */
+    public function areExceptionsCaught(): bool
+=======
      *
      * @return bool
      */
     public function areExceptionsCaught()
+>>>>>>> origin/New-FakeMain
     {
         return $this->catchExceptions;
     }
@@ -407,10 +455,15 @@ class Application implements ResetInterface
 
     /**
      * Gets whether to automatically exit after a command execution or not.
+<<<<<<< HEAD
+     */
+    public function isAutoExitEnabled(): bool
+=======
      *
      * @return bool
      */
     public function isAutoExitEnabled()
+>>>>>>> origin/New-FakeMain
     {
         return $this->autoExit;
     }
@@ -425,10 +478,15 @@ class Application implements ResetInterface
 
     /**
      * Gets the name of the application.
+<<<<<<< HEAD
+     */
+    public function getName(): string
+=======
      *
      * @return string
      */
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->name;
     }
@@ -443,10 +501,15 @@ class Application implements ResetInterface
 
     /**
      * Gets the application version.
+<<<<<<< HEAD
+     */
+    public function getVersion(): string
+=======
      *
      * @return string
      */
     public function getVersion()
+>>>>>>> origin/New-FakeMain
     {
         return $this->version;
     }
@@ -479,10 +542,15 @@ class Application implements ResetInterface
 
     /**
      * Registers a new command.
+<<<<<<< HEAD
+     */
+    public function register(string $name): Command
+=======
      *
      * @return Command
      */
     public function register(string $name)
+>>>>>>> origin/New-FakeMain
     {
         return $this->add(new Command($name));
     }
@@ -575,10 +643,15 @@ class Application implements ResetInterface
 
     /**
      * Returns true if the command exists, false otherwise.
+<<<<<<< HEAD
+     */
+    public function has(string $name): bool
+=======
      *
      * @return bool
      */
     public function has(string $name)
+>>>>>>> origin/New-FakeMain
     {
         $this->init();
 
@@ -592,7 +665,11 @@ class Application implements ResetInterface
      *
      * @return string[]
      */
+<<<<<<< HEAD
+    public function getNamespaces(): array
+=======
     public function getNamespaces()
+>>>>>>> origin/New-FakeMain
     {
         $namespaces = [];
         foreach ($this->all() as $command) {
@@ -613,11 +690,17 @@ class Application implements ResetInterface
     /**
      * Finds a registered namespace by a name or an abbreviation.
      *
+<<<<<<< HEAD
+     * @throws NamespaceNotFoundException When namespace is incorrect or ambiguous
+     */
+    public function findNamespace(string $namespace): string
+=======
      * @return string
      *
      * @throws NamespaceNotFoundException When namespace is incorrect or ambiguous
      */
     public function findNamespace(string $namespace)
+>>>>>>> origin/New-FakeMain
     {
         $allNamespaces = $this->getNamespaces();
         $expr = implode('[^:]*:', array_map('preg_quote', explode(':', $namespace))).'[^:]*';
@@ -809,7 +892,11 @@ class Application implements ResetInterface
      *
      * @return string[][]
      */
+<<<<<<< HEAD
+    public static function getAbbreviations(array $names): array
+=======
     public static function getAbbreviations(array $names)
+>>>>>>> origin/New-FakeMain
     {
         $abbrevs = [];
         foreach ($names as $name) {
@@ -1056,20 +1143,30 @@ class Application implements ResetInterface
 
     /**
      * Gets the name of the command based on input.
+<<<<<<< HEAD
+     */
+    protected function getCommandName(InputInterface $input): ?string
+=======
      *
      * @return string|null
      */
     protected function getCommandName(InputInterface $input)
+>>>>>>> origin/New-FakeMain
     {
         return $this->singleCommand ? $this->defaultCommand : $input->getFirstArgument();
     }
 
     /**
      * Gets the default input definition.
+<<<<<<< HEAD
+     */
+    protected function getDefaultInputDefinition(): InputDefinition
+=======
      *
      * @return InputDefinition
      */
     protected function getDefaultInputDefinition()
+>>>>>>> origin/New-FakeMain
     {
         return new InputDefinition([
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
@@ -1087,17 +1184,26 @@ class Application implements ResetInterface
      *
      * @return Command[]
      */
+<<<<<<< HEAD
+    protected function getDefaultCommands(): array
+=======
     protected function getDefaultCommands()
+>>>>>>> origin/New-FakeMain
     {
         return [new HelpCommand(), new ListCommand(), new CompleteCommand(), new DumpCompletionCommand()];
     }
 
     /**
      * Gets the default helper set with the helpers that should always be available.
+<<<<<<< HEAD
+     */
+    protected function getDefaultHelperSet(): HelperSet
+=======
      *
      * @return HelperSet
      */
     protected function getDefaultHelperSet()
+>>>>>>> origin/New-FakeMain
     {
         return new HelperSet([
             new FormatterHelper(),
@@ -1119,10 +1225,15 @@ class Application implements ResetInterface
      * Returns the namespace part of the command name.
      *
      * This method is not part of public API and should not be used directly.
+<<<<<<< HEAD
+     */
+    public function extractNamespace(string $name, int $limit = null): string
+=======
      *
      * @return string
      */
     public function extractNamespace(string $name, int $limit = null)
+>>>>>>> origin/New-FakeMain
     {
         $parts = explode(':', $name, -1);
 
@@ -1182,7 +1293,11 @@ class Application implements ResetInterface
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setDefaultCommand(string $commandName, bool $isSingleCommand = false): static
+=======
     public function setDefaultCommand(string $commandName, bool $isSingleCommand = false)
+>>>>>>> origin/New-FakeMain
     {
         $this->defaultCommand = explode('|', ltrim($commandName, '|'))[0];
 

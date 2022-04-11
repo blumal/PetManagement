@@ -5,6 +5,10 @@ namespace Illuminate\Support;
 use ArrayIterator;
 use Illuminate\Contracts\Support\ValidatedData;
 use stdClass;
+<<<<<<< HEAD
+use Traversable;
+=======
+>>>>>>> origin/New-FakeMain
 
 class ValidatedInput implements ValidatedData
 {
@@ -159,8 +163,12 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $key
      * @return bool
      */
+<<<<<<< HEAD
+    public function offsetExists($key): bool
+=======
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+>>>>>>> origin/New-FakeMain
     {
         return isset($this->input[$key]);
     }
@@ -171,8 +179,12 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $key
      * @return mixed
      */
+<<<<<<< HEAD
+    public function offsetGet($key): mixed
+=======
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->input[$key];
     }
@@ -184,8 +196,12 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetSet($key, $value): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+>>>>>>> origin/New-FakeMain
     {
         if (is_null($key)) {
             $this->input[] = $value;
@@ -200,8 +216,12 @@ class ValidatedInput implements ValidatedData
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
+    public function offsetUnset($key): void
+=======
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+>>>>>>> origin/New-FakeMain
     {
         unset($this->input[$key]);
     }
@@ -211,8 +231,12 @@ class ValidatedInput implements ValidatedData
      *
      * @return \ArrayIterator
      */
+<<<<<<< HEAD
+    public function getIterator(): Traversable
+=======
     #[\ReturnTypeWillChange]
     public function getIterator()
+>>>>>>> origin/New-FakeMain
     {
         return new ArrayIterator($this->input);
     }

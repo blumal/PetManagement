@@ -43,7 +43,11 @@ interface Queue
     public function pushRaw($payload, $queue = null, array $options = []);
 
     /**
+<<<<<<< HEAD
+     * Push a new job onto the queue after (n) seconds.
+=======
      * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string|object  $job
@@ -54,7 +58,11 @@ interface Queue
     public function later($delay, $job, $data = '', $queue = null);
 
     /**
+<<<<<<< HEAD
+     * Push a new job onto a specific queue after (n) seconds.
+=======
      * Push a new job onto the queue after a delay.
+>>>>>>> origin/New-FakeMain
      *
      * @param  string  $queue
      * @param  \DateTimeInterface|\DateInterval|int  $delay

@@ -33,9 +33,15 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     private $store;
     private $request;
     private $surrogate;
+<<<<<<< HEAD
+    private $surrogateCacheStrategy = null;
+    private array $options = [];
+    private array $traces = [];
+=======
     private $surrogateCacheStrategy;
     private $options = [];
     private $traces = [];
+>>>>>>> origin/New-FakeMain
 
     /**
      * Constructor.
@@ -107,20 +113,30 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
 
     /**
      * Gets the current store.
+<<<<<<< HEAD
+     */
+    public function getStore(): StoreInterface
+=======
      *
      * @return StoreInterface
      */
     public function getStore()
+>>>>>>> origin/New-FakeMain
     {
         return $this->store;
     }
 
     /**
      * Returns an array of events that took place during processing of the last request.
+<<<<<<< HEAD
+     */
+    public function getTraces(): array
+=======
      *
      * @return array
      */
     public function getTraces()
+>>>>>>> origin/New-FakeMain
     {
         return $this->traces;
     }
@@ -144,10 +160,15 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
 
     /**
      * Returns a log message for the events of the last request processing.
+<<<<<<< HEAD
+     */
+    public function getLog(): string
+=======
      *
      * @return string
      */
     public function getLog()
+>>>>>>> origin/New-FakeMain
     {
         $log = [];
         foreach ($this->traces as $request => $traces) {
@@ -159,20 +180,30 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
 
     /**
      * Gets the Request instance associated with the main request.
+<<<<<<< HEAD
+     */
+    public function getRequest(): Request
+=======
      *
      * @return Request
      */
     public function getRequest()
+>>>>>>> origin/New-FakeMain
     {
         return $this->request;
     }
 
     /**
      * Gets the Kernel instance.
+<<<<<<< HEAD
+     */
+    public function getKernel(): HttpKernelInterface
+=======
      *
      * @return HttpKernelInterface
      */
     public function getKernel()
+>>>>>>> origin/New-FakeMain
     {
         return $this->kernel;
     }
@@ -180,11 +211,17 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * Gets the Surrogate instance.
      *
+<<<<<<< HEAD
+     * @throws \LogicException
+     */
+    public function getSurrogate(): SurrogateInterface
+=======
      * @return SurrogateInterface
      *
      * @throws \LogicException
      */
     public function getSurrogate()
+>>>>>>> origin/New-FakeMain
     {
         return $this->surrogate;
     }
@@ -192,7 +229,11 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function handle(Request $request, int $type = HttpKernelInterface::MAIN_REQUEST, bool $catch = true): Response
+=======
     public function handle(Request $request, int $type = HttpKernelInterface::MAIN_REQUEST, bool $catch = true)
+>>>>>>> origin/New-FakeMain
     {
         // FIXME: catch exceptions and implement a 500 error page here? -> in Varnish, there is a built-in error page mechanism
         if (HttpKernelInterface::MAIN_REQUEST === $type) {
@@ -259,10 +300,15 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      * Forwards the Request to the backend without storing the Response in the cache.
      *
      * @param bool $catch Whether to process exceptions
+<<<<<<< HEAD
+     */
+    protected function pass(Request $request, bool $catch = false): Response
+=======
      *
      * @return Response
      */
     protected function pass(Request $request, bool $catch = false)
+>>>>>>> origin/New-FakeMain
     {
         $this->record($request, 'pass');
 
@@ -274,13 +320,20 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
+<<<<<<< HEAD
+=======
      * @return Response
      *
+>>>>>>> origin/New-FakeMain
      * @throws \Exception
      *
      * @see RFC2616 13.10
      */
+<<<<<<< HEAD
+    protected function invalidate(Request $request, bool $catch = false): Response
+=======
     protected function invalidate(Request $request, bool $catch = false)
+>>>>>>> origin/New-FakeMain
     {
         $response = $this->pass($request, $catch);
 
@@ -322,11 +375,17 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @param bool $catch Whether to process exceptions
      *
+<<<<<<< HEAD
+     * @throws \Exception
+     */
+    protected function lookup(Request $request, bool $catch = false): Response
+=======
      * @return Response
      *
      * @throws \Exception
      */
     protected function lookup(Request $request, bool $catch = false)
+>>>>>>> origin/New-FakeMain
     {
         try {
             $entry = $this->store->lookup($request);
@@ -370,10 +429,15 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      * GET request with the backend.
      *
      * @param bool $catch Whether to process exceptions
+<<<<<<< HEAD
+     */
+    protected function validate(Request $request, Response $entry, bool $catch = false): Response
+=======
      *
      * @return Response
      */
     protected function validate(Request $request, Response $entry, bool $catch = false)
+>>>>>>> origin/New-FakeMain
     {
         $subRequest = clone $request;
 
@@ -433,10 +497,15 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      * stores it in the cache if is cacheable.
      *
      * @param bool $catch Whether to process exceptions
+<<<<<<< HEAD
+     */
+    protected function fetch(Request $request, bool $catch = false): Response
+=======
      *
      * @return Response
      */
     protected function fetch(Request $request, bool $catch = false)
+>>>>>>> origin/New-FakeMain
     {
         $subRequest = clone $request;
 
@@ -539,10 +608,15 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
 
     /**
      * Checks whether the cache entry is "fresh enough" to satisfy the Request.
+<<<<<<< HEAD
+     */
+    protected function isFreshEnough(Request $request, Response $entry): bool
+=======
      *
      * @return bool
      */
     protected function isFreshEnough(Request $request, Response $entry)
+>>>>>>> origin/New-FakeMain
     {
         if (!$entry->isFresh()) {
             return $this->lock($request, $entry);
@@ -560,7 +634,11 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * @return bool true if the cache entry can be returned even if it is staled, false otherwise
      */
+<<<<<<< HEAD
+    protected function lock(Request $request, Response $entry): bool
+=======
     protected function lock(Request $request, Response $entry)
+>>>>>>> origin/New-FakeMain
     {
         // try to acquire a lock to call the backend
         $lock = $this->store->lock($request);

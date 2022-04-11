@@ -29,7 +29,11 @@ abstract class Bundle implements BundleInterface
     protected $name;
     protected $extension;
     protected $path;
+<<<<<<< HEAD
+    private string $namespace;
+=======
     private $namespace;
+>>>>>>> origin/New-FakeMain
 
     /**
      * {@inheritdoc}
@@ -58,11 +62,17 @@ abstract class Bundle implements BundleInterface
     /**
      * Returns the bundle's container extension.
      *
+<<<<<<< HEAD
+     * @throws \LogicException
+     */
+    public function getContainerExtension(): ?ExtensionInterface
+=======
      * @return ExtensionInterface|null
      *
      * @throws \LogicException
      */
     public function getContainerExtension()
+>>>>>>> origin/New-FakeMain
     {
         if (null === $this->extension) {
             $extension = $this->createContainerExtension();
@@ -92,9 +102,15 @@ abstract class Bundle implements BundleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getNamespace(): string
+    {
+        if (!isset($this->namespace)) {
+=======
     public function getNamespace()
     {
         if (null === $this->namespace) {
+>>>>>>> origin/New-FakeMain
             $this->parseClassName();
         }
 
@@ -104,7 +120,11 @@ abstract class Bundle implements BundleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getPath(): string
+=======
     public function getPath()
+>>>>>>> origin/New-FakeMain
     {
         if (null === $this->path) {
             $reflected = new \ReflectionObject($this);
@@ -132,10 +152,15 @@ abstract class Bundle implements BundleInterface
 
     /**
      * Returns the bundle's container extension class.
+<<<<<<< HEAD
+     */
+    protected function getContainerExtensionClass(): string
+=======
      *
      * @return string
      */
     protected function getContainerExtensionClass()
+>>>>>>> origin/New-FakeMain
     {
         $basename = preg_replace('/Bundle$/', '', $this->getName());
 
@@ -144,10 +169,15 @@ abstract class Bundle implements BundleInterface
 
     /**
      * Creates the bundle's container extension.
+<<<<<<< HEAD
+     */
+    protected function createContainerExtension(): ?ExtensionInterface
+=======
      *
      * @return ExtensionInterface|null
      */
     protected function createContainerExtension()
+>>>>>>> origin/New-FakeMain
     {
         return class_exists($class = $this->getContainerExtensionClass()) ? new $class() : null;
     }

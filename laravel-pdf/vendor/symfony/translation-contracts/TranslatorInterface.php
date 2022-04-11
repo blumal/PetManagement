@@ -13,8 +13,11 @@ namespace Symfony\Contracts\Translation;
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
+<<<<<<< HEAD
+=======
  *
  * @method string getLocale() Returns the default locale
+>>>>>>> origin/New-FakeMain
  */
 interface TranslatorInterface
 {
@@ -59,9 +62,20 @@ interface TranslatorInterface
      * @param string|null $domain     The domain for the message or null to use the default
      * @param string|null $locale     The locale or null to use the default
      *
+<<<<<<< HEAD
+     * @throws \InvalidArgumentException If the locale contains invalid characters
+     */
+    public function trans(string $id, array $parameters = [], string $domain = null, string $locale = null): string;
+
+    /**
+     * Returns the default locale.
+     */
+    public function getLocale(): string;
+=======
      * @return string
      *
      * @throws \InvalidArgumentException If the locale contains invalid characters
      */
     public function trans(string $id, array $parameters = [], string $domain = null, string $locale = null);
+>>>>>>> origin/New-FakeMain
 }

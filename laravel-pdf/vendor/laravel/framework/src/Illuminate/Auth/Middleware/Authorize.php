@@ -88,6 +88,10 @@ class Authorize
      */
     protected function isClassName($value)
     {
+<<<<<<< HEAD
+        return str_contains($value, '\\');
+=======
         return strpos($value, '\\') !== false;
+>>>>>>> origin/New-FakeMain
     }
 }

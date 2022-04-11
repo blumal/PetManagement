@@ -44,10 +44,15 @@ class ResponseHeaderBag extends HeaderBag
 
     /**
      * Returns the headers, with original capitalizations.
+<<<<<<< HEAD
+     */
+    public function allPreserveCase(): array
+=======
      *
      * @return array
      */
     public function allPreserveCase()
+>>>>>>> origin/New-FakeMain
     {
         $headers = [];
         foreach ($this->all() as $name => $value) {
@@ -88,7 +93,11 @@ class ResponseHeaderBag extends HeaderBag
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function all(string $key = null): array
+=======
     public function all(string $key = null)
+>>>>>>> origin/New-FakeMain
     {
         $headers = parent::all();
 
@@ -108,7 +117,11 @@ class ResponseHeaderBag extends HeaderBag
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function set(string $key, string|array|null $values, bool $replace = true)
+=======
     public function set(string $key, $values, bool $replace = true)
+>>>>>>> origin/New-FakeMain
     {
         $uniqueKey = strtr($key, self::UPPER, self::LOWER);
 
@@ -164,7 +177,11 @@ class ResponseHeaderBag extends HeaderBag
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function hasCacheControlDirective(string $key): bool
+=======
     public function hasCacheControlDirective(string $key)
+>>>>>>> origin/New-FakeMain
     {
         return \array_key_exists($key, $this->computedCacheControl);
     }
@@ -172,7 +189,11 @@ class ResponseHeaderBag extends HeaderBag
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+    public function getCacheControlDirective(string $key): bool|string|null
+=======
     public function getCacheControlDirective(string $key)
+>>>>>>> origin/New-FakeMain
     {
         return $this->computedCacheControl[$key] ?? null;
     }
@@ -214,7 +235,11 @@ class ResponseHeaderBag extends HeaderBag
      *
      * @throws \InvalidArgumentException When the $format is invalid
      */
+<<<<<<< HEAD
+    public function getCookies(string $format = self::COOKIES_FLAT): array
+=======
     public function getCookies(string $format = self::COOKIES_FLAT)
+>>>>>>> origin/New-FakeMain
     {
         if (!\in_array($format, [self::COOKIES_FLAT, self::COOKIES_ARRAY])) {
             throw new \InvalidArgumentException(sprintf('Format "%s" invalid (%s).', $format, implode(', ', [self::COOKIES_FLAT, self::COOKIES_ARRAY])));
@@ -257,10 +282,15 @@ class ResponseHeaderBag extends HeaderBag
      *
      * This considers several other headers and calculates or modifies the
      * cache-control header to a sensible, conservative value.
+<<<<<<< HEAD
+     */
+    protected function computeCacheControlValue(): string
+=======
      *
      * @return string
      */
     protected function computeCacheControlValue()
+>>>>>>> origin/New-FakeMain
     {
         if (!$this->cacheControl) {
             if ($this->has('Last-Modified') || $this->has('Expires')) {

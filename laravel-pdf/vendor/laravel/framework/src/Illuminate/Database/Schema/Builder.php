@@ -34,7 +34,11 @@ class Builder
     /**
      * The default string length for migrations.
      *
+<<<<<<< HEAD
+     * @var int|null
+=======
      * @var int
+>>>>>>> origin/New-FakeMain
      */
     public static $defaultStringLength = 255;
 
@@ -171,6 +175,39 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
+     * Execute a table builder callback if the given table has a given column.
+     *
+     * @param  string  $table
+     * @param  string  $column
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function whenTableHasColumn(string $table, string $column, Closure $callback)
+    {
+        if ($this->hasColumn($table, $column)) {
+            $this->table($table, fn (Blueprint $table) => $callback($table));
+        }
+    }
+
+    /**
+     * Execute a table builder callback if the given table doesn't have a given column.
+     *
+     * @param  string  $table
+     * @param  string  $column
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function whenTableDoesntHaveColumn(string $table, string $column, Closure $callback)
+    {
+        if (! $this->hasColumn($table, $column)) {
+            $this->table($table, fn (Blueprint $table) => $callback($table));
+        }
+    }
+
+    /**
+=======
+>>>>>>> origin/New-FakeMain
      * Get the data type for the given column name.
      *
      * @param  string  $table
@@ -385,6 +422,8 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Register a custom Doctrine mapping type.
      *
      * @param  string  $class
@@ -398,6 +437,7 @@ class Builder
     }
 
     /**
+>>>>>>> origin/New-FakeMain
      * Get the database connection instance.
      *
      * @return \Illuminate\Database\Connection

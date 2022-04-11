@@ -47,6 +47,28 @@ class Command
      */
     protected static $defaultDescription;
 
+<<<<<<< HEAD
+    private $application = null;
+    private ?string $name = null;
+    private ?string $processTitle = null;
+    private array $aliases = [];
+    private $definition;
+    private bool $hidden = false;
+    private string $help = '';
+    private string $description = '';
+    private $fullDefinition = null;
+    private bool $ignoreValidationErrors = false;
+    private ?\Closure $code = null;
+    private array $synopsis = [];
+    private array $usages = [];
+    private $helperSet = null;
+
+    public static function getDefaultName(): ?string
+    {
+        $class = static::class;
+
+        if ($attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
+=======
     private $application;
     private $name;
     private $processTitle;
@@ -70,6 +92,7 @@ class Command
         $class = static::class;
 
         if (\PHP_VERSION_ID >= 80000 && $attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
+>>>>>>> origin/New-FakeMain
             return $attribute[0]->newInstance()->name;
         }
 
@@ -82,7 +105,11 @@ class Command
     {
         $class = static::class;
 
+<<<<<<< HEAD
+        if ($attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
+=======
         if (\PHP_VERSION_ID >= 80000 && $attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
+>>>>>>> origin/New-FakeMain
             return $attribute[0]->newInstance()->description;
         }
 
@@ -151,20 +178,30 @@ class Command
 
     /**
      * Gets the helper set.
+<<<<<<< HEAD
+     */
+    public function getHelperSet(): ?HelperSet
+=======
      *
      * @return HelperSet|null
      */
     public function getHelperSet()
+>>>>>>> origin/New-FakeMain
     {
         return $this->helperSet;
     }
 
     /**
      * Gets the application instance for this command.
+<<<<<<< HEAD
+     */
+    public function getApplication(): ?Application
+=======
      *
      * @return Application|null
      */
     public function getApplication()
+>>>>>>> origin/New-FakeMain
     {
         return $this->application;
     }
@@ -247,7 +284,11 @@ class Command
      * @see setCode()
      * @see execute()
      */
+<<<<<<< HEAD
+    public function run(InputInterface $input, OutputInterface $output): int
+=======
     public function run(InputInterface $input, OutputInterface $output)
+>>>>>>> origin/New-FakeMain
     {
         // add the application arguments and options
         $this->mergeApplicationDefinition();
@@ -326,7 +367,11 @@ class Command
      *
      * @see execute()
      */
+<<<<<<< HEAD
+    public function setCode(callable $code): static
+=======
     public function setCode(callable $code)
+>>>>>>> origin/New-FakeMain
     {
         if ($code instanceof \Closure) {
             $r = new \ReflectionFunction($code);
@@ -340,6 +385,11 @@ class Command
                     restore_error_handler();
                 }
             }
+<<<<<<< HEAD
+        } else {
+            $code = \Closure::fromCallable($code);
+=======
+>>>>>>> origin/New-FakeMain
         }
 
         $this->code = $code;
@@ -377,11 +427,17 @@ class Command
     /**
      * Sets an array of argument and option instances.
      *
+<<<<<<< HEAD
+     * @return $this
+     */
+    public function setDefinition(array|InputDefinition $definition): static
+=======
      * @param array|InputDefinition $definition An array of argument and option instances or a definition instance
      *
      * @return $this
      */
     public function setDefinition($definition)
+>>>>>>> origin/New-FakeMain
     {
         if ($definition instanceof InputDefinition) {
             $this->definition = $definition;
@@ -396,10 +452,15 @@ class Command
 
     /**
      * Gets the InputDefinition attached to this Command.
+<<<<<<< HEAD
+     */
+    public function getDefinition(): InputDefinition
+=======
      *
      * @return InputDefinition
      */
     public function getDefinition()
+>>>>>>> origin/New-FakeMain
     {
         return $this->fullDefinition ?? $this->getNativeDefinition();
     }
@@ -411,6 +472,12 @@ class Command
      * be changed by merging with the application InputDefinition.
      *
      * This method is not part of public API and should not be used directly.
+<<<<<<< HEAD
+     */
+    public function getNativeDefinition(): InputDefinition
+    {
+        return $this->definition ?? throw new LogicException(sprintf('Command class "%s" is not correctly initialized. You probably forgot to call the parent constructor.', static::class));
+=======
      *
      * @return InputDefinition
      */
@@ -421,6 +488,7 @@ class Command
         }
 
         return $this->definition;
+>>>>>>> origin/New-FakeMain
     }
 
     /**
@@ -433,7 +501,11 @@ class Command
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null): static
+=======
     public function addArgument(string $name, int $mode = null, string $description = '', $default = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->definition->addArgument(new InputArgument($name, $mode, $description, $default));
         if (null !== $this->fullDefinition) {
@@ -446,15 +518,25 @@ class Command
     /**
      * Adds an option.
      *
+<<<<<<< HEAD
+     * @param $shortcut The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
+     * @param $mode     The option mode: One of the InputOption::VALUE_* constants
+     * @param $default  The default value (must be null for InputOption::VALUE_NONE)
+=======
      * @param string|array|null $shortcut The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
      * @param int|null          $mode     The option mode: One of the InputOption::VALUE_* constants
      * @param mixed             $default  The default value (must be null for InputOption::VALUE_NONE)
+>>>>>>> origin/New-FakeMain
      *
      * @throws InvalidArgumentException If option mode is invalid or incompatible
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null): static
+=======
     public function addOption(string $name, $shortcut = null, int $mode = null, string $description = '', $default = null)
+>>>>>>> origin/New-FakeMain
     {
         $this->definition->addOption(new InputOption($name, $shortcut, $mode, $description, $default));
         if (null !== $this->fullDefinition) {
@@ -476,7 +558,11 @@ class Command
      *
      * @throws InvalidArgumentException When the name is invalid
      */
+<<<<<<< HEAD
+    public function setName(string $name): static
+=======
     public function setName(string $name)
+>>>>>>> origin/New-FakeMain
     {
         $this->validateName($name);
 
@@ -493,7 +579,11 @@ class Command
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setProcessTitle(string $title): static
+=======
     public function setProcessTitle(string $title)
+>>>>>>> origin/New-FakeMain
     {
         $this->processTitle = $title;
 
@@ -502,16 +592,27 @@ class Command
 
     /**
      * Returns the command name.
+<<<<<<< HEAD
+     */
+    public function getName(): ?string
+=======
      *
      * @return string|null
      */
     public function getName()
+>>>>>>> origin/New-FakeMain
     {
         return $this->name;
     }
 
     /**
      * @param bool $hidden Whether or not the command should be hidden from the list of commands
+<<<<<<< HEAD
+     *
+     * @return $this
+     */
+    public function setHidden(bool $hidden = true): static
+=======
      *                     The default value will be true in Symfony 6.0
      *
      * @return $this
@@ -519,6 +620,7 @@ class Command
      * @final since Symfony 5.1
      */
     public function setHidden(bool $hidden /*= true*/)
+>>>>>>> origin/New-FakeMain
     {
         $this->hidden = $hidden;
 
@@ -528,7 +630,11 @@ class Command
     /**
      * @return bool whether the command should be publicly shown or not
      */
+<<<<<<< HEAD
+    public function isHidden(): bool
+=======
     public function isHidden()
+>>>>>>> origin/New-FakeMain
     {
         return $this->hidden;
     }
@@ -538,7 +644,11 @@ class Command
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setDescription(string $description): static
+=======
     public function setDescription(string $description)
+>>>>>>> origin/New-FakeMain
     {
         $this->description = $description;
 
@@ -547,10 +657,15 @@ class Command
 
     /**
      * Returns the description for the command.
+<<<<<<< HEAD
+     */
+    public function getDescription(): string
+=======
      *
      * @return string
      */
     public function getDescription()
+>>>>>>> origin/New-FakeMain
     {
         return $this->description;
     }
@@ -560,7 +675,11 @@ class Command
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function setHelp(string $help): static
+=======
     public function setHelp(string $help)
+>>>>>>> origin/New-FakeMain
     {
         $this->help = $help;
 
@@ -569,10 +688,15 @@ class Command
 
     /**
      * Returns the help for the command.
+<<<<<<< HEAD
+     */
+    public function getHelp(): string
+=======
      *
      * @return string
      */
     public function getHelp()
+>>>>>>> origin/New-FakeMain
     {
         return $this->help;
     }
@@ -580,10 +704,15 @@ class Command
     /**
      * Returns the processed help for the command replacing the %command.name% and
      * %command.full_name% patterns with the real values dynamically.
+<<<<<<< HEAD
+     */
+    public function getProcessedHelp(): string
+=======
      *
      * @return string
      */
     public function getProcessedHelp()
+>>>>>>> origin/New-FakeMain
     {
         $name = $this->name;
         $isSingleCommand = $this->application && $this->application->isSingleCommand();
@@ -609,7 +738,11 @@ class Command
      *
      * @throws InvalidArgumentException When an alias is invalid
      */
+<<<<<<< HEAD
+    public function setAliases(iterable $aliases): static
+=======
     public function setAliases(iterable $aliases)
+>>>>>>> origin/New-FakeMain
     {
         $list = [];
 
@@ -625,10 +758,15 @@ class Command
 
     /**
      * Returns the aliases for the command.
+<<<<<<< HEAD
+     */
+    public function getAliases(): array
+=======
      *
      * @return array
      */
     public function getAliases()
+>>>>>>> origin/New-FakeMain
     {
         return $this->aliases;
     }
@@ -637,10 +775,15 @@ class Command
      * Returns the synopsis for the command.
      *
      * @param bool $short Whether to show the short version of the synopsis (with options folded) or not
+<<<<<<< HEAD
+     */
+    public function getSynopsis(bool $short = false): string
+=======
      *
      * @return string
      */
     public function getSynopsis(bool $short = false)
+>>>>>>> origin/New-FakeMain
     {
         $key = $short ? 'short' : 'long';
 
@@ -656,7 +799,11 @@ class Command
      *
      * @return $this
      */
+<<<<<<< HEAD
+    public function addUsage(string $usage): static
+=======
     public function addUsage(string $usage)
+>>>>>>> origin/New-FakeMain
     {
         if (!str_starts_with($usage, $this->name)) {
             $usage = sprintf('%s %s', $this->name, $usage);
@@ -669,10 +816,15 @@ class Command
 
     /**
      * Returns alternative usages of the command.
+<<<<<<< HEAD
+     */
+    public function getUsages(): array
+=======
      *
      * @return array
      */
     public function getUsages()
+>>>>>>> origin/New-FakeMain
     {
         return $this->usages;
     }
@@ -680,12 +832,19 @@ class Command
     /**
      * Gets a helper instance by name.
      *
+<<<<<<< HEAD
+     * @throws LogicException           if no HelperSet is defined
+     * @throws InvalidArgumentException if the helper is not defined
+     */
+    public function getHelper(string $name): mixed
+=======
      * @return mixed
      *
      * @throws LogicException           if no HelperSet is defined
      * @throws InvalidArgumentException if the helper is not defined
      */
     public function getHelper(string $name)
+>>>>>>> origin/New-FakeMain
     {
         if (null === $this->helperSet) {
             throw new LogicException(sprintf('Cannot retrieve helper "%s" because there is no HelperSet defined. Did you forget to add your command to the application or to set the application on the command using the setApplication() method? You can also set the HelperSet directly using the setHelperSet() method.', $name));

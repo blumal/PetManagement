@@ -42,7 +42,11 @@ class UndefinedFunctionErrorEnhancer implements ErrorEnhancerInterface
 
         $prefix = 'Call to undefined function ';
         $prefixLen = \strlen($prefix);
+<<<<<<< HEAD
+        if (!str_starts_with($message, $prefix)) {
+=======
         if (0 !== strpos($message, $prefix)) {
+>>>>>>> origin/New-FakeMain
             return null;
         }
 
