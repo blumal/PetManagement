@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-04-2022 a las 17:31:35
+-- Tiempo de generación: 08-04-2022 a las 19:57:47
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.4.24
 
@@ -61,18 +61,24 @@ CREATE TABLE `tbl_articulo_tienda` (
   `codigobarras_art` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_foto_fk` int(11) DEFAULT NULL,
   `id_marca_fk` int(11) DEFAULT NULL,
-  `id_tipo_articulo_fk` int(11) DEFAULT NULL
+  `id_tipo_articulo_fk` int(11) DEFAULT NULL,
+  `descripcion_art` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `foto_art` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_articulo_tienda`
 --
 
-INSERT INTO `tbl_articulo_tienda` (`id_art`, `nombre_art`, `precio_art`, `codigobarras_art`, `id_foto_fk`, `id_marca_fk`, `id_tipo_articulo_fk`) VALUES
-(1, 'Agua', '0.99', '45457363', NULL, NULL, 1),
-(2, 'Cepillo Puas', '9.12', '63629336', NULL, 1, 2),
-(3, 'Pienso Perro 500g', '2.99', '26422068', NULL, 1, 1),
-(4, 'Coca cola perros', '1.99', '40215337', NULL, 2, 1);
+INSERT INTO `tbl_articulo_tienda` (`id_art`, `nombre_art`, `precio_art`, `codigobarras_art`, `id_foto_fk`, `id_marca_fk`, `id_tipo_articulo_fk`, `descripcion_art`, `foto_art`) VALUES
+(1, 'Agua', '0.99', '45457363', NULL, NULL, 1, 'de', NULL),
+(2, 'Cepillo Puas', '9.12', '63629336', NULL, 1, 2, 'de', NULL),
+(3, 'Pienso Perro 500g', '2.99', '26422068', NULL, 1, 1, 'de', NULL),
+(4, 'Coca cola perros', '1.99', '40215337', NULL, 2, 1, 'de', NULL),
+(5, 'Rascador con poste de sisals color Marrón y Beige', '48.99', NULL, NULL, 22, 11, 'de', NULL),
+(6, 'Patasbox tarta de cumpleaños de peluche para perros', '10.90', NULL, NULL, 4, 10, 'de', NULL),
+(7, 'Comida de escamas para peces tropicales', '1.90', NULL, NULL, 19, 8, 'de', NULL),
+(8, 'Kit terrario gecko cresta', '253.10', NULL, NULL, 10, 16, 'de', NULL);
 
 -- --------------------------------------------------------
 
@@ -222,7 +228,8 @@ INSERT INTO `tbl_factura_tienda` (`id_ft`, `fecha_ft`, `hora_ft`, `total_ft`, `i
 
 CREATE TABLE `tbl_foto` (
   `id_f` int(11) NOT NULL,
-  `foto_f` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL
+  `foto_f` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `articulo_tienda_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -242,7 +249,28 @@ CREATE TABLE `tbl_marca` (
 
 INSERT INTO `tbl_marca` (`id_ma`, `marca_ma`) VALUES
 (1, 'Purina'),
-(2, 'Royal Canin');
+(2, 'Royal Canin'),
+(3, 'BreedUp'),
+(4, 'Criadores'),
+(5, 'VivaAnimals'),
+(6, 'Advanced'),
+(7, 'RoyalCanin'),
+(8, 'Advantix'),
+(9, 'Seresto'),
+(10, 'Hills'),
+(11, 'Summum'),
+(12, 'Platinum'),
+(13, 'ProPlan'),
+(14, 'Acana'),
+(15, 'TrueOrigins'),
+(16, 'Nath'),
+(17, 'Nutro'),
+(18, 'Sanicat'),
+(19, 'AlmoNature'),
+(20, 'Tetra'),
+(21, 'Applaws'),
+(22, 'Cunipic'),
+(23, 'ExoTerra');
 
 -- --------------------------------------------------------
 
@@ -416,7 +444,21 @@ INSERT INTO `tbl_tipo_articulo` (`id_ta`, `tipo_articulo_ta`) VALUES
 (2, 'Cepillo'),
 (3, 'Anestesia'),
 (4, 'Gasas'),
-(5, 'Servicio');
+(5, 'Servicio'),
+(6, 'Comida para gato'),
+(7, 'Roedores'),
+(8, 'Peces'),
+(9, 'Animales de Granja'),
+(10, 'Accesorios para perro'),
+(11, 'Accesorios para gato'),
+(12, 'Repelentes para gato'),
+(13, 'Snacks para perro'),
+(14, 'Snacks para gato'),
+(15, 'Pajaros'),
+(16, 'Reptiles'),
+(17, 'Caballos'),
+(18, 'Higene para gato'),
+(19, 'Higene para perro');
 
 -- --------------------------------------------------------
 
@@ -507,7 +549,6 @@ ALTER TABLE `tbl_animales_perdidos`
 --
 ALTER TABLE `tbl_articulo_tienda`
   ADD PRIMARY KEY (`id_art`),
-  ADD KEY `fk_articulo_foto_idx` (`id_foto_fk`),
   ADD KEY `fk_articulo_marca_idx` (`id_marca_fk`),
   ADD KEY `fk_articulo_tipo_articulo_idx` (`id_tipo_articulo_fk`);
 
@@ -560,7 +601,8 @@ ALTER TABLE `tbl_factura_tienda`
 -- Indices de la tabla `tbl_foto`
 --
 ALTER TABLE `tbl_foto`
-  ADD PRIMARY KEY (`id_f`);
+  ADD PRIMARY KEY (`id_f`),
+  ADD KEY `artuclo_tienda_fk` (`articulo_tienda_fk`);
 
 --
 -- Indices de la tabla `tbl_marca`
@@ -661,7 +703,7 @@ ALTER TABLE `tbl_animales_perdidos`
 -- AUTO_INCREMENT de la tabla `tbl_articulo_tienda`
 --
 ALTER TABLE `tbl_articulo_tienda`
-  MODIFY `id_art` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_art` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_detallefactura_clinica`
@@ -709,7 +751,7 @@ ALTER TABLE `tbl_foto`
 -- AUTO_INCREMENT de la tabla `tbl_marca`
 --
 ALTER TABLE `tbl_marca`
-  MODIFY `id_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_pacienteanimal_clinica`
@@ -757,7 +799,7 @@ ALTER TABLE `tbl_telefono`
 -- AUTO_INCREMENT de la tabla `tbl_tipo_articulo`
 --
 ALTER TABLE `tbl_tipo_articulo`
-  MODIFY `id_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_tipo_sociedad`
@@ -824,6 +866,12 @@ ALTER TABLE `tbl_factura_clinica`
 ALTER TABLE `tbl_factura_tienda`
   ADD CONSTRAINT `fk_facturatienda_promocion` FOREIGN KEY (`id_promocion_fk`) REFERENCES `tbl_promocion` (`id_pro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_facturatienda_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tbl_foto`
+--
+ALTER TABLE `tbl_foto`
+  ADD CONSTRAINT `artuclo_tienda_fk` FOREIGN KEY (`articulo_tienda_fk`) REFERENCES `tbl_articulo_tienda` (`id_art`);
 
 --
 -- Filtros para la tabla `tbl_pacienteanimal_clinica`
