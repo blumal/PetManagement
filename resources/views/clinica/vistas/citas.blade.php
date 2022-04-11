@@ -55,22 +55,25 @@
         </div>
     </div>
      {{--Boton para ver visitas anteriores, solo para clientes--}}
-     @if (session()->get('id_rol_session')==2)
-     <center>
-        <form action="{{url("/FacturasClinica")}}" method="post">
-            @csrf
-            <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-            <input type="submit" class="previous_visits_button" value="Ver mis Visitas Anteriores">
-        </form>
-    </center>
-     @endif
-     
-    <form action="{{url("/generarFactura")}}" method="post">
-        @csrf
-        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-        <input type="number" name="id_visita">
-        <input type="submit" value="Rellenar Visita">
-    </form>
+    @if (session()->get('id_rol_session')==2)
+        <center>
+            <form action="{{url("/FacturasClinica")}}" method="post">
+                @csrf
+                <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+                <input type="submit" class="previous_visits_button" value="Ver mis Visitas Anteriores">
+            </form>
+        </center>
+    @endif
+    {{--Generar facturas a partir de visitas, solo para trabajadores--}}
+    @if (session()->get('id_rol_session')==3)
+        <center>
+            <form action="{{url("/directorioGenerarFactura")}}" method="post">
+                @csrf
+                <input type="submit" class="previous_visits_button" value="Rellenar Visita">
+            </form>
+        </center>
+    @endif
+    <br><br>
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <div class="social-icons-container">

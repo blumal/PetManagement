@@ -91,6 +91,22 @@ header {
     transition: 0.6s;
 }
 
+.input {
+    margin: 7px;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #ffffff;
+    padding: 3%;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #000000;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.5s;
+    list-style-type: none;
+}
+
 
 /*GERARD*/
 

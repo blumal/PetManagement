@@ -88,6 +88,16 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
+Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
+
+Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
+
+
+//TEST
+Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
+//FIN TEST 
+
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 
@@ -120,10 +130,7 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
-//TEST
 
-Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
-Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 
 //Api
 Route::get('showcitas', [CitasController::class, 'showcitas']);
