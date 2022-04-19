@@ -42,7 +42,8 @@ function calendar() {
                 //Array global
                 eventos.push({
                     title: "Agendada",
-                    start: citas[i].fecha_vi + 'T' + citas[i].hora_vi
+                    start: citas[i].fecha_vi + 'T' + citas[i].hora_vi,
+                    borderColor: 'orange'
                 })
             }
             //Funcion API
@@ -58,6 +59,9 @@ function insertDatas() {
     //formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
     var fecha_vi = document.getElementById('fecha_vi').value;
     var hora_vi = document.getElementById('hora_vi').value;
+    var asunto_vi = document.getElementById('asunto_vi').value;
+    var id_us = document.getElementById('id_us').value;
+
     //inicializamos objeto ajax
     var ajax = objetoAjax();
     //Nuevo objeto, añadimos datos al objeto, como las variables previamente recogidas, token, método..., etc
@@ -65,6 +69,8 @@ function insertDatas() {
     formdata.append('_token', document.getElementById('token').getAttribute("content"));
     formdata.append('fecha_vi', fecha_vi);
     formdata.append('hora_vi', hora_vi);
+    formdata.append('asunto_vi', asunto_vi);
+    formdata.append('id_us', id_us);
     formdata.append('_method', 'POST');
 
     ajax.open("POST", "insertcita", true);
@@ -102,14 +108,43 @@ function montarCalendario() {
             right: 'dayGridMonth, timeGridWeek, listWeek',
         },
         //Recogemos los campos previamente rellenados
-        events: eventos
+        events: eventos,
     });
     calendar.render();
 }
 
-//Sin esta función cada vez que añadamos nuevos datos se duplicarán, por eso
+//Sin esta función cada vez que añadamos nuevos datos se duplicarán en la api
 function vaciarArrEventos() {
     eventos = [];
     var calendarEl = document.getElementById('calendar');
     calendarEl = "";
+}
+
+//Modal form de citas
+function modalCitas() {
+    // Get the modal
+    var modal = document.getElementById("modalCitas");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("btnModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
