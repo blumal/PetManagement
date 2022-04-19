@@ -17,7 +17,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    <?php print_r($facturas)?>
     <header id="Header">
         <div class="logo">
             <img src="./img/imagenesWeb/logo.png">
