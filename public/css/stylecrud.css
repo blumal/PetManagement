@@ -1,4 +1,5 @@
 /* Modal box */
+
 *{
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
@@ -77,6 +78,7 @@ body{
     align-items: center;
 }
 
+
 .modalbox {
     display: none;
     position: fixed;
@@ -97,6 +99,7 @@ body{
     width: 30%;
     height: 80vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+
     border-radius: 20px;
 }
 
@@ -116,8 +119,13 @@ body{
 
 .tabla {
     color: rgb(0, 0, 0);
+
+    width: 200vh;
+    margin: 2vh;
+
     width: 100%;
     margin: 2%;
+
     border-radius: 1vh;
     background-color: rgb(255, 255, 255);
     padding: 10vh;
@@ -167,6 +175,7 @@ body{
     background-color: #1f2cc4;
     border-color: #000000;
 }
+
 
 /* Modal box crear */
 
@@ -228,7 +237,11 @@ body{
     background-color: rgb(255, 255, 255);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
+
+    padding: 2vh;
+
     padding: 1vh;
+
 }
 
 .contraseñacrear {
@@ -243,11 +256,17 @@ body{
 
 .botoncrear {
     color: rgb(0, 0, 0);
+    width: 95vh;
+
     /* width: 95vh; */
+
     border-radius: 1vh;
     background-color: rgb(255, 255, 255);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
+
+    padding: 2vh;
+
     /* padding: 2vh; */
 }
 
@@ -278,11 +297,19 @@ body{
 
 .modaleditar {
     background-color: #fefefe;
+
+    margin-top: 0;
+    padding: 20px;
+    width: 100vh;
+    height: 90vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+
     margin-top: 4%;
     padding: 20px;
     width: 100vh;
     height: 77vh;
     border-radius: 20px;
+
 }
 
 .close {
