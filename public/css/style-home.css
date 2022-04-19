@@ -9,7 +9,7 @@
 body {
     position: relative;
     background: linear-gradient(transparent, rgb(50, 62, 192));
-    
+    text-decoration: none;
     background: linear-gradient(rgb(31, 45, 196), transparent);
 }
 
@@ -49,6 +49,9 @@ body {
     padding: 0 5%;
 }
 
+a{
+    text-decoration: none;
+}
 
 /* ---------- HEADER ---------- */
 

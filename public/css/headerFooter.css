@@ -11,6 +11,10 @@ body{
     background-repeat: no-repeat;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* ---------- HEADER ---------- */
 
 header{

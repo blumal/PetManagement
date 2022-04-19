@@ -13,12 +13,14 @@
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
         <ul class="main-menu">
-            <li class="menu-item" href="./views/home.blade.php?">Home</li>
-            <li class="menu-item" href="./views/tienda.blade.php?">Tienda</li>
-            <li class="menu-item" href="./views/clinica.blade.php?">Clínica</li>
-            <li class="menu-item" href="./views/contacto.blade.php?">Contacto</li>
-            <li class="menu-item" href="./views/about.blade.php?">Sobre Nosotros</li>
-            <li class="cta" href="./views/tienda.blade.php?">Login</li>
+            <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
+            <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
+            <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
+            <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
+            <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
+            <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
+            <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
+                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
         </ul>
         <script src="./js/home.js"></script>
     </header>
