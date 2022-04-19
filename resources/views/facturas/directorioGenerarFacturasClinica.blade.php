@@ -35,30 +35,6 @@
         </div>
     </div>
     <div class="row-c" id="div_visitas">
-        <div class="column-3">
-            <div class="seccion">
-                <form action="FacturaClinica/view" method="post">
-                    @csrf
-                    Factura 
-                    <br>
-                    <input type="hidden" name="id_factura_clinica" value="">
-                    <input class="ver_factura" type="submit" value="Ver factura">
-                </form>
-            <br>
-            </div>
-        </div>
-        <div class="column-3">
-            <div class="seccion">
-                <form action="FacturaClinica/view" method="post">
-                    @csrf
-                    Factura 
-                    <br>
-                    <input type="hidden" name="id_factura_clinica" value="">
-                    <input class="ver_factura" type="submit" value="Ver factura">
-                </form>
-            <br>
-            </div>
-        </div>
     </div>
 </body>
 <script src="./js/visita/ajax_ru_visitas_directorio.js"></script>

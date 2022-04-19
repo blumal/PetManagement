@@ -20,6 +20,8 @@ function objetoAjax() {
 function leerVisitas() {
     var div_visitas = document.getElementById("div_visitas");
     var fecha_visita = document.getElementById("fecha_visita").value;
+    var token = document.getElementById('token').getAttribute("content");
+
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('fecha_visita', fecha_visita);
@@ -41,9 +43,13 @@ function leerVisitas() {
                 visita += '<div class="column-3">' +
                     '<div class="seccion">' +
                     '<form action="FacturaClinica/view" method="post">' +
-                    'Factura' +
+                    'Factura ' + respuesta[i][0]['fecha_vi'] +
+                    '<br>Animal ' + respuesta[i][0]['nombre_pa'] +
+                    '<br>Cliente ' + respuesta[i][0]['nombre_us'] +
                     '<br>' +
-                    '<input type="hidden" name="id_factura_clinica" value="">' +
+                    '<input type="hidden" name="_token" value="' + token + '">' +
+
+                    '<input type="hidden" name="id_factura_clinica" value="' + respuesta[i][0]['id_vi'] + '">' +
                     '<input class="ver_factura" type="submit" value="Ver factura">' +
                     '</form>' +
                     '<br>' +

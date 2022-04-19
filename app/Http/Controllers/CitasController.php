@@ -76,7 +76,7 @@ class CitasController extends Controller
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
-                return redirect('/animales_perdidos');
+                return redirect('/');
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('/login');
