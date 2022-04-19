@@ -42,16 +42,40 @@
     {{--Calendario--}}
     <div class="row-c flex">
         <div class="calendarestructure column-1">
-            <h1>Citas</h1>
+            <h1>Calendario de citas</h1>
             <div id="calendar"></div>
-            <h1>Solicitud de Citas</h1>
-            {{-- <form action="{{url('insertcita')}}" method="post"> --}}
-            <form onsubmit="insertDatas(); return false;">
-                @csrf
-                <input type="date" name="fecha_vi" id="fecha_vi">
-                <input type="time" name="hora_vi" id="hora_vi" >
-                <input type="submit">
-            </form>
+            <center>
+                <h1>Solicitud de Citas</h1>
+                {{-- <form action="{{url('insertcita')}}" method="post"> --}}
+                {{-- <form onsubmit="insertDatas(); return false;">
+                    @csrf
+                    <input type="date" name="fecha_vi" id="fecha_vi">
+                    <input type="time" name="hora_vi" id="hora_vi">
+                    <input type="submit">
+                </form> --}}
+                <!-- Trigger/Open The Modal -->
+                <button id="btnModal" onclick="modalCitas();">Reservar cita</button>
+                <!-- The Modal -->
+                <div id="modalCitas" class="modal-citas">
+                    <!-- Modal content -->
+                    <div class="modal-citas-content">
+                        <h3>Solicitud cita</h3>
+                        <form onsubmit="insertDatas(); return false;">
+                        {{-- <form action="{{url('insertcita')}}" method="post"> --}}
+                            @csrf
+                            <span class="close">&times;</span>
+                            <label for="fecha_vi">Introduzca la fecha de la visita:</label><br/>
+                                <input type="date" name="fecha_vi" id="fecha_vi"><br/><br/>
+                            <label for="hora_vi">Introduzca la hora de la visita:</label><br/>
+                                <input type="time" name="hora_vi" id="hora_vi"><br/><br/>
+                            <label for="asunto_vi">Motivo de visita:</label><br/>
+                                <input type="text" name="asunto_vi" id="asunto_vi"><br/><br/>
+                            <input type="submit" value="Agendar">
+                            <input type='hidden' name='id_us' id="id_us" value={{Session::get('id_user_session')}} />
+                        </form>
+                    </div>
+                </div>
+            </center>
         </div>
     </div>
      {{--Boton para ver visitas anteriores, solo para clientes--}}

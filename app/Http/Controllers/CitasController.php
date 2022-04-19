@@ -45,8 +45,11 @@ class CitasController extends Controller
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
             $userId = $request->except('_token', '_method');
-            $userId_compr=DB::table("tbl_usuario")->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')->where('tbl_usuario.email_us','=',
-            $userId['email_us'])->where('tbl_usuario.pass_us','=',$userId['pass_us'])->get();
+            $userId_compr=DB::table("tbl_usuario")
+                ->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')
+                ->where('tbl_usuario.email_us','=',$userId['email_us'])
+                ->where('tbl_usuario.pass_us','=',$userId['pass_us'])
+                ->get();
             //return $userId_compr;
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
             if ($userId_compr[0]->rol_ro=='trabajador'){
@@ -100,29 +103,51 @@ class CitasController extends Controller
         return redirect('');
     } */
 
+    //Vista citas
     public function Citas(){
         return view('clinica/vistas/citas');
     }
 
+    //Resultados actuales o futuros implementados en la api
     public function showcitas(){
         $today = now()->format('Y-m-d');
         $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");
         return response()->json($citas);
     }
 
-
+    //Inserción datos a DB
     public function insertCita(Request $request){
         try {
             //$checkdatas = DB::select('SELECT fecha_vi, hora_vi FROM tbl_visitia WHERE fecha_vi = ? AND hora_vi = ?', [$request->input('fecha_vi'), $request->input('hora_vi')])->get();
-            //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            //Recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            $estado = DB::select("SELECT id_est FROM tbl_estado WHERE estado_est = 'Agendada'");
+            //Debugamos el resultado de la query, ya que únicamente nos interesa el valor del campo, para posteriormente utilizarlo en la query de inserción
+            $estadodebug = $estado[0]->id_est;
+            //print_r($estado);
             $checkdatas = $request->except('_token', '_method');
-            $checkigdatas  = DB::table('tbl_visita')->where('fecha_vi', '=', $checkdatas['fecha_vi'])->where('hora_vi', '=', $checkdatas['hora_vi'])->count();
-            if ($checkigdatas == 0) {
-                //DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
-                DB::insert('insert into tbl_visita (fecha_vi, hora_vi) values (?, ?)', [$request->input('fecha_vi'), $request->input('hora_vi')]);
-                return response()->json(array('resultado'=> 'OK'));
-            }else{
-                return response()->json(array('resultado'=> 'OK'));
+            $checkingdatas  = DB::table('tbl_visita')
+                ->where('fecha_vi', '=', $checkdatas['fecha_vi'])
+                ->where('hora_vi', '=', $checkdatas['hora_vi'])
+                ->count();
+            $customerbooks = DB::table('tbl_visita')
+                ->where('fecha_vi', '=', $checkdatas['fecha_vi'])
+                ->where('hora_vi', '=', $checkdatas['hora_vi'])
+                ->where('id_usuario_fk', '=', $checkdatas['id_us'])
+                ->count();
+            //Definimos menor que 3 citas al mismo tiempo ya que como máximo se podrán atender 3 citas por diferentes veterinarios
+            if ($checkingdatas  < 3) {
+                //Comprobamos que el mismo usuario no pueda hacer la misma visita + de una vez
+                if($customerbooks == 0){
+                    DB::insert('insert into tbl_visita (fecha_vi, hora_vi, asunto_vi, id_usuario_fk, id_estado_fk) values (?, ?, ?, ?, ?)', 
+                    [$request->input('fecha_vi'), 
+                    $request->input('hora_vi'), 
+                    $request->input('asunto_vi'), 
+                    $request->input('id_us'),
+                    $estadodebug]);
+                    return response()->json(array('resultado'=> 'OK'));
+                }else{
+                    return "Error";
+                }
             }
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
