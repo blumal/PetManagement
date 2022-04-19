@@ -8,7 +8,7 @@
 
 body {
     position: relative;
-    background: linear-gradient(rgb(31, 45, 196), transparent);
+    background: linear-gradient(transparent, rgb(31, 45, 196));
 }
 
 a{
@@ -109,11 +109,12 @@ header {
 .cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: rgb(216, 216, 216) color;
+    background-color: #1f2cc4;
     margin: 0 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
+    color: white;
 }
 
 .cta:hover {
@@ -264,23 +265,20 @@ footer {
 
 /*GERARD*/
 
-a {
-    text-decoration-style: none;
-    color: white;
-}
-
 .previous_visits_button {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: rgb(216, 216, 216) color;
+    background-color: #1f2cc4;
+    color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
+    border-color: #1f2cc4;
 }
 
 .previous_visits_button:hover {
-    background-color: #1f2cc4;
-    color: wheat;
-    border-color: white;
+    color: #ffffff;
+    background-color: #000000;
+    border-color: black;
 }
