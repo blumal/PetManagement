@@ -1,0 +1,202 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    --main-color: #1f2cc4;
+    --second-color: #ffffff;
+}
+
+body {
+    position: relative;
+    background: linear-gradient(rgb(31, 45, 196), transparent);
+}
+
+.column-1 {
+    width: 100%;
+    margin: 0% 5% 4% 5%;
+}
+
+.column-2 {
+    width: 50%;
+    float: left;
+}
+
+.column-3 {
+    width: 33.3%;
+    float: left;
+}
+
+.column-4 {
+    width: 25%;
+    float: left;
+}
+
+.column-5 {
+    width: 60%;
+}
+
+.foto {
+    width: 100%;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ---------- HEADER ---------- */
+
+header {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: 100px;
+    transition: 0.5s;
+    z-index: 999;
+}
+
+.logo {
+    padding-top: 15px;
+    height: 90%;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.main-menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: var(--main-color);
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+
+/*CALENDARIO*/
+
+.calendarestructure {
+    background-color: white;
+    margin-top: 8%;
+    padding: 1%;
+    border-radius: 2%;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    width: auto;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 8%;
+    background-color: #414141;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.social-icons-container,
+.footer-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: 1px solid #f2f2f2;
+    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    margin: 1rem;
+}
+
+.social-icon:hover {
+    background-color: #121212;
+    filter: invert(1);
+}
+
+.social-icon:nth-of-type(2) {
+    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
+}
+
+.footer-menu-container {
+    list-style-type: none;
+    color: #f2f2f2;
+    font-size: 18px;
+}
+
+.footer-item {
+    margin: 1rem 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.footer-item:hover {
+    opacity: 1;
+}
+
+.copyright {
+    color: #f2f2f2;
+    opacity: 0.3;
+    text-align: center;
+}

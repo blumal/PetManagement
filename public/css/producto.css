@@ -11,12 +11,80 @@ html {
 body {}
 
 
+/*header*/
+
+header {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: 100px;
+    transition: 0.5s;
+    z-index: 999;
+    background-color: #8590ff;
+}
+
+.logo {
+    padding-top: 15px;
+    height: 90%;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.main-menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1f2cc4;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+
 /*Fotos*/
 
 .container_prod {
     width: 30%;
     height: 100vh;
-    margin-top: 7%;
+    margin-top: 12%;
     margin-left: 10%;
     float: left;
 }
@@ -24,13 +92,27 @@ body {}
 .img_pral {
     width: 100%;
     height: 70%;
-    border: 1px solid #000;
+    cursor: pointer;
+    /*border: 1px solid #000;*/
+}
+
+.img_pral img {
+    width: 100%;
+    height: 100%;
 }
 
 [class *="subImg_"] {
     width: 25%;
     height: 15%;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
+    float: left;
+    cursor: pointer;
+}
+
+[class *="subImg_"] img {
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid #000;*/
     float: left;
 }
 
@@ -40,7 +122,7 @@ body {}
 .producto {
     width: 50%;
     height: 100vh;
-    margin-top: 7%;
+    margin-top: 12%;
     margin-left: 2%;
     float: left;
     color: #333333;
@@ -70,13 +152,13 @@ body {}
 }
 
 .btn-carrito {
-    background-color: #35B8B2;
+    background-color: #1f2cc4;
     color: white;
     transition: all 0.3s;
 }
 
 .btn-carrito:hover {
-    background-color: #1d9690;
+    background-color: #3240d4 !important;
     color: white;
 }
 
@@ -123,7 +205,7 @@ body {}
 
 .div-dropmenu {
     position: absolute;
-    top: 3%;
+    top: 20%;
     right: 8%;
 }
 
@@ -140,7 +222,7 @@ body {}
 }
 
 .btn-carrito {
-    background-color: #35B8B2;
+    background-color: #1f2cc4 !important;
 }
 
 .total-header-section i {
@@ -153,7 +235,7 @@ body {}
 
 .cart-detail-img img {
     width: 100%;
-    height: 100%;
+    height: 10vh;
     padding-left: 15px;
 }
 
@@ -190,4 +272,119 @@ body {}
     right: 50px;
     border: 10px solid transparent;
     border-bottom-color: #fff;
+}
+
+.btn-carrito {
+    background-color: #1f2cc4;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-carrito:hover {
+    background-color: #3240d4;
+    color: white;
+}
+
+.carrito-drop {
+    background-color: #1f2cc4;
+    border: 1px #1f2cc4;
+}
+
+.carrito-drop:hover {
+    background-color: #3240d4;
+}
+
+.carrito-drop:focus {
+    background-color: #1f2cc4;
+    box-shadow: 0px 5px 30px #1f2cc4;
+}
+
+.color {
+    color: #1f2cc4;
+}
+
+
+/*footer*/
+
+footer {
+    width: auto;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 8%;
+    background-color: #414141;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.social-icons-container,
+.footer-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: 1px solid #f2f2f2;
+    background-image: url(../storage/img/imagenesWeb/TwitterBlanco.png);
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    margin: 1rem;
+}
+
+.social-icon:hover {
+    background-color: #121212;
+    filter: invert(1);
+}
+
+.social-icon:nth-of-type(2) {
+    background-image: url(../storage/img/imagenesWeb/TelegramBlanco.png);
+}
+
+.footer-menu-container {
+    list-style-type: none;
+    color: #f2f2f2;
+    font-size: 18px;
+}
+
+.footer-item {
+    margin: 1rem 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.footer-item:hover {
+    opacity: 1;
+}
+
+.copyright {
+    color: #f2f2f2;
+    opacity: 0.3;
+    text-align: center;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
 }

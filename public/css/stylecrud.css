@@ -1,5 +1,84 @@
 /* Modal box */
 
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    --main-color: #1f2cc4;
+    --second-color: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background: linear-gradient(rgb(31, 45, 196), transparent);
+    background-repeat: no-repeat;
+    
+}
+
+.filtro{
+    margin: 0% 5% 0% 5%;
+}
+
+.registros{
+    margin: 1%;
+}
+
+.edit{
+    border-radius: 20px;
+    font-weight: bolder;
+    background-color: #000000;
+    color: white;
+    padding: 3%;
+
+    border-radius: 15px;
+    border-color: #000000;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.edit:hover{
+    color: #ffffff;
+    background-color: #1f2cc4;
+    border-color: #000000;
+}
+
+.delete{
+    border-radius: 20px;
+    font-weight: bolder;
+    background-color: #000000;
+    padding: 3%;
+    border-color: #000000;
+
+    border-radius: 15px;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.delete:hover{
+    color: #ffffff;
+    background-color: #ff0000;
+    border-color: #000000;
+}
+
+.main-menu{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .modalbox {
     display: none;
     position: fixed;
@@ -20,6 +99,8 @@
     width: 30%;
     height: 80vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+
+    border-radius: 20px;
 }
 
 .close {
@@ -38,8 +119,13 @@
 
 .tabla {
     color: rgb(0, 0, 0);
+
     width: 200vh;
     margin: 2vh;
+
+    width: 100%;
+    margin: 2%;
+
     border-radius: 1vh;
     background-color: rgb(255, 255, 255);
     padding: 10vh;
@@ -67,6 +153,27 @@
     display: block;
     display: flex;
     background-color: #383838;
+}
+
+.crear{
+    font-weight: bolder;
+    background-color: #000000;
+    color: white;
+    padding: 1%;
+
+    border-radius: 15px;
+    border-color: #000000;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.crear:hover{
+    color: #ffffff;
+    background-color: #1f2cc4;
+    border-color: #000000;
 }
 
 
@@ -130,7 +237,11 @@
     background-color: rgb(255, 255, 255);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
+
     padding: 2vh;
+
+    padding: 1vh;
+
 }
 
 .contraseñacrear {
@@ -146,11 +257,17 @@
 .botoncrear {
     color: rgb(0, 0, 0);
     width: 95vh;
+
+    /* width: 95vh; */
+
     border-radius: 1vh;
     background-color: rgb(255, 255, 255);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
+
     padding: 2vh;
+
+    /* padding: 2vh; */
 }
 
 .botoncrear:hover {
@@ -180,11 +297,19 @@
 
 .modaleditar {
     background-color: #fefefe;
+
     margin-top: 0;
     padding: 20px;
     width: 100vh;
     height: 90vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+
+    margin-top: 4%;
+    padding: 20px;
+    width: 100vh;
+    height: 77vh;
+    border-radius: 20px;
+
 }
 
 .close {

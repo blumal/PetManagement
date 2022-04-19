@@ -42,6 +42,7 @@ window.onclick = function(event) {
 
 /* Modal editar */
 
+
 function abrirmodal_editar(id_art, nombre_art, descripcion_art, precio_art, codigobarras_art, id_marca_fk, id_tipo_articulo_fk) {
     document.getElementById('nombre_art_e').value = nombre_art;
     document.getElementById('descripcion_art_e').value = descripcion_art;
@@ -68,6 +69,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
 2
 
 // function val() {

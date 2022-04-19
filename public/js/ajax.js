@@ -57,6 +57,7 @@ function filtro() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += '<tr>';
+
                 recarga += '<th scope="col">#</th>';
                 recarga += '<th scope="col">Nombre</th>';
                 recarga += '<th scope="col">Descripcion</th>';
@@ -70,7 +71,10 @@ function filtro() {
                     recarga += '<tr>';
                     recarga += '<td scope="row">' + respuesta[i].id_art + '</td>';
                     recarga += '<td>' + respuesta[i].nombre_art + '</td>';
+
                     recarga += '<td>' + respuesta[i].descripcion_art + '</td>';
+
+
                     recarga += '<td>' + respuesta[i].precio_art + '</td>';
                     recarga += '<td>' + respuesta[i].codigobarras_art + '</td>';
                     recarga += '<td>' + respuesta[i].marca_ma + '</td>';
@@ -78,12 +82,15 @@ function filtro() {
                     recarga += '<td>';
                     // editar
                     recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+
                     recarga += '</td>';
                     recarga += '<td>';
                     // eliminar
                     recarga += '<form method="post">';
                     recarga += '<input type="hidden" name="_method" value="DELETE" id="deleteNote">';
+
                     recarga += '<button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(' + respuesta[i].id_art + ');return false;">Eliminar</button>';
+
                     recarga += '</form>';
                     recarga += '</td>';
                     recarga += '</tr>';

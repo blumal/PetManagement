@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductoCrear;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductoController extends Controller
 {
@@ -33,7 +35,7 @@ class ProductoController extends Controller
     }
 
     public function productos() {
-        $productos=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda`;");
+        $productos=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda`;");
         return response()->json($productos);
     }
 
@@ -45,7 +47,7 @@ class ProductoController extends Controller
         }
         //$marcas = explode(',', $marcas);
         if (isset($marcas)) {
-            $sql= "SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_marca.id_ma like '%%' And";
+            $sql= "SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_marca.id_ma like '%%' And";
             $length = count($datos['marcas']);
             for ($i = 0; $i < $length; $i++) {
                 if ($i==$length-1) {
@@ -55,7 +57,7 @@ class ProductoController extends Controller
                 } 
             }
             $marcas=DB::select($sql);
-            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
             $tipo=DB::select($tiposql);
             $productos=array();
             foreach ($tipo as $productoT) {
@@ -68,7 +70,7 @@ class ProductoController extends Controller
         return response()->json($productos);
             
        }else {
-            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
             $tipo=DB::select($tiposql);
             return response()->json($tipo);
             
@@ -84,7 +86,7 @@ class ProductoController extends Controller
         }
         //$marcas = explode(',', $marcas);
         if (isset($marcas)) {
-            $sql= "SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_marca.id_ma like '%%' And";
+            $sql= "SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_marca.id_ma like '%%' And";
             $length = count($datos['marcas']);
             for ($i = 0; $i < $length; $i++) {
                 if ($i==$length-1) {
@@ -94,7 +96,7 @@ class ProductoController extends Controller
                 } 
             }
             $marcas=DB::select($sql);
-            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['categoria']."%' ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['categoria']."%' ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
             $tipo=DB::select($tiposql);
             $productos=array();
             foreach ($tipo as $productoT) {
@@ -107,7 +109,7 @@ class ProductoController extends Controller
         return response()->json($productos);
             
        }else {
-        $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['categoria']."%' ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+        $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['categoria']."%' ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
             $tipo=DB::select($tiposql);
             return response()->json($tipo);
             
@@ -116,8 +118,9 @@ class ProductoController extends Controller
     }
 
     public function producto($id) {
-        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$id]);
-        return view('producto', compact('producto'));
+        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $fotos=DB::select("SELECT tbl_foto.foto_f FROM `tbl_foto` WHERE tbl_foto.articulo_tienda_fk=?",[$id]);
+        return view('producto', compact('producto', 'fotos'));
     }
 
     public function marcaProducto(Request $request) {
@@ -129,7 +132,7 @@ class ProductoController extends Controller
     //sesiones carrito
     public function addToCart($id)
     {
-        $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_foto_fk,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
         if(!$product) {
             abort(404);
         }
@@ -140,7 +143,8 @@ class ProductoController extends Controller
                     $id => [
                         "nombre" => $product[0]->nombre_art,
                         "cantidad" => 1,
-                        "precio" => $product[0]->precio_art
+                        "precio" => $product[0]->precio_art,
+                        "foto" => $product[0]->foto_art
                     ]
             ];
             session()->put('cart', $cart);
@@ -156,17 +160,16 @@ class ProductoController extends Controller
         $cart[$id] = [
             "nombre" => $product[0]->nombre_art,
             "cantidad" => 1,
-            "precio" => $product[0]->precio_art
+            "precio" => $product[0]->precio_art,
+            "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
-    public function addToCartProducto(Request $request)
+    public function addToCartProducto($id, $cantidad)
     {
-        $datos = $request->except('_token');
-        $id=$datos['id'];
-        $cantidad=$datos['cantidad'];
-        $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_foto_fk,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $path="producto/".$id;
+        $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
         if(!$product) {
             abort(404);
         }
@@ -177,26 +180,29 @@ class ProductoController extends Controller
                     $id => [
                         "nombre" => $product[0]->nombre_art,
                         "cantidad" => $cantidad,
-                        "precio" => $product[0]->precio_art
+                        "precio" => $product[0]->precio_art,
+                        "foto" => $product[0]->foto_art
                     ]
             ];
             session()->put('cart', $cart);
-            return response()->json(array('resultado'=> 'OK'));
+            return Redirect::to($path);
         }
         //
         if(isset($cart[$id])) {
-            $cart[$id]['cantidad']==$cantidad;
+            $cantidad=$cantidad+$cart[$id]['cantidad'];
+            $cart[$id]['cantidad']=$cantidad;
             session()->put('cart', $cart);
-            return response()->json(array('resultado'=> 'OK'));
+            return Redirect::to($path);
         }
         //
         $cart[$id] = [
             "nombre" => $product[0]->nombre_art,
             "cantidad" => $cantidad,
-            "precio" => $product[0]->precio_art
+            "precio" => $product[0]->precio_art,
+            "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
-        return response()->json(array('resultado'=> 'OK'));
+        return Redirect::to($path);
     }
 
     public function updateCart(Request $request)
@@ -291,62 +297,30 @@ class ProductoController extends Controller
     public function mostrarProductoCrud(){
         //$listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
         $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
+        $request->session()->forget('cart');
+        return redirect('comprafinalizada');
+    }
+    public function mostrarCompra(){
+        return view('comprafinalizada');
+    } 
+    public function mostrarProductoCrud(){
+        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
         $dbMarcas=DB::select('select * from tbl_marca;');
         $dbTipos=DB::select('select * from tbl_tipo_articulo;');
         return view('admincrud', compact('listaProducto','dbMarcas','dbTipos'));
     }
 
-    public function show(Request $request){
+   public function show(Request $request){
         $listaProducto=DB::select('select * from tbl_articulo_tienda inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk where nombre_art like ?',['%'.$request->input('nombre_art').'%']);
         return response()->json($listaProducto);
     }
+   
     /*Mostrar productos prueba*/
     public function mostrarProducto(Request $request){
         $array3 = $request->session()->get('carrito');
         $listaProducto = DB::table('tbl_articulo_tienda')->select('*')->get();
         return view('vistaprueba', compact('listaProducto'),compact('array3'));
     }
-
-    
-    // /*Âñadir al carro*/
-    // public function CartAdd(Request $request){
-    //     //Se recupera el id del producto seleccionado y la variable de 
-    //     //$producto = Producto::find($request->producto_id);
-    //     $producto = DB::select('select * from `tbl_articulo_tienda` where `tbl_articulo_tienda`.`id_art` =?',[$request->producto_id]);
-    //     $comp = $request->session()->get('carrito');
-    //     //se comprueba si la variable de sesion está definida
-    //     if (isset($comp)){
-    //         //si la variable de sesion no es null, se recupera esta misma y se guarda en una variable
-    //         $array1 = $request->session()->get('carrito');
-    //         //se guarda el id del producto seleccionado en un array
-    //         $array2[] = $producto[0]->id_art;
-    //         //al ser la variable de sesion un array, y el id del producto seleccionado también esta guardado en un array, se usa arraymerge para obtener como resultado un array de sesion con los diferentes ids
-    //         $request->session()->put('carrito',array_merge($array1,$array2));
-    //     } else {
-    //         //si la variable de sesion esta vacia, es decir, aun no se ha añadido ningún producto al carrito se guardará como array el id del producto
-    //         $array1[] = $producto[0]->id_art;
-    //         $request->session()->put('carrito', $array1);
-    //     }
-    //     //$array3=$request->session()->get('carrito');
-    //     //return view('carritoview', compact('array3'));
-    //     //return $array3;
-    //     return redirect('vistaprueba');
-    // }
-    // /*Checkout carrito*/
-    // public function CartCheckout(Request $request){
-    //     //se recupera la variable de sesion y se guarda en una variable para devolverla a la vista
-    //     $array3 = $request->session()->get('carrito');
-
-    //     return view('carritoview', compact('array3'));
-    // }
-
-    // /*Vaciar carrito*/
-    // public function CartClearOut(Request $request){
-    //     //para vaciar el carrito se usa la función forget para vaciar la variable de sesion sin destruir la misma
-    //     $request->session()->forget('carrito');
-    //     return redirect('vistaprueba');
-    // }
-    
 
     public function eliminar($id){
         //return $id2[0]->id_direccion_fk;
@@ -364,7 +338,7 @@ class ProductoController extends Controller
         }
     }
 
-    public function crear(Request $request){
+  public function crear(Request $request){
         try{
             $datos = $request->except('_token');
             if($request->hasFile('foto')){

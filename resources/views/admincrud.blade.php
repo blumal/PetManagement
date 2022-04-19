@@ -12,6 +12,7 @@
     <title>Document</title>
 </head>
 <body>
+
     <div class="crear" id="boton">
         <button class="crear_input" name="Crear" value="Crear" id="botoncrear" onclick="abrirmodal_crear(); return false;" ><b><i class="fa-solid fa-circle-plus"></i> CREAR</b></button>
     </div>
@@ -23,6 +24,7 @@
             </div>
          </form>
     </div>
+
     <div>
         <table class="table" id="table">
             <tr>
@@ -38,8 +40,9 @@
             @forelse ($listaProducto as $prod)
             <tr>
                 <td scope="row">{{$prod->id_art}}</td>
-                <td>{{$prod->nombre_art}}</td>
+                <td>{{$prod->nombre_art}}</td> 
                 <td>{{$prod->descripcion_art}}</td>
+
                 <td>{{$prod->precio_art}}</td>
                 <td>{{$prod->codigobarras_art}}</td>
                 <td>{{$prod->marca_ma}}</td>
@@ -98,6 +101,7 @@
         </div>
         <div class="modalcrear" id="modalcrear">
             <form onsubmit="crear();closeModal_crear();return false;" method="post" id="formcrear" enctype="multipart/form-data">
+
                 <input class="inputcrear" type="text" name="nombre_art" id="nombre_art" placeholder="Nombre" onfocus="error_registro1()" onkeyup="error_validar1()">
                 <div id="mensaje1">
                 </div>
