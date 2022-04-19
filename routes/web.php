@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Producto;
 use App\Http\Controllers\mapas;
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
@@ -147,6 +147,17 @@ Route::get('add-to-cart-producto/{id}/{cantidad}',[ProductoController::class,'ad
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
 
+/*Crud */
+
+Route::get('admincrud',[ProductoController::class,'mostrarProductoCrud']);
+
+Route::post('filtro',[ProductoController::class,'show']);
+
+Route::post('crear',[ProductoController::class,'crear']);
+
+Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
+
+Route::put('actualizar',[ProductoController::class,'update']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
 
