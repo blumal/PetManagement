@@ -11,6 +11,10 @@ body {
     background: linear-gradient(rgb(31, 45, 196), transparent);
 }
 
+a{
+    text-decoration: none !important;
+}
+
 .column-1 {
     width: 100%;
     margin: 0% 5% 4% 5%;
