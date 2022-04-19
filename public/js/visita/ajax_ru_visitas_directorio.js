@@ -42,15 +42,15 @@ function leerVisitas() {
             for (let i = 0; i < respuesta.length; i++) {
                 visita += '<div class="column-3">' +
                     '<div class="seccion">' +
-                    '<form action="FacturaClinica/view" method="post">' +
+                    '<form action="/generarFactura" method="post">' +
                     'Factura ' + respuesta[i][0]['fecha_vi'] +
-                    '<br>Animal ' + respuesta[i][0]['nombre_pa'] +
-                    '<br>Cliente ' + respuesta[i][0]['nombre_us'] +
-                    '<br>' +
+                    '<br><br>Animal ' + respuesta[i][0]['nombre_pa'] +
+                    '<br><br>Cliente ' + respuesta[i][0]['nombre_us'] +
+                    '<br><br>' +
                     '<input type="hidden" name="_token" value="' + token + '">' +
 
-                    '<input type="hidden" name="id_factura_clinica" value="' + respuesta[i][0]['id_vi'] + '">' +
-                    '<input class="ver_factura" type="submit" value="Ver factura">' +
+                    '<input type="hidden" name="id_visita" value="' + respuesta[i][0]['id_vi'] + '">' +
+                    '<input class="ver_factura" type="submit" value="Rellenar factura">' +
                     '</form>' +
                     '<br>' +
                     '</div>' +

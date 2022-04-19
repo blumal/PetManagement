@@ -53,9 +53,6 @@ class VisitaController extends Controller
 
                     $download=1;
 
-                    
-
-
                     //$data = Employee::all();
                     // share data to view
                     //view()->share('clinica',$clinica);
