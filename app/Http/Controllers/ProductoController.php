@@ -279,12 +279,6 @@ class ProductoController extends Controller
         }
 
     }
-
-    public function compra(Request $request){
-        $request->session()->forget('carrito');
-        return redirect('comprafinalizada');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -294,17 +288,17 @@ class ProductoController extends Controller
     {
         //
     }
-    public function mostrarProductoCrud(){
-        //$listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
-        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
+    public function compra(Request $request){
         $request->session()->forget('cart');
         return redirect('comprafinalizada');
     }
+    
     public function mostrarCompra(){
-        return view('comprafinalizada');
-    } 
+         return view('comprafinalizada');
+     } 
     public function mostrarProductoCrud(){
-        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
+        //$listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
+        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
         $dbMarcas=DB::select('select * from tbl_marca;');
         $dbTipos=DB::select('select * from tbl_tipo_articulo;');
         return view('admincrud', compact('listaProducto','dbMarcas','dbTipos'));
