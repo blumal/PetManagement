@@ -53,23 +53,30 @@ class CitasController extends Controller
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
+                $request->session()->put('id_rol_session', $rol_usuario);
+
                 return redirect('/citas');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
-                return redirect('/adminMapasEstablecimientos');
+                $request->session()->put('id_rol_session', $rol_usuario);
+                return redirect('/citas');
             }else if($userId_compr[0]->rol_ro=='cliente'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
-                return redirect('/animales_perdidos');
+                $request->session()->put('id_rol_session', $rol_usuario);
+                return redirect('/');
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('/login');

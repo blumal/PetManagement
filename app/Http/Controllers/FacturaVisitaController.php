@@ -18,9 +18,16 @@ class FacturaVisitaController extends Controller
     //FUNCION PARA MOSTRAR TODAS LAS FACTURAS CLINICAS DE UN USER
     public function directorioFacturasClinica(Request $request){
         $id_user= $request['id_user'];
-        $facturas = DB::table('tbl_factura_clinica')
-        ->where('id_usuario_fk','=',$id_user)
-        ->get();
+        if (isset($id_user)) {
+            $facturas = DB::table('tbl_factura_clinica')
+                ->where('id_usuario_fk','=',$id_user)
+                ->get();
+        }else{
+            $facturas = DB::table('tbl_factura_clinica')
+                ->get();
+            
+        }
+        
 
         return view('facturas/directorioFacturasClinica', compact('facturas'));
     }
@@ -56,9 +63,13 @@ class FacturaVisitaController extends Controller
                 ->get();
                 //return $items_compra;
                 //return $factura;
+                $visita=DB::table('tbl_factura_clinica')
+                ->join('tbl_visita', 'tbl_factura_clinica.id_visita_fk', '=', 'tbl_visita.id_vi')
+                ->where('id_fc','=',$id_factura)
+                ->get();
             DB::commit();
 
-            return view('facturas/view/factura_visitaClinica', compact('factura','clinica','cliente','items_clinica'));
+            return view('facturas/view/factura_visitaClinica', compact('factura','clinica','cliente','items_clinica','visita'));
 
         }catch(\Exception $e){
             DB::rollBack();
@@ -97,11 +108,15 @@ class FacturaVisitaController extends Controller
                         ->join('tbl_producto_clinica', 'tbl_detallefactura_clinica.id_producto_fk', '=', 'tbl_producto_clinica.id_prod')
                         ->where('id_factura_fk','=',$id_factura)
                         ->get();
+                $visita=DB::table('tbl_factura_clinica')
+                        ->join('tbl_visita', 'tbl_factura_clinica.id_visita_fk', '=', 'tbl_visita.id_vi')
+                        ->where('id_fc','=',$id_factura)
+                        ->get();
                 $download=1;
                 //$data = Employee::all();
                 // share data to view
                 //view()->share('clinica',$clinica);
-                $pdf = PDF::loadView('facturas/view/factura_visitaClinica', compact('factura','clinica','cliente','items_clinica','download'));
+                $pdf = PDF::loadView('facturas/view/factura_visitaClinica', compact('factura','clinica','cliente','items_clinica','download','visita'));
                 // download PDF file with download method
             DB::commit();
             return $pdf->download('facturaClinica-'.$id_factura.'.pdf');
