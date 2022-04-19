@@ -69,7 +69,11 @@
         <center>
             <form action="{{url("/directorioGenerarFactura")}}" method="post">
                 @csrf
-                <input type="submit" class="previous_visits_button" value="Rellenar Visita">
+                <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
+            </form>
+            <form action="{{url("/FacturasClinica")}}" method="post">
+                @csrf
+                <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
             </form>
         </center>
     @endif

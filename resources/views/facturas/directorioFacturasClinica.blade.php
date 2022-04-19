@@ -17,6 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
+    <?php print_r($facturas)?>
     <header id="Header">
         <div class="logo">
             <img src="./img/imagenesWeb/logo.png">
@@ -33,6 +34,7 @@
                     @csrf
                     Factura <?php echo $facturas[$i]->fecha_fc?>
                     <br>
+                    
                     <input type="hidden" name="id_factura_clinica" value="<?php echo $facturas[$i]->id_fc?>">
                     <input class="ver_factura" type="submit" value="Ver factura">
                 </form>
