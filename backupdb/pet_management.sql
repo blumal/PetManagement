@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-04-2022 a las 19:57:47
+-- Tiempo de generación: 19-04-2022 a las 18:10:24
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.4.24
 
@@ -46,7 +46,8 @@ CREATE TABLE `tbl_animales_perdidos` (
 --
 
 INSERT INTO `tbl_animales_perdidos` (`id_ape`, `nombre_ape`, `descripcion_ape`, `fecha_perdida_ape`, `id_usuario_fk`, `direccion_perdida_ape`, `foto_ape`, `id_estado_fk`, `cp_ape`, `calle_ape`, `hora_des_ape`) VALUES
-(2, 'Gerard', 'poLLA', '2022-04-09', 1, 'Rambla Marina', 'img/T0FxTlmtZPmormGaBnKNANHOJ8Kgy3rjKqrbkCpn.webp', 1, '08907', 200, '19:11:00');
+(2, 'Gerard', 'poLLA', '2022-04-09', 1, 'Rambla Marina', 'img/T0FxTlmtZPmormGaBnKNANHOJ8Kgy3rjKqrbkCpn.webp', 1, '08907', 200, '19:11:00'),
+(3, 'Gerard', 'Romero', '2022-04-14', 1, 'Rambla Marina', 'img/AWsQsbVbPWZWziPx6fVoEveXVTU1tVRnHBdtJFda.webp', 1, '08907', 100, '19:04:00');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ CREATE TABLE `tbl_articulo_tienda` (
 --
 
 INSERT INTO `tbl_articulo_tienda` (`id_art`, `nombre_art`, `precio_art`, `codigobarras_art`, `id_foto_fk`, `id_marca_fk`, `id_tipo_articulo_fk`, `descripcion_art`, `foto_art`) VALUES
-(1, 'Agua', '0.99', '45457363', NULL, NULL, 1, 'de', NULL),
+(1, 'Agua', '0.99', '45457363', NULL, 11, 1, 'de', NULL),
 (2, 'Cepillo Puas', '9.12', '63629336', NULL, 1, 2, 'de', NULL),
 (3, 'Pienso Perro 500g', '2.99', '26422068', NULL, 1, 1, 'de', NULL),
 (4, 'Coca cola perros', '1.99', '40215337', NULL, 2, 1, 'de', NULL),
@@ -104,7 +105,10 @@ INSERT INTO `tbl_detallefactura_clinica` (`id_dfc`, `cant_dfc`, `id_producto_fk`
 (7, 2, 3, 6),
 (8, 3, 2, 6),
 (9, 1, 1, 7),
-(10, 4, 2, 7);
+(10, 4, 2, 7),
+(11, 1, 1, 3),
+(12, 1, 1, 8),
+(13, 3, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -169,7 +173,9 @@ CREATE TABLE `tbl_estado` (
 --
 
 INSERT INTO `tbl_estado` (`id_est`, `estado_est`) VALUES
-(1, NULL);
+(1, 'Agendada'),
+(2, 'En curso'),
+(3, 'Finalizado');
 
 -- --------------------------------------------------------
 
@@ -184,18 +190,20 @@ CREATE TABLE `tbl_factura_clinica` (
   `id_promocion_fk` int(11) DEFAULT NULL,
   `total_fc` decimal(8,2) DEFAULT NULL,
   `fecha_fc` date DEFAULT NULL,
-  `hora_fc` time DEFAULT NULL
+  `hora_fc` time DEFAULT NULL,
+  `id_veterinario_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_factura_clinica`
 --
 
-INSERT INTO `tbl_factura_clinica` (`id_fc`, `id_usuario_fk`, `id_visita_fk`, `id_promocion_fk`, `total_fc`, `fecha_fc`, `hora_fc`) VALUES
-(1, 1, 1, 2, '69.99', '2022-04-07', '19:32:58'),
-(3, 1, 1, 1, '9.98', '2222-02-22', '11:11:00'),
-(6, 1, 1, 2, '50.36', '2022-04-22', '02:43:00'),
-(7, 1, 2, 2, '11.87', '2022-04-21', '15:49:00');
+INSERT INTO `tbl_factura_clinica` (`id_fc`, `id_usuario_fk`, `id_visita_fk`, `id_promocion_fk`, `total_fc`, `fecha_fc`, `hora_fc`, `id_veterinario_fk`) VALUES
+(1, 1, 1, 2, '69.99', '2022-04-07', '19:32:58', 3),
+(3, 1, 1, 1, '9.98', '2222-02-22', '11:11:00', 3),
+(6, 1, 1, 2, '50.36', '2022-04-22', '02:43:00', 3),
+(7, 1, 2, 2, '11.87', '2022-04-21', '15:49:00', 3),
+(8, 1, 1, 1, '13.96', '2022-04-15', '17:01:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -231,6 +239,13 @@ CREATE TABLE `tbl_foto` (
   `foto_f` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `articulo_tienda_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_foto`
+--
+
+INSERT INTO `tbl_foto` (`id_f`, `foto_f`, `articulo_tienda_fk`) VALUES
+(1, 'foto6.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -506,7 +521,8 @@ CREATE TABLE `tbl_usuario` (
 
 INSERT INTO `tbl_usuario` (`id_us`, `nombre_us`, `apellido1_us`, `apellido2_us`, `dni_us`, `email_us`, `pass_us`, `id_rol_fk`, `id_telefono_fk`, `id_direccion1_fk`, `id_direccion2_fk`) VALUES
 (1, 'Paco', 'Lopez', 'Lopez', '67896066S', 'paquito@mail.com', '123', 2, 1, 1, NULL),
-(2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '123', 1, NULL, NULL, NULL);
+(2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '123', 1, NULL, NULL, NULL),
+(3, 'traba', 'jador', NULL, '1223124', 'traba@jador.com', '123', 3, 3, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -521,16 +537,19 @@ CREATE TABLE `tbl_visita` (
   `asunto_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `diagnostico_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_pacienteanimal_fk` int(11) DEFAULT NULL,
-  `id_usuario_fk` int(11) DEFAULT NULL
+  `id_usuario_fk` int(11) DEFAULT NULL,
+  `id_estado_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_visita`
 --
 
-INSERT INTO `tbl_visita` (`id_vi`, `fecha_vi`, `hora_vi`, `asunto_vi`, `diagnostico_vi`, `id_pacienteanimal_fk`, `id_usuario_fk`) VALUES
-(1, '2022-04-05', '19:31:09', 'Se le ha caido un Jose encima', 'Joder tio otar vez', 1, 1),
-(2, '2022-04-10', '15:23:34', 'Que le ha pasao', 'Jose', 1, 1);
+INSERT INTO `tbl_visita` (`id_vi`, `fecha_vi`, `hora_vi`, `asunto_vi`, `diagnostico_vi`, `id_pacienteanimal_fk`, `id_usuario_fk`, `id_estado_fk`) VALUES
+(1, '2022-04-05', '19:31:09', 'Se le ha caido un Jose encima', 'Joder test', 1, 1, 1),
+(2, '2022-04-10', '15:23:34', 'Que le ha pasao', 'Jose', 1, 1, 1),
+(3, '2022-04-20', '18:05:00', NULL, NULL, NULL, NULL, NULL),
+(4, '2022-04-26', '20:06:00', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -587,7 +606,8 @@ ALTER TABLE `tbl_factura_clinica`
   ADD PRIMARY KEY (`id_fc`),
   ADD KEY `fk_factura_visita_idx` (`id_visita_fk`),
   ADD KEY `fk_factura_promocion_idx` (`id_promocion_fk`),
-  ADD KEY `fk_factura_usuario_idx` (`id_usuario_fk`);
+  ADD KEY `fk_factura_usuario_idx` (`id_usuario_fk`),
+  ADD KEY `fk_veterinario` (`id_veterinario_fk`);
 
 --
 -- Indices de la tabla `tbl_factura_tienda`
@@ -687,7 +707,8 @@ ALTER TABLE `tbl_usuario`
 ALTER TABLE `tbl_visita`
   ADD PRIMARY KEY (`id_vi`),
   ADD KEY `fk_visita_pacienteanimal_idx` (`id_pacienteanimal_fk`),
-  ADD KEY `fk_visita_usuario_idx` (`id_usuario_fk`);
+  ADD KEY `fk_visita_usuario_idx` (`id_usuario_fk`),
+  ADD KEY `fk_visita_estado` (`id_estado_fk`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -697,7 +718,7 @@ ALTER TABLE `tbl_visita`
 -- AUTO_INCREMENT de la tabla `tbl_animales_perdidos`
 --
 ALTER TABLE `tbl_animales_perdidos`
-  MODIFY `id_ape` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ape` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_articulo_tienda`
@@ -709,7 +730,7 @@ ALTER TABLE `tbl_articulo_tienda`
 -- AUTO_INCREMENT de la tabla `tbl_detallefactura_clinica`
 --
 ALTER TABLE `tbl_detallefactura_clinica`
-  MODIFY `id_dfc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_dfc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_detallefactura_tienda`
@@ -727,13 +748,13 @@ ALTER TABLE `tbl_direccion`
 -- AUTO_INCREMENT de la tabla `tbl_estado`
 --
 ALTER TABLE `tbl_estado`
-  MODIFY `id_est` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_est` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_factura_clinica`
 --
 ALTER TABLE `tbl_factura_clinica`
-  MODIFY `id_fc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_fc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_factura_tienda`
@@ -745,7 +766,7 @@ ALTER TABLE `tbl_factura_tienda`
 -- AUTO_INCREMENT de la tabla `tbl_foto`
 --
 ALTER TABLE `tbl_foto`
-  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_marca`
@@ -811,13 +832,13 @@ ALTER TABLE `tbl_tipo_sociedad`
 -- AUTO_INCREMENT de la tabla `tbl_usuario`
 --
 ALTER TABLE `tbl_usuario`
-  MODIFY `id_us` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_us` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_visita`
 --
 ALTER TABLE `tbl_visita`
-  MODIFY `id_vi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_vi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -858,7 +879,8 @@ ALTER TABLE `tbl_detallefactura_tienda`
 ALTER TABLE `tbl_factura_clinica`
   ADD CONSTRAINT `fk_factura_promocion` FOREIGN KEY (`id_promocion_fk`) REFERENCES `tbl_promocion` (`id_pro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_factura_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_visita` FOREIGN KEY (`id_visita_fk`) REFERENCES `tbl_visita` (`id_vi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_factura_visita` FOREIGN KEY (`id_visita_fk`) REFERENCES `tbl_visita` (`id_vi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_veterinario` FOREIGN KEY (`id_veterinario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tbl_factura_tienda`
@@ -913,6 +935,7 @@ ALTER TABLE `tbl_usuario`
 -- Filtros para la tabla `tbl_visita`
 --
 ALTER TABLE `tbl_visita`
+  ADD CONSTRAINT `fk_visita_estado` FOREIGN KEY (`id_estado_fk`) REFERENCES `tbl_estado` (`id_est`),
   ADD CONSTRAINT `fk_visita_pacienteanimal` FOREIGN KEY (`id_pacienteanimal_fk`) REFERENCES `tbl_pacienteanimal_clinica` (`id_pa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_visita_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
