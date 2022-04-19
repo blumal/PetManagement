@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/style-home.css">
+    <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
     <link rel="icon" href="./img/imagenesWeb/logo.png">
     <title>Home</title>
 </head>
@@ -30,7 +30,7 @@
     <div class="row-c flex">
         <div class="column-2">
             <div class="twitter">
-                <a class="twitter-timeline" data-lang="en" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/twitter?ref_src=twsrc%5Etfw">Tweets by auronplay</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <a class="twitter-timeline" data-lang="en" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/twitter?ref_src=twsrc%5Etfw">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
         </div>
 

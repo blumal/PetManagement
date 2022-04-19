@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Producto;
 use App\Http\Controllers\mapas;
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
@@ -88,6 +88,16 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
+Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
+
+Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
+
+
+//TEST
+Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
+//FIN TEST 
+
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 
@@ -120,10 +130,7 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
-//TEST
 
-Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
-Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 
 //Api
 Route::get('showcitas', [CitasController::class, 'showcitas']);
@@ -147,6 +154,17 @@ Route::get('add-to-cart-producto/{id}/{cantidad}',[ProductoController::class,'ad
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
 
+/*Crud */
+
+Route::get('admincrud',[ProductoController::class,'mostrarProductoCrud']);
+
+Route::post('filtro',[ProductoController::class,'show']);
+
+Route::post('crear',[ProductoController::class,'crear']);
+
+Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
+
+Route::put('actualizar',[ProductoController::class,'update']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
 

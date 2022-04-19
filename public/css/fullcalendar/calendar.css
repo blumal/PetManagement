@@ -105,8 +105,7 @@ header {
 .cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: var(--main-color);
-    color: #ffffff;
+    background-color: rgb(216, 216, 216) color;
     margin: 0 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -199,4 +198,28 @@ footer {
     color: #f2f2f2;
     opacity: 0.3;
     text-align: center;
+}
+
+
+/*GERARD*/
+
+a {
+    text-decoration-style: none;
+    color: white;
+}
+
+.previous_visits_button {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: rgb(216, 216, 216) color;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.previous_visits_button:hover {
+    background-color: #1f2cc4;
+    color: wheat;
+    border-color: white;
 }

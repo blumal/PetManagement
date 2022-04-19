@@ -39,6 +39,8 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
+   
+    {{--Calendario--}}
     <div class="row-c flex">
         <div class="calendarestructure column-1">
             <h1>Citas</h1>
@@ -53,21 +55,30 @@
             </form>
         </div>
     </div>
-    <form action="{{url("/FacturasClinica")}}" method="post">
-        @csrf
-        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-        </br></br>
-        </br></br>
-        <input type="submit" value="Ver mis Visitas Anteriores">
-    </form>
-    <form action="{{url("/generarFactura")}}" method="post">
-        @csrf
-        <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-        <input type="number" name="id_visita">
-        </br></br>
-        </br></br>
-        <input type="submit" value="Rellenar Visita">
-    </form>
+     {{--Boton para ver visitas anteriores, solo para clientes--}}
+    @if (session()->get('id_rol_session')==2)
+        <center>
+            <form action="{{url("/FacturasClinica")}}" method="post">
+                @csrf
+                <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
+                <input type="submit" class="previous_visits_button" value="Ver mis Visitas Anteriores">
+            </form>
+        </center>
+    @endif
+    {{--Generar facturas a partir de visitas, solo para trabajadores--}}
+    @if (session()->get('id_rol_session')==3)
+        <center>
+            <form action="{{url("/directorioGenerarFactura")}}" method="post">
+                @csrf
+                <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
+            </form>
+            <form action="{{url("/FacturasClinica")}}" method="post">
+                @csrf
+                <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
+            </form>
+        </center>
+    @endif
+    <br><br>
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <div class="social-icons-container">
