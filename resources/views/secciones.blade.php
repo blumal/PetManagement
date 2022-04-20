@@ -1,6 +1,13 @@
 <?php
 ob_start();
 ?>
+<!--Método comprobación de sesión-->
+@if (!Session::get('email_session'))
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +24,9 @@ ob_start();
             <img src="./img/imagenesWeb/logo.png">
         </div>
         <div class="logout">
-            <img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px">
+            <form action="{{url('/logout')}}" method="GET">
+                <button type="submit" value="logout" {{-- class="btn btn-danger" --}}><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></button><br><br>
+            </form>
         </div>
     </header>
     
@@ -35,31 +44,56 @@ ob_start();
     <div class="row-c">
         <div class="column-3">
             <div class="seccion">
-                <img class="sala" src="./img/imagenesWeb/usuario.png" width="200px" height="200px"><br>
+                <form {{-- action="{{url('/cpanelUsrs')}}" --}} method="GET">
+                    <input type="hidden" name="_method" value="POST" id="postFiltro">
+                    <div class="form-outline">
+                        <button type="submit" ><img class="sala" src="./img/imagenesWeb/usuario.png" width="200px" height="200px"></button><br><br>
+                    </div>
+                 </form>
                 Usuarios
             </div>
         </div>
         <div class="column-3">
             <div class="seccion">
-                <img class="sala" src="./img/imagenesWeb/carrito-de-compras.png" width="200px" height="200px"><br>
+                <form action="{{url('/cpanelTienda')}}" method="GET">
+                    <input type="hidden" name="_method" value="POST" id="postFiltro">
+                    <div class="form-outline">
+                        <button type="submit" ><img class="sala" src="./img/imagenesWeb/carrito-de-compras.png" width="200px" height="200px"></button><br><br>
+                    </div>
+                 </form>
                 Productos tienda
             </div>
         </div>
         <div class="column-3">
             <div class="seccion">
-                <img class="sala" src="./img/imagenesWeb/pata.png" width="200px" height="200px"><br>
+                <form {{-- action="{{url('/cpanelAnimales')}}" --}} method="GET">
+                    <input type="hidden" name="_method" value="POST" id="postFiltro">
+                    <div class="form-outline">
+                        <button type="submit" ><img class="sala" src="./img/imagenesWeb/pata.png" width="200px" height="200px"></button><br><br>
+                    </div>
+                 </form>
                 Animales
             </div>
         </div>
         <div class="column-2">
             <div class="seccion">
-                <img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"><br>
+                <form {{-- action="{{url('/cpanelAnimalesPerdidos')}}" --}} method="GET">
+                    <input type="hidden" name="_method" value="POST" id="postFiltro">
+                    <div class="form-outline">
+                        <button type="submit" ><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
+                    </div>
+                 </form>
                 Mascotas perdidas
             </div>
         </div>
         <div class="column-2">
             <div class="seccion">
-                <img class="sala" src="./img/imagenesWeb/veterinario.png" width="200px" height="200px"><br>
+                <form action="{{url('/cpanelMapa')}}" method="GET">
+                    <input type="hidden" name="_method" value="POST" id="postFiltro">
+                    <div class="form-outline">
+                        <button type="submit" ><img class="sala" src="./img/imagenesWeb/veterinario.png" width="200px" height="200px"></button><br><br>
+                    </div>
+                 </form>
                 Establecimientos
             </div>
         </div>
