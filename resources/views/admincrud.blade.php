@@ -1,3 +1,10 @@
+<!--Método comprobación de sesión-->
+@if (!Session::get('email_session'))
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +19,9 @@
     <title>Document</title>
 </head>
 <body>
-
+    <form action="{{url('/cpanel')}}" method="GET">
+        <button type="submit" value="logout" class="btn btn-info">Back</button><br><br>
+    </form>
     <div class="crear" id="boton">
         <button class="crear_input" name="Crear" value="Crear" id="botoncrear" onclick="abrirmodal_crear(); return false;" ><b><i class="fa-solid fa-circle-plus"></i> CREAR</b></button>
     </div>

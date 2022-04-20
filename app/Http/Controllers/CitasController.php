@@ -60,7 +60,6 @@ class CitasController extends Controller
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
-
                 return redirect('/citas');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
@@ -70,7 +69,7 @@ class CitasController extends Controller
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
-                return redirect('/citas');
+                return redirect('/cpanel');
             }else if($userId_compr[0]->rol_ro=='cliente'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
@@ -106,6 +105,30 @@ class CitasController extends Controller
     //Vista citas
     public function Citas(){
         return view('clinica/vistas/citas');
+    }
+
+    //Vista cpanel
+    public function cpanel(){
+        return view('secciones');
+    }
+
+    public function cpanelUsrs(){
+        //Falta
+        /* return view(''); */
+    }
+    public function cpanelTienda(){
+        return view('admincrud'); 
+    }
+    public function cpanelAnimales(){
+        //Falta
+        /* return view(''); */
+    }
+    public function cpanelAnimalesPerdidos(){
+        //Falta
+        /* return view(''); */
+    }
+    public function cpanelMapa(){
+        return view('admin_mapa_establecimientos');
     }
 
     //Resultados actuales o futuros implementados en la api
