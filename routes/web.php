@@ -86,6 +86,8 @@ Route::get('/cpanelAnimalesPerdidos', [CitasController::class, 'cpanelAnimalesPe
 //Curd mapa
 Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
+Route::get('/an_perd', [CitasController::class, 'an_perd']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 

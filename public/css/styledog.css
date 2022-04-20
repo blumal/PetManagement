@@ -8,6 +8,10 @@ img {
     width: 200px;
 }
 
-a{
+a {
     text-decoration: none !important;
+}
+
+button {
+    z-index: 9999999;
 }
