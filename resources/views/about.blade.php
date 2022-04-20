@@ -28,7 +28,7 @@
         <img src="./img/imagenesWeb/logo.png" class="foto">
     </div>
     <div class="content">
-        <h1>Lorem Ipsum</h1>
+        <h1>Pet Management</h1>
         <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
         "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec dignissim libero. Sed pellentesque volutpat metus, sit amet efficitur velit rutrum id. Phasellus condimentum justo nec magna viverra tristique. Praesent faucibus luctus libero, et tempus augue eleifend ut. In ac commodo urna. Vivamus vel lacinia augue. Donec hendrerit, odio non auctor rhoncus, mi justo tempus erat, sit amet dictum nisi urna sed orci. Nam hendrerit lacus sed risus sollicitudin, non volutpat lorem tempus. Sed non elit aliquam, hendrerit dolor sit amet, condimentum metus. Phasellus dictum nunc turpis, at porttitor erat convallis nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas posuere elit id nibh dictum, at fringilla mi euismod. In quis accumsan nibh, a vulputate nibh.</p>

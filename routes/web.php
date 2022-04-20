@@ -60,6 +60,10 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
+Route::get('registro', function () {
+    return view('registro');
+});
+
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 Route::get('/login', [CitasController::class, 'login']);

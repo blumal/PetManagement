@@ -487,7 +487,7 @@ footer {
     width: 50px;
     border-radius: 50px;
     border: 1px solid #f2f2f2;
-    background-image: url(../storage/img/imagenesWeb/TwitterBlanco.png);
+    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
@@ -500,7 +500,7 @@ footer {
 }
 
 .social-icon:nth-of-type(2) {
-    background-image: url(../storage/img/imagenesWeb/TelegramBlanco.png);
+    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
 }
 
 .footer-menu-container {

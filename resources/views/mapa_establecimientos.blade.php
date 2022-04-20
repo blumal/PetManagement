@@ -11,11 +11,25 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{asset('css/mapas-establecimientos.css')}}">
 </head>
 <body>
 
     <div id="map">
-
+        <header id="Header">
+            <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+            <!--Menu header-->
+            <ul class="main-menu">
+                <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
+                <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
+                <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
+                <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
+                <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
+                <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
+                <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
+                    <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+            </ul>
+        </header>
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="

@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group mx-sm-4 text-left">
                         <span class="">Aún no estas registrado?</span>
-                        <span><a href="./views/registro.blade.php" class="olvide1">REGISTRARSE</a></span>
+                        <span><a href="{{url("registro")}}" class="olvide1">REGISTRARSE</a></span>
                     </div>
                 </form>
     {{-- <h1>Login</h1>
