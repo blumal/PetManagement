@@ -26,7 +26,6 @@
 <body>
     <header id="Header">
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-
         <!--Menu header-->
         <ul class="main-menu">
             <li class="menu-item">Home</li>
@@ -69,6 +68,7 @@
                             <label for="asunto_vi">Motivo de visita:</label><br/>
                                 <input type="text" name="asunto_vi" id="asunto_vi"><br/><br/>
                             <input type="submit" value="Agendar">
+                            <!--Enviamos el valor de la session obtenida-->
                             <input type='hidden' name='id_us' id="id_us" value={{Session::get('id_user_session')}} />
                         </form>
                     </div>
