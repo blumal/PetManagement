@@ -8,9 +8,8 @@
 
 body {
     position: relative;
-    background: linear-gradient(transparent, rgb(50, 62, 192));
+    background: linear-gradient(transparent, #3759c0b0);
     text-decoration: none;
-    background: linear-gradient(rgb(31, 45, 196), transparent);
 }
 
 .column-1 {
