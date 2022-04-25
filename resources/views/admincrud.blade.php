@@ -51,14 +51,14 @@
                 <td scope="row">{{$prod->id_art}}</td>
                 <td>{{$prod->nombre_art}}</td> 
                 <td>{{$prod->descripcion_art}}</td>
-
                 <td>{{$prod->precio_art}}</td>
                 <td>{{$prod->codigobarras_art}}</td>
                 <td>{{$prod->marca_ma}}</td>
                 <td>{{$prod->tipo_articulo_ta}}</td>
+                <td>{{$prod->cantidad_st}}</td>
                 <td>
                     {{-- Route::get('/clientes/{cliente}/edit',[ClienteController::class,'edit'])->name('clientes.edit'); --}}
-                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
+                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}','{{$prod->cantidad_st}}');return false;">Editar</button>
                 </td>
                 <td>
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
