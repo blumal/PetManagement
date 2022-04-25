@@ -1,0 +1,93 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+/* ---------- HEADER ---------- */
+
+header{
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    transition: 0.5s;
+    height: 100px;
+    z-index: 999;
+    background-color: #8590ff;
+}
+
+.logo{
+    height: 90%;
+    width: 7%;
+}
+
+.scrolled-search{
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ul{
+    margin-top: 0;
+    margin-bottom: 0rem;
+} */
+
+.main-menu{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item{
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover{
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta{
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1f2cc4;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover{
+    color: #ffffff;
+    background-color: #000000;
+}

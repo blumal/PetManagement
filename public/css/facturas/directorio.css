@@ -11,8 +11,11 @@ html {
 
 body {
     position: relative;
-    background: linear-gradient(rgb(31, 45, 196), transparent);
-    background-repeat: no-repeat
+    background: linear-gradient(#1f2dc4, transparent);
+}
+
+a{
+    text-decoration: none !important;
 }
 
 .column-1 {
@@ -40,10 +43,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-a {
-    text-decoration: none !important;
 }
 
 header {
@@ -75,11 +74,12 @@ header {
     margin: 7px;
     border-radius: 20px;
     font-weight: bolder;
-    background-color: #000000;
+    background-color: #ffffff;
     padding: 3%;
     text-align: center;
-    border-color: #000000;
-    color: #ffffff;
+    border-width: 3%;
+    border-color: #1f2dc4;
+    color: #000000;
     cursor: pointer;
     transition: 0.5s;
     list-style-type: none;
@@ -87,17 +87,37 @@ header {
 
 .seccion:hover {
     color: #ffffff;
-    background-color: #1f2cc4;
-    border-color: #000000;
+    background-color: #000000;
+    border-color: #ffffff;
     border-radius: 50px;
     -webkit-transform: scale(5);
     transform: scale(0.9);
     transition: 0.6s;
 }
 
-button {
-    background-color: transparent;
-    border: 0;
-    width: 100%;
-    height: 100%;
+.input {
+    margin: 7px;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #ffffff;
+    padding: 3%;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #000000;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.5s;
+    list-style-type: none;
+}
+
+
+/*GERARD*/
+
+.ver_factura {
+    width: 80%;
+    border-radius: 50px;
+    margin-top: 3%;
+    background-color: white;
+    padding-bottom: -5%;
 }

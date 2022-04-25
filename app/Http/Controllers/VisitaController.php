@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redis;
 use Whoops\Run;
 
 class VisitaController extends Controller
-{
+{   
     public function preRellenarVisitaClinica(Request $request){
         $id_user = $request->session()->get('id_user_session');
         $id_visita=$request->id_visita;
@@ -52,9 +52,6 @@ class VisitaController extends Controller
                             ->get();
 
                     $download=1;
-
-                    
-
 
                     //$data = Employee::all();
                     // share data to view
@@ -132,5 +129,21 @@ class VisitaController extends Controller
         $total_redondeado= round($total, 2);
         //return $total_redondeado;
         return response()->json($total_redondeado);
+    }
+    public function VisitasAjax (Request $request){
+        $visitas = DB::table('tbl_visita')
+            ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
+            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_visita.id_vi')
+            ->where('fecha_vi','=',$request->fecha_visita)
+            ->get();
+        
+        /*$cliente = DB::table('tbl_usuario')
+            ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+            ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+            ->where('id_us','=',$id_user)
+            ->get();
+            */
+        return response()->json([$visitas]);
+        //return $request;
     }
 }
