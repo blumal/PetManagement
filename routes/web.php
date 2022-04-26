@@ -109,6 +109,11 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+//INICIO ESTADISTICAS
+
+//FIN ESTADISTICAS
+
+
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
 

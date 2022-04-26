@@ -17,6 +17,12 @@
     <title>PetManagment - Tienda</title>
 </head>
 <header id="Header">
+    <form action="FacturasTienda" method="post">
+        @csrf
+        
+        <input type="hidden" name="id_user" value=1>
+        <input class="ver_factura" type="submit" value="Ver facturas anteriores">
+    </form>
     <img src="storage/img/imagenesWeb/logo.png" alt="" class="logo">
     <!--Menu header-->
     <ul class="main-menu">
