@@ -60,6 +60,10 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
+Route::get('registro', function () {
+    return view('registro');
+});
+
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 Route::get('/login', [CitasController::class, 'login']);
@@ -68,6 +72,21 @@ Route::post('/login-proc', [CitasController::class, 'loginProc']);
 Route::get('/logout', [CitasController::class, 'logout']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
+//Cpanel
+Route::get('/cpanel', [CitasController::class, 'cpanel']);
+//Rutas cpanel
+//Curd usrs
+Route::get('/cpanelUsrs', [CitasController::class, 'cpanelUsrs']);
+//Curd tienda
+Route::get('/cpanelTienda', [ProductoController::class, 'mostrarProductoCrud']);
+//Curd animales
+Route::get('/cpanelAnimales', [CitasController::class, 'cpanelAnimales']);
+//Curd animales perdidos
+Route::get('/cpanelAnimalesPerdidos', [CitasController::class, 'cpanelAnimalesPerdidos']);
+//Curd mapa
+Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
+
+Route::get('/an_perd', [CitasController::class, 'an_perd']);
 
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//

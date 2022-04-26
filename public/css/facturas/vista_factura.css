@@ -74,8 +74,14 @@
         display: block;
         text-align: center;
     }
+    a{
+        text-decoration: none !important;
+    }
 }
 
+a{
+    text-decoration: none !important;
+}
 
 /** RTL **/
 

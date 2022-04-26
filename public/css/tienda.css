@@ -7,6 +7,10 @@ html {
     scroll-behavior: smooth;
 }
 
+a{
+    text-decoration: none !important;
+}
+
 header {
     height: auto;
     width: 100%;
@@ -21,7 +25,6 @@ header {
     height: 100px;
     transition: 0.5s;
     z-index: 999;
-    background-color: #8590ff;
 }
 
 .logo {
@@ -39,6 +42,7 @@ header {
     list-style-type: none;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0;
 }
 
 .menu-item {
@@ -71,8 +75,6 @@ header {
     color: #ffffff;
     background-color: #000000;
 }
-
-body {}
 
 .div-1 {
     float: left;
@@ -485,7 +487,7 @@ footer {
     width: 50px;
     border-radius: 50px;
     border: 1px solid #f2f2f2;
-    background-image: url(../storage/img/imagenesWeb/TwitterBlanco.png);
+    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
@@ -498,7 +500,7 @@ footer {
 }
 
 .social-icon:nth-of-type(2) {
-    background-image: url(../storage/img/imagenesWeb/TelegramBlanco.png);
+    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
 }
 
 .footer-menu-container {
