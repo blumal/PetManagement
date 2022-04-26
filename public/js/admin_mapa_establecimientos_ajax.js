@@ -67,8 +67,8 @@ function leerJS() {
                 recarga += '<td>' + respuesta[i].horario_apertura_s + '</td>'
                 recarga += '<td>' + respuesta[i].horario_cierre_s + '</td>'
                 recarga += '<td>' + respuesta[i].url_web + '</td>'
-                recarga += '<td><img src="storage/' + respuesta[i].foto_sociedad + '" alt=""></td>'
-                recarga += '<td><img src="storage/' + respuesta[i].foto_icono_sociedad + '"></td>'
+                recarga += '<td><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_sociedad + '"></td>'
+                recarga += '<td><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_icono_sociedad + '"></td>'
                 recarga += '<td>' + respuesta[i].sociedad_ts + '</td>'
                 recarga += '<td><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
                     '\',\'' + respuesta[i].email_s + '\',\'' + respuesta[i].nombre_di + '\',' + respuesta[i].numero_di + ',' +
@@ -127,12 +127,12 @@ function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, 
     contenido += '<p><b>CP</b><p>'
     contenido += '<input type="number" name="cp_di" id="cp_di" value="' + cp_di + '">'
     contenido += '<p><b>Tipo Sociedad</b><p>'
-    if (sociedad_ts == "clinica") {
+    if (sociedad_ts == "Clinica") {
         contenido += '<select name="sociedad_ts" id="sociedad_ts">'
         contenido += '<option value="clinica" selected>Clínica</option>'
         contenido += '<option value="protectora">Protectora de animales</option>'
         contenido += '</select>'
-    } else if (sociedad_ts == "protectora") {
+    } else if (sociedad_ts == "Protectora") {
         contenido += '<select name="sociedad_ts" id="sociedad_ts">'
         contenido += '<option value="protectora" selected>Protectora de animales</option>'
         contenido += '<option value="clinica">Clínica</option>'
@@ -148,13 +148,13 @@ function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, 
         contenido += '<select name="operatividad_ts" id="operatividad_ts">'
         contenido += '<option value="1" selected>Activo</option>'
         contenido += '<option value="0">Inactivo</option>'
-        contenido += '</select>'
+        contenido += '</select><br><br>'
     }
-    contenido += '<input type="hidden" name="id_s" id="id_s" value="' + id_s + '"><br><br/>'
-    contenido += '<input type="hidden" name="id_tel" id="id_tel" value="' + id_tel + '"><br><br/>'
-    contenido += '<input type="hidden" name="id_di" id="id_di" value="' + id_di + '"><br><br/>'
-    contenido += '<input type="hidden" name="id_ts" id="id_ts" value="' + id_ts + '"><br><br/>'
-    contenido += '<input type="submit" value="Modificar">'
+    contenido += '<input type="hidden" name="id_s" id="id_s" value="' + id_s + '">'
+    contenido += '<input type="hidden" name="id_tel" id="id_tel" value="' + id_tel + '">'
+    contenido += '<input type="hidden" name="id_di" id="id_di" value="' + id_di + '">'
+    contenido += '<input type="hidden" name="id_ts" id="id_ts" value="' + id_ts + '">'
+    contenido += '<input type="submit" class="btn btn-success" value="Modificar">'
     contenido += '</form>'
     enter.innerHTML = contenido;
 }

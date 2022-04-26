@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('email_session'))
+@if (!Session::get('admin_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Mapa Establecimientos</title>
-    <link rel="stylesheet" href="css/styleadminmapaestbl.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styleadminmapaestbl.css">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -43,6 +43,7 @@
         </div> --}}
     </div>
     </div>
+    <div class="content_up">
     <p id="mensaje"></p>
     <form id="form_crear" onsubmit="crear(); return false;" enctype="multipart/form-data">
         <input type="text" class="btn btn-outline-dark" name="nombre" id="nombre" placeholder="Nombre">
@@ -57,7 +58,7 @@
         <input type="time" class="btn btn-outline-dark" name="horario_aper" id="horario_aper" placeholder="Horario apertura">
         <span>Horario de cierre</span>
         <input type="time" class="btn btn-outline-dark" name="horario_cierre" id="horario_cierre" placeholder="Horario cierre">
-        <input type="text" class="btn btn-outline-dark" name="url_web" id="url_web" placeholder="Web(url)">
+        <input type="text" class="btn btn-outline-dark" name="url_web" id="url_web" placeholder="Web(url)"><br>
         <span>Foto</span>
         <input type="file" class="btn btn-outline-dark" name="foto" id="foto">
         <span>Foto icono</span>
@@ -67,7 +68,7 @@
             <option value="null">---</option>
             <option value="clinica">Clínica</option>
             <option value="protectora">Protectora de animales</option>
-        </select>
+        </select><br>
         <span>Operatividad</span>
         <select name="operativo" class="btn btn-outline-dark" id="operativo">
             <option value="null">---</option>
@@ -78,6 +79,7 @@
     </form>
     <br>
     <input type="search" class="input_search" onkeyup="leerJS()" id="filtro" placeholder="Filtrar por nombre">
+    </div>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
     <div class="style_table">
         <table id="tabla">

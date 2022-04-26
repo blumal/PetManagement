@@ -2,7 +2,7 @@ window.onload = function() {
     //Llamamos a la funcion markers, la cual nos mostrara los marcadores en el mapa
     markers();
     //declaramos la variable global ruta elim que utilizaremos para eliminar las rutas
-    ruta_elim = null;
+    marker_elim = null;
 }
 
 function objetoAjax() {
@@ -57,16 +57,17 @@ function markers() {
                     //Creo una variable local donde almaceno la imagen del marcador
                     var markerIcon = L.icon({
                         //Url de la imagen
-                        iconUrl: src = 'storage/' + respuesta[i].foto_icono_sociedad,
+                        iconUrl: src = 'http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_icono_sociedad,
                         //Tamaño del icono
                         iconSize: [30, 30]
                     });
                     //Le asignamos al marcador la coordenadas del marcador y la variable que le asigna la imagen
                     marker = L.marker([cooordenadas.lat, cooordenadas.lng], { icon: markerIcon });
+                    /* marker_elim.push(marker); */
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<span>" + respuesta[i].nombre_s + "</span><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button>", { maxWidth: 190 }).openPopup();
+                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn btn-info btn_quitar' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
                 })
             }
         }
@@ -132,5 +133,33 @@ function limpiarRuta() {
     //comprobamos si hay datos en el array, si los hay eliminamos los marcadores correspondientes a sus lugares
     if (ruta_elim != null) {
         map.removeControl(ruta_elim);
+    }
+}
+
+function settypeJS(id_tipo) {
+    //Poner id como indefinido para k no filtre
+    //Add class and remove class si tiene o no clase es el condicional
+    if (typeof id != 'undefined' && id_tipo == id) {
+        var boton = document.getElementsByClassName('btn_filtro');
+        for (i = 0; i < boton.length; i++) {
+            boton[i].classList.remove('classtype');
+        }
+        id = undefined;
+        markers(id_tipo);
+    } else {
+        var boton = document.getElementsByClassName('btn_filtro');
+        for (i = 0; i < boton.length; i++) {
+            boton[i].classList.remove('classtype');
+        }
+        document.getElementById('btn_tipo' + id_tipo).classList.add('classtype');
+        id = id_tipo;
+        markers(id_tipo);
+    }
+}
+
+//Ruta mapa
+function limpiarMarkers() {
+    if (marker_elim != null) {
+        map.removeLayer(marker_elim);
     }
 }

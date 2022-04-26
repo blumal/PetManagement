@@ -9,15 +9,18 @@ class mapas extends Controller
 {
     public function mapa_establecimientos(){
         //Le devolvemos a la vista del mapa que muestra los establecimientos
-        return view('mapa_establecimientos');
+        $datos = DB::table("tbl_tipo_sociedad")->select('*')->get();
+        return view('mapa_establecimientos', compact('datos'));
     }
 
-    public function markersEstablecimientos(){
+    public function markersEstablecimientos(Request $request){
         //Guardamos en la variable datos los resultados de la consulta de la tabla establecimientos
-        $datos=DB::select('SELECT tbl_sociedad.*, tbl_telefono.*, tbl_direccion.* FROM `tbl_sociedad`
+        $datos=DB::select('SELECT tbl_sociedad.*, tbl_telefono.*, tbl_direccion.*, tbl_tipo_sociedad.* 
+        FROM tbl_sociedad
         INNER JOIN tbl_telefono ON tbl_sociedad.id_telefono_fk = tbl_telefono.id_tel
         INNER JOIN tbl_direccion ON tbl_sociedad.id_direccion_fk = tbl_direccion.id_di
-        WHERE tbl_sociedad.operatividad_s = 1;');
+        INNER JOIN tbl_tipo_sociedad ON tbl_sociedad.id_tipo_sociedad_fk = tbl_tipo_sociedad.id_ts
+        WHERE tbl_sociedad.operatividad_s = 1 AND tbl_tipo_sociedad.id_ts LIKE ?', ['%'.$request->input('id_tipo').'%']);
         //Devolvemos por json los datos guardados en la variable datos
         return response()->json($datos);
     }

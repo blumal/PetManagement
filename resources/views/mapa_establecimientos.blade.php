@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="{{asset('css/mapas-establecimientos.css')}}">
 </head>
 <body>
-
-    <div id="map">
-        <header id="Header">
+    <header id="Header">
             <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
             <!--Menu header-->
             <ul class="main-menu">
@@ -30,6 +28,15 @@
                     <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
             </ul>
         </header>
+        
+    <div id="map">
+        <div class="filtro">
+            @foreach ($datos as $item)
+            <button class="btn_filtro" id="btn_tipo{{$item->id_ts}}" onclick="settypeJS({{$item->id_ts}})"><b>{{$item->sociedad_ts}}</b></button>
+            @endforeach
+            {{-- <button class="btn_filtro"><b>Clínicas</b></button>
+            <button class="btn_filtro"><b>Protectoras</b></button> --}}
+        </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
