@@ -13,7 +13,7 @@ window.onload = function() {
             header.style.backgroundColor = '#8590ff';
 
         } else {
-            header.style.backgroundColor = '#8590ff';
+            header.style.backgroundColor = 'transparent';
         }
 
     })

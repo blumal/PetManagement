@@ -21,7 +21,11 @@
     <div class="head_admin">
         {{-- Boton para volver a la vista del panel de control --}}
     <div>
-        <a class="btn btn-info" href="">Back</a>
+        <div>
+            <form action="{{url('/cpanel')}}" method="GET">
+                <button type="submit" value="logout" class="btn btn-info">Back</button><br><br>
+            </form>
+        </div>
         @if($errors->any())
         <div>
             <ul>
@@ -31,10 +35,12 @@
             </ul>
         </div>
         @endif
-        <h1><b>Establecimientos</b></h1>
-        <form action="{{url('/logout')}}" method="GET">
-            <button type="submit" value="logout" class="btn btn-danger">LOGOUT</button><br><br>
-        </form>
+        <div><h1><b>Establecimientos</b></h1></div>
+        {{-- <div>
+            <form action="{{url('/logout')}}" method="GET">
+                <button type="submit" value="logout" class="btn btn-danger">LOGOUT</button><br><br>
+            </form>
+        </div> --}}
     </div>
     </div>
     <p id="mensaje"></p>

@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script language="javascript" src="js/carrito.js"></script>
-    <link rel="stylesheet" href="css/carrito.css">
+    <link rel="stylesheet" href="{{asset('css/carrito.css')}}">
     <title>PetManagment - Carrito</title>
 </head>
 <header id="Header">
@@ -76,6 +76,9 @@
         <tr>
             <td><a href="{{ url('tienda') }}" class="btn btn-volver"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
             <td colspan="2" class="hidden-xs"></td>
+            <td><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+                <button class= "pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart"> </i> Pagar</button>
+            </form></td>
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
             <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
                 <button class= "btn btn-volver pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart i-pagar"> </i> Pagar</button>
