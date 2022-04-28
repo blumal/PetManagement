@@ -137,9 +137,18 @@ Route::post('/estadisticas/visitas_por_horas', [EstadisticaController::class, 'v
 Route::post('/estadisticas/animales_por_especie', [EstadisticaController::class, 'animales_por_especie']);
 Route::post('/estadisticas/visitas_por_meses', [EstadisticaController::class, 'visitas_por_meses']);
 Route::post('/estadisticas/tipos_sociedades', [EstadisticaController::class, 'tipos_sociedades']);
-
-
 //FIN ESTADISTICAS
+
+//INICIO JUEGOS
+Route::get('ranita', function () {
+    return view('juegos/ranita');
+});
+//FIN JUEGOS
+
+//INICIO CRUD PACIENTES
+Route::post('/registrarMascota',[VisitaController::class, 'registrarMascota']);
+
+// FIN CRUD PACIENTES
 
 
 /*Carrito */

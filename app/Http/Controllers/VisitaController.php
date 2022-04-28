@@ -146,4 +146,9 @@ class VisitaController extends Controller
         return response()->json([$visitas]);
         //return $request;
     }
+    public function registrarMascota(){
+
+        //return view('facturas/crear/factura_visitaCrear',compact('cliente','visita','paciente','promociones','items_clinica'));
+        return view('clinica/vistas/crearMascota');
+    }
 }
