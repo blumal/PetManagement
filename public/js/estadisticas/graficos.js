@@ -11,6 +11,13 @@ window.onload = function() {
     leerEspecies();
     labelsXEspecies = [];
 
+    leerVisitasMeses();
+    dataYvisitaspormeses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    leerSociedades();
+    labelsXsociedades = [];
+    dataYsociedades = [];
+
 }
 
 
@@ -156,16 +163,15 @@ function leerEspecies() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta)
+            //console.log(respuesta)
 
-            for (let i = 0; i < respuesta.length; i++) {
+            for (let i = 0; i < respuesta[0].length; i++) {
                 labelsXEspecies.push(respuesta[0][i].nombrecientifico_pa)
-
             }
 
             //labelsXEspecies.push(meses);
 
-            for (var i = 0; i < respuesta.length; i++) {
+            for (var i = 0; i < respuesta[1].length; i++) {
 
                 dataY[i] = respuesta[1][i].cont
             }
@@ -182,8 +188,8 @@ function chartCreateEspecies() {
         labels: labelsXEspecies,
         datasets: [{
             label: 'Pacientes por especie',
-            backgroundColor: 'black',
-            borderColor: 'white',
+            backgroundColor: 'white',
+            borderColor: 'black',
             data: dataY,
         }]
     };
@@ -194,6 +200,113 @@ function chartCreateEspecies() {
     };
     const myChart3 = new Chart(
         document.getElementById('chart_pacientesxnombre'),
+        configespecies
+    );
+}
+
+// GRAFICO DE VISITAS POR MESES
+
+function leerVisitasMeses() {
+
+    var ajax = objetoAjax();
+    formdata = new FormData();
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('_method', 'POST');
+
+    ajax.open("POST", "estadisticas/visitas_por_meses", true);
+
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            //console.log(respuesta)
+            //meses.forEach(mes => { labelsX.push(mes)});
+            //labelsXmeses.push(meses);
+
+            for (var i = 0; i < respuesta.length; i++) {
+
+                dataYvisitaspormeses[respuesta[i].MONTH - 1] = respuesta[i].COUNT
+            }
+            // creamos el chart
+            chartCreateVisitasMeses();
+        }
+    }
+
+    ajax.send(formdata)
+}
+
+function chartCreateVisitasMeses() {
+    const datacompras = {
+        labels: labelsXmeses,
+        datasets: [{
+            label: 'Numero de visitas por mes',
+            backgroundColor: 'black',
+            borderColor: 'white',
+            data: dataYvisitaspormeses,
+            //data: [10, 20, 30, 40, 50, 60, 70],
+        }]
+    };
+    const configcompras = {
+        type: 'line',
+        data: datacompras,
+        options: {}
+    };
+    const myChartVisitas = new Chart(
+        document.getElementById('chart_visitasxmeses'),
+        configcompras
+    );
+}
+
+//GRAFICO DE TIPOS DE PROTECTORAS
+
+function leerSociedades() {
+
+    var ajax = objetoAjax();
+    formdata = new FormData();
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('_method', 'POST');
+
+    ajax.open("POST", "estadisticas/tipos_sociedades", true);
+
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta)
+
+            for (let i = 0; i < respuesta.length; i++) {
+                labelsXsociedades.push(respuesta[i].sociedad_ts)
+            }
+
+            //labelsXEspecies.push(meses);
+
+            for (var i = 0; i < respuesta.length; i++) {
+
+                dataYsociedades[i] = respuesta[i].cont
+            }
+            // creamos el chart
+            charCreateSociedades();
+        }
+    }
+
+    ajax.send(formdata)
+}
+
+function charCreateSociedades() {
+    const datasociedades = {
+        labels: labelsXsociedades,
+        datasets: [{
+            label: 'Sociedades por tipo',
+            backgroundColor: 'white',
+            borderColor: 'black',
+            data: dataYsociedades,
+        }]
+    };
+    const configespecies = {
+        type: 'pie',
+        data: datasociedades,
+        options: {}
+    };
+    const myChart4 = new Chart(
+        document.getElementById('chart_sociedadesxtipo'),
         configespecies
     );
 }

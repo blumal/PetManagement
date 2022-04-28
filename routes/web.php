@@ -129,12 +129,14 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+
 //INICIO ESTADISTICAS
 Route::get('/stats', [EstadisticaController::class, 'test']);
 Route::post('/estadisticas/recogerStats', [EstadisticaController::class, 'leerStats']);
 Route::post('/estadisticas/visitas_por_horas', [EstadisticaController::class, 'visitas_por_horas']);
 Route::post('/estadisticas/animales_por_especie', [EstadisticaController::class, 'animales_por_especie']);
-
+Route::post('/estadisticas/visitas_por_meses', [EstadisticaController::class, 'visitas_por_meses']);
+Route::post('/estadisticas/tipos_sociedades', [EstadisticaController::class, 'tipos_sociedades']);
 
 
 //FIN ESTADISTICAS

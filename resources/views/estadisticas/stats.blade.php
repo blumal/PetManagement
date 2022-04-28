@@ -17,6 +17,12 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
     <title>STATS</title>
+    <style>
+        .contenedor_grafico{
+            width: 40%;
+            height: 50%
+        }
+    </style>
 </head>
 <body>
     <header id="Header">
@@ -38,17 +44,29 @@
         <img src="./img/imagenesWeb/logo.png" class="foto">
     </div>
 
-
     <div>
-        <canvas id="chart_pedidosxmes"></canvas>
+        <div class="contenedor_grafico">
+            <canvas class="contenedor_grafico" id="chart_pedidosxmes"></canvas>
+        </div>
+    
+        <div class="contenedor_grafico">
+            <canvas id="chart_visitasxhoras"></canvas>
+        </div>
     </div>
-
+    
     <div>
-        <canvas id="chart_visitasxhoras"></canvas>
+        <div class="contenedor_grafico">
+            <canvas id="chart_visitasxmeses"></canvas>
+        </div>
+    
+        <div class="contenedor_grafico">
+            <canvas id="chart_pacientesxnombre"></canvas>
+        </div>
     </div>
+    
 
-    <div>
-        <canvas id="chart_pacientesxnombre"></canvas>
+    <div class="contenedor_grafico">
+        <canvas id="chart_sociedadesxtipo"></canvas>
     </div>
 
     

@@ -254,7 +254,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Total: <?php echo $factura[0]->total_fc ?>€</b></td>
+            <td><b> Total: <?php echo $factura[0]->total_fc ?>€ (Sin IVA -> <?php echo BCDIV($factura[0]->total_fc/1.21,1,2) ?>€)</b></td>
         </tr>
     </table>
     Estimado <?php echo $cliente[0]->nombre_us;?>,<br><br>
