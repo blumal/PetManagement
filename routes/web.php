@@ -30,6 +30,8 @@ Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
 Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
 
+Route::get('filtromarkersEstablecimientos', [mapas::class,'filtromarkersEstablecimientos']);
+
 Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
 
 Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);

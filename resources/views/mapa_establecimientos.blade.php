@@ -32,7 +32,7 @@
     <div id="map">
         <div class="filtro">
             @foreach ($datos as $item)
-            <button class="btn_filtro" id="btn_tipo{{$item->id_ts}}" onclick="settypeJS({{$item->id_ts}})"><b>{{$item->sociedad_ts}}</b></button>
+            <button class="btn_filtro" id="{{$item->id_ts}}" onclick="settypeJS({{$item->id_ts}})"><b>{{$item->sociedad_ts}}</b></button>
             @endforeach
             {{-- <button class="btn_filtro"><b>Clínicas</b></button>
             <button class="btn_filtro"><b>Protectoras</b></button> --}}

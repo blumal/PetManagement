@@ -129,13 +129,13 @@ function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, 
     contenido += '<p><b>Tipo Sociedad</b><p>'
     if (sociedad_ts == "Clinica") {
         contenido += '<select name="sociedad_ts" id="sociedad_ts">'
-        contenido += '<option value="clinica" selected>Clínica</option>'
-        contenido += '<option value="protectora">Protectora de animales</option>'
+        contenido += '<option value="1" selected>Clínica</option>'
+        contenido += '<option value="2">Protectora de animales</option>'
         contenido += '</select>'
     } else if (sociedad_ts == "Protectora") {
         contenido += '<select name="sociedad_ts" id="sociedad_ts">'
-        contenido += '<option value="protectora" selected>Protectora de animales</option>'
-        contenido += '<option value="clinica">Clínica</option>'
+        contenido += '<option value="2" selected>Protectora de animales</option>'
+        contenido += '<option value="1">Clínica</option>'
         contenido += '</select>'
     }
     contenido += '<p><b>Operatividad</b><p>'
@@ -284,4 +284,44 @@ function crear() {
     }
 
     ajax.send(formData);
+}
+
+function crearJS() {
+    modal.style.display = "block";
+    enter = document.getElementById("contenido")
+    var contenido = ''
+    contenido += '<h1>Crear Establecimiento</h1>'
+    contenido += '<form id="form_crear" onsubmit="crear(); return false;" enctype="multipart/form-data">'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="nombre" id="nombre" placeholder="Nombre">'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="nif" id="nif" placeholder="NIF">'
+    contenido += '    <input type="email" class="btn btn-outline-dark" name="email" id="email" placeholder="Email empresa">'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="direccion" id="direccion" placeholder="Calle"><br><br>'
+    contenido += '    <input type="number" class="btn btn-outline-dark" name="num" id="num" placeholder="N Calle">'
+    contenido += '    <input type="number" class="btn btn-outline-dark" name="cp" id="cp" placeholder="CP">'
+    contenido += '    <input type="number" class="btn btn-outline-dark" name="telf" id="telf" placeholder="Teléfono 1">'
+    contenido += '    <input type="number" class="btn btn-outline-dark" name="telf2" id="telf2" placeholder="Teléfono 2"><br><br>'
+    contenido += '    <span>Horario de apertura</span>'
+    contenido += '    <input type="time" class="btn btn-outline-dark" name="horario_aper" id="horario_aper" placeholder="Horario apertura">'
+    contenido += '    <span>Horario de cierre</span>'
+    contenido += '    <input type="time" class="btn btn-outline-dark" name="horario_cierre" id="horario_cierre" placeholder="Horario cierre">'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="url_web" id="url_web" placeholder="Web(url)"><br><br>'
+    contenido += '    <span>Foto</span>'
+    contenido += '    <input type="file" class="btn btn-outline-dark" name="foto" id="foto">'
+    contenido += '    <span>Foto icono</span>'
+    contenido += '    <input type="file" class="btn btn-outline-dark" name="foto_icono" id="foto_icono"><br><br>'
+    contenido += '    <span>Tipo sociedad</span>'
+    contenido += '    <select name="tipo" class="btn btn-outline-dark" name="tipo" id="tipo">'
+    contenido += '        <option value="null">---</option>'
+    contenido += '        <option value="1">Clínica</option>'
+    contenido += '        <option value="2">Protectora de animales</option>'
+    contenido += '    </select>'
+    contenido += '    <span>Operatividad</span>'
+    contenido += '    <select name="operativo" class="btn btn-outline-dark" id="operativo">'
+    contenido += '        <option value="null">---</option>'
+    contenido += '        <option value="1">Activo</option>'
+    contenido += '        <option value="0">Inactivo</option>'
+    contenido += '    </select><br><br>'
+    contenido += '    <input type="submit" class="btn btn-success" value="Crear">'
+    contenido += '</form>'
+    enter.innerHTML = contenido;
 }

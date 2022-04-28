@@ -2,7 +2,7 @@ window.onload = function() {
     //Llamamos a la funcion markers, la cual nos mostrara los marcadores en el mapa
     markers();
     //declaramos la variable global ruta elim que utilizaremos para eliminar las rutas
-    marker_elim = null;
+    arr_marker = [];
 }
 
 function objetoAjax() {
@@ -63,11 +63,11 @@ function markers() {
                     });
                     //Le asignamos al marcador la coordenadas del marcador y la variable que le asigna la imagen
                     marker = L.marker([cooordenadas.lat, cooordenadas.lng], { icon: markerIcon });
-                    /* marker_elim.push(marker); */
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn btn-info btn_quitar' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
+                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button class='btn_rut' onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn_rut' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
+                    arr_marker.push(marker);
                 })
             }
         }
@@ -139,27 +139,62 @@ function limpiarRuta() {
 function settypeJS(id_tipo) {
     //Poner id como indefinido para k no filtre
     //Add class and remove class si tiene o no clase es el condicional
-    if (typeof id != 'undefined' && id_tipo == id) {
+    if (id_tipo == 1) {
         var boton = document.getElementsByClassName('btn_filtro');
         for (i = 0; i < boton.length; i++) {
             boton[i].classList.remove('classtype');
         }
-        id = undefined;
-        markers(id_tipo);
+        document.getElementById(id_tipo).classList.add('classtype');
     } else {
         var boton = document.getElementsByClassName('btn_filtro');
         for (i = 0; i < boton.length; i++) {
             boton[i].classList.remove('classtype');
         }
-        document.getElementById('btn_tipo' + id_tipo).classList.add('classtype');
-        id = id_tipo;
-        markers(id_tipo);
+        document.getElementById(id_tipo).classList.add('classtype');
     }
-}
 
-//Ruta mapa
-function limpiarMarkers() {
-    if (marker_elim != null) {
-        map.removeLayer(marker_elim);
+    if (arr_marker != []) {
+        for (let i = 0; i < arr_marker.length; i++) {
+            map.removeLayer(arr_marker[i]);
+        }
     }
+    arr_marker = [];
+
+    var formData = new FormData();
+    //Enviamso el token
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    //Enviamos el metodo que en este caso es get
+    formData.append('_method', 'get');
+    formData.append('id_tipo', id_tipo);
+    /* Inicializar un objeto AJAX */
+    var ajax = objetoAjax();
+    ajax.open("POST", "filtromarkersEstablecimientos", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            //recogemos los datos que nos devuelve el json en la variable respuesta
+            var respuesta = JSON.parse(this.responseText);
+            //hacemos un bucle for para mostrar los datos guardados en el array respuesta
+            var geocoder = L.esri.Geocoding.geocodeService();
+            for (let i = 0; i < respuesta.length; i++) {
+                geocoder.geocode().text(respuesta[i].nombre_di + ', ' + respuesta[i].numero_di + ' ' + respuesta[i].cp_di).run(function(error, response) {
+                    cooordenadas = response.results[0].latlng;
+                    //Creo una variable local donde almaceno la imagen del marcador
+                    var markerIcon = L.icon({
+                        //Url de la imagen
+                        iconUrl: src = 'http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_icono_sociedad,
+                        //Tamaño del icono
+                        iconSize: [30, 30]
+                    });
+                    //Le asignamos al marcador la coordenadas del marcador y la variable que le asigna la imagen
+                    marker = L.marker([cooordenadas.lat, cooordenadas.lng], { icon: markerIcon });
+                    //Añadimos el marcador al mapa
+                    marker.addTo(map);
+                    //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
+                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button class='btn_rut' onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn_rut' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
+                    arr_marker.push(marker);
+                })
+            }
+        }
+    }
+    ajax.send(formData);
 }

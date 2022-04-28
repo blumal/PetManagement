@@ -128,3 +128,17 @@ header {
     box-shadow: 0 2px 17px 0 #000000;
     outline: none;
 }
+
+.btn_rut {
+    border-radius: 5px;
+    border-color: transparent;
+    color: #ffffff;
+    background-color: rgb(40, 125, 204);
+    width: 48%;
+    cursor: pointer;
+    margin: 1%;
+}
+
+.btn_rut:hover {
+    border-color: rgb(67, 40, 204);
+}

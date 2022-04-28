@@ -44,42 +44,11 @@
     </div>
     </div>
     <div class="content_up">
-    <p id="mensaje"></p>
-    <form id="form_crear" onsubmit="crear(); return false;" enctype="multipart/form-data">
-        <input type="text" class="btn btn-outline-dark" name="nombre" id="nombre" placeholder="Nombre">
-        <input type="text" class="btn btn-outline-dark" name="nif" id="nif" placeholder="NIF">
-        <input type="email" class="btn btn-outline-dark" name="email" id="email" placeholder="Email empresa">
-        <input type="text" class="btn btn-outline-dark" name="direccion" id="direccion" placeholder="Calle">
-        <input type="number" class="btn btn-outline-dark" name="num" id="num" placeholder="N Calle">
-        <input type="number" class="btn btn-outline-dark" name="cp" id="cp" placeholder="CP">
-        <input type="number" class="btn btn-outline-dark" name="telf" id="telf" placeholder="Teléfono 1">
-        <input type="number" class="btn btn-outline-dark" name="telf2" id="telf2" placeholder="Teléfono 2">
-        <span>Horario de apertura</span>
-        <input type="time" class="btn btn-outline-dark" name="horario_aper" id="horario_aper" placeholder="Horario apertura">
-        <span>Horario de cierre</span>
-        <input type="time" class="btn btn-outline-dark" name="horario_cierre" id="horario_cierre" placeholder="Horario cierre">
-        <input type="text" class="btn btn-outline-dark" name="url_web" id="url_web" placeholder="Web(url)"><br>
-        <span>Foto</span>
-        <input type="file" class="btn btn-outline-dark" name="foto" id="foto">
-        <span>Foto icono</span>
-        <input type="file" class="btn btn-outline-dark" name="foto_icono" id="foto_icono">
-        <span>Tipo sociedad</span>
-        <select name="tipo" class="btn btn-outline-dark" name="tipo" id="tipo">
-            <option value="null">---</option>
-            <option value="clinica">Clínica</option>
-            <option value="protectora">Protectora de animales</option>
-        </select><br>
-        <span>Operatividad</span>
-        <select name="operativo" class="btn btn-outline-dark" id="operativo">
-            <option value="null">---</option>
-            <option value="1">Activo</option>
-            <option value="0">Inactivo</option>
-        </select>
-        <input type="submit" class="btn btn-success" value="Crear">
-    </form>
-    <br>
+    <input type="submit" class="btn btn-success" onclick="crearJS()" id="crear" value="Crear Establecimiento">
+    <br><br>
     <input type="search" class="input_search" onkeyup="leerJS()" id="filtro" placeholder="Filtrar por nombre">
     </div>
+    <p id="mensaje"></p>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
     <div class="style_table">
         <table id="tabla">
