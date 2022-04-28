@@ -32,52 +32,73 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
-    <div class="container">
-        <div class="row justify-content-center pt-8 mt-5 m-2">
-            <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario">
-                <form action="" method="post">
-                    @csrf
-                    <div class="form-group text-center pt-3">
-                        <h1 class="text-light">No dudes en escribirnos!</h1>
+    <div class="row-c flex">
+        <div class="column-2">
+            <div class="container">
+                <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
+                    <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario">
+                        <form>
+                            <div class="form-group text-center pt-3">
+                                <h1 class="text-light">"Aqui va el mapa"</h1>
+                            </div>
+                            <div class="form-group mx-sm-3 pb-2">
+                                <h3 class="text-light">Telf: +34 612345678</h3>
+                                <h3 class="text-light">mailcontact@aservices.com</h3>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group mx-sm-4 pb-2">
-                        <input type="text" class="form-control" placeholder="Nombre" name="nombre">
-                    </div>
-                    <div class="form-group mx-sm-4 pb-2">
-                        <input type="password" class="form-control" placeholder="Apellido" name="Apellido">
-                    </div>
-                    <div class="form-group mx-sm-4 pb-2">
-                        <input type="password" class="form-control" placeholder="Correo" name="Correo">
-                    </div>
-                    <div class="form-group mx-sm-4 pb-2">
-                        {{-- <input type="text" class="form-control" placeholder="Mensaje" name="Mensaje"> --}}<textarea class="form-control" placeholder="Mensaje" name="Mensaje" id="Mensaje" cols="30" rows="5.5"></textarea>
-                    </div>
-                    <div class="form-group mx-sm-4 pb-4">
-                        <input type="submit" class="btn btn-block ingresar" value="ENVIAR">
-                    </div>
-                </form>
-    {{-- <h1>Login</h1>
-    <div class="login-form">
-        <form action="{{url("login-proc")}}" method="post">
-            @csrf
-            <input type="email" placeholder="Ex: rauw@petmanagement.net" name="email_us"></br></br>
-            <input type="password" name="pass_us"></br></br>
-            <input type="submit">
-        </form>
-
-        <div class="row flex">
-            <div class="column-60">
-                <div class="slider-frame">
-                    <ul>
-                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-1.jpg" alt=""></li>
-                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-2.jpg" alt=""></li>
-                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-3.jpg" alt=""></li>
-                        <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-4.jpg" alt=""></li>
-                    </ul> 
                 </div>
             </div>
         </div>
-    </div>--}}
+        <div class="column-2">
+            <div class="container">
+                <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
+                    <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario">
+                        <form action="" method="post">
+                            @csrf
+                            <div class="form-group text-center pt-3">
+                                <h1 class="text-light">Consultanos cualquier duda que tengas!</h1>
+                            </div>
+                            <div class="form-group mx-sm-4 pb-2">
+                                <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+                            </div>
+                            <div class="form-group mx-sm-4 pb-2">
+                                <input type="password" class="form-control" placeholder="Apellido" name="Apellido">
+                            </div>
+                            <div class="form-group mx-sm-4 pb-2">
+                                <input type="password" class="form-control" placeholder="Correo" name="Correo">
+                            </div>
+                            <div class="form-group mx-sm-4 pb-2">
+                                {{-- <input type="text" class="form-control" placeholder="Mensaje" name="Mensaje"> --}}<textarea class="form-control" placeholder="Mensaje" name="Mensaje" id="Mensaje" cols="30" rows="5.5"></textarea>
+                            </div>
+                            <div class="form-group mx-sm-4 pb-4">
+                                <input type="submit" class="btn btn-block ingresar" value="ENVIAR">
+                            </div>
+                        </form>
+            {{-- <h1>Login</h1>
+            <div class="login-form">
+                <form action="{{url("login-proc")}}" method="post">
+                    @csrf
+                    <input type="email" placeholder="Ex: rauw@petmanagement.net" name="email_us"></br></br>
+                    <input type="password" name="pass_us"></br></br>
+                    <input type="submit">
+                </form>
+
+                <div class="row flex">
+                    <div class="column-60">
+                        <div class="slider-frame">
+                            <ul>
+                                <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-1.jpg" alt=""></li>
+                                <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-2.jpg" alt=""></li>
+                                <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-3.jpg" alt=""></li>
+                                <li><img src="./img/imagenesWeb/fotosSlider/foto-slider-4.jpg" alt=""></li>
+                            </ul> 
+                        </div>
+                    </div>
+                </div>
+            </div>--}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
