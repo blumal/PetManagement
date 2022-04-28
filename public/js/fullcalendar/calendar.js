@@ -1,5 +1,5 @@
 window.onload = function() {
-    eventos = []
+    eventos = [];
     calendar();
 }
 
@@ -126,14 +126,14 @@ function modalCitas() {
     var modal = document.getElementById("modalCitas");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("btnModal");
+    //var btn = document.getElementById("btnModal");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
     // When the user clicks the button, open the modal 
 
     modal.style.display = "block";
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
@@ -145,4 +145,6 @@ function modalCitas() {
             modal.style.display = "none";
         }
     }
+
+
 }

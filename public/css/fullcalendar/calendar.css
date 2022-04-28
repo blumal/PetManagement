@@ -1,5 +1,6 @@
 * {
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'courier,arial,helvética';
     margin: 0;
     padding: 0;
     --main-color: #1f2cc4;
@@ -141,7 +142,7 @@ header {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 15%;
+    padding-top: 10%;
     /* Location of the box */
     left: 0;
     top: 0;
@@ -161,18 +162,34 @@ header {
 /* Modal Content */
 
 .modal-citas-content {
+    font-family: 'Courier New', Courier, monospace;
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
+    padding: 3%;
+    /*border: 1px solid #888;*/
+    width: 30%;
+    border-radius: 25px;
+    text-align: left;
+}
+
+.modal-citas-content input,
+select,
+textarea {
+    width: 100%;
+}
+
+input[type=submit]:hover,
+input[type=submit]:active {
+    width: 100%;
+    background-color: green;
+    color: white;
 }
 
 
 /* The Close Button */
 
 .close {
-    color: #aaaaaa;
+    color: red;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -256,4 +273,19 @@ footer {
     color: #f2f2f2;
     opacity: 0.3;
     text-align: center;
+}
+
+
+/* Style the hamburger menu */
+
+
+/*Ocultamos barra de navegación*/
+
+@media screen and (max-width: 800px) {
+    .main-menu {
+        display: none;
+    }
+    .burguer-menu {
+        display: block;
+    }
 }
