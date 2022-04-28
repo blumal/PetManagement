@@ -148,7 +148,24 @@ class VisitaController extends Controller
     }
     public function registrarMascota(){
 
+        try {
+            $duenos= DB::table('tbl_usuario')
+                    ->where('id_rol_fk','=',2)
+                    ->get();
+        } catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
         //return view('facturas/crear/factura_visitaCrear',compact('cliente','visita','paciente','promociones','items_clinica'));
-        return view('clinica/vistas/crearMascota');
+        return view('clinica/vistas/crearMascota', compact('duenos'));
+    }
+    public function cerrarMascota(Request $request){
+        return $request;
+        if ($foto) {
+            $datos['foto'] = $request->file('foto')->store('uploads','public');
+        }else{
+            //Aqui venimos si no hay ninguna foto a la hora de subir la foto de la persona
+            $datos['foto'] = "uploads/perro.png";
+        }
     }
 }

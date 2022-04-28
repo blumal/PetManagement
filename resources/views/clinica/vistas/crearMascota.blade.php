@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Formulario Visita</title>
+    <title>Registro mascota</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
@@ -11181,49 +11181,69 @@
                     <div class="row no-gutters">
                         <div class="col-md-7">
                             <div class="contact-wrap w-100 p-md-5 p-4">
-                                <h3 class="mb-4">Datos del paciente<</h3>
+                                <h3 class="mb-4">Datos del paciente</h3>
                                 <div id="form-message-warning" class="mb-4"></div>
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" action="{{url("cerrarMascota")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" enctype="multipart/form-data" action="{{url("cerrarMascota")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="name">Nombre Animal</label>
                                                 <!--<p name="name" id="name" placeholder="Nombre del animal"></p>-->
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Sapristi...">
+                                                <input type="text" class="form-control" name="nombre_paciente" id="name" placeholder="Sapristi...">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="label" for="email">Peso Paciente</label>
-                                                <input type="number" class="form-control" name="total_factura" id="total_factura" placeholder="69,69 (kg)">
+                                                <label class="label" >Peso Paciente</label>
+                                                <input type="number" class="form-control" name="peso_paciente" id="total_factura" placeholder="69,69 (kg)">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Numero Identificacion Registro Nacional</label>
                                                 <!--<p name="name" id="name" placeholder="Name"></p>-->
-                                                <input type="text" class="form-control" name="subject" id="subject" placeholder="XXX XXX XXX" value="">
+                                                <input type="text" class="form-control" name="nirn_paciente" id="subject" placeholder="XXX XXX XXX" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Nombre cientifico</label>
+                                                <!--<p name="name" id="name" placeholder="Name"></p>-->
+                                                <input type="text" class="form-control" name="nombre_cientifico_paciente" id="subject" placeholder="Canis Latranis" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Raza (opcional)</label>
+                                                <!--<p name="name" id="name" placeholder="Name"></p>-->
+                                                <input type="text" class="form-control" name="raza_paciente" id="subject" placeholder="Bulldog francés" value="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Fecha nacimiento</label>
-                                                <input type="date" class="form-control" name="fecha_factura" id="subject" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="label" for="subject">Hora intervención</label>
-                                                <input type="time" class="form-control" name="hora_factura" id="subject" >
+                                                <input type="date" class="form-control" name="fecha_nacimiento_paciente" id="subject" >
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="label" for="#">Diagnostico</label>
-                                                <textarea name="diagnostico" class="form-control" id="message" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
+                                                <label class="label" for="#">Foto del paciente</label>
+                                                <input type="file" class="form-control" name="foto_paciente" id="subject" >
                                             </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="productos" class="label" for="#">Selecciona producto:</label>
+                                                <select id="productos" name="id_dueno_paciente">        
+                                                    @for ($i = 0; $i < count($duenos); $i++)
+                                                        <option class="form-control"  value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
+                                                    @endfor
+                                                        <!--<option class="form-control"  value="paco">Paquito</option>-->
+                                                    
+                                                </select>
                                         </div>
 
                                         <div class="col-md-12">

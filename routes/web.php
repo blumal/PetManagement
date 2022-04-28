@@ -147,6 +147,7 @@ Route::get('ranita', function () {
 
 //INICIO CRUD PACIENTES
 Route::post('/registrarMascota',[VisitaController::class, 'registrarMascota']);
+Route::post('/cerrarMascota',[VisitaController::class, 'cerrarMascota']);
 
 // FIN CRUD PACIENTES
 
