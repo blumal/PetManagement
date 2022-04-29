@@ -35,7 +35,6 @@
             </ul>
         </div>
         @endif
-        <div><h1><b>Establecimientos</b></h1></div>
         {{-- <div>
             <form action="{{url('/logout')}}" method="GET">
                 <button type="submit" value="logout" class="btn btn-danger">LOGOUT</button><br><br>
@@ -44,6 +43,7 @@
     </div>
     </div>
     <div class="content_up">
+        <h1><b>Establecimientos</b></h1>
     <input type="submit" class="btn btn-success" onclick="crearJS()" id="crear" value="Crear Establecimiento">
     <br><br>
     <input type="search" class="input_search" onkeyup="leerJS()" id="filtro" placeholder="Filtrar por nombre">

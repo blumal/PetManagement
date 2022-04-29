@@ -29,30 +29,54 @@
     <div class="container">
         <div class="row justify-content-center pt-3 mt-1 m-1">
             <div class="col-md-6 col-sm-8 col-xl-5 col-lg-5 formulario">
-                <form action="">
+                <form action="{{url("/regis-proc")}}" method="POST">
                     <div class="form-group text-center">
                         <h1 class="text-light">REGISTRARSE</h1>
                     </div>
                     <div class="form-group mx-sm-2 pt-2">
-                        <input type="text" class="form-control" placeholder="Escribe tu Nombre">
+                        <input type="text" class="form-control" name="name_us" placeholder="Nombre">
                     </div>
                     <div class="form-group mx-sm-2 pb-1">
-                        <input type="text" class="form-control" placeholder="Escribe tu Apellido">
+                        <input type="text" class="form-control" name="apellido_us" placeholder="Apellido">
                     </div>
                     <div class="form-group mx-sm-2 pb-1">
-                        <input type="text" class="form-control" placeholder="Escribe tu Contraseña">
+                        <input type="text" class="form-control" name="apellido2_us" placeholder="Segundo apellido">
                     </div>
                     <div class="form-group mx-sm-2 pb-1">
-                        <input type="text" class="form-control" placeholder="Escribe tu Contraseña">
+                        <input type="text" class="form-control" name="dni_us" placeholder="DNI">
                     </div>
                     <div class="form-group mx-sm-2 pb-1">
-                        <input type="text" class="form-control" placeholder="Escribe tu Correo">
+                        <input type="text" class="form-control" name="dir_us" placeholder="Dirección">
                     </div>
                     <div class="form-group mx-sm-2 pb-1">
-                        <input type="text" class="form-control" placeholder="Escribe tu DNI">
+                        <input type="number" class="form-control" name="ndir_us" placeholder="Número de calle">
                     </div>
                     <div class="form-group mx-sm-2 pb-1">
-                        <input type="text" class="form-control" placeholder="Escribe tu Número de teléfono">
+                        <input type="number" class="form-control" name="bdir_us" placeholder="Bloque">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="text" class="form-control" name="pdir_us" placeholder="Piso">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="number" class="form-control" name="padir_us" placeholder="Número del piso">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="number" class="form-control" name="cpdir_us" placeholder="Código postal">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="number" class="form-control" name="telf_us" placeholder="Número de teléfono">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="number" class="form-control" name="telf2_us" placeholder="Número de teléfono 2(opcional)">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="email" class="form-control" name="email_us" placeholder="Correo">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="password" class="form-control" name="pass_us" placeholder="Contraseña">
+                    </div>
+                    <div class="form-group mx-sm-2 pb-1">
+                        <input type="password" class="form-control" name="pass2_us" placeholder="Confirmar contraseña">
                     </div>
                     <div class="form-group mx-sm-3 pb-2">
                         <input type="submit" class="btn btn-block ingresar" value="REGISTRARME">

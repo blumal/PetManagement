@@ -70,6 +70,7 @@ Route::get('registro', function () {
 
 Route::get('/login', [CitasController::class, 'login']);
 Route::post('/login-proc', [CitasController::class, 'loginProc']);
+Route::post('/regis-proc', [CitasController::class, 'regisProc']);
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [CitasController::class, 'logout']);
 //Citas

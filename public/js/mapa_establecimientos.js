@@ -3,6 +3,7 @@ window.onload = function() {
     markers();
     //declaramos la variable global ruta elim que utilizaremos para eliminar las rutas
     arr_marker = [];
+    ruta_elim = null;
 }
 
 function objetoAjax() {
@@ -66,7 +67,7 @@ function markers() {
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button class='btn_rut' onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn_rut' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
+                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br><a href='" + respuesta[i].url_web + "'>" + respuesta[i].url_web + "</a></p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button class='btn_rut' onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn_rut' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
                     arr_marker.push(marker);
                 })
             }
@@ -190,7 +191,12 @@ function settypeJS(id_tipo) {
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " + respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" + respuesta[i].horario_cierre_s + "</p><p>Web:<br>" + respuesta[i].url_web + "</p><img src = 'http://localhost/www/PetManagement/storage/app/public/" + respuesta[i].foto_sociedad + "'><button class='btn_rut' onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button><button class='btn_rut' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
+                    marker.bindPopup("<p>" + respuesta[i].nombre_s + "</p><p>Contacto: <br>" + respuesta[i].email_s + " " +
+                        respuesta[i].contacto1_tel + "</p><p>Horario:<br>" + respuesta[i].horario_apertura_s + "-" +
+                        respuesta[i].horario_cierre_s + "</p><p>Web:<br><a href='" + respuesta[i].url_web + "'>" +
+                        respuesta[i].url_web + "</a></p><img src = 'http://localhost/www/PetManagement/storage/app/public/" +
+                        respuesta[i].foto_sociedad + "'><button class='btn_rut' onclick='ruta(" + cooordenadas.lat + ',' +
+                        cooordenadas.lng + "); return false;'>Ir</button><button class='btn_rut' onclick='limpiarRuta(); return false;'>Quitar Ruta</button>", { maxWidth: 200 }).openPopup();
                     arr_marker.push(marker);
                 })
             }
