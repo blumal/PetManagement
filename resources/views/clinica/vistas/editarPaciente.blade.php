@@ -1,9 +1,15 @@
+@if (Session::get('id_rol_session')==1)
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Registro mascota</title>
+    <title>Registro paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
@@ -11172,7 +11178,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Registro de mascota</h2>
+                <h2 class="heading-section">Registro de paciente</h2>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -11186,60 +11192,60 @@
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" enctype="multipart/form-data" action="{{url("cerrarMascota")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" enctype="multipart/form-data" action="{{url("cerrarPaciente")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="name">Nombre Animal</label>
                                                 <!--<p name="name" id="name" placeholder="Nombre del animal"></p>-->
-                                                <input type="text" class="form-control" name="nombre_paciente" id="name" placeholder="Sapristi...">
+                                                <input type="text" class="form-control" name="nombre_paciente" id="name" value="{{$paciente[0]->nombre_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" >Peso Paciente</label>
-                                                <input type="number" class="form-control" name="peso_paciente" id="total_factura" placeholder="69,69 (kg)">
+                                                <input type="number" class="form-control" name="peso_paciente" id="total_factura" value="{{$paciente[0]->peso_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Numero Identificacion Registro Nacional</label>
                                                 <!--<p name="name" id="name" placeholder="Name"></p>-->
-                                                <input type="text" class="form-control" name="nirn_paciente" id="subject" placeholder="XXX XXX XXX" value="">
+                                                <input type="text" class="form-control" name="nirn_paciente" id="subject" placeholder="XXX XXX XXX" value="{{$paciente[0]->n_id_nacional}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Nombre cientifico</label>
                                                 <!--<p name="name" id="name" placeholder="Name"></p>-->
-                                                <input type="text" class="form-control" name="nombre_cientifico_paciente" id="subject" placeholder="Canis Latranis" value="">
+                                                <input type="text" class="form-control" name="nombre_cientifico_paciente" id="subject" placeholder="Canis Latranis" value="{{$paciente[0]->nombrecientifico_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Raza (opcional)</label>
                                                 <!--<p name="name" id="name" placeholder="Name"></p>-->
-                                                <input type="text" class="form-control" name="raza_paciente" id="subject" placeholder="Bulldog francés" value="">
+                                                <input type="text" class="form-control" name="raza_paciente" id="subject" placeholder="Bulldog francés" value="{{$paciente[0]->raza_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Fecha nacimiento</label>
-                                                <input type="date" class="form-control" name="fecha_nacimiento_paciente" id="subject" >
+                                                <input type="date" class="form-control" name="fecha_nacimiento_paciente" id="subject" value="{{$paciente[0]->fecha_nacimiento}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="#">Foto del paciente</label>
-                                                <input type="file" class="form-control" name="foto_paciente" id="subject" >
+                                                <input type="file" class="form-control" name="foto_paciente" id="subject" value="{{$paciente[0]->foto_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="productos" class="label" for="#">Selecciona producto:</label>
-                                                <select id="productos" name="id_dueno_paciente">        
+                                            <label for="productos" class="label" for="#">Selecciona dueño:</label>
+                                                <select id="productos" name="id_dueno_paciente">
                                                     @for ($i = 0; $i < count($duenos); $i++)
-                                                        <option class="form-control"  value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
+                                                        <option class="form-control" value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
                                                     @endfor
                                                         <!--<option class="form-control"  value="paco">Paquito</option>-->
                                                     

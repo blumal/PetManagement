@@ -35,7 +35,7 @@
             <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
             <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
             <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+            <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
         </ul>
         <script src="./js/home.js"></script>
     </header>
@@ -92,9 +92,9 @@
     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
     @if (session()->get('id_rol_session')==3)
         <center>
-            <form action="{{url("/registrarMascota")}}" method="post">
+            <form action="{{url("/adminPacientes")}}" method="get">
                 @csrf
-                <input type="submit" class="previous_visits_button" value="Registrar Mascota">
+                <input type="submit" class="previous_visits_button" value="Administrar Pacientes">
             </form>
 
             <form action="{{url("/directorioGenerarFactura")}}" method="post">

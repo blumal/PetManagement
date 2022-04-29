@@ -146,8 +146,12 @@ Route::get('ranita', function () {
 //FIN JUEGOS
 
 //INICIO CRUD PACIENTES
-Route::post('/registrarMascota',[VisitaController::class, 'registrarMascota']);
-Route::post('/cerrarMascota',[VisitaController::class, 'cerrarMascota']);
+Route::post('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
+Route::post('/cerrarPaciente',[VisitaController::class, 'cerrarPaciente']);
+Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
+Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);
+Route::post('/leerPacientes',[VisitaController::class, 'leerPacientes']);
+Route::post('/editarPaciente',[VisitaController::class, 'editarPaciente']);
 
 // FIN CRUD PACIENTES
 
