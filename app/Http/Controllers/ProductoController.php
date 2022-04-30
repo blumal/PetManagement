@@ -184,14 +184,14 @@ class ProductoController extends Controller
                     ]
             ];
             session()->put('cart', $cart);
-            return Redirect::to($path);
+            return response()->json($cart);
         }
         //
         if(isset($cart[$id])) {
             $cantidad=$cantidad+$cart[$id]['cantidad'];
             $cart[$id]['cantidad']=$cantidad;
             session()->put('cart', $cart);
-            return Redirect::to($path);
+            return response()->json($cart);
         }
         //
         $cart[$id] = [
@@ -201,7 +201,7 @@ class ProductoController extends Controller
             "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
-        return Redirect::to($path);
+        return response()->json($cart);
     }
 
     public function updateCart(Request $request)

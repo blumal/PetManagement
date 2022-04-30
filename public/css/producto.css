@@ -84,7 +84,7 @@ header {
 .container_prod {
     width: 30%;
     height: 100vh;
-    margin-top: 12%;
+    margin-top: 15%;
     margin-left: 10%;
     float: left;
 }
@@ -122,7 +122,7 @@ header {
 .producto {
     width: 50%;
     height: 100vh;
-    margin-top: 12%;
+    margin-top: 15%;
     margin-left: 2%;
     float: left;
     color: #333333;
