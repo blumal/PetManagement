@@ -119,7 +119,7 @@ function productos() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -132,6 +132,62 @@ function productos() {
     ajax.send(formData);
 }
 
+
+function addToCart(id) {
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id);
+    formData.append('_method', 'get');
+    var ajax = objetoAjax();
+    ajax.open("get", "add-to-cart/" + id, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            console.log(Object.keys(respuesta).length)
+            var div = document.getElementsByClassName("div-dropmenu")[0];
+            html = "<div class='dropdown'>";
+            html += "<button type='button' class='btn btn-info carrito-drop' data-toggle='dropdown'>";
+            html += "<i class='fa fa-shopping-cart' aria-hidden='true'></i> Carrito <span class='badge badge-pill badge-danger'>" + Object.keys(respuesta).length + "</span>";
+            html += "</button>";
+            html += "<div class='dropdown-menu'>";
+            html += "<div class='row total-header-section'>";
+            html += "<div class='col-lg-6 col-sm-6 col-6'>";
+            html += "<i class='fa fa-shopping-cart' aria-hidden='true'></i> <span class='badge badge-pill badge-danger'>" + Object.keys(respuesta).length + "</span>";
+            html += "</div>";
+            total = 0
+            for (let i in respuesta) {
+                total += respuesta[i].precio * respuesta[i].cantidad;
+            }
+            html += "<div class='col-lg-6 col-sm-6 col-6 total-section text-right'>";
+            html += "<p>Total: <span class='color'>" + total + "€</span></p>";
+            html += "</div>";
+            html += "</div>";
+            for (let i in respuesta) {
+                html += "<div class='row cart-detail'>";
+                html += "<div class='col-lg-4 col-sm-4 col-4 cart-detail-img'>";
+                html += "<img src='storage/uploads/" + respuesta[i].foto + "'/>";
+                html += "</div>";
+                html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
+                html += "<p>" + respuesta[i].nombre + "</p>";
+                html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad:" + respuesta[i].cantidad + "</span>";
+                html += "</div>";
+                html += "</div>";
+            }
+            html += "<div class='row'>";
+            html += "<div class='col-lg-12 col-sm-12 col-12 text-center checkout'>";
+            html += "<a href='carrito' class='btn btn-block btn-carrito'>Ir al carrito</a>";
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+            div.innerHTML = html;
+        }
+
+
+    }
+    ajax.send(formData);
+}
 
 function filtro() {
     var nombre = document.getElementById("search").value;
@@ -182,7 +238,7 @@ function filtro() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -247,7 +303,7 @@ function filtro2(categoria) {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -311,7 +367,7 @@ function filtro3() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a href='add-to-cart/" + respuesta[i].id_art + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -342,7 +398,7 @@ function filtro4() {
         var precio = $(this).find('.producto-precio').find('p').text();
         var precio2 = precio.substring(0, precio.length - 1);
         var foto = $(this).find('.thumbnail-img').find('img').attr('src');
-        var id2 = id.substring(precio.length, precio.length + 1);
+        var id2 = id.substring(id.length, 7);
         producto.push(href)
         producto.push(id)
         producto.push(nombre)
@@ -392,7 +448,7 @@ function filtro4() {
         html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
         html += "<div class='caption-descripcion'><p>" + productos[i][3] + "</p></div>";
         html += "<div class='producto-precio'><p>" + productos[i][4] + "</p></div>";
-        html += "<p class='btn-holder'><a href='add-to-cart/" + productos[i][7] + "' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+        html += "<p class='btn-holder'><a onclick='addToCart(" + productos[i][7] + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
         html += "</div>";
         html += "</div>";
         html += "</div>";

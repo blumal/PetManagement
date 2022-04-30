@@ -116,9 +116,10 @@ class ProductoController extends Controller
     }
 
     public function producto($id) {
-        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma, tbl_articulo_tienda.tipo_categoria_art FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$id]);
         $fotos=DB::select("SELECT tbl_foto.foto_f FROM `tbl_foto` WHERE tbl_foto.articulo_tienda_fk=?",[$id]);
-        return view('producto', compact('producto', 'fotos'));
+        $categorias=DB::select("SELECT tbl_categoria_articulo.id_cat, tbl_categoria_articulo.texto_cat, tbl_categoria_articulo.precio_cat, tbl_categoria_articulo.articulo_fk FROM `tbl_categoria_articulo` WHERE articulo_fk=? ORDER BY precio_cat ASC",[$id]);
+        return view('producto', compact('producto', 'fotos', 'categorias'));
     }
 
     public function marcaProducto(Request $request) {
@@ -146,13 +147,13 @@ class ProductoController extends Controller
                     ]
             ];
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return response()->json($cart);
         }
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
             $cart[$id]['cantidad']++;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return response()->json($cart);
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -162,7 +163,7 @@ class ProductoController extends Controller
             "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return response()->json($cart);
     }
     public function addToCartProducto($id, $cantidad)
     {

@@ -44,7 +44,16 @@
             <div class="nombre"><h4>{{$producto[0]->nombre_art}}</h4></div>
             <div class="descripcion"><p>{{$producto[0]->descripcion_art}}</p></div>
             <div class="marca"><p>Vendido por <strong>{{$producto[0]->marca_ma}}</strong></p></div>
-            <div class="precio"><p>{{$producto[0]->precio_art}}€</p></div>
+            <!--<div class="precio"><p>{{$producto[0]->precio_art}}€</p></div> -->
+            <div class="tipo-nombre"><p>{{$producto[0]->tipo_categoria_art}}:</p></div>
+            <div class="div-tipo">
+                @foreach ($categorias as $categoria)
+                <div class="tipo @if ($categoria == $categorias[0])  tipo-border  @endif" data-id="{{$categoria->id_cat}}">
+                    <div class="tipo-texto"><p>{{$categoria->texto_cat}}</p></div>
+                    <div class="precio-texto"><p>{{$categoria->precio_cat}}€</p></div>
+                </div>
+                @endforeach
+            </div>
             <div class="carrito-cantidad">
                 <div class="cantidad">
                     <div class="input-cantidad"><input type="number" value="1" class="form-control quantity" max="5001" min="1" id="input-cantidad"/></div>
@@ -78,7 +87,7 @@
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                         <p>{{ $details['nombre'] }}</p>
-                                        <span class="price color"> ${{ $details['precio'] }}</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
+                                        <span class="price color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
                                     </div>
                                 </div>
                             @endforeach

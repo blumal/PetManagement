@@ -1,6 +1,6 @@
 window.onload = function() {
     $("#input-cantidad").bind('keyup mouseup', function() {
-        calcularPrecio();
+        calcularPrecio(precio);
     });
     fotos();
     var header = document.getElementById('Header')
@@ -15,6 +15,18 @@ window.onload = function() {
         }
 
     })
+
+    var precio = $(".tipo:first").find('p:eq(1)').text();
+    precio = precio.substring(0, precio.length - 1);
+
+    $('.tipo').click(function() {
+        //$(".tipo").css({ border: "1px solid rgba(185, 178, 178, 0.37)" });
+        //$(this).css({ border: "1px solid #1f2cc4" });
+        precio = $(this).find('p:eq(1)').text();
+        $("#precio-final").text(precio)
+        calcularPrecio(precio);
+    });
+
 }
 
 function objetoAjax() {
@@ -34,9 +46,8 @@ function objetoAjax() {
     return xmlhttp;
 }
 
-function calcularPrecio() {
+function calcularPrecio(precio) {
     var cantidad = document.getElementById("input-cantidad").value
-    var precio = $(".precio").find("p").text();
     precio = precio.substring(0, precio.length - 1);
     var final = cantidad * precio;
     final = final.toFixed(2);
@@ -108,4 +119,23 @@ function fotos() {
     cuatro.addEventListener('mouseout', function(event) {
         prin.innerHTML = "<img src='" + fotoPrinc + "'>"
     });
+}
+
+function subcategorias() {
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    var ajax = objetoAjax();
+
+    ajax.open("POST", "p", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var html = "<p>aaa</p>";
+            for (let i = 0; i < respuesta.length; i++) {
+
+            }
+        }
+    }
+
+    ajax.send(formData);
 }
