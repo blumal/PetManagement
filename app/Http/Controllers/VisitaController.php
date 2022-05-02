@@ -136,9 +136,10 @@ class VisitaController extends Controller
 
     //CRUD PACIENTES
     public function VisitasAjax (Request $request){
+
         $visitas = DB::table('tbl_visita')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
-            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_visita.id_vi')
+            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
             ->where('fecha_vi','=',$request->fecha_visita)
             ->get();
         
@@ -148,7 +149,8 @@ class VisitaController extends Controller
             ->where('id_us','=',$id_user)
             ->get();
             */
-        return response()->json([$visitas]);
+        
+        return response()->json($visitas);
         //return $request;
     }
     public function registrarPaciente(){

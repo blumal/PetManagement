@@ -43,13 +43,13 @@ function leerVisitas() {
                 visita += '<div class="column-3">' +
                     '<div class="seccion">' +
                     '<form action="/generarFactura" method="post">' +
-                    'Factura ' + respuesta[i][0]['fecha_vi'] +
-                    '<br><br>Animal ' + respuesta[i][0]['nombre_pa'] +
-                    '<br><br>Cliente ' + respuesta[i][0]['nombre_us'] +
+                    'Factura ' + respuesta[i]['fecha_vi'] +
+                    '<br><br>Animal ' + respuesta[i]['nombre_pa'] +
+                    '<br><br>Cliente ' + respuesta[i]['nombre_us'] +
                     '<br><br>' +
                     '<input type="hidden" name="_token" value="' + token + '">' +
 
-                    '<input type="hidden" name="id_visita" value="' + respuesta[i][0]['id_vi'] + '">' +
+                    '<input type="hidden" name="id_visita" value="' + respuesta[i]['id_vi'] + '">' +
                     '<input class="ver_factura" type="submit" value="Rellenar factura">' +
                     '</form>' +
                     '<br>' +
