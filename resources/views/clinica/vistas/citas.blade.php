@@ -92,7 +92,7 @@
     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
     @if (session()->get('id_rol_session')==3)
         <center>
-            <form action="{{url("/adminPacientes")}}" method="get">
+            <form action="{{url("/adminPacientes")}}" method="post">
                 @csrf
                 <input type="submit" class="previous_visits_button" value="Administrar Pacientes">
             </form>

@@ -113,3 +113,19 @@ function calcular_total(e) {
     }
     ajax.send(formData);
 }
+
+function validarCreacionEdicionPaciente() {
+
+    nombre = document.getElementById('name').value
+    nombre_cientifico_paciente = document.getElementById('nombre_cientifico_paciente').value
+    peso_paciente = document.getElementById('peso_paciente').value
+    fecha_nacimiento_paciente = document.getElementById('fecha_nacimiento_paciente').value
+
+    if (nombre == "" || nombre_cientifico_paciente == "" || peso_paciente == "" || fecha_nacimiento_paciente == "") {
+        alertify.error('Rellene los campos obligatorios');
+        return false;
+    } else {
+        return true;
+    }
+
+}

@@ -148,7 +148,7 @@ Route::get('ranita', function () {
 //INICIO CRUD PACIENTES
 Route::post('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
 Route::post('/cerrarPaciente',[VisitaController::class, 'cerrarPaciente']);
-Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
+Route::post('/adminPacientes',[VisitaController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);
 Route::post('/leerPacientes',[VisitaController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[VisitaController::class, 'editarPaciente']);

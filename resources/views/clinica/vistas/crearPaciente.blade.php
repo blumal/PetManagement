@@ -13,7 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <script src="js/visita/crud_pacientes.js"></script>
 
     <style>
     :root {
@@ -11192,7 +11196,7 @@
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" enctype="multipart/form-data" action="{{url("cerrarPaciente")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validarCreacionEdicionPaciente();" enctype="multipart/form-data" action="{{url("cerrarPaciente")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -11205,7 +11209,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" >Peso Paciente</label>
-                                                <input type="number" class="form-control" name="peso_paciente" id="total_factura" placeholder="69,69 (kg)">
+                                                <input type="number" step="any" min="0" class="form-control" name="peso_paciente" id="peso_paciente" placeholder="69,69 (kg)">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -11219,7 +11223,7 @@
                                             <div class="form-group">
                                                 <label class="label" for="subject">Nombre cientifico</label>
                                                 <!--<p name="name" id="name" placeholder="Name"></p>-->
-                                                <input type="text" class="form-control" name="nombre_cientifico_paciente" id="subject" placeholder="Canis Latranis" value="">
+                                                <input type="text" class="form-control" name="nombre_cientifico_paciente" id="nombre_cientifico_paciente" placeholder="Canis Latranis" value="">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -11232,7 +11236,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Fecha nacimiento</label>
-                                                <input type="date" class="form-control" name="fecha_nacimiento_paciente" id="subject" >
+                                                <input type="date" class="form-control" name="fecha_nacimiento_paciente" id="fecha_nacimiento_paciente" >
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -11257,6 +11261,7 @@
                                                 
                                                 <input type="submit" value="Registrar paciente" class="btn btn-primary">
                                                 <div class="submitting"></div>
+                                                <div id="mensaje"></div>
                                             </div>
                                         </div>
                                     </div>
