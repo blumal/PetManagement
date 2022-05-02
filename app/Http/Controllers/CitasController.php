@@ -113,6 +113,13 @@ class CitasController extends Controller
 
     //Inserción datos a DB
     public function insertCita(Request $request){
+        $datas = $request->validate([
+            'fecha_vi' => 'required|date',
+            'hora_vi' => 'required|string|max:5',
+            'asunto_vi' => 'required|string',
+            'id_us' => 'required|string'
+        ]);
+        
         try {
             //$checkdatas = DB::select('SELECT fecha_vi, hora_vi FROM tbl_visitia WHERE fecha_vi = ? AND hora_vi = ?', [$request->input('fecha_vi'), $request->input('hora_vi')])->get();
             //Recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
@@ -134,10 +141,11 @@ class CitasController extends Controller
             if ($checkingdatas  < 3) {
                 //Comprobamos que el mismo usuario no pueda hacer la misma visita + de una vez
                 if($customerbooks == 0){
-                    DB::insert('insert into tbl_visita (fecha_vi, hora_vi, asunto_vi, id_usuario_fk, id_estado_fk) values (?, ?, ?, ?, ?)', 
+                    DB::insert('insert into tbl_visita (fecha_vi, hora_vi, asunto_vi, id_pacienteanimal_fk, id_usuario_fk, id_estado_fk) values (?, ?, ?, ?, ?, ?)', 
                     [$request->input('fecha_vi'), 
                     $request->input('hora_vi'), 
-                    $request->input('asunto_vi'), 
+                    $request->input('asunto_vi'),
+                    $request->input('an_asociado'),
                     $request->input('id_us'),
                     $estadodebug]);
                     return response()->json(array('resultado'=> 'OK'));
