@@ -27,7 +27,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+
                         <th scope="col">Foto</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Peso (kg)</th>
@@ -44,7 +44,6 @@
 
                     @forelse ($pacientes as $paciente)
                         <tr>
-                            <td>{{$paciente->id_pa}}</td>
                             <td><img src="../storage/{{$paciente->foto_pa}}" class="avatar"></td>
                             <td>{{$paciente->nombre_pa}}</td>
                             <td>{{$paciente->peso_pa}}</td>

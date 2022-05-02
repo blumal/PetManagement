@@ -152,6 +152,7 @@ Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);
 Route::post('/leerPacientes',[VisitaController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[VisitaController::class, 'editarPaciente']);
+Route::post('/cerrarPacienteEditar',[VisitaController::class, 'cerrarPacienteEditar']);
 
 // FIN CRUD PACIENTES
 

@@ -39,7 +39,6 @@ function leerPacientes() {
                     respuesta[i].n_id_nacional = ""
                 }
                 tabla.innerHTML += "<tr>" +
-                    "<td>" + respuesta[i].id_pa + "</td>" +
                     "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar'></td>" +
                     "<td>" + respuesta[i].nombre_pa + "</td>" +
                     "<td>" + respuesta[i].peso_pa + "</td>" +
@@ -79,6 +78,7 @@ function eliminarPaciente(id_paciente) {
         ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
+                console.log(respuesta);
                 if (respuesta == "OK") {
                     document.getElementById('mensaje').style.color = "red";
                     document.getElementById('mensaje').innerHTML = "Registro eliminado correctamente"

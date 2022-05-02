@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Whoops\Run;
+use Illuminate\Support\Facades\Storage;
+
+use function Ramsey\Uuid\v1;
 
 class VisitaController extends Controller
 {   
@@ -130,6 +133,8 @@ class VisitaController extends Controller
         //return $total_redondeado;
         return response()->json($total_redondeado);
     }
+
+    //CRUD PACIENTES
     public function VisitasAjax (Request $request){
         $visitas = DB::table('tbl_visita')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
@@ -186,18 +191,28 @@ class VisitaController extends Controller
         return redirect('/adminPacientes');
     }
     public function adminPacientes(){
-        $pacientes= DB::table('tbl_pacienteanimal_clinica')
+        try {
+            DB::beginTransaction();
+            $pacientes= DB::table('tbl_pacienteanimal_clinica')
                     ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
                     ->get();
+            DB::commit();
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+        
         return view('clinica/vistas/adminPacientes', compact('pacientes'));   
     }
     public function eliminarPaciente(Request $request){
         try {
             DB::beginTransaction();
-
-            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa', $request['id_paciente'])->delete();
-            return response()->json("OK");
+            $id_paciente=$request['id_paciente'];
+            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa',"=", $request['id_paciente'])->delete();
+            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa', '=',8)->delete();
+            DB::delete('delete from tbl_pacienteanimal_clinica where id_pa = ?',[$id_paciente]);
             DB::commit();
+            return response()->json("OK");
         } catch (\Exception $error) {
             DB::rollback();
             return $error -> getMessage();
@@ -233,5 +248,50 @@ class VisitaController extends Controller
         }
         //return $paciente;
         return view('clinica/vistas/editarPaciente',compact('paciente','duenos'));
+    }
+    public function cerrarPacienteEditar (Request $request){
+        $id_paciente = $request['id_paciente'];
+
+        if (isset($request['foto_paciente'])) {
+            $foto_paciente = $request->file('foto_paciente')->store('uploads','public');
+            if ($request['foto_paciente_old']=='uploads/incognito.png') {
+                # code...
+            }else{
+                Storage::delete('public/'.$request['foto_paciente_old']); 
+            }
+            
+            
+            //$foto_paciente=$request['foto_paciente'];
+        }else{
+            $foto_paciente=$request['foto_paciente_old'];
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $paciente_actualizado = DB::table('tbl_pacienteanimal_clinica')
+                ->where('id_pa', $id_paciente)
+                ->limit(1)
+                ->update(
+                    ['nombre_pa' => $request['nombre_paciente'],
+                    'peso_pa' => $request['peso_paciente'],
+                    'n_id_nacional' => $request['nirn_paciente'],
+                    'fecha_nacimiento' => $request['fecha_nacimiento_paciente'],
+                    'foto_pa' => $foto_paciente,
+                    'propietario_fk' => $request['id_dueno_paciente'],
+                    'nombrecientifico_pa' => $request['nombre_cientifico_paciente'],
+                    'raza_pa' => $request['raza_paciente']]
+                );
+
+            DB::commit();
+            return redirect('/adminPacientes');
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        
+
+        
     }
 }

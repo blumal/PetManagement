@@ -9,7 +9,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Registro paciente</title>
+    <title>Editar paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
@@ -11178,7 +11178,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Registro de paciente</h2>
+                <h2 class="heading-section">Editor de paciente</h2>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -11192,7 +11192,7 @@
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" enctype="multipart/form-data" action="{{url("cerrarPaciente")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" enctype="multipart/form-data" action="{{url("cerrarPacienteEditar")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -11238,14 +11238,21 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="#">Foto del paciente</label>
-                                                <input type="file" class="form-control" name="foto_paciente" id="subject" value="{{$paciente[0]->foto_pa}}">
+                                                <input type="hidden" name="foto_paciente_old" value="{{$paciente[0]->foto_pa}}">
+                                                <input type="hidden" name="id_paciente" value="{{$paciente[0]->id_pa}}">
+                                                <input type="file" class="form-control" name="foto_paciente" id="subject">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="productos" class="label" for="#">Selecciona dueño:</label>
                                                 <select id="productos" name="id_dueno_paciente">
+                                                    
                                                     @for ($i = 0; $i < count($duenos); $i++)
-                                                        <option class="form-control" value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
+                                                        @if ($duenos[$i]->id_us==$paciente[0]->propietario_fk)
+                                                            <option selected="selected" value="{{$duenos[$i]->id_us}}" >{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
+                                                        @else
+                                                        <option class="form-control" value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option> 
+                                                        @endif
                                                     @endfor
                                                         <!--<option class="form-control"  value="paco">Paquito</option>-->
                                                     
@@ -11255,7 +11262,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 
-                                                <input type="submit" value="Registrar paciente" class="btn btn-primary">
+                                                <input type="submit" value="Editar paciente" class="btn btn-primary">
                                                 <div class="submitting"></div>
                                             </div>
                                         </div>
