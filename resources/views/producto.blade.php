@@ -32,7 +32,7 @@
 <body>
     <div class="div1">
         <div class="container_prod" id="galeria">
-            <div class="img_pral" id="principal"><img src="../storage/uploads/{{$producto[0]->foto_art}}"></div>
+            <div class="img_pral" id="principal"><img id="myImg" alt="{{$producto[0]->nombre_art}}" src="../storage/uploads/{{$producto[0]->foto_art}}"></div>
             @php
                 $cont=1
             @endphp
@@ -40,7 +40,7 @@
                 <div class="subImg_1" name="thumb" id="@php echo $cont; $cont++; @endphp"><img src="../storage/uploads/{{$foto->foto_f}}"></div>
             @endforeach
         </div>
-        <div class="producto" id-producto="{{$producto[0]->id_art}}">
+        <div class="producto" id-producto="{{$producto[0]->id_art}}" id_tipo_articulo_fk="{{$producto[0]->id_tipo_articulo_fk}}">
             <div class="nombre"><h4>{{$producto[0]->nombre_art}}</h4></div>
             <div class="descripcion"><p>{{$producto[0]->descripcion_art}}</p></div>
             <div class="marca"><p>Vendido por <strong>{{$producto[0]->marca_ma}}</strong></p></div>
@@ -101,7 +101,15 @@
                   </div>
             </div>
         </div>
+        <div class="productos-similares">
+            
+        </div>
     </div>
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+      </div>
 </body>
 <footer>
     <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">

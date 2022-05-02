@@ -2,6 +2,8 @@ window.onload = function() {
     $("#input-cantidad").bind('keyup mouseup', function() {
         calcularPrecio(precio);
     });
+    productosSimilares()
+    modalImg()
     fotos();
     var header = document.getElementById('Header')
 
@@ -26,6 +28,7 @@ window.onload = function() {
         $("#precio-final").text(precio)
         calcularPrecio(precio);
     });
+
 
 }
 
@@ -129,51 +132,117 @@ function fotos() {
     var cuatro = document.getElementById("4")
 
     var fotoPrinc = $('.img_pral:first').find('img').attr('src');
+    var nomPrinc = $('.img_pral:first').find('img').attr('alt');
     var foto1 = $('.subImg_1:first').find('img').attr('src');
     var foto2 = $('.subImg_1:eq(1)').find('img').attr('src');
     var foto3 = $('.subImg_1:eq(2)').find('img').attr('src');
     var foto4 = $('.subImg_1:eq(3)').find('img').attr('src');
 
-    uno.addEventListener('mouseover', function(event) {
-        prin.innerHTML = "<img src='" + foto1 + "'>"
-    });
-    dos.addEventListener('mouseover', function(event) {
-        prin.innerHTML = "<img src='" + foto2 + "'>"
-    });
-    tres.addEventListener('mouseover', function(event) {
-        prin.innerHTML = "<img src='" + foto3 + "'>"
-    });
-    cuatro.addEventListener('mouseover', function(event) {
-        prin.innerHTML = "<img src='" + foto4 + "'>"
-    });
 
-    uno.addEventListener('mouseout', function(event) {
-        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    uno.addEventListener('click', function(event) {
+        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto1 + "'>"
+        uno.innerHTML = "<img src='" + fotoPrinc + "'>"
+        uno.style.border = "1px solid #1f2cc4"
+        dos.style.border = "1px solid #ffffff"
+        tres.style.border = "1px solid #ffffff"
+        cuatro.style.border = "1px solid #ffffff"
+        fotos()
+        modalImg()
     });
-    dos.addEventListener('mouseout', function(event) {
-        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    dos.addEventListener('click', function(event) {
+        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto2 + "'>"
+        dos.innerHTML = "<img src='" + fotoPrinc + "'>"
+        dos.style.border = "1px solid #1f2cc4"
+        uno.style.border = "1px solid #ffffff"
+        tres.style.border = "1px solid #ffffff"
+        cuatro.style.border = "1px solid #ffffff"
+        fotos()
+        modalImg()
     });
-    tres.addEventListener('mouseout', function(event) {
-        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    tres.addEventListener('click', function(event) {
+        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto3 + "'>"
+        tres.innerHTML = "<img src='" + fotoPrinc + "'>"
+        tres.style.border = "1px solid #1f2cc4"
+        dos.style.border = "1px solid #ffffff"
+        uno.style.border = "1px solid #ffffff"
+        cuatro.style.border = "1px solid #ffffff"
+        fotos()
+        modalImg()
     });
-    cuatro.addEventListener('mouseout', function(event) {
-        prin.innerHTML = "<img src='" + fotoPrinc + "'>"
+    cuatro.addEventListener('click', function(event) {
+        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto4 + "'>"
+        cuatro.innerHTML = "<img src='" + fotoPrinc + "'>"
+        cuatro.style.border = "1px solid #1f2cc4"
+        dos.style.border = "1px solid #ffffff"
+        tres.style.border = "1px solid #ffffff"
+        uno.style.border = "1px solid #ffffff"
+        fotos()
+        modalImg()
     });
 }
 
-function subcategorias() {
+
+//modal img
+function modalImg() {
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+        document.getElementsByTagName("html")[0].style.overflow = "hidden"
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+        document.getElementsByTagName("html")[0].style.overflow = "scroll"
+    }
+}
+
+
+function productosSimilares() {
+    var id_tipo = $('.producto').attr('id_tipo_articulo_fk');
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id_tipo);
     var ajax = objetoAjax();
 
-    ajax.open("POST", "p", true);
+    ajax.open("POST", "../productosSimilares", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
-            var html = "<p>aaa</p>";
+            var divProductos = document.getElementsByClassName("productos-similares")[0];
+            divProductos.innerHTML = "";
+            var html = "<p>Productos similares</p>";
             for (let i = 0; i < respuesta.length; i++) {
-
+                var nombre = respuesta[i].nombre_art;
+                console.log(nombre)
+                var descripcion = respuesta[i].descripcion_art;
+                if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
+                if (descripcion.length > 50) descripcion = descripcion.substring(0, 50) + "...";
+                html += "<a href='../producto/" + respuesta[i].id_art + "'>";
+                html += " <div class='producto-similar' data-id='product" + respuesta[i].id_art + "'>";
+                html += "<div class='thumbnail'>";
+                html += "<div class='thumbnail-img'><img src='../storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
+                html += "<div class='caption'>";
+                html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
+                html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
+                html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
+                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "</div>";
+                html += "</div>";
+                html += "</div>";
+                html += "</a>";
             }
+            divProductos.innerHTML = html;
         }
     }
 
