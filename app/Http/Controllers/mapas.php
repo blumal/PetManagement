@@ -344,4 +344,12 @@ class mapas extends Controller
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
+
+    public function geoguesser(){
+        return view('geoguesser');
+    }
+
+    public function geoguessergame(){
+        return view('geoguesser-game');
+    }
 }

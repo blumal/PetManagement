@@ -73,6 +73,10 @@ Route::post('/login-proc', [CitasController::class, 'loginProc']);
 Route::post('/regis-proc', [CitasController::class, 'regisProc']);
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [CitasController::class, 'logout']);
+//geoguesser
+Route::get('/geoguesser', [mapas::class, 'geoguesser']);
+//geoguesser
+Route::get('geoguesser-game', [mapas::class, 'geoguessergame']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
 //Cpanel
