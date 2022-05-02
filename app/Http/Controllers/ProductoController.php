@@ -134,6 +134,12 @@ class ProductoController extends Controller
         return response()->json($marca);
     }
 
+    public function productosOpiniones(Request $request) {
+        $datos = $request->except('_token');
+        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=?",[$datos['id']]);
+        return response()->json($opiniones);
+    }
+
     //sesiones carrito
     public function addToCart($id)
     {

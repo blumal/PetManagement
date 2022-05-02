@@ -2,6 +2,7 @@ window.onload = function() {
     $("#input-cantidad").bind('keyup mouseup', function() {
         calcularPrecio(precio);
     });
+    opiniones()
     productosSimilares()
     modalImg()
     fotos();
@@ -222,14 +223,14 @@ function productosSimilares() {
             var divProductos = document.getElementsByClassName("productos-similares")[0];
             divProductos.innerHTML = "";
             var html = "<p>Productos similares</p>";
+            html += "<div class='carousel-inner'>";
             for (let i = 0; i < respuesta.length; i++) {
                 var nombre = respuesta[i].nombre_art;
-                console.log(nombre)
                 var descripcion = respuesta[i].descripcion_art;
                 if (nombre.length > 50) nombre = nombre.substring(0, 50) + "...";
                 if (descripcion.length > 50) descripcion = descripcion.substring(0, 50) + "...";
                 html += "<a href='../producto/" + respuesta[i].id_art + "'>";
-                html += " <div class='producto-similar' data-id='product" + respuesta[i].id_art + "'>";
+                if (i > 3) { html += " <div class='producto-similar carousel-item' data-id='product" + respuesta[i].id_art + "'>"; } else { html += " <div class='producto-similar carousel-item active' data-id='product" + respuesta[i].id_art + "'>"; }
                 html += "<div class='thumbnail'>";
                 html += "<div class='thumbnail-img'><img src='../storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
@@ -242,6 +243,67 @@ function productosSimilares() {
                 html += "</div>";
                 html += "</a>";
             }
+            html += "</div>";
+            html += "<a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide='prev'><span class='carousel-control-prev-icon' aria-hidden='true'></span><span class='sr-only'>Previous</span></a>";
+            html += "<a class='carousel-control-next' href='#carouselExampleControls' role='button' data-slide='next'><span class='carousel-control-next-icon' aria-hidden='true'></span><span class='sr-only'>Next</span>";
+            divProductos.innerHTML = html;
+        }
+    }
+
+    ajax.send(formData);
+}
+
+function opiniones() {
+    var id = $('.producto').attr('id-producto');
+    var nombreProducto = $('.nombre:first').find('h4').text();
+    console.log(nombreProducto)
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id);
+    var ajax = objetoAjax();
+    ajax.open("POST", "../productosOpiniones", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var divProductos = document.getElementsByClassName("opiniones")[0];
+            var media = 0;
+            divProductos.innerHTML = "";
+            var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
+            html += "<div class='div-opiniones'>";
+            html += "";
+            for (let i = 0; i < respuesta.length; i++) {
+                media += respuesta[i].valoracion_op
+                html += "<div class='opinion mb-2'>";
+                html += "<div class='opinion-nombre'><p><strong>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</strong></p>";
+                html += "<p><span>";
+                var valoracion = respuesta[i].valoracion_op;
+                for (let i = 0; i < valoracion; i++) {
+                    html += "<i class='fa fa-star fa-1x'></i>";
+                }
+                html += "</span>";
+                html += "</p>";
+                html += "</div>";
+                html += "<div class='opinion-texto'><p>" + respuesta[i].texto_op + "</p></div>";
+                html += "</div>";
+            }
+            media = media / respuesta.length;
+            html += "</div>";
+            html += "<div class='div-valoracion'>";
+            html += "<p style='font-size: 3vh; font-weight: bold;'>Valoración</p>";
+            html += "<p><strong>" + media + "</strong> de <strong>5</strong>";
+            html += "<span class='ml-3'>";
+            for (let i = 0; i < media; i++) {
+                html += "<i class='fa fa-star fa-1x'></i>";
+            }
+            html += "</span>";
+            html += "</p>";
+            if (respuesta.length > 1) {
+                html += "<p><strong>" + respuesta.length + "</strong> clientes han valorado este producto</p>";
+            } else {
+                html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
+            }
+
+            html += "</div>";
             divProductos.innerHTML = html;
         }
     }

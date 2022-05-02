@@ -101,9 +101,8 @@
                   </div>
             </div>
         </div>
-        <div class="productos-similares">
-            
-        </div>
+        <div class="productos-similares carousel slide" data-ride="carousel" id="carouselExampleControls"></div>
+        <div class="opiniones mb-3"></div>
     </div>
     <div id="myModal" class="modal">
         <span class="close">&times;</span>

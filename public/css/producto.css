@@ -364,7 +364,7 @@ header {
 
 .productos-similares {
     float: left;
-    width: 100%;
+    width: 90%;
     height: 100%;
     font-size: 3vh;
     font-weight: bold;
@@ -374,7 +374,8 @@ header {
 .producto-similar {
     float: left;
     width: 16%;
-    margin-right: 7%;
+    margin-right: 6%;
+    margin-left: 2%;
     cursor: pointer;
     transition: all 0.5s;
     height: 75vh;
@@ -427,6 +428,82 @@ header {
 
 .productos-similares a {
     text-decoration: none;
+}
+
+
+/*carousel*/
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.carousel-control-prev {
+    position: absolute;
+    left: -5vh;
+    margin-left: 0;
+    width: 2%
+}
+
+.carousel-control-next {
+    position: absolute;
+    right: 8vh;
+    margin-right: 0;
+    width: 2%
+}
+
+
+/*opiniones*/
+
+.opiniones {
+    float: left;
+    width: 90%;
+    height: 100%;
+    font-size: 3vh;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+.div-opiniones {
+    float: left;
+    width: 70%;
+    height: 100%;
+    margin-left: 0%;
+}
+
+.opinion {
+    float: left;
+    width: 100%;
+    margin-top: 2%;
+    font-weight: normal;
+    font-size: 2.3vh;
+}
+
+.div-valoracion {
+    float: left;
+    width: 30%;
+    height: 100%;
+    font-weight: normal;
+    font-size: 2.3vh;
+}
+
+.div-valoracion i,
+.opinion-nombre i {
+    color: #1f2cc4;
+    transform: scale(1.3);
+    margin-right: 2%;
+}
+
+.opinion-nombre {
+    float: left;
+    width: 20%;
+}
+
+.opinion-texto {
+    float: left;
+    width: 70%;
+    text-align: justify;
 }
 
 
