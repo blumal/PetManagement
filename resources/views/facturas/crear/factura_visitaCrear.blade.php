@@ -11229,7 +11229,7 @@
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" action="{{url("cerrarVisita")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validarFacturas();" action="{{url("cerrarVisita")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -11322,4 +11322,5 @@
     </div>
 </body>
 <script defer src="./js/visita/script.js"></script>
+<script src="./js/visita/ajax_ru_visitas_directorio.js"></script>
 </html>

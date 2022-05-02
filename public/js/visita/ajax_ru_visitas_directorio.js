@@ -63,3 +63,7 @@ function leerVisitas() {
     }
     ajax.send(formData);
 }
+
+function validarFacturas() {
+    alert("hi")
+}

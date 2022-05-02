@@ -11246,7 +11246,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="productos" class="label" for="#">Selecciona producto:</label>
+                                            <label for="productos" class="label" for="#">Selecciona dueño:</label>
                                                 <select id="productos" name="id_dueno_paciente">        
                                                     @for ($i = 0; $i < count($duenos); $i++)
                                                         <option class="form-control"  value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
