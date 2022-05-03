@@ -77,6 +77,8 @@ Route::get('/logout', [CitasController::class, 'logout']);
 Route::get('/geoguesser', [mapas::class, 'geoguesser']);
 //geoguesser
 Route::get('geoguesser-game', [mapas::class, 'geoguessergame']);
+//AJAX Geoguesser
+Route::get('geoguesser_ajax', [mapas::class,'geoguesser_ajax']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
 //Cpanel
