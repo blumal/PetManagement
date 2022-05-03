@@ -65,5 +65,16 @@ function leerVisitas() {
 }
 
 function validarFacturas() {
-    alert("hi")
+
+    total_factura = document.getElementById('total_factura').value
+    fecha_factura = document.getElementById('fecha_factura').value
+    hora_factura = document.getElementById('hora_factura').value
+    diagnostico = document.getElementById('diagnostico').value
+
+    if (total_factura == "" || fecha_factura == "" || hora_factura == "" || diagnostico == "") {
+        alertify.error('Rellene los campos obligatorios');
+        return false;
+    } else {
+        return true;
+    }
 }

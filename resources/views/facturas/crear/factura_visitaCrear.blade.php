@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
     <style>
@@ -11242,30 +11245,30 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="email">Total Factura</label>
-                                                <input type="number" class="form-control" name="total_factura" id="total_factura" placeholder="69,69">
+                                                <input type="number" step="any" min="0" class="form-control" name="total_factura" id="total_factura" placeholder="69,69">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Asunto</label>
-                                                <p name="name" id="name" placeholder="Name">{{$visita[0]->asunto_vi}}</p>
+                                                <p name="name" id="asunto" placeholder="Name">{{$visita[0]->asunto_vi}}</p>
                                                 <!--<input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto de la visita..." value="">-->
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Fecha intervención</label>
-                                                <input type="date" class="form-control" name="fecha_factura" id="subject" >
+                                                <input type="date" class="form-control" name="fecha_factura" id="fecha_factura" >
                                             </div>
                                             <div class="form-group">
                                                 <label class="label" for="subject">Hora intervención</label>
-                                                <input type="time" class="form-control" name="hora_factura" id="subject" >
+                                                <input type="time" class="form-control" name="hora_factura" id="hora_factura" >
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="#">Diagnostico</label>
-                                                <textarea name="diagnostico" class="form-control" id="message" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
+                                                <textarea name="diagnostico" class="form-control" id="diagnostico" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
                                             </div>
                                         </div>
 
@@ -11303,6 +11306,7 @@
                                             <div class="form-group">
                                                 <input type="hidden" value="{{$cliente[0]->id_us}}" name="id_usuario">
                                                 <input type="hidden" value="{{$visita[0]->id_vi}}" name="id_visita">
+                                                <input type="hidden" value={{Session::get('id_user_session')}} name="id_veterinario">
                                                 <input type="submit" value="Generar factura" class="btn btn-primary">
                                                 <div class="submitting"></div>
                                             </div>

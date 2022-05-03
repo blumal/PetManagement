@@ -76,6 +76,7 @@ class VisitaController extends Controller
         $total_factura=$request['total_factura'];
         $fecha_factura=$request['fecha_factura'];
         $hora_factura=$request['hora_factura'];
+        $id_veterinario=$request['id_veterinario'];
 
         $diagnostico = $request['diagnostico'];
 
@@ -89,7 +90,7 @@ class VisitaController extends Controller
         ->update( [ 'diagnostico_vi' => $diagnostico] );
 
         $id_factura = DB::table('tbl_factura_clinica')->insertGetId(
-            [ 'id_usuario_fk' => $id_usuario,'id_visita_fk'=> $id_visita,'id_promocion_fk'=>$id_promocion,'total_fc'=>$total_factura,'fecha_fc'=>$fecha_factura,'hora_fc'=>$hora_factura ]);
+            [ 'id_usuario_fk' => $id_usuario,'id_visita_fk'=> $id_visita,'id_promocion_fk'=>$id_promocion,'total_fc'=>$total_factura,'fecha_fc'=>$fecha_factura,'hora_fc'=>$hora_factura,'id_veterinario_fk'=>$id_veterinario ]);
         for ($i=0; $i < $num_items; $i++) { 
             DB::insert('insert into tbl_detallefactura_clinica (cant_dfc,id_producto_fk,id_factura_fk) values (?,?,?)',
             [$request['cantidad'][$i],$request['productos'][$i],$id_factura]);

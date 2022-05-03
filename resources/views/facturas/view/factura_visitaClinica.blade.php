@@ -226,7 +226,7 @@
             <td><?php echo $items_clinica[$numero_items-1]->precio_pro ?></td>
             <td><?php echo ($items_clinica[$numero_items-1]->precio_pro*$items_clinica[$numero_items-1]->cant_dfc) ?>€</td>
             <?php $subtotal=$subtotal+($items_clinica[$numero_items-1]->precio_pro*$items_clinica[$numero_items-1]->precio_pro)?>
-            <?php $subtotal= bcdiv($subtotal,1,2);?>
+            <?php $subtotal= bcdiv($factura[0]->total_fc/(100-$factura[0]->porcentaje_pro)*100,1,2);?>
         </tr>
     
 
