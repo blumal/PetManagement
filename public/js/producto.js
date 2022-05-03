@@ -5,7 +5,7 @@ window.onload = function() {
     opiniones()
     productosSimilares()
     modalImg()
-    fotos();
+
     var header = document.getElementById('Header')
 
     window.addEventListener("scroll", function() {
@@ -26,10 +26,11 @@ window.onload = function() {
         //$(".tipo").css({ border: "1px solid rgba(185, 178, 178, 0.37)" });
         //$(this).css({ border: "1px solid #1f2cc4" });
         precio = $(this).find('p:eq(1)').text();
+        console.log(precio)
         $("#precio-final").text(precio)
         calcularPrecio(precio);
     });
-
+    fotos();
 
 }
 
@@ -131,55 +132,59 @@ function fotos() {
     var dos = document.getElementById("2")
     var tres = document.getElementById("3")
     var cuatro = document.getElementById("4")
+    if (uno != null) {
+        var fotoPrinc = $('.img_pral:first').find('img').attr('src');
+        var nomPrinc = $('.img_pral:first').find('img').attr('alt');
+        var foto1 = $('.subImg_1:first').find('img').attr('src');
+        var foto2 = $('.subImg_1:eq(1)').find('img').attr('src');
+        var foto3 = $('.subImg_1:eq(2)').find('img').attr('src');
+        var foto4 = $('.subImg_1:eq(3)').find('img').attr('src');
 
-    var fotoPrinc = $('.img_pral:first').find('img').attr('src');
-    var nomPrinc = $('.img_pral:first').find('img').attr('alt');
-    var foto1 = $('.subImg_1:first').find('img').attr('src');
-    var foto2 = $('.subImg_1:eq(1)').find('img').attr('src');
-    var foto3 = $('.subImg_1:eq(2)').find('img').attr('src');
-    var foto4 = $('.subImg_1:eq(3)').find('img').attr('src');
+
+        uno.addEventListener('click', function(event) {
+            prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto1 + "'>"
+            uno.innerHTML = "<img src='" + fotoPrinc + "'>"
+            uno.style.border = "1px solid #1f2cc4"
+            dos.style.border = "1px solid #ffffff"
+            tres.style.border = "1px solid #ffffff"
+            cuatro.style.border = "1px solid #ffffff"
+            fotos()
+            modalImg()
+        });
+        dos.addEventListener('click', function(event) {
+            prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto2 + "'>"
+            dos.innerHTML = "<img src='" + fotoPrinc + "'>"
+            dos.style.border = "1px solid #1f2cc4"
+            uno.style.border = "1px solid #ffffff"
+            tres.style.border = "1px solid #ffffff"
+            cuatro.style.border = "1px solid #ffffff"
+            fotos()
+            modalImg()
+        });
+        tres.addEventListener('click', function(event) {
+            prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto3 + "'>"
+            tres.innerHTML = "<img src='" + fotoPrinc + "'>"
+            tres.style.border = "1px solid #1f2cc4"
+            dos.style.border = "1px solid #ffffff"
+            uno.style.border = "1px solid #ffffff"
+            cuatro.style.border = "1px solid #ffffff"
+            fotos()
+            modalImg()
+        });
+        cuatro.addEventListener('click', function(event) {
+            prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto4 + "'>"
+            cuatro.innerHTML = "<img src='" + fotoPrinc + "'>"
+            cuatro.style.border = "1px solid #1f2cc4"
+            dos.style.border = "1px solid #ffffff"
+            tres.style.border = "1px solid #ffffff"
+            uno.style.border = "1px solid #ffffff"
+            fotos()
+            modalImg()
+        });
+    }
 
 
-    uno.addEventListener('click', function(event) {
-        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto1 + "'>"
-        uno.innerHTML = "<img src='" + fotoPrinc + "'>"
-        uno.style.border = "1px solid #1f2cc4"
-        dos.style.border = "1px solid #ffffff"
-        tres.style.border = "1px solid #ffffff"
-        cuatro.style.border = "1px solid #ffffff"
-        fotos()
-        modalImg()
-    });
-    dos.addEventListener('click', function(event) {
-        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto2 + "'>"
-        dos.innerHTML = "<img src='" + fotoPrinc + "'>"
-        dos.style.border = "1px solid #1f2cc4"
-        uno.style.border = "1px solid #ffffff"
-        tres.style.border = "1px solid #ffffff"
-        cuatro.style.border = "1px solid #ffffff"
-        fotos()
-        modalImg()
-    });
-    tres.addEventListener('click', function(event) {
-        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto3 + "'>"
-        tres.innerHTML = "<img src='" + fotoPrinc + "'>"
-        tres.style.border = "1px solid #1f2cc4"
-        dos.style.border = "1px solid #ffffff"
-        uno.style.border = "1px solid #ffffff"
-        cuatro.style.border = "1px solid #ffffff"
-        fotos()
-        modalImg()
-    });
-    cuatro.addEventListener('click', function(event) {
-        prin.innerHTML = "<img id='myImg' alt='" + nomPrinc + "' src='" + foto4 + "'>"
-        cuatro.innerHTML = "<img src='" + fotoPrinc + "'>"
-        cuatro.style.border = "1px solid #1f2cc4"
-        dos.style.border = "1px solid #ffffff"
-        tres.style.border = "1px solid #ffffff"
-        uno.style.border = "1px solid #ffffff"
-        fotos()
-        modalImg()
-    });
+
 }
 
 
@@ -270,7 +275,7 @@ function opiniones() {
             divProductos.innerHTML = "";
             var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
             if (respuesta.length > 0) {
-                html += "<div class='div-opiniones'>";
+                html += "<div class='div-opiniones mb-5'>";
                 html += "";
                 for (let i = 0; i < respuesta.length; i++) {
                     media += respuesta[i].valoracion_op
@@ -339,7 +344,7 @@ function opinionesTodas() {
             divProductos.innerHTML = "";
             var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
             if (respuesta.length > 0) {
-                html += "<div class='div-opiniones'>";
+                html += "<div class='div-opiniones mb-5'>";
                 html += "";
                 for (let i = 0; i < respuesta.length; i++) {
                     media += respuesta[i].valoracion_op

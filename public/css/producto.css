@@ -164,11 +164,12 @@ header {
 }
 
 .tipo {
-    border: 1px solid rgba(185, 178, 178, 0.37);
+    border-color: rgb(255, 255, 255);
     border-radius: 10%;
     float: left;
     margin-right: 1.5%;
     cursor: pointer;
+    background-color: rgb(255, 255, 255) !important;
 }
 
 .tipo:hover {}

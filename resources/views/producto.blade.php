@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script type="text/javascript" src="../js/iconos_g.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -48,10 +49,11 @@
             <div class="tipo-nombre"><p>{{$producto[0]->tipo_categoria_art}}:</p></div>
             <div class="div-tipo">
                 @foreach ($categorias as $categoria)
-                <div class="tipo @if ($categoria == $categorias[0])  tipo-border  @endif" data-id="{{$categoria->id_cat}}">
-                    <div class="tipo-texto"><p>{{$categoria->texto_cat}}</p></div>
-                    <div class="precio-texto"><p>{{$categoria->precio_cat}}€</p></div>
-                </div>
+                    <input type="radio" class="btn-check" name="tipos" id="tipo{{$categoria->id_cat}}" @if ($categoria == $categorias[0])  checked  @endif>
+                    <label class="btn btn-secondary tipo" for="tipo{{$categoria->id_cat}}" data-id="{{$categoria->id_cat}}">
+                        <div class="tipo-texto"><p>{{$categoria->texto_cat}}</p></div>
+                        <div class="precio-texto"><p>{{$categoria->precio_cat}}€</p></div>
+                    </label>
                 @endforeach
             </div>
             <div class="carrito-cantidad">
