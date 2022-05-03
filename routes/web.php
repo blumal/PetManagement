@@ -14,6 +14,7 @@ Route::post('productos',[ProductoController::class,'productos']);
 Route::get('producto/{id}',[ProductoController::class,'producto']);
 Route::post('productosSimilares',[ProductoController::class,'productosSimilares']);
 Route::post('productosOpiniones',[ProductoController::class,'productosOpiniones']);
+Route::post('productosOpinionesTodas',[ProductoController::class,'productosOpinionesTodas']);
 Route::post('marcaProducto',[ProductoController::class,'marcaProducto']);
 Route::post('filtroSearchBar',[ProductoController::class,'filtroSearchBar']);
 Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);

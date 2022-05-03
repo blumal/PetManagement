@@ -269,41 +269,117 @@ function opiniones() {
             var media = 0;
             divProductos.innerHTML = "";
             var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
-            html += "<div class='div-opiniones'>";
-            html += "";
-            for (let i = 0; i < respuesta.length; i++) {
-                media += respuesta[i].valoracion_op
-                html += "<div class='opinion mb-2'>";
-                html += "<div class='opinion-nombre'><p><strong>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</strong></p>";
-                html += "<p><span>";
-                var valoracion = respuesta[i].valoracion_op;
-                for (let i = 0; i < valoracion; i++) {
+            if (respuesta.length > 0) {
+                html += "<div class='div-opiniones'>";
+                html += "";
+                for (let i = 0; i < respuesta.length; i++) {
+                    media += respuesta[i].valoracion_op
+                }
+                media = media / respuesta.length;
+                for (let i = 0; i < 2; i++) {
+                    html += "<div class='opinion mb-2'>";
+                    html += "<div class='opinion-nombre'><p><strong>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</strong></p>";
+                    html += "<p><span>";
+                    var valoracion = respuesta[i].valoracion_op;
+                    for (let i = 0; i < valoracion; i++) {
+                        html += "<i class='fa fa-star fa-1x'></i>";
+                    }
+                    html += "</span>";
+                    html += "</p>";
+                    html += "</div>";
+                    html += "<div class='opinion-texto'><p>" + respuesta[i].texto_op + "</p></div>";
+                    html += "</div>";
+                }
+
+                html += "<div class='text-center'><button type='button' class='btn btn-outline-primary btn-sm btn-mas' onclick='opinionesTodas()'>Leer más opiniones</button></div>"
+                html += "</div>";
+                html += "<div class='div-valoracion'>";
+                html += "<p style='font-size: 3vh; font-weight: bold;'>Valoración</p>";
+                html += "<p><strong>" + media + "</strong> de <strong>5</strong>";
+                html += "<span class='ml-3'>";
+                for (let i = 0; i < media; i++) {
                     html += "<i class='fa fa-star fa-1x'></i>";
                 }
                 html += "</span>";
                 html += "</p>";
+                if (respuesta.length > 1) {
+                    html += "<p><strong>" + respuesta.length + "</strong> clientes han valorado este producto</p>";
+                } else {
+                    html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
+                }
+
                 html += "</div>";
-                html += "<div class='opinion-texto'><p>" + respuesta[i].texto_op + "</p></div>";
-                html += "</div>";
-            }
-            media = media / respuesta.length;
-            html += "</div>";
-            html += "<div class='div-valoracion'>";
-            html += "<p style='font-size: 3vh; font-weight: bold;'>Valoración</p>";
-            html += "<p><strong>" + media + "</strong> de <strong>5</strong>";
-            html += "<span class='ml-3'>";
-            for (let i = 0; i < media; i++) {
-                html += "<i class='fa fa-star fa-1x'></i>";
-            }
-            html += "</span>";
-            html += "</p>";
-            if (respuesta.length > 1) {
-                html += "<p><strong>" + respuesta.length + "</strong> clientes han valorado este producto</p>";
             } else {
-                html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
+                html += "<div class='div-valoracion'>";
+                html += "<p class='mt-2'>Nadie ha valorado este producto todavía</p>";
+                html += "</div>";
             }
 
-            html += "</div>";
+            divProductos.innerHTML = html;
+        }
+    }
+
+    ajax.send(formData);
+}
+
+function opinionesTodas() {
+    var id = $('.producto').attr('id-producto');
+    var nombreProducto = $('.nombre:first').find('h4').text();
+    console.log(nombreProducto)
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id);
+    var ajax = objetoAjax();
+    ajax.open("POST", "../productosOpinionesTodas", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var divProductos = document.getElementsByClassName("opiniones")[0];
+            var media = 0;
+            divProductos.innerHTML = "";
+            var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
+            if (respuesta.length > 0) {
+                html += "<div class='div-opiniones'>";
+                html += "";
+                for (let i = 0; i < respuesta.length; i++) {
+                    media += respuesta[i].valoracion_op
+                    html += "<div class='opinion mb-2'>";
+                    html += "<div class='opinion-nombre'><p><strong>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</strong></p>";
+                    html += "<p><span>";
+                    var valoracion = respuesta[i].valoracion_op;
+                    for (let i = 0; i < valoracion; i++) {
+                        html += "<i class='fa fa-star fa-1x'></i>";
+                    }
+                    html += "</span>";
+                    html += "</p>";
+                    html += "</div>";
+                    html += "<div class='opinion-texto'><p>" + respuesta[i].texto_op + "</p></div>";
+                    html += "</div>";
+                }
+                media = media / respuesta.length;
+                html += "</div>";
+                html += "<div class='div-valoracion'>";
+                html += "<p style='font-size: 3vh; font-weight: bold;'>Valoración</p>";
+                html += "<p><strong>" + media + "</strong> de <strong>5</strong>";
+                html += "<span class='ml-3'>";
+                for (let i = 0; i < media; i++) {
+                    html += "<i class='fa fa-star fa-1x'></i>";
+                }
+                html += "</span>";
+                html += "</p>";
+                if (respuesta.length > 1) {
+                    html += "<p><strong>" + respuesta.length + "</strong> clientes han valorado este producto</p>";
+                } else {
+                    html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
+                }
+
+                html += "</div>";
+            } else {
+                html += "<div class='div-valoracion'>";
+                html += "<p class='mt-2'>Nadie ha valorado este producto todavía</p>";
+                html += "</div>";
+            }
+
             divProductos.innerHTML = html;
         }
     }

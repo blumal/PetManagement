@@ -506,6 +506,20 @@ header {
     text-align: justify;
 }
 
+.btn-mas {
+    border-color: #1f2cc4;
+    color: #1f2cc4;
+}
+
+.btn-mas:hover {
+    background-color: #1f2cc4;
+    border-color: #1f2cc4;
+}
+
+.btn-mas:focus {
+    box-shadow: 0px 5px 30px #1f2cc4;
+}
+
 
 /*footer*/
 

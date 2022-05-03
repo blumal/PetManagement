@@ -124,7 +124,7 @@ class ProductoController extends Controller
 
     public function productosSimilares(Request $request) {
         $datos = $request->except('_token');
-        $productosSimilares=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.foto_art FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.tipo_categoria_art=tbl_tipo_articulo.id_ta WHERE tbl_tipo_articulo.id_ta=?",[$datos['id']]);
+        $productosSimilares=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.foto_art FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.tipo_categoria_art=tbl_tipo_articulo.id_ta WHERE tbl_articulo_tienda.id_tipo_articulo_fk=?",[$datos['id']]);
         return response()->json($productosSimilares);
     }
 
@@ -135,6 +135,11 @@ class ProductoController extends Controller
     }
 
     public function productosOpiniones(Request $request) {
+        $datos = $request->except('_token');
+        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=?",[$datos['id']]);
+        return response()->json($opiniones);
+    }
+    public function productosOpinionesTodas(Request $request) {
         $datos = $request->except('_token');
         $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=?",[$datos['id']]);
         return response()->json($opiniones);
