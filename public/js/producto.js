@@ -362,6 +362,7 @@ function opinionesTodas() {
                     html += "</div>";
                 }
                 media = media / respuesta.length;
+                html += "<div class='text-center'><button type='button' class='btn btn-outline-primary btn-sm btn-mas' onclick='opiniones()'>Leer menos</button></div>"
                 html += "</div>";
                 html += "<div class='div-valoracion'>";
                 html += "<p style='font-size: 3vh; font-weight: bold;'>Valoración</p>";
