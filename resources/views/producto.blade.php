@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                         <p>{{ $details['nombre'] }}</p>
-                                        <span class="price color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
+                                        <span class="price color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad: {{ $details['cantidad'] }}</span>
                                     </div>
                                 </div>
                             @endforeach
@@ -110,7 +110,18 @@
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">
         <div id="caption"></div>
-      </div>
+    </div>
+    <div id="myModal2" class="modal2">
+        <div class="modal-content2">
+          <div class="div-modal">
+            <span class="close2">&times;</span>
+            <p class="text-center mt-5"><i class="fa fa-thumbs-up fa-5x"></i></p>
+            <h4 class="text-center mt-3"></h4>
+            <div class="div-seguir mr-1"><button type='button' class='btn btn-outline-primary btn-block btn-mas salir'>Seguir mirando</button></div>
+            <div class="div-pagar ml-1"><a href="../carrito"><button type='button' class='btn btn-primary btn-block btn-pagar'>Ir a pagar</button></a></div>
+          </div>
+        </div>
+    </div>
 </body>
 <footer>
     <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">

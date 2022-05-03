@@ -169,7 +169,7 @@ function addToCart(id) {
                 html += "</div>";
                 html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
                 html += "<p>" + respuesta[i].nombre + "</p>";
-                html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad:" + respuesta[i].cantidad + "</span>";
+                html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad: " + respuesta[i].cantidad + "</span>";
                 html += "</div>";
                 html += "</div>";
             }

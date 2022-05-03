@@ -79,6 +79,8 @@ function addToCart() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             console.log(Object.keys(respuesta).length)
+            $(".div-modal:first").find('h4:first').text("Has añadido x" + cantidad + " " + $(".nombre:first").find('h4:first').text() + " al carrito!");
+            modal()
             var div = document.getElementsByClassName("div-dropmenu")[0];
             html = "<div class='dropdown'>";
             html += "<button type='button' class='btn btn-info carrito-drop' data-toggle='dropdown'>";
@@ -104,20 +106,19 @@ function addToCart() {
                 html += "</div>";
                 html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
                 html += "<p>" + respuesta[i].nombre + "</p>";
-                html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad:" + respuesta[i].cantidad + "</span>";
+                html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad: " + respuesta[i].cantidad + "</span>";
                 html += "</div>";
                 html += "</div>";
             }
             html += "<div class='row'>";
             html += "<div class='col-lg-12 col-sm-12 col-12 text-center checkout'>";
-            html += "<a href='carrito' class='btn btn-block btn-carrito'>Ir al carrito</a>";
+            html += "<a href='../carrito' class='btn btn-block btn-carrito'>Ir al carrito</a>";
             html += "</div>";
             html += "</div>";
             html += "</div>";
             html += "</div>";
             html += "</div>";
             div.innerHTML = html;
-
         }
     }
 
@@ -391,4 +392,25 @@ function opinionesTodas() {
     }
 
     ajax.send(formData);
+}
+
+function modal() {
+    var modal = document.getElementById("myModal2");
+    var span = document.getElementsByClassName("close2")[0];
+    var span2 = document.getElementsByClassName("salir")[0];
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+
+    }
+    span2.onclick = function() {
+        modal.style.display = "none";
+
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+
+        }
+    }
 }

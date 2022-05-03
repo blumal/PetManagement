@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                     <p>{{ $details['nombre'] }}</p>
-                                    <span class="color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad:{{ $details['cantidad'] }}</span>
+                                    <span class="color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad: {{ $details['cantidad'] }}</span>
                                 </div>
                             </div>
                         @endforeach
