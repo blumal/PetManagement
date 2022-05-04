@@ -76,12 +76,12 @@
 
 @media only screen and (max-width: 600px) {
     .invoice-box table tr.top table td {
-        width: 100%;
+        width: 80%;
         display: block;
         text-align: center;
     }
     .invoice-box table tr.information table td {
-        width: 100%;
+        width: 80%;
         display: block;
         text-align: center;
     }
@@ -130,7 +130,7 @@ img {
     ?>
 
 <div class="invoice-box">
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" id="tabla">
         <tr class="top">
             <td colspan="4">
                 <table>

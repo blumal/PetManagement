@@ -302,6 +302,7 @@ class ProductoController extends Controller
             echo "<br>";
             $total_factura= $total_factura + ($carrito[$i]['cantidad']*$carrito[$i]['precio']);
         }
+        
         echo $total_factura." -> Total factura" ;
         echo "<br>";
         echo "<br>";
