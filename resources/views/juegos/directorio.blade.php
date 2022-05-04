@@ -28,7 +28,7 @@
               <div class="slide is-active ">
                 <div class="slide-content">
                   <div class="caption">
-                    <div class="title">PetGuesser</div>
+                    <div class="title">Pet Guesser</div>
                     <div class="text">
                       <p></p>
                     </div> 
