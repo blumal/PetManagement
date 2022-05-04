@@ -18,7 +18,7 @@ class FacturaCompraController extends Controller
     //FUNCION PARA MOSTRAR TODAS LAS FACTURAS DE COMPRAS DE UN USER
     public function directorioFacturasTienda(Request $request){
         $id_user= $request['id_user'];
-
+        
         $facturas = DB::table('tbl_factura_tienda')
         ->where('id_usuario_fk','=',$id_user)
         ->get();

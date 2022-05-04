@@ -141,6 +141,7 @@ class ProductoController extends Controller
         if(!$cart) {
             $cart = [
                     $id => [
+                        "id" => $product[0]->id_art,
                         "nombre" => $product[0]->nombre_art,
                         "cantidad" => 1,
                         "precio" => $product[0]->precio_art,
@@ -158,6 +159,7 @@ class ProductoController extends Controller
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
+            "id" => $product[0]->id_art,
             "nombre" => $product[0]->nombre_art,
             "cantidad" => 1,
             "precio" => $product[0]->precio_art,
@@ -178,6 +180,7 @@ class ProductoController extends Controller
         if(!$cart) {
             $cart = [
                     $id => [
+                        "id" => $product[0]->id_art,
                         "nombre" => $product[0]->nombre_art,
                         "cantidad" => $cantidad,
                         "precio" => $product[0]->precio_art,
@@ -279,16 +282,52 @@ class ProductoController extends Controller
         }
 
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    
     public function compra(Request $request){
+        date_default_timezone_set('EUROPE/Madrid');
+
+        $total_factura=0;
+        $id_promocion_fk=1;
+        $id_user_session=$request->session()->get('id_user_session');
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        $localtime = date('H:i:s', strtotime($time));
+        
+
+        $carrito=$request->session()->get('cart');
+
+        for ($i=1; $i < (count($carrito)+1); $i++) { 
+            print_r($carrito[$i]);
+            echo "<br>";
+            echo "<br>";
+            $total_factura= $total_factura + ($carrito[$i]['cantidad']*$carrito[$i]['precio']);
+        }
+        echo $total_factura." -> Total factura" ;
+        echo "<br>";
+        echo "<br>";
+        echo $id_promocion_fk." -> ID PROMO" ;
+        echo "<br>";
+        echo "<br>";
+        echo $id_user_session." -> ID user" ;
+        echo "<br>";
+        echo "<br>";
+        echo $date." -> DIA" ;
+        echo "<br>";
+        echo "<br>";
+        echo $localtime." -> HORA" ;
+        //return $carrito;
+
+        $id_factura_tienda = DB::table('tbl_factura_tienda')->insertGetId(
+            [ 'fecha_ft' => $date,
+            'hora_ft'=> $localtime,
+            'total_ft'=>$total_factura,
+            'id_promocion_fk'=>$id_promocion_fk,
+            'id_usuario_fk'=>$id_user_session ]);
+
+        for ($i=1; $i < (count($carrito)+1); $i++) {
+            DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
+            [$carrito[$i]['id'],$carrito[$i]['cantidad'],$id_factura_tienda]);
+        }
         $request->session()->forget('cart');
         return redirect('comprafinalizada');
     }
@@ -372,24 +411,5 @@ class ProductoController extends Controller
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Producto $producto)
-    {
-        //
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Producto $producto)
-    {
-        //
-    }
+    
 }

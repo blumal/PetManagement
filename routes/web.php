@@ -112,11 +112,9 @@ Route::post('/directorioGenerarFactura', function () {return view('facturas/dire
 
 Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 
-
-//TEST
+//CERRAR FACTURAS
 Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
-//FIN TEST 
 
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
@@ -140,7 +138,10 @@ Route::post('/estadisticas/tipos_sociedades', [EstadisticaController::class, 'ti
 //FIN ESTADISTICAS
 
 //INICIO JUEGOS
-Route::get('ranita', function () {
+Route::get('juegos/', function () {
+    return view('juegos/directorio');
+});
+Route::get('juegos/ranita', function () {
     return view('juegos/ranita');
 });
 //FIN JUEGOS

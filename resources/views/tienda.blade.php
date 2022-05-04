@@ -17,7 +17,6 @@
     <title>PetManagment - Tienda</title>
 </head>
 <header id="Header">
-<<<<<<< HEAD
     <form action="FacturasTienda" method="post">
         @csrf
         
@@ -25,9 +24,6 @@
         <input class="ver_factura" type="submit" value="Ver facturas anteriores">
     </form>
     <img src="storage/img/imagenesWeb/logo.png" alt="" class="logo">
-=======
-    <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
->>>>>>> 8b3e95f7ca643a0b0cc888154c98c849d72147c1
     <!--Menu header-->
     <ul class="main-menu">
         <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>

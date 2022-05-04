@@ -70,6 +70,20 @@ class VisitaController extends Controller
     }
     public function RellenoVisita(Request $request){
         //return $request;
+
+        //VALIDACIONES LARAVEL
+        $request->validate([
+            'id_visita'=>'required|integer',
+            'id_usuario'=>'required|integer',
+            'promocion'=>'required|integer',
+            'total_factura'=>'required|numeric|between:0,99999.99',
+            'fecha_factura'=>'required|date_format:Y-m-d|after_or_equal:1920-01-01',
+            'hora_factura'=>'date_format:H:i',
+            'id_veterinario'=>'required|integer',
+            'diagnostico'=>'required|string|min:8'
+        ]); 
+
+
         $id_visita=$request['id_visita'];
         $id_usuario=$request['id_usuario'];
         $id_promocion=$request['promocion'];
@@ -77,7 +91,6 @@ class VisitaController extends Controller
         $fecha_factura=$request['fecha_factura'];
         $hora_factura=$request['hora_factura'];
         $id_veterinario=$request['id_veterinario'];
-
         $diagnostico = $request['diagnostico'];
 
         $num_items=count($request['productos']);
@@ -169,6 +182,15 @@ class VisitaController extends Controller
     }
     public function cerrarPaciente(Request $request){
         $foto = $request->hasFile('foto_paciente');
+
+        $request->validate([
+            'nombre_paciente'=>'required|string',
+            'peso_paciente'=>'required|numeric|between:0,9999.99',
+            'fecha_nacimiento_paciente'=>'required|date_format:Y-m-d|after_or_equal:1800-01-01',
+            'id_dueno_paciente'=>'required|integer',
+            'nombre_cientifico_paciente'=>'required|string'
+        ]); 
+
         $datos = $request->except('_token');
         
         if ($foto) {
@@ -254,6 +276,14 @@ class VisitaController extends Controller
     }
     public function cerrarPacienteEditar (Request $request){
         $id_paciente = $request['id_paciente'];
+
+        $request->validate([
+            'nombre_paciente'=>'required|string',
+            'peso_paciente'=>'required|numeric|between:0,9999.99',
+            'fecha_nacimiento_paciente'=>'required|date_format:Y-m-d|after_or_equal:1800-01-01',
+            'id_dueno_paciente'=>'required|integer',
+            'nombre_cientifico_paciente'=>'required|string'
+        ]);
 
         if (isset($request['foto_paciente'])) {
             $foto_paciente = $request->file('foto_paciente')->store('uploads','public');
