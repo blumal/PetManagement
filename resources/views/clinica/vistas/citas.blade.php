@@ -48,12 +48,6 @@
             <center>
                 <h1>Solicitud de Citas</h1>
                 {{-- <form action="{{url('insertcita')}}" method="post"> --}}
-                {{-- <form onsubmit="insertDatas(); return false;">
-                    @csrf
-                    <input type="date" name="fecha_vi" id="fecha_vi">
-                    <input type="time" name="hora_vi" id="hora_vi">
-                    <input type="submit">
-                </form> --}}
                 <!-- Trigger/Open The Modal -->
                 <button id="btnModal" onclick="modalCitas();">Reservar cita</button>
                 <!-- The Modal -->
@@ -66,8 +60,8 @@
                             <form onsubmit="insertDatas(); return false;">
                             {{-- <form action="{{url('insertcita')}}" method="post"> --}}
                                 @csrf
-                                <label for="fecha_vi">Introduzca la fecha de la visita: *</label><br/>
-                                    <input type="date" name="fecha_vi" id="fecha_vi" onchange="hourOptions(); return false;"><br/><br/>
+                                <label for="fecha_vi">Introduzca la fecha de la visita: *</label><br/><br/>
+                                    <input type="date" name="fecha_vi" id="fecha_vi" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> onchange="hourOptions(); return false;"><br/><br/>
                                 {{-- <label for="hora_vi">Introduzca la hora de la visita:</label><br/>
                                     <input type="time" name="hora_vi" id="hora_vi"><br/><br/> --}}
                                 <label for="hora_vi">Seleccione la hora de la visita: *</label><br/><br/>
@@ -79,15 +73,16 @@
                                     <option value="">--Seleccione la mascota--</option>
                                     <!--Recogemos datos de la variable de sesión-->
                                     @foreach (Session::get('animales_asociados') as $results)
-                                        <option value="{{$results->id_pa}}">{{$results->nombre_pa}} - {{$results->raza_pa}} - {{$results->id_pa}}</option> 
+                                        <option value="{{$results->id_pa}}">{{$results->nombre_pa}} - {{$results->raza_pa}}</option> 
                                     @endforeach
                                 </select><br/><br/>
                                 <label for="asunto_vi">Motivo de visita: *</label><br/><br/>
-                                    <textarea name="asunto_vi" id="asunto_vi" cols="" rows="5"></textarea><br/><br/>
+                                    <textarea name="asunto_vi" id="asunto_vi" cols="" rows="5" placeholder="Breve descripción del motivo de la visita, síntomas, observaciones, etc..."></textarea><br/><br/>
                                     {{-- <input type="text" name="asunto_vi" id="asunto_vi"><br/><br/> --}}
                                     <input type="submit" value="Agendar">  
                                 <!--Enviamos el valor de la session obtenida-->
                                 <input type='hidden' name='id_us' id="id_us" value={{Session::get('id_user_session')}} />
+                                <input type='hidden' name='email_us' id="email_us" value={{Session::get('email_session')}} />
                             </form>
                     </div>
                     </div>

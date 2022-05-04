@@ -37,7 +37,7 @@ function calendar() {
             console.log(this.responseText);
             //JSON desde web file
             var citas = JSON.parse(this.responseText);
-            //console.log(citas);
+            console.log(citas);
             for (let i = 0; i < citas.length; i++) {
                 //Array global
                 eventos.push({
@@ -93,7 +93,8 @@ function insertDatas() {
                         alertify.success('Visita agendada correctamente');
                     });
             } else {
-                alert("Error:" + respuesta.resultado);
+                alertify.warning("Cita previamente creada, revise el apartado de sus citas ;)");
+                /* alertify.error("Error:" + respuesta.resultado + " Cita previamente creada, revise sus citas ;)"); */
             }
             //Limpiamos Array
             vaciarArrEventos();
@@ -164,39 +165,32 @@ function modalCitas() {
 function hourOptions() {
     //Fecha
     var fecha_vi = document.getElementById('fecha_vi').value;
-    var fecha_comp = fecha_comp.toLocaleDateString();
-    alert(fecha_comp);
     //Hora
     var currentTime = new Date();
-    currentTime = currentTime.getHours();
-    var res = 24 - currentTime;
+    var year = currentTime.getFullYear();
+    var mes = currentTime.getMonth();
+    var mes = mes + 1;
+    var horas = new Date();
+    horas = horas.getHours();
+    dia = currentTime.getDate();
     var horasDispo = "";
-    for (let index = currentTime; index < 24; index++) {
-        horasDispo += "<option value='" + index + ":00'>" + index + ":00 </option>";
+
+    if ((mes) < 10) {
+        mes = "0" + mes;
+    }
+
+    if (dia < 10) {
+        dia = "0" + dia;
+    }
+
+    if ((year + "-" + mes + "-" + dia) == fecha_vi) {
+        for (let index = horas; index < 24; index++) {
+            horasDispo += "<option value='" + index + ":00'>" + index + ":00 </option>";
+        }
+    } else {
+        for (let index = 0; index < 24; index++) {
+            horasDispo += "<option value='" + index + ":00'>" + index + ":00 </option>";
+        }
     }
     document.getElementById('hora_vi').innerHTML = horasDispo;
-    /* "<option value='01:00'>01:00 a.m</option>" + +
-    "<option value='02:00'>02:00 a.m</option>" +
-    "<option value='03:00'>03:00 a.m</option>" +
-    "<option value='04:00'>04:00 a.m</option>" +
-    "<option value='05:00'>05:00 a.m</option>" +
-    "<option value='06:00'>06:00 a.m</option>" +
-    "<option value='07:00'>07:00 a.m</option>" +
-    "<option value='08:00'>08:00 a.m</option>" +
-    "<option value='09:00'>09:00 a.m</option>" +
-    "<option value='10:00'>10:00 a.m</option>" +
-    "<option value='11:00'>11:00 a.m</option>" +
-    "<option value='12:00'>12:00 p.m</option>" +
-    "<option value='13:00'>13:00 p.m</option>" +
-    "<option value='14:00'>14:00 p.m</option>" +
-    "<option value='15:00'>15:00 p.m</option>" +
-    "<option value='16:00'>16:00 p.m</option>" +
-    "<option value='17:00'>17:00 p.m</option>" +
-    "<option value='18:00'>18:00 p.m</option>" +
-    "<option value='19:00'>19:00 p.m</option>" +
-    "<option value='20:00'>20:00 p.m</option>" +
-    "<option value='21:00'>21:00 p.m</option>" +
-    "<option value='22:00'>22:00 p.m</option>" +
-    "<option value='23:00'>23:00 p.m</option>"; */
-
 }

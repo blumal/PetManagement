@@ -126,6 +126,7 @@ header {
     margin-top: 8%;
     padding: 1%;
     width: 70%;
+    box-shadow: 0px 5px 7px 5px rgba(211, 210, 210, 0.582);
 }
 
 
@@ -165,11 +166,12 @@ header {
     font-family: 'Courier New', Courier, monospace;
     background-color: #8590FF;
     margin: auto;
-    padding: 2%;
+    padding: 1.7%;
     /*border: 1px solid #888;*/
     width: 35%;
     border-radius: 25px;
     text-align: left;
+    box-shadow: 0px 1px 4px 2px rgba(107, 107, 107, 0.582);
 }
 
 .modal-citas-content input,
@@ -178,13 +180,16 @@ textarea {
     width: 100%;
     border-radius: 8px;
     background-color: #DBDADA;
+    padding-top: 0.3%;
+    padding-bottom: 0.3%;
 }
 
 input[type=submit]:hover,
 input[type=submit]:active {
     width: 100%;
-    background-color: #01D632;
+    background-color: #000EEE;
     color: white;
+    transition: 0.7s;
     /* border-radius: 8px; */
 }
 

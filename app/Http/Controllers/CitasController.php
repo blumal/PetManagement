@@ -113,11 +113,14 @@ class CitasController extends Controller
 
     //Inserción datos a DB
     public function insertCita(Request $request){
-        $datas = $request->validate([
-            'fecha_vi' => 'required|date',
+        //Fecha actual
+        $today = date("Y-m-d");
+        $request->validate([
+            //Validación de fecha actual o superior
+            'fecha_vi' => 'required|date|after_or_equal:today',
             'hora_vi' => 'required|string|max:5',
             'asunto_vi' => 'required|string',
-            'id_us' => 'required|string'
+            'id_us' => 'required|integer'
         ]);
         
         try {
@@ -150,7 +153,7 @@ class CitasController extends Controller
                     $estadodebug]);
                     return response()->json(array('resultado'=> 'OK'));
                 }else{
-                    return "Error";
+                    return response()->json(array('resultado'=> 'NOK'));
                 }
             }
         } catch (\Throwable $th) {
