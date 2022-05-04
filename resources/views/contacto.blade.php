@@ -28,7 +28,11 @@
             <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/about" method="get"><li class="menu-item">Sobre Nosotros</li></a>
             <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_animales_perdidos" method="get"><li class="menu-item">Perdidos</li></a>
             <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_establecimientos" method="get"><li class="menu-item">Establecimientos</li></a>
-                <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/login" method="get"><li class="cta">Login</li></a>
+            @if (Session::get('email_session'))
+                <a href="{{url("logout")}}" method="get"><li class="cta">Logout</li></form></a>
+            @else
+                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+            @endif
         </ul>
         <script src="./js/home.js"></script>
     </header>

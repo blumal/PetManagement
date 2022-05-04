@@ -27,7 +27,11 @@
                 <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
                 <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
                 <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
-                    <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+                @if (Session::get('email_session'))
+                <a href="{{url("logout")}}" method="get"><li class="cta">Logout</li></form></a>
+            @else
+                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+            @endif
             </ul>
         </header>
     </div>
