@@ -28,7 +28,6 @@ function objetoAjax() {
 map = L.map('map').setView([35.96730926867194, -13.417163902896636], 2);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox/streets-v10',
     tileSize: 512,
@@ -66,7 +65,7 @@ function geoguesser(cords_click) {
                 distancia_lugar = map.distance(cords_click, cooordenadas);
                 console.log('Distancia: ' + distancia_lugar);
                 //cambio tipos distinto puede ser el problema
-                if (respuesta[i].radio_gir_geo < distancia_lugar) {
+                if (parseInt(respuesta[i].radio_gir_geo) < parseInt(distancia_lugar)) {
                     console.log('ok');
                     break;
                 } else {
@@ -78,11 +77,27 @@ function geoguesser(cords_click) {
     ajax.send(formData);
 }
 
-function onMapClick(e) {
-    /* lat = e.latlng.lat.toString();
-    lng = e.latlng.lng.toString(); */
-    cords_click = e.latlng;
+/* function onMapClick(e) {
+    var geocoder = L.esri.Geocoding.geocodeService();
+    geocoder.reverse().latlng(e.latlng).run(function(error, response) {
+            cords_click = e.latlng;
+        }) */
+/* lat = e.latlng.lat.toString();
+lng = e.latlng.lng.toString(); */
+/*   cords_click = e.latlng;
     geoguesser(cords_click);
-}
+} */
 
-map.on('click', onMapClick);
+
+map.on('click', function(e) {
+    var geocodeService = L.esri.Geocoding.geocodeService({
+        apikey: 'AAPKbbec8a40852d418489a6942c6bb999c0OGoOpdlPwk4Ze41rBXv4-nlfUv4gdC9eF1nl2D03hpX5NdYqZGw0fZmYgcfzS_60' // replace with your api key - https://developers.arcgis.com
+    });
+    geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
+        if (error) {
+            return;
+        }
+
+        L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+    });
+});
