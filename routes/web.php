@@ -56,12 +56,20 @@ Route::get('about', function () {
     return view('about');
 });
 
+Route::get('perfil', function () {
+    return view('perfil');
+});
+
 Route::get('contacto', function () {
     return view('contacto');
 });
 
 Route::get('registro', function () {
     return view('registro');
+});
+
+Route::get('login/contraseña', function () {
+    return view('login/contraseña');
 });
 
 /* Route::get('tienda', [CitasController::class, 'tienda']); */

@@ -21,7 +21,8 @@
             <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
             <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
             <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+            <a href="{{url("perfil")}}" method="get"><li class="menu-item">Mi Perfil</li></a>
+            <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
         </ul>
         <script src="./js/home.js"></script>
     </header>

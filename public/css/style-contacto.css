@@ -5,21 +5,11 @@
     margin: 0;
     padding: 0;
 }
-
 body {
     position: relative;
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/veterinaria-perro.jpg);
     background-size: cover;
     background-attachment: fixed;
-}
-
-.column-2{
-    width: 50%;
-    float: left;
-}
-
-.column-4{
-    width: 25%;
-    float: left;
 }
 
 .row-c:after {
@@ -36,6 +26,89 @@ body {
 
 a{
     text-decoration: none !important;
+}
+
+/* ---------- LOGIN ---------- */
+
+.container{
+    padding-top: 5%;
+}
+
+h1{
+    font-weight: bolder;
+}
+
+.formulario {
+    background: rgba(31, 45, 196, 0.659);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgb(0, 0, 0);
+    color: white;
+}
+
+.form-control {
+    background: rgba(0, 0, 0, .3);
+    border-style: none;
+    transition: 0.5s ease-in;
+    outline: none;
+    box-shadow: none;
+    color: white;
+}
+
+.form-control:focus {
+    background: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.ingresar {
+    background: #222A3F;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
+    transition: 0.5s ease-in;
+}
+
+.ingresar:hover {
+    color: white;
+}
+
+.olvide {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+}
+
+.olvide:hover {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+.olvide1 {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    font-size: 15px;
+    font-weight: 700!important;
+    /* border: 2px solid white; */
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .5);
+}
+
+.olvide1:hover {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    cursor: pointer;
 }
 
 /* ---------- HEADER ---------- */
@@ -106,176 +179,4 @@ ul{
 .cta:hover{
     color: #ffffff;
     background-color: #000000;
-}
-
-/* ---------- CENTRO ---------- */
-
-.container{
-    /* padding-top: 4%; */
-}
-
-h1{
-    font-weight: bolder;
-    color: black;
-    font-weight: bolder;
-}
-
-.formulario {
-    /* background: rgba(31, 45, 196, 0.5); */
-    padding: 20px;
-    border-radius: 10px;
-    /* box-shadow: 0 0 30px rgb(0, 0, 0); */
-    color: white;
-}
-
-.form-control {
-    background: rgba(0, 0, 0, .3);
-    border-style: none;
-    transition: 0.5s ease-in;
-    outline: none;
-    box-shadow: none;
-    color: white;
-}
-
-.form-control:focus {
-    background: none;
-    box-shadow: none;
-    outline: none;
-}
-
-.form-control::placeholder {
-    color: white;
-}
-
-.ingresar {
-    background: #222A3F;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 700!important;
-    color: white;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
-    transition: 0.5s ease-in;
-}
-
-.ingresar:hover {
-    color: white;
-}
-
-.olvide {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-}
-
-.olvide:hover {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-    cursor: pointer;
-}
-
-.olvide1 {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-    font-size: 15px;
-    font-weight: 700!important;
-    /* border: 2px solid white; */
-    padding: 10px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, .5);
-}
-
-.olvide1:hover {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-    cursor: pointer;
-}
-/*------------------------*/
-
-h2{
-    text-align: center;
-    width: 20%;
-    padding: 0% 0% 2% 0%;
-}
-
-.foto{
-    width: 20%;
-    padding: 0% 0% 2% 0%;
-}
-
-.content{
-    margin: 0% 10% 5% 10%;
-}
-
-/* ---------- FOOTER ---------- */
-
-footer{
-    width: auto;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    padding: 2rem 8%;
-    background-color: #414141;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.logo{
-    height: 80px;
-    margin-bottom: 1rem;
-}
-
-.social-icons-container, .footer-menu-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-}
-
-.social-icon{
-    height: 50px;
-    width: 50px;
-    border-radius: 50px;
-    border: 1px solid #f2f2f2;
-    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
-    background-position: center;
-    background-size: 40%;
-    background-repeat: no-repeat;
-    margin:1rem;
-}
-
-.social-icon:hover{
-    background-color: #121212;
-    filter: invert(1);
-}
-
-.social-icon:nth-of-type(2){
-    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
-}
-
-.footer-menu-container{
-    list-style-type: none;
-    color: #f2f2f2;
-    font-size: 18px;
-}
-
-.footer-item{
-    margin: 1rem 1.5rem;
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-.footer-item:hover{
-    opacity: 1;
-}
-
-.copyright{
-    color: #f2f2f2;
-    opacity: 0.3;
-    text-align: center;
 }

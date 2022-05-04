@@ -7,9 +7,10 @@
 }
 body {
     position: relative;
-    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/veterinaria-perro.jpg);
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/foto_login.jpg);
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
 }
 
 .row-c:after {
@@ -39,11 +40,11 @@ h1{
 }
 
 .formulario {
-    background: rgba(31, 45, 196, 0.659);
+    /* background: rgba(31, 45, 196, 0.659); */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 30px rgb(0, 0, 0);
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .form-control {
@@ -62,7 +63,7 @@ h1{
 }
 
 .form-control::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .ingresar {

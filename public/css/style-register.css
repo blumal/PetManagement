@@ -7,7 +7,7 @@
 }
 body {
     position: relative;
-    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/fotosSlider/foto-slider-4.jpg);
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/foto_registree.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -28,31 +28,74 @@ a{
     text-decoration: none !important;
 }
 
-/* ---------- LOGIN ---------- */
+/* ---------- Registro ---------- */
 
 .container{
     padding-top: 5%;
 }
 
-h1{
+h3{
+    margin-top: -5px !important;
+    margin-bottom: -10px !important;
     font-weight: bolder;
 }
 
 .formulario {
-    background: rgba(31, 45, 196, 0.659);
-    padding: 20px;
+    /* background: rgb(0 0 0 / 43%); */
+    padding: 2%;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgb(0, 0, 0);
-    color: white;
+    box-shadow: 0 0 15px rgb(0 0 0);
+    color: rgb(0, 0, 0);
+    /* se descomenta esto si al final en el registro se pone un icono a la derecha y el formulario a la izquierda
+    width: 70%; */
+    width: 50%;
+    margin-top: 1.5%;
+}
+
+span{
+    font-weight: bolder;
+}
+
+.form-group-1 {
+    margin-bottom: 1%;
+    width: 46.9%;
+    float: left;
+    box-sizing: border-box;
+    /* filter: invert(1);*/
+}
+
+.form-group-2 {
+    margin-bottom: 2%;
+    box-sizing: border-box;
+}
+
+.form-group-4 {
+    margin-bottom: 2%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.formIzquierda{
+    float: left;
+    width: 69%;
+}
+
+.formDerecha{
+    float: right;
+    width: 31%;
+    text-align: center;
+    margin: 25% 0% 0% 0%;
 }
 
 .form-control {
-    background: rgba(0, 0, 0, .3);
+    background: rgb(198 198 198);
     border-style: none;
     transition: 0.5s ease-in;
     outline: none;
     box-shadow: none;
-    color: white;
+    color: #000000;
+    /* font-weight: bolder; */
+    /* filter: invert(1);*/
 }
 
 .form-control:focus {
@@ -62,7 +105,7 @@ h1{
 }
 
 .form-control::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .ingresar {
