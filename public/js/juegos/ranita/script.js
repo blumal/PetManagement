@@ -50,7 +50,7 @@ Sprite.prototype.render = function() {
 const frogger = new Sprite({
     x: grid * 6,
     y: grid * 13,
-    color: 'greenyellow',
+    //color: 'greenyellow',
     size: grid,
     shape: 'frog',
     url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/640px-PNG_transparency_demonstration_1.png'
@@ -206,12 +206,38 @@ function loop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // draw the game background
-    // water
-    context.fillStyle = '#000047';
-    context.fillRect(0, grid, canvas.width, grid * 6);
 
-    // end bank
-    context.fillStyle = '#1ac300';
+    var img_carretera = document.getElementById("carretera")
+    var patron_carretera = context.createPattern(img_carretera, 'repeat');
+    context.fillStyle = patron_carretera;
+    context.fillRect(0, grid * 6, grid * 13, grid * 8);
+
+    // water
+
+    var img_agua = document.getElementById("agua")
+    var patron_agua = context.createPattern(img_agua, 'repeat');
+    context.fillStyle = patron_agua;
+    context.fillRect(0, grid, canvas.width, grid * 7);
+
+    //logo safe zone
+
+    var img_logo = document.getElementById("logo")
+    var patron_logo = context.createPattern(img_logo, 'repeat');
+    context.fillStyle = patron_logo;
+    context.fillRect(0, grid, canvas.width, grid);
+
+    //water original
+    //context.fillStyle = '#000047';
+    //context.fillRect(0, grid, canvas.width, grid * 6);
+
+    // lava final
+    var img_lava = document.getElementById("lava")
+    var patron_lava = context.createPattern(img_lava, 'repeat');
+    context.arc(
+        this.x + this.size / 2, this.y + this.size / 2,
+        this.size / 2 - gridGap / 2, 0, 2 * Math.PI
+    );
+    context.fillStyle = patron_lava;
     context.fillRect(0, grid, canvas.width, 5);
     context.fillRect(0, grid, 5, grid);
     context.fillRect(canvas.width - 5, grid, 5, grid);
@@ -220,11 +246,25 @@ function loop() {
     }
 
 
-    // beach
-    context.fillStyle = '#8500da';
+    // middle
+
+    var img_arena = document.getElementById("arena")
+    var patron_arena = context.createPattern(img_arena, 'repeat');
+    context.arc(
+        this.x + this.size / 2, this.y + this.size / 2,
+        this.size / 2 - gridGap / 2, 0, 2 * Math.PI
+    );
+    context.fillStyle = patron_arena;
     context.fillRect(0, 7 * grid, canvas.width, grid);
 
     // start zone
+    var img_cesped = document.getElementById("cesped")
+    var patron_cesped = context.createPattern(img_cesped, 'repeat');
+    context.arc(
+        this.x + this.size / 2, this.y + this.size / 2,
+        this.size / 2 - gridGap / 2, 0, 2 * Math.PI
+    );
+    context.fillStyle = patron_cesped;
     context.fillRect(0, canvas.height - grid * 2, canvas.width, grid);
 
     // update and draw obstacles
