@@ -4,7 +4,9 @@ const context = canvas.getContext('2d');
 const grid = 48;
 const gridGap = 10;
 
-//sprites naves
+var nivel = 0
+var vidas = 3
+    //sprites naves
 
 
 // a simple sprite prototype function
@@ -58,14 +60,14 @@ const frogger = new Sprite({
 const scoredFroggers = [];
 
 // a pattern describes each obstacle in the row
-const patterns = [
+var patterns = [
     // end bank is safe
     null,
 
     // log
     {
         spacing: [2], // how many grid spaces between each obstacle
-        color: '#c55843', // color of the obstacle
+        color: 'violet', // color of the obstacle
         size: grid * 4, // width (rect) / diameter (circle) of the obstacle
         shape: 'rect', // shape of the obstacle (rect or circle)
         speed: 0.75 // how fast the obstacle moves and which direction
@@ -219,15 +221,15 @@ function loop() {
     context.fillStyle = patron_agua;
     context.fillRect(0, grid, canvas.width, grid * 7);
 
+
+
     //logo safe zone
 
-    var img_logo = document.getElementById("logo")
-    var patron_logo = context.createPattern(img_logo, 'repeat');
-    context.fillStyle = patron_logo;
+    var img_gold = document.getElementById("gold")
+    var patron_gold = context.createPattern(img_gold, 'repeat');
+    context.fillStyle = patron_gold;
     context.fillRect(0, grid, canvas.width, grid);
 
-    //water original
-    //context.fillStyle = '#000047';
     //context.fillRect(0, grid, canvas.width, grid * 6);
 
     // lava final
@@ -238,12 +240,14 @@ function loop() {
         this.size / 2 - gridGap / 2, 0, 2 * Math.PI
     );
     context.fillStyle = patron_lava;
-    context.fillRect(0, grid, canvas.width, 5);
-    context.fillRect(0, grid, 5, grid);
-    context.fillRect(canvas.width - 5, grid, 5, grid);
+    context.fillRect(0, grid, canvas.width, 0);
+    context.fillRect(0, grid, 0, grid);
+    context.fillRect(canvas.width, grid, 0, grid);
     for (let i = 0; i < 4; i++) {
         context.fillRect(grid + grid * 3 * i, grid, grid * 2, grid);
     }
+
+
 
 
     // middle
@@ -266,6 +270,19 @@ function loop() {
     );
     context.fillStyle = patron_cesped;
     context.fillRect(0, canvas.height - grid * 2, canvas.width, grid);
+
+    //TEXTO Y DEMAS
+
+    context.font = "200% Arial";
+    context.fillStyle = "black";
+    if (/Mobi/.test(navigator.userAgent)) {
+        context.fillText("Nivel " + nivel, canvas.width / 3, grid - 4);
+        context.fillText("Vidas  " + vidas, canvas.width / 3 + grid * 2, grid - 4);
+    } else {
+        context.fillText("Nivel " + nivel, grid * 3, grid - 4);
+        context.fillText("Vidas  " + vidas, grid * 5 + grid * 2, grid - 4);
+    }
+
 
     // update and draw obstacles
     for (let r = 0; r < rows.length; r++) {
@@ -357,6 +374,7 @@ function loop() {
         if (froggerRow === 0 && col % 3 === 0 &&
             // check to see if there isn't a scored frog already there
             !scoredFroggers.find(frog => frog.x === col * grid)) {
+            nivel += 1
             scoredFroggers.push(new Sprite({
                 ...frogger,
                 x: col * grid,
@@ -366,6 +384,7 @@ function loop() {
 
         // reset frogger if not on obstacle in river
         if (froggerRow < rows.length / 2 - 1) {
+            vidas = vidas - 1
             frogger.x = grid * 6;
             frogger.y = grid * 13;
         }
@@ -373,6 +392,11 @@ function loop() {
 }
 
 // listen to keyboard events to move frogger
+document.addEventListener('touchstart', function(e) {
+    console.log(e)
+    frogger.y -= grid;
+})
+
 document.addEventListener('keydown', function(e) {
     // left arrow key
     if (e.which === 37) {
@@ -396,6 +420,7 @@ document.addEventListener('keydown', function(e) {
     frogger.x = Math.min(Math.max(0, frogger.x), canvas.width - grid);
     frogger.y = Math.min(Math.max(grid, frogger.y), canvas.height - grid * 2);
 });
+
 
 // start the game
 requestAnimationFrame(loop);
