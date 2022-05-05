@@ -43,12 +43,13 @@ window.onclick = function(event) {
 /* Modal editar */
 
 
-function abrirmodal_editar(id_art, nombre_art, descripcion_art, precio_art, codigobarras_art, id_marca_fk, id_tipo_articulo_fk) {
+function abrirmodal_editar(id_art, nombre_art, descripcion_art, precio_art, cantidad_st, codigobarras_art, id_marca_fk, id_tipo_articulo_fk) {
     document.getElementById('nombre_art_e').value = nombre_art;
     document.getElementById('descripcion_art_e').value = descripcion_art;
     document.getElementById('precio_art_e').value = precio_art;
+    document.getElementById('cantidad_st_e').value = cantidad_st;
     document.getElementById('codigobarras_art_e').value = codigobarras_art;
-    console.log(precio_art)
+    console.log(cantidad_st)
     document.getElementById('id_marca_fk_e').value = id_marca_fk;
     document.getElementById('id_tipo_articulo_fk_e').value = id_tipo_articulo_fk;
     document.getElementById('idUpdate').value = id_art;
