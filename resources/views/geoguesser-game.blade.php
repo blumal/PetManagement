@@ -30,8 +30,8 @@
     <input type="hidden" id="valor_cons_geo" value="1">
     <div id="map">
         <div class="img_geo" id="img_geo">
-            <h3>Tigre</h3>
-            <img class="img_an" src="http://www.medioambiente.net/wp-content/uploads/tigre3.jpg" alt="">
+            {{-- <h3>Tigre</h3>
+            <img class="img_an" src="http://www.medioambiente.net/wp-content/uploads/tigre3.jpg" alt=""> --}}
         </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -61,9 +61,9 @@
     <script src="https://unpkg.com/esri-leaflet"></script>
 
     <!-- Enlace a API para hacer el geocidng Direcciones <-> Coordanedadas  NO TOCAR -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
-    <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.js"></script>
-    {{-- <script src="https://unpkg.com/esri-leaflet-geocoder@3.0.0/dist/esri-leaflet-geocoder.js"></script> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.js"></script> --}}
+    <script src="https://unpkg.com/esri-leaflet-geocoder@3.0.0/dist/esri-leaflet-geocoder.js"></script>
     <script src="js/geoguesser.js"></script>
 </body>
 </html>
