@@ -1,6 +1,6 @@
 window.onload = function() {
     marcas();
-    tiposPrincipales()
+    //tiposPrincipales()
     productos()
     document.getElementById('search').addEventListener("input", function(event) {
         searchBarEmpty()
@@ -17,8 +17,13 @@ window.onload = function() {
         }
 
     })
-
-
+    $(document).ready(function() {
+        $('.dropdown-submenu a.btn-sub-categoria').on("click", function(e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    });
 }
 
 window.back = function() {
@@ -94,6 +99,90 @@ function tiposPrincipales() {
     ajax.send(formData);
 }
 
+/*
+function tiposPrincipales() {
+    var divTipos = document.getElementsByClassName("fitro-categoria")[0];
+    divTipos.innerHTML = "";
+    var html = "";
+    //perro
+    html += "<div class='btn-group div-categoria'>";
+    html += "<button type='button' class='btn btn-lg btn-categoria dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Perros</button>";
+    html += "<span class='sr-only'>Toggle Dropdown</span>";
+    html += "</button>";
+    html += "<div class='dropdown-menu'>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='pienso para perro' onclick='filtro2(this)'>Pienso para perro</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='comida humeda para perro' onclick='filtro2(this)'>Comida húmeda</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='snacks para perro' onclick='filtro2(this)'>Snacks</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='repelentes para perro' onclick='filtro2(this)'>Repelentes para perro</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='accesorios para perro' onclick='filtro2(this)'>Accesorios para perro</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='juguetes para perro' onclick='filtro2(this)'>Juguetes</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='salud e higiene para perro' onclick='filtro2(this)'>Salud e higiene</button>";
+    html += "</div>";
+    html += "</div>";
+    //gato
+    html += "<div class='btn-group div-categoria'>";
+    html += "<button type='button' class='btn btn-lg btn-categoria dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Gatos</button>";
+    html += "<span class='sr-only'>Toggle Dropdown</span>";
+    html += "</button>";
+    html += "<div class='dropdown-menu'>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='pienso para gato' onclick='filtro2(this)'>Pienso para gato</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='comida humeda para gato' onclick='filtro2(this)'>Comida húmeda</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='snacks para gato' onclick='filtro2(this)'>Snacks</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='repelentes para gato' onclick='filtro2(this)'>Repelentes para gato</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='accesorios para gato' onclick='filtro2(this)'>Accesorios para gato</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='juguetes para gato' onclick='filtro2(this)'>Juguetes</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='salud e higiene para gato' onclick='filtro2(this)'>Salud e higiene</button>";
+    html += "</div>";
+    html += "</div>";
+    //roedores
+    html += "<div class='btn-group div-categoria'>";
+    html += "<button type='button' class='btn btn-lg btn-categoria dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Roedores</button>";
+    html += "<span class='sr-only'>Toggle Dropdown</span>";
+    html += "</button>";
+    html += "<div class='dropdown-menu'>";
+    //roedores-jerbos
+    html += "<button type='button' class='btn btn-lg btn-sub-categoria dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Jerbos</button>";
+    html += "<span class='sr-only'>Toggle Dropdown</span>";
+    html += "<div class='dropdown-menu'>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='comida y snacks para jerbo' onclick='filtro2(this)'>Comida y snacks</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='accesorios' onclick='filtro2(this)'>Accesorios</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='henos' onclick='filtro2(this)'>Henos</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='higiene y desinfección para jerbo' onclick='filtro2(this)'>Higiene y desinfección</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='salud para jerbo' onclick='filtro2(this)'>Salud</button>";
+    html += "</div>";
+    //roedores-hamsters
+    html += "<button type='button' class='btn btn-lg btn-sub-categoria dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Hamsters</button>";
+    html += "<span class='sr-only'>Toggle Dropdown</span>";
+    html += "</button>";
+    html += "<div class='dropdown-menu'>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='comida y snacks para hamster' onclick='filtro2(this)'>Comida y snacks</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='accesorios' onclick='filtro2(this)'>Accesorios</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='henos' onclick='filtro2(this)'>Henos</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='higiene y desinfección para hamster' onclick='filtro2(this)'>Higiene y desinfección</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='salud para hamster' onclick='filtro2(this)'>Salud</button>";
+    html += "</div>";
+    //roedores-ratones
+    html += "<button type='button' class='btn btn-lg btn-sub-categoria dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Ratas y ratones</button>";
+    html += "<span class='sr-only'>Toggle Dropdown</span>";
+    html += "</button>";
+    html += "<div class='dropdown-menu'>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='comida y snacks para raton' onclick='filtro2(this)'>Comida y snacks</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='accesorios' onclick='filtro2(this)'>Accesorios</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='henos' onclick='filtro2(this)'>Henos</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='higiene y desinfección para raton' onclick='filtro2(this)'>Higiene y desinfección</button>";
+    html += "<button class='dropdown-item btn btn-lg categoria' data-categoria='salud para raton' onclick='filtro2(this)'>Salud</button>";
+    html += "</div>";
+    //
+    html += "</div>";
+    html += "</div>";
+    divTipos.innerHTML = html;
+
+}
+*/
+
 function productos() {
     var divProductos = document.getElementsByClassName("productos")[0];
     var formData = new FormData();
@@ -145,11 +234,11 @@ function addToCart(id) {
             var respuesta = JSON.parse(this.responseText);
             console.log(Object.keys(respuesta).length)
             var div = document.getElementsByClassName("div-dropmenu")[0];
-            html = "<div class='dropdown'>";
+            html = "<div class='dropdown' id='dropdown'>";
             html += "<button type='button' class='btn btn-info carrito-drop' data-toggle='dropdown'>";
             html += "<i class='fa fa-shopping-cart' aria-hidden='true'></i> Carrito <span class='badge badge-pill badge-danger'>" + Object.keys(respuesta).length + "</span>";
             html += "</button>";
-            html += "<div class='dropdown-menu'>";
+            html += "<div class='dropdown-menu' id='dropdown-menu'>";
             html += "<div class='row total-header-section'>";
             html += "<div class='col-lg-6 col-sm-6 col-6'>";
             html += "<i class='fa fa-shopping-cart' aria-hidden='true'></i> <span class='badge badge-pill badge-danger'>" + Object.keys(respuesta).length + "</span>";

@@ -65,11 +65,11 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto o categoria" id="search" aria-label="Search" onkeyup="filtro(); return false;">
         </div>
         <div class="div-dropmenu">
-            <div class="dropdown">
+            <div class="dropdown" id="dropdown">
                 <button type="button" class="btn btn-info carrito-drop" data-toggle="dropdown">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                 </button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" id="dropdown-menu">
                     <div class="row total-header-section">
                         <div class="col-lg-6 col-sm-6 col-6">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
@@ -104,29 +104,259 @@
               </div>
         </div>
         <div class="fitro-categoria">
-            <div class="categoria">
-                <p>Comida</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Perros
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Pienso para perro' onclick='filtro2(this)'>Pienso para perro</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida humeda para perro' onclick='filtro2(this)'>Comida húmeda</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Snacks para perro' onclick='filtro2(this)'>Snacks</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Repelentes para perro' onclick='filtro2(this)'>Repelentes para perro</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios para perro' onclick='filtro2(this)'>Accesorios para perro</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Juguetes para perro' onclick='filtro2(this)'>Juguetes</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud e higiene para perro' onclick='filtro2(this)'>Salud e higiene</a></li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Gatos
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Pienso para gato' onclick='filtro2(this)'>Pienso para gato</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida humeda para gato' onclick='filtro2(this)'>Comida húmeda</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Snacks para gato' onclick='filtro2(this)'>Snacks</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Repelentes para gato' onclick='filtro2(this)'>Repelentes para gato</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios para gato' onclick='filtro2(this)'>Accesorios para gato</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Juguetes para gato' onclick='filtro2(this)'>Juguetes</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud e higiene para gato' onclick='filtro2(this)'>Salud e higiene</a></li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Roedores y hurones
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu dropright">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Jerbos<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida y snacks para jerbo' onclick='filtro2(this)'>Comida y snacks</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios para roedores' onclick='filtro2(this)'>Accesorios</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Henos' onclick='filtro2(this)'>Henos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Higiene y desinfección para jerbo' onclick='filtro2(this)'>Higiene y desinfección</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud para jerbo' onclick='filtro2(this)'>Salud</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropright">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Hamsters<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida y snacks para hamster' onclick='filtro2(this)'>Comida y snacks</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios para roedores' onclick='filtro2(this)'>Accesorios</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Henos' onclick='filtro2(this)'>Henos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Higiene y desinfección para hamster' onclick='filtro2(this)'>Higiene y desinfección</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud para hamster' onclick='filtro2(this)'>Salud</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropright">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Ratas y ratones<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='comida y snacks para raton' onclick='filtro2(this)'>Comida y snacks</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios para roedores' onclick='filtro2(this)'>Accesorios</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Henos' onclick='filtro2(this)'>Henos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Higiene y desinfección para raton' onclick='filtro2(this)'>Higiene y desinfección</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud para raton' onclick='filtro2(this)'>Salud</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropright">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Hurones<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para huron' onclick='filtro2(this)'>Comida</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Jaulas para huron' onclick='filtro2(this)'>Jaulas</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Snacks para huron' onclick='filtro2(this)'>Snacks</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Juguetes para huron' onclick='filtro2(this)'>Juguetes</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Higiene y desinfección para huron' onclick='filtro2(this)'>Higiene</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud para huron' onclick='filtro2(this)'>Salud</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropright">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Conejos<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para conejo' onclick='filtro2(this)'>Comida y snacks</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Jaulas y transportines' onclick='filtro2(this)'>Jaulas y transportines</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Henos' onclick='filtro2(this)'>Henos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Lechos y viruta' onclick='filtro2(this)'>Lechos y viruta</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Higiene y desinfección para conejo' onclick='filtro2(this)'>Higiene</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud para conejo' onclick='filtro2(this)'>Salud</a></li>
+                    </ul>
+                  </li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Pajaros
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu dropleft">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Comida<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para canario' onclick='filtro2(this)'>Canarios</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para periquito' onclick='filtro2(this)'>Periquitos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para loro' onclick='filtro2(this)'>Loros</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para cotorra' onclick='filtro2(this)'>Cotorras</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para paloma' onclick='filtro2(this)'>Palomas</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para gallina' onclick='filtro2(this)'>Gallinas</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para papagayo' onclick='filtro2(this)'>Papagayos</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropleft">
+                    <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Accesorios<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comederos para pajaro' onclick='filtro2(this)'>Comederos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Bebederos para pajaro' onclick='filtro2(this)'>Bebederos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Nidos para pajaro' onclick='filtro2(this)'>Nidos</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Juguetes para pajaro' onclick='filtro2(this)'>Juguetes</a></li>
+                      <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Bañeras para pajaro' onclick='filtro2(this)'>Bañeras</a></li>
+                    </ul>
+                  </li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Jaulas para pajaro' onclick='filtro2(this)'>Jaulas</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Semillas' onclick='filtro2(this)'>Semillas</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Antiparasitarios para pajaro' onclick='filtro2(this)'>Antiparasitarios</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Desinfección para pajaro' onclick='filtro2(this)'>Desinfección</a></li>
+                  <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Vitaminas para pajaro' onclick='filtro2(this)'>Vitaminas y suplementos</a></li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Reptiles y Tortugas
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Comida<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para reptil' onclick='filtro2(this)'>Piensos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida vegetariana para reptil' onclick='filtro2(this)'>Vegetariana</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para tortugas agua' onclick='filtro2(this)'>Tortugas Agua</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para tortugas tierra' onclick='filtro2(this)'>Tortugas Tierra</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para iguana' onclick='filtro2(this)'>Iguanas</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para camaleones' onclick='filtro2(this)'>Camaleones</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Calefacción<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Lamparas calefactoras' onclick='filtro2(this)'>Lamparas Calefactoras</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Mantas térmicas' onclick='filtro2(this)'>Mantas Térmicas</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Rocas calefactoras' onclick='filtro2(this)'>Rocas Calefactoras</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Mantenimiento<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Bombas' onclick='filtro2(this)'>Bombas</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Filtros' onclick='filtro2(this)'>Filtros</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Recambios' onclick='filtro2(this)'>Recambios</a></li>
+                        </ul>
+                    </li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Terrarios para reptil' onclick='filtro2(this)'>Terrarios</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comederos para reptil' onclick='filtro2(this)'>Comederos</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Bebederos para reptil' onclick='filtro2(this)'>Bebederos</a></li>
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Salud e Higiene<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Cuidado agua para reptil' onclick='filtro2(this)'>Cuidado agua</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Vitaminas para reptil' onclick='filtro2(this)'>Vitaminas</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Desinfección para reptil' onclick='filtro2(this)'>Desinfección</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Salud para reptil' onclick='filtro2(this)'>Salud</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Higiene para reptil' onclick='filtro2(this)'>Higiene</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Peces
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Comida<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para peces tropicales' onclick='filtro2(this)'>Peces tropicales</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para peces de agua fría' onclick='filtro2(this)'>Peces de agua fría</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para peces de fondo' onclick='filtro2(this)'>Peces de fondo</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para peces discos' onclick='filtro2(this)'>Peces Discos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para copos y escamas' onclick='filtro2(this)'>Copos y Escamas</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para invertebrados' onclick='filtro2(this)'>Invertebrados</a></li>
+                        </ul>
+                    </li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Acuarios' onclick='filtro2(this)'>Acuarios</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Filtros para acuario' onclick='filtro2(this)'>Filtros</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Bombas' onclick='filtro2(this)'>Bombas</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comederos automáticos' onclick='filtro2(this)'>Comederos automáticos</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Clarificadores de agua' onclick='filtro2(this)'>Clarificadores de agua</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Decoración de acuarios' onclick='filtro2(this)'>Decoración de acuarios</a></li>
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Salud de los peces<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Medicamentos para peces' onclick='filtro2(this)'>Medicamentos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Vitaminas para peces' onclick='filtro2(this)'>Vitaminas</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Animales de granja
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Gallinas y aves de corral<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Pienso y snacks para gallinas' onclick='filtro2(this)'>Pienso y snacks</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comederos y bebederos para gallinas' onclick='filtro2(this)'>Comederos y bebederos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Jaulas y ponederos para gallinas' onclick='filtro2(this)'>Jaulas y ponederos</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Ovejas y cabras<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comederos y bebederos para ovejas' onclick='filtro2(this)'>Comederos y bebederos</a></li>
+                        </ul>
+                    </li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Limpieza animales de granja' onclick='filtro2(this)'>Limpieza</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Herramientas animales de granja' onclick='filtro2(this)'>Herramientas de granja</a></li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Vallado y cerramiento' onclick='filtro2(this)'>Vallado y cerramiento</a></li>
+                </ul>
             </div>
-            <div class="categoria">
-                <p>Productos Higiene</p>
+            <div class="btn-group div-categoria">
+                <button class="btn btn-lg btn-categoria dropdown-toggle" type="button" data-toggle="dropdown">Caballos
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu dropleft">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Equipamiento del caballo<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Sillas de montar para caballo' onclick='filtro2(this)'>Sillas de montar</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Mantas para caballos para caballo' onclick='filtro2(this)'>Mantas para caballos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios para caballos' onclick='filtro2(this)'>Accesorios para caballos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Material de cuadra' onclick='filtro2(this)'>Material de cuadra</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Protectores y vendas para caballos' onclick='filtro2(this)'>Protectores y vendas</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu dropleft">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Equipamiento del jinete<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Cascos de equitación' onclick='filtro2(this)'>Cascos de equitación</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Botas y botines de montar para caballo' onclick='filtro2(this)'>Botas y botines de montar</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Accesorios de montar para caballo' onclick='filtro2(this)'>Accesorios para caballos</a></li>
+                        </ul>
+                    </li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Juguetes y entretenimiento para caballo' onclick='filtro2(this)'>Juguetes y entretenimiento</a></li>
+                    <li class="dropdown-submenu dropleft">
+                        <a class="dropdown-item btn btn-lg btn-sub-categoria dropdown-toggle">Higiene y cuidados<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Peines y adornos para caballo' onclick='filtro2(this)'>Peines y adornos</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Insecticidas y repelentes para caballo' onclick='filtro2(this)'>Insecticidas y repelentes</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Antiparasitarios para caballo' onclick='filtro2(this)'>Antiparasitarios</a></li>
+                          <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Champús para caballos' onclick='filtro2(this)'>Champús para caballos</a></li>
+                        </ul>
+                    </li>
+                    <li><a class='dropdown-item btn btn-lg categoria' data-categoria='Comida para caballos' onclick='filtro2(this)'>Comida y golosinas</a></li>
+                </ul>
             </div>
         </div>
         <div class="productos">

@@ -519,6 +519,8 @@ header {
 
 .btn-mas:focus {
     box-shadow: 0px 5px 30px #1f2cc4;
+    background-color: white;
+    border-color: white;
 }
 
 
