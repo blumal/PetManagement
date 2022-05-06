@@ -1,9 +1,51 @@
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
+top_ten_players = []
+top_ten_scores = []
+
+//llamada Ajax
+function objetoAjax() {
+    var xmlhttp = false;
+    try {
+        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+        try {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (E) {
+            xmlhttp = false;
+        }
+    }
+    if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+
+function readMaxScores() {
+
+    var ajax = objetoAjax();
+    formdata = new FormData();
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('_method', 'POST');
+
+    ajax.open("POST", "ranita/max_scores", true);
+
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta)
+        }
+    }
+
+    ajax.send(formdata)
+}
+readMaxScores()
+
 const grid = 48;
 const gridGap = 10;
 
+//ESTADO INICIAL JUEGO
 var nivel = 1
 var vidas = 3
     //sprites naves
@@ -205,11 +247,36 @@ for (let i = 0; i < patterns.length; i++) {
 // game loop
 function loop() {
     if (vidas == 0) {
-        alert("Has acabo en el nivel " + nivel + ". Quiere volver a jugar?")
-        vidas = 1
-        location.reload();
+        context.fillStyle = "red";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        new_user = "jose"
+        while (new_user.length != 3) {
+            new_user = prompt("Has alcanzado el nivel " + nivel +
+                ". Introduce tu nick (Ex: AAA)")
+        }
+
+
+        var ajax = objetoAjax();
+        formdata = new FormData();
+        formdata.append('_token', document.getElementById('token').getAttribute("content"));
+        formdata.append('new_user', new_user);
+        formdata.append('level', nivel);
+        formdata.append('_method', 'POST');
+
+        ajax.open("POST", "ranita/new_score", true);
+
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                console.log(respuesta)
+            }
+        }
+        ajax.send(formdata)
+
+    } else {
+        requestAnimationFrame(loop);
     }
-    requestAnimationFrame(loop);
+
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // draw the game background
@@ -238,19 +305,6 @@ function loop() {
     //context.fillRect(0, grid, canvas.width, grid * 6);
 
     // lava final
-    var img_lava = document.getElementById("lava")
-    var patron_lava = context.createPattern(img_lava, 'repeat');
-    context.arc(
-        this.x + this.size / 2, this.y + this.size / 2,
-        this.size / 2 - gridGap / 2, 0, 2 * Math.PI
-    );
-    context.fillStyle = patron_lava;
-    context.fillRect(0, grid, canvas.width, 0);
-    context.fillRect(0, grid, 0, grid);
-    context.fillRect(canvas.width, grid, 0, grid);
-    for (let i = 0; i < 4; i++) {
-        context.fillRect(grid + grid * 3 * i, grid, grid * 2, grid);
-    }
 
 
 
@@ -274,15 +328,47 @@ function loop() {
 
     //TEXTO Y DEMAS
 
-    context.font = "200% Arial";
+    context.font = "280% Arial";
     context.fillStyle = "black";
+
     if (/Mobi/.test(navigator.userAgent)) {
-        context.fillText("Nivel " + nivel, canvas.width / 3, grid - 4);
-        context.fillText("Vidas  " + vidas, canvas.width / 3 + grid * 4, grid - 4);
+        context.fillText("NIVEL " + nivel, canvas.width / 4, grid - 4);
+        if (vidas == 1) {
+            var corazon = document.getElementById("corazon")
+            var patron_corazon = context.createPattern(corazon, 'repeat');
+            context.fillStyle = patron_corazon;
+            context.fillRect(grid * 12, 0, grid, grid);
+        } else if (vidas == 2) {
+            var corazon = document.getElementById("corazon")
+            var patron_corazon = context.createPattern(corazon, 'repeat');
+            context.fillStyle = patron_corazon;
+            context.fillRect(grid * 11, 0, grid * 2, grid);
+        } else if (vidas == 3) {
+            var corazon = document.getElementById("corazon")
+            var patron_corazon = context.createPattern(corazon, 'repeat');
+            context.fillStyle = patron_corazon;
+            context.fillRect(grid * 10, 0, grid * 3, grid);
+        }
     } else {
-        context.fillText("Nivel " + nivel, grid * 3, grid - 4);
-        context.fillText("Vidas  " + vidas, grid * 5 + grid * 2, grid - 4);
+        context.fillText("NIVEL " + nivel, 0, grid - 4);
+        if (vidas == 1) {
+            var corazon = document.getElementById("corazon")
+            var patron_corazon = context.createPattern(corazon, 'repeat');
+            context.fillStyle = patron_corazon;
+            context.fillRect(grid * 12, 0, grid, grid);
+        } else if (vidas == 2) {
+            var corazon = document.getElementById("corazon")
+            var patron_corazon = context.createPattern(corazon, 'repeat');
+            context.fillStyle = patron_corazon;
+            context.fillRect(grid * 11, 0, grid * 2, grid);
+        } else if (vidas == 3) {
+            var corazon = document.getElementById("corazon")
+            var patron_corazon = context.createPattern(corazon, 'repeat');
+            context.fillStyle = patron_corazon;
+            context.fillRect(grid * 10, 0, grid * 3, grid);
+        }
     }
+
 
     if (/Mobi/.test(navigator.userAgent)) {
         var izquierda = document.getElementById("izquierda")
@@ -385,10 +471,9 @@ function loop() {
 
         // frogger got to end bank (goal every 3 cols)
         const col = (frogger.x + grid / 2) / grid | 0;
-        if (froggerRow === 0 && col % 3 === 0 &&
+        if (froggerRow === 0 &&
             // check to see if there isn't a scored frog already there
             !scoredFroggers.find(frog => frog.x === col * grid)) {
-            nivel += 1
             scoredFroggers.push(new Sprite({
                 ...frogger,
                 x: col * grid,
@@ -401,11 +486,7 @@ function loop() {
             frogger.x = grid * 6;
             frogger.y = grid * 13;
             if (froggerRow == 0) {
-                if (col == 0 || col == 3 || col == 6 || col == 10) {
-
-                } else {
-                    vidas = vidas - 1
-                }
+                nivel = nivel + 1
             } else {
                 vidas = vidas - 1
             }

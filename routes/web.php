@@ -12,6 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\DB;
+use App\Http\Controllers\JuegosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +145,10 @@ Route::get('juegos/', function () {
 Route::get('juegos/ranita', function () {
     return view('juegos/ranita');
 });
+Route::post('juegos/ranita/max_scores', [JuegosController::class, 'max_scores']);
+Route::post('juegos/ranita/new_score', [JuegosController::class, 'new_score']);
+
+
 //FIN JUEGOS
 
 //INICIO CRUD PACIENTES
