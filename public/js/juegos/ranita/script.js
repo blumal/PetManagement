@@ -4,7 +4,7 @@ const context = canvas.getContext('2d');
 const grid = 48;
 const gridGap = 10;
 
-var nivel = 0
+var nivel = 1
 var vidas = 3
     //sprites naves
 
@@ -204,6 +204,11 @@ for (let i = 0; i < patterns.length; i++) {
 
 // game loop
 function loop() {
+    if (vidas == 0) {
+        alert("Has acabo en el nivel " + nivel + ". Quiere volver a jugar?")
+        vidas = 1
+        location.reload();
+    }
     requestAnimationFrame(loop);
     context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -254,10 +259,6 @@ function loop() {
 
     var img_arena = document.getElementById("arena")
     var patron_arena = context.createPattern(img_arena, 'repeat');
-    context.arc(
-        this.x + this.size / 2, this.y + this.size / 2,
-        this.size / 2 - gridGap / 2, 0, 2 * Math.PI
-    );
     context.fillStyle = patron_arena;
     context.fillRect(0, 7 * grid, canvas.width, grid);
 
@@ -277,11 +278,24 @@ function loop() {
     context.fillStyle = "black";
     if (/Mobi/.test(navigator.userAgent)) {
         context.fillText("Nivel " + nivel, canvas.width / 3, grid - 4);
-        context.fillText("Vidas  " + vidas, canvas.width / 3 + grid * 2, grid - 4);
+        context.fillText("Vidas  " + vidas, canvas.width / 3 + grid * 4, grid - 4);
     } else {
         context.fillText("Nivel " + nivel, grid * 3, grid - 4);
         context.fillText("Vidas  " + vidas, grid * 5 + grid * 2, grid - 4);
     }
+
+    if (/Mobi/.test(navigator.userAgent)) {
+        var izquierda = document.getElementById("izquierda")
+        var patron_izquierda = context.createPattern(izquierda, 'repeat');
+        context.fillStyle = patron_izquierda;
+        context.fillRect(0, grid * 14, grid * 8 - 40, grid);
+
+        var derecha = document.getElementById("derecha")
+        var patron_derecha = context.createPattern(derecha, 'repeat');
+        context.fillStyle = patron_derecha;
+        context.fillRect(grid * 9 + 10, grid * 14, grid * 8 - 40, grid);
+    }
+
 
 
     // update and draw obstacles
@@ -290,7 +304,7 @@ function loop() {
 
         for (let i = 0; i < row.length; i++) {
             const sprite = row[i]
-            sprite.x += sprite.speed;
+            sprite.x += sprite.speed * (nivel * 0.5);
             sprite.render();
 
             // loop sprite around the screen
@@ -384,17 +398,48 @@ function loop() {
 
         // reset frogger if not on obstacle in river
         if (froggerRow < rows.length / 2 - 1) {
-            vidas = vidas - 1
             frogger.x = grid * 6;
             frogger.y = grid * 13;
+            if (froggerRow == 0) {
+                if (col == 0 || col == 3 || col == 6 || col == 10) {
+
+                } else {
+                    vidas = vidas - 1
+                }
+            } else {
+                vidas = vidas - 1
+            }
+            //victory
+        } else {
+            //vivo en carretera
+            //console.log("Estoy en carretera y vivo")
         }
+    } else {
+        if (frogger.y < grid * 7) {
+            //console.log("Estoy en un tronco y vivo")
+        } else {
+            //crash en carretera
+            vidas = vidas - 1
+        }
+
     }
 }
 
-// listen to keyboard events to move frogger
+// listen to touch events to move frogger just forward
 document.addEventListener('touchstart', function(e) {
-    console.log(e)
-    frogger.y -= grid;
+    clientX = e.touches[0].clientX
+    clientY = e.touches[0].clientY
+    console.log(clientY)
+    if (clientY < 1500) {
+        frogger.y -= grid;
+    } else {
+        if (clientX > 650) {
+            frogger.x += grid;
+        } else if (clientX < 650) {
+            frogger.x -= grid;
+        }
+    }
+
 })
 
 document.addEventListener('keydown', function(e) {
