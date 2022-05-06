@@ -66,7 +66,6 @@ function filtro() {
                 recarga += '<th scope="col">Código de Barras</th>';
                 recarga += '<th scope="col">Marca</th>';
                 recarga += '<th scope="col">Tipo de Artículo</th>';
-                recarga += '<th scope="col">Stock</th>';
                 recarga += '<th scope="col" colspan="2">Acciones</th>';
                 recarga += '</tr>';
                 for (let i = 0; i < respuesta.length; i++) {
@@ -81,10 +80,9 @@ function filtro() {
                     recarga += '<td>' + respuesta[i].codigobarras_art + '</td>';
                     recarga += '<td>' + respuesta[i].marca_ma + '</td>';
                     recarga += '<td>' + respuesta[i].tipo_articulo_ta + '</td>';
-                    recarga += '<td>' + respuesta[i].cantidad_st + '</td>';
                     recarga += '<td>';
                     // editar
-                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].cantidad_st + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
 
                     recarga += '</td>';
                     recarga += '<td>';

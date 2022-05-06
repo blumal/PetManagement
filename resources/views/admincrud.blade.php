@@ -35,6 +35,9 @@
     </div>
 
     <div>
+        <?php
+        $suma=0;
+        ?>
         <table class="table" id="table">
             <tr>
                 <th scope="col">#</th>
@@ -44,7 +47,6 @@
                 <th scope="col">Código de barras</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Tipo de Artículo</th>
-                <th scope="col">Stock</th>
                 <th scope="col" colspan="2">Acciones</th>
             </tr>
             @forelse ($listaProducto as $prod)
@@ -56,10 +58,9 @@
                 <td>{{$prod->codigobarras_art}}</td>
                 <td>{{$prod->marca_ma}}</td>
                 <td>{{$prod->tipo_articulo_ta}}</td>
-                <td>{{$prod->cantidad_st}}</td>
                 <td>
                     {{-- Route::get('/clientes/{cliente}/edit',[ClienteController::class,'edit'])->name('clientes.edit'); --}}
-                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->cantidad_st}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
+                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
                 </td>
                 <td>
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
@@ -83,7 +84,6 @@
                 <input class="inputcrear" type="text" name="nombre_art_e" id="nombre_art_e" placeholder="Nombre">
                 <input class="inputcrear" type="text" name="descripcion_art_e" id="descripcion_art_e" placeholder="Descripcion">
                 <input class="inputcrear" type="text" name="precio_art_e" id="precio_art_e" placeholder="Precio">
-                <input class="inputcrear" type="text" name="cantidad_st_e" id="cantidad_st_e" placeholder="Cantidad">
                 <input class="inputcrear" type="text" name="codigobarras_art_e" id="codigobarras_art_e" placeholder="Codigo de barras">
                 <input class="inputcrear" type="file" name="foto_e" id="foto_e" placeholder="Foto">
                 <h4>Marca</h4>
@@ -120,9 +120,6 @@
                 <div id="mensaje2">
                 </div>
                 <input class="inputcrear" type="number" name="precio_art" id="precio_art" placeholder="Precio" onfocus="error_registro3()" onkeyup="error_validar3()">
-                <div id="mensaje3">
-                </div>
-                <input class="inputcrear" type="number" name="cantidad_st" id="cantidad_st" placeholder="Cantidad" onfocus="error_registro3()" onkeyup="error_validar3()">
                 <div id="mensaje3">
                 </div>
                 <input class="inputcrear" type="text" name="codigobarras_art" id="codigobarras_art" placeholder="Codigo de barras" onfocus="error_registro4()" onkeyup="error_validar4()">
