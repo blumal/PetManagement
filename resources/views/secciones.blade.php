@@ -29,18 +29,6 @@ ob_start();
                 <a><button><img class="imglogout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></button></a>
         </form>
     </header>
-    
-        {{-- <div class="inicio">
-            <div>
-                <?php
-                    /* session_start();
-                    if(!empty($_SESSION['nom_user'])){
-                        echo "Hola ".$_SESSION['nom_user'];
-                        $nom=$_SESSION['nom_user'];
-                    } */
-                ?>
-            </div>
-        </div> --}}
     <div class="row-c">
         <div class="secciones">
             <div class="column-3">

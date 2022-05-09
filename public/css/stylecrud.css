@@ -31,6 +31,7 @@ a{
 
 h1{
     color: white;
+    font-weight: bolder;
 }
 
 h4{
@@ -236,7 +237,7 @@ h4{
 .modalcrear {
     background-color: #fefefe;
     text-align: center;
-    margin-top: 0;
+    margin-top: -1%;
     padding: 0;
     width: 100vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
@@ -334,7 +335,7 @@ h4{
 .modaleditar {
     background-color: #fefefe;
     text-align: center;
-    margin-top: 0;
+    margin-top: -1%;
     padding: 0;
     width: 100vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;

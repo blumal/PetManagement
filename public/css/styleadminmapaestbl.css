@@ -42,6 +42,12 @@ a{
 
 h1{
     color: white;
+    font-weight: bolder;
+}
+
+.modal-h1 h1{
+    color: black;
+    font-weight: bolder;
 }
 
 .ttl {

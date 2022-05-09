@@ -34,7 +34,6 @@
             </div>
          </form>
     </div>
-
     <div>
         <table class="table" id="table">
             <tr class="fila-1">

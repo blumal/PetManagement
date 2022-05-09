@@ -8,15 +8,11 @@
     box-sizing: content-box;
 }
 
-html {
-    height: 100%;
-}
-
 body {
     border: 0;
     position: relative;
-    background-color: #4a4a4a;
-    background-repeat: no-repeat
+    background-color: #4a4a4a !important;
+    background-repeat: no-repeat;
 }
 
 .column-1 {

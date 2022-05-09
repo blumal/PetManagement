@@ -289,7 +289,9 @@ function crearJS() {
     modal.style.display = "block";
     enter = document.getElementById("contenido")
     var contenido = ''
+    contenido += '<div class="modal-h1">'
     contenido += '<h1>Crear Establecimiento</h1>'
+    contenido += '</div>'
     contenido += '<form id="form_crear" onsubmit="crear(); return false;" enctype="multipart/form-data">'
     contenido += '    <input type="text" class="btn btn-outline-dark" name="nombre" id="nombre" placeholder="Nombre">'
     contenido += '    <input type="text" class="btn btn-outline-dark" name="nif" id="nif" placeholder="NIF">'
