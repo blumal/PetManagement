@@ -12,6 +12,7 @@ class JuegosController extends Controller
     public function max_scores(){
         $max_scores = DB::table('tbl_ranita')
         ->orderBy('MAX_SCORE', 'desc')
+        ->limit(5)
         ->get();
         return response()->json($max_scores);
     }

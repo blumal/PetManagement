@@ -1,8 +1,8 @@
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
-top_ten_players = []
-top_ten_scores = []
+top_5_players = []
+top_5_scores = []
 
 //llamada Ajax
 function objetoAjax() {
@@ -35,12 +35,17 @@ function readMaxScores() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             console.log(respuesta)
+            for (let i = 0; i < respuesta.length; i++) {
+                top_5_players[i] = respuesta[i].user
+                top_5_scores[i] = respuesta[i].max_score
+            }
         }
     }
 
     ajax.send(formdata)
 }
 readMaxScores()
+
 
 const grid = 48;
 const gridGap = 10;
@@ -247,31 +252,89 @@ for (let i = 0; i < patterns.length; i++) {
 // game loop
 function loop() {
     if (vidas == 0) {
-        context.fillStyle = "red";
+        //readMaxScores()
+        context.fillStyle = "blue";
         context.fillRect(0, 0, canvas.width, canvas.height);
+
+        if (/Mobi/.test(navigator.userAgent)) {
+            context.font = "bold 350% DotGothic16,sans-serif";
+            context.fillStyle = "white";
+            context.fillText("ALL TIME", canvas.width / 2 - (grid * 0.8), grid * 2);
+            context.fillText("GREATEST", canvas.width / 2 - (grid * 0.8), grid * 3.5);
+
+            context.font = "bold 400% DotGothic16,sans-serif";
+            context.fillText("LA RANITA", canvas.width / 2 - grid * 1.4, grid * 6);
+
+            context.font = "bold 300% DotGothic16,sans-serif";
+            for (let i = 0; i < 5; i++) {
+                context.fillText((i + 1) + " " + top_5_players[i] + " - " + top_5_scores[i], canvas.width / 2 - grid * 1, grid * 8 + i * grid);
+            }
+
+            //imagen ranita
+            var ranita = document.getElementById("jose")
+            var patron_ranita = context.createPattern(ranita, 'repeat');
+            context.fillStyle = patron_ranita;
+            context.fillRect(grid * 5, grid * 13, grid, grid);
+
+            //imagen logo
+            var logo = document.getElementById("logo")
+            var patron_logo = context.createPattern(logo, 'repeat');
+            context.fillStyle = patron_logo;
+            context.fillRect(grid * 10, grid * 13, grid, grid);
+        } else {
+            context.font = "bold 350% DotGothic16,sans-serif";
+            context.fillStyle = "white";
+            context.fillText("ALL TIME", canvas.width / 2 - (grid * 2.2), grid * 2);
+            context.fillText("GREATEST", canvas.width / 2 - (grid * 2.2), grid * 3.5);
+
+            context.font = "bold 400% DotGothic16,sans-serif";
+            context.fillText("LA RANITA", canvas.width / 2 - (grid * 3), grid * 6);
+
+            context.font = "bold 300% DotGothic16,sans-serif";
+            for (let i = 0; i < 5; i++) {
+                context.fillText((i + 1) + " " + top_5_players[i] + " - " + top_5_scores[i], canvas.width / 2 - grid * 2.5, grid * 8 + i * grid);
+            }
+
+            //imagen ranita
+            var ranita = document.getElementById("jose")
+            var patron_ranita = context.createPattern(ranita, 'repeat');
+            context.fillStyle = patron_ranita;
+            context.fillRect(grid * 4, grid * 13, grid, grid);
+
+            //imagen logo
+            var logo = document.getElementById("logo")
+            var patron_logo = context.createPattern(logo, 'repeat');
+            context.fillStyle = patron_logo;
+            context.fillRect(grid * 8, grid * 13, grid, grid);
+        }
+
+        function introducirHighScore(nuevo_user) {
+            var ajax = objetoAjax();
+            formdata = new FormData();
+            formdata.append('_token', document.getElementById('token').getAttribute("content"));
+            formdata.append('new_user', nuevo_user);
+            formdata.append('level', nivel);
+            formdata.append('_method', 'POST');
+
+            ajax.open("POST", "ranita/new_score", true);
+
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var respuesta = JSON.parse(this.responseText);
+                }
+            }
+            ajax.send(formdata)
+        }
+
         new_user = "jose"
         while (new_user.length != 3) {
             new_user = prompt("Has alcanzado el nivel " + nivel +
-                ". Introduce tu nick (Ex: AAA)")
+                ". Introduce tu nick (Ex: AAA)\n\nCancela para ver el Hall of Fame de La Ranita")
         }
+        introducirHighScore(new_user);
 
 
-        var ajax = objetoAjax();
-        formdata = new FormData();
-        formdata.append('_token', document.getElementById('token').getAttribute("content"));
-        formdata.append('new_user', new_user);
-        formdata.append('level', nivel);
-        formdata.append('_method', 'POST');
 
-        ajax.open("POST", "ranita/new_score", true);
-
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta)
-            }
-        }
-        ajax.send(formdata)
 
     } else {
         requestAnimationFrame(loop);
@@ -328,7 +391,7 @@ function loop() {
 
     //TEXTO Y DEMAS
 
-    context.font = "280% Arial";
+    context.font = " BOLD 280% DotGothic16";
     context.fillStyle = "black";
 
     if (/Mobi/.test(navigator.userAgent)) {
