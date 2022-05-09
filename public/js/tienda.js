@@ -258,7 +258,7 @@ function addToCart(id) {
                 total += respuesta[i].precio * respuesta[i].cantidad;
             }
             html += "<div class='col-lg-6 col-sm-6 col-6 total-section text-right'>";
-            html += "<p>Total: <span class='color'>" + total + "€</span></p>";
+            html += "<p>Total: <span class='color'>" + total.toFixed(2) + "€</span></p>";
             html += "</div>";
             html += "</div>";
             for (let i in respuesta) {
