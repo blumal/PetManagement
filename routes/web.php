@@ -23,7 +23,7 @@ Route::get('add-to-cart/{id}',[ProductoController::class,'addToCart']);
 Route::get('add-to-cart-producto/{id}/{cantidad}/{subcategoria}',[ProductoController::class,'addToCartProducto']);
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
-Route::get('cartBack',[ProductoController::class,'cartBack']);
+
 
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);

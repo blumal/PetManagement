@@ -585,19 +585,3 @@ function marcasEmpty() {
 
     }
 }
-
-function cartBack() {
-    var formData = new FormData();
-    formData.append('_token', document.getElementById('token').getAttribute("content"));
-    var ajax = objetoAjax();
-
-    ajax.open("GET", "cartBack", true);
-    ajax.onreadystatechange = function() {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta)
-        }
-    }
-
-    ajax.send(formData);
-}

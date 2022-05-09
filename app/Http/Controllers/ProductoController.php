@@ -299,10 +299,6 @@ class ProductoController extends Controller
 
     }
 
-    public function cartBack() {
-        $cart = session()->get('cart');
-        return response()->json($cart);
-    }
 
     public function compra(Request $request){
         $request->session()->forget('cart');
