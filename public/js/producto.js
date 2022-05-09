@@ -34,6 +34,9 @@ window.onload = function() {
 
 }
 
+
+
+
 function objetoAjax() {
     var xmlhttp = false;
     try {
@@ -66,20 +69,23 @@ function calcularPrecio(precio) {
 }
 
 function addToCart() {
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
     var cantidad = $('#input-cantidad').val();
     var id = $('.producto').attr('id-producto');
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('id', id);
     formData.append('cantidad', cantidad);
+    formData.append('subcategoria', subcategoria);
     var ajax = objetoAjax();
 
-    ajax.open("get", "../add-to-cart-producto/" + id + "/" + cantidad + "", true);
+    ajax.open("get", "../add-to-cart-producto/" + id + "/" + cantidad + "/" + subcategoria, true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             console.log(Object.keys(respuesta).length)
-            $(".div-modal:first").find('h4:first').text("Has añadido x" + cantidad + " " + $(".nombre:first").find('h4:first').text() + " al carrito!");
+            var subcategoriaTexto = document.querySelector('input[name="tipos"]:checked').getAttribute("data-texto");
+            $(".div-modal:first").find('h4:first').text("Has añadido x" + cantidad + " " + $(".nombre:first").find('h4:first').text() + " (" + subcategoriaTexto + ") al carrito!");
             modal()
             var div = document.getElementsByClassName("div-dropmenu")[0];
             html = "<div class='dropdown'>";
@@ -105,7 +111,7 @@ function addToCart() {
                 html += "<img src='../storage/uploads/" + respuesta[i].foto + "'/>";
                 html += "</div>";
                 html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
-                html += "<p>" + respuesta[i].nombre + "</p>";
+                html += "<p>" + respuesta[i].nombre + " (" + respuesta[i].subcategoria_texto + ")</p>";
                 html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad: " + respuesta[i].cantidad + "</span>";
                 html += "</div>";
                 html += "</div>";

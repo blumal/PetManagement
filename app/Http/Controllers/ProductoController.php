@@ -182,10 +182,11 @@ class ProductoController extends Controller
         session()->put('cart', $cart);
         return response()->json($cart);
     }
-    public function addToCartProducto($id, $cantidad)
+    public function addToCartProducto($id, $cantidad, $subcategoria)
     {
         $path="producto/".$id;
         $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $productPrice=DB::select("SELECT tbl_Categoria_Articulo.id_cat, tbl_Categoria_Articulo.texto_cat, tbl_Categoria_Articulo.precio_cat FROM `tbl_categoria_articulo` WHERE id_cat=?",[$subcategoria]);
         if(!$product) {
             abort(404);
         }
@@ -193,10 +194,11 @@ class ProductoController extends Controller
         //
         if(!$cart) {
             $cart = [
-                    $id => [
+                    $subcategoria => [
                         "nombre" => $product[0]->nombre_art,
+                        "subcategoria_texto" => $productPrice[0]->texto_cat,
                         "cantidad" => $cantidad,
-                        "precio" => $product[0]->precio_art,
+                        "precio" => $productPrice[0]->precio_cat,
                         "foto" => $product[0]->foto_art
                     ]
             ];
@@ -204,17 +206,18 @@ class ProductoController extends Controller
             return response()->json($cart);
         }
         //
-        if(isset($cart[$id])) {
-            $cantidad=$cantidad+$cart[$id]['cantidad'];
-            $cart[$id]['cantidad']=$cantidad;
+        if(isset($cart[$subcategoria])) {
+            $cantidad=$cantidad+$cart[$subcategoria]['cantidad'];
+            $cart[$subcategoria]['cantidad']=$cantidad;
             session()->put('cart', $cart);
             return response()->json($cart);
         }
         //
-        $cart[$id] = [
+        $cart[$subcategoria] = [
             "nombre" => $product[0]->nombre_art,
+            "subcategoria_texto" => $productPrice[0]->texto_cat,
             "cantidad" => $cantidad,
-            "precio" => $product[0]->precio_art,
+            "precio" => $productPrice[0]->precio_cat,
             "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
@@ -294,6 +297,11 @@ class ProductoController extends Controller
             echo $ex->getData();
         }
 
+    }
+
+    public function cartBack() {
+        $cart = session()->get('cart');
+        return response()->json($cart);
     }
 
     public function compra(Request $request){

@@ -306,18 +306,21 @@ body {}
     border-color: #1f2cc4;
     background-color: #1f2cc4;
     color: white;
+    transition: all 0.3s;
 }
 
 .btn-categoria:focus {
     box-shadow: 0px 5px 30px #1f2cc4;
     background-color: #1f2cc4;
     color: white;
+    transform: scale(1.1);
 }
 
 .btn-categoria:hover {
     background-color: #1f2cc4;
     border-color: #1f2cc4;
     color: white;
+    transform: scale(1.1);
 }
 
 .btn-categoria:active {
@@ -356,6 +359,11 @@ body {}
     background-color: #1f2cc4;
     border-color: #1f2cc4;
     color: white;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
 }
 
 
@@ -443,7 +451,7 @@ body {}
 #dropdown #dropdown-menu {
     padding: 20px;
     top: 30px !important;
-    width: 350px !important;
+    width: 390px !important;
     left: -110px !important;
     box-shadow: 0px 5px 30px black;
 }

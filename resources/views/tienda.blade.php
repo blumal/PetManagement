@@ -89,7 +89,7 @@
                                     <img src="storage/uploads/{{ $details['foto'] }}"/>
                                 </div>
                                 <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                    <p>{{ $details['nombre'] }}</p>
+                                    <p>{{ $details['nombre'] }} ({{ $details['subcategoria_texto'] }})</p>
                                     <span class="color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad: {{ $details['cantidad'] }}</span>
                                 </div>
                             </div>

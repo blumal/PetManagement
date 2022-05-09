@@ -49,7 +49,7 @@
             <div class="tipo-nombre"><p>{{$producto[0]->tipo_categoria_art}}:</p></div>
             <div class="div-tipo">
                 @foreach ($categorias as $categoria)
-                    <input type="radio" class="btn-check" name="tipos" id="tipo{{$categoria->id_cat}}" @if ($categoria == $categorias[0])  checked  @endif>
+                    <input type="radio" class="btn-check" name="tipos" value="{{$categoria->id_cat}}" id="tipo{{$categoria->id_cat}}" data-texto="{{$categoria->texto_cat}}" @if ($categoria == $categorias[0])  checked  @endif>
                     <label class="btn btn-secondary tipo" for="tipo{{$categoria->id_cat}}" data-id="{{$categoria->id_cat}}">
                         <div class="tipo-texto"><p>{{$categoria->texto_cat}}</p></div>
                         <div class="precio-texto"><p>{{$categoria->precio_cat}}€</p></div>
@@ -88,7 +88,7 @@
                                         <img src="../storage/uploads/{{ $details['foto'] }}"/>
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                        <p>{{ $details['nombre'] }}</p>
+                                        <p>{{ $details['nombre'] }} ({{ $details['subcategoria_texto'] }})</p>
                                         <span class="price color"> {{ $details['precio'] }}€</span> <span class="count"> Cantidad: {{ $details['cantidad'] }}</span>
                                     </div>
                                 </div>

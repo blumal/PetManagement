@@ -1,31 +1,41 @@
 window.onload = function() {
-    marcas();
-    //tiposPrincipales()
-    productos()
-    document.getElementById('search').addEventListener("input", function(event) {
-        searchBarEmpty()
-    });
-    var header = document.getElementById('Header')
-
-    window.addEventListener("scroll", function() {
-        var scroll = window.scrollY;
-        if (scrollY > 0) {
-            header.style.backgroundColor = '#8590ff';
-
-        } else {
-            header.style.backgroundColor = '#8590ff';
-        }
-
-    })
-    $(document).ready(function() {
-        $('.dropdown-submenu a.btn-sub-categoria').on("click", function(e) {
-            $(this).next('ul').toggle();
-            e.stopPropagation();
-            e.preventDefault();
+        marcas();
+        //tiposPrincipales()
+        productos()
+        document.getElementById('search').addEventListener("input", function(event) {
+            searchBarEmpty()
         });
-    });
-}
+        var header = document.getElementById('Header')
 
+        window.addEventListener("scroll", function() {
+                var scroll = window.scrollY;
+                if (scrollY > 0) {
+                    header.style.backgroundColor = '#8590ff';
+
+                } else {
+                    header.style.backgroundColor = '#8590ff';
+                }
+
+            })
+            //funcionalidad menu desplegable
+        $(document).ready(function() {
+            $('.dropdown-submenu').hover(function() {
+                $('.dropdown-submenu>.dropdown-toggle', this).trigger('click');
+            });
+            $('.dropdown-submenu a.btn-sub-categoria').on("click", function(e) {
+                //$('.dropdown-submenu>ul').hide();
+                //$(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+        });
+    }
+    /*
+    window.onbeforeunload = function() {
+        cartBack()
+    }
+    */
 window.back = function() {
     marcas();
     tiposPrincipales()
@@ -257,7 +267,7 @@ function addToCart(id) {
                 html += "<img src='storage/uploads/" + respuesta[i].foto + "'/>";
                 html += "</div>";
                 html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
-                html += "<p>" + respuesta[i].nombre + "</p>";
+                html += "<p>" + respuesta[i].nombre + " (" + respuesta[i].subcategoria_texto + ")</p>";
                 html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad: " + respuesta[i].cantidad + "</span>";
                 html += "</div>";
                 html += "</div>";
@@ -574,4 +584,20 @@ function marcasEmpty() {
         }
 
     }
+}
+
+function cartBack() {
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    var ajax = objetoAjax();
+
+    ajax.open("GET", "cartBack", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta)
+        }
+    }
+
+    ajax.send(formData);
 }
