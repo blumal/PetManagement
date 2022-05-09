@@ -51,40 +51,39 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
-            recarga += '<br>'
-            recarga += '<div>';
-            recarga += '<tr><th>NOMBRE</th><th>NIF</th><th>EMAIL</th><th>DIRECCION</th><th>NÚMERO</th><th>CP</th><th>TELF 1</th><th>TELF 2</th><th>HORARIO APERTURA</th><th>HORARIO CIERRE</th><th>URL</th><th>FOTO</th><th>ICONO</th><th>TIPO</th><th>MODIFICAR</th><th>OPERATIVO</th></th></tr>';
+            recarga += '<table class="table" id="table">';
+            recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Nif</th><th scope="col">Email</th><th scope="col">Dirección</th><th scope="col">Número</th><th scope="col">CP</th><th scope="col">Telf 1</th><th scope="col">Telf 2</th><th scope="col">Hora apertura</th><th scope="col">Hora cierre</th><th scope="col">Url web</th><th scope="col">Foto</th><th scope="col">Icono</th><th scope="col">Tipo</th><th scope="col">Editar</th><th scope="col">Operativo</th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
-                recarga += '<tr>';
-                recarga += '<td>' + respuesta[i].nombre_s + '</td>'
-                recarga += '<td>' + respuesta[i].nif_s + '</td>'
-                recarga += '<td>' + respuesta[i].email_s + '</td>'
-                recarga += '<td>' + respuesta[i].nombre_di + '</td>'
-                recarga += '<td>' + respuesta[i].numero_di + '</td>'
-                recarga += '<td>' + respuesta[i].cp_di + '</td>'
-                recarga += '<td>' + respuesta[i].contacto1_tel + '</td>'
-                recarga += '<td>' + respuesta[i].contacto2_tel + '</td>'
-                recarga += '<td>' + respuesta[i].horario_apertura_s + '</td>'
-                recarga += '<td>' + respuesta[i].horario_cierre_s + '</td>'
-                recarga += '<td>' + respuesta[i].url_web + '</td>'
-                recarga += '<td><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_sociedad + '"></td>'
-                recarga += '<td><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_icono_sociedad + '"></td>'
-                recarga += '<td>' + respuesta[i].sociedad_ts + '</td>'
-                recarga += '<td><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
+                recarga += '<tr class="fila-2">';
+                recarga += '<td scope="row">' + respuesta[i].nombre_s + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].nif_s + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].email_s + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].nombre_di + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].numero_di + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].cp_di + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].contacto1_tel + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].contacto2_tel + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].horario_apertura_s + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].horario_cierre_s + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].url_web + '</td>'
+                recarga += '<td scope="row"><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_sociedad + '"></td>'
+                recarga += '<td scope="row"><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_icono_sociedad + '"></td>'
+                recarga += '<td scope="row">' + respuesta[i].sociedad_ts + '</td>'
+                recarga += '<td scope="row"><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
                     '\',\'' + respuesta[i].email_s + '\',\'' + respuesta[i].nombre_di + '\',' + respuesta[i].numero_di + ',' +
                     respuesta[i].cp_di + ',' + respuesta[i].contacto1_tel + ',' + respuesta[i].contacto2_tel + ',\'' +
                     respuesta[i].horario_apertura_s + '\',\'' + respuesta[i].horario_cierre_s + '\',\'' + respuesta[i].url_web + '\',\'' +
                     respuesta[i].sociedad_ts + '\',' + respuesta[i].operatividad_s + ',' +
-                    respuesta[i].id_tel + ',' + respuesta[i].id_di + ',' + respuesta[i].id_ts + '); return false;">Modificar</button></td>'
+                    respuesta[i].id_tel + ',' + respuesta[i].id_di + ',' + respuesta[i].id_ts + '); return false;">Editar</button></td>'
                     /* recarga += '<td><button onclick="borrar(' + respuesta[i].id_s + ',' + respuesta[i].id_ts + ',' + respuesta[i].id_di + ',' + respuesta[i].id_tel + '); return false;">Eliminar</button></td>' */
                     //Activo =1 inactivo=0 1 verde 0 rojo hacer if
                 if (respuesta[i].operatividad_s == 1) {
-                    recarga += '<td><img src="img/verde.png"></td>'
+                    recarga += '<td scope="row"><img src="img/verde.png"></td>'
                 } else if (respuesta[i].operatividad_s == 0) {
-                    recarga += '<td><img src="img/rojo.png"></td>'
+                    recarga += '<td scope="row"><img src="img/rojo.png"></td>'
                 }
                 recarga += '</tr>';
-                recarga += '</div>'
+                recarga += '</table>';
             }
             //Introducimos la recarga en la tabla
             tabla.innerHTML = recarga;

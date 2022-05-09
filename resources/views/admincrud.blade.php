@@ -19,8 +19,9 @@
     <title>AdminCrudTienda</title>
 </head>
 <body>
-    <form action="{{url('/cpanel')}}" method="GET">
-        <button type="submit" value="logout" class="btn btn-info">Back</button><br><br>
+    <form class="head" action="{{url('/cpanel')}}" method="GET">
+        <button type="submit" value="logout" class="btn btn-info">Back</button>
+        <h1>Productos Tienda</h1>
     </form>
     <div>
         <form class="crear" id="boton">
@@ -51,7 +52,6 @@
                 <td scope="row">{{$prod->id_art}}</td>
                 <td>{{$prod->nombre_art}}</td> 
                 <td>{{$prod->descripcion_art}}</td>
-
                 <td>{{$prod->precio_art}}</td>
                 <td>{{$prod->codigobarras_art}}</td>
                 <td>{{$prod->marca_ma}}</td>

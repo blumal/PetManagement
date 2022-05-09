@@ -12,41 +12,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Mapa Establecimientos</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleadminmapaestbl.css">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <div class="head_admin">
-        {{-- Boton para volver a la vista del panel de control --}}
+    <form class="head" action="{{url('/cpanel')}}" method="GET">
+        <button type="submit" value="logout" class="btn btn-info">Back</button>
+        <h1>Establecimientos</h1>
+    </form>
+    @if($errors->any())
     <div>
-        <div>
-            <form action="{{url('/cpanel')}}" method="GET">
-                <button type="submit" value="logout" class="btn btn-info">Back</button><br><br>
-            </form>
-        </div>
-        @if($errors->any())
-        <div>
-            <ul>
-            @foreach($errors->all() as $error)
-            <li>{{$error}}</li>
-            @endforeach
-            </ul>
-        </div>
-        @endif
-        {{-- <div>
-            <form action="{{url('/logout')}}" method="GET">
-                <button type="submit" value="logout" class="btn btn-danger">LOGOUT</button><br><br>
-            </form>
-        </div> --}}
+        <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+        </ul>
     </div>
-    </div>
+    @endif
+    {{-- <div>
+        <form action="{{url('/logout')}}" method="GET">
+            <button type="submit" value="logout" class="btn btn-danger">LOGOUT</button><br><br>
+        </form>
+    </div> --}}
     <div class="content_up">
-        <h1><b>Establecimientos</b></h1>
-    <input type="submit" class="btn btn-success" onclick="crearJS()" id="crear" value="Crear Establecimiento">
-    <br><br>
-    <input type="search" class="input_search" onkeyup="leerJS()" id="filtro" placeholder="Filtrar por nombre">
+        <div>
+            <form class="crear" id="boton">
+                <a name="Crear" value="Crear" onclick="crearJS()" id="crear" value="Crear Establecimiento">Crear</a>
+            </form>
+            <form class="filtro" method="post" onsubmit="return false;">
+                {{-- <input type="hidden" name="_method" value="POST" id="postFiltro"> --}}
+                <div class="form-outline">
+                    <input type="search" id="filtro" name="nombre_art" class="form-control" placeholder="Filtrar por nombre" aria-label="Search" onkeyup="leerJS(); return false;"/>
+                </div>
+            </form>
+        </div>
     </div>
     <p id="mensaje"></p>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
@@ -65,6 +66,6 @@
         </div>
       </div>
     {{-- Link con el ajax --}}
-    <script src="js/admin_mapa_establecimientos_ajax.js"></script>
+    <script src="./js/admin_mapa_establecimientos_ajax.js"></script>
 </body>
 </html>
