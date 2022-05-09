@@ -92,6 +92,9 @@ function insertDatas() {
                     .alert("Información de la visita", "Se enviará un mail a tu dirección de correo electrónico con toda la información de la cita", function() {
                         alertify.success('Visita agendada correctamente');
                     });
+                //Si la ejecución ha sido correcta, llamaremos a la función MailToCustomer
+                //Función enviar mail
+                /* MailToCustomer(formdata); */
             } else {
                 alertify.warning("Cita previamente creada, revise el apartado de sus citas ;)");
                 /* alertify.error("Error:" + respuesta.resultado + " Cita previamente creada, revise sus citas ;)"); */
@@ -161,7 +164,7 @@ function modalCitas() {
     }
 
 }
-
+//Función despliegue de opciones hora del formulario, en base al día.
 function hourOptions() {
     //Fecha
     var fecha_vi = document.getElementById('fecha_vi').value;
@@ -194,3 +197,19 @@ function hourOptions() {
     }
     document.getElementById('hora_vi').innerHTML = horasDispo;
 }
+
+//Función enviar mails al usuario
+//Formdata contiene todos los datos del formulario previamente insertado
+/* function MailToCustomer(formdata) {
+    //inicializamos objeto ajax
+    var ajax = objetoAjax();
+    ajax.open("GET", "mailtocustomer", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            alert("ok");
+        } else {
+            alert("error");
+        }
+    }
+    ajax.send(formdata);
+} */

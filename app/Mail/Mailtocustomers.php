@@ -12,16 +12,17 @@ class Mailtocustomers extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $maildatas;
+    public $sub;
+    public $datas;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($maildatas)
+    public function __construct($datas)
     {
-        $this->maildatas = $maildatas;
+        $this->datas = $datas;
     }
 
     /**
@@ -31,7 +32,8 @@ class Mailtocustomers extends Mailable
      */
     public function build()
     {
-        return $this->view('clinica/vistas/mailtocustomer');
+        return $this->view('clinica/vistas/mailtocustomer')->subject($this->sub);
+        /* return $this->view('clinica/vistas/mailtocustomer', compact('datas')); */
         /* return view('clinica/vistas/citas'); */
     }
 }

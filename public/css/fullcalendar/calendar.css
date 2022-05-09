@@ -120,10 +120,73 @@ header {
 }
 
 
+/*Slider*/
+
+.slider {
+    width: 95%;
+    /*Centrado*/
+    margin: auto;
+    /*Ocultar elementos*/
+    overflow: hidden;
+}
+
+.slider ul {
+    /*Situaremos las fotos al lado de una*/
+    display: flex;
+    /*Sin relleno*/
+    padding: 0;
+    /*4 imagenes*/
+    width: 400%;
+    /*Efecto slider 4 fotos*/
+    animation: cambio 20s infinite;
+}
+
+.slider li {
+    /*Sin estilos de lista*/
+    width: 100%;
+    list-style: none;
+}
+
+.slider img {
+    width: 100%;
+}
+
+@keyframes cambio {
+    0% {
+        margin-left: 0;
+    }
+    20% {
+        margin-left: 0;
+    }
+    25% {
+        margin-left: -100%;
+    }
+    45% {
+        margin-left: -100%;
+    }
+    50% {
+        margin-left: -200%;
+    }
+    70% {
+        margin-left: -200%;
+    }
+    75% {
+        margin-left: -300%;
+    }
+    100% {
+        margin-left: -300%;
+    }
+}
+
+
 /*CALENDARIO*/
 
+.tittlecalendar {
+    margin-top: 50%;
+}
+
 .calendarestructure {
-    margin-top: 8%;
+    margin-top: 1%;
     padding: 1%;
     width: 70%;
     box-shadow: 0px 5px 7px 5px rgba(211, 210, 210, 0.582);
@@ -164,7 +227,7 @@ header {
 .modal-citas-content {
     color: white;
     font-family: 'Courier New', Courier, monospace;
-    background-color: #8590FF;
+    background-color: #5E6DFF;
     margin: auto;
     padding: 1.7%;
     /*border: 1px solid #888;*/
@@ -198,7 +261,7 @@ input[type=submit]:active {
 
 .close {
     color: red;
-    background-color: #8590FF;
+    background-color: #5E6DFF;
     padding: 1%;
     padding-top: 0px;
     padding-bottom: 0px;

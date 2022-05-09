@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Mailtocustomers;
 use App\Models\Citas;
 use Illuminate\Http\Request;
 //Necesario para cualquier query
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CitasController extends Controller
 {
@@ -13,10 +15,11 @@ class CitasController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
-        /**/
+        $this->sendMail();
     }
 
     //Login view
@@ -76,6 +79,8 @@ class CitasController extends Controller
                 $an_asociado = DB::table('tbl_pacienteanimal_clinica')->where('propietario_fk', '=', $id_usuario)->get();
                 $request->session()->put('animales_asociados', $an_asociado);
                 return redirect('/animales_perdidos');
+                $correo = "alfredoblumtorres@gmail.com"; 
+                $this->sendMail();
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('/login');
@@ -115,13 +120,14 @@ class CitasController extends Controller
     public function insertCita(Request $request){
         //Fecha actual
         $today = date("Y-m-d");
-        $request->validate([
+        $datas = $request->validate([
             //Validación de fecha actual o superior
             'fecha_vi' => 'required|date|after_or_equal:today',
             'hora_vi' => 'required|string|max:5',
             'asunto_vi' => 'required|string',
             'id_us' => 'required|integer'
         ]);
+       /*  return $datas; */
         
         try {
             //$checkdatas = DB::select('SELECT fecha_vi, hora_vi FROM tbl_visitia WHERE fecha_vi = ? AND hora_vi = ?', [$request->input('fecha_vi'), $request->input('hora_vi')])->get();
@@ -151,14 +157,22 @@ class CitasController extends Controller
                     $request->input('an_asociado'),
                     $request->input('id_us'),
                     $estadodebug]);
+                    //Envío de mail
+                    $sub = "Confirmación de cita";
+                    $enviar = new Mailtocustomers($datas);
+                    $enviar->sub = $sub;
+                    Mail::to(session('email_session'))->send($enviar);
+                    /* Mail::to(session('email_session'))->send(new Mailtocustomers($datas)); */
                     return response()->json(array('resultado'=> 'OK'));
                 }else{
                     return response()->json(array('resultado'=> 'NOK'));
                 }
             }
-        } catch (\Throwable $th) {
-            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+            /* Mail::to('alfredoblumtorres@gmail.com')->send(new Mailtocustomers); */
+        } catch (\Exception $e) {
+            return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
         }
       }  
+  
 }
 
