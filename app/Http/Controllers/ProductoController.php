@@ -295,13 +295,20 @@ class ProductoController extends Controller
         
 
         $carrito=$request->session()->get('cart');
-
+        foreach ($carrito as $item_Compra) {
+           print_r($item_Compra);
+           echo "<br>";
+            echo "<br>";
+            $total_factura= $total_factura + ($item_Compra['cantidad']*$item_Compra['precio']);
+        }
+        /*
         for ($i=1; $i < (count($carrito)+1); $i++) { 
             print_r($carrito[$i]);
             echo "<br>";
             echo "<br>";
             $total_factura= $total_factura + ($carrito[$i]['cantidad']*$carrito[$i]['precio']);
         }
+        */
         
         echo $total_factura." -> Total factura" ;
         echo "<br>";
@@ -325,10 +332,16 @@ class ProductoController extends Controller
             'id_promocion_fk'=>$id_promocion_fk,
             'id_usuario_fk'=>$id_user_session ]);
 
+        foreach ($carrito as $item_compra) {
+            DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
+            [$item_compra['id'],$item_compra['cantidad'],$id_factura_tienda]);
+        }
+        /*
         for ($i=1; $i < (count($carrito)+1); $i++) {
             DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
             [$carrito[$i]['id'],$carrito[$i]['cantidad'],$id_factura_tienda]);
         }
+        */
         $request->session()->forget('cart');
         return redirect('comprafinalizada');
     }
