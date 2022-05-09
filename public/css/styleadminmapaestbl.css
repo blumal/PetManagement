@@ -7,7 +7,7 @@
 
 body {
     padding: 0.5%;
-    text-align: center;
+    /*  text-align: center; */
 }
 
 .head_admin {
@@ -112,12 +112,17 @@ th {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     /* Could be more or less, depending on screen size */
+    /* text-align: center; */
+}
+
+#contenido {
+    text-align: center;
 }
 
 
@@ -125,7 +130,7 @@ th {
 
 .close {
     color: #aaa;
-    float: right;
+    float: right !important;
     font-size: 28px;
     font-weight: bold;
 }
@@ -137,18 +142,6 @@ th {
     cursor: pointer;
 }
 
-.an_div {
-    padding: 25px;
-    width: 80%;
-    margin-left: 10%;
-    border-radius: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
+.content_up {
     text-align: center;
-}
-
-.ver_an {
-    text-align: center;
-    margin-top: 25px;
 }

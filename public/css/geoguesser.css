@@ -22,10 +22,6 @@ a {
 
 
 /* ---------- HEADER ---------- */
-/* ul{
-    margin-top: 0;
-    margin-bottom: 0rem;
-} */
 
 header {
     height: auto;
@@ -38,13 +34,15 @@ header {
     align-items: center;
     padding: 0 5%;
     box-sizing: border-box;
-    height: 100px;
     transition: 0.5s;
+    height: 100px;
     z-index: 999;
+    background-color: #8590ff;
 }
 
 .logo {
     height: 90%;
+    width: 7%;
 }
 
 .scrolled-search {
@@ -83,7 +81,7 @@ header {
 .cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: var(--main-color);
+    background-color: #1f2cc4;
     color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
@@ -96,51 +94,44 @@ header {
     background-color: #000000;
 }
 
-.filtro {
-    display: flex;
-    width: 100%;
-    height: 5%;
-    justify-content: center;
-    margin-top: 8%;
+.img_geo {
     text-align: center;
+    margin-top: 10%;
+    width: 100%;
 }
 
-.btn_filtro {
-    width: 100px;
-    height: 100%;
-    color: white;
-    background-color: #1f2cc4;
-    border: 10px;
-    border-radius: 7px;
-    margin: 1%;
+h1 {
+    font-size: 66px;
+    color: #DE36E5;
+}
+
+.jugar {
     text-align: center;
-    justify-content: center;
+    margin-top: 5%;
+}
+
+.btn_jugar {
+    color: #363DE5;
+    background-color: transparent;
+    text-align: center;
+    font-size: 48px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    width: 15%;
+    border-color: #363DE5;
     cursor: pointer;
 }
 
-.btn_filtro:hover {
-    background-color: black;
+.btn_jugar:hover {
+    color: white;
+    background-color: #363DE5;
+    border-color: #25299d;
     transition: 0.5s;
 }
 
-.classtype {
-    transform: scale(1.12);
-    -webkit-animation-timing-function: cubic-bezier(.075, .82, .165, 1);
-    animation-timing-function: cubic-bezier(.075, .82, .165, 1);
-    box-shadow: 0 2px 17px 0 #000000;
-    outline: none;
-}
-
-.btn_rut {
-    border-radius: 5px;
-    border-color: transparent;
-    color: #ffffff;
-    background-color: rgb(40, 125, 204);
-    width: 48%;
-    cursor: pointer;
-    margin: 1%;
-}
-
-.btn_rut:hover {
-    border-color: rgb(67, 40, 204);
+#map {
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
 }

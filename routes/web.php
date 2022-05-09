@@ -30,6 +30,8 @@ Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
 Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
 
+Route::get('filtromarkersEstablecimientos', [mapas::class,'filtromarkersEstablecimientos']);
+
 Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
 
 Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);
@@ -80,8 +82,15 @@ Route::get('entretenimiento', function () {
 
 Route::get('/login', [CitasController::class, 'login']);
 Route::post('/login-proc', [CitasController::class, 'loginProc']);
+Route::post('/regis-proc', [CitasController::class, 'regisProc']);
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [CitasController::class, 'logout']);
+//geoguesser
+Route::get('/geoguesser', [mapas::class, 'geoguesser']);
+//geoguesser
+Route::get('geoguesser-game', [mapas::class, 'geoguessergame']);
+//AJAX Geoguesser
+Route::get('geoguesser_ajax', [mapas::class,'geoguesser_ajax']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
 //Cpanel

@@ -6,9 +6,10 @@
     color: #333333;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
+
 
 /*header*/
 
@@ -93,8 +94,6 @@ ul{
 html {
     scroll-behavior: smooth;
 }
-
-body {}
 
 .div-1 {
     margin: 5%;

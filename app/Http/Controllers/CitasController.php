@@ -126,6 +126,59 @@ class CitasController extends Controller
         return redirect('');
     } */
 
+    public function regisProc(Request $request){
+        //return $request;
+        //Validación de datos enviados desde el form, en este caso se verifica en el server
+        $request->validate([
+            'email_us' => 'required|string|max:70',
+            'pass_us' => 'required|string|max:50'
+        ]);
+
+        try {
+            //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            $request->except('_token', '_method');
+            //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
+            if ($request->input('pass_us')==$request->input('pass2_us')){
+                $pwd = hash( 'sha256', $request->input('pass_us') );
+                DB::insert('insert into tbl_direccion (nombre_di, numero_di, bloque_di, piso_di, puerta_di, cp_di) values (?, ?. ?, ?, ?, ?)', 
+                    [$request->input('dir_us'), 
+                    $request->input('ndir_us'), 
+                    $request->input('bdir_us'), 
+                    $request->input('pdir_us'), 
+                    $request->input('padir_us'), 
+                    $request->input('cpdir_us')]);
+                $id_dir = DB::getPdo()->lastInsertId();
+                DB::insert('insert into tbl_telefono (nombre_di, numero_di) values (?, ?)', 
+                        [$request->input('dir_us'), 
+                        $request->input('ndir_us')]);
+                $id_telf = DB::getPdo()->lastInsertId();
+                DB::insert('insert into tbl_usuario (nombre_us, apellido1_us, apellido2_us, dni_us, email_us, pass_us, id_rol_fk, id_direccion1_fk, id_telelefono_fk) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+                    [$request->input('name_us'), 
+                    $request->input('apellido_us'), 
+                    $request->input('apellido2_us'), 
+                    $request->input('dni_us'), 
+                    $request->input('email_us'), 
+                    $pwd, 
+                    2, 
+                    $id_dir, 
+                    $id_telf]);
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $request->input('email_us'))->where('pass_us', '=', $pwd)->get();
+                $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
+                $request->session()->put('cliente_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                $request->session()->put('id_rol_session', $rol_usuario);
+                return redirect('/');
+            }else {
+                //No establecemos sesión y lo devolvemos a login
+                return redirect('/registro');
+            }
+        } catch (\Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+
     //Vista citas
     public function Citas(){
         return view('clinica/vistas/citas');
