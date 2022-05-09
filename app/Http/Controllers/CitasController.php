@@ -61,7 +61,7 @@ class CitasController extends Controller
                 $id_usuario=$usuario[0]->id_us;
                 $request->session()->put('email_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
-                return redirect('/citas');
+                return redirect('/');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
@@ -78,9 +78,7 @@ class CitasController extends Controller
                 //Envíamos los registros del usuario que ha iniciado sesión
                 $an_asociado = DB::table('tbl_pacienteanimal_clinica')->where('propietario_fk', '=', $id_usuario)->get();
                 $request->session()->put('animales_asociados', $an_asociado);
-                return redirect('/animales_perdidos');
-                $correo = "alfredoblumtorres@gmail.com"; 
-                $this->sendMail();
+                return redirect('/');
             }else{
                 //No establecemos sesión y lo devolvemos a login
                 return redirect('/login');
