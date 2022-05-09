@@ -11,6 +11,10 @@ use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\DB;
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +76,8 @@ Route::post('/login-proc', [CitasController::class, 'loginProc']);
 Route::get('/logout', [CitasController::class, 'logout']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
+//Mail a cliente
+Route::get('mailtocustomer', [Mailtocustomers::class, '']);
 //Cpanel
 Route::get('/cpanel', [CitasController::class, 'cpanel']);
 //Rutas cpanel
