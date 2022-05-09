@@ -1,7 +1,7 @@
 window.onload = function() {
-        cords_click = null;
-        valor_geo = document.getElementById('valor_cons_geo').value;
-        geoguesser(cords_click);
+        /* cords_click = null;
+        valor_geo = document.getElementById('valor_cons_geo').value; */
+        geoguesser( /* cords_click */ );
     }
     /* if (!alertify.ok) {
         //define a new dialog
@@ -72,16 +72,16 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoibGF1cmFmZXJuYW5kZXoxODIiLCJhIjoiY2wwYjg0MTRqMDhpYTNkbWp6ajlscHlkOCJ9.Cdxv8cBGcFJsPag19TXOVQ'
 }).addTo(map);
 
-function geoguesser(cords_click) {
+function geoguesser( /* cords_click */ ) {
     var formData = new FormData();
     //Enviamso el token
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     //Enviamos el metodo que en este caso es get
     formData.append('_method', 'get');
     //Nivel animal
-    formData.append('nivel', valor_geo);
+    /* formData.append('nivel', valor_geo);
     var datos_an = document.getElementById('img_geo');
-    arr_codes = [];
+    arr_codes = []; */
     /* Inicializar un objeto AJAX */
     var ajax = objetoAjax();
     ajax.open("POST", "geoguesser_ajax", true);
@@ -89,21 +89,21 @@ function geoguesser(cords_click) {
         if (ajax.readyState == 4 && ajax.status == 200) {
             //recogemos los datos que nos devuelve el json en la variable respuesta
             var respuesta = JSON.parse(this.responseText);
-            if (respuesta == '') {
-                /* alertify
-                    .alert("Se ha acabado el juego.", function() {
-                        alertify.message('OK');
-                    }); */
-                /* alertify.final("Se ha acabdo el juego!"); */
-                /* alertify.warning('Se ha acabdo el juego!'); */
-                /* alert('Se ha acabado el juego.'); */
-                /* swal({
-                    title: "Se ha acabado el juego.",
-                    text: "Se te redigirá a otra página en 5 segundos.",
-                    timer: 5000,
-                    showConfirmButton: true
+            /* if (respuesta == '') { */
+            /* alertify
+                .alert("Se ha acabado el juego.", function() {
+                    alertify.message('OK');
                 }); */
-                swal.fire({
+            /* alertify.final("Se ha acabdo el juego!"); */
+            /* alertify.warning('Se ha acabdo el juego!'); */
+            /* alert('Se ha acabado el juego.'); */
+            /* swal({
+                title: "Se ha acabado el juego.",
+                text: "Se te redigirá a otra página en 5 segundos.",
+                timer: 5000,
+                showConfirmButton: true
+            }); */
+            /* swal.fire({
                     title: "Se ha acabado el juego!!",
                     text: "Se te redigirá a otra página en cinco segundos",
                     icon: "success",
@@ -114,63 +114,96 @@ function geoguesser(cords_click) {
                 setTimeout(function() {
                     window.location.href = "geoguesser";
                 }, 5000);
-            } else {
-                /* var geocoder = L.esri.Geocoding.geocodeService(); */
-                var recarga = '';
-                for (let i = 0; i < respuesta.length; i++) {
-                    /* console.log(i) */
-                    /* console.log(respuesta[i]); */
-                    /* console.log('Codigo pais: ' + respuesta[i].codigo_pais_dir_geo); */
-                    /* console.log('Codigo país click: ' + cords_click); */
-                    if (arr_codes.includes(respuesta[i].codigo_pais_dir_geo)) {
-
-                    } else {
-                        arr_codes.push(respuesta[i].codigo_pais_dir_geo);
-                    }
-                    if (recarga.includes('<p>' + respuesta[i].nombre_geo + '</p>')) {
-
-                    } else {
-                        recarga += '<p>' + respuesta[i].nombre_geo + '</p>';
-                    }
-                    if (recarga.includes('<img class="img_an" src="' + respuesta[i].img_geo + '">')) {
-
-                    } else {
-                        recarga += '<img class="img_an" src="' + respuesta[i].img_geo + '">';
-                    }
-                    /* onsole.log(valor_geo); */
-                    /* geocoder.geocode().text(respuesta[i].direccion_dir_geo).run(function(error, response) {
-                        cooordenadas = response.results[0].latlng;
-                    }) */
-                    /* console.log('Distancia: ' + respuesta[i].radio_dir_geo + ' . Coordenadas click: ' + cords_click.lat + ',' + cords_click.lng);
-                    console.log('Coordenadas lugar: ' + cooordenadas.lat + ',' + cooordenadas.lng);
-                    distancia_lugar = map.distance(cords_click, cooordenadas);
-                    console.log('Distancia: ' + distancia_lugar);
-                    //cambio tipos distinto puede ser el problema
-                    if (parseInt(respuesta[i].radio_gir_geo) < parseInt(distancia_lugar)) {
-                        console.log('ok');
-                        break;
-                    } else {
-                        console.log('nok');
-                    } */
-                    /* if (cords_click == null) {
-
-                    } else if (cords_click == respuesta[i].codigo_pais_dir_geo) {
-                        alert('Has acertado');
-                    } else {
-                        alert('Has fallado');
-                        i--;
-                    } */
+            } else { */
+            /* var geocoder = L.esri.Geocoding.geocodeService(); */
+            /* var recarga = ''; */
+            var animales = new Map();
+            keys = [];
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+            for (let i = 0; i < respuesta.length; i++) {
+                if (animales.get(respuesta[i].nombre_geo) == undefined) {
+                    animales.set(respuesta[i].nombre_geo, [respuesta[i].img_geo, [respuesta[i].codigo_pais_dir_geo]]);
+                    /* valor = animales.get(respuesta[i].nombre_geo); */
+                    /* valor[1].push(respuesta[i].codigo_pais_dir_geo) */
+                    /* animales.set(respuesta[i].nombre_geo, valor); */
+                    console.log(animales.get(respuesta[i].nombre_geo));
+                } else {
+                    valor = animales.get(respuesta[i].nombre_geo);
+                    valor[1].push(respuesta[i].codigo_pais_dir_geo)
+                    animales.set(respuesta[i].nombre_geo, valor);
                 }
-                datos_an.innerHTML = recarga;
-                /* console.log(recarga); */
-                console.log('Codigo país click: ' + cords_click);
-                console.log('Array paises: ' + arr_codes);
-                if (cords_click == null) {
+                if (!keys.includes(respuesta[i].nombre_geo)) {
+                    keys.push(respuesta[i].nombre_geo);
+                }
+                console.log(animales[i]);
+                /* array_animal.respuesta.nombre_geo = [];
+                array_pais_animal[i] = [];
+                if (array_animal[i].includes(respuesta.nombre_geo)) {} else {
+                    array_animal[i].push(respuesta.nombre_geo);
+                }
+                if (array_animal[i].includes(respuesta.img_geo)) {} else {
+                    array_animal[i].push(respuesta.img_geo);
+                }
+                if (respuesta.nombre_geo == respuesta.nombre_geo) {
+                    array_pais_animal[i].push(respuesta.codigo_pais_dir_geo);
+                } */
+                /* console.log(i) */
+                /* console.log(respuesta[i]); */
+                /* console.log('Codigo pais: ' + respuesta[i].codigo_pais_dir_geo); */
+                /* console.log('Codigo país click: ' + cords_click); */
+                /* if (arr_codes.includes(respuesta[i].codigo_pais_dir_geo)) {
 
                 } else {
-                    comprobarAnimal(cords_click, arr_codes);
+                    arr_codes.push(respuesta[i].codigo_pais_dir_geo);
                 }
+                if (recarga.includes('<p>' + respuesta[i].nombre_geo + '</p>')) {
+
+                } else {
+                    recarga += '<p>' + respuesta[i].nombre_geo + '</p>';
+                }
+                if (recarga.includes('<img class="img_an" src="' + respuesta[i].img_geo + '">')) {
+
+                } else {
+                    recarga += '<img class="img_an" src="' + respuesta[i].img_geo + '">';
+                } */
+                /* onsole.log(valor_geo); */
+                /* geocoder.geocode().text(respuesta[i].direccion_dir_geo).run(function(error, response) {
+                    cooordenadas = response.results[0].latlng;
+                }) */
+                /* console.log('Distancia: ' + respuesta[i].radio_dir_geo + ' . Coordenadas click: ' + cords_click.lat + ',' + cords_click.lng);
+                console.log('Coordenadas lugar: ' + cooordenadas.lat + ',' + cooordenadas.lng);
+                distancia_lugar = map.distance(cords_click, cooordenadas);
+                console.log('Distancia: ' + distancia_lugar);
+                //cambio tipos distinto puede ser el problema
+                if (parseInt(respuesta[i].radio_gir_geo) < parseInt(distancia_lugar)) {
+                    console.log('ok');
+                    break;
+                } else {
+                    console.log('nok');
+                } */
+                /* if (cords_click == null) {
+
+                } else if (cords_click == respuesta[i].codigo_pais_dir_geo) {
+                    alert('Has acertado');
+                } else {
+                    alert('Has fallado');
+                    i--;
+                } */
             }
+            console.log(animales);
+            /* console.log(Object.entries(animales)); */
+            random(animales, keys);
+            /* datos_an.innerHTML = recarga; */
+            /* console.log(recarga); */
+            /* console.log('Codigo país click: ' + cords_click);
+            console.log('Array paises: ' + arr_codes);
+            if (cords_click == null) {
+
+            } else {
+                comprobarAnimal(cords_click, arr_codes);
+            } */
+
+            /* } */
         }
     }
     ajax.send(formData);
@@ -187,52 +220,52 @@ lng = e.latlng.lng.toString(); */
     geoguesser(cords_click);
 } */
 
-function comprobarAnimal(cords_click, arr_codes) {
+/* function comprobarAnimal(cords_click, arr_codes) {
     for (let i = 0; i < arr_codes.length; i++) {
-        if (cords_click == arr_codes[i]) {
-            /* alertify
-                .alert("Has acertado!", function() {
-                    alertify.message('Continuar');
-                }); */
-            /* alertify.confirm('', 'Has acertado', function() { alertify.success('Ok') }); */
-            /* alertify.ok('Has acertado!'); */
-            /* alert('Has acertado!'); */
-            /* swal("Has acertado!", "success"); */
-            swal.fire({
-                title: "Has acertado!!",
-                icon: "success",
-                timer: 2000,
-                showConfirmButton: false,
-                allowOutsideClick: false
-            });
-            /* swal({
-                title: "Has acertado!!",
-                text: "Se te redigirá a otra página en 5 segundos.",
-                timer: 5000,
-                showConfirmButton: true
-            }); */
-            console.log('Correcto');
-            valor_geo++;
-            console.log('valor geo: ' + valor_geo);
-            /* arr_codes = [];
-            console.log('Array vacio: ' + arr_codes); */
-            cords_click = null;
+        if (cords_click == arr_codes[i]) { */
+/* alertify
+    .alert("Has acertado!", function() {
+        alertify.message('Continuar');
+    }); */
+/* alertify.confirm('', 'Has acertado', function() { alertify.success('Ok') }); */
+/* alertify.ok('Has acertado!'); */
+/* alert('Has acertado!'); */
+/* swal("Has acertado!", "success"); */
+/* swal.fire({
+    title: "Has acertado!!",
+    icon: "success",
+    timer: 2000,
+    showConfirmButton: false,
+    allowOutsideClick: false
+}); */
+/* swal({
+    title: "Has acertado!!",
+    text: "Se te redigirá a otra página en 5 segundos.",
+    timer: 5000,
+    showConfirmButton: true
+}); */
+/* console.log('Correcto');
+valor_geo++;
+console.log('valor geo: ' + valor_geo); */
+/* arr_codes = [];
+console.log('Array vacio: ' + arr_codes); */
+/* cords_click = null;
             recarga = '';
             setTimeout(function() {
                 geoguesser(cords_click);
             }, 2000);
         } else if (cords_click == null) {
 
-        } else {
-            /* alertify
-                .alert("Has fallado!", function() {
-                    alertify.message('Probar de nuevo');
-                }); */
-            /* alertify.confirm('', 'Has fallado', function() { alertify.success('Ok') }); */
-            /* alertify.ok('Has fallado, prueba de nuevo!'); */
-            /* arr_codes = []; */
-            /* alert('Has fallado!'); */
-            swal.fire({
+        } else { */
+/* alertify
+    .alert("Has fallado!", function() {
+        alertify.message('Probar de nuevo');
+    }); */
+/* alertify.confirm('', 'Has fallado', function() { alertify.success('Ok') }); */
+/* alertify.ok('Has fallado, prueba de nuevo!'); */
+/* arr_codes = []; */
+/* alert('Has fallado!'); */
+/* swal.fire({
                 title: "Has fallado!!",
                 icon: "error",
                 timer: 2000,
@@ -247,7 +280,7 @@ function comprobarAnimal(cords_click, arr_codes) {
             }, 2000);
         }
     }
-}
+} */
 
 
 map.on('click', function(e) {
@@ -258,7 +291,7 @@ map.on('click', function(e) {
     geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
         console.log('code click: ' + result.address.CountryCode);
         cords_click = result.address.CountryCode;
-        geoguesser(cords_click);
+        /* geoguesser(cords_click); */
         /* if (error) {
             return;
         }
@@ -266,3 +299,23 @@ map.on('click', function(e) {
         L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup(); */
     });
 });
+
+function random(animales, keys) {
+    var array_random = [];
+    for (let i = 0; i < animales.size; i++) {
+        array_random.push(i);
+    }
+    console.log(array_random);
+    rnd_ord = keys.sort(function(a, b) { return 0.5 - Math.random() });
+    console.log(rnd_ord);
+    var rand_animales = new Map();
+    for (let i = 0; i < rnd_ord.length; i++) {
+        rand_animales.set(rnd_ord[i], animales.get(rnd_ord[i]));
+    }
+    console.log(rand_animales);
+    for (let i = 0; i < rand_animales.length; i++) {
+        rand_animales[i].forEach((values, keys) => {
+            console.log(keys + ' img: ' + values[0] + ' paises: ' + values[1])
+        })
+    }
+}

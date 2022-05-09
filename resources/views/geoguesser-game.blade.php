@@ -35,7 +35,7 @@
                 <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
         </ul>
     </header>
-    <input type="hidden" id="valor_cons_geo" value="1">
+    {{-- <input type="hidden" id="valor_cons_geo" value="1"> --}}
     <div id="map">
         <div class="img_geo" id="img_geo">
             {{-- <h3>Tigre</h3>
