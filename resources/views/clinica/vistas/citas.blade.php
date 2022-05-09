@@ -48,11 +48,24 @@
     <div class="row-c flex">
         <div class="slider">
            <ul>
-               <li><img src="{{url("img/visitas/slider1.jpeg")}}" alt=""></li>
-               <li><img src="{{url("img/visitas/slider2.jpeg")}}" alt=""></li>
-               <li><img src="{{url("img/visitas/slider1.jpeg")}}" alt=""></li>
-               <li><img src="{{url("img/visitas/slider2.jpeg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider1.jpg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider2.jpg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider3.jpg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider4.jpg")}}" alt=""></li>
            </ul>
+        </div>
+    </div>
+    <div class="row-c flex">
+        <div class="info-citas column-1">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta deleniti quo eaque dolore nobis iure cupiditate quam quis recusandae deserunt ullam corrupti quaerat ab amet, a repellendus fugiat hic eligendi.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid voluptates consectetur, provident aut laborum sapiente optio placeat accusamus labore tempora iure eveniet ipsum cum numquam, expedita deserunt id, eius porro.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, autem nesciunt sed beatae consequatur nemo. Cum neque, ad impedit, soluta nam, quos provident aut earum sint odit error voluptate magni.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, enim. Minus doloremque dolor harum illum esse corrupti ducimus dolores dolore veritatis facere sequi, temporibus, ullam, consectetur cum nam eaque nulla.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta deleniti quo eaque dolore nobis iure cupiditate quam quis recusandae deserunt ullam corrupti quaerat ab amet, a repellendus fugiat hic eligendi.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid voluptates consectetur, provident aut laborum sapiente optio placeat accusamus labore tempora iure eveniet ipsum cum numquam, expedita deserunt id, eius porro.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, autem nesciunt sed beatae consequatur nemo. Cum neque, ad impedit, soluta nam, quos provident aut earum sint odit error voluptate magni.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, enim. Minus doloremque dolor harum illum esse corrupti ducimus dolores dolore veritatis facere sequi, temporibus, ullam, consectetur cum nam eaque nulla.
+            </p>
         </div>
     </div>
     <div class="row-c flex">
