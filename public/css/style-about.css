@@ -8,7 +8,7 @@
 
 body{
     position: relative;
-    background: linear-gradient(transparent, rgb(31, 45, 196));
+    background: linear-gradient(transparent, #8590ff);
     
 }
 
@@ -43,6 +43,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+a{
+    text-decoration: none !important;
 }
 
 /* ---------- HEADER ---------- */
@@ -89,7 +93,6 @@ header{
 }
 
 .menu-item:hover{
-    border:2px solid white;
     color: #ffffff;
     background-color: #000000;
     border-radius: 30px;

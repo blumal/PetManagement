@@ -1,3 +1,10 @@
+<!--Método comprobación de sesión-->
+@if (!Session::get('email_session'))
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +15,13 @@
     <script src="../public/js/ajax.js"></script>
     <script src="../public/js/code.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/css/stylecrud.css">
+    <link rel="stylesheet" href="{{asset('css/stylecrud.css')}}">
     <title>Document</title>
 </head>
 <body>
-
+    <form action="{{url('/cpanel')}}" method="GET">
+        <button type="submit" value="logout" class="btn btn-info">Back</button><br><br>
+    </form>
     <div class="crear" id="boton">
         <button class="crear_input" name="Crear" value="Crear" id="botoncrear" onclick="abrirmodal_crear(); return false;" ><b><i class="fa-solid fa-circle-plus"></i> CREAR</b></button>
     </div>
