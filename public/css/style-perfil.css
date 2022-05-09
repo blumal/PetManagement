@@ -156,7 +156,7 @@ span{
 
 /* ---------- HEADER ---------- */
 
-header{
+header {
     height: auto;
     width: 100%;
     position: fixed;
@@ -171,29 +171,27 @@ header{
     transition: 0.5s;
 }
 
-.logo{
-    padding-top: 15px;
-    height: 90%;
+.logo {
+    height: 80%;
 }
 
-.scrolled-search{
+ul{
+    margin-bottom: 0rem;
+}
+
+.scrolled-search {
     opacity: 1;
     pointer-events: all;
 }
 
-ul{
-    margin-top: 0;
-    margin-bottom: 0rem;
-}
-
-.main-menu{
+.main-menu {
     display: flex;
     list-style-type: none;
     justify-content: center;
     align-items: center;
 }
 
-.menu-item{
+.menu-item {
     margin: 0 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -201,17 +199,17 @@ ul{
     color: #000000;
 }
 
-.menu-item:hover{
+.menu-item:hover {
     color: #ffffff;
     background-color: #000000;
     border-radius: 30px;
     padding: 10px 24px;
 }
 
-.cta{
+.cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: #1f2cc4;
+    background-color: var(--main-color);
     color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
@@ -219,7 +217,23 @@ ul{
     transition: 0.5s;
 }
 
-.cta:hover{
+.cta:hover {
     color: #ffffff;
     background-color: #000000;
+}
+
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
 }

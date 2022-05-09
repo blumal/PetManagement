@@ -53,7 +53,7 @@ a{
 
 /* ---------- HEADER ---------- */
 
-header{
+header {
     height: auto;
     width: 100%;
     position: fixed;
@@ -68,25 +68,24 @@ header{
     transition: 0.5s;
 }
 
-.logo{
+.logo {
     padding-top: 15px;
     height: 90%;
 }
 
-.scrolled-search{
+.scrolled-search {
     opacity: 1;
     pointer-events: all;
 }
 
-.main-menu{
-    border-color: #000000;
+.main-menu {
     display: flex;
     list-style-type: none;
     justify-content: center;
     align-items: center;
 }
 
-.menu-item{
+.menu-item {
     margin: 0 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -94,16 +93,14 @@ header{
     color: #000000;
 }
 
-.menu-item:hover{
+.menu-item:hover {
     color: #ffffff;
     background-color: #000000;
     border-radius: 30px;
     padding: 10px 24px;
 }
 
-.cta{
-    border-color: white;
-    border-width: 1px;
+.cta {
     padding: 10px 24px;
     border-radius: 30px;
     background-color: var(--main-color);
@@ -112,12 +109,27 @@ header{
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
-    
 }
 
-.cta:hover{
+.cta:hover {
     color: #ffffff;
     background-color: #000000;
+}
+
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
 }
 
 /* ---------- CENTRO ---------- */

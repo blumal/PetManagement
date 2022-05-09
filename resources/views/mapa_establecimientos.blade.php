@@ -14,26 +14,39 @@
     <link rel="stylesheet" href="{{asset('css/mapas-establecimientos.css')}}">
 </head>
 <body>
-
-    <div id="map">
-        <header id="Header">
-            <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-            <!--Menu header-->
-            <ul class="main-menu">
-                <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
-                <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
-                <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
-                <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
-                <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-                <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
-                <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
-                @if (Session::get('email_session'))
-                <a href="{{url("logout")}}" method="get"><li class="cta">Logout</li></form></a>
+    <header id="Header">
+        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <!--Menu header-->
+        <ul class="main-menu">
+            @if (Session::get('cliente_session'))
+                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
+                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                </form>
+                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
             @else
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
             @endif
-            </ul>
-        </header>
+        </ul>
+        <script src="./js/home.js"></script>
+    </header>
+    <div id="map">
+        
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="

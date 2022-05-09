@@ -72,6 +72,10 @@ Route::get('login/contraseña', function () {
     return view('login/contraseña');
 });
 
+Route::get('entretenimiento', function () {
+    return view('entretenimiento');
+});
+
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 Route::get('/login', [CitasController::class, 'login']);
@@ -157,6 +161,10 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
+
+//Actualizar Perfil usuario
+Route::get('modificarPerfil', [CitasController::class, 'modificarPerfil']);
+Route::post('modificarPerfilPost',[CitasController::class, 'modificarPerfilPost']);
 
 
 //Api

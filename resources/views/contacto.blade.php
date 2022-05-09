@@ -10,6 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--Librería Alertify-->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+    <script src="./js/valid_contacto.js"></script>
     <title>LOGIN</title>
     <link rel="icon" href="./img/imagenesWeb/logo.png">
 
@@ -17,53 +22,63 @@
 </head>
 
 <body>
-    <header id="Header" style="background-color: transparent;">
+    <header id="Header">
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
         <ul class="main-menu">
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public" method="get"><li class="menu-item">Home</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/tienda" method="get"><li class="menu-item">Tienda</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/citas" method="get"><li class="menu-item">Clínica</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/contacto" method="get"><li class="menu-item">Contacto</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/about" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_animales_perdidos" method="get"><li class="menu-item">Perdidos</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_establecimientos" method="get"><li class="menu-item">Establecimientos</li></a>
-            @if (Session::get('email_session'))
-                <a href="{{url("logout")}}" method="get"><li class="cta">Logout</li></form></a>
+            @if (Session::get('cliente_session'))
+                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
+                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                </form>
+                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
             @else
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
             @endif
         </ul>
         <script src="./js/home.js"></script>
     </header>
     <div class="row-c flex">
         <div class="column-2">
-            
-                <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
-                    <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%;">
-                        <form action="" method="post">
-                            <input type="hidden" name="_token" value="1LNjq4DrhkFR5EQO4YO2OEnfA0l7dQydHoO5tDjx">                            <div class="form-group text-center pt-3">
-                                <h1 class="text-light">Consultanos cualquier duda que tengas!</h1>
-                            </div>
-                            <div class="form-group mx-sm-4 pb-2">
-                                <input type="text" class="form-control" placeholder="Nombre" name="nombre">
-                            </div>
-                            <div class="form-group mx-sm-4 pb-2">
-                                <input type="password" class="form-control" placeholder="Apellido" name="Apellido">
-                            </div>
-                            <div class="form-group mx-sm-4 pb-2">
-                                <input type="password" class="form-control" placeholder="Correo" name="Correo">
-                            </div>
-                            <div class="form-group mx-sm-4 pb-2">
-                                <textarea class="form-control" placeholder="Mensaje" name="Mensaje" id="Mensaje" cols="30" rows="5.5"></textarea>
-                            </div>
-                            <div class="form-group mx-sm-4 pb-4">
-                                <input type="submit" class="btn btn-block ingresar" value="ENVIAR">
-                            </div>
-                        </form>
-                    </div>
+            <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
+                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%;">
+                    <form {{-- action="{{url('')}}" --}} method="post" onsubmit="return validateContacto();">
+                        <div class="form-group text-center pt-3">
+                            <h1 class="text-light">Consultanos cualquier duda que tengas!</h1>
+                        </div>
+                        <div class="form-group mx-sm-4 pb-2">
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+                        </div>
+                        <div class="form-group mx-sm-4 pb-2">
+                            <input type="text" class="form-control" id="apellido" placeholder="Apellido" name="Apellido">
+                        </div>
+                        <div class="form-group mx-sm-4 pb-2">
+                            <input type="email" class="form-control" id="correo" placeholder="Correo" name="Correo">
+                        </div>
+                        <div class="form-group mx-sm-4 pb-2">
+                            <textarea class="form-control" placeholder="Mensaje" name="Mensaje" id="mensaje" cols="30" rows="5.5"></textarea>
+                        </div>
+                        <div class="form-group mx-sm-4 pb-4">
+                            <input type="submit" class="btn btn-block ingresar" value="ENVIAR">
+                        </div>
+                    </form>
                 </div>
-            
+            </div>
         </div>
         <div class="column-2">
             <div class="container">

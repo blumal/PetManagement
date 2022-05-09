@@ -77,8 +77,8 @@ header {
 }
 
 .logo {
-    padding-top: 15px;
-    height: 90%;
+    padding-top: 9.5px;
+    height: 80%;
 }
 
 .scrolled-search {
@@ -124,6 +124,21 @@ header {
     background-color: #000000;
 }
 
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
+}
 
 /*CALENDARIO*/
 

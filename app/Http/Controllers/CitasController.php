@@ -31,6 +31,30 @@ class CitasController extends Controller
         return redirect('/');
     }
 
+    //Funcion para que el usuario modifique su perfil
+    public function modificarPerfil(Request $request){
+        $id=session('id_user_session');
+        $profile = DB::select("select * FROM tbl_usuario
+        INNER JOIN tbl_rol ON tbl_usuario.id_rol_fk=tbl_rol.id_ro
+        INNER JOIN tbl_telefono on tbl_usuario.id_telefono_fk=tbl_telefono.id_tel
+        INNER JOIN tbl_direccion on tbl_usuario.id_direccion1_fk=tbl_direccion.id_di
+        where id_us={$id}");
+        return view('perfil',compact('profile'));
+    }
+
+    public function modificarPerfilPost(Request $request){
+        $datos=$request->except('_token','_method');
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_usuario')->where('id_us','=',$datos['id_us'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('perfil');
+    }
+
     //Método encargado de hacer el proceso de login
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
     public function loginProc(Request $request)
@@ -57,7 +81,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('trabajador_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/citas');
@@ -66,7 +90,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('admin_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/cpanel');
@@ -75,7 +99,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('cliente_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/');

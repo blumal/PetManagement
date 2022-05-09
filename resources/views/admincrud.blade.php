@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('email_session'))
+@if (!Session::get('admin_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -16,17 +16,17 @@
     <script src="../public/js/code.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/stylecrud.css')}}">
-    <title>Document</title>
+    <title>AdminCrudTienda</title>
 </head>
 <body>
     <form action="{{url('/cpanel')}}" method="GET">
         <button type="submit" value="logout" class="btn btn-info">Back</button><br><br>
     </form>
-    <div class="crear" id="boton">
-        <button class="crear_input" name="Crear" value="Crear" id="botoncrear" onclick="abrirmodal_crear(); return false;" ><b><i class="fa-solid fa-circle-plus"></i> CREAR</b></button>
-    </div>
     <div>
-        <form method="post" onsubmit="return false;">
+        <form class="crear" id="boton">
+            <a name="Crear" value="Crear" id="botoncrear" onclick="abrirmodal_crear(); return false;">CREAR</a>
+        </form>
+        <form class="filtro" method="post" onsubmit="return false;">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
                <input type="search" id="search" name="nombre_art" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
@@ -36,7 +36,7 @@
 
     <div>
         <table class="table" id="table">
-            <tr>
+            <tr class="fila-1">
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
@@ -47,7 +47,7 @@
                 <th scope="col" colspan="2">Acciones</th>
             </tr>
             @forelse ($listaProducto as $prod)
-            <tr>
+            <tr class="fila-2">
                 <td scope="row">{{$prod->id_art}}</td>
                 <td>{{$prod->nombre_art}}</td> 
                 <td>{{$prod->descripcion_art}}</td>
@@ -73,10 +73,14 @@
             @endforelse
         </table>
     </div>
+
+    {{-- Modal para editar el producto --}}
     <div class="modalbox_editar" id="modalbox_editar">
-        <div class="modaleditar" id="modaleditar">
+        <div class="modaleditar_header">
             <span class="close" onclick="closeModal_editar(); return false;">&times;</span>             
-            <h2><b>EDITAR PRODUCTO</b></h2>
+            <h2 class="titulomodal">EDITAR PRODUCTO</h2>
+        </div>
+        <div class="modaleditar" id="modaleditar">    
             <form id="formUpdate" method="post" onsubmit="actualizar();closeModal_editar();return false;" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" id="modifNote">
                 <input class="inputcrear" type="text" name="nombre_art_e" id="nombre_art_e" placeholder="Nombre">
@@ -98,15 +102,17 @@
                         <option value="{{$item2->id_ta}}">{{$item2->tipo_articulo_ta}}</option>
                     @endforeach
                 </select>
-                <button class="botoncrear" type="submit" value="Editar"><b>EDITAR</b></button>
+                <a class="btn-crear" type="submit" value="Editar">EDITAR</a>
                 <input type="hidden" name="id_art_e" id="idUpdate">
             </form>
         </div>
     </div>
+
+    {{-- Modal para crear el producto --}}
     <div class="modalbox_crear" id="modalbox_crear">
         <div class="modalcrear_header">
             <span class="close_crear" onclick="closeModal_crear(); return false;">&times;</span>             
-            <h2 class="titulomodal">Crear <b>Producto</b></h2>
+            <h2 class="titulomodal">Crear Producto</h2>
         </div>
         <div class="modalcrear" id="modalcrear">
             <form onsubmit="crear();closeModal_crear();return false;" method="post" id="formcrear" enctype="multipart/form-data">
@@ -138,9 +144,10 @@
                         <option value="{{$item2->id_ta}}">{{$item2->tipo_articulo_ta}}</option>
                     @endforeach
                 </select>
-                <div id="mensaje">
-                <button class="botoncrear" type="submit" value="Crear"><b>CREAR</b></button>
-                <input type="hidden" name="_method" value="POST" id="createNote">
+                <form id="mensaje">
+                    <a class="btn-crear" type="submit" value="Crear">CREAR</a>
+                    <input type="hidden" name="_method" value="POST" id="createNote">
+                </form>
             </form>
         </div>
     </div>

@@ -23,8 +23,12 @@ a{
 }
 
 /* ---------- HEADER ---------- */
+/* ul{
+    margin-top: 0;
+    margin-bottom: 0rem;
+} */
 
-header{
+header {
     height: auto;
     width: 100%;
     position: fixed;
@@ -35,35 +39,29 @@ header{
     align-items: center;
     padding: 0 5%;
     box-sizing: border-box;
-    transition: 0.5s;
     height: 100px;
+    transition: 0.5s;
     z-index: 999;
-    background-color: #8590ff;
 }
 
-.logo{
+.logo {
+    padding-top: 15px;
     height: 90%;
-    width: 7%;
 }
 
-.scrolled-search{
+.scrolled-search {
     opacity: 1;
     pointer-events: all;
 }
 
-/* ul{
-    margin-top: 0;
-    margin-bottom: 0rem;
-} */
-
-.main-menu{
+.main-menu {
     display: flex;
     list-style-type: none;
     justify-content: center;
     align-items: center;
 }
 
-.menu-item{
+.menu-item {
     margin: 0 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -71,17 +69,17 @@ header{
     color: #000000;
 }
 
-.menu-item:hover{
+.menu-item:hover {
     color: #ffffff;
     background-color: #000000;
     border-radius: 30px;
     padding: 10px 24px;
 }
 
-.cta{
+.cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: #1f2cc4;
+    background-color: var(--main-color);
     color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
@@ -89,7 +87,23 @@ header{
     transition: 0.5s;
 }
 
-.cta:hover{
+.cta:hover {
     color: #ffffff;
     background-color: #000000;
+}
+
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
 }
