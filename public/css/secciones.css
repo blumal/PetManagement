@@ -1,30 +1,31 @@
-*{
+* {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 2px;
-    box-sizing:content-box;
+    box-sizing: content-box;
 }
-html{
+
+html {
     height: 100%;
 }
 
-body{
+body {
     position: relative;
     background: linear-gradient(rgb(31, 45, 196), transparent);
-    
+    background-repeat: no-repeat
 }
 
-.column-1{
+.column-1 {
     width: 100%;
     float: left;
 }
 
-.column-2{
+.column-2 {
     width: 50%;
     float: left;
 }
 
-.column-3{
+.column-3 {
     width: 33.3%;
     float: left;
 }
@@ -41,39 +42,42 @@ body{
     justify-content: center;
 }
 
-header{
+a {
+    text-decoration: none !important;
+}
+
+header {
     width: 100%;
     height: 150px;
 }
 
-.logo{
+.logo {
     margin: 1%;
     float: left;
 }
 
-.logo img{
+.logo img {
     width: 100px;
     height: 100px;
 }
 
-.logout{
+.logout {
     float: right;
     margin: 1%;
 }
 
-.logout img{
+.logout img {
     width: 50px;
     height: 50px;
 }
 
-.seccion{
+.seccion {
     margin: 7px;
     border-radius: 20px;
     font-weight: bolder;
     background-color: #000000;
     padding: 3%;
     text-align: center;
-
     border-color: #000000;
     color: #ffffff;
     cursor: pointer;
@@ -81,13 +85,19 @@ header{
     list-style-type: none;
 }
 
-.seccion:hover{
+.seccion:hover {
     color: #ffffff;
     background-color: #1f2cc4;
     border-color: #000000;
-
     border-radius: 50px;
     -webkit-transform: scale(5);
     transform: scale(0.9);
     transition: 0.6s;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+    height: 100%;
 }

@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Producto;
 use App\Http\Controllers\mapas;
-
 use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\FacturaVisitaController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\DB;
 use App\Mail\Mailtocustomers;
@@ -64,6 +64,10 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
+Route::get('registro', function () {
+    return view('registro');
+});
+
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 Route::get('/login', [CitasController::class, 'login']);
@@ -74,6 +78,22 @@ Route::get('/logout', [CitasController::class, 'logout']);
 Route::get('citas', [CitasController::class, 'Citas']);
 //Mail a cliente
 Route::get('mailtocustomer', [Mailtocustomers::class, '']);
+//Cpanel
+Route::get('/cpanel', [CitasController::class, 'cpanel']);
+//Rutas cpanel
+//Curd usrs
+Route::get('/cpanelUsrs', [CitasController::class, 'cpanelUsrs']);
+//Curd tienda
+Route::get('/cpanelTienda', [ProductoController::class, 'mostrarProductoCrud']);
+//Curd animales
+Route::get('/cpanelAnimales', [CitasController::class, 'cpanelAnimales']);
+//Curd animales perdidos
+Route::get('/cpanelAnimalesPerdidos', [CitasController::class, 'cpanelAnimalesPerdidos']);
+//Curd mapa
+Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
+
+Route::get('/an_perd', [CitasController::class, 'an_perd']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 
@@ -93,6 +113,16 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
+Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
+
+Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
+
+
+//TEST
+Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
+//FIN TEST 
+
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
 
@@ -104,6 +134,11 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+//INICIO ESTADISTICAS
+
+//FIN ESTADISTICAS
+
+
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
 
@@ -125,11 +160,44 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
-//TEST
 
-Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
-Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
 
 //Api
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
+//TIENDA
+
+
+
+Route::get('tienda',[ProductoController::class,'tienda']);
+Route::get('carrito',[ProductoController::class,'carrito']);
+Route::post('marcas',[ProductoController::class,'marcas']);
+Route::post('tiposPrincipales',[ProductoController::class,'tiposPrincipales']);
+Route::post('productos',[ProductoController::class,'productos']);
+Route::get('producto/{id}',[ProductoController::class,'producto']);
+Route::post('marcaProducto',[ProductoController::class,'marcaProducto']);
+Route::post('filtroSearchBar',[ProductoController::class,'filtroSearchBar']);
+Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);
+//sesiones
+Route::get('add-to-cart/{id}',[ProductoController::class,'addToCart']);
+Route::get('add-to-cart-producto/{id}/{cantidad}',[ProductoController::class,'addToCartProducto']);
+Route::patch('update-cart',[ProductoController::class,'updateCart']);
+Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
+
+/*Crud */
+
+Route::get('admincrud',[ProductoController::class,'mostrarProductoCrud']);
+
+Route::post('filtro',[ProductoController::class,'show']);
+
+Route::post('crear',[ProductoController::class,'crear']);
+
+Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
+
+Route::put('actualizar',[ProductoController::class,'update']);
+//compra
+Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
+
+Route::get('comprado',[ProductoController::class, 'compra']);
+
+Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);

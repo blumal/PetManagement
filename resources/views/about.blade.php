@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/style-about.css">
+    <link rel="stylesheet" href="{{asset('css/style-about.css')}}">
     <link rel="icon" href="./img/imagenesWeb/logo.png">
     <title>About Us</title>
 </head>
@@ -13,12 +13,14 @@
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
         <ul class="main-menu">
-            <li class="menu-item" href="./views/home.blade.php?">Home</li>
-            <li class="menu-item" href="./views/tienda.blade.php?">Tienda</li>
-            <li class="menu-item" href="./views/clinica.blade.php?">Clínica</li>
-            <li class="menu-item" href="./views/contacto.blade.php?">Contacto</li>
-            <li class="menu-item" href="./views/about.blade.php?">Sobre Nosotros</li>
-            <li class="cta" href="./views/tienda.blade.php?">Login</li>
+            <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
+            <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
+            <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
+            <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
+            <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
+            <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
+            <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
+                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
         </ul>
         <script src="./js/home.js"></script>
     </header>
@@ -26,7 +28,7 @@
         <img src="./img/imagenesWeb/logo.png" class="foto">
     </div>
     <div class="content">
-        <h1>Lorem Ipsum</h1>
+        <h1>Pet Management</h1>
         <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
         "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec dignissim libero. Sed pellentesque volutpat metus, sit amet efficitur velit rutrum id. Phasellus condimentum justo nec magna viverra tristique. Praesent faucibus luctus libero, et tempus augue eleifend ut. In ac commodo urna. Vivamus vel lacinia augue. Donec hendrerit, odio non auctor rhoncus, mi justo tempus erat, sit amet dictum nisi urna sed orci. Nam hendrerit lacus sed risus sollicitudin, non volutpat lorem tempus. Sed non elit aliquam, hendrerit dolor sit amet, condimentum metus. Phasellus dictum nunc turpis, at porttitor erat convallis nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas posuere elit id nibh dictum, at fringilla mi euismod. In quis accumsan nibh, a vulputate nibh.</p>

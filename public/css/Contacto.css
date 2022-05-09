@@ -1,0 +1,180 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+body {
+    position: relative;
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/veterinaria-perro.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+/* ---------- LOGIN ---------- */
+
+.container{
+    padding-top: 5%;
+}
+
+h1{
+    font-weight: bolder;
+}
+
+.formulario {
+    background: rgba(31, 45, 196, 0.659);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgb(0, 0, 0);
+    color: white;
+}
+
+.form-control {
+    background: rgba(0, 0, 0, .3);
+    border-style: none;
+    transition: 0.5s ease-in;
+    outline: none;
+    box-shadow: none;
+    color: white;
+}
+
+.form-control:focus {
+    background: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.ingresar {
+    background: #222A3F;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
+    transition: 0.5s ease-in;
+}
+
+.ingresar:hover {
+    color: white;
+}
+
+.olvide {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+}
+
+.olvide:hover {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+.olvide1 {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    font-size: 15px;
+    font-weight: 700!important;
+    /* border: 2px solid white; */
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .5);
+}
+
+.olvide1:hover {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+/* ---------- HEADER ---------- */
+
+header{
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: 100px;
+    transition: 0.5s;
+}
+
+.logo{
+    padding-top: 15px;
+    height: 90%;
+}
+
+.scrolled-search{
+    opacity: 1;
+    pointer-events: all;
+}
+
+ul{
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
+.main-menu{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item{
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover{
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta{
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1f2cc4;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover{
+    color: #ffffff;
+    background-color: #000000;
+}

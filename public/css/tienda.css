@@ -1,0 +1,539 @@
+* {
+    margin: 0%;
+    color: #333333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+header {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: 100px;
+    transition: 0.5s;
+    z-index: 999;
+}
+
+.logo {
+    padding-top: 15px;
+    height: 90%;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.main-menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.menu-item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1f2cc4;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.div-1 {
+    float: left;
+    width: 100%;
+}
+
+.filtros-precio-marca {
+    width: 20%;
+    height: 100%;
+    margin: 2%;
+    margin-bottom: 10%;
+}
+
+.filtro-precio,
+.filtro-marca {
+    font-size: 2.5vh;
+    font-weight: bold;
+    float: left;
+    margin-bottom: 10vh;
+    width: 100%;
+}
+
+
+/*radio buttons*/
+
+.filtro-precio input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    background-clip: content-box;
+    border: 3px solid #b6bfc8;
+    background-color: #e7e6e7;
+    border-radius: 50%;
+    margin-bottom: -1%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.filtro-precio input:checked {
+    background-color: #1f2cc4;
+    border: 3px solid #1f2cc4;
+}
+
+.filtro-precio input:hover {
+    border: 3px solid #3240d4;
+    transition: 0.3s;
+}
+
+
+/*checkboxs*/
+
+.filtro-marca input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+    background-clip: content-box;
+    border: 3px solid #b6bfc8;
+    background-color: #e7e6e7;
+    margin-bottom: -1%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.filtro-marca input:checked {
+    background-color: #1f2cc4;
+    border: 3px solid #1f2cc4;
+}
+
+.filtro-marca input:hover {
+    border: 3px solid #3240d4;
+    transition: 0.3s;
+}
+
+.filtro-precio label,
+.filtro-marca label {
+    width: 100%;
+    cursor: pointer;
+    font-size: 2.5vh;
+    font-weight: normal;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: 3px solid #b6bfc8;
+}
+
+.container:hover input~.checkmark {
+    border: 3px solid #1f2cc4;
+}
+
+.container input~.checkmark {
+    transition: all 0.5s;
+}
+
+.container input:checked~.checkmark {
+    background-color: #1f2cc4;
+    border: 3px solid #1f2cc4;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/*search bar*/
+
+.filtro-search-bar {
+    width: 78%;
+    height: 20%;
+    margin: 0%;
+}
+
+.filtro-search-bar i {
+    position: absolute;
+    top: 22%;
+    color: grey;
+    opacity: 0.7;
+    margin-left: 0.7%;
+}
+
+.filtro-search-bar input {
+    padding-left: 3%;
+    margin-top: -0.5%;
+    width: 80vh;
+    border: 1px solid #b6bfc8 !important;
+}
+
+.filtro-search-bar input:focus {
+    box-shadow: 0px 5px 30px #8590ff !important;
+}
+
+
+/*categorias*/
+
+.fitro-categoria {
+    float: left;
+    width: 78%;
+    height: 100%;
+    margin: 0%;
+    margin-top: -7%;
+    margin-left: -2%;
+}
+
+.categoria {
+    float: left;
+    width: 20%;
+    font-size: 3vh;
+    margin-left: 3%;
+    margin-bottom: 5vh;
+    background-color: #1f2cc4;
+    text-align: center;
+    border-radius: 3%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.categoria p {
+    margin: 4% 2%;
+    color: white;
+}
+
+.categoria:hover {
+    transform: scale(1.1);
+}
+
+
+/*productos*/
+
+.productos {
+    float: left;
+    width: 78%;
+    height: 100%;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.producto {
+    float: left;
+    width: 20%;
+    margin-right: 3%;
+    cursor: pointer;
+    transition: all 0.5s;
+    height: 75vh;
+}
+
+.caption-titulo {
+    height: 15vh;
+}
+
+.caption-descripcion {
+    height: 7vh;
+}
+
+.thumbnail {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail .caption {
+    margin: 7px;
+    font-size: 2vh;
+    font-weight: normal;
+}
+
+.btn-holder {
+    text-align: center;
+}
+
+.btn-carrito {
+    background-color: #1f2cc4;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-carrito:hover {
+    background-color: #3240d4;
+    color: white;
+}
+
+.producto-precio p {
+    font-size: 3vh;
+    color: #d124ba;
+    font-weight: bold;
+}
+
+.productos a {
+    text-decoration: none;
+}
+
+
+/*dropmenu*/
+
+.div-dropmenu {
+    position: absolute;
+    top: 20%;
+    right: 8%;
+}
+
+.div-dropmenu i {
+    color: white;
+}
+
+.dropdown .dropdown-menu {
+    padding: 20px;
+    top: 30px !important;
+    width: 350px !important;
+    left: -110px !important;
+    box-shadow: 0px 5px 30px black;
+}
+
+.btn-carrito {
+    background-color: #1f2cc4;
+}
+
+.total-header-section i {
+    color: black;
+}
+
+.cart-detail {
+    padding: 15px 0px;
+}
+
+.cart-detail-img img {
+    width: 100%;
+    height: 10vh;
+    padding-left: 15px;
+}
+
+.cart-detail-product p {
+    margin: 0px;
+    color: #000;
+    font-weight: 500;
+}
+
+.cart-detail .price {
+    font-size: 12px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.cart-detail .count {
+    color: grey;
+}
+
+.checkout {
+    border-top: 1px solid #d2d2d2;
+    padding-top: 15px;
+}
+
+.checkout .btn-primary {
+    border-radius: 50px;
+    height: 40px;
+}
+
+.dropdown-menu:before {
+    content: " ";
+    position: absolute;
+    top: -20px;
+    right: 50px;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+}
+
+.color {
+    color: #1f2cc4;
+    font-weight: bold;
+}
+
+.carrito-drop {
+    background-color: #1f2cc4;
+    border: 1px #1f2cc4;
+}
+
+.carrito-drop:hover {
+    background-color: #3240d4;
+}
+
+.carrito-drop:focus {
+    background-color: #1f2cc4;
+    box-shadow: 0px 5px 30px #1f2cc4;
+}
+
+
+/*footer*/
+
+footer {
+    width: auto;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 8%;
+    background-color: #414141;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.social-icons-container,
+.footer-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: 1px solid #f2f2f2;
+    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    margin: 1rem;
+}
+
+.social-icon:hover {
+    background-color: #121212;
+    filter: invert(1);
+}
+
+.social-icon:nth-of-type(2) {
+    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
+}
+
+.footer-menu-container {
+    list-style-type: none;
+    color: #f2f2f2;
+    font-size: 18px;
+}
+
+.footer-item {
+    margin: 1rem 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.footer-item:hover {
+    opacity: 1;
+}
+
+.copyright {
+    color: #f2f2f2;
+    opacity: 0.3;
+    text-align: center;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+}
