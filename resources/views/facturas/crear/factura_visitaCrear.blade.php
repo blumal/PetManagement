@@ -11321,7 +11321,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex align-items-stretch">
-                            <div class="info-wrap w-100 p-5 img" style="background-image:url(storage/uploads/incognito.png); background-size: contain;">
+                            <div class="info-wrap w-100 p-5 img" style="background-image:url(storage/{{$paciente[0]->foto_pa}});background-size: fill;">
                             </div>
                         </div>
                     </div>

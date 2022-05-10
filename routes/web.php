@@ -119,7 +119,10 @@ Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 
 //CERRAR FACTURAS
 Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/asociarPacienteVisita', [VisitaController::class, 'asociarPacienteVisita']);
+
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
+Route::post('/cerrarAsociacion', [VisitaController::class, 'cerrarAsociacion']);
 
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
