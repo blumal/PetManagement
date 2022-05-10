@@ -11238,7 +11238,12 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="name">Nombre Animal</label>
-                                                <p name="name" id="name" placeholder="Name">{{$paciente[0]->nombre_pa}}</p>
+                                                @if (isset($paciente[0]->nombre_pa))
+                                                    <p name="name" id="name" placeholder="Name">{{$paciente[0]->nombre_pa}}</p>
+                                                @else
+                                                    <p name="name" id="name" placeholder="Name">Sin registrar</p>
+                                                @endif
+                                                
                                                 <!--<input type="text" class="form-control" name="name" id="name" placeholder="Name">-->
                                             </div>
                                         </div>
@@ -11316,7 +11321,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex align-items-stretch">
-                            <div class="info-wrap w-100 p-5 img" style="background-image:url(storage/{{$paciente[0]->foto_pa}})">
+                            <div class="info-wrap w-100 p-5 img" style="background-image:url(storage/uploads/incognito.png); background-size: contain;">
                             </div>
                         </div>
                     </div>

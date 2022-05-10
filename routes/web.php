@@ -111,7 +111,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 
 //Ruta para entrar a facturas visitas
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
-Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
 Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 

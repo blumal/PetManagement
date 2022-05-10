@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Whoops\Run;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
 
 use function Ramsey\Uuid\v1;
 
@@ -34,12 +36,14 @@ class VisitaController extends Controller
                     ->where('id_vi','=',$id_visita)
                     ->get();
 
+                    $id_usuario=$visita[0]->id_usuario_fk;
+
                     $id_paciente= $visita[0]->id_pacienteanimal_fk;
 
                     $cliente = DB::table('tbl_usuario')
                             ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
                             ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
-                            ->where('id_us','=',$id_user)
+                            ->where('id_us','=',$id_usuario)
                             ->get();
                     
                     $paciente= DB::table('tbl_pacienteanimal_clinica')
@@ -92,10 +96,13 @@ class VisitaController extends Controller
         $hora_factura=$request['hora_factura'];
         $id_veterinario=$request['id_veterinario'];
         $diagnostico = $request['diagnostico'];
-
         $num_items=count($request['productos']);
 
+        $cliente = DB::table('tbl_usuario')
+                            ->where('id_us','=',$id_usuario)
+                            ->get();
 
+        $email_cliente=$cliente[0]->email_us;
 
         DB::table('tbl_visita')
         ->where('id_vi', $id_visita)  // find your user by their email
@@ -108,9 +115,16 @@ class VisitaController extends Controller
             DB::insert('insert into tbl_detallefactura_clinica (cant_dfc,id_producto_fk,id_factura_fk) values (?,?,?)',
             [$request['cantidad'][$i],$request['productos'][$i],$id_factura]);
         }
+
+        //Envío de mail
+        $sub = "Confirmación de visita";
+        $datas=[$hora_factura,$fecha_factura,$total_factura,$diagnostico];
+        $enviar = new Mailtocustomers($datas);
+        //,$total_factura,$localtime,$date
+        $enviar->sub = $sub;
+        Mail::to($email_cliente)->send($enviar);
         
         return redirect('/');
-        
 
     }
     public function anadir_item_factura(Request $request){
@@ -151,11 +165,27 @@ class VisitaController extends Controller
     //CRUD PACIENTES
     public function VisitasAjax (Request $request){
 
-        $visitas = DB::table('tbl_visita')
-            ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
-            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
+        $animal_asociado = DB::table('tbl_visita')
             ->where('fecha_vi','=',$request->fecha_visita)
             ->get();
+
+        for ($i=0; $i < count($animal_asociado); $i++) { 
+            if ($animal_asociado[$i]->id_pacienteanimal_fk==null) {
+                $visitas = DB::table('tbl_visita')
+                    ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
+                    ->where('fecha_vi','=',$request->fecha_visita)
+                    ->get();
+            }else{
+                $visitas = DB::table('tbl_visita')
+                    ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
+                    ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
+                    ->where('fecha_vi','=',$request->fecha_visita)
+                    ->get();
+            }
+        }
+        
+        
+        return $visitas;
         
         /*$cliente = DB::table('tbl_usuario')
             ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')

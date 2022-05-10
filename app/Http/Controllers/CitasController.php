@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Mailtocustomers;
 use App\Models\Citas;
 use Illuminate\Http\Request;
 //Necesario para cualquier query
 use Illuminate\Support\Facades\DB;
+use App\Mail\Mailtocustomers;
 use Illuminate\Support\Facades\Mail;
 
 class CitasController extends Controller
