@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.js"></script>
-    <!---->
+    <!--Librería Alertify-->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+    <!--JS-->
     <script src="{{asset('js/fullcalendar/calendar.js')}}"></script>
-    <!---->
+    <!--CSS-->
     <link rel="stylesheet" href="{{asset('css/fullcalendar/calendar.css')}}">
     <title>Citas</title>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
@@ -58,40 +62,66 @@
    
     {{--Calendario--}}
     <div class="row-c flex">
+        <div class="slider">
+           <ul>
+               <li><img src="{{url("img/visitas/slider1.jpeg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider2.jpeg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider1.jpeg")}}" alt=""></li>
+               <li><img src="{{url("img/visitas/slider2.jpeg")}}" alt=""></li>
+           </ul>
+        </div>
+    </div>
+    <div class="row-c flex">
+        <center>
+            <div class="tittlecalendar column-1">
+                <h1>Calendario de citas</h1>
+            </div>
+        </center>
+    </div>
+    <div class="row-c flex">
         <div class="calendarestructure column-1">
-            <h1>Calendario de citas</h1>
-            <div id="calendar"></div>
             <center>
+                <div id="calendar"></div>
                 <h1>Solicitud de Citas</h1>
-                {{-- <form action="{{url('insertcita')}}" method="post"> --}}
-                {{-- <form onsubmit="insertDatas(); return false;">
-                    @csrf
-                    <input type="date" name="fecha_vi" id="fecha_vi">
-                    <input type="time" name="hora_vi" id="hora_vi">
-                    <input type="submit">
-                </form> --}}
                 <!-- Trigger/Open The Modal -->
                 <button id="btnModal" onclick="modalCitas();">Reservar cita</button>
                 <!-- The Modal -->
-                <div id="modalCitas" class="modal-citas">
-                    <!-- Modal content -->
-                    <div class="modal-citas-content">
-                        <h3>Solicitud cita</h3>
-                        <form onsubmit="insertDatas(); return false;">
-                        {{-- <form action="{{url('insertcita')}}" method="post"> --}}
-                            @csrf
+                    <div id="modalCitas" class="modal-citas">
+                        <!-- Modal content -->
+                        <div class="modal-citas-content">
                             <span class="close">&times;</span>
-                            <label for="fecha_vi">Introduzca la fecha de la visita:</label><br/>
-                                <input type="date" name="fecha_vi" id="fecha_vi"><br/><br/>
-                            <label for="hora_vi">Introduzca la hora de la visita:</label><br/>
-                                <input type="time" name="hora_vi" id="hora_vi"><br/><br/>
-                            <label for="asunto_vi">Motivo de visita:</label><br/>
-                                <input type="text" name="asunto_vi" id="asunto_vi"><br/><br/>
-                            <input type="submit" value="Agendar">
-                            <input type='hidden' name='id_us' id="id_us" value={{Session::get('id_user_session')}} />
-                        </form>
+                            <h3>Solicitud cita</h3><br/>
+                            <div class="modal-citas-content-form">
+                                {{-- <form action="{{url('insertcita')}}" method="get"> --}}
+                                <form onsubmit="insertDatas(); return false;">
+                                    @csrf
+                                    <label for="fecha_vi">Introduzca la fecha de la visita: *</label><br/><br/>
+                                        <input type="date" name="fecha_vi" id="fecha_vi" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> onchange="hourOptions(); return false;"><br/><br/>
+                                    {{-- <label for="hora_vi">Introduzca la hora de la visita:</label><br/>
+                                        <input type="time" name="hora_vi" id="hora_vi"><br/><br/> --}}
+                                    <label for="hora_vi">Seleccione la hora de la visita: *</label><br/><br/>
+                                    <select name="hora_vi" id="hora_vi">
+                                        <option value="">--Horas disponibles--</option>
+                                    </select><br/><br/>
+                                    <label for="an_asociado">Pacientes asociados a ústed:</label><br/><br/>
+                                    <select name="an_asociado" id="an_asociado">
+                                        <option value="">--Seleccione la mascota--</option>
+                                        <!--Recogemos datos de la variable de sesión-->
+                                        @foreach (Session::get('animales_asociados') as $results)
+                                            <option value="{{$results->id_pa}}">{{$results->nombre_pa}} - {{$results->raza_pa}}</option> 
+                                        @endforeach
+                                    </select><br/><br/>
+                                    <label for="asunto_vi">Motivo de visita: *</label><br/><br/>
+                                        <textarea name="asunto_vi" id="asunto_vi" cols="" rows="5" placeholder="Breve descripción del motivo de la visita, síntomas, observaciones, etc..."></textarea><br/><br/>
+                                        {{-- <input type="text" name="asunto_vi" id="asunto_vi"><br/><br/> --}}
+                                        <input type="submit" value="Agendar">  
+                                    <!--Enviamos el valor de la session obtenida-->
+                                    <input type='hidden' name='id_us' id="id_us" value={{Session::get('id_user_session')}} />
+                                    <input type='hidden' name='email_us' id="email_us" value={{Session::get('email_session')}} />
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </center>
         </div>
     </div>
@@ -108,13 +138,19 @@
     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
     @if (session()->get('id_rol_session')==3)
         <center>
+            <form action="{{url("/adminPacientes")}}" method="get">
+                @csrf
+                <input type="submit" class="previous_visits_button" value="Administrar Pacientes">
+            </form>
+
             <form action="{{url("/directorioGenerarFactura")}}" method="post">
                 @csrf
-                <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
+                <input type="submit" class="previous_visits_button" value="   Rellenar Visita   ">
             </form>
+
             <form action="{{url("/FacturasClinica")}}" method="post">
                 @csrf
-                <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
+                <input type="submit" class="previous_visits_button" value="Ver  antiguas visitas">
             </form>
         </center>
     @endif

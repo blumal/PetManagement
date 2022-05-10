@@ -1,16 +1,23 @@
+@if (Session::get('id_rol_session')==1)
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Formulario Visita</title>
+    <title>Editar paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
-    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <script src="js/visita/crud_pacientes.js"></script>
 
     <style>
     :root {
@@ -11175,139 +11182,91 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Informe de visita {{$visita[0]->id_vi}}</h2>
+                <h2 class="heading-section">Editor de paciente</h2>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="wrapper">
-                    <div class="row mb-5">
-                        <div class="col-md-3">
-                            <div class="dbox w-100 text-center">
-                                <div class="icon d-flex align-items-center justify-content-center">
-                                    <span class="fa fa-map-marker"></span>
-                                </div>
-                                <div class="text">
-                                    <p><span>Dirección:</span> {{$cliente[0]->nombre_di}} {{$cliente[0]->numero_di}}</p>
-                                    <p>Piso: {{$cliente[0]->piso_di}}, Puerta: {{$cliente[0]->puerta_di}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="dbox w-100 text-center">
-                                <div class="icon d-flex align-items-center justify-content-center">
-                                    <span class="fa fa-phone"></span>
-                                </div>
-                                <div class="text">
-                                    <p><span>Telefono</span> <a href="tel://1234567920">{{$cliente[0]->contacto1_tel}}</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="dbox w-100 text-center">
-                                <div class="icon d-flex align-items-center justify-content-center">
-                                    <span class="fa fa-paper-plane"></span>
-                                </div>
-                                <div class="text">
-                                    <p><span>Email: </span>{{$cliente[0]->email_us}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="dbox w-100 text-center">
-                                <div class="icon d-flex align-items-center justify-content-center">
-                                    <span class="fa fa-id-card"></span>
-                                </div>
-                                <div class="text">
-                                    <p><span>DNI </span>{{$cliente[0]->dni_us}}</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row no-gutters">
                         <div class="col-md-7">
                             <div class="contact-wrap w-100 p-md-5 p-4">
-                                <h3 class="mb-4">Datos de la visita</h3>
+                                <h3 class="mb-4">Datos del paciente</h3>
                                 <div id="form-message-warning" class="mb-4"></div>
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validarFacturas();" action="{{url("cerrarVisita")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validarCreacionEdicionPaciente();" enctype="multipart/form-data" action="{{url("cerrarPacienteEditar")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="name">Nombre Animal</label>
-                                                <p name="name" id="name" placeholder="Name">{{$paciente[0]->nombre_pa}}</p>
-                                                <!--<input type="text" class="form-control" name="name" id="name" placeholder="Name">-->
+                                                <!--<p name="name" id="name" placeholder="Nombre del animal"></p>-->
+                                                <input type="text" class="form-control" name="nombre_paciente" id="name" value="{{$paciente[0]->nombre_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="label" for="email">Total Factura</label>
-                                                <input type="number" step="any" min="0" class="form-control" name="total_factura" id="total_factura" placeholder="69,69">
+                                                <label class="label" >Peso Paciente</label>
+                                                <input type="number" step="any" min="0" class="form-control" name="peso_paciente" id="peso_paciente" value="{{$paciente[0]->peso_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="label" for="subject">Asunto</label>
-                                                <p name="name" id="asunto" placeholder="Name">{{$visita[0]->asunto_vi}}</p>
-                                                <!--<input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto de la visita..." value="">-->
+                                                <label class="label" for="subject">Numero Identificacion Registro Nacional</label>
+                                                <!--<p name="name" id="name" placeholder="Name"></p>-->
+                                                <input type="text" class="form-control" name="nirn_paciente" id="subject" placeholder="XXX XXX XXX" value="{{$paciente[0]->n_id_nacional}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Nombre cientifico</label>
+                                                <!--<p name="name" id="name" placeholder="Name"></p>-->
+                                                <input type="text" class="form-control" name="nombre_cientifico_paciente" id="nombre_cientifico_paciente" placeholder="Canis Latranis" value="{{$paciente[0]->nombrecientifico_pa}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Raza (opcional)</label>
+                                                <!--<p name="name" id="name" placeholder="Name"></p>-->
+                                                <input type="text" class="form-control" name="raza_paciente" id="subject" placeholder="Bulldog francés" value="{{$paciente[0]->raza_pa}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="label" for="subject">Fecha intervención</label>
-                                                <input type="date" class="form-control" name="fecha_factura" id="fecha_factura" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="label" for="subject">Hora intervención</label>
-                                                <input type="time" class="form-control" name="hora_factura" id="hora_factura" >
+                                                <label class="label" for="subject">Fecha nacimiento</label>
+                                                <input type="date" class="form-control" name="fecha_nacimiento_paciente" id="fecha_nacimiento_paciente" value="{{$paciente[0]->fecha_nacimiento}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="label" for="#">Diagnostico</label>
-                                                <textarea name="diagnostico" class="form-control" id="diagnostico" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
+                                                <label class="label" for="#">Foto del paciente</label>
+                                                <input type="hidden" name="foto_paciente_old" value="{{$paciente[0]->foto_pa}}">
+                                                <input type="hidden" name="id_paciente" value="{{$paciente[0]->id_pa}}">
+                                                <input type="file" class="form-control" name="foto_paciente" id="subject">
                                             </div>
                                         </div>
-
-
                                         <div class="col-md-12">
-                                            <label for="productos" class="label" for="#">Selecciona producto:</label>
-                                                <select id="productos" name="productos[]">        
-                                                    @for ($i = 0; $i < count($items_clinica); $i++)
-                                                        <option class="form-control"  value="{{$items_clinica[$i]->id_prod}}">{{$items_clinica[$i]->producto_pro}}</option>
+                                            <label for="productos" class="label" for="#">Selecciona dueño:</label>
+                                                <select id="productos" name="id_dueno_paciente">
+                                                    
+                                                    @for ($i = 0; $i < count($duenos); $i++)
+                                                        @if ($duenos[$i]->id_us==$paciente[0]->propietario_fk)
+                                                            <option selected="selected" value="{{$duenos[$i]->id_us}}" >{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
+                                                        @else
+                                                        <option class="form-control" value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option> 
+                                                        @endif
                                                     @endfor
+                                                        <!--<option class="form-control"  value="paco">Paquito</option>-->
+                                                    
                                                 </select>
-                                                <label class="label" for="#">Selecciona cantidad de producto</label>
-                                                <input type="number" class="form-control" name='cantidad[]' value=1>
-                                        </div>
-                                        <div id="items_adicionales">
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <button onclick="anadir_item(); return false;" class="btn btn-dark">+</button>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <label for="promociones" class="label" for="#">Selecciona promocion de la visita:</label>
-                                                <select id="promociones" name="promocion" id="id_promocion">        
-                                                    @for ($i = 0; $i < count($promociones); $i++)
-                                                        <option class="form-control" value="{{$promociones[$i]->id_pro}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
-                                                    @endfor
-                                                </select>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button onclick="calcular_total(); return false;" class="btn btn-dark">Calcular total</button>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="hidden" value="{{$cliente[0]->id_us}}" name="id_usuario">
-                                                <input type="hidden" value="{{$visita[0]->id_vi}}" name="id_visita">
-                                                <input type="hidden" value={{Session::get('id_user_session')}} name="id_veterinario">
-                                                <input type="submit" value="Generar factura" class="btn btn-primary">
+                                                
+                                                <input type="submit" value="Editar paciente" class="btn btn-primary">
                                                 <div class="submitting"></div>
                                             </div>
                                         </div>
@@ -11316,7 +11275,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex align-items-stretch">
-                            <div class="info-wrap w-100 p-5 img" style="background-image:url(storage/{{$paciente[0]->foto_pa}})">
+                            <div class="info-wrap w-100 p-5 img" style="background-image:url('https://i.gyazo.com/fbf14d623693208ee771c4f5c918f341.jpg')">
                             </div>
                         </div>
                     </div>
@@ -11326,5 +11285,4 @@
     </div>
 </body>
 <script defer src="./js/visita/script.js"></script>
-<script src="./js/visita/ajax_ru_visitas_directorio.js"></script>
 </html>

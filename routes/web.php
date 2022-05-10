@@ -10,7 +10,11 @@ use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\HtmlToPDFController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\DB;
+use App\Http\Controllers\JuegosController;
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +97,8 @@ Route::get('geoguesser-game', [mapas::class, 'geoguessergame']);
 Route::get('geoguesser_ajax', [mapas::class,'geoguesser_ajax']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
+//Mail a cliente
+Route::get('mailtocustomer', [Mailtocustomers::class, '']);
 //Cpanel
 Route::get('/cpanel', [CitasController::class, 'cpanel']);
 //Rutas cpanel
@@ -132,11 +138,9 @@ Route::post('/directorioGenerarFactura', function () {return view('facturas/dire
 
 Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 
-
-//TEST
+//CERRAR FACTURAS
 Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
-//FIN TEST 
 
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
@@ -149,6 +153,41 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+
+//INICIO ESTADISTICAS
+Route::get('/stats', [EstadisticaController::class, 'test']);
+Route::post('/estadisticas/recogerStats', [EstadisticaController::class, 'leerStats']);
+Route::post('/estadisticas/visitas_por_horas', [EstadisticaController::class, 'visitas_por_horas']);
+Route::post('/estadisticas/animales_por_especie', [EstadisticaController::class, 'animales_por_especie']);
+Route::post('/estadisticas/visitas_por_meses', [EstadisticaController::class, 'visitas_por_meses']);
+Route::post('/estadisticas/tipos_sociedades', [EstadisticaController::class, 'tipos_sociedades']);
+//FIN ESTADISTICAS
+
+//INICIO JUEGOS
+Route::get('juegos/', function () {
+    return view('juegos/directorio');
+});
+Route::get('juegos/ranita', function () {
+    return view('juegos/ranita');
+});
+Route::post('juegos/ranita/max_scores', [JuegosController::class, 'max_scores']);
+Route::post('juegos/ranita/new_score', [JuegosController::class, 'new_score']);
+
+
+//FIN JUEGOS
+
+//INICIO CRUD PACIENTES
+Route::post('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
+Route::post('/cerrarPaciente',[VisitaController::class, 'cerrarPaciente']);
+Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
+Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);
+Route::post('/leerPacientes',[VisitaController::class, 'leerPacientes']);
+Route::post('/editarPaciente',[VisitaController::class, 'editarPaciente']);
+Route::post('/cerrarPacienteEditar',[VisitaController::class, 'cerrarPacienteEditar']);
+
+// FIN CRUD PACIENTES
+
+
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
 

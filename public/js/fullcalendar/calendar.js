@@ -1,5 +1,5 @@
 window.onload = function() {
-    eventos = []
+    eventos = [];
     calendar();
 }
 
@@ -37,13 +37,13 @@ function calendar() {
             console.log(this.responseText);
             //JSON desde web file
             var citas = JSON.parse(this.responseText);
-            //console.log(citas);
+            console.log(citas);
             for (let i = 0; i < citas.length; i++) {
                 //Array global
                 eventos.push({
                     title: "Agendada",
                     start: citas[i].fecha_vi + 'T' + citas[i].hora_vi,
-                    borderColor: 'orange'
+                    borderColor: '#8590FF'
                 })
             }
             //Funcion API
@@ -53,14 +53,21 @@ function calendar() {
     ajax.send(formdata);
 }
 
-//* /Inserción de citas
+//Inserción de citas
 function insertDatas() {
     //Recogemos los datos del Form
     //formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
+
     var fecha_vi = document.getElementById('fecha_vi').value;
     var hora_vi = document.getElementById('hora_vi').value;
+    var an_asociado = document.getElementById('an_asociado').value;
     var asunto_vi = document.getElementById('asunto_vi').value;
     var id_us = document.getElementById('id_us').value;
+
+    //Validación de datos
+    if (fecha_vi == "" || hora_vi == "" || asunto_vi == "") {
+        alertify.error('Rellene los campos obligatorios *');
+    }
 
     //inicializamos objeto ajax
     var ajax = objetoAjax();
@@ -69,9 +76,11 @@ function insertDatas() {
     formdata.append('_token', document.getElementById('token').getAttribute("content"));
     formdata.append('fecha_vi', fecha_vi);
     formdata.append('hora_vi', hora_vi);
+    formdata.append('an_asociado', an_asociado);
     formdata.append('asunto_vi', asunto_vi);
     formdata.append('id_us', id_us);
     formdata.append('_method', 'POST');
+
 
     ajax.open("POST", "insertcita", true);
     ajax.onreadystatechange = function() {
@@ -79,9 +88,16 @@ function insertDatas() {
             console.log(this.responseText);
             var respuesta = JSON.parse(this.responseText);
             if (respuesta.resultado == "OK") {
-                alert("Success");
+                alertify
+                    .alert("Información de la visita", "Se enviará un mail a tu dirección de correo electrónico con toda la información de la cita", function() {
+                        alertify.success('Visita agendada correctamente');
+                    });
+                //Si la ejecución ha sido correcta, llamaremos a la función MailToCustomer
+                //Función enviar mail
+                /* MailToCustomer(formdata); */
             } else {
-                alert("Error:" + respuesta.resultado);
+                alertify.warning("Cita previamente creada, revise el apartado de sus citas ;)");
+                /* alertify.error("Error:" + respuesta.resultado + " Cita previamente creada, revise sus citas ;)"); */
             }
             //Limpiamos Array
             vaciarArrEventos();
@@ -106,6 +122,7 @@ function montarCalendario() {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth, timeGridWeek, listWeek',
+            borderColor: '#8590FF',
         },
         //Recogemos los campos previamente rellenados
         events: eventos,
@@ -145,4 +162,54 @@ function modalCitas() {
             modal.style.display = "none";
         }
     }
+
 }
+//Función despliegue de opciones hora del formulario, en base al día.
+function hourOptions() {
+    //Fecha
+    var fecha_vi = document.getElementById('fecha_vi').value;
+    //Hora
+    var currentTime = new Date();
+    var year = currentTime.getFullYear();
+    var mes = currentTime.getMonth();
+    var mes = mes + 1;
+    var horas = new Date();
+    horas = horas.getHours();
+    dia = currentTime.getDate();
+    var horasDispo = "";
+
+    if ((mes) < 10) {
+        mes = "0" + mes;
+    }
+
+    if (dia < 10) {
+        dia = "0" + dia;
+    }
+
+    if ((year + "-" + mes + "-" + dia) == fecha_vi) {
+        for (let index = horas; index < 24; index++) {
+            horasDispo += "<option value='" + index + ":00'>" + index + ":00 </option>";
+        }
+    } else {
+        for (let index = 0; index < 24; index++) {
+            horasDispo += "<option value='" + index + ":00'>" + index + ":00 </option>";
+        }
+    }
+    document.getElementById('hora_vi').innerHTML = horasDispo;
+}
+
+//Función enviar mails al usuario
+//Formdata contiene todos los datos del formulario previamente insertado
+/* function MailToCustomer(formdata) {
+    //inicializamos objeto ajax
+    var ajax = objetoAjax();
+    ajax.open("GET", "mailtocustomer", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            alert("ok");
+        } else {
+            alert("error");
+        }
+    }
+    ajax.send(formdata);
+} */

@@ -105,8 +105,9 @@ img {
 }
 
 table {
+    float: right;
     text-align: center;
-    width: 100%;
+    width: 98%;
     height: 50px;
 }
 
