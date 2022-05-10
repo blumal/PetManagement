@@ -2,6 +2,7 @@ window.onload = function() {
         /* cords_click = null;
         valor_geo = document.getElementById('valor_cons_geo').value; */
         geoguesser( /* cords_click */ );
+        i = 0;
     }
     /* if (!alertify.ok) {
         //define a new dialog
@@ -63,6 +64,8 @@ function objetoAjax() {
 /*MOSTRAR MAPA*/
 
 map = L.map('map').setView([35.96730926867194, -13.417163902896636], 2);
+
+map.setLayoutProperty('country-label', 'text-field', ['get', `name_es`]);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -282,24 +285,6 @@ console.log('Array vacio: ' + arr_codes); */
     }
 } */
 
-
-map.on('click', function(e) {
-    /* arr_codes = []; */
-    var geocodeService = L.esri.Geocoding.geocodeService({
-        apikey: 'AAPKbbec8a40852d418489a6942c6bb999c0OGoOpdlPwk4Ze41rBXv4-nlfUv4gdC9eF1nl2D03hpX5NdYqZGw0fZmYgcfzS_60' // replace with your api key - https://developers.arcgis.com
-    });
-    geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
-        console.log('code click: ' + result.address.CountryCode);
-        cords_click = result.address.CountryCode;
-        /* geoguesser(cords_click); */
-        /* if (error) {
-            return;
-        }
-
-        L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup(); */
-    });
-});
-
 function random(animales, keys) {
     var array_random = [];
     for (let i = 0; i < animales.size; i++) {
@@ -313,9 +298,150 @@ function random(animales, keys) {
         rand_animales.set(rnd_ord[i], animales.get(rnd_ord[i]));
     }
     console.log(rand_animales);
-    for (let i = 0; i < rand_animales.length; i++) {
+    /* for (let i = 0; i < rand_animales.length; i++) {
         rand_animales[i].forEach((values, keys) => {
             console.log(keys + ' img: ' + values[0] + ' paises: ' + values[1])
         })
+    } */
+    /* nom_an = []; */
+    /* var i = 0;
+    rand_animales.forEach(keys => {
+        nom_an[i] = keys;
+        i++;
+    }); */
+    /* var i = 0; */
+    /* for (var key in rand_animales) {
+        alert(key);
+        i++;
+    } */
+    arr = [];
+    arr_nom = [];
+    for (const [name, value] of rand_animales) {
+        arr.push({ name, value });
+        arr_nom.push({ name });
     }
+    console.log(arr);
+    console.log(arr_nom);
+    comprobarAnimal();
+    /* anterior = ''; */
+    /*  console.log(nom_an); */
 }
+
+map.on('click', function(e) {
+    /* arr_codes = []; */
+    var geocodeService = L.esri.Geocoding.geocodeService({
+        apikey: 'AAPKbbec8a40852d418489a6942c6bb999c0OGoOpdlPwk4Ze41rBXv4-nlfUv4gdC9eF1nl2D03hpX5NdYqZGw0fZmYgcfzS_60' // replace with your api key - https://developers.arcgis.com
+    });
+    geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
+        console.log('code click: ' + result.address.CountryCode);
+        cords_click = result.address.CountryCode;
+        comprobarAnimal();
+        /* random(cords_click); */
+        /* geoguesser(cords_click); */
+        /* if (error) {
+            return;
+        }
+
+        L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup(); */
+    });
+});
+
+function comprobarAnimal() {
+    cont_fin_jug = arr.length;
+    console.log('Valor del contador: ' + cont_fin_jug)
+    var datos_an = document.getElementById('img_geo');
+    /* for (let i = k; i < arr.length; i++) { */
+    datos_an.innerHTML = '<p>' + arr_nom[i]['name'] + '</p><img class="img_an" src="' + arr[i]['value'][0] + '">';
+    /* alert(arr_nom[i]['name']); */
+    console.log(arr_nom[i]['name']);
+    console.log('Img: ' + arr[i]['value'][0]);
+    console.log('Codes: ' + arr[i]['value'][1]);
+    /*  if (cords_click == null) {
+         alert('Clica en el lugar donde creas que es el animal');
+     } else  */
+    if (arr[i]['value'][1].includes(cords_click)) {
+        /* alert('Has acertado'); */
+        swal.fire({
+            title: "Has acertado!!",
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+        console.log('Correcto');
+        /* cords_click = null; */
+        /* setTimeout(function() {
+            geoguesser(cords_click);
+        }, 2000); */
+        i++;
+        if (i == cont_fin_jug) {
+            /* alert('Juego finalizado'); */
+            console.log('Juego finalizado');
+            /* swal({
+                title: "Has acertado!!",
+                text: "Se te redigirá a otra página en 5 segundos.",
+                timer: 5000,
+                showConfirmButton: true
+            }); */
+            /* swal.fire({
+                title: "Has acertado!!",
+                text: 'Se te redigirá a otra página en 5 segundos.',
+                icon: "success",
+                timer: 5000,
+                showConfirmButton: false,
+                allowOutsideClick: false
+            }); */
+
+            let timerInterval
+
+            Swal.fire({
+                title: 'Se ha acabado el juego.',
+                html: 'Se te redigirá a otra página en <strong></strong> segundos.<br/><br/>',
+                icon: "info",
+                timer: 5000,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    timerInterval = setInterval(() => {
+                        Swal.getHtmlContainer().querySelector('strong')
+                            .textContent = (Swal.getTimerLeft() / 1000)
+                            .toFixed(0)
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
+
+            setTimeout(function() {
+                window.location.href = "geoguesser";
+            }, 5000);
+            /* swal({
+            title: "Has acertado!!",
+            text: "Se te redigirá a otra página en 5 segundos.",
+            timer: 5000,
+            showConfirmButton: true
+        }); */
+        } else {
+            setTimeout(function() {
+                datos_an.innerHTML = '<p>' + arr_nom[i]['name'] + '</p><img class="img_an" src="' + arr[i]['value'][0] + '">';;
+            }, 2000);
+        }
+    } else {
+        /* alert('Has fallado!'); */
+        swal.fire({
+            title: "Has fallado!!",
+            icon: "error",
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+        console.log('Incorrecto');
+        /* cords_click = null; */
+        /* setTimeout(function() {
+            geoguesser(cords_click);
+        }, 2000); */
+    }
+    console.log('Valor de i: ' + i);
+}
+/* } */
