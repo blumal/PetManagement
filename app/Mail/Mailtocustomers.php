@@ -36,6 +36,8 @@ class Mailtocustomers extends Mailable
             return $this->view('facturas/envio/mailFacturaTienda')->subject($this->sub);
         }elseif($this->sub=="Confirmación de visita"){
             return $this->view('facturas/envio/mailFacturaVisita')->subject($this->sub);
+        }elseif($this->sub=="Cambio de contraseña"){
+            return $this->view('login/envio/mailPassword')->subject($this->sub);
         }
         else{
             return $this->view('clinica/vistas/mailtocustomer')->subject($this->sub);

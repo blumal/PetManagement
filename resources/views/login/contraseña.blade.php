@@ -58,13 +58,13 @@
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 m-1">
             <div class="col-md-6 col-sm-8 col-xl-5 col-lg-5 formulario">
-                <form action="{{url("")}}" method="post" onsubmit="return validateContraseña();">
+                <form action="{{url("/regenerarPassword")}}" method="post" onsubmit="return validateContraseña();">
                     @csrf
                     <div class="form-group text-center pt-3">
                         <h1>RECUPERA MI CONTRASEÑA</h1>
                     </div>
                     <div class="form-group mx-sm-4 pt-3">
-                        <input type="email" class="form-control" placeholder="Correo" name="email_us" id="email_us">
+                        <input type="email" class="form-control" placeholder="Correo" name="mail_regenerar" id="email_us">
                     </div>
                     {{-- @error('email_us') --}}
                     <div class="form-group mx-sm-4 pb-1">

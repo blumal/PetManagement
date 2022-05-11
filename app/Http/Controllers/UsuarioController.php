@@ -173,4 +173,26 @@ class UsuarioController extends Controller
             return $e->getMessage();
         }
     }
+
+    function regenerarPassword(Request $request) {
+
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $password = array(); //remember to declare $password as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $password[] = $alphabet[$n];
+        }
+        $regen_password=implode($password); //turn the array into a string
+
+        $mail=$request['mail_regenerar'];
+        $datas=[$regen_password];
+        //Envío de mail
+        $sub = "Cambio de contraseña";
+        $enviar = new Mailtocustomers($datas);
+        $enviar->sub = $sub;
+        Mail::to($mail)->send($enviar);
+
+        return redirect('/login');
+    }
 }

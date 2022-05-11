@@ -219,6 +219,10 @@ Route::put('actualizar',[ProductoController::class,'update']);
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
 Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
 
+Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword']);
+
+
+
 
 //Api
 Route::get('showcitas', [CitasController::class, 'showcitas']);
