@@ -22,7 +22,10 @@ function leerPacientes() {
 
     var formData = new FormData();
     var token = document.getElementById('token').getAttribute("content");
+    var busqueda = document.getElementById('search').value;
+
     formData.append('_token', token);
+    formData.append('nombre_paciente', busqueda);
     var ajax = objetoAjax();
     ajax.open("POST", "leerPacientes", true);
     ajax.onreadystatechange = function() {
@@ -30,6 +33,18 @@ function leerPacientes() {
             var respuesta = JSON.parse(this.responseText);
             console.log(respuesta)
             tabla.innerHTML = ""
+            tabla.innerHTML = "<tr class='fila-1'>" +
+                "<th scope='col'>Foto</th>" +
+                "<th scope='col'>Nombre</th>" +
+                "<th scope='col'>Peso (kg)</th>" +
+                "<th scope='col'>Nº Identifiación</th>" +
+                "<th scope='col'>Propietario</th>" +
+                "<th scope='col'>Fecha nacimiento</th>" +
+                "<th scope='col'>Nombre científico</th>" +
+                "<th scope='col'>Raza</th>" +
+                "<th scope='col'>Editar</th>" +
+                "<th scope='col'>Eliminar</th>" +
+                "</tr>"
             for (let i = 0; i < respuesta.length; i++) {
 
                 if (respuesta[i].raza_pa == null) {
@@ -38,7 +53,7 @@ function leerPacientes() {
                 if (respuesta[i].n_id_nacional == null) {
                     respuesta[i].n_id_nacional = ""
                 }
-                tabla.innerHTML += "<tr>" +
+                tabla.innerHTML += "<tr class='fila-2'>" +
                     "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar'></td>" +
                     "<td>" + respuesta[i].nombre_pa + "</td>" +
                     "<td>" + respuesta[i].peso_pa + "</td>" +
@@ -51,15 +66,12 @@ function leerPacientes() {
                     "<form action='/editarPaciente' method='post'>" +
                     "<input type='hidden' name='_token' id='csrf-token' value=" + token + " />" +
                     "<input type='hidden' name='id_paciente' value=" + respuesta[i].id_pa + ">" +
-                    "<input type='submit' value='Editar' class='btn btn-outline-secondary'>" +
+                    "<input type='submit' value='Editar' class='btn btn-secondary'>" +
                     "</form>" +
                     "</td>" +
                     "<td>" +
-                    "<button type='button' class='btn btn-outline-danger' onclick='eliminarPaciente(" + respuesta[i].id_pa + ")'>Eliminar</button>" +
+                    "<button type='button' class='btn btn-danger' onclick='eliminarPaciente(" + respuesta[i].id_pa + ")'>Eliminar</button>" +
                     "</td>"
-
-
-
             }
         }
     }
