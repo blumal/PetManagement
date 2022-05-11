@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script type="text/javascript" src="js/iconos_g.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -62,7 +63,7 @@
         </div>
         <div class="filtro-search-bar">
             <i class="fa fa-search"></i> 
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto o categoria" id="search" aria-label="Search" onkeyup="filtro(); return false;">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto o categoria" id="search" aria-label="Search" onkeyup="filtro(); return false;" onpaste="filtro();">
         </div>
         <div class="div-dropmenu">
             <div class="dropdown" id="dropdown">
@@ -408,6 +409,24 @@
         </div>
     </div>
 </div>
+<div id="myModal2" class="modal2">
+    <div class="modal-content2">
+      <div class="div-modal">
+        <span class="close2">&times;</span>
+        
+      </div>
+    </div>
+</div>
+<div id="myModal3" class="modal3">
+    <div class="modal-content3">
+      <div class="div-modal3">
+        <span class="close3">&times;</span>
+        
+      </div>
+    </div>
+</div>
+
+
 </body>
 <footer>
     <img src="storage/img/imagenesWeb/logo.png" alt="" class="logo">

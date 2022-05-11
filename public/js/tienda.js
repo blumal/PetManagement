@@ -218,7 +218,7 @@ function productos() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='modal(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -231,7 +231,7 @@ function productos() {
     ajax.send(formData);
 }
 
-
+/*
 function addToCart(id) {
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
@@ -287,6 +287,95 @@ function addToCart(id) {
     }
     ajax.send(formData);
 }
+*/
+function addToCart() {
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+    var cantidad = $('#input-cantidad').val();
+    var id = $('.modal-texto').attr('id-producto');
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id);
+    formData.append('cantidad', cantidad);
+    formData.append('subcategoria', subcategoria);
+    var ajax = objetoAjax();
+
+    ajax.open("get", "add-to-cart-producto/" + id + "/" + cantidad + "/" + subcategoria, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            console.log(Object.keys(respuesta).length)
+            var div = document.getElementsByClassName("div-dropmenu")[0];
+            html = "<div class='dropdown' id='dropdown'>";
+            html += "<button type='button' class='btn btn-info carrito-drop' data-toggle='dropdown'>";
+            html += "<i class='fa fa-shopping-cart' aria-hidden='true'></i> Carrito <span class='badge badge-pill badge-danger'>" + Object.keys(respuesta).length + "</span>";
+            html += "</button>";
+            html += "<div class='dropdown-menu' id='dropdown-menu'>";
+            html += "<div class='row total-header-section'>";
+            html += "<div class='col-lg-6 col-sm-6 col-6'>";
+            html += "<i class='fa fa-shopping-cart' aria-hidden='true'></i> <span class='badge badge-pill badge-danger'>" + Object.keys(respuesta).length + "</span>";
+            html += "</div>";
+            total = 0
+            for (let i in respuesta) {
+                total += respuesta[i].precio * respuesta[i].cantidad;
+            }
+            html += "<div class='col-lg-6 col-sm-6 col-6 total-section text-right'>";
+            html += "<p>Total: <span class='color'>" + total.toFixed(2) + "€</span></p>";
+            html += "</div>";
+            html += "</div>";
+            for (let i in respuesta) {
+                html += "<div class='row cart-detail'>";
+                html += "<div class='col-lg-4 col-sm-4 col-4 cart-detail-img'>";
+                html += "<img src='storage/uploads/" + respuesta[i].foto + "'/>";
+                html += "</div>";
+                html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
+                html += "<p>" + respuesta[i].nombre + " (" + respuesta[i].subcategoria_texto + ")</p>";
+                html += "<span class='color'>" + respuesta[i].precio + "€</span> <span class='count'> Cantidad: " + respuesta[i].cantidad + "</span>";
+                html += "</div>";
+                html += "</div>";
+            }
+            html += "<div class='row'>";
+            html += "<div class='col-lg-12 col-sm-12 col-12 text-center checkout'>";
+            html += "<a href='carrito' class='btn btn-block btn-carrito'>Ir al carrito</a>";
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+            div.innerHTML = html;
+            var subcategoriaTexto = document.querySelector('input[name="tipos"]:checked').getAttribute("data-texto");
+            var nombre = $('.modal-texto').find("h5:first").text();
+            var modal = document.getElementById("myModal2");
+            modal.style.display = "none";
+            var divModal = document.getElementsByClassName("div-modal3")[0];
+            html = "<span class='close3'>&times;</span>"
+            html += "<p class='text-center mt-5'><i class='fa fa-thumbs-up fa-5x'></i></p>";
+            html += "<h4 class='text-center mt-3'>Has añadido x" + cantidad + " " + nombre + "(" + subcategoriaTexto + ") al carrito!</h4>";
+            html += "<div class='div-seguir3 mr-1'><button type='button' class='btn btn-outline-primary btn-block btn-mas3 salir3'>Seguir mirando</button></div>";
+            html += "<div class='div-pagar3 ml-1'><a href='carrito'><button type='button' class='btn btn-primary btn-block btn-pagar3'>Ir a pagar</button></a></div>";
+            divModal.innerHTML = html;
+            var modal = document.getElementById("myModal3");
+            var span = document.getElementsByClassName("close3")[0];
+            var span2 = document.getElementsByClassName("salir3")[0];
+            modal.style.display = "block";
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            span2.onclick = function() {
+                modal.style.display = "none";
+
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+    }
+
+    ajax.send(formData);
+
+}
+
 
 function filtro() {
     var nombre = document.getElementById("search").value;
@@ -305,6 +394,13 @@ function filtro() {
 
 
     formData.append('orden', orden);
+
+    //NUEVO
+    var palabras = nombre.split(" ");
+    for (let i = 0; i < palabras.length; ++i) {
+        formData.append('palabras[]', palabras[i]);
+    };
+    //FIN NUEVO
     var ajax = objetoAjax();
 
     ajax.open("POST", "filtroSearchBar", true);
@@ -312,6 +408,7 @@ function filtro() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta)
             divProductos.innerHTML = "";
             var marcasHTML = []
             $('input[name="marcas"]:checked').each(function() {
@@ -584,4 +681,80 @@ function marcasEmpty() {
         }
 
     }
+}
+
+function modal(id) {
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id', id);
+    var ajax = objetoAjax();
+    ajax.open("post", "getProduct", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var divModal = document.getElementsByClassName("div-modal")[0];
+            var html = "<span class='close2'>&times;</span>";
+            html += "<div class='div-img'><img src='storage/uploads/" + respuesta[0][0].foto_art + "'></div>";
+            html += "<div class='modal-texto' id-producto='" + respuesta[0][0].id_art + "'>";
+            html += "<h5>" + respuesta[0][0].nombre_art + "</h5>";
+            html += "<p class='text-uppercase bold'>" + respuesta[0][0].tipo_categoria_art + ":</p>";
+            html += "<div>";
+            for (let i = 0; i < respuesta[1].length; i++) {
+                if (i == 0) {
+                    html += "<input type='radio' class='btn-check' name='tipos' value='" + respuesta[1][i].id_cat + "' id='tipo" + respuesta[1][i].id_cat + "' data-texto='" + respuesta[1][i].texto_cat + "' checked>";
+                } else {
+                    html += "<input type='radio' class='btn-check' name='tipos' value='" + respuesta[1][i].id_cat + "' id='tipo" + respuesta[1][i].id_cat + "' data-texto='" + respuesta[1][i].texto_cat + "'>";
+                }
+                html += "<label class='btn btn-secondary tipo' for='tipo" + respuesta[1][i].id_cat + "' data-id='" + respuesta[1][i].id_cat + "'>";
+                html += "<div class='tipo-texto'><p class='text-left'>" + respuesta[1][i].texto_cat + "</p></div>";
+                html += "<div class='precio-texto'><p class='text-left'>" + respuesta[1][i].precio_cat + "€</p></div>";
+                html += "</label>";
+            }
+            html += "</div>";
+            html += "<div class='div-pagar'>";
+            html += "<div class='input-cantidad'><input type='number' value='1' class='form-control quantity' max='5001' min='1' id='input-cantidad'/></div>";
+            html += "<div class='cantidad-precio'><p id='precio-final'>" + respuesta[0][0].precio_art + "€</p></div>";
+            html += "<div class='anadir-carrito'><a onclick='addToCart()' class='btn btn-block btn-carrito'>Añadir al carrito</a></div>";
+            html += "</div>";
+            html += "</div>";
+            html += "";
+
+            divModal.innerHTML = html;
+            $('.tipo').click(function() {
+                precio = $(this).find('p:eq(1)').text();
+                $("#precio-final").text(precio)
+                calcularPrecio(precio);
+            });
+            $("#input-cantidad").bind('keyup mouseup', function() {
+                precio = $("#precio-final").text()
+                calcularPrecio(precio);
+            });
+
+            var modal = document.getElementById("myModal2");
+            var span = document.getElementsByClassName("close2")[0];
+            modal.style.display = "block";
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+    }
+    ajax.send(formData);
+}
+
+function calcularPrecio(precio) {
+    var cantidad = document.getElementById("input-cantidad").value
+    precio = precio.substring(0, precio.length - 1);
+    var final = cantidad * precio;
+    final = final.toFixed(2);
+    $("#precio-final").text(final + "€")
+        //sesiones
+    var id = $('.producto').attr('id-producto');
+    var divHtml = document.getElementsByClassName("anadir-carrito")[0];
+    divHtml.innerHTML = "<a onclick='addToCart()' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
+
 }

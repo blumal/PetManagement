@@ -18,6 +18,8 @@ Route::post('productosOpinionesTodas',[ProductoController::class,'productosOpini
 Route::post('marcaProducto',[ProductoController::class,'marcaProducto']);
 Route::post('filtroSearchBar',[ProductoController::class,'filtroSearchBar']);
 Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);
+Route::post('getProduct',[ProductoController::class,'getProduct']);
+
 //sesiones
 Route::get('add-to-cart/{id}',[ProductoController::class,'addToCart']);
 Route::get('add-to-cart-producto/{id}/{cantidad}/{subcategoria}',[ProductoController::class,'addToCartProducto']);
