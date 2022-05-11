@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+
 * {
+    font-family: 'Montserrat Alternates', sans-serif;
     margin: 0%;
     color: #333333;
 }
@@ -27,9 +30,13 @@ header {
     z-index: 999;
 }
 
+ul{
+    margin-bottom: 0rem;
+}
+
 .logo {
-    padding-top: 15px;
-    height: 90%;
+    height: 80%;
+    margin-top: 1%;
 }
 
 .scrolled-search {
@@ -42,7 +49,6 @@ header {
     list-style-type: none;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0;
 }
 
 .menu-item {
@@ -63,7 +69,7 @@ header {
 .cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: #1f2cc4;
+    background-color: var(--main-color);
     color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
@@ -74,6 +80,22 @@ header {
 .cta:hover {
     color: #ffffff;
     background-color: #000000;
+}
+
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
 }
 
 .div-1 {

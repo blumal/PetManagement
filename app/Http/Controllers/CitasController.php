@@ -34,6 +34,30 @@ class CitasController extends Controller
         return redirect('/');
     }
 
+    //Funcion para que el usuario modifique su perfil
+    public function modificarPerfil(Request $request){
+        $id=session('id_user_session');
+        $profile = DB::select("select * FROM tbl_usuario
+        INNER JOIN tbl_rol ON tbl_usuario.id_rol_fk=tbl_rol.id_ro
+        INNER JOIN tbl_telefono on tbl_usuario.id_telefono_fk=tbl_telefono.id_tel
+        INNER JOIN tbl_direccion on tbl_usuario.id_direccion1_fk=tbl_direccion.id_di
+        where id_us={$id}");
+        return view('perfil',compact('profile'));
+    }
+
+    public function modificarPerfilPost(Request $request){
+        $datos=$request->except('_token','_method');
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_usuario')->where('id_us','=',$datos['id_us'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('perfil');
+    }
+
     //Método encargado de hacer el proceso de login
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
     public function loginProc(Request $request)
@@ -60,7 +84,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('trabajador_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/');
@@ -69,7 +93,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('admin_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/cpanel');
@@ -78,7 +102,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('cliente_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
 
                 //Envíamos los registros del usuario que ha iniciado sesión
@@ -109,6 +133,59 @@ class CitasController extends Controller
         return redirect('');
     } */
 
+    public function regisProc(Request $request){
+        //return $request;
+        //Validación de datos enviados desde el form, en este caso se verifica en el server
+        $request->validate([
+            'email_us' => 'required|string|max:70',
+            'pass_us' => 'required|string|max:50'
+        ]);
+
+        try {
+            //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            $request->except('_token', '_method');
+            //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
+            if ($request->input('pass_us')==$request->input('pass2_us')){
+                $pwd = hash( 'sha256', $request->input('pass_us') );
+                DB::insert('insert into tbl_direccion (nombre_di, numero_di, bloque_di, piso_di, puerta_di, cp_di) values (?, ?. ?, ?, ?, ?)', 
+                    [$request->input('dir_us'), 
+                    $request->input('ndir_us'), 
+                    $request->input('bdir_us'), 
+                    $request->input('pdir_us'), 
+                    $request->input('padir_us'), 
+                    $request->input('cpdir_us')]);
+                $id_dir = DB::getPdo()->lastInsertId();
+                DB::insert('insert into tbl_telefono (nombre_di, numero_di) values (?, ?)', 
+                        [$request->input('dir_us'), 
+                        $request->input('ndir_us')]);
+                $id_telf = DB::getPdo()->lastInsertId();
+                DB::insert('insert into tbl_usuario (nombre_us, apellido1_us, apellido2_us, dni_us, email_us, pass_us, id_rol_fk, id_direccion1_fk, id_telelefono_fk) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+                    [$request->input('name_us'), 
+                    $request->input('apellido_us'), 
+                    $request->input('apellido2_us'), 
+                    $request->input('dni_us'), 
+                    $request->input('email_us'), 
+                    $pwd, 
+                    2, 
+                    $id_dir, 
+                    $id_telf]);
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $request->input('email_us'))->where('pass_us', '=', $pwd)->get();
+                $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
+                $request->session()->put('cliente_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                $request->session()->put('id_rol_session', $rol_usuario);
+                return redirect('/');
+            }else {
+                //No establecemos sesión y lo devolvemos a login
+                return redirect('/registro');
+            }
+        } catch (\Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+
     //Vista citas
     public function Citas(){
         return view('clinica/vistas/citas');
@@ -127,8 +204,7 @@ class CitasController extends Controller
         return view('admincrud'); 
     }
     public function cpanelAnimales(){
-        //Falta
-        /* return view(''); */
+        return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
         //Falta
