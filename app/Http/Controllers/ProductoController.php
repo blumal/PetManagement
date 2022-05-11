@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductoCrear;
 use Illuminate\Support\Facades\Redirect;
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
 
 class ProductoController extends Controller
 {
@@ -296,9 +298,6 @@ class ProductoController extends Controller
 
         $carrito=$request->session()->get('cart');
         foreach ($carrito as $item_Compra) {
-           print_r($item_Compra);
-           echo "<br>";
-            echo "<br>";
             $total_factura= $total_factura + ($item_Compra['cantidad']*$item_Compra['precio']);
         }
         /*
@@ -307,8 +306,7 @@ class ProductoController extends Controller
             echo "<br>";
             echo "<br>";
             $total_factura= $total_factura + ($carrito[$i]['cantidad']*$carrito[$i]['precio']);
-        }
-        */
+        } 
         
         echo $total_factura." -> Total factura" ;
         echo "<br>";
@@ -324,7 +322,9 @@ class ProductoController extends Controller
         echo "<br>";
         echo $localtime." -> HORA" ;
         //return $carrito;
+        */
 
+        DB::beginTransaction();
         $id_factura_tienda = DB::table('tbl_factura_tienda')->insertGetId(
             [ 'fecha_ft' => $date,
             'hora_ft'=> $localtime,
@@ -336,6 +336,16 @@ class ProductoController extends Controller
             DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
             [$item_compra['id'],$item_compra['cantidad'],$id_factura_tienda]);
         }
+        DB::commit();
+
+        //Envío de mail
+        $sub = "Confirmación de compra";
+        $datas=[$localtime,$date,$total_factura,$id_factura_tienda];
+        $enviar = new Mailtocustomers($datas);
+        //,$total_factura,$localtime,$date
+        $enviar->sub = $sub;
+        Mail::to(session('email_session'))->send($enviar);
+        //Mail::to("gomezmonterroso14@gmail.com")->send($enviar);
         /*
         for ($i=1; $i < (count($carrito)+1); $i++) {
             DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
