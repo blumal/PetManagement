@@ -3,6 +3,18 @@ window.onload = function() {
         valor_geo = document.getElementById('valor_cons_geo').value; */
         geoguesser( /* cords_click */ );
         i = 0;
+        swal.fire({
+            title: "Empieza el juego!!",
+            text: "Clica en el país de dónde creas que es el animal.",
+            /* icon: "info", */
+            imageUrl: 'https://c.tenor.com/7NX24XoJX0MAAAAC/loading-fast.gif',
+            imageHeight: 250,
+            imageWidth: 300,
+            /* iconHtml: '<img src="https://c.tenor.com/bI5QoACcqXoAAAAC/windows-circle-shining.gif">', */
+            timer: 5000,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
     }
     /* if (!alertify.ok) {
         //define a new dialog
@@ -65,7 +77,10 @@ function objetoAjax() {
 
 map = L.map('map').setView([35.96730926867194, -13.417163902896636], 2);
 
-map.setLayoutProperty('country-label', 'text-field', ['get', `name_es`]);
+/* map.setLayoutProperty('country-label', 'text-field', [
+    'get',
+    `name_es`
+]); */
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     maxZoom: 18,
@@ -397,7 +412,10 @@ function comprobarAnimal() {
             Swal.fire({
                 title: 'Se ha acabado el juego.',
                 html: 'Se te redigirá a otra página en <strong></strong> segundos.<br/><br/>',
-                icon: "info",
+                /* icon: "success", */
+                imageUrl: 'https://media3.giphy.com/media/dZS9HgCrRbgA0imoak/giphy.gif',
+                imageHeight: '300',
+                imageWidth: '300',
                 timer: 5000,
                 showConfirmButton: false,
                 allowOutsideClick: false,
