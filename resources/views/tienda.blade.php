@@ -420,7 +420,7 @@
 <div id="myModal3" class="modal3">
     <div class="modal-content3">
       <div class="div-modal3">
-        <span class="close3">&times;</span>
+        
         
       </div>
     </div>

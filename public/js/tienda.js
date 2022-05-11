@@ -720,13 +720,15 @@ function modal(id) {
             html += "";
 
             divModal.innerHTML = html;
+            var precio = $(".tipo:first").find('p:eq(1)').text();
+            precio = precio.substring(0, precio.length - 1);
             $('.tipo').click(function() {
                 precio = $(this).find('p:eq(1)').text();
                 $("#precio-final").text(precio)
                 calcularPrecio(precio);
             });
+            //HAY UN FALLO AL CALCULAR PRECIO EN ESTE INPUT
             $("#input-cantidad").bind('keyup mouseup', function() {
-                precio = $("#precio-final").text()
                 calcularPrecio(precio);
             });
 
@@ -745,6 +747,7 @@ function modal(id) {
     }
     ajax.send(formData);
 }
+
 
 function calcularPrecio(precio) {
     var cantidad = document.getElementById("input-cantidad").value
