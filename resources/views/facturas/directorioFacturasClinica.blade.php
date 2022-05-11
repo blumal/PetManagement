@@ -22,7 +22,7 @@
             <img src="./img/imagenesWeb/logo.png">
         </div>
         <div class="logout">
-            <img onclick="location.href = '/logout'" class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px">
+            <a href="{{url("logout")}}"><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></a>
         </div>
     </header>
     <div class="row-c">

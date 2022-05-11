@@ -56,7 +56,7 @@ function filtro() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += '<tr>';
+                recarga += '<tr class="fila-1">';
 
                 recarga += '<th scope="col">#</th>';
                 recarga += '<th scope="col">Nombre</th>';
@@ -68,7 +68,7 @@ function filtro() {
                 recarga += '<th scope="col" colspan="2">Acciones</th>';
                 recarga += '</tr>';
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += '<tr>';
+                    recarga += '<tr class="fila-2">';
                     recarga += '<td scope="row">' + respuesta[i].id_art + '</td>';
                     recarga += '<td>' + respuesta[i].nombre_art + '</td>';
 

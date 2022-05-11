@@ -11,6 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Registro paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{asset('css/CRUDPacientes/estilos_crear.css')}}">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="js/visita/crud_pacientes.js"></script>
+    
 
     <style>
     :root {
@@ -51,18 +53,11 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
     }
 
-    *,
+    /* *,
     *::before,
     *::after {
         -webkit-box-sizing: border-box;
         box-sizing: border-box
-    }
-
-    html {
-        font-family: sans-serif;
-        line-height: 1.15;
-        -webkit-text-size-adjust: 100%;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
     }
 
     article,
@@ -76,7 +71,7 @@
     nav,
     section {
         display: block
-    }
+    } */
 
     body {
         margin: 0;
@@ -86,7 +81,7 @@
         line-height: 1.5;
         color: #212529;
         text-align: left;
-        background-color: #fff
+        background-color: #4a4a4a !important;
     }
 
     [tabindex="-1"]:focus {
@@ -599,7 +594,7 @@
         padding-right: 15px;
         padding-left: 15px;
         margin-right: auto;
-        margin-left: auto
+        margin-left: auto;
     }
 
     @media (min-width:576px) {
@@ -2759,13 +2754,13 @@
     }
 
     .btn-primary {
-        color: #fff;
+        color: #000000 !important;
         background-color: #007bff;
         border-color: #007bff
     }
 
     .btn-primary:hover {
-        color: #fff;
+        color: #000000;
         background-color: #0069d9;
         border-color: #0062cc
     }
@@ -2879,15 +2874,17 @@
     }
 
     .btn-info {
-        color: #fff;
-        background-color: #17a2b8;
-        border-color: #17a2b8
+        font-weight: bolder !important;
+        color: #000000;
+        background-color: #17b8b8;
+        border-color: #17b8b8;
     }
 
     .btn-info:hover {
-        color: #fff;
-        background-color: #138496;
-        border-color: #117a8b
+        font-weight: bolder;
+        color: #000000;
+        background-color: #17a2b8;
+        border-color: #17a2b8;
     }
 
     .btn-info:focus,
@@ -10980,7 +10977,8 @@
 
     .heading-section {
         font-size: 28px;
-        color: #000
+        color: white;
+        font-weight: bolder;
     }
 
     .img {
@@ -11181,8 +11179,11 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Registro de paciente</h2>
+            <div class="col-md-12 text-center mb-0">
+                <form class="head" action="{{url('/adminPacientes')}}" method="GET">
+                    <button type="submit" value="logout" class="btn btn-info">Back</button>    
+                </form>
+                <h1 class="heading-section">Nuevo Paciente</h1>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -11252,13 +11253,10 @@
                                                         <option class="form-control"  value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option>
                                                     @endfor
                                                         <!--<option class="form-control"  value="paco">Paquito</option>-->
-                                                    
                                                 </select>
                                         </div>
-
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                
                                                 <input type="submit" value="Registrar paciente" class="btn btn-primary">
                                                 <div class="submitting"></div>
                                                 <div id="mensaje"></div>
@@ -11268,7 +11266,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-5 d-flex align-items-stretch">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="info-wrap w-100 p-5 img" style="background-image:url('https://i.gyazo.com/fbf14d623693208ee771c4f5c918f341.jpg')">
                             </div>
                         </div>

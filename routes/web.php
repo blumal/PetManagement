@@ -34,6 +34,8 @@ Route::get('mapa_establecimientos', [mapas::class,'mapa_establecimientos']);
 
 Route::get('markersEstablecimientos', [mapas::class,'markersEstablecimientos']);
 
+Route::get('filtromarkersEstablecimientos', [mapas::class,'filtromarkersEstablecimientos']);
+
 Route::get('mapa_animales_perdidos', [mapas::class,'mapa_animales_perdidos']);
 
 Route::get('markersAnimalesPerdidos', [mapas::class,'markersAnimalesPerdidos']);
@@ -60,6 +62,10 @@ Route::get('about', function () {
     return view('about');
 });
 
+Route::get('perfil', function () {
+    return view('perfil');
+});
+
 Route::get('contacto', function () {
     return view('contacto');
 });
@@ -68,12 +74,27 @@ Route::get('registro', function () {
     return view('registro');
 });
 
+Route::get('login/contraseña', function () {
+    return view('login/contraseña');
+});
+
+Route::get('entretenimiento', function () {
+    return view('entretenimiento');
+});
+
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 Route::get('/login', [CitasController::class, 'login']);
 Route::post('/login-proc', [CitasController::class, 'loginProc']);
+Route::post('/regis-proc', [CitasController::class, 'regisProc']);
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [CitasController::class, 'logout']);
+//geoguesser
+Route::get('/geoguesser', [mapas::class, 'geoguesser']);
+//geoguesser
+Route::get('geoguesser-game', [mapas::class, 'geoguessergame']);
+//AJAX Geoguesser
+Route::get('geoguesser_ajax', [mapas::class,'geoguesser_ajax']);
 //Citas
 Route::get('citas', [CitasController::class, 'Citas']);
 //Mail a cliente
@@ -159,7 +180,7 @@ Route::post('juegos/ranita/new_score', [JuegosController::class, 'new_score']);
 //FIN JUEGOS
 
 //INICIO CRUD PACIENTES
-Route::post('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
+Route::get('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
 Route::post('/cerrarPaciente',[VisitaController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);
@@ -191,6 +212,10 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
+
+//Actualizar Perfil usuario
+Route::get('modificarPerfil', [CitasController::class, 'modificarPerfil']);
+Route::post('modificarPerfilPost',[CitasController::class, 'modificarPerfilPost']);
 
 
 //Api
