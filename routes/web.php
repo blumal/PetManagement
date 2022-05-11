@@ -177,7 +177,7 @@ Route::post('juegos/ranita/new_score', [JuegosController::class, 'new_score']);
 //FIN JUEGOS
 
 //INICIO CRUD PACIENTES
-Route::post('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
+Route::get('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
 Route::post('/cerrarPaciente',[VisitaController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);

@@ -218,9 +218,11 @@ class VisitaController extends Controller
     public function adminPacientes(){
         try {
             DB::beginTransaction();
-            $pacientes= DB::table('tbl_pacienteanimal_clinica')
+            $pacientes = DB::select("select * FROM tbl_pacienteanimal_clinica
+        INNER JOIN tbl_usuario ON tbl_pacienteanimal_clinica.propietario_fk=tbl_usuario.id_us");
+            /* $pacientes= DB::table('tbl_pacienteanimal_clinica')
                     ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
-                    ->get();
+                    ->get(); */
             DB::commit();
         } catch (\Exception $error) {
             DB::rollback();

@@ -76,8 +76,8 @@
     {{-- Modal para editar el producto --}}
     <div class="modalbox_editar" id="modalbox_editar">
         <div class="modaleditar_header">
-            <span class="close" onclick="closeModal_editar(); return false;">&times;</span>             
-            <h2 class="titulomodal">EDITAR PRODUCTO</h2>
+            <span class="close_editar" onclick="closeModal_editar(); return false;">&times;</span>             
+            <h2 class="titulomodal">Editar Producto</h2>
         </div>
         <div class="modaleditar" id="modaleditar">    
             <form id="formUpdate" method="post" onsubmit="actualizar();closeModal_editar();return false;" enctype="multipart/form-data">

@@ -55,7 +55,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form {{-- action="{{url('/cpanelAnimales')}}" --}} method="GET">
+                    <form action="{{url('/adminPacientes')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit" ><img class="sala" src="./img/imagenesWeb/pata.png" width="200px" height="200px"></button><br><br>

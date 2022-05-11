@@ -204,8 +204,7 @@ class CitasController extends Controller
         return view('admincrud'); 
     }
     public function cpanelAnimales(){
-        //Falta
-        /* return view(''); */
+        return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
         //Falta

@@ -158,8 +158,8 @@ table {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    left: 0;
-    top: 0;
+    left: -1%;
+    top: -2%;
     width: 100%;
     /* Full width */
     height: 100%;
@@ -194,8 +194,7 @@ table {
 /* The Close Button */
 
 .close {
-    color: #aaa;
-    float: right !important;
+    margin-left: 95%;
     font-size: 28px;
     font-weight: bold;
 }

@@ -1,4 +1,4 @@
-@if (Session::get('id_rol_session')==1)
+@if (Session::get('id_rol_session')!=1)
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -11,12 +11,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Editar paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{asset('css/CRUDPacientes/estilos_editar.css')}}">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
-    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="js/visita/crud_pacientes.js"></script>
 
     <style>
@@ -51,7 +52,7 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
     }
 
-    *,
+    /* *,
     *::before,
     *::after {
         -webkit-box-sizing: border-box;
@@ -76,7 +77,7 @@
     nav,
     section {
         display: block
-    }
+    } */
 
     body {
         margin: 0;
@@ -86,7 +87,7 @@
         line-height: 1.5;
         color: #212529;
         text-align: left;
-        background-color: #fff
+        background-color: #4a4a4a !important;
     }
 
     [tabindex="-1"]:focus {
@@ -2759,13 +2760,13 @@
     }
 
     .btn-primary {
-        color: #fff;
+        color: #000000 !important;
         background-color: #007bff;
         border-color: #007bff
     }
 
     .btn-primary:hover {
-        color: #fff;
+        color: #000000;
         background-color: #0069d9;
         border-color: #0062cc
     }
@@ -2778,7 +2779,7 @@
 
     .btn-primary.disabled,
     .btn-primary:disabled {
-        color: #fff;
+        color: #000000;
         background-color: #007bff;
         border-color: #007bff
     }
@@ -2786,7 +2787,7 @@
     .btn-primary:not(:disabled):not(.disabled):active,
     .btn-primary:not(:disabled):not(.disabled).active,
     .show>.btn-primary.dropdown-toggle {
-        color: #fff;
+        color: #000000;
         background-color: #0062cc;
         border-color: #005cbf
     }
@@ -2879,15 +2880,17 @@
     }
 
     .btn-info {
-        color: #fff;
-        background-color: #17a2b8;
-        border-color: #17a2b8
+        font-weight: bolder !important;
+        color: #000000;
+        background-color: #17b8b8;
+        border-color: #17b8b8;
     }
 
     .btn-info:hover {
-        color: #fff;
-        background-color: #138496;
-        border-color: #117a8b
+        font-weight: bolder;
+        color: #000000;
+        background-color: #17a2b8;
+        border-color: #17a2b8;
     }
 
     .btn-info:focus,
@@ -10980,7 +10983,8 @@
 
     .heading-section {
         font-size: 28px;
-        color: #000
+        color: white;
+        font-weight: bolder
     }
 
     .img {
@@ -11181,8 +11185,11 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Editor de paciente</h2>
+            <div class="col-md-12 text-center mb-0">
+                <form class="head" action="{{url('/adminPacientes')}}" method="GET">
+                    <button type="submit" value="logout" class="btn btn-info">Back</button>    
+                </form>
+                <h1 class="heading-section">Modificar Paciente</h1>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -11258,11 +11265,9 @@
                                                         <option class="form-control" value="{{$duenos[$i]->id_us}}">{{$duenos[$i]->nombre_us}} {{$duenos[$i]->apellido1_us}}</option> 
                                                         @endif
                                                     @endfor
-                                                        <!--<option class="form-control"  value="paco">Paquito</option>-->
-                                                    
+                                                        <!--<option class="form-control"  value="paco">Paquito</option>-->    
                                                 </select>
                                         </div>
-
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 
@@ -11274,7 +11279,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-5 d-flex align-items-stretch">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="info-wrap w-100 p-5 img" style="background-image:url('https://i.gyazo.com/fbf14d623693208ee771c4f5c918f341.jpg')">
                             </div>
                         </div>
