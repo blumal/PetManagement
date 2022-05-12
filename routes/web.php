@@ -64,16 +64,10 @@ Route::get('about', function () {
     return view('about');
 });
 
-Route::get('perfil', function () {
-    return view('perfil');
-});
+
 
 Route::get('contacto', function () {
     return view('contacto');
-});
-
-Route::get('registro', function () {
-    return view('registro');
 });
 
 Route::get('login/contraseña', function () {
@@ -86,11 +80,24 @@ Route::get('entretenimiento', function () {
 
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
+// LOGIN LOGOUT Y DEMÁS DE USUARIO
 Route::get('/login', [UsuarioController::class, 'login']);
 Route::post('/login-proc', [UsuarioController::class, 'loginProc']);
+
+Route::get('registro', function () {return view('login/registro');});
 Route::post('/regis-proc', [UsuarioController::class, 'regisProc']);
+
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [UsuarioController::class, 'logout']);
+Route::get('/perfil', function () {return view('login/editarPerfil');});
+
+//Actualizar Perfil usuario
+Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
+Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
+
+//FINAL RUTAS USUARIO
+
+
 //geoguesser
 Route::get('/geoguesser', [mapas::class, 'geoguesser']);
 //geoguesser
@@ -215,9 +222,7 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 Route::put('actualizar',[ProductoController::class,'update']);
 
 
-//Actualizar Perfil usuario
-Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
-Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
+
 
 Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword']);
 

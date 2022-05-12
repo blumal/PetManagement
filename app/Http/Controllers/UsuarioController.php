@@ -30,7 +30,7 @@ class UsuarioController extends Controller
         INNER JOIN tbl_telefono on tbl_usuario.id_telefono_fk=tbl_telefono.id_tel
         INNER JOIN tbl_direccion on tbl_usuario.id_direccion1_fk=tbl_direccion.id_di
         where id_us={$id}");
-        return view('perfil',compact('profile'));
+        return view('login/editarPerfil',compact('profile'));
     }
 
     public function modificarPerfilPost(Request $request){
@@ -50,26 +50,25 @@ class UsuarioController extends Controller
     //$request es la variable encargada de traer todos los datos enviados desde un formulario
     public function loginProc(Request $request)
     {
-        //return $request;
         //Validación de datos enviados desde el form, en este caso se verifica en el server
         $request->validate([
             'email_us' => 'required|string|max:70',
             'pass_us' => 'required|string|max:50'
         ]);
-
+        $password_hash=hash('sha512',$request['pass_us']);
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
             $userId = $request->except('_token', '_method');
             $userId_compr=DB::table("tbl_usuario")
                 ->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')
                 ->where('tbl_usuario.email_us','=',$userId['email_us'])
-                ->where('tbl_usuario.pass_us','=',$userId['pass_us'])
+                ->where('tbl_usuario.pass_us','=',$password_hash)
                 ->get();
             //return $userId_compr;
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
             if ($userId_compr[0]->rol_ro=='trabajador'){
                 //Establecemos sesión
-                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('trabajador_session', $request->email_us);
@@ -78,7 +77,7 @@ class UsuarioController extends Controller
                 return redirect('/');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
-                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('admin_session', $request->email_us);
@@ -87,7 +86,7 @@ class UsuarioController extends Controller
                 return redirect('/cpanel');
             }else if($userId_compr[0]->rol_ro=='cliente'){
                 //Establecemos sesión
-                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('cliente_session', $request->email_us);
@@ -106,64 +105,56 @@ class UsuarioController extends Controller
             return $e->getMessage();
         }
     }
-    //Obtenemos todas las citas de fecha actual y futuras, envíandolo por JSON
-
-    /* public function loginP(Request $request){
-        $datos= $request->except('_token','_method');
-        $user=DB::table("tbl_rol")->join('tbl_user', 'tbl_rol.id', '=', 'tbl_user.id_rol')->where('correo_user','=',$datos['correo_user'])->where('pass_user','=',$datos['pass_user'])->first();
-        if($user->nombre_rol=='Administrador'){
-           $request->session()->put('nombre_admin',$request->correo_user);
-           return redirect('cPanelAdmin');
-        }if($user->nombre_rol=='Usuario'){
-            $request->session()->put('nombre_user',$request->correo_user);
-            return redirect('');
-        }
-        return redirect('');
-    } */
 
     public function regisProc(Request $request){
-        //return $request;
         //Validación de datos enviados desde el form, en este caso se verifica en el server
         $request->validate([
             'email_us' => 'required|string|max:70',
-            'pass_us' => 'required|string|max:50'
+            'pass_us1' => 'required|string|max:50',
+            'pass_us2' => 'required|string|max:50'
         ]);
 
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
             $request->except('_token', '_method');
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
-            if ($request->input('pass_us')==$request->input('pass2_us')){
-                $pwd = hash( 'sha256', $request->input('pass_us') );
-                DB::insert('insert into tbl_direccion (nombre_di, numero_di, bloque_di, piso_di, puerta_di, cp_di) values (?, ?. ?, ?, ?, ?)', 
-                    [$request->input('dir_us'), 
-                    $request->input('ndir_us'), 
-                    $request->input('bdir_us'), 
-                    $request->input('pdir_us'), 
-                    $request->input('padir_us'), 
-                    $request->input('cpdir_us')]);
-                $id_dir = DB::getPdo()->lastInsertId();
-                DB::insert('insert into tbl_telefono (nombre_di, numero_di) values (?, ?)', 
-                        [$request->input('dir_us'), 
-                        $request->input('ndir_us')]);
-                $id_telf = DB::getPdo()->lastInsertId();
-                DB::insert('insert into tbl_usuario (nombre_us, apellido1_us, apellido2_us, dni_us, email_us, pass_us, id_rol_fk, id_direccion1_fk, id_telelefono_fk) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', 
-                    [$request->input('name_us'), 
-                    $request->input('apellido_us'), 
-                    $request->input('apellido2_us'), 
-                    $request->input('dni_us'), 
-                    $request->input('email_us'), 
-                    $pwd, 
-                    2, 
-                    $id_dir, 
-                    $id_telf]);
+            if ($request->input('pass_us1')==$request->input('pass_us2')){
+                $pwd = hash( 'sha512', $request['pass_us1'] );
+                DB::beginTransaction();
+                $id_direccion1 = DB::table('tbl_direccion')->insertGetId(
+                    [ 
+                    'nombre_di' => $request['nombre_di'],
+                    'numero_di'=> $request['numero_di'],
+                    'bloque_di'=> $request['bloque_di'],
+                    'piso_di'=>$request['piso_di'],
+                    'puerta_di'=>$request['puerta_di'],
+                    'cp_di'=>$request['cp_di'],
+                    ]);
+
+                $id_telefono = DB::table('tbl_telefono')->insertGetId(
+                    [   
+                    'contacto1_tel' => $request['contacto1_tel'],
+                    'contacto2_tel'=> $request['contacto2_tel']
+                    ]);
+                
+                $id_user = DB::table('tbl_usuario')->insertGetId(
+                    [ 
+                    'nombre_us' => $request['nombre_us'],
+                    'apellido1_us'=> $request['apellido1_us'],
+                    'apellido2_us'=> $request['apellido2_us'],
+                    'dni_us'=>$request['dni_us'],
+                    'email_us'=>$request['email_us'],
+                    'pass_us'=>$pwd,
+                    'id_rol_fk'=>2,
+                    'id_telefono_fk'=>$id_telefono,
+                    'id_direccion1_fk'=>$id_direccion1
+                    ]);
+                DB::commit();
                 //Establecemos sesión
-                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $request->input('email_us'))->where('pass_us', '=', $pwd)->get();
-                $id_usuario=$usuario[0]->id_us;
-                $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('cliente_session', $request->email_us);
-                $request->session()->put('id_user_session', $id_usuario);
-                $request->session()->put('id_rol_session', $rol_usuario);
+
+                $request->session()->put('cliente_session', $request['email_us']);
+                $request->session()->put('id_user_session', $id_user);
+                $request->session()->put('id_rol_session', 2);
                 return redirect('/');
             }else {
                 //No establecemos sesión y lo devolvemos a login
@@ -184,6 +175,18 @@ class UsuarioController extends Controller
             $password[] = $alphabet[$n];
         }
         $regen_password=implode($password); //turn the array into a string
+        $pass_hasheada=hash('sha512', $regen_password);
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_usuario')
+                ->where('email_us','=',$request['mail_regenerar']) 
+                ->update(['pass_us' => $pass_hasheada]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
 
         $mail=$request['mail_regenerar'];
         $datas=[$regen_password];

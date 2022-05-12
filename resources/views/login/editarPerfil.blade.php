@@ -76,10 +76,21 @@
                         <div class="form-group-2 mx-sm-2">
                             <input type="text" class="form-control" name="email_us" id="email_us" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
                         </div>
-                        
+                        <span>Contraseñas</span>
                         <div>
-                            <div class="form-group-2 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Contraseña *" value="{{$perfil->pass_us}}">
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Contraseña actual">
+                            </div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="password" class="form-control" style="visibility: hidden;" id="pass_us" placeholder="Contraseña *">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Nueva contraseña">
+                            </div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="password" class="form-control"  id="pass_us" placeholder="Confirmar nueva contraseña">
                             </div>
                         </div>
                         <span>Contacto</span>
@@ -89,7 +100,7 @@
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
-                                <input type="number" class="form-control" name="contacto2_tel" id="contacto2_tel" placeholder="Teléfono 2 (opcional)" value="{{$perfil->contacto2_tel}}">
+                                <input type="number" class="form-control" name="contacto2_tel" id="contacto2_tel" placeholder="Teléfono 2" value="{{$perfil->contacto2_tel}}">
                             </div>
                         </div>
                         <span>Ubicación</span>
@@ -108,16 +119,16 @@
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="bloque_di" id="bloque_di" placeholder="Bloque (Si tiene más)" value="{{$perfil->bloque_di}}">
+                                <input type="text" class="form-control" name="bloque_di" id="bloque_di" placeholder="Bloque" value="{{$perfil->bloque_di}}">
                             </div>
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="number" class="form-control" name="piso_di" id="piso_di" placeholder="Piso *" value="{{$perfil->piso_di}}">
+                                <input type="number" class="form-control" name="piso_di" id="piso_di" placeholder="Piso" value="{{$perfil->piso_di}}">
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="puerta_di" id="puerta_di" placeholder="Puerta *" value="{{$perfil->puerta_di}}">
+                                <input type="text" class="form-control" name="puerta_di" id="puerta_di" placeholder="Puerta" value="{{$perfil->puerta_di}}">
                             </div>
                         </div>
                         

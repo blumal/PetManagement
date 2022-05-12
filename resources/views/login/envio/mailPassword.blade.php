@@ -19,6 +19,7 @@
         <a href="http://localhost:8000/login">Login Page</a>
         <br>
         <li>Accede al apartado "Mi Perfil" en la barra de navegación</li>
+        <a href="http://localhost:8000/modificarPerfil">Mi Perfil</a>
         <li>Pega en el campo "Antigua Contraseña" la antigua contraseña</li>
         <li>Introduce en los campos "Nueva Contraseña" tu contraseña nueva deseada</li>
         <li>Haz click en guardar y LISTO!</li>
