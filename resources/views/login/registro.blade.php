@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     {{-- validacion registro --}}
-    <script src="./js/valid_registro.js"></script>
+    <script src="./js/login_registro/valid_registro.js"></script>
     <title>Registro</title>
 </head>
 
@@ -46,38 +46,39 @@
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">
                 {{-- <div class="formIzquierda"> --}}
-                    <form action="{{url('')}}" method="POST" onsubmit="return validateRegistro();">
+                    <form action="{{url('/regis-proc')}}" method="post" onsubmit="return validateRegistro();">
+                        @csrf
                         <div class="form-group text-center">
                             <h3 class="form-group" style="margim-top: -5px !important; margin-bottom: -10px !important;">REGISTRARSE</h3>
                         </div>
                         <span>Datos personales</span>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="nombre_us" id="nombre_us" placeholder="Nombre *">
+                                <input type="text" class="form-control" name="nombre_us" id="nombre_us" placeholder="Nombre *" autocomplete="cc-given-name">
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="dni_us" id="dni_us" placeholder="Dni *">
-                            </div>
-                            
-                        </div>
-                        <div>
-                            <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="apellido1_us" id="apellido1_us" placeholder="Primer apellido *">
-                            </div>
-                            
-                            <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="apellido2_us" id="apellido2_us" placeholder="Segundo apellido *">
+                                <input type="text" class="form-control" name="dni_us" id="dni_us" placeholder="DNI / NIF *" autocomplete="citizen-id">
                             </div>
                             
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Contraseña *">
+                                <input type="text" class="form-control" name="apellido1_us" id="apellido1_us" placeholder="Primer apellido *" autocomplete="additional-name">
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Confirmar Contraseña *">
+                                <input type="text" class="form-control" name="apellido2_us" id="apellido2_us" placeholder="Segundo apellido" autocomplete="cc-family-name">
+                            </div>
+                            
+                        </div>
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="password" class="form-control" name="pass_us1" id="pass_us1" placeholder="Contraseña *" autocomplete="new-password">
+                            </div>
+                            
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="password" class="form-control" name="pass_us2" id="pass_us2" placeholder="Confirmar Contraseña *" autocomplete="new-password">
                             </div>
                             
                         </div>
@@ -88,42 +89,42 @@
                         
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="number" class="form-control" name="contacto1_tel" id="contacto1_tel" placeholder="Teléfono *">
+                                <input type="text" class="form-control" name="contacto1_tel" id="contacto1_tel" placeholder="Teléfono *">
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
-                                <input type="number" class="form-control" name="contacto2_tel" id="contacto2_tel" placeholder="Teléfono 2 (opcional)">
+                                <input type="text" class="form-control" name="contacto2_tel" id="contacto2_tel" placeholder="Teléfono 2">
                             </div>
                             
                         </div>
                         <span>Ubicación</span>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="nombre_di" id="nombre_di" placeholder="Dirección *">
+                                <input type="text" class="form-control" name="nombre_di" id="nombre_di" placeholder="Dirección *" autocomplete="street-address">
+                            </div>
+                            
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="number" class="form-control" name="numero_di" id="numero_di" placeholder="Número de calle *">
+                            </div>
+                            
+                        </div>
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="bloque_di" id="bloque_di" placeholder="Bloque">
+                            </div>
+
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="piso_di" id="piso_di" placeholder="Piso" >
+                            </div>
+                            
+                        </div>
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="puerta_di" id="puerta_di" placeholder="Puerta" autocomplete="">
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">
                                 <input type="number" class="form-control" name="cp_di" id="cp_di" placeholder="Código postal *">
-                            </div>
-                            
-                        </div>
-                        <div>
-                            <div class="form-group-1 mx-sm-2">
-                                <input type="number" class="form-control" name="numero_di" id="numero_di" placeholder="Número *">
-                            </div>
-                            
-                            <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="bloque_di" id="bloque_di" placeholder="Bloque (Si tiene más)">
-                            </div>
-                            
-                        </div>
-                        <div>
-                            <div class="form-group-1 mx-sm-2">
-                                <input type="number" class="form-control" name="piso_di" id="piso_di" placeholder="Piso *">
-                            </div>
-                            
-                            <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="puerta_di" id="puerta_di" placeholder="Puerta *">
                             </div>
                             
                         </div>
