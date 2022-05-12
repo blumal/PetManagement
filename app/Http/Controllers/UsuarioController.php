@@ -35,13 +35,25 @@ class UsuarioController extends Controller
 
     public function modificarPerfilPost(Request $request){
         $datos=$request->except('_token','_method');
-        try {
-            DB::beginTransaction();
-            DB::table('tbl_usuario')->where('id_us','=',$datos['id_us'])->update($datos);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return $e->getMessage();
+        if ($datos['old_pass']==null) {
+            //No actualizar password
+        }elseif($datos['old_pass']!=null && $datos['new_pass']!=null && $datos['new_pass_confirm']!=null){
+            $old_pass_hash=hash('sha512', $datos['old_pass']);
+            $new_pass_hash=hash('sha512', $datos['new_pass']);
+            $new_pass_confirm_hash=hash('sha512', $datos['new_pass_confirm']);
+
+            if ($new_pass_hash==$new_pass_confirm_hash) {
+                DB::beginTransaction();
+
+                    $user=DB::table("tbl_usuario")
+                        ->where('email_us','=',$request['email_us']) 
+                        ->update(['pass_us' => $new_pass_hash]);
+                DB::commit();
+            }
+
+            
+            return $user[0]->pass_us;
+
         }
         return redirect('perfil');
     }
