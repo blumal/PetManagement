@@ -60,7 +60,7 @@
                 <td>{{$prod->tipo_articulo_ta}}</td>
                 <td>
                     {{-- Route::get('/clientes/{cliente}/edit',[ClienteController::class,'edit'])->name('clientes.edit'); --}}
-                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
+                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_2({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
                 </td>
                 <td>
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
@@ -141,11 +141,33 @@
                     @endforeach
                 </select>
                 <div id="mensaje">
+                </div>
                 <button class="botoncrear" type="submit" value="Crear"><b>CREAR</b></button>
                 <input type="hidden" name="_method" value="POST" id="createNote">
             </form>
         </div>
     </div>
+    <div class="modalbox_2" id="modalbox_2">
+        <div class="modal2" id="modal2">
+            <span class="close_2" onclick="closeModal_2(); return false;">&times;</span>    
+            <button class="boton2" type="submit" value="Edit" onclick="abrirmodal_editar();closeModal_2();">Editar</button>
+            <br>
+            <button class="boton2" type="submit" value="Crear" onclick="abrirmodal_s();closeModal_2();sub(document.getElementById('idajax').value);"><b>Gestionar subcategorias y stock</b></button>
+        </div>
+    </div>
     <div id="message" style="color:green"></div>
+
+    <div class="modalbox_s" id="modalbox_s">
+        <div class="modal_s" id="modal_s">
+            <div id="sub1">
+                <span class="close" onclick="closeModal_s(); return false;">&times;</span>             
+                <h2><b>EDITAR SUBCATEGORIAS</b></h2>
+                <input type="hidden" id="idajax">
+                <table id="sub2" class="table">
+
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

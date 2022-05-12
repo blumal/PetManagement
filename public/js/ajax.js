@@ -82,7 +82,7 @@ function filtro() {
                     recarga += '<td>' + respuesta[i].tipo_articulo_ta + '</td>';
                     recarga += '<td>';
                     // editar
-                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_2(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
 
                     recarga += '</td>';
                     recarga += '<td>';
@@ -251,4 +251,130 @@ function actualizar() {
         */
     ajax.send(formData)
 
+}
+
+function sub(idajax) {
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+    var sub2 = document.getElementById('sub2');
+    console.log(idajax)
+        /* 
+        Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+        var token = document.getElementById('token').getAttribute("content");
+
+
+        Usar el objeto FormData para guardar los parámetros que se enviarán:
+        var formData = new FormData();
+        formData.append('_token', token);
+        formData.append('clave', valor);
+        */
+    var token = document.getElementById('token').getAttribute("content");
+
+    var formData = new FormData();
+    formData.append('_token', token);
+
+    /* Inicializar un objeto AJAX */
+    var ajax = objetoAjax();
+    /*
+    ajax.open("method", "rutaURL", true);
+    GET  -> No envía parámetros
+    POST -> Sí envía parámetros
+    true -> asynchronous
+    */
+    ajax.open("POST", "sub/" + idajax, true);
+    ajax.onreadystatechange = function() {
+
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                /* Crear la estructura html que se devolverá dentro de una variable recarga*/
+                var recarga = '';
+                console.log(respuesta)
+                recarga += '<tr>';
+
+                recarga += '<th scope="col">#</th>';
+                recarga += '<th scope="col">Valor</th>';
+                recarga += '<th scope="col">Precio</th>';
+                recarga += '<th scope="col">Cantidad</th>';
+                recarga += '<th scope="col" colspan="2">Acciones</th>';
+                recarga += '</tr>';
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += '<tr>';
+                    recarga += '<td scope="row">' + respuesta[i].id_cat + '</td>';
+                    recarga += '<td> <input type="text" id="valor" value="' + respuesta[i].texto_cat + '"> </td>';
+
+                    recarga += '<td> <input type="text" id="precio" value="' + respuesta[i].precio_cat + '"> </td>';
+
+                    recarga += '<td> <input type="text" id="precio" value="' + respuesta[i].cantidad + '"> </td>';
+                    recarga += '<td>';
+                    // // editar
+                    // recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+
+                    // recarga += '</td>';
+                    // recarga += '<td>';
+                    //eliminar
+                    recarga += '<form method="post">';
+                    recarga += '<input type="hidden" name="_method" value="DELETE" id="deleteNote">';
+
+                    recarga += '<button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarsub(' + respuesta[i].id_cat + ');return false;">Eliminar</button>';
+
+                    recarga += '</form>';
+                    recarga += '</td>';
+                    recarga += '</tr>';
+                }
+                sub2.innerHTML = recarga;
+            }
+        }
+        /*
+        send(string)->Sends the request to the server (used for POST)
+        */
+
+    ajax.send(formData)
+}
+
+function eliminarsub(idsub) {
+    var message = document.getElementById('message');
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+
+    /* 
+    Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+    var token = document.getElementById('token').getAttribute("content");
+ 
+    Usar el objeto FormData para guardar los parámetros que se enviarán:
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('clave', valor);
+    */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'DELETE');
+    /* Inicializar un objeto AJAX */
+    var ajax = objetoAjax();
+    /*
+    ajax.open("method", "rutaURL", true);
+    GET  -> No envía parámetros
+    POST -> Sí envía parámetros
+    true -> asynchronous
+    */
+    ajax.open("POST", "eliminarsub/" + idsub, true);
+    ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                if (respuesta.resultado == "OK") {
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = '<p>Producto eliminado correctamente.</p>';
+
+                } else {
+                    //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    console.log(respuesta.resultado)
+                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                }
+            }
+            filtro();
+        }
+        /*
+        send(string)->Sends the request to the server (used for POST)
+        */
+    ajax.send(formData)
 }

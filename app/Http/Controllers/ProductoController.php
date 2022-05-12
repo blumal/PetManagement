@@ -377,6 +377,27 @@ class ProductoController extends Controller
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
+
+    public function sub($id) {
+        $listaCategoria=DB::select('select * from tbl_categoria_articulo where articulo_fk = ?',[$id]);
+        return response()->json($listaCategoria);
+    }
+
+    public function eliminarsub($idsub){
+        //return $id2[0]->id_direccion_fk;
+        try {
+            DB::beginTransaction();
+            //$id3=DB::select('select id_foto_fk from tbl_articulo_tienda where id_art =?',[$id]);
+            // return $id2[0]->id_direccion_fk;
+            DB::table('tbl_categoria_articulo')->where('id_cat','=',$idsub)->delete();
+            //DB::table('tbl_foto')->where('id_f','=',$id3[0]->id_foto_fk)->delete();
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Exception $th){
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

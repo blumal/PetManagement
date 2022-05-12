@@ -184,6 +184,12 @@ Route::post('crear',[ProductoController::class,'crear']);
 Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
+
+Route::post('sub/{id}',[ProductoController::class,'sub']);
+
+Route::delete('eliminarsub/{id}',[ProductoController::class,'eliminarsub']);
+
+Route::put('update_s',[ProductoController::class,'update_s']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
 
