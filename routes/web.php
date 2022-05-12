@@ -97,6 +97,15 @@ Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
 Route::get('/an_perd', [CitasController::class, 'an_perd']);
 
+//Ruleta premios
+Route::get('/ruleta',[FacturaVisitaController::class, 'ruleta']);
+
+Route::get('/ruleta_promo',[FacturaVisitaController::class, 'ruleta_promo']);
+
+Route::get('/comprobar_compra',[FacturaVisitaController::class, 'comprobar_compra']);
+
+Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 
