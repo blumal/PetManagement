@@ -249,7 +249,6 @@ function productosSimilares() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -319,12 +318,14 @@ function opiniones() {
                 } else {
                     html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
                 }
-
+                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar()'>Valorar este producto</button></div>";
                 html += "</div>";
             } else {
                 html += "<div class='div-valoracion'>";
-                html += "<p class='mt-2'>Nadie ha valorado este producto todavía</p>";
+                html += "<p class='mt-4'>Nadie ha valorado este producto todavía. Sé el primero.</p>";
+                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar()'>Valorar este producto</button></div>";
                 html += "</div>";
+
             }
 
             divProductos.innerHTML = html;
@@ -385,7 +386,7 @@ function opinionesTodas() {
                 } else {
                     html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
                 }
-
+                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar'>Valorar este producto</button></div>";
                 html += "</div>";
             } else {
                 html += "<div class='div-valoracion'>";
@@ -419,4 +420,52 @@ function modal() {
 
         }
     }
+}
+
+function modalValorar() {
+    var modal = document.getElementById("myModal3");
+    var span = document.getElementsByClassName("close3")[0];
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+
+    }
+    window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+
+            }
+        }
+        //NO TOCAR
+    const ratingStars = [...document.getElementsByClassName("rating__star")];
+    const ratingResult = document.querySelector(".rating__result");
+
+    printRatingResult(ratingResult);
+
+    function executeRating(stars, result) {
+        const starClassActive = "rating__star fas fa-star";
+        const starClassUnactive = "rating__star far fa-star";
+        const starsLength = stars.length;
+        let i;
+        stars.map((star) => {
+            star.onclick = () => {
+                i = stars.indexOf(star);
+
+                if (star.className.indexOf(starClassUnactive) !== -1) {
+                    printRatingResult(result, i + 1);
+                    for (i; i >= 0; --i) stars[i].className = starClassActive;
+                } else {
+                    printRatingResult(result, i);
+                    for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+                }
+            };
+        });
+    }
+
+    function printRatingResult(result, num = 0) {
+        result.textContent = `${num}/5`;
+    }
+
+    executeRating(ratingStars, ratingResult);
+    //NO TOCAR
 }

@@ -122,6 +122,27 @@
           </div>
         </div>
     </div>
+    <div id="myModal3" class="modal3">
+        <div class="modal-content3">
+          <div class="div-modal3">
+            <span class="close3">&times;</span>
+            <div class="text-center mt-3 titulo-valoracion"><h3>Valoración</h3></div>
+            <div class="text-center mt-3 rating">
+                <span class="rating__result"></span> 
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+            </div>
+            <div class="text-center mt-3 mb-3 comentario-valoracion">
+                <h3>Tu comentario</h3>
+                <textarea class="mt-2" name="" id="" cols="70" rows="3"></textarea>
+            </div>
+            <div class="text-center mb-4"><button type='button' class='btn btn-primary btn-lg btn-enviar' onclick='modalValorar'>Valorar producto</button></div>
+          </div>
+        </div>
+    </div>
 </body>
 <footer>
     <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">

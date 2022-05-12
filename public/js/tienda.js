@@ -727,7 +727,7 @@ function modal(id) {
                 $("#precio-final").text(precio)
                 calcularPrecio(precio);
             });
-            //HAY UN FALLO AL CALCULAR PRECIO EN ESTE INPUT
+
             $("#input-cantidad").bind('keyup mouseup', function() {
                 calcularPrecio(precio);
             });
