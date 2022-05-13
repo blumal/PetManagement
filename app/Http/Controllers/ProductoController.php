@@ -300,29 +300,7 @@ class ProductoController extends Controller
         foreach ($carrito as $item_Compra) {
             $total_factura= $total_factura + ($item_Compra['cantidad']*$item_Compra['precio']);
         }
-        /*
-        for ($i=1; $i < (count($carrito)+1); $i++) { 
-            print_r($carrito[$i]);
-            echo "<br>";
-            echo "<br>";
-            $total_factura= $total_factura + ($carrito[$i]['cantidad']*$carrito[$i]['precio']);
-        } 
-        
-        echo $total_factura." -> Total factura" ;
-        echo "<br>";
-        echo "<br>";
-        echo $id_promocion_fk." -> ID PROMO" ;
-        echo "<br>";
-        echo "<br>";
-        echo $id_user_session." -> ID user" ;
-        echo "<br>";
-        echo "<br>";
-        echo $date." -> DIA" ;
-        echo "<br>";
-        echo "<br>";
-        echo $localtime." -> HORA" ;
-        //return $carrito;
-        */
+       
 
         DB::beginTransaction();
         $id_factura_tienda = DB::table('tbl_factura_tienda')->insertGetId(
@@ -331,7 +309,6 @@ class ProductoController extends Controller
             'total_ft'=>$total_factura,
             'id_promocion_fk'=>$id_promocion_fk,
             'id_usuario_fk'=>$id_user_session ]);
-
         foreach ($carrito as $item_compra) {
             DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
             [$item_compra['id'],$item_compra['cantidad'],$id_factura_tienda]);
@@ -344,7 +321,7 @@ class ProductoController extends Controller
         $enviar = new Mailtocustomers($datas);
         //,$total_factura,$localtime,$date
         $enviar->sub = $sub;
-        Mail::to(session('email_session'))->send($enviar);
+        Mail::to(session('cliente_session'))->send($enviar);
         //Mail::to("gomezmonterroso14@gmail.com")->send($enviar);
         /*
         for ($i=1; $i < (count($carrito)+1); $i++) {

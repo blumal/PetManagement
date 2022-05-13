@@ -1,5 +1,6 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('email_session'))
+@if (Session::get('id_rol_session')==2)
+
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();

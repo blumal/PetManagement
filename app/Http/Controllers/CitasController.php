@@ -107,7 +107,7 @@ class CitasController extends Controller
                     $sub = "Confirmación de cita";
                     $enviar = new Mailtocustomers($datas);
                     $enviar->sub = $sub;
-                    Mail::to(session('email_session'))->send($enviar);
+                    Mail::to(session('cliente_session'))->send($enviar);
                     /* Mail::to(session('email_session'))->send(new Mailtocustomers($datas)); */
                     return response()->json(array('resultado'=> 'OK'));
                 }else{

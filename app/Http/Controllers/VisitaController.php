@@ -73,9 +73,9 @@ class VisitaController extends Controller
         }
     }
     public function RellenoVisita(Request $request){
-        //return $request;
 
         //VALIDACIONES LARAVEL
+        /*
         $request->validate([
             'id_visita'=>'required|integer',
             'id_usuario'=>'required|integer',
@@ -86,7 +86,7 @@ class VisitaController extends Controller
             'id_veterinario'=>'required|integer',
             'diagnostico'=>'required|string|min:8'
         ]); 
-
+        */
 
         $id_visita=$request['id_visita'];
         $id_usuario=$request['id_usuario'];
@@ -104,6 +104,7 @@ class VisitaController extends Controller
 
         $email_cliente=$cliente[0]->email_us;
 
+        
         
         DB::table('tbl_visita')
         ->where('id_vi', $id_visita)  // find your user by their email
@@ -129,11 +130,8 @@ class VisitaController extends Controller
         //,$total_factura,$localtime,$date
         $enviar->sub = $sub;
         Mail::to($email_cliente)->send($enviar);
-
-
         
         return redirect('/');
-
     }
     public function anadir_item_factura(Request $request){
         $items_clinica=DB::table('tbl_producto_clinica')

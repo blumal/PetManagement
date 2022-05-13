@@ -124,32 +124,29 @@ class UsuarioController extends Controller
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
                 $id_usuario=$usuario[0]->id_us;
-                $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('trabajador_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
-                $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('id_rol_session', 3);
                 return redirect('/');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
                 $id_usuario=$usuario[0]->id_us;
-                $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('admin_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
-                $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('id_rol_session', 1);
                 return redirect('/cpanel');
             }else if($userId_compr[0]->rol_ro=='cliente'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
                 $id_usuario=$usuario[0]->id_us;
-                $rol_usuario=$usuario[0]->id_rol_fk;
                 $request->session()->put('cliente_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
 
                 //Envíamos los registros del usuario que ha iniciado sesión
                 $an_asociado = DB::table('tbl_pacienteanimal_clinica')->where('propietario_fk', '=', $id_usuario)->get();
                 $request->session()->put('animales_asociados', $an_asociado);
-                $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('id_rol_session', 2);
                 return redirect('/');
             }else{
                 //No establecemos sesión y lo devolvemos a login
