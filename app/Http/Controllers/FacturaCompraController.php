@@ -42,7 +42,6 @@ class FacturaCompraController extends Controller
                 ->where('id_ft','=',$id_factura)
                 ->join('tbl_promocion', 'tbl_factura_tienda.id_promocion_fk', '=', 'tbl_promocion.id_pro')
                 ->get();
-                //return $factura;
                 $id_user=$factura[0]->id_usuario_fk;
 
                 $cliente = DB::table('tbl_usuario')
