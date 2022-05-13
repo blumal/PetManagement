@@ -84,17 +84,17 @@
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="apellido_us2" id="apellido_us2" placeholder="Apellido 2" value="{{$perfil->apellido2_us}}">
+                                <input type="text" class="form-control" name="apellido_us2" id="apellido_us2" placeholder="Apellido 2" value="{{$perfil->apellido2_us}}" autocomplete="new-password">
                             </div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="email_us" id="email_us" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
+                                <input type="text" class="form-control" name="email_us" id="email_us" style="visibility: hidden;" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
                             </div>
                         </div>
                         
                         <span>Contraseñas</span>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="old_pass" id="pass_us" placeholder="Contraseña actual">
+                                <input type="password" class="form-control" name="old_pass" id="pass_us" placeholder="Contraseña actual" autocomplete="none">
                             </div>
                             
                             <div class="form-group-1 mx-sm-2">

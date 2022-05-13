@@ -89,7 +89,8 @@ Route::post('/regis-proc', [UsuarioController::class, 'regisProc']);
 
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [UsuarioController::class, 'logout']);
-Route::get('/perfil', function () {return view('login/editarPerfil');});
+
+Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 
 //Actualizar Perfil usuario
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
