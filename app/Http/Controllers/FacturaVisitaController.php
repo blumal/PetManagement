@@ -137,13 +137,13 @@ class FacturaVisitaController extends Controller
     }
 
     public function comprobar_compra(Request $request){
-        $datos = DB::select('SELECT COUNT(id_fc) FROM tbl_factura_clinica 
+        $datos = DB::select('SELECT COUNT(id_fc) AS id_fc FROM tbl_factura_clinica 
         WHERE id_usuario_fk = ?', [$request['id_usr']]);
         return response()->json($datos);
     }
 
     public function comprobar_promo(Request $request){
-        $datos = DB::select('SELECT * FROM tbl_clientes_promo WHERE fk_id_us = ?', [$request['id_usr']]);
+        $datos = DB::select('SELECT comprobar_cli_pro FROM tbl_clientes_promo WHERE fk_id_us = ?', [$request['id_usr']]);
         return response()->json($datos);
     }
 }
