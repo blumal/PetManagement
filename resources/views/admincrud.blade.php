@@ -14,6 +14,8 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="../public/js/ajax.js"></script>
     <script src="../public/js/code.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/05807278a7.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/stylecrud.css')}}">
     <title>Productos Admin</title>
@@ -166,6 +168,8 @@
                 <table id="sub2" class="table">
 
                 </table>
+                <button type="button" class="fa-solid fa-plus" aria-hidden="true" onclick="crearsub(document.getElementById('idajax').value);return false;">
+                </button>
             </div>
         </div>
     </div>

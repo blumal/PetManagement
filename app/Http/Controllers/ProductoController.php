@@ -398,6 +398,32 @@ class ProductoController extends Controller
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
+
+    public function crearsub($id){
+        //return $id2[0]->id_direccion_fk;
+        try {
+            DB::beginTransaction();
+            //$id3=DB::select('select id_foto_fk from tbl_articulo_tienda where id_art =?',[$id]);
+            // return $id2[0]->id_direccion_fk;
+            DB::insert('insert into tbl_categoria_articulo (texto_cat,precio_cat,articulo_fk,cantidad) values (?,?,?,?)',[NULL,NULL,$id,NULL]);
+            //DB::table('tbl_foto')->where('id_f','=',$id3[0]->id_foto_fk)->delete();
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Exception $th){
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function editarsub(Request $request) {
+        try {
+            DB::update('update tbl_categoria_articulo set texto_cat=?, precio_cat=?, cantidad=? where id_cat=?',[$request->input('texto_cat'),$request->input('precio_cat'),$request->input('cantidad'),$request->input('id_cat')]);
+            //return response()->json(array('resultado'=> 'NOKl: '.$request->input('id_cat')));
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

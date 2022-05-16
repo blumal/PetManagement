@@ -189,6 +189,10 @@ Route::post('sub/{id}',[ProductoController::class,'sub']);
 
 Route::delete('eliminarsub/{id}',[ProductoController::class,'eliminarsub']);
 
+Route::post('crearsub/{id}',[ProductoController::class,'crearsub']);
+
+Route::put('editarsub',[ProductoController::class,'editarsub']);
+
 Route::put('update_s',[ProductoController::class,'update_s']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);

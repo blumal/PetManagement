@@ -298,23 +298,38 @@ function sub(idajax) {
                 recarga += '</tr>';
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += '<tr>';
+                    recarga += '<form id="formUpdate' + respuesta[i].id_cat + '" method="post">';
                     recarga += '<td scope="row">' + respuesta[i].id_cat + '</td>';
-                    recarga += '<td> <input type="text" id="valor" value="' + respuesta[i].texto_cat + '"> </td>';
+                    if (respuesta[i].texto_cat == null) {
+                        recarga += '<td> <input type="text" id="texto_cat' + respuesta[i].id_cat + '" name="texto_cat" value=""> </td>';
+                    } else {
+                        recarga += '<td> <input type="text" id="texto_cat' + respuesta[i].id_cat + '" name="texto_cat" value="' + respuesta[i].texto_cat + '"> </td>';
+                    }
 
-                    recarga += '<td> <input type="text" id="precio" value="' + respuesta[i].precio_cat + '"> </td>';
-
-                    recarga += '<td> <input type="text" id="precio" value="' + respuesta[i].cantidad + '"> </td>';
+                    if (respuesta[i].precio_cat == null) {
+                        recarga += '<td> <input type="text" id="precio_cat' + respuesta[i].id_cat + '" name="precio_cat" value=""> </td>';
+                    } else {
+                        recarga += '<td> <input type="text" id="precio_cat' + respuesta[i].id_cat + '" name="precio_cat" value="' + respuesta[i].precio_cat + '"> </td>';
+                    }
+                    if (respuesta[i].cantidad == null) {
+                        recarga += '<td> <input type="text" id="cantidad' + respuesta[i].id_cat + '" name="cantidad" value=""> </td>';
+                    } else {
+                        recarga += '<td> <input type="text" id="cantidad' + respuesta[i].id_cat + '" name="cantidad" value="' + respuesta[i].cantidad + '"> </td>';
+                    }
                     recarga += '<td>';
-                    // // editar
-                    // recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar(' + respuesta[i].id_art + ',\'' + respuesta[i].nombre_art + '\',\'' + respuesta[i].descripcion_art + '\',\'' + respuesta[i].precio_art + '\',\'' + respuesta[i].codigobarras_art + '\',\'' + respuesta[i].id_marca_fk + '\',\'' + respuesta[i].id_tipo_articulo_fk + '\');return false;">Editar</button>';
+                    recarga += '<input type="hidden" name="id_cat" value="' + respuesta[i].id_cat + '" id="id_cat"></input>';
+                    // editar
+                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="editarsub(' + respuesta[i].id_cat + ',' + idajax + ');return false;">Editar</button>';
 
-                    // recarga += '</td>';
-                    // recarga += '<td>';
+                    recarga += '</td>';
+
+                    recarga += '</form>';
+                    recarga += '<td>';
                     //eliminar
                     recarga += '<form method="post">';
                     recarga += '<input type="hidden" name="_method" value="DELETE" id="deleteNote">';
 
-                    recarga += '<button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarsub(' + respuesta[i].id_cat + ');return false;">Eliminar</button>';
+                    recarga += '<button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarsub(' + respuesta[i].id_cat + ',' + idajax + ');return false;">Eliminar</button>';
 
                     recarga += '</form>';
                     recarga += '</td>';
@@ -330,7 +345,7 @@ function sub(idajax) {
     ajax.send(formData)
 }
 
-function eliminarsub(idsub) {
+function eliminarsub(idsub, idajax) {
     var message = document.getElementById('message');
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
 
@@ -362,7 +377,7 @@ function eliminarsub(idsub) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Producto eliminado correctamente.</p>';
+                    message.innerHTML = '<p>Subcategoria eliminada correctamente.</p>';
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
@@ -372,9 +387,116 @@ function eliminarsub(idsub) {
                 }
             }
             filtro();
+            sub(idajax)
         }
         /*
         send(string)->Sends the request to the server (used for POST)
         */
     ajax.send(formData)
+}
+
+function crearsub(idajax) {
+    var message = document.getElementById('message');
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+
+    /* 
+    Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+    var token = document.getElementById('token').getAttribute("content");
+ 
+    Usar el objeto FormData para guardar los parámetros que se enviarán:
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('clave', valor);
+    */
+    var token = document.getElementById('token').getAttribute("content");
+    var method = document.getElementById('createNote').value;
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', method);
+    /* Inicializar un objeto AJAX */
+    var ajax = objetoAjax();
+    /*
+    ajax.open("method", "rutaURL", true);
+    GET  -> No envía parámetros
+    POST -> Sí envía parámetros
+    true -> asynchronous
+    */
+    ajax.open("POST", "crearsub/" + idajax, true);
+    ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                if (respuesta.resultado == "OK") {
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = '<p>Subcategoria creada correctamente.</p>';
+
+                } else {
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                }
+                filtro();
+                sub(idajax);
+            }
+        }
+        /*
+        send(string)->Sends the request to the server (used for POST)
+        */
+    ajax.send(formData)
+}
+
+function editarsub(id_cat, idajax) {
+    var message = document.getElementById('message');
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+
+    /* 
+    Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+    var token = document.getElementById('token').getAttribute("content");
+ 
+    Usar el objeto FormData para guardar los parámetros que se enviarán:
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('clave', valor);
+    */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData( /* document.getElementById('formUpdate' + id_cat) */ );
+    formData.append('_token', token);
+    formData.append('id_cat', id_cat);
+    formData.append('texto_cat', document.getElementById('texto_cat' + id_cat).value);
+    formData.append('precio_cat', document.getElementById('precio_cat' + id_cat).value);
+    formData.append('cantidad', document.getElementById('cantidad' + id_cat).value);
+    formData.append('_method', 'PUT');
+    console.log('formUpdate: ' + formData)
+
+    /* Inicializar un objeto AJAX */
+    var ajax = objetoAjax();
+    /*
+    ajax.open("method", "rutaURL", true);
+    GET  -> No envía parámetros
+    POST -> Sí envía parámetros
+    true -> asynchronous
+    */
+    ajax.open("POST", "editarsub", true);
+    ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                if (respuesta.resultado == "OK") {
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = '<p>Subcategoria modificada correctamente.</p>';
+
+                } else {
+                    //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                }
+            }
+            filtro();
+            sub(idajax);
+        }
+        /*
+        send(string)->Sends the request to the server (used for POST)
+        */
+    ajax.send(formData)
+
 }
