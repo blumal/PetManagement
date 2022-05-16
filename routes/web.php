@@ -200,3 +200,8 @@ Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDin
 Route::get('comprado',[ProductoController::class, 'compra']);
 
 Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
+
+Route::get('stripe', [ProductoController::class, 'stripe']);
+
+Route::post('stripePost', [ProductoController::class, 'stripePost']);
+

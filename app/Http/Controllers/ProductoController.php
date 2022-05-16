@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Session;
+use Stripe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductoCrear;
@@ -423,6 +424,27 @@ class ProductoController extends Controller
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
+    }
+
+    /*Tarjeta de credito*/
+    public function stripe()
+    {
+        return view('stripe');
+    }
+
+    public function stripePost(Request $request)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $request->precio_total,
+                "currency" => "eur",
+                "source" => $request->stripeToken,
+                "description" => "Test payment."
+        ]);
+   
+        Session::flash('success', 'Payment successful!');
+           
+        return back();
     }
     /**
      * Show the form for editing the specified resource.
