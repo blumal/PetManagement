@@ -221,15 +221,9 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
-
-
-
 Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword']);
 
-
-
-
-//Api
+//Api Citas
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
 //TIENDA
