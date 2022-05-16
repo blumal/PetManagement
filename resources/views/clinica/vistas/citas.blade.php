@@ -122,9 +122,14 @@
                                     <select name="an_asociado" id="an_asociado">
                                         <option value="">--Seleccione la mascota--</option>
                                         <!--Recogemos datos de la variable de sesión-->
-                                        @foreach (Session::get('animales_asociados') as $results)
+                                        @if (Session::get('id_rol_session')==2)
+                                            @foreach (Session::get('animales_asociados') as $results)
                                             <option value="{{$results->id_pa}}">{{$results->nombre_pa}} - {{$results->raza_pa}}</option> 
-                                        @endforeach
+                                            @endforeach
+                                        @else
+                                            
+                                        @endif
+
                                     </select><br/><br/>
                                     <label for="asunto_vi">Motivo de visita: *</label><br/><br/>
                                         <textarea name="asunto_vi" id="asunto_vi" cols="" rows="5" placeholder="Breve descripción del motivo de la visita, síntomas, observaciones, etc..."></textarea><br/><br/>
@@ -176,13 +181,19 @@
     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
     {{-- @if (session()->get('id_rol_session')==3)
         <center>
+            <form action="{{url("/adminPacientes")}}" method="get">
+                @csrf
+                <input type="submit" class="previous_visits_button" value="Administrar Pacientes">
+            </form>
+
             <form action="{{url("/directorioGenerarFactura")}}" method="post">
                 @csrf
-                <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
+                <input type="submit" class="previous_visits_button" value="   Rellenar Visita   ">
             </form>
+
             <form action="{{url("/FacturasClinica")}}" method="post">
                 @csrf
-                <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
+                <input type="submit" class="previous_visits_button" value="Ver  antiguas visitas">
             </form>
         </center>
     @endif --}}

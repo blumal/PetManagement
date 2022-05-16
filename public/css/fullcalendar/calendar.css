@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+
 * {
-    /* font-family: 'Courier New', Courier, monospace; */
-    font-family: 'courier,arial,helvética';
+    font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
     padding: 0;
     --main-color: #1f2cc4;
@@ -85,7 +86,6 @@ a {
     width: 80px;
     /* height: 90%; */
     z-index: 999;
-}
 
 .nav_img {
     width: 25px;
@@ -147,7 +147,6 @@ a {
 .nav_input {
     display: none;
 }
-
 
 /*MENU RESPONSIVE + EFECTS*/
 

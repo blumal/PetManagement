@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-04-2022 a las 19:57:47
+-- Tiempo de generación: 10-05-2022 a las 15:54:19
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.4.24
 
@@ -46,7 +46,8 @@ CREATE TABLE `tbl_animales_perdidos` (
 --
 
 INSERT INTO `tbl_animales_perdidos` (`id_ape`, `nombre_ape`, `descripcion_ape`, `fecha_perdida_ape`, `id_usuario_fk`, `direccion_perdida_ape`, `foto_ape`, `id_estado_fk`, `cp_ape`, `calle_ape`, `hora_des_ape`) VALUES
-(2, 'Gerard', 'poLLA', '2022-04-09', 1, 'Rambla Marina', 'img/T0FxTlmtZPmormGaBnKNANHOJ8Kgy3rjKqrbkCpn.webp', 1, '08907', 200, '19:11:00');
+(2, 'Gerard', 'poLLA', '2022-04-09', 1, 'Rambla Marina', 'img/T0FxTlmtZPmormGaBnKNANHOJ8Kgy3rjKqrbkCpn.webp', 1, '08907', 200, '19:11:00'),
+(3, 'Gerard', 'Romero', '2022-04-14', 1, 'Rambla Marina', 'img/AWsQsbVbPWZWziPx6fVoEveXVTU1tVRnHBdtJFda.webp', 1, '08907', 100, '19:04:00');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ CREATE TABLE `tbl_articulo_tienda` (
 --
 
 INSERT INTO `tbl_articulo_tienda` (`id_art`, `nombre_art`, `precio_art`, `codigobarras_art`, `id_foto_fk`, `id_marca_fk`, `id_tipo_articulo_fk`, `descripcion_art`, `foto_art`) VALUES
-(1, 'Agua', '0.99', '45457363', NULL, NULL, 1, 'de', NULL),
+(1, 'Agua', '0.99', '45457363', NULL, 11, 1, 'de', NULL),
 (2, 'Cepillo Puas', '9.12', '63629336', NULL, 1, 2, 'de', NULL),
 (3, 'Pienso Perro 500g', '2.99', '26422068', NULL, 1, 1, 'de', NULL),
 (4, 'Coca cola perros', '1.99', '40215337', NULL, 2, 1, 'de', NULL),
@@ -104,7 +105,11 @@ INSERT INTO `tbl_detallefactura_clinica` (`id_dfc`, `cant_dfc`, `id_producto_fk`
 (7, 2, 3, 6),
 (8, 3, 2, 6),
 (9, 1, 1, 7),
-(10, 4, 2, 7);
+(10, 4, 2, 7),
+(11, 1, 1, 3),
+(12, 1, 1, 8),
+(13, 3, 2, 8),
+(30, 1, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -126,7 +131,73 @@ CREATE TABLE `tbl_detallefactura_tienda` (
 INSERT INTO `tbl_detallefactura_tienda` (`id_dft`, `id_articulo_fk`, `cantidad_dft`, `id_factura_tienda_fk`) VALUES
 (1, 1, 3, 2),
 (2, 4, 2, 2),
-(3, 2, 1, 3);
+(3, 2, 1, 3),
+(9, 1, 2, 9),
+(10, 2, 1, 9),
+(11, 3, 1, 9),
+(12, 4, 9, 9),
+(14, 1, 4, 11),
+(15, 3, 1, 11),
+(16, 1, 1, 12),
+(17, 1, 1, 13),
+(18, 1, 1, 14),
+(19, 1, 1, 15),
+(20, 2, 1, 16),
+(21, 2, 1, 17),
+(22, 3, 1, 18),
+(23, 7, 1, 18),
+(24, 8, 1, 18),
+(25, 1, 1, 19),
+(26, 2, 1, 19),
+(27, 1, 1, 20),
+(28, 5, 1, 20),
+(29, 6, 1, 20),
+(30, 5, 1, 21),
+(31, 2, 1, 21),
+(32, 1, 1, 22),
+(33, 3, 1, 23),
+(34, 1, 1, 24),
+(35, 7, 1, 25),
+(36, 6, 1, 26),
+(37, 2, 1, 27),
+(38, 2, 1, 28),
+(39, 2, 1, 29),
+(40, 6, 1, 29),
+(41, 2, 1, 30),
+(42, 6, 1, 30),
+(43, 2, 1, 31),
+(44, 6, 1, 31),
+(45, 2, 1, 32),
+(46, 6, 1, 32),
+(47, 2, 1, 33),
+(48, 6, 1, 33),
+(49, 2, 1, 34),
+(50, 6, 1, 34),
+(51, 2, 1, 35),
+(52, 6, 1, 35),
+(53, 2, 1, 36),
+(54, 6, 1, 36),
+(55, 2, 1, 37),
+(56, 6, 1, 37),
+(57, 3, 2, 38),
+(58, 3, 2, 39),
+(59, 3, 2, 40),
+(60, 3, 2, 41),
+(61, 3, 2, 42),
+(62, 3, 2, 43),
+(63, 3, 1, 44),
+(64, 8, 1, 44),
+(65, 3, 1, 45),
+(66, 8, 1, 45),
+(67, 3, 1, 46),
+(68, 8, 1, 46),
+(69, 3, 1, 47),
+(70, 8, 1, 47),
+(71, 6, 7, 48),
+(72, 3, 2, 49),
+(73, 2, 1, 49),
+(74, 3, 2, 50),
+(75, 2, 1, 50);
 
 -- --------------------------------------------------------
 
@@ -151,7 +222,8 @@ CREATE TABLE `tbl_direccion` (
 INSERT INTO `tbl_direccion` (`id_di`, `nombre_di`, `numero_di`, `bloque_di`, `piso_di`, `puerta_di`, `cp_di`) VALUES
 (1, 'Avenida Norte', 12, NULL, 12, 1, '08765'),
 (2, 'Avenida Sur', 451, NULL, 1, 9, '08456'),
-(3, 'Rambla Marina', 200, NULL, NULL, NULL, '08907');
+(3, 'Rambla Marina', 200, NULL, NULL, NULL, '08907'),
+(4, 'Rambla Marina', 300, NULL, NULL, NULL, '08907');
 
 -- --------------------------------------------------------
 
@@ -169,7 +241,9 @@ CREATE TABLE `tbl_estado` (
 --
 
 INSERT INTO `tbl_estado` (`id_est`, `estado_est`) VALUES
-(1, NULL);
+(1, 'Agendada'),
+(2, 'En curso'),
+(3, 'Finalizado');
 
 -- --------------------------------------------------------
 
@@ -184,18 +258,22 @@ CREATE TABLE `tbl_factura_clinica` (
   `id_promocion_fk` int(11) DEFAULT NULL,
   `total_fc` decimal(8,2) DEFAULT NULL,
   `fecha_fc` date DEFAULT NULL,
-  `hora_fc` time DEFAULT NULL
+  `hora_fc` time DEFAULT NULL,
+  `id_veterinario_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_factura_clinica`
 --
 
-INSERT INTO `tbl_factura_clinica` (`id_fc`, `id_usuario_fk`, `id_visita_fk`, `id_promocion_fk`, `total_fc`, `fecha_fc`, `hora_fc`) VALUES
-(1, 1, 1, 2, '69.99', '2022-04-07', '19:32:58'),
-(3, 1, 1, 1, '9.98', '2222-02-22', '11:11:00'),
-(6, 1, 1, 2, '50.36', '2022-04-22', '02:43:00'),
-(7, 1, 2, 2, '11.87', '2022-04-21', '15:49:00');
+INSERT INTO `tbl_factura_clinica` (`id_fc`, `id_usuario_fk`, `id_visita_fk`, `id_promocion_fk`, `total_fc`, `fecha_fc`, `hora_fc`, `id_veterinario_fk`) VALUES
+(1, 1, 1, 2, '9.76', '2022-04-07', '19:32:58', 3),
+(3, 1, 1, 1, '9.98', '2222-02-22', '11:11:00', 3),
+(6, 1, 1, 2, '50.36', '2022-04-20', '02:43:00', 3),
+(7, 1, 2, 2, '11.87', '2022-04-21', '15:49:00', 3),
+(8, 1, 1, 1, '13.96', '2022-04-15', '17:01:00', NULL),
+(9, 3, 1, 1, '13.96', '2022-04-20', '18:13:00', NULL),
+(22, 3, 3, 1, '4.99', '2022-05-05', '17:15:00', 3);
 
 -- --------------------------------------------------------
 
@@ -217,8 +295,49 @@ CREATE TABLE `tbl_factura_tienda` (
 --
 
 INSERT INTO `tbl_factura_tienda` (`id_ft`, `fecha_ft`, `hora_ft`, `total_ft`, `id_promocion_fk`, `id_usuario_fk`) VALUES
-(2, '2022-03-30', '17:32:25', '6.95', 2, 1),
-(3, '2022-03-16', '17:32:21', '6.38', 1, 1);
+(2, '2022-04-06', '17:32:25', '4.87', 2, 1),
+(3, '2022-03-16', '17:32:21', '6.38', 1, 1),
+(9, '2022-05-03', '20:37:45', '32.00', 1, 1),
+(11, '2022-05-09', '17:18:31', '6.95', 1, 1),
+(12, '2022-05-09', '19:39:11', '0.99', 1, 3),
+(13, '2022-05-09', '19:41:16', '0.99', 1, 3),
+(14, '2022-05-09', '19:41:32', '0.99', 1, 3),
+(15, '2022-05-09', '19:42:39', '0.99', 1, 3),
+(16, '2022-05-09', '19:59:15', '9.12', 1, 3),
+(17, '2022-05-09', '19:59:36', '9.12', 1, 3),
+(18, '2022-05-09', '20:04:11', '257.99', 1, 3),
+(19, '2022-05-09', '20:24:44', '10.11', 1, 5),
+(20, '2022-05-09', '20:26:51', '60.88', 1, 5),
+(21, '2022-05-09', '20:29:06', '58.11', 1, 5),
+(22, '2022-05-09', '20:30:41', '0.99', 1, 5),
+(23, '2022-05-09', '20:33:36', '2.99', 1, 5),
+(24, '2022-05-09', '20:36:57', '0.99', 1, 5),
+(25, '2022-05-09', '20:39:27', '1.90', 1, 5),
+(26, '2022-05-09', '20:50:13', '10.90', 1, 5),
+(27, '2022-05-10', '15:20:20', '9.12', 1, NULL),
+(28, '2022-05-10', '15:20:50', '9.12', 1, NULL),
+(29, '2022-05-10', '15:23:36', '20.02', 1, 5),
+(30, '2022-05-10', '15:24:13', '20.02', 1, 5),
+(31, '2022-05-10', '15:24:30', '20.02', 1, 5),
+(32, '2022-05-10', '15:24:38', '20.02', 1, 5),
+(33, '2022-05-10', '15:24:48', '20.02', 1, 5),
+(34, '2022-05-10', '15:25:16', '20.02', 1, 5),
+(35, '2022-05-10', '15:25:55', '20.02', 1, 5),
+(36, '2022-05-10', '15:27:35', '20.02', 1, 5),
+(37, '2022-05-10', '15:27:48', '20.02', 1, 5),
+(38, '2022-05-10', '15:29:15', '5.98', 1, 5),
+(39, '2022-05-10', '15:29:54', '5.98', 1, 5),
+(40, '2022-05-10', '15:30:09', '5.98', 1, 5),
+(41, '2022-05-10', '15:30:25', '5.98', 1, 5),
+(42, '2022-05-10', '15:31:09', '5.98', 1, 5),
+(43, '2022-05-10', '15:32:11', '5.98', 1, 5),
+(44, '2022-05-10', '15:36:04', '256.09', 1, 5),
+(45, '2022-05-10', '15:36:55', '256.09', 1, 5),
+(46, '2022-05-10', '15:37:19', '256.09', 1, 5),
+(47, '2022-05-10', '15:38:07', '256.09', 1, 5),
+(48, '2022-05-10', '15:39:37', '76.30', 1, 5),
+(49, '2022-05-10', '15:48:56', '15.10', 1, NULL),
+(50, '2022-05-10', '15:49:53', '15.10', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -231,6 +350,13 @@ CREATE TABLE `tbl_foto` (
   `foto_f` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `articulo_tienda_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_foto`
+--
+
+INSERT INTO `tbl_foto` (`id_f`, `foto_f`, `articulo_tienda_fk`) VALUES
+(1, 'foto6.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -283,6 +409,7 @@ CREATE TABLE `tbl_pacienteanimal_clinica` (
   `nombre_pa` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `peso_pa` decimal(3,1) DEFAULT NULL,
   `n_id_nacional` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `foto_pa` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `propietario_fk` int(11) DEFAULT NULL,
   `nombrecientifico_pa` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -293,8 +420,16 @@ CREATE TABLE `tbl_pacienteanimal_clinica` (
 -- Volcado de datos para la tabla `tbl_pacienteanimal_clinica`
 --
 
-INSERT INTO `tbl_pacienteanimal_clinica` (`id_pa`, `nombre_pa`, `peso_pa`, `n_id_nacional`, `foto_pa`, `propietario_fk`, `nombrecientifico_pa`, `raza_pa`) VALUES
-(1, 'Chispitas', '4.2', '876123456', 'https://i.gyazo.com/1a98baa3f626cebf9c7815c6575ca233.jpg', 1, 'Canis Latranis', NULL);
+INSERT INTO `tbl_pacienteanimal_clinica` (`id_pa`, `nombre_pa`, `peso_pa`, `n_id_nacional`, `fecha_nacimiento`, `foto_pa`, `propietario_fk`, `nombrecientifico_pa`, `raza_pa`) VALUES
+(1, 'Chispitas', '4.2', '876123456', '2016-02-07', 'uploads/lTbEnya3o3oIGsts9rZh7tW7yAWRJIYVHUc1gpSR.jpg', 1, 'Canis Latranis', 'Chihuahua'),
+(2, 'Sapristi', '9.1', '129875', '2018-05-07', 'uploads/sPTjZUN8hK419WScpA9acE7UO38inbGUZPck0lgx.jpg', 1, 'Canis Latranis', 'Bulldog frances'),
+(3, 'La Foca Agnes', '23.7', '12982', '2011-01-17', 'uploads/n4IqFtkG27VWsAsS5s1iQa6ooBmlfebVqqCqceIs.jpg', 1, 'Phoca vitulina', NULL),
+(4, 'Monito Lolo', '3.2', '12982', '2013-08-23', 'uploads/FwMDlXi25lbUjuZshS80JUKEFCmQoWW9oiYy7Lr5.webp', 1, 'Saimiri oerstedii', NULL),
+(5, 'Simba', '80.8', '345891481', '2013-02-07', 'uploads/cKiwmiZl5HqCzMczK1Xef8O2QuU819x0JiIP7Dih.png', 1, 'Panthera leo', NULL),
+(7, 'Calamar Jose juan', '1.8', NULL, '2022-04-04', 'uploads/2tftSuTo7kv7fpHxRYPkaaEmg3vaMsNRTSv7catw.jpg', 4, 'Loligo vulgaris', NULL),
+(11, 'Marc Diaz', '99.7', '345901207', '2001-03-09', 'uploads/incognito.png', 4, 'Homo Sapiens', 'Mediterranea'),
+(15, 'Luna', '8.4', NULL, '2014-02-13', 'uploads/ATFNSQdY2kqsdq4YK4iQywLWYVxyip7Buxt4EuhX.jpg', 4, 'Canis Latranis', 'American Stanford'),
+(16, 'Sardina Josefina', '0.3', NULL, '2022-04-25', 'uploads/gphv66CLXt827G4oylDFM3vF2PPKvNHjdhwzljOB.jpg', 1, 'Sardina pilchardus', NULL);
 
 -- --------------------------------------------------------
 
@@ -337,7 +472,31 @@ CREATE TABLE `tbl_promocion` (
 
 INSERT INTO `tbl_promocion` (`id_pro`, `promocion_pro`, `porcentaje_pro`) VALUES
 (1, '-', 0),
-(2, 'Primera compra', 30);
+(2, 'Primera compra', 30),
+(3, 'Familiar', 40);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_ranita`
+--
+
+CREATE TABLE `tbl_ranita` (
+  `id` int(11) NOT NULL,
+  `user` varchar(3) NOT NULL,
+  `max_score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_ranita`
+--
+
+INSERT INTO `tbl_ranita` (`id`, `user`, `max_score`) VALUES
+(1, 'HOS', 3),
+(2, 'GER', 2),
+(3, 'ALF', 5),
+(4, 'GER', 5),
+(5, 'GER', 7);
 
 -- --------------------------------------------------------
 
@@ -389,7 +548,8 @@ CREATE TABLE `tbl_sociedad` (
 
 INSERT INTO `tbl_sociedad` (`id_s`, `nombre_s`, `nif_s`, `email_s`, `pass_s`, `id_usuario_fk`, `id_tipo_sociedad_fk`, `id_direccion_fk`, `id_telefono_fk`, `horario_apertura_s`, `horario_cierre_s`, `url_web`, `foto_sociedad`, `foto_icono_sociedad`, `operatividad_s`) VALUES
 (1, 'Clinica Bellvitge', '10945474', 'bellvitge@clinica.es', '123', 1, 1, 2, 2, '17:35:23', '20:35:24', NULL, NULL, NULL, 0),
-(2, 'Clinica Ruana1', '12345678', 'ruano@perico.com', NULL, NULL, 3, 3, 3, '08:00:00', '17:00:00', 'marca.com', 'img/c4YPJpCi4IT7FNIN9VAikxBrziFGRdUIqIWgiNnz.png', 'img/1dxxkFCfxHpaNCNM1B6vBpBH82N1IsJY8RDjdhgd.jpg', 1);
+(2, 'Clinica Ruana1', '12345678', 'ruano@perico.com', NULL, NULL, 3, 3, 3, '08:00:00', '17:00:00', 'marca.com', 'img/c4YPJpCi4IT7FNIN9VAikxBrziFGRdUIqIWgiNnz.png', 'img/1dxxkFCfxHpaNCNM1B6vBpBH82N1IsJY8RDjdhgd.jpg', 1),
+(3, 'Protectora Colillas', '12345623', 'colillas@colillas.com', NULL, NULL, 3, 4, 4, '08:00:00', '19:00:00', 'marca.com', 'img/neX4hK5Ekfrm1aiQFFGPRAX2jUtzTZHvtAPckv7P.png', 'img/M4EDdDY7ZoMVfawv2gBEBf6LRvvOxgJhI0HSOgSv.ico', 1);
 
 -- --------------------------------------------------------
 
@@ -422,7 +582,8 @@ CREATE TABLE `tbl_telefono` (
 INSERT INTO `tbl_telefono` (`id_tel`, `contacto1_tel`, `contacto2_tel`) VALUES
 (1, '93517847', '96675795'),
 (2, '97467131', '92882222'),
-(3, '600800900', NULL);
+(3, '600800900', NULL),
+(4, '678123456', NULL);
 
 -- --------------------------------------------------------
 
@@ -477,8 +638,7 @@ CREATE TABLE `tbl_tipo_sociedad` (
 
 INSERT INTO `tbl_tipo_sociedad` (`id_ts`, `sociedad_ts`) VALUES
 (1, 'Clinica'),
-(2, 'Protectora'),
-(3, 'protectora');
+(3, 'Protectora');
 
 -- --------------------------------------------------------
 
@@ -506,7 +666,10 @@ CREATE TABLE `tbl_usuario` (
 
 INSERT INTO `tbl_usuario` (`id_us`, `nombre_us`, `apellido1_us`, `apellido2_us`, `dni_us`, `email_us`, `pass_us`, `id_rol_fk`, `id_telefono_fk`, `id_direccion1_fk`, `id_direccion2_fk`) VALUES
 (1, 'Paco', 'Lopez', 'Lopez', '67896066S', 'paquito@mail.com', '123', 2, 1, 1, NULL),
-(2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '123', 1, NULL, NULL, NULL);
+(2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '123', 1, NULL, NULL, NULL),
+(3, 'traba', 'jador', NULL, '1223124', 'traba@jador.com', '123', 3, 3, 3, NULL),
+(4, 'Marina', 'Martinez', 'Lopez', '1234566S', 'Marina@mail.com', '123', 2, 3, 3, NULL),
+(5, 'Gerard', 'Gomez', NULL, '1234566S', 'gomezmonterroso14@gmail.com', '123', 2, 1, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -521,16 +684,22 @@ CREATE TABLE `tbl_visita` (
   `asunto_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `diagnostico_vi` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_pacienteanimal_fk` int(11) DEFAULT NULL,
-  `id_usuario_fk` int(11) DEFAULT NULL
+  `id_usuario_fk` int(11) DEFAULT NULL,
+  `id_estado_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_visita`
 --
 
-INSERT INTO `tbl_visita` (`id_vi`, `fecha_vi`, `hora_vi`, `asunto_vi`, `diagnostico_vi`, `id_pacienteanimal_fk`, `id_usuario_fk`) VALUES
-(1, '2022-04-05', '19:31:09', 'Se le ha caido un Jose encima', 'Joder tio otar vez', 1, 1),
-(2, '2022-04-10', '15:23:34', 'Que le ha pasao', 'Jose', 1, 1);
+INSERT INTO `tbl_visita` (`id_vi`, `fecha_vi`, `hora_vi`, `asunto_vi`, `diagnostico_vi`, `id_pacienteanimal_fk`, `id_usuario_fk`, `id_estado_fk`) VALUES
+(1, '2022-04-05', '19:31:09', 'Se le ha caido un Jose encima', 'Reservado', 1, 1, 1),
+(2, '2022-04-10', '15:23:34', 'Que le ha pasao', 'Jose', 1, 2, 1),
+(3, '2022-04-05', '18:05:00', 'Yes', 'mas de 8 carac', 15, 1, 1),
+(4, '2022-04-26', '20:06:00', 'Asuntillo', NULL, 15, 4, 1),
+(5, '2022-05-11', '13:00:00', 'Esta gordita', NULL, 3, 1, 1),
+(6, '2022-05-12', '10:00:00', 'Pene', NULL, NULL, 5, 1),
+(7, '2022-05-19', '07:00:00', 'Joder', NULL, NULL, 5, 1);
 
 --
 -- Índices para tablas volcadas
@@ -587,7 +756,8 @@ ALTER TABLE `tbl_factura_clinica`
   ADD PRIMARY KEY (`id_fc`),
   ADD KEY `fk_factura_visita_idx` (`id_visita_fk`),
   ADD KEY `fk_factura_promocion_idx` (`id_promocion_fk`),
-  ADD KEY `fk_factura_usuario_idx` (`id_usuario_fk`);
+  ADD KEY `fk_factura_usuario_idx` (`id_usuario_fk`),
+  ADD KEY `fk_veterinario` (`id_veterinario_fk`);
 
 --
 -- Indices de la tabla `tbl_factura_tienda`
@@ -629,6 +799,12 @@ ALTER TABLE `tbl_producto_clinica`
 --
 ALTER TABLE `tbl_promocion`
   ADD PRIMARY KEY (`id_pro`);
+
+--
+-- Indices de la tabla `tbl_ranita`
+--
+ALTER TABLE `tbl_ranita`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tbl_rol`
@@ -687,7 +863,8 @@ ALTER TABLE `tbl_usuario`
 ALTER TABLE `tbl_visita`
   ADD PRIMARY KEY (`id_vi`),
   ADD KEY `fk_visita_pacienteanimal_idx` (`id_pacienteanimal_fk`),
-  ADD KEY `fk_visita_usuario_idx` (`id_usuario_fk`);
+  ADD KEY `fk_visita_usuario_idx` (`id_usuario_fk`),
+  ADD KEY `fk_visita_estado` (`id_estado_fk`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -697,7 +874,7 @@ ALTER TABLE `tbl_visita`
 -- AUTO_INCREMENT de la tabla `tbl_animales_perdidos`
 --
 ALTER TABLE `tbl_animales_perdidos`
-  MODIFY `id_ape` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ape` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_articulo_tienda`
@@ -709,43 +886,43 @@ ALTER TABLE `tbl_articulo_tienda`
 -- AUTO_INCREMENT de la tabla `tbl_detallefactura_clinica`
 --
 ALTER TABLE `tbl_detallefactura_clinica`
-  MODIFY `id_dfc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_dfc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_detallefactura_tienda`
 --
 ALTER TABLE `tbl_detallefactura_tienda`
-  MODIFY `id_dft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_direccion`
 --
 ALTER TABLE `tbl_direccion`
-  MODIFY `id_di` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_di` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_estado`
 --
 ALTER TABLE `tbl_estado`
-  MODIFY `id_est` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_est` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_factura_clinica`
 --
 ALTER TABLE `tbl_factura_clinica`
-  MODIFY `id_fc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_fc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_factura_tienda`
 --
 ALTER TABLE `tbl_factura_tienda`
-  MODIFY `id_ft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_ft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_foto`
 --
 ALTER TABLE `tbl_foto`
-  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_marca`
@@ -757,7 +934,7 @@ ALTER TABLE `tbl_marca`
 -- AUTO_INCREMENT de la tabla `tbl_pacienteanimal_clinica`
 --
 ALTER TABLE `tbl_pacienteanimal_clinica`
-  MODIFY `id_pa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_producto_clinica`
@@ -769,7 +946,13 @@ ALTER TABLE `tbl_producto_clinica`
 -- AUTO_INCREMENT de la tabla `tbl_promocion`
 --
 ALTER TABLE `tbl_promocion`
-  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_ranita`
+--
+ALTER TABLE `tbl_ranita`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_rol`
@@ -781,7 +964,7 @@ ALTER TABLE `tbl_rol`
 -- AUTO_INCREMENT de la tabla `tbl_sociedad`
 --
 ALTER TABLE `tbl_sociedad`
-  MODIFY `id_s` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_s` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_stock`
@@ -793,7 +976,7 @@ ALTER TABLE `tbl_stock`
 -- AUTO_INCREMENT de la tabla `tbl_telefono`
 --
 ALTER TABLE `tbl_telefono`
-  MODIFY `id_tel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_tipo_articulo`
@@ -805,19 +988,19 @@ ALTER TABLE `tbl_tipo_articulo`
 -- AUTO_INCREMENT de la tabla `tbl_tipo_sociedad`
 --
 ALTER TABLE `tbl_tipo_sociedad`
-  MODIFY `id_ts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_ts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_usuario`
 --
 ALTER TABLE `tbl_usuario`
-  MODIFY `id_us` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_us` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_visita`
 --
 ALTER TABLE `tbl_visita`
-  MODIFY `id_vi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_vi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -858,7 +1041,8 @@ ALTER TABLE `tbl_detallefactura_tienda`
 ALTER TABLE `tbl_factura_clinica`
   ADD CONSTRAINT `fk_factura_promocion` FOREIGN KEY (`id_promocion_fk`) REFERENCES `tbl_promocion` (`id_pro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_factura_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_visita` FOREIGN KEY (`id_visita_fk`) REFERENCES `tbl_visita` (`id_vi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_factura_visita` FOREIGN KEY (`id_visita_fk`) REFERENCES `tbl_visita` (`id_vi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_veterinario` FOREIGN KEY (`id_veterinario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tbl_factura_tienda`
@@ -913,6 +1097,7 @@ ALTER TABLE `tbl_usuario`
 -- Filtros para la tabla `tbl_visita`
 --
 ALTER TABLE `tbl_visita`
+  ADD CONSTRAINT `fk_visita_estado` FOREIGN KEY (`id_estado_fk`) REFERENCES `tbl_estado` (`id_est`),
   ADD CONSTRAINT `fk_visita_pacienteanimal` FOREIGN KEY (`id_pacienteanimal_fk`) REFERENCES `tbl_pacienteanimal_clinica` (`id_pa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_visita_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
