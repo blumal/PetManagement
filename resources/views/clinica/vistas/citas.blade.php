@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('email_session'))
+@if (!Session::get('cliente_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -44,27 +44,19 @@
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                <a href="{{url("login")}}" class="login_item">Login</a>
+                @if (!Session::get('email_session'))
+                    <form class="nav_item">
+                        <a href="{{url("modificarPerfil")}}" class="nav_ite">Mi Perfil</a>
+                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                    </form>
+                    <a href="{{url("logout")}}" class="login_item">Logout</a>
+                @else
+                    <a href="{{url("login")}}" class="login_item">Login</a>
+                @endif
             </div>
         </div>
         <script src="./js/home.js"></script>
     </nav>
-    {{-- <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-            <ul class="main-menu">
-                <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
-                <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
-                <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
-                <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
-                <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-                <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
-                <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
-                    <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
-            </ul>
-        <script src="./js/home.js"></script>
-    </header> --}}
-    {{--Calendario--}}
     <div class="row-c flex">
         <div class="slider">
            <ul>
@@ -75,7 +67,7 @@
            </ul>
         </div>
     </div>
-    <div class="row-c flex">
+    <div class="row-c">
         <div class="info-citas column-2">
             <h1>¿Qué son las citas?</h1>
             <p>Nuestro apartado de citas consiste en mostrar la disponibilidad de la clínica</p>

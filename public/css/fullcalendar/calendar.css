@@ -22,7 +22,7 @@ a {
 }
 
 .column-2 {
-    width: 50%;
+    width: 40%;
     float: left;
 }
 
@@ -48,6 +48,7 @@ a {
     content: "";
     display: table;
     clear: both;
+    align-items: center;
 }
 
 .flex {
@@ -64,6 +65,7 @@ a {
     width: 100%;
     transition: 0.5s;
     margin-top: 0px;
+    z-index: 999;
 }
 
 .nav_container {
@@ -151,6 +153,7 @@ a {
 
 @media (max-width: 800px) {
     #nav {
+        width: 100%;
         background-color: #ffffff;
         transition: none;
     }
@@ -191,6 +194,9 @@ a {
         box-shadow: 0px 6px 10px rgb(0 0 0 /50%);
         color: #ffffff;
         margin-bottom: 1%;
+    }
+    .nav_ite {
+        color: #ffffff;
     }
     .login_item {
         width: 65%;
@@ -272,7 +278,7 @@ a {
 
 .info-citas {
     margin-top: 2%;
-    margin-left: 2%;
+    margin-left: 3.5%;
     margin-right: 2%;
     background-color: #6267FF;
     border-radius: 20px;
@@ -281,9 +287,15 @@ a {
 }
 
 @media (max-width: 800px) {
-    .info-citas {
-        width: 100%;
+    .column-2 {
+        width: 90%;
+        margin-left: 3.5%;
     }
+    /* .flex {
+        display: block;
+        align-items: center;
+        justify-content: center;
+    } */
 }
 
 
@@ -316,6 +328,15 @@ a {
 
 #calendar h2 {
     color: #6267FF;
+}
+
+@media(max-width: 800px) {
+    .calendarestructure {
+        width: 90%;
+    }
+    #calendar button {
+        padding: 1px;
+    }
 }
 
 

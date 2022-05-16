@@ -61,7 +61,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('trabajador_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/');
@@ -70,7 +70,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('admin_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/cpanel');
@@ -79,7 +79,7 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('cliente_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
 
                 //Envíamos los registros del usuario que ha iniciado sesión
