@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 //Necesario para cualquier query
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+/* use QRcode; */
 
 class CitasController extends Controller
 {
@@ -191,9 +192,11 @@ class CitasController extends Controller
                     $request->input('an_asociado'),
                     $request->input('id_us'),
                     $estadodebug]);
+                    //Obtenemos el último registro insertado en esta sentencia, y se lo pasamos al Mail
+                    $lastid = DB::getPdo()->lastInsertId();;
                     //Envío de mail
                     $sub = "Confirmación de cita";
-                    $enviar = new Mailtocustomers($datas);
+                    $enviar = new Mailtocustomers($datas, $lastid);
                     $enviar->sub = $sub;
                     Mail::to(session('email_session'))->send($enviar);
                     /* Mail::to(session('email_session'))->send(new Mailtocustomers($datas)); */
@@ -206,7 +209,7 @@ class CitasController extends Controller
         } catch (\Exception $e) {
             return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
         }
-      }  
+      }
   
 }
 

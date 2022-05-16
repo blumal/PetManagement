@@ -162,7 +162,7 @@ Route::put('actualizar',[ProductoController::class,'update']);
 
 
 
-//Api
+//Api Citas
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
 //TIENDA

@@ -14,15 +14,17 @@ class Mailtocustomers extends Mailable
 
     public $sub;
     public $datas;
+    public $lastid;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($datas)
+    public function __construct($datas, $lastid)
     {
         $this->datas = $datas;
+        $this->lastid = $lastid;
     }
 
     /**
