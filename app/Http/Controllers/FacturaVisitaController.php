@@ -146,4 +146,14 @@ class FacturaVisitaController extends Controller
         $datos = DB::select('SELECT comprobar_cli_pro FROM tbl_clientes_promo WHERE fk_id_us = ?', [$request['id_usr']]);
         return response()->json($datos);
     }
+
+    public function premio(Request $request){
+        try {
+            DB::table('tbl_clientes_promo')->where('fk_id_us','=',$request['id_usr'])
+            ->update(['comprobar_cli_pro' => 1]);
+                return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 }

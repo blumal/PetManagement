@@ -106,6 +106,8 @@ Route::get('/comprobar_compra',[FacturaVisitaController::class, 'comprobar_compr
 
 Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo']);
 
+Route::get('/premio',[FacturaVisitaController::class, 'premio']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 

@@ -23,8 +23,8 @@
     <div class="contenedor">
       <h1>Ruleta de premios</h1>
       <div class="concursantes">
-        <canvas id="canvas" width="600" height="600"></canvas><br>
-        <button onclick="sortear()"><span id="idestado">Sortear</span></button>
+        <canvas id="idcanvas" width="500" height="500"></canvas><br>
+        <button id="btn_srt" onclick="sortear()"><span id="idestado" value="Sortear">Sortear</span></button>
         <div class="mark-winner"></div>
       </div>
     </div>
@@ -56,7 +56,7 @@
   </div> --}}
 
 
-  <script src="js/jquery.min.js"></script>
+  {{-- <script src="js/jquery.min.js"></script> --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="js/ruleta.js"></script>
 </body>
