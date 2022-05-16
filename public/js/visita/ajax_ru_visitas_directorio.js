@@ -41,20 +41,38 @@ function leerVisitas() {
 
             for (let i = 0; i < respuesta.length; i++) {
                 visita += '<div class="column-3">' +
-                    '<div class="seccion">' +
-                    '<form action="/generarFactura" method="post">' +
-                    'Factura ' + respuesta[i][0]['fecha_vi'] +
-                    '<br><br>Animal ' + respuesta[i][0]['nombre_pa'] +
-                    '<br><br>Cliente ' + respuesta[i][0]['nombre_us'] +
-                    '<br><br>' +
-                    '<input type="hidden" name="_token" value="' + token + '">' +
+                    '<div class="seccion">'
 
-                    '<input type="hidden" name="id_visita" value="' + respuesta[i][0]['id_vi'] + '">' +
-                    '<input class="ver_factura" type="submit" value="Rellenar factura">' +
-                    '</form>' +
-                    '<br>' +
-                    '</div>' +
-                    '</div>'
+                if (respuesta[i]['nombre_pa'] == null) {
+                    visita += '<form action="/asociarPacienteVisita" method="post">' +
+                        'Factura ' + respuesta[i]['fecha_vi'] +
+                        '<br><br>Propietario -> ' + respuesta[i]['nombre_us'] +
+                        '<br><br>' +
+                        '<input type="hidden" name="_token" value="' + token + '">' +
+                        '<input type="hidden" name="id_usuario" value="' + respuesta[i]['id_us'] + '">' +
+                        '<input type="hidden" name="id_visita" value="' + respuesta[i]['id_vi'] + '">' +
+                        '<input class="ver_factura" type="submit" value="Asociar paciente">' +
+                        '</form>' +
+                        '<br>' +
+                        '</div>' +
+                        '</div>'
+                } else {
+                    visita += '<form action="/generarFactura" method="post">' +
+                        'Factura ' + respuesta[i]['fecha_vi'] +
+                        '<br><br>Paciente -> ' + respuesta[i]['nombre_pa'] +
+                        '<br><br>Propietario -> ' + respuesta[i]['nombre_us'] +
+                        '<br><br>' +
+                        '<input type="hidden" name="_token" value="' + token + '">' +
+
+                        '<input type="hidden" name="id_visita" value="' + respuesta[i]['id_vi'] + '">' +
+                        '<input class="ver_factura" type="submit" value="Rellenar factura">' +
+                        '</form>' +
+                        '<br>' +
+                        '</div>' +
+                        '</div>'
+                }
+
+
             }
             div_visitas.innerHTML = visita
 
@@ -62,4 +80,19 @@ function leerVisitas() {
 
     }
     ajax.send(formData);
+}
+
+function validarFacturas() {
+
+    total_factura = document.getElementById('total_factura').value
+    fecha_factura = document.getElementById('fecha_factura').value
+    hora_factura = document.getElementById('hora_factura').value
+    diagnostico = document.getElementById('diagnostico').value
+
+    if (total_factura == "" || fecha_factura == "" || hora_factura == "" || diagnostico == "") {
+        alertify.error('Rellene los campos obligatorios');
+        return false;
+    } else {
+        return true;
+    }
 }

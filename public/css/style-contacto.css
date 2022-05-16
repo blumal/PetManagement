@@ -1,24 +1,16 @@
-*{
-    font-family: 'Courier New', Courier, monospace;
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+
+* {
+    font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
     padding: 0;
 }
-
 body {
     position: relative;
-    background: linear-gradient(transparent, rgb(31, 45, 196));
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/veterinaria-perro.jpg);
+    --main-color: #1f2cc4;
     background-size: cover;
     background-attachment: fixed;
-}
-
-.column-2{
-    width: 50%;
-    float: left;
-}
-
-.column-4{
-    width: 25%;
-    float: left;
 }
 
 .row-c:after {
@@ -37,93 +29,21 @@ a{
     text-decoration: none !important;
 }
 
-/* ---------- HEADER ---------- */
-
-header{
-    height: auto;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5%;
-    box-sizing: border-box;
-    height: 100px;
-    transition: 0.5s;
-}
-
-.logo{
-    padding-top: 15px;
-    height: 90%;
-}
-
-.scrolled-search{
-    opacity: 1;
-    pointer-events: all;
-}
-
-ul{
-    margin-top: 0;
-    margin-bottom: 0rem;
-}
-
-.main-menu{
-    display: flex;
-    list-style-type: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.menu-item{
-    margin: 0 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.5s;
-    color: #000000;
-}
-
-.menu-item:hover{
-    color: #ffffff;
-    background-color: #000000;
-    border-radius: 30px;
-    padding: 10px 24px;
-}
-
-.cta{
-    padding: 10px 24px;
-    border-radius: 30px;
-    background-color: #1f2cc4;
-    color: #ffffff;
-    margin: 0 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.cta:hover{
-    color: #ffffff;
-    background-color: #000000;
-}
-
-/* ---------- CENTRO ---------- */
+/* ---------- LOGIN ---------- */
 
 .container{
-    /* padding-top: 4%; */
+    padding-top: 5%;
 }
 
 h1{
     font-weight: bolder;
-    color: black;
-    font-weight: bolder;
 }
 
 .formulario {
-    /* background: rgba(31, 45, 196, 0.5); */
+    background: rgba(31, 45, 196, 0.659);
     padding: 20px;
     border-radius: 10px;
-    /* box-shadow: 0 0 30px rgb(0, 0, 0); */
+    box-shadow: 0 0 30px rgb(0, 0, 0);
     color: white;
 }
 
@@ -191,90 +111,88 @@ h1{
     text-decoration-line: none;
     cursor: pointer;
 }
-/*------------------------*/
 
-h2{
-    text-align: center;
-    width: 20%;
-    padding: 0% 0% 2% 0%;
-}
+/* ---------- HEADER ---------- */
 
-.foto{
-    width: 20%;
-    padding: 0% 0% 2% 0%;
-}
-
-.content{
-    margin: 0% 10% 5% 10%;
-}
-
-/* ---------- FOOTER ---------- */
-
-footer{
-    width: auto;
-    position: relative;
-    bottom: 0;
+header {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    padding: 2rem 8%;
-    background-color: #414141;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: 100px;
+    transition: 0.5s;
+    z-index: 999;
 }
 
-.logo{
-    height: 80px;
-    margin-bottom: 1rem;
+ul{
+    margin-bottom: 0rem;
 }
 
-.social-icons-container, .footer-menu-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+.logo {
+    height: 80%;
 }
 
-.social-icon{
-    height: 50px;
-    width: 50px;
-    border-radius: 50px;
-    border: 1px solid #f2f2f2;
-    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
-    background-position: center;
-    background-size: 40%;
-    background-repeat: no-repeat;
-    margin:1rem;
-}
-
-.social-icon:hover{
-    background-color: #121212;
-    filter: invert(1);
-}
-
-.social-icon:nth-of-type(2){
-    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
-}
-
-.footer-menu-container{
-    list-style-type: none;
-    color: #f2f2f2;
-    font-size: 18px;
-}
-
-.footer-item{
-    margin: 1rem 1.5rem;
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-.footer-item:hover{
+.scrolled-search {
     opacity: 1;
+    pointer-events: all;
 }
 
-.copyright{
-    color: #f2f2f2;
-    opacity: 0.3;
-    text-align: center;
+.main-menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: var(--main-color);
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
 }

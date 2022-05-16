@@ -6,6 +6,9 @@ use App\Models\Citas;
 use Illuminate\Http\Request;
 //Necesario para cualquier query
 use Illuminate\Support\Facades\DB;
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
+/* use QRcode; */
 
 class CitasController extends Controller
 {
@@ -13,10 +16,11 @@ class CitasController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
-        /**/
+        $this->sendMail();
     }
 
     //Login view
@@ -57,16 +61,16 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('trabajador_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
-                return redirect('/citas');
+                return redirect('/');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('admin_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/cpanel');
@@ -75,8 +79,12 @@ class CitasController extends Controller
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $userId['pass_us'])->get();
                 $id_usuario=$usuario[0]->id_us;
                 $rol_usuario=$usuario[0]->id_rol_fk;
-                $request->session()->put('email_session', $request->email_us);
+                $request->session()->put('cliente_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
+
+                //Envíamos los registros del usuario que ha iniciado sesión
+                $an_asociado = DB::table('tbl_pacienteanimal_clinica')->where('propietario_fk', '=', $id_usuario)->get();
+                $request->session()->put('animales_asociados', $an_asociado);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 return redirect('/');
             }else{
@@ -120,8 +128,7 @@ class CitasController extends Controller
         return view('admincrud'); 
     }
     public function cpanelAnimales(){
-        //Falta
-        /* return view(''); */
+        return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
         //Falta
@@ -145,6 +152,17 @@ class CitasController extends Controller
 
     //Inserción datos a DB
     public function insertCita(Request $request){
+        //Fecha actual
+        $today = date("Y-m-d");
+        $datas = $request->validate([
+            //Validación de fecha actual o superior
+            'fecha_vi' => 'required|date|after_or_equal:today',
+            'hora_vi' => 'required|string|max:5',
+            'asunto_vi' => 'required|string',
+            'id_us' => 'required|integer'
+        ]);
+       /*  return $datas; */
+        
         try {
             //$checkdatas = DB::select('SELECT fecha_vi, hora_vi FROM tbl_visitia WHERE fecha_vi = ? AND hora_vi = ?', [$request->input('fecha_vi'), $request->input('hora_vi')])->get();
             //Recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
@@ -166,20 +184,31 @@ class CitasController extends Controller
             if ($checkingdatas  < 3) {
                 //Comprobamos que el mismo usuario no pueda hacer la misma visita + de una vez
                 if($customerbooks == 0){
-                    DB::insert('insert into tbl_visita (fecha_vi, hora_vi, asunto_vi, id_usuario_fk, id_estado_fk) values (?, ?, ?, ?, ?)', 
+                    DB::insert('insert into tbl_visita (fecha_vi, hora_vi, asunto_vi, id_pacienteanimal_fk, id_usuario_fk, id_estado_fk) values (?, ?, ?, ?, ?, ?)', 
                     [$request->input('fecha_vi'), 
                     $request->input('hora_vi'), 
-                    $request->input('asunto_vi'), 
+                    $request->input('asunto_vi'),
+                    $request->input('an_asociado'),
                     $request->input('id_us'),
                     $estadodebug]);
+                    //Obtenemos el último registro insertado en esta sentencia, y se lo pasamos al Mail
+                    $lastid = DB::getPdo()->lastInsertId();;
+                    //Envío de mail
+                    $sub = "Confirmación de cita";
+                    $enviar = new Mailtocustomers($datas, $lastid);
+                    $enviar->sub = $sub;
+                    Mail::to(session('email_session'))->send($enviar);
+                    /* Mail::to(session('email_session'))->send(new Mailtocustomers($datas)); */
                     return response()->json(array('resultado'=> 'OK'));
                 }else{
-                    return "Error";
+                    return response()->json(array('resultado'=> 'NOK'));
                 }
             }
-        } catch (\Throwable $th) {
-            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+            /* Mail::to('alfredoblumtorres@gmail.com')->send(new Mailtocustomers); */
+        } catch (\Exception $e) {
+            return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
         }
-      }  
+      }
+  
 }
 

@@ -1,13 +1,10 @@
-var header = document.getElementById('Header')
+var nav = document.getElementById('nav')
 
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function() {
     var scroll = window.scrollY;
-    if(scrollY>0){
-        header.style.backgroundColor = '#8590ff';
-
+    if (scrollY > 0) {
+        nav.style.backgroundColor = '#8590FF';
+    } else {
+        nav.style.backgroundColor = 'transparent';
     }
-    else{
-        header.style.backgroundColor = 'transparent';
-    }
-
 })
