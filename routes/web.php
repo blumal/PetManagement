@@ -81,7 +81,7 @@ Route::get('entretenimiento', function () {
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 // LOGIN LOGOUT Y DEMÁS DE USUARIO
-Route::get('/login', [UsuarioController::class, 'login']);
+Route::get('/login/{id?}', [UsuarioController::class, 'login']);
 Route::post('/login-proc', [UsuarioController::class, 'loginProc']);
 
 Route::get('registro', function () {return view('login/registro');});
@@ -134,6 +134,8 @@ Route::get('/comprobar_compra',[FacturaVisitaController::class, 'comprobar_compr
 Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo']);
 
 Route::get('/premio',[FacturaVisitaController::class, 'premio']);
+
+Route::get('/premio_promo',[FacturaVisitaController::class, 'premio_promo']);
 
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//

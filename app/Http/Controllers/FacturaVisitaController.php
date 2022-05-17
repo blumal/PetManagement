@@ -151,6 +151,16 @@ class FacturaVisitaController extends Controller
         try {
             DB::table('tbl_clientes_promo')->where('fk_id_us','=',$request['id_usr'])
             ->update(['comprobar_cli_pro' => 1]);
+                return response()->json(array('resultado'=> 'Ok'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function premio_promo(Request $request){
+        try {
+            DB::insert('insert into tbl_usuarios_promos_activas (fk_id_usr, fk_id_promo) values (?, ?)',
+                [$request['id_usr'], $request['id_promo']]);
                 return response()->json(array('resultado'=> 'OK'));
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
