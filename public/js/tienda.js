@@ -731,7 +731,7 @@ function modal(id) {
             html += "<div class='div-pagar'>";
             html += "<div class='input-cantidad'><input type='number' value='1' class='form-control quantity' max='5001' min='1' id='input-cantidad'/></div>";
             html += "<div class='cantidad-precio'><p id='precio-final'>" + respuesta[0][0].precio_art + "€</p></div>";
-            html += "<div class='anadir-carrito'><a onclick='addToCart()' class='btn btn-block btn-carrito'>Añadir al carrito</a></div>";
+            html += "<div class='anadir-carrito'><a onclick='limite()' class='btn btn-block btn-carrito'>Añadir al carrito</a></div>";
             html += "</div>";
             html += "</div>";
             html += "";
@@ -748,6 +748,7 @@ function modal(id) {
             $("#input-cantidad").bind('keyup mouseup', function() {
                 calcularPrecio(precio);
             });
+
 
             var modal = document.getElementById("myModal2");
             var span = document.getElementsByClassName("close2")[0];
@@ -773,9 +774,32 @@ function calcularPrecio(precio) {
     final = final.toFixed(2);
     $("#precio-final").text(final + "€")
         //sesiones
-    var id = $('.producto').attr('id-producto');
-    console.log(id)
+        //var id = $('.producto').attr('id-producto');
     var divHtml = document.getElementsByClassName("anadir-carrito")[0];
-    divHtml.innerHTML = "<a onclick='addToCart()' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
+    divHtml.innerHTML = "<a onclick='limite()' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
 
+}
+
+function limite() {
+    /*NO ESTA SOLUCIONADO, HABRIA QUE CAMBIAR TODA LA ESTRUCTURA DEL ARRAY DE SESION, RECORRERLO, VER
+    SI ESE PRODUCTO YA ESTÁ EN LA SESION, SUMAR LA CANTIDAD YA METIDA CON LA QUE SE VA A METER, Y COMPARAR*/
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+    var cantidad = $('#input-cantidad').val();
+    console.log(sesion)
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('subcategoria', subcategoria);
+    var ajax = objetoAjax();
+    ajax.open("post", "limiteCarrito", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            if (cantidad > respuesta[0].cantidad) {
+                alert("Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.")
+            } else {
+                addToCart()
+            }
+        }
+    }
+    ajax.send(formData);
 }

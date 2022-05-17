@@ -198,13 +198,25 @@ class ProductoController extends Controller
 
     public function productosOpiniones(Request $request) {
         $datos = $request->except('_token');
-        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=?",[$datos['id']]);
+        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=? ORDER BY id_op DESC",[$datos['id']]);
         return response()->json($opiniones);
     }
     public function productosOpinionesTodas(Request $request) {
         $datos = $request->except('_token');
-        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=?",[$datos['id']]);
+        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=? ORDER BY id_op DESC",[$datos['id']]);
         return response()->json($opiniones);
+    }
+
+    public function limiteCarrito(Request $request) {
+        $datos = $request->except('_token');
+        $cantidad=DB::select("SELECT tbl_categoria_articulo.cantidad FROM `tbl_categoria_articulo` WHERE tbl_categoria_articulo.id_cat=?",[$datos['subcategoria']]);
+        return response()->json($cantidad);
+    }
+
+    public function insertarOpinion(Request $request) {
+        $datos = $request->except('_token');
+        DB::select("INSERT INTO `tbl_opinion_articulo` (`id_op`, `texto_op`, `valoracion_op`, `usuario_fk`, `articulo_fk`) VALUES (NULL, ?, ?, 2, ?)",[$datos['comentario'],$datos['valoracion'],$datos['producto']]);
+        return response()->json(array('resultado'=> 'OK'));
     }
 
     //sesiones carrito
@@ -310,6 +322,12 @@ class ProductoController extends Controller
             }
             session()->flash('success', 'Product removed successfully');
         }
+    }
+
+    public function cogerSesion(Request $request) {
+        //CAMBIAR SESION CART POR LA DE USER
+        $cart = session()->get('cart');
+        return response()->json($cart);
     }
 
     /*Dinero*/

@@ -19,12 +19,15 @@ Route::post('marcaProducto',[ProductoController::class,'marcaProducto']);
 Route::post('filtroSearchBar',[ProductoController::class,'filtroSearchBar']);
 Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);
 Route::post('getProduct',[ProductoController::class,'getProduct']);
+Route::post('limiteCarrito',[ProductoController::class,'limiteCarrito']);
+Route::post('insertarOpinion',[ProductoController::class,'insertarOpinion']);
 
 //sesiones
 Route::get('add-to-cart/{id}',[ProductoController::class,'addToCart']);
 Route::get('add-to-cart-producto/{id}/{cantidad}/{subcategoria}',[ProductoController::class,'addToCartProducto']);
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
+Route::post('cogerSesion',[ProductoController::class,'cogerSesion']);
 
 
 //compra

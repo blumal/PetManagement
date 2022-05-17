@@ -61,7 +61,7 @@
                     <div class="input-cantidad"><input type="number" value="1" class="form-control quantity" max="5001" min="1" id="input-cantidad"/></div>
                     <div class="cantidad-precio"><p id="precio-final">{{$producto[0]->precio_art}}€</p></div>
                 </div>
-                <div class="anadir-carrito"><a onclick="addToCart()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
+                <div class="anadir-carrito"><a onclick="limite()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
             </div>
             <div class="div-dropmenu">
                 <div class="dropdown">
@@ -137,9 +137,9 @@
             </div>
             <div class="text-center mt-3 mb-3 comentario-valoracion">
                 <h3>Tu comentario</h3>
-                <textarea class="mt-2 pl-2 pr-1" name="" id="" cols="70" rows="3"></textarea>
+                <textarea class="mt-2 pl-2 pr-1" id="comentario" cols="70" rows="3"></textarea>
             </div>
-            <div class="text-center mb-4"><button type='button' class='btn btn-primary btn-lg btn-enviar' onclick='modalValorar'>Valorar producto</button></div>
+            <div class="text-center mb-4"><button id="btn-valorar" type='button' class='btn btn-primary btn-lg btn-enviar'>Valorar producto</button></div>
           </div>
         </div>
     </div>

@@ -64,7 +64,7 @@ function calcularPrecio(precio) {
     var id = $('.producto').attr('id-producto');
     var divHtml = document.getElementsByClassName("anadir-carrito")[0];
     console.log(cantidad)
-    divHtml.innerHTML = "<a onclick='addToCart()' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
+    divHtml.innerHTML = "<a onclick='limite()' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
 
 }
 
@@ -318,12 +318,12 @@ function opiniones() {
                 } else {
                     html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
                 }
-                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar()'>Valorar este producto</button></div>";
+                html += "<div id='div-boton-valorar'><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='cogerSesion()'>Valorar este producto</button></div>";
                 html += "</div>";
             } else {
                 html += "<div class='div-valoracion'>";
                 html += "<p class='mt-4'>Nadie ha valorado este producto todavía. Sé el primero.</p>";
-                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar()'>Valorar este producto</button></div>";
+                html += "<div id='div-boton-valorar'><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='cogerSesion()'>Valorar este producto</button></div>";
                 html += "</div>";
 
             }
@@ -386,7 +386,7 @@ function opinionesTodas() {
                 } else {
                     html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
                 }
-                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar()'>Valorar este producto</button></div>";
+                html += "<div id='div-boton-valorar'><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='cogerSesion()'>Valorar este producto</button></div>";
                 html += "</div>";
             } else {
                 html += "<div class='div-valoracion'>";
@@ -422,7 +422,10 @@ function modal() {
     }
 }
 
-function modalValorar() {
+function modalValorar(idUser) {
+    $("#btn-valorar").click(function() {
+        enviarOpinion(idUser);
+    });
     var modal = document.getElementById("myModal3");
     var span = document.getElementsByClassName("close3")[0];
     modal.style.display = "block";
@@ -458,16 +461,87 @@ function modalValorar() {
                     printRatingResult(result, i);
                     for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
                 }
-                valoracion = $('.rating__star.fas').length;
             };
         });
     }
 
     function printRatingResult(result, num = 0) {
         result.textContent = `${num}/5`;
-        console.log(num)
+        //console.log(num)
     }
 
     executeRating(ratingStars, ratingResult);
     //NO TOCAR
+
+}
+
+function enviarOpinion(idUser) {
+    producto = $('.producto').attr('id-producto');
+    valoracion = $('.rating__star.fas').length;
+    comentario = $("#comentario").val();
+    usuario = idUser;
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('producto', producto);
+    formData.append('valoracion', valoracion);
+    formData.append('comentario', comentario);
+    //formData.append('usuario', usuario);
+    var ajax = objetoAjax();
+    ajax.open("post", "../insertarOpinion", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var modal = document.getElementById("myModal3");
+            modal.style.display = "none";
+            opiniones();
+
+        }
+    }
+    ajax.send(formData);
+
+}
+
+
+function cogerSesion() {
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    var ajax = objetoAjax();
+    ajax.open("post", "../cogerSesion", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            if (respuesta.length == 0) {
+                var div = document.getElementById('div-boton-valorar');
+                var html = "<p style='margin-top: 2%;'>Necesitas <a href='../carrito' style='color: #1f2cc4;'>iniciar sesión</a> para poder valorar.</p>";
+                div.innerHTML += html;
+            } else {
+                modalValorar(respuesta)
+            }
+
+        }
+    }
+    ajax.send(formData);
+}
+
+function limite() {
+    /*NO ESTA SOLUCIONADO, HABRIA QUE CAMBIAR TODA LA ESTRUCTURA DEL ARRAY DE SESION, RECORRERLO, VER
+    SI ESE PRODUCTO YA ESTÁ EN LA SESION, SUMAR LA CANTIDAD YA METIDA CON LA QUE SE VA A METER, Y COMPARAR*/
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+    var cantidad = $('#input-cantidad').val();
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('subcategoria', subcategoria);
+    var ajax = objetoAjax();
+    ajax.open("post", "../limiteCarrito", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            if (cantidad > respuesta[0].cantidad) {
+                alert("Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.")
+            } else {
+                addToCart()
+            }
+        }
+    }
+    ajax.send(formData);
 }
