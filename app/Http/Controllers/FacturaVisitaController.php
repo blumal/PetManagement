@@ -17,14 +17,13 @@ class FacturaVisitaController extends Controller
 
     //FUNCION PARA MOSTRAR TODAS LAS FACTURAS CLINICAS DE UN USER
     public function directorioFacturasClinica(Request $request){
-        $id_user= $request['id_user'];
+        $id_user=$request->session()->get('id_user_session');
         if (isset($id_user)) {
             $facturas = DB::table('tbl_factura_clinica')
                 ->where('id_usuario_fk','=',$id_user)
                 ->get();
         }else{
-            $facturas = DB::table('tbl_factura_clinica')
-                ->get();
+            return redirect('/login');
             
         }
         

@@ -191,7 +191,7 @@
                 <input type="submit" class="previous_visits_button" value="   Rellenar Visita   ">
             </form>
 
-            <form action="{{url("/FacturasClinica")}}" method="post">
+            <form action="{{url("/FacturasClinica")}}" method="get">
                 @csrf
                 <input type="submit" class="previous_visits_button" value="Ver  antiguas visitas">
             </form>

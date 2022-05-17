@@ -89,7 +89,8 @@ Route::post('/regis-proc', [UsuarioController::class, 'regisProc']);
 
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [UsuarioController::class, 'logout']);
-Route::get('/perfil', function () {return view('login/editarPerfil');});
+
+Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 
 //Actualizar Perfil usuario
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
@@ -153,6 +154,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //Ruta para entrar a facturas visitas
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
 Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 
