@@ -192,7 +192,7 @@ class UsuarioController extends Controller
         $datas=[$regen_password];
         //Envío de mail
         $sub = "Cambio de contraseña";
-        $enviar = new Mailtocustomers($datas);
+        $enviar = new Mailtocustomers($datas,1);
         $enviar->sub = $sub;
         Mail::to($mail)->send($enviar);
 
