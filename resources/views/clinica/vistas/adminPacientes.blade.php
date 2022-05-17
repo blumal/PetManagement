@@ -1,5 +1,7 @@
 <!--Método comprobación de sesión-->
-@if (Session::get('id_rol_session')!=1)
+
+@if (Session::get('id_rol_session')==2)
+
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -32,7 +34,7 @@
         <form class="filtro" method="post" onsubmit="return false;">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
-               <input type="search" id="search" name="nombre_art" class="form-control" placeholder="Buscar por nombre del paciente..." aria-label="Search" onkeyup="filtro(); return false;"/>
+               <input type="search" id="search" name="nombre_paciente" class="form-control" placeholder="Buscar por nombre del paciente..." aria-label="Search" onkeyup="leerPacientes(); return false;"/>
             </div>
          </form>
     </div>
@@ -77,5 +79,6 @@
             </table>
         </div>
     </div>
+    <script>leerPacientes();</script>
 </body>
 </html>

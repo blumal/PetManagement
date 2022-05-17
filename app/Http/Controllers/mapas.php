@@ -458,10 +458,10 @@ class mapas extends Controller
         return view('geoguesser-game');
     }
 
-    public function geoguesser_ajax(Request $request){
+    public function geoguesser_ajax(/* Request $request */){
         $datos=DB::select('SELECT tbl_geoguesser.*, tbl_direccion_geoguesser.* FROM tbl_geoguesser
-        INNER JOIN tbl_direccion_geoguesser ON tbl_geoguesser.id_geo = tbl_direccion_geoguesser.fk_id_geo
-        WHERE tbl_geoguesser.id_geo = ?', [$request['nivel']]);
+        INNER JOIN tbl_direccion_geoguesser ON tbl_geoguesser.id_geo = tbl_direccion_geoguesser.fk_id_geo'
+        /* WHERE tbl_geoguesser.id_geo = ?', [$request['nivel']] */);
         //Devolvemos por json los datos guardados en la variable datos
         return response()->json($datos);
     }

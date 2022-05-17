@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Whoops\Run;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
 
 use function Ramsey\Uuid\v1;
 
@@ -34,12 +36,14 @@ class VisitaController extends Controller
                     ->where('id_vi','=',$id_visita)
                     ->get();
 
+                    $id_usuario=$visita[0]->id_usuario_fk;
+
                     $id_paciente= $visita[0]->id_pacienteanimal_fk;
 
                     $cliente = DB::table('tbl_usuario')
                             ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
                             ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
-                            ->where('id_us','=',$id_user)
+                            ->where('id_us','=',$id_usuario)
                             ->get();
                     
                     $paciente= DB::table('tbl_pacienteanimal_clinica')
@@ -92,15 +96,24 @@ class VisitaController extends Controller
         $hora_factura=$request['hora_factura'];
         $id_veterinario=$request['id_veterinario'];
         $diagnostico = $request['diagnostico'];
-
         $num_items=count($request['productos']);
 
+        $cliente = DB::table('tbl_usuario')
+                            ->where('id_us','=',$id_usuario)
+                            ->get();
 
+        $email_cliente=$cliente[0]->email_us;
 
+        
         DB::table('tbl_visita')
         ->where('id_vi', $id_visita)  // find your user by their email
         ->limit(1)  // optional - to ensure only one record is updated.
         ->update( [ 'diagnostico_vi' => $diagnostico] );
+
+        DB::table('tbl_visita')
+        ->where('id_vi', $id_visita)  // find your user by their email
+        ->limit(1)  // optional - to ensure only one record is updated.
+        ->update( [ 'id_estado_fk' => 3] );
 
         $id_factura = DB::table('tbl_factura_clinica')->insertGetId(
             [ 'id_usuario_fk' => $id_usuario,'id_visita_fk'=> $id_visita,'id_promocion_fk'=>$id_promocion,'total_fc'=>$total_factura,'fecha_fc'=>$fecha_factura,'hora_fc'=>$hora_factura,'id_veterinario_fk'=>$id_veterinario ]);
@@ -108,9 +121,18 @@ class VisitaController extends Controller
             DB::insert('insert into tbl_detallefactura_clinica (cant_dfc,id_producto_fk,id_factura_fk) values (?,?,?)',
             [$request['cantidad'][$i],$request['productos'][$i],$id_factura]);
         }
+
+        //Envío de mail
+        $sub = "Confirmación de visita";
+        $datas=[$hora_factura,$fecha_factura,$total_factura,$diagnostico];
+        $enviar = new Mailtocustomers($datas);
+        //,$total_factura,$localtime,$date
+        $enviar->sub = $sub;
+        Mail::to($email_cliente)->send($enviar);
+
+
         
         return redirect('/');
-        
 
     }
     public function anadir_item_factura(Request $request){
@@ -151,11 +173,29 @@ class VisitaController extends Controller
     //CRUD PACIENTES
     public function VisitasAjax (Request $request){
 
-        $visitas = DB::table('tbl_visita')
-            ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
-            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
+        $animal_asociado = DB::table('tbl_visita')
             ->where('fecha_vi','=',$request->fecha_visita)
             ->get();
+
+        for ($i=0; $i < count($animal_asociado); $i++) { 
+            if ($animal_asociado[$i]->id_pacienteanimal_fk==null) {
+                $visitas = DB::table('tbl_visita')
+                    ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
+                    ->where('fecha_vi','=',$request->fecha_visita)
+                    ->where('id_Estado_fk','<',3)
+                    ->get();
+            }else{
+                $visitas = DB::table('tbl_visita')
+                    ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
+                    ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
+                    ->where('fecha_vi','=',$request->fecha_visita)
+                    ->where('id_Estado_fk','<',3)
+                    ->get();
+            }
+        }
+        
+        
+        return $visitas;
         
         /*$cliente = DB::table('tbl_usuario')
             ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
@@ -167,166 +207,50 @@ class VisitaController extends Controller
         return response()->json($visitas);
         //return $request;
     }
-    public function registrarPaciente(){
-
-        try {
-            $duenos= DB::table('tbl_usuario')
-                    ->where('id_rol_fk','=',2)
-                    ->get();
-        } catch(\Exception $e){
-            DB::rollBack();
-            return $e->getMessage();
-        }
-        //return view('facturas/crear/factura_visitaCrear',compact('cliente','visita','paciente','promociones','items_clinica'));
-        return view('clinica/vistas/crearPaciente', compact('duenos'));
-    }
-    public function cerrarPaciente(Request $request){
-        $foto = $request->hasFile('foto_paciente');
-
-        $request->validate([
-            'nombre_paciente'=>'required|string',
-            'peso_paciente'=>'required|numeric|between:0,9999.99',
-            'fecha_nacimiento_paciente'=>'required|date_format:Y-m-d|after_or_equal:1800-01-01',
-            'id_dueno_paciente'=>'required|integer',
-            'nombre_cientifico_paciente'=>'required|string'
-        ]); 
-
-        $datos = $request->except('_token');
-        
-        if ($foto) {
-            $datos['foto_paciente'] = $request->file('foto_paciente')->store('uploads','public');
-        }else{
-            //Aqui venimos si no hay ninguna foto a la hora de subir la foto de la persona
-            $datos['foto_paciente'] = "uploads/incognito.png";
-        }
-
-        try {
-            DB::beginTransaction();
-
-            DB::insert('insert into tbl_pacienteanimal_clinica (nombre_pa, peso_pa,n_id_nacional,fecha_nacimiento,foto_pa,propietario_fk,nombrecientifico_pa,raza_pa)
-            values (?, ?, ?, ?, ?, ?, ?, ?)',
-            [$datos['nombre_paciente'], $datos['peso_paciente'], $datos['nirn_paciente'], $datos['fecha_nacimiento_paciente'], $datos['foto_paciente'], $datos['id_dueno_paciente'], $datos['nombre_cientifico_paciente'], $datos['raza_paciente']]);
-
-            DB::commit();
-        } catch (\Exception $error) {
-            DB::rollback();
-            return $error -> getMessage();
-        }
-
-        return redirect('/adminPacientes');
-    }
-    public function adminPacientes(){
-        try {
-            DB::beginTransaction();
-            $pacientes = DB::select("select * FROM tbl_pacienteanimal_clinica
-        INNER JOIN tbl_usuario ON tbl_pacienteanimal_clinica.propietario_fk=tbl_usuario.id_us");
-            /* $pacientes= DB::table('tbl_pacienteanimal_clinica')
-                    ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
-                    ->get(); */
-            DB::commit();
-        } catch (\Exception $error) {
-            DB::rollback();
-            return $error -> getMessage();
-        }
-        
-        return view('clinica/vistas/adminPacientes', compact('pacientes'));   
-    }
-    public function eliminarPaciente(Request $request){
-        try {
-            DB::beginTransaction();
-            $id_paciente=$request['id_paciente'];
-            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa',"=", $request['id_paciente'])->delete();
-            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa', '=',8)->delete();
-            DB::delete('delete from tbl_pacienteanimal_clinica where id_pa = ?',[$id_paciente]);
-            DB::commit();
-            return response()->json("OK");
-        } catch (\Exception $error) {
-            DB::rollback();
-            return $error -> getMessage();
-        }
-    }
-    public function leerPacientes(){
-        $pacientes= DB::table('tbl_pacienteanimal_clinica')
-                    ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
-                    ->get();
-        return response()->json($pacientes);
-        
-    }
-    public function editarPaciente(Request $request){
-        $id_paciente=$request['id_paciente'];
     
-        try{
-            DB::beginTransaction();
-                // retreive all records from db
-                $paciente= DB::table('tbl_pacienteanimal_clinica')
-                    ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
-                    ->where('id_pa','=',$id_paciente)
-                    ->get();
-                $duenos= DB::table('tbl_usuario')
-                    ->where('id_rol_fk','=',2)
-                    ->get();
-                
-                //return $id_factura;
-
-            DB::commit();
-        }catch(\Exception $e){
-            DB::rollBack();
-            return $e->getMessage();
-        }
-        //return $paciente;
-        return view('clinica/vistas/editarPaciente',compact('paciente','duenos'));
-    }
-    public function cerrarPacienteEditar (Request $request){
-        $id_paciente = $request['id_paciente'];
-
-        $request->validate([
-            'nombre_paciente'=>'required|string',
-            'peso_paciente'=>'required|numeric|between:0,9999.99',
-            'fecha_nacimiento_paciente'=>'required|date_format:Y-m-d|after_or_equal:1800-01-01',
-            'id_dueno_paciente'=>'required|integer',
-            'nombre_cientifico_paciente'=>'required|string'
-        ]);
-
-        if (isset($request['foto_paciente'])) {
-            $foto_paciente = $request->file('foto_paciente')->store('uploads','public');
-            if ($request['foto_paciente_old']=='uploads/incognito.png') {
-                # code...
-            }else{
-                Storage::delete('public/'.$request['foto_paciente_old']); 
-            }
-            
-            
-            //$foto_paciente=$request['foto_paciente'];
-        }else{
-            $foto_paciente=$request['foto_paciente_old'];
-        }
-
+    public function asociarPacienteVisita(Request $request){
         try {
             DB::beginTransaction();
 
-            $paciente_actualizado = DB::table('tbl_pacienteanimal_clinica')
-                ->where('id_pa', $id_paciente)
-                ->limit(1)
-                ->update(
-                    ['nombre_pa' => $request['nombre_paciente'],
-                    'peso_pa' => $request['peso_paciente'],
-                    'n_id_nacional' => $request['nirn_paciente'],
-                    'fecha_nacimiento' => $request['fecha_nacimiento_paciente'],
-                    'foto_pa' => $foto_paciente,
-                    'propietario_fk' => $request['id_dueno_paciente'],
-                    'nombrecientifico_pa' => $request['nombre_cientifico_paciente'],
-                    'raza_pa' => $request['raza_paciente']]
-                );
+            $visita= DB::table('tbl_visita')
+                        ->where('id_vi','=',$request['id_visita'])
+                        ->get();
+
+            $pacientes=DB::table('tbl_pacienteanimal_clinica')
+                ->where('propietario_fk', $request['id_usuario'])
+                ->get();
+
+            $cliente = DB::table('tbl_usuario')
+                ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+                ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                ->where('id_us','=',$request['id_usuario'])
+                ->get();
 
             DB::commit();
-            return redirect('/adminPacientes');
+            
+            return view('clinica/vistas/asociarPacienteVisita',compact('pacientes','visita','cliente'));
 
         }catch(\Exception $e){
             DB::rollBack();
             return $e->getMessage();
         }
-        
-
-        
     }
+    public function cerrarAsociacion(Request $request){
+        
+        try {
+            DB::beginTransaction();
+
+            DB::table('tbl_visita')
+                ->where('id_vi', $request['id_visita'])  // find your user by their email
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update( [ 'id_pacienteanimal_fk' => $request['id_paciente']] );
+
+            DB::commit();
+            return redirect('/citas');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+    }
+
 }

@@ -1,4 +1,6 @@
-@if (Session::get('id_rol_session')!=1)
+
+@if (Session::get('id_rol_session')==2)
+
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();

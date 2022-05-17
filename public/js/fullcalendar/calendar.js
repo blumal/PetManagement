@@ -197,19 +197,3 @@ function hourOptions() {
     }
     document.getElementById('hora_vi').innerHTML = horasDispo;
 }
-
-//Función enviar mails al usuario
-//Formdata contiene todos los datos del formulario previamente insertado
-/* function MailToCustomer(formdata) {
-    //inicializamos objeto ajax
-    var ajax = objetoAjax();
-    ajax.open("GET", "mailtocustomer", true);
-    ajax.onreadystatechange = function() {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            alert("ok");
-        } else {
-            alert("error");
-        }
-    }
-    ajax.send(formdata);
-} */

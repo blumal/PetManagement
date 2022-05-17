@@ -13,6 +13,8 @@ use App\Http\Controllers\CitasController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\DB;
 use App\Http\Controllers\JuegosController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\UsuarioController;
 use App\Mail\Mailtocustomers;
 use Illuminate\Support\Facades\Mail;
 
@@ -72,16 +74,10 @@ Route::get('about', function () {
     return view('about');
 });
 
-Route::get('perfil', function () {
-    return view('perfil');
-});
+
 
 Route::get('contacto', function () {
     return view('contacto');
-});
-
-Route::get('registro', function () {
-    return view('registro');
 });
 
 Route::get('login/contraseña', function () {
@@ -94,11 +90,24 @@ Route::get('entretenimiento', function () {
 
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
-Route::get('/login', [CitasController::class, 'login']);
-Route::post('/login-proc', [CitasController::class, 'loginProc']);
-Route::post('/regis-proc', [CitasController::class, 'regisProc']);
+// LOGIN LOGOUT Y DEMÁS DE USUARIO
+Route::get('/login', [UsuarioController::class, 'login']);
+Route::post('/login-proc', [UsuarioController::class, 'loginProc']);
+
+Route::get('registro', function () {return view('login/registro');});
+Route::post('/regis-proc', [UsuarioController::class, 'regisProc']);
+
 //Ruta que nos lleva a funcion que elimina todas las sesiones
-Route::get('/logout', [CitasController::class, 'logout']);
+Route::get('/logout', [UsuarioController::class, 'logout']);
+Route::get('/perfil', function () {return view('login/editarPerfil');});
+
+//Actualizar Perfil usuario
+Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
+Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
+
+//FINAL RUTAS USUARIO
+
+
 //geoguesser
 Route::get('/geoguesser', [mapas::class, 'geoguesser']);
 //geoguesser
@@ -125,6 +134,17 @@ Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
 Route::get('/an_perd', [CitasController::class, 'an_perd']);
 
+//Ruleta premios
+Route::get('/ruleta',[FacturaVisitaController::class, 'ruleta']);
+
+Route::get('/ruleta_promo',[FacturaVisitaController::class, 'ruleta_promo']);
+
+Route::get('/comprobar_compra',[FacturaVisitaController::class, 'comprobar_compra']);
+
+Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo']);
+
+Route::get('/premio',[FacturaVisitaController::class, 'premio']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 
@@ -142,7 +162,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 
 //Ruta para entrar a facturas visitas
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
-Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
 Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 
@@ -150,7 +170,10 @@ Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 
 //CERRAR FACTURAS
 Route::post('/generarFactura', [VisitaController::class, 'preRellenarVisitaClinica']);
+Route::post('/asociarPacienteVisita', [VisitaController::class, 'asociarPacienteVisita']);
+
 Route::post('/cerrarVisita', [VisitaController::class, 'RellenoVisita']);
+Route::post('/cerrarAsociacion', [VisitaController::class, 'cerrarAsociacion']);
 
 Route::get('/FacturaClinica/view', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturaClinica/view', [FacturaVisitaController::class, 'vistaFacturaClinica']);
@@ -187,13 +210,13 @@ Route::post('juegos/ranita/new_score', [JuegosController::class, 'new_score']);
 //FIN JUEGOS
 
 //INICIO CRUD PACIENTES
-Route::get('/registrarPaciente',[VisitaController::class, 'registrarPaciente']);
-Route::post('/cerrarPaciente',[VisitaController::class, 'cerrarPaciente']);
-Route::get('/adminPacientes',[VisitaController::class, 'adminPacientes']);
-Route::post('/eliminarPaciente',[VisitaController::class, 'eliminarPaciente']);
-Route::post('/leerPacientes',[VisitaController::class, 'leerPacientes']);
-Route::post('/editarPaciente',[VisitaController::class, 'editarPaciente']);
-Route::post('/cerrarPacienteEditar',[VisitaController::class, 'cerrarPacienteEditar']);
+Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']);
+Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
+Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
+Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
+Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
+Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
+Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);
 
 // FIN CRUD PACIENTES
 
@@ -219,13 +242,9 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
+Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword']);
 
-//Actualizar Perfil usuario
-Route::get('modificarPerfil', [CitasController::class, 'modificarPerfil']);
-Route::post('modificarPerfilPost',[CitasController::class, 'modificarPerfilPost']);
-
-
-//Api
+//Api Citas
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
 //TIENDA
