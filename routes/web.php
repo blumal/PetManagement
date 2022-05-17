@@ -12,6 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\DB;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\JuegosController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UsuarioController;
@@ -226,10 +227,8 @@ Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword'])
 //Api Citas
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
+
 //TIENDA
-
-
-
 Route::get('tienda',[ProductoController::class,'tienda']);
 Route::get('carrito',[ProductoController::class,'carrito']);
 Route::post('marcas',[ProductoController::class,'marcas']);
@@ -262,3 +261,6 @@ Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDin
 Route::get('comprado',[ProductoController::class, 'compra']);
 
 Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
+
+//Empleados
+Route::get('/homeempleado', [EmpleadoController::class, 'empleadoDatas']);
