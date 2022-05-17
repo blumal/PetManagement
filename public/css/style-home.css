@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
-
 * {
     font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
@@ -80,7 +79,7 @@ a {
 
 .nav_logo {
     width: 80px;
-    /* height: 90%; */
+    height: 90%;
     z-index: 999;
 }
 
@@ -202,15 +201,14 @@ a {
     .nav_input:checked+.nav_menu {
         clip-path: circle(100% at center);
     }
-
-/* ---------- TWITTER ---------- */
-
-.twitter {
-    position: static;
-    margin: 10% 10% 10% 0%;
-    box-shadow: 0px 0px 7px 10px #292f33;
-    background-color: #292f33;
-    border-radius: 5px;
+    /* ---------- TWITTER ---------- */
+    .twitter {
+        position: static;
+        margin: 10% 10% 10% 0%;
+        box-shadow: 0px 0px 7px 10px #292f33;
+        background-color: #292f33;
+        border-radius: 5px;
+    }
 }
 
 

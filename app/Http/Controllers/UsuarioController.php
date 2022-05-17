@@ -91,11 +91,11 @@ class UsuarioController extends Controller
             }
         }
 
-        $profile = DB::select("select * FROM tbl_usuario
+        /* $profile = DB::select("select * FROM tbl_usuario
         INNER JOIN tbl_rol ON tbl_usuario.id_rol_fk=tbl_rol.id_ro
         INNER JOIN tbl_telefono on tbl_usuario.id_telefono_fk=tbl_telefono.id_tel
         INNER JOIN tbl_direccion on tbl_usuario.id_direccion1_fk=tbl_direccion.id_di
-        where email_us={".$datos['email_us']."}");
+        where email_us={".$datos['email_us']."}"); */
         
         return redirect('/modificarPerfil');
     }
