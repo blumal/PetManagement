@@ -22,6 +22,8 @@ a {
 
 
 /* ---------- HEADER ---------- */
+
+
 /* ul{
     margin-top: 0;
     margin-bottom: 0rem;
@@ -94,4 +96,9 @@ header {
 .cta:hover {
     color: #ffffff;
     background-color: #000000;
+}
+
+.img_an {
+    height: 200px;
+    width: 190px;
 }

@@ -125,6 +125,17 @@ Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
 Route::get('/an_perd', [CitasController::class, 'an_perd']);
 
+//Ruleta premios
+Route::get('/ruleta',[FacturaVisitaController::class, 'ruleta']);
+
+Route::get('/ruleta_promo',[FacturaVisitaController::class, 'ruleta_promo']);
+
+Route::get('/comprobar_compra',[FacturaVisitaController::class, 'comprobar_compra']);
+
+Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo']);
+
+Route::get('/premio',[FacturaVisitaController::class, 'premio']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 
@@ -223,15 +234,9 @@ Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
 
-
-
-
 Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword']);
 
-
-
-
-//Api
+//Api Citas
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
 //TIENDA

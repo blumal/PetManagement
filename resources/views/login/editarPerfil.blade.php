@@ -71,7 +71,7 @@
                     </div>
                     @foreach ($profile as $perfil)
                     
-                        {{-- <input type="hidden" name="id_us" value="{{$perfil->id_us}}"> --}}
+                        <input type="hidden" name="id_us" value="{{$perfil->id_us}}">
                         
                         <span>Datos personales</span>
                         <div>

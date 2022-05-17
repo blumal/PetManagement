@@ -125,4 +125,34 @@ class FacturaVisitaController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function ruleta(){
+        return view('ruleta');
+    }
+
+    public function ruleta_promo(){
+        $datos = DB::select('SELECT * FROM tbl_promocion WHERE ruleta_pro = 1');
+        return response()->json($datos);
+    }
+
+    public function comprobar_compra(Request $request){
+        $datos = DB::select('SELECT COUNT(id_fc) AS id_fc FROM tbl_factura_clinica 
+        WHERE id_usuario_fk = ?', [$request['id_usr']]);
+        return response()->json($datos);
+    }
+
+    public function comprobar_promo(Request $request){
+        $datos = DB::select('SELECT comprobar_cli_pro FROM tbl_clientes_promo WHERE fk_id_us = ?', [$request['id_usr']]);
+        return response()->json($datos);
+    }
+
+    public function premio(Request $request){
+        try {
+            DB::table('tbl_clientes_promo')->where('fk_id_us','=',$request['id_usr'])
+            ->update(['comprobar_cli_pro' => 1]);
+                return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 }

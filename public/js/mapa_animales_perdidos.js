@@ -55,7 +55,7 @@ function markers() {
                     //Creo una variable local donde almaceno la imagen del marcador
                     var markerIcon = L.icon({
                         //Url de la imagen
-                        iconUrl: src = 'storage/' + respuesta[i].foto_ape,
+                        iconUrl: src = '../public' + respuesta[i].foto_ape,
                         //Tamaño del icono
                         iconSize: [30, 30]
                     });
@@ -64,7 +64,7 @@ function markers() {
                     //Añadimos el marcador al mapa
                     marker.addTo(map);
                     //Creamos el popup del marcador y le introducimos los datos que nos interesa y un tamaño maximo del popup
-                    marker.bindPopup("<span>" + respuesta[i].nombre_ape + "</span><button onclick='ruta(" + cooordenadas.lat + ',' + cooordenadas.lng + "); return false;'>Ir</button>", { maxWidth: 190 }).openPopup();
+                    marker.bindPopup("<span>" + respuesta[i].nombre_ape + "</span><img class='img_an' src='../public" + respuesta[i].foto_ape + "'>", { maxWidth: 190 }).openPopup();
                 })
             }
         }

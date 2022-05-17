@@ -164,6 +164,9 @@ return [
         
         
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        //QR
+        /* SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class, */
         
         
 
@@ -236,6 +239,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+
+        //QR
+        /* 'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class, */
+
 
     ],
 

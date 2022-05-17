@@ -318,7 +318,7 @@ class ProductoController extends Controller
         //Envío de mail
         $sub = "Confirmación de compra";
         $datas=[$localtime,$date,$total_factura,$id_factura_tienda];
-        $enviar = new Mailtocustomers($datas);
+        $enviar = new Mailtocustomers($datas,1);
         //,$total_factura,$localtime,$date
         $enviar->sub = $sub;
         Mail::to(session('cliente_session'))->send($enviar);
