@@ -293,7 +293,7 @@ function opiniones() {
                     html += "<p><span>";
                     var valoracion = respuesta[i].valoracion_op;
                     for (let i = 0; i < valoracion; i++) {
-                        html += "<i class='fa fa-star fa-1x'></i>";
+                        html += "<i class='fas fa-star fa-1x'></i>";
                     }
                     html += "</span>";
                     html += "</p>";
@@ -309,7 +309,7 @@ function opiniones() {
                 html += "<p><strong>" + media + "</strong> de <strong>5</strong>";
                 html += "<span class='ml-3'>";
                 for (let i = 0; i < media; i++) {
-                    html += "<i class='fa fa-star fa-1x'></i>";
+                    html += "<i class='fas fa-star fa-1x'></i>";
                 }
                 html += "</span>";
                 html += "</p>";
@@ -361,7 +361,7 @@ function opinionesTodas() {
                     html += "<p><span>";
                     var valoracion = respuesta[i].valoracion_op;
                     for (let i = 0; i < valoracion; i++) {
-                        html += "<i class='fa fa-star fa-1x'></i>";
+                        html += "<i class='fas fa-star fa-1x'></i>";
                     }
                     html += "</span>";
                     html += "</p>";
@@ -377,7 +377,7 @@ function opinionesTodas() {
                 html += "<p><strong>" + media + "</strong> de <strong>5</strong>";
                 html += "<span class='ml-3'>";
                 for (let i = 0; i < media; i++) {
-                    html += "<i class='fa fa-star fa-1x'></i>";
+                    html += "<i class='fas fa-star fa-1x'></i>";
                 }
                 html += "</span>";
                 html += "</p>";
@@ -386,7 +386,7 @@ function opinionesTodas() {
                 } else {
                     html += "<p><strong>" + respuesta.length + "</strong> cliente ha valorado este producto</p>";
                 }
-                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar'>Valorar este producto</button></div>";
+                html += "<div><button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='modalValorar()'>Valorar este producto</button></div>";
                 html += "</div>";
             } else {
                 html += "<div class='div-valoracion'>";
@@ -458,12 +458,14 @@ function modalValorar() {
                     printRatingResult(result, i);
                     for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
                 }
+                valoracion = $('.rating__star.fas').length;
             };
         });
     }
 
     function printRatingResult(result, num = 0) {
         result.textContent = `${num}/5`;
+        console.log(num)
     }
 
     executeRating(ratingStars, ratingResult);

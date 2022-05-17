@@ -349,7 +349,7 @@ function addToCart() {
             var divModal = document.getElementsByClassName("div-modal3")[0];
             html = "<span class='close3'>&times;</span>"
             html += "<p class='text-center mt-5'><i class='fa fa-thumbs-up fa-5x'></i></p>";
-            html += "<h4 class='text-center mt-3'>Has añadido x" + cantidad + " " + nombre + "(" + subcategoriaTexto + ") al carrito!</h4>";
+            html += "<h4 class='text-center mt-3'>Has añadido x" + cantidad + " " + nombre + " (" + subcategoriaTexto + ") al carrito!</h4>";
             html += "<div class='div-seguir3 mr-1'><button type='button' class='btn btn-outline-primary btn-block btn-mas3 salir3'>Seguir mirando</button></div>";
             html += "<div class='div-pagar3 ml-1'><a href='carrito'><button type='button' class='btn btn-primary btn-block btn-pagar3'>Ir a pagar</button></a></div>";
             divModal.innerHTML = html;
@@ -397,8 +397,11 @@ function filtro() {
 
     //NUEVO
     var palabras = nombre.split(" ");
+    console.log(palabras)
     for (let i = 0; i < palabras.length; ++i) {
-        formData.append('palabras[]', palabras[i]);
+        if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
+            formData.append('palabras[]', palabras[i]);
+        }
     };
     //FIN NUEVO
     var ajax = objetoAjax();
@@ -408,7 +411,6 @@ function filtro() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta)
             divProductos.innerHTML = "";
             var marcasHTML = []
             $('input[name="marcas"]:checked').each(function() {
@@ -434,7 +436,7 @@ function filtro() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='modal(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -499,7 +501,7 @@ function filtro2(categoria) {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='modal(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -530,6 +532,18 @@ function filtro3() {
 
 
     formData.append('orden', orden);
+
+    //NUEVO
+    if (nombre == "") {} else {
+        var palabras = nombre.split(" ");
+        for (let i = 0; i < palabras.length; ++i) {
+            if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
+                formData.append('palabras[]', palabras[i]);
+            }
+        };
+    }
+
+    //FIN NUEVO
     var ajax = objetoAjax();
 
     ajax.open("POST", "filtroSearchBar", true);
@@ -537,6 +551,7 @@ function filtro3() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta)
             divProductos.innerHTML = "";
             var marcasHTML = []
             $('input[name="marcas"]:checked').each(function() {
@@ -563,7 +578,7 @@ function filtro3() {
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
                 html += "<div class='producto-precio'><p>" + respuesta[i].precio_art + "€</p></div>";
-                html += "<p class='btn-holder'><a onclick='addToCart(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+                html += "<p class='btn-holder'><a onclick='modal(" + respuesta[i].id_art + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
                 html += "</div>";
                 html += "</div>";
                 html += "</div>";
@@ -644,7 +659,7 @@ function filtro4() {
         html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
         html += "<div class='caption-descripcion'><p>" + productos[i][3] + "</p></div>";
         html += "<div class='producto-precio'><p>" + productos[i][4] + "</p></div>";
-        html += "<p class='btn-holder'><a onclick='addToCart(" + productos[i][7] + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
+        html += "<p class='btn-holder'><a onclick='modal(" + productos[i][7] + ")' class='btn btn-block btn-carrito' role='button'>Añadir al carrito</a> </p>";
         html += "</div>";
         html += "</div>";
         html += "</div>";
@@ -664,6 +679,7 @@ function marcasEmpty() {
     if ($('input[name="marcas"]:checkbox:checked').length == 0) {
         if (document.getElementById("search").value == "") {
             $('.productos').find('p:first').text("Lo más vendido")
+            productos();
         } else {
             $('.productos').find('p:first').text("Resultados por '" + document.getElementById("search").value + "'")
         }
@@ -676,6 +692,7 @@ function marcasEmpty() {
         marcasHTML = marcasHTML.toString();
         if (document.getElementById("search").value == "") {
             $('.productos').find('p:first').text("Resultados por marcas '" + marcasHTML + "'")
+            filtro3();
         } else {
             $('.productos').find('p:first').text("Resultados por '" + document.getElementById("search").value + "' y marcas '" + marcasHTML + "'")
         }
@@ -757,6 +774,7 @@ function calcularPrecio(precio) {
     $("#precio-final").text(final + "€")
         //sesiones
     var id = $('.producto').attr('id-producto');
+    console.log(id)
     var divHtml = document.getElementsByClassName("anadir-carrito")[0];
     divHtml.innerHTML = "<a onclick='addToCart()' class='btn btn-block btn-carrito'>Añadir al carrito</a>";
 

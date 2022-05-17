@@ -137,7 +137,7 @@
             </div>
             <div class="text-center mt-3 mb-3 comentario-valoracion">
                 <h3>Tu comentario</h3>
-                <textarea class="mt-2" name="" id="" cols="70" rows="3"></textarea>
+                <textarea class="mt-2 pl-2 pr-1" name="" id="" cols="70" rows="3"></textarea>
             </div>
             <div class="text-center mb-4"><button type='button' class='btn btn-primary btn-lg btn-enviar' onclick='modalValorar'>Valorar producto</button></div>
           </div>
