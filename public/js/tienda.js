@@ -399,7 +399,7 @@ function filtro() {
     var palabras = nombre.split(" ");
     console.log(palabras)
     for (let i = 0; i < palabras.length; ++i) {
-        if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
+        if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y" || palabras[i] == "") {} else {
             formData.append('palabras[]', palabras[i]);
         }
     };
