@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     {{-- validacion perfil --}}
-    <script src="./js/valid_perfil.js"></script>
+    <script src="./js/login_registro/valid_perfil.js"></script>
     <title>Perfil</title>
 </head>
 
@@ -64,33 +64,49 @@
     <div class="container">
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">
-                <form action="{{url('modificarPerfil')}}" method="POST" onsubmit="return validatePerfil();">
+                <form action="{{url('/modificarPerfilPost')}}" method="POST" onsubmit="return validatePerfil();">
+                    @csrf
                     <div class="form-group text-center">
                         <h3 class="form-group" style="margim-top: -5px !important; margin-bottom: -10px !important;">MI PERFIL</h3>
                     </div>
                     @foreach ($profile as $perfil)
                     
-                        {{-- <input type="hidden" name="id_us" value="{{$perfil->id_us}}"> --}}
+                        <input type="hidden" name="id_us" value="{{$perfil->id_us}}">
                         
                         <span>Datos personales</span>
-                        <div class="form-group-2 mx-sm-2">
-                            <input type="text" class="form-control" name="email_us" id="email_us" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="nombre_us" id="nombre_us" placeholder="Nombre *" value="{{$perfil->nombre_us}}">
+                            </div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="apellido_us1" id="apellido1_us" placeholder="Apellido 1 *" value="{{$perfil->apellido1_us}}">
+                            </div>
                         </div>
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="apellido_us2" id="apellido_us2" placeholder="Apellido 2" value="{{$perfil->apellido2_us}}" autocomplete="new-password">
+                            </div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="email_us" id="email_us" style="visibility: hidden;" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
+                            </div>
+                        </div>
+                        
                         <span>Contraseñas</span>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Contraseña actual">
+                                <input type="password" class="form-control" name="old_pass" id="pass_us" placeholder="Contraseña actual" autocomplete="none">
                             </div>
+                            
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" style="visibility: hidden;" id="pass_us" placeholder="Contraseña *">
+                                <input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="Nueva contraseña">
                             </div>
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Nueva contraseña">
+                                <input type="password" class="form-control"  style="visibility: hidden;" name="pass_us_no" id="pass_us" placeholder="Nueva contraseña">
                             </div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control"  id="pass_us" placeholder="Confirmar nueva contraseña">
+                                <input type="password" class="form-control" name="new_pass_confirm" id="new_pass_confirm" placeholder="Confirmar nueva contraseña">
                             </div>
                         </div>
                         <span>Contacto</span>
