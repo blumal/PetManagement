@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailtocustomers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class UsuarioController extends Controller
 {
@@ -84,10 +85,11 @@ class UsuarioController extends Controller
                             ->update(['pass_us' => $new_pass_hash]);
                     DB::commit();
                 }else{
-                    return "Las nuevas contraseñas no coinciden";
+                    return Redirect::back()->withErrors(['Las nuevas contraseñas no coinciden', 'Misma password']);
+                    //return "Las nuevas contraseñas no coinciden";
                 }
             }else{
-                return "El password actual no coincide";
+                return Redirect::back()->withErrors(['La contraseña actual no es correcta', 'Error password']);
             }
         }
 
@@ -169,9 +171,12 @@ class UsuarioController extends Controller
         $datos_usuario=DB::table("tbl_usuario")
             ->where('email_us','=',$request['email_us']) 
             ->get();
-        if ($datos_usuario[0]->email_us==$request['email_us']) {
-            return redirect('/registro');
+        if (isset($datos_usuario[0])) {
+            if ($datos_usuario[0]->email_us==$request['email_us']) {
+                return Redirect::back()->withErrors(['El mail ya ha sido registrado', 'The Message']);
+            }
         }
+        
 
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
@@ -217,7 +222,7 @@ class UsuarioController extends Controller
                 return redirect('/');
             }else {
                 //No establecemos sesión y lo devolvemos a login
-                return redirect('/registro');
+                return Redirect::back()->withErrors(['Las contraseñas no coinciden', 'The Message'])->withInput();
             }
         } catch (\Throwable $e) {
             return $e->getMessage();

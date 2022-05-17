@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('cliente_session'))
+@if (!Session::get('id_user_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -79,15 +79,15 @@
                                 <input type="text" class="form-control" name="nombre_us" id="nombre_us" placeholder="Nombre *" value="{{$perfil->nombre_us}}">
                             </div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="apellido_us1" id="apellido1_us" placeholder="Apellido 1 *" value="{{$perfil->apellido1_us}}">
+                                <input type="text" class="form-control" name="email_us" id="email_us" style="visibility: hidden;" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
                             </div>
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="apellido_us2" id="apellido_us2" placeholder="Apellido 2" value="{{$perfil->apellido2_us}}" autocomplete="new-password">
+                                <input type="text" class="form-control" name="apellido_us1" id="apellido1_us" placeholder="Apellido 1 *" value="{{$perfil->apellido1_us}}">
                             </div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="text" class="form-control" name="email_us" id="email_us" style="visibility: hidden;" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
+                                <input type="text" class="form-control" name="apellido_us2" id="apellido_us2" placeholder="Apellido 2" value="{{$perfil->apellido2_us}}" autocomplete="new-password">
                             </div>
                         </div>
                         
@@ -96,14 +96,14 @@
                             <div class="form-group-1 mx-sm-2">
                                 <input type="password" class="form-control" name="old_pass" id="pass_us" placeholder="Contraseña actual" autocomplete="none">
                             </div>
-                            
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="Nueva contraseña">
+                                <input type="password" class="form-control"  style="visibility: hidden;" name="pass_us_no" id="pass_us" placeholder="Nueva contraseña">
                             </div>
+                            
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control"  style="visibility: hidden;" name="pass_us_no" id="pass_us" placeholder="Nueva contraseña">
+                                <input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="Nueva contraseña">
                             </div>
                             <div class="form-group-1 mx-sm-2">
                                 <input type="password" class="form-control" name="new_pass_confirm" id="new_pass_confirm" placeholder="Confirmar nueva contraseña">
@@ -147,7 +147,13 @@
                                 <input type="text" class="form-control" name="puerta_di" id="puerta_di" placeholder="Puerta" value="{{$perfil->puerta_di}}">
                             </div>
                         </div>
-                        
+                    <div>
+                        <div class="form-group-2 mx-sm-2">
+                        @if($errors->any())
+                            <p style="color: red">{{$errors->first()}}</p>
+                        @endif
+                        </div>
+                    </div>
                     <div class="form-group mx-sm-3">
                         <input type="submit" class="btn btn-block ingresar" value="GUARDAR">
                     </div>
