@@ -110,6 +110,7 @@ class UsuarioController extends Controller
             'pass_us' => 'required|string|max:50'
         ]);
         $password_hash=hash('sha512',$request['pass_us']);
+        //return $password_hash;
         try {
             //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
             $userId = $request->except('_token', '_method');
