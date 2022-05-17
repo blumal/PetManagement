@@ -37,7 +37,7 @@
          </form>
     </div>
     <div {{-- class="table-responsive" --}}>
-        <table class="table" id="table">
+        <table class="table" id="mytable">
             <tr class="fila-1">
                 <th scope="col">Foto</th>
                 <th scope="col">Nombre</th>

@@ -59,6 +59,11 @@ class mapas extends Controller
         return view('admin_mapa_establecimientos');
     }
 
+    public function adminMapasPerdidos(){
+        //Lo llevamos a la vista de admin
+        return view('admin_mapa_perdidos');
+    }
+
     public function filtroMapasEstablecimientos(Request $request){
         //Guardamos en la variable datos los resultados de la consulta de la tabla establecimientos
         $datos=DB::select('SELECT tbl_sociedad.*, tbl_telefono.*, tbl_direccion.*, tbl_tipo_sociedad.* FROM `tbl_sociedad` 
@@ -331,15 +336,115 @@ class mapas extends Controller
     public function crearAnimalPerdido(Request $request){
         try {
             if ($request->hasFile('foto')) {
-                $path = $request->foto->store('img','public');
+                $path = $request->foto->store('img/fotosAnimal','public');
                 DB::insert('insert into tbl_animales_perdidos (nombre_ape, descripcion_ape, fecha_perdida_ape, id_usuario_fk, direccion_perdida_ape, foto_ape,
                 id_estado_fk, cp_ape, calle_ape, hora_des_ape) values (?,?,?,?,?,?,?,?,?,?)',
-                [$request['nombre'], $request['descrip'], $request['dia_desa'], $request['id_user'], 
-                $request['direccion'], $path, $request['estado'], $request['cp'], $request['num'], $request['horario_desa']]);
+                [$request['nombre'], $request['descripcion'], $request['fecha_perdida_ape'], $request['propietario'], 
+                $request['direccion_perdida_ape'], $path, $request['estado_est'], $request['cp_ape'], $request['calle_ape'], $request['hora_des_ape']]);
                 return response()->json(array('resultado'=> 'OK'));
             }else{
                 return response()->json(array('resultado'=> 'NOK: Falta imagen'));
             }
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+/* --------------------------------------------- FUNCIONES DEL ADMIN DE ANIMALES PERDIDOS ------------------------------------------------- */
+    public function filtroMapasPerdidos(Request $request){
+        //Guardamos en la variable datos los resultados de la consulta de la tabla animales perdidos
+        $datos=DB::select('SELECT tbl_animales_perdidos.*, tbl_usuario.*, tbl_estado.* FROM `tbl_animales_perdidos` 
+        INNER JOIN tbl_usuario ON tbl_animales_perdidos.id_usuario_fk = tbl_usuario.id_us 
+        INNER JOIN tbl_estado ON tbl_animales_perdidos.id_estado_fk = tbl_estado.id_est
+        WHERE tbl_animales_perdidos.nombre_ape like ? ORDER BY tbl_animales_perdidos.nombre_ape ASC', ['%'.$request->input('filtro').'%']);
+        //Devolvemos por json los datos guardados en la variable datos
+        return response()->json($datos);
+    }
+
+    public function crearMapasPerdidos(Request $request){
+        try {
+            $datos = DB::select('SELECT tbl_animales_perdidos.*, tbl_usuario.*, tbl_estado.* FROM `tbl_animales_perdidos` 
+            INNER JOIN tbl_usuario ON tbl_animales_perdidos.id_usuario_fk = tbl_usuario.id_us 
+            INNER JOIN tbl_estado ON tbl_animales_perdidos.id_estado_fk = tbl_estado.id_est');
+            return response()->json(array('resultado'=> 'OK'));
+        }
+        catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function modificarMapasPerdidos(Request $request){
+        try {
+            /* DB::table('tbl_tipo_sociedad')->where('id_ts','=',$request['id_ts'])
+            ->update(['sociedad_ts' => $request['sociedad_ts']]);
+            DB::table('tbl_direccion')->where('id_di','=',$request['id_di'])
+            ->update(['nombre_di' => $request['nombre_di'], 'numero_di' => $request['numero_di'], 'puerta_di' => $request['puerta_di'], 'cp_di' => $request['cp_di']]);
+            DB::table('tbl_telefono')->where('id_tel','=',$request['id_tel'])
+            ->update(['contacto1_tel' => $request['contacto1_tel'], 'contacto2_tel' => $request['contacto2_tel']]); */
+            if ($request->hasFile('foto_ape')) {
+                if($request->input('sociedad_ts') == 1){
+                    $path = $request->foto_ape->store('img','public');
+                    $path2 = $request->foto_icono_sociedad->store('img','public');
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'], 
+                    'id_tipo_sociedad_fk' => 1, 'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'],'foto_ape' => $path,'foto_icono_sociedad' => $path2,
+                    'operatividad_s' => $request['operatividad_ts']]);
+                }elseif($request->input('sociedad_ts') == 2){
+                    $path = $request->foto_ape->store('img','public');
+                    $path2 = $request->foto_icono_sociedad->store('img','public');
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'], 
+                    'id_tipo_sociedad_fk' => 2, 'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'],'foto_ape' => $path,'foto_icono_sociedad' => $path2,
+                    'operatividad_s' => $request['operatividad_ts']]);
+                }
+            }else if ($request->hasFile('foto_ape')) {
+                if($request->input('sociedad_ts') == 1){
+                    $path = $request->foto_ape->store('img','public');
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                    'id_tipo_sociedad_fk' => 1,'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'],'foto_ape' => $path,
+                    'operatividad_s' => $request['operatividad_ts']]);
+                }elseif($request->input('sociedad_ts') == 2){
+                    $path = $request->foto_ape->store('img','public');
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                    'id_tipo_sociedad_fk' => 2,'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'],'foto_ape' => $path,
+                    'operatividad_s' => $request['operatividad_ts']]);
+                }
+            }else if ($request->hasFile('foto_icono_sociedad')) {
+                if($request->input('sociedad_ts') == 1){
+                    $path2 = $request->foto_icono_sociedad->store('img','public');
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                    'id_tipo_sociedad_fk' => 1,'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'],'foto_icono_sociedad' => $path2,
+                    'operatividad_s' => $request['operatividad_ts']]);
+                }elseif($request->input('sociedad_ts') == 2){
+                    $path2 = $request->foto_icono_sociedad->store('img','public');
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                    'id_tipo_sociedad_fk' => 2,'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'],'foto_icono_sociedad' => $path2,
+                    'operatividad_s' => $request['operatividad_ts']]);
+                }
+            }else{
+                if($request->input('sociedad_ts') == 1){
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                    'id_tipo_sociedad_fk' => 1,'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'], 'operatividad_s' => $request['operatividad_ts']]);
+                }elseif($request->input('sociedad_ts') == 2){
+                    DB::table('tbl_sociedad')->where('id_s','=',$request['id_s'])
+                    ->update(['nombre_s' => $request['nombre_s'],'nif_s' => $request['nif_s'],'email_s' => $request['email_s'],
+                    'id_tipo_sociedad_fk' => 2,'horario_apertura_s' => $request['horario_apertura_s'],'horario_cierre_s' => $request['horario_cierre_s'],
+                    'url_web' => $request['url_web'], 'operatividad_s' => $request['operatividad_ts']]);
+                }
+            }
+            return response()->json(array('resultado'=> 'OK'));
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }

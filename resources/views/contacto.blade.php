@@ -26,28 +26,21 @@
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
         <ul class="main-menu">
-            @if (Session::get('cliente_session'))
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+            <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
                 <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
                 <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
                 {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
                 <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
                 <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+                {{-- <form><a href="{{url("entretenimiento")}}" method="get"><li class="menu-item">Entretenimiento</li></a></form> --}}
                 <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
                 <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+            @if (Session::get('cliente_session'))
                 <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
                     <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
                 </form>
                 <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
             @else
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
                 <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
             @endif
         </ul>
@@ -55,7 +48,7 @@
     </header>
     <div class="row-c flex">
         <div class="column-2">
-            <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
+            <div class="row-c formulario-1">
                 <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%;">
                     <form {{-- action="{{url('')}}" --}} method="post" onsubmit="return validateContacto();">
                         <div class="form-group text-center pt-3">
@@ -81,14 +74,12 @@
             </div>
         </div>
         <div class="column-2">
-            <div class="container">
-                <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
-                    <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%; padding-right: 75px;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <div class="form-group sm-5" style="margin-right: 33px;">
-                            <h3 class="text-light">Telf: +34 612345678</h3>
-                            <h3 class="text-light">grouppetmanagement@gmail.com</h3>
-                        </div>
+            <div class="row-c formulario-2">
+                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%; padding-right: 75px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="form-group sm-5" style="margin-right: 33px;">
+                        <h3 class="text-light">Telf: +34 612345678</h3>
+                        <h3 class="text-light">grouppetmanagement@gmail.com</h3>
                     </div>
                 </div>
             </div>

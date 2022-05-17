@@ -64,9 +64,9 @@ ob_start();
                     Animales
                 </div>
             </div>
-            <div class="column-2">
+            <div class="column-3">
                 <div class="seccion">
-                    <form {{-- action="{{url('/cpanelAnimalesPerdidos')}}" --}} method="GET">
+                    <form action="{{url('/cpanelAnimalesPerdidos')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit" ><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
@@ -75,7 +75,7 @@ ob_start();
                     Mascotas perdidas
                 </div>
             </div>
-            <div class="column-2">
+            <div class="column-3">
                 <div class="seccion">
                     <form action="{{url('/cpanelMapa')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
@@ -84,6 +84,17 @@ ob_start();
                         </div>
                     </form>
                     Establecimientos
+                </div>
+            </div>
+            <div class="column-3">
+                <div class="seccion">
+                    <form action="{{url('/stats')}}" method="GET">
+                        <input type="hidden" name="_method" value="POST" id="postFiltro">
+                        <div class="form-outline">
+                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/analisis.png" width="200px" height="200px"></button><br><br>
+                        </div>
+                    </form>
+                    Gráficos / Estadisticas
                 </div>
             </div>
         </div>    

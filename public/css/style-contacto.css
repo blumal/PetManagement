@@ -196,3 +196,35 @@ ul{
     color: #ffffff;
     background-color: #000000;   
 }
+
+.formulario-1{
+    margin-top: 15%;
+    margin-left:10%;
+}
+
+.formulario-2{
+    margin-top: 20%;
+    margin-right:10%;
+}
+
+/* ------------------- RESPONSIVE --------------------- */
+@media screen and (max-width: 800px) {
+    .flex {
+        display: block;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .formulario-1{
+
+    }
+
+    .formulario-2{
+
+    }
+
+    .column-2 {
+        /* width: 100%; */
+
+    }
+}

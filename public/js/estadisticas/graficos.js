@@ -17,6 +17,7 @@ window.onload = function() {
     leerSociedades();
     labelsXsociedades = [];
     dataYsociedades = [];
+    color = ['blue','red','yellow','green','orange','pink','purple','white'];
 
 }
 
@@ -38,13 +39,41 @@ function objetoAjax() {
     return xmlhttp;
 }
 
-//VISITAS POR HORAS
-var horas = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
-    "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"
-]
+
+// --------------- VISITAS POR HORAS --------------- //
+var horas = ["00 a.m.", "01 a.m.", "02 a.m.", "03 a.m.", "04 a.m.", "05 a.m.", "06 a.m.", "07 a.m.", "08 a.m.", "09 a.m.", "10 a.m.", "11 a.m.", "12 p.m.",
+    "13 p.m.", "14 p.m.", "15 p.m.", "16 p.m.", "17 p.m.", "18 p.m.", "19 p.m.", "20 p.m.", "21 p.m.", "22 p.m.", "23 p.m."]
+
+// const NAMED_COLORS = [CHART_COLORS.red, CHART_COLORS.orange, CHART_COLORS.yellow, CHART_COLORS.green, CHART_COLORS.blue, CHART_COLORS.purple, CHART_COLORS.grey];
+
+const CHART_COLORS = {
+    red: 'rgb(255, 255, 255)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'};
+
+let width, height, gradient;
+function getGradient(ctx, chartArea) {
+  const chartWidth = chartArea.right - chartArea.left;
+  const chartHeight = chartArea.bottom - chartArea.top;
+  if (!gradient || width == chartWidth || height == chartHeight) {
+    // Create the gradient because this is either the first render
+    // or the size of the chart has changed
+    width = chartWidth;
+    height = chartHeight;
+    gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, Utils.CHART_COLORS.red);
+    gradient.addColorStop(0.5, Utils.CHART_COLORS.yellow);
+    gradient.addColorStop(1, Utils.CHART_COLORS.green);
+  }
+
+  return gradient;
+}
 
 function leer() {
-
     var ajax = objetoAjax();
     formdata = new FormData();
     formdata.append('_token', document.getElementById('token').getAttribute("content"));
@@ -63,14 +92,12 @@ function leer() {
             //labelsX.push(meses);
 
             for (var i = 0; i < respuesta.length; i++) {
-
                 dataY[respuesta[i].hour - 1] = respuesta[i].COUNT
             }
             // creamos el chart
             chartCreate();
         }
     }
-
     ajax.send(formdata)
 }
 
@@ -79,22 +106,53 @@ function chartCreate() {
         labels: labelsX,
         datasets: [{
             label: 'Numero de visitas por horas',
+            data: horas,
+            // data: Utils.colors(CHART_COLORS),
+            borderColor: function(context) {
+                const chart = context.chart;
+                const {ctx, chartArea} = chart;
+                if (!chartArea) {
+                    // This case happens on initial chart load
+                    return;
+                }
+                return getGradient(ctx, chartArea);
+            },
             backgroundColor: 'black',
-            borderColor: 'white',
-            data: dataY,
+            borderColor: 'cyan',
+            data: dataY
         }]
     };
     const config = {
         type: 'line',
         data: data,
-        options: {}
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+            },
+            scales: {
+              x: {
+                ticks: {
+                    color: 'black',
+                }
+              },
+              y: {
+                ticks: {
+                    color: 'black',
+                }
+              }
+            }
+        }
     };
     const myChart2 = new Chart(
         document.getElementById('chart_visitasxhoras'),
         config
     );
 }
-//COMPRAS POR MES//
+
+// --------------- COMPRAS POR MES --------------- //
 var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
 
@@ -133,7 +191,7 @@ function chartCreateCompras() {
         datasets: [{
             label: 'Numero de pedidos por mes',
             backgroundColor: 'black',
-            borderColor: 'white',
+            borderColor: 'red',
             data: dataYcompras,
             //data: [10, 20, 30, 40, 50, 60, 70],
         }]
@@ -141,7 +199,20 @@ function chartCreateCompras() {
     const configcompras = {
         type: 'line',
         data: datacompras,
-        options: {}
+        options: {
+            scales: {
+              x: {
+                ticks: {
+                    color: 'black',
+                }
+              },
+              y: {
+                ticks: {
+                    color: 'black',
+                }
+              }
+            }
+        }
     };
     const myChartcompras = new Chart(
         document.getElementById('chart_pedidosxmes'),
@@ -149,7 +220,7 @@ function chartCreateCompras() {
     );
 }
 
-//GRAFICO DE PACIENTES POR NOMBRE CIENTIFICO
+// --------------- GRAFICO DE PACIENTES POR NOMBRE CIENTIFICO --------------- //
 
 function leerEspecies() {
 
@@ -188,15 +259,29 @@ function chartCreateEspecies() {
         labels: labelsXEspecies,
         datasets: [{
             label: 'Pacientes por especie',
-            backgroundColor: 'white',
+            backgroundColor: 'lime',
             borderColor: 'black',
+            borderWidth: 3,
             data: dataY,
         }]
     };
     const configespecies = {
         type: 'bar',
         data: dataespecies,
-        options: {}
+        options: {
+            scales: {
+              x: {
+                ticks: {
+                    color: 'black',
+                }
+              },
+              y: {
+                ticks: {
+                    color: 'black',
+                }
+              }
+            }
+        }
     };
     const myChart3 = new Chart(
         document.getElementById('chart_pacientesxnombre'),
@@ -204,7 +289,7 @@ function chartCreateEspecies() {
     );
 }
 
-// GRAFICO DE VISITAS POR MESES
+// --------------- GRAFICO DE VISITAS POR MESES --------------- //
 
 function leerVisitasMeses() {
 
@@ -240,7 +325,7 @@ function chartCreateVisitasMeses() {
         datasets: [{
             label: 'Numero de visitas por mes',
             backgroundColor: 'black',
-            borderColor: 'white',
+            borderColor: 'fuchsia',
             data: dataYvisitaspormeses,
             //data: [10, 20, 30, 40, 50, 60, 70],
         }]
@@ -248,7 +333,20 @@ function chartCreateVisitasMeses() {
     const configcompras = {
         type: 'line',
         data: datacompras,
-        options: {}
+        options: {
+            scales: {
+              x: {
+                ticks: {
+                    color: 'black',
+                }
+              },
+              y: {
+                ticks: {
+                    color: 'black',
+                }
+              }
+            }
+        }
     };
     const myChartVisitas = new Chart(
         document.getElementById('chart_visitasxmeses'),
@@ -256,7 +354,9 @@ function chartCreateVisitasMeses() {
     );
 }
 
-//GRAFICO DE TIPOS DE PROTECTORAS
+// --------------- GRAFICO DE TIPOS DE PROTECTORAS --------------- //
+
+
 
 function leerSociedades() {
 
@@ -274,6 +374,7 @@ function leerSociedades() {
 
             for (let i = 0; i < respuesta.length; i++) {
                 labelsXsociedades.push(respuesta[i].sociedad_ts)
+                color.push(respuesta[i].sociedad_ts)
             }
 
             //labelsXEspecies.push(meses);
@@ -292,18 +393,32 @@ function leerSociedades() {
 
 function charCreateSociedades() {
     const datasociedades = {
-        labels: labelsXsociedades,
+        labels: labelsXsociedades, dataYsociedades,
         datasets: [{
-            label: 'Sociedades por tipo',
-            backgroundColor: 'white',
+            label: 'Tipo de sociedad',
+            backgroundColor: 'grey',
             borderColor: 'black',
-            data: dataYsociedades,
+            borderWidth: 3,
+            data: dataYsociedades
         }]
     };
     const configespecies = {
-        type: 'pie',
+        type: 'bar',
         data: datasociedades,
-        options: {}
+        options: {
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'black'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'black'
+                    }
+                }
+            }
+        }
     };
     const myChart4 = new Chart(
         document.getElementById('chart_sociedadesxtipo'),

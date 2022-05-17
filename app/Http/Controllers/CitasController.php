@@ -207,8 +207,7 @@ class CitasController extends Controller
         return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
-        //Falta
-        /* return view(''); */
+        return view('admin_mapa_perdidos');
     }
     
     public function cpanelMapa(){
