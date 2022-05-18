@@ -15,9 +15,6 @@
         <li>Hora de visita: {{$datas['hora_vi']}}</li>
         <li>Motivo de la visita: {{$datas['asunto_vi']}}</li>
         <br/><br/>
-        <form action="{{url("/qrcita")}}" method="get">
-            <input type="submit" value="Generar QR de cita">
-        </form>
     </ul><br/><br/><br/><br/><br/><br/><br/><br/>
     <center>
         <h3>Gracias por la confianza</h3>

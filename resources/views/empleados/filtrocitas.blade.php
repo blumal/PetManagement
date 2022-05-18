@@ -12,7 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!--Style--> 
+    <!--JS-->
+    <script src="{{asset('js/gestioncitas/gestioncitas.js')}}"></script>
+    <!--CSS--> 
     <link rel="stylesheet" href="{{asset('css/empleados/gestioncitas.css')}}">
     <link rel="icon" href="./img/imagenesWeb/logo.png">
     <!--TOKEN-->
@@ -38,37 +40,21 @@
         </div>
         <script src="./js/home.js"></script>
     </nav>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <center>
-        <div class="table-responsive"></div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID de visita</th>
-                        <th>DNI de cliente</th>
-                        <th>Fecha de cita</th>
-                        <th>Hora de cita</th>
-                        <th>Cliente</th>
-                        <th>Paciente</th>
-                        <th>Motivo de la visita</th>
-                        <th>Estado de la visita</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                    @foreach ($quotes as $results)
-                        <tr>
-                            <td>{{$results->id_vi}}</td>
-                            <td>{{$results->dni_us}}</td>
-                            <td>{{$results->fecha_vi}}</td>
-                            <td>{{$results->hora_vi}}</td>
-                            <td>{{$results->nombre_us}}</td>
-                            <td>{{$results->nombre_pa}}</td>
-                            <td>{{$results->asunto_vi}}</td>
-                            <td>{{$results->estado_est}}</td>
-                            <td><input type="submit" value="Modificar"><input type="submit" value="Eliminar"></td>
-                        </tr>
-                    @endforeach
-            </table>
+        <div class="row-c flex">
+            <div class="container">
+                <h1>Visitas agendadas</h1>
+                <div class="filter1 column-3">
+                    <input type="number" id="id_vi" placeholder="nº de cita" onkeyup="idFilters(); return false;">
+                </div>
+                <div class="filter2 column-3">
+                    <input type="text" id="dni_us" placeholder="DNI del cliente" onkeyup="idFilters(); return false;">
+                </div>
+                <br/>
+                <div class="table_container">
+                        <table class="table table-hover" id="table-g"></table>
+                </div>
+            </div>
         </div>
     </center>
 </body>

@@ -44,7 +44,7 @@
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                @if (!Session::get('email_session'))
+                @if (Session::get('cliente_session'))
                     <form class="nav_item">
                         <a href="{{url("modificarPerfil")}}" class="nav_ite">Mi Perfil</a>
                         <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
