@@ -25,14 +25,20 @@
             <a href="{{url("logout")}}"><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></a>
         </div>
     </header>
-
+    
     <div class="row-c">
         @for ($i = 0; $i < count($facturas); $i++)
             <div class="column-3">
                 <div class="seccion">
                     <form action="FacturaClinica/view" method="post">
                         @csrf
-                        Factura <?php echo $facturas[$i]->fecha_fc?>
+                        Factura {{$facturas[$i]->fecha_fc}}
+                        <br>
+                        Hora -> {{$facturas[$i]->hora_fc}}
+                        <br>
+                        Total -> {{$facturas[$i]->total_fc}}€
+                        <br>
+                        Veterinario -> {{$facturas[$i]->nombre_us}} {{$facturas[$i]->apellido1_us}}
                         <br>
                         <input type="hidden" name="id_factura_clinica" value="<?php echo $facturas[$i]->id_fc?>">
                         <input class="ver_factura" type="submit" value="Ver factura">
