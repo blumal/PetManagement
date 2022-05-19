@@ -32,7 +32,7 @@
                     <div class="text">
                       <p></p>
                     </div> 
-                    <a href="{{url("juegos/petguesser")}}" class="btn">
+                    <a href="{{url("geoguesser-game")}}" class="btn">
                       <span class="btn-inner">¡JUEGA!</span>
                     </a>
                   </div>
@@ -64,8 +64,8 @@
                     <div class="text">
                       <p>Atrapa las presa</p>
                     </div> 
-                    <a href="{{url("juegos/spiderweb")}}" class="btn">
-                      <span class="btn-inner">¡JUEGA!</span>
+                    <a href="{{url("juegos/spiderweb")}}" class="btn disabled">
+                      <span class="btn-inner">PRÓXIMAMENTE...</span>
                     </a>
                   </div>
                 </div>
@@ -80,8 +80,8 @@
                     <div class="text">
                       <p>Acierta todas las preguntas</p>
                     </div> 
-                    <a href="{{url("juegos/quizz")}}" class="btn">
-                      <span class="btn-inner">¡JUEGA!</span>
+                    <a href="{{url("juegos/quizz")}}" class="btn disabled">
+                      <span class="btn-inner">PRÓXIMAMENTE...</span>
                     </a>
                   </div>
                 </div>

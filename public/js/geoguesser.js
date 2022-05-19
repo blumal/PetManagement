@@ -432,7 +432,7 @@ function comprobarAnimal() {
             })
 
             setTimeout(function() {
-                window.location.href = "geoguesser";
+                window.location.href = "juegos";
             }, 5000);
             /* swal({
             title: "Has acertado!!",
