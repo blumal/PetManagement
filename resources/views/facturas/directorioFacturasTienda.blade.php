@@ -37,10 +37,8 @@
                         <input type="hidden" name="id_factura_tienda" value="<?php echo $facturas[$i]->id_ft?>">
                         <input class="ver_factura" type="submit" value="Ver factura">
                     </form>
-                    <br>
                 </div>
             </div>
-            <br>
         @endfor
     </div>
 </body>

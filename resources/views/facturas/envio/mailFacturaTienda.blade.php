@@ -31,6 +31,12 @@
         <li>Fecha de compra: {{$datas[1]}}</li>
         <li>Hora de compra: {{$datas[0]}}</li>
         <li>Total de la compra: {{$datas[2]}}</li>
+        
+        @if ($datas[4]==1)
+            <h3>Con esta compra has ganado un descuento en tu próxima visita</h3>
+            <a href="http://localhost:8000/login/1">Haz click aqui para descubrir tu recompensa</a>
+        @endif
+        
     </ul>
 
     <form action="http://localhost:8000/FacturasTienda" method="get">

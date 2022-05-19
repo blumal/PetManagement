@@ -11299,7 +11299,7 @@
                                             <label for="promociones" class="label" for="#">Selecciona promocion de la visita:</label>
                                                 <select id="promociones" name="promocion" id="id_promocion">        
                                                     @for ($i = 0; $i < count($promociones); $i++)
-                                                        <option class="form-control" value="{{$promociones[$i]->id_pro}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
+                                                        <option class="form-control" value="{{$promociones[$i]->id_pa}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
                                                     @endfor
                                                 </select>
                                         </div>

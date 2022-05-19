@@ -315,9 +315,32 @@ class ProductoController extends Controller
         }
         DB::commit();
 
+        //COMPROBACION NUMERO DE COMPRAS PARA RULETA
+
+        $premio=0;
+        DB::beginTransaction();
+        $numero_compras = DB::table('tbl_factura_tienda')->where('id_usuario_fk', '=', $id_user_session)
+            ->count();
+        $ha_tenido_promo = DB::table('tbl_clientes_promo')->where('fk_id_us', '=', $id_user_session)
+            ->count();
+        if (($numero_compras % 5) == 0) {
+            if ($ha_tenido_promo>0) {
+                DB::table('tbl_clientes_promo')
+                    ->where('fk_id_us', $id_user_session)  // find your user by their email
+                    ->limit(1)  // optional - to ensure only one record is updated.
+                    ->update( [ 'comprobar_cli_pro' => 0] );
+                $premio=1;
+            }else{
+                DB::insert('insert into tbl_clientes_promo (comprobar_cli_pro, fk_id_us) values (?, ?)',
+                [0, $id_user_session]);
+                $premio=1;
+            }
+        }
+        DB::commit();
+
         //Envío de mail
         $sub = "Confirmación de compra";
-        $datas=[$localtime,$date,$total_factura,$id_factura_tienda];
+        $datas=[$localtime,$date,$total_factura,$id_factura_tienda,$premio];
         $enviar = new Mailtocustomers($datas,1);
         //,$total_factura,$localtime,$date
         $enviar->sub = $sub;

@@ -53,7 +53,9 @@ class VisitaController extends Controller
                     $items_clinica=DB::table('tbl_producto_clinica')
                             ->get();
 
-                    $promociones = DB::table('tbl_promocion')
+                    $promociones = DB::table('tbl_usuarios_promos_activas')
+                            ->join('tbl_promocion', 'tbl_usuarios_promos_activas.fk_id_promo', '=', 'tbl_promocion.id_pro')
+                            ->where('fk_id_usr','=',$id_usuario)
                             ->get();
                     $productos_clinica = DB::table('tbl_factura_clinica')
                             ->get();
@@ -98,23 +100,27 @@ class VisitaController extends Controller
         $diagnostico = $request['diagnostico'];
         $num_items=count($request['productos']);
 
+        DB::beginTransaction();
         $cliente = DB::table('tbl_usuario')
-                            ->where('id_us','=',$id_usuario)
-                            ->get();
+            ->where('id_us','=',$id_usuario)
+            ->get();
+        
+        DB::table('tbl_visita')
+            ->where('id_vi', $id_visita)  // find your user by their email
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update( [ 'diagnostico_vi' => $diagnostico] );
+
+        DB::table('tbl_visita')
+            ->where('id_vi', $id_visita)  // find your user by their email
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update( [ 'id_estado_fk' => 3] );
+
+        DB::table('tbl_usuarios_promos_activas')
+            ->where('id_pa', $id_promocion)
+            ->delete();
+        DB::commit();
 
         $email_cliente=$cliente[0]->email_us;
-
-        
-        
-        DB::table('tbl_visita')
-        ->where('id_vi', $id_visita)  // find your user by their email
-        ->limit(1)  // optional - to ensure only one record is updated.
-        ->update( [ 'diagnostico_vi' => $diagnostico] );
-
-        DB::table('tbl_visita')
-        ->where('id_vi', $id_visita)  // find your user by their email
-        ->limit(1)  // optional - to ensure only one record is updated.
-        ->update( [ 'id_estado_fk' => 3] );
 
         $id_factura = DB::table('tbl_factura_clinica')->insertGetId(
             [ 'id_usuario_fk' => $id_usuario,'id_visita_fk'=> $id_visita,'id_promocion_fk'=>$id_promocion,'total_fc'=>$total_factura,'fecha_fc'=>$fecha_factura,'hora_fc'=>$hora_factura,'id_veterinario_fk'=>$id_veterinario ]);
@@ -126,7 +132,7 @@ class VisitaController extends Controller
         //Envío de mail
         $sub = "Confirmación de visita";
         $datas=[$hora_factura,$fecha_factura,$total_factura,$diagnostico];
-        $enviar = new Mailtocustomers($datas);
+        $enviar = new Mailtocustomers($datas,1);
         //,$total_factura,$localtime,$date
         $enviar->sub = $sub;
         Mail::to($email_cliente)->send($enviar);
@@ -173,6 +179,7 @@ class VisitaController extends Controller
 
         $animal_asociado = DB::table('tbl_visita')
             ->where('fecha_vi','=',$request->fecha_visita)
+            ->where('id_estado_fk','=',2)
             ->get();
 
         for ($i=0; $i < count($animal_asociado); $i++) { 
