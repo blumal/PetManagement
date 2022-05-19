@@ -102,4 +102,4 @@ function validarFacturas() {
         return true;
     }
 }
-leerVisitas()
+leerVisitas();

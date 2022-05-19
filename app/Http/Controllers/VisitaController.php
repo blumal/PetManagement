@@ -179,6 +179,7 @@ class VisitaController extends Controller
 
         $animal_asociado = DB::table('tbl_visita')
             ->where('fecha_vi','=',$request->fecha_visita)
+            ->where('id_estado_fk','=',2)
             ->get();
 
         for ($i=0; $i < count($animal_asociado); $i++) { 
