@@ -23,6 +23,7 @@ function objetoAjax() {
 function idFilters() {
     //Recojo variables
     var table = document.getElementById('table-g');
+    var token = document.getElementById('token').getAttribute("content");
     //Inicialización objeto Ajax
     var ajax = objetoAjax();
     //Nuevo objeto
@@ -53,9 +54,24 @@ function idFilters() {
                     <td>${reply[i].fecha_vi}</td>
                     <td>${reply[i].hora_vi}</td>
                     <td>${reply[i].estado_est}</td>
-                    <td><button type="button" class="btn btn-success" onclick="openModalInfo('${reply[i].nombre_us}', '${reply[i].nombre_pa}', '${reply[i].asunto_vi}', ); return false;">Información</button></td>
-                    <td><button type="button" class="btn btn-warning" onclick="openModalUpdate(${reply[i].id_vi}); return false;">Actualizar</button></td>
-                    <td><button type="button" class="btn btn-danger" onclick="openModalCancel(${reply[i].id_vi}); return false;">Cancelar</button></td>
+                    <td>
+                        <form action="editarcitaempleado/${reply[i].id_vi}" method="post">
+                            <input type="hidden" name="_token" id="csrf-token" value="${token}"/>
+                            <button type="submit" class="btn btn-success">Información</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="editarcitaempleado/${reply[i].id_vi}" method="post">
+                            <input type="hidden" name="_token" id="csrf-token" value="${token}"/>
+                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="editarcitaempleado/${reply[i].id_vi}" method="post">
+                            <input type="hidden" name="_token" id="csrf-token" value="${token}"/>
+                            <button type="submit" class="btn btn-danger">Cancelar</button>
+                        </form>
+                    </td>
                     </tr>`;
             }
             //Montar registros tabla
@@ -70,6 +86,12 @@ function idFilters() {
                     <td>${reply[i].asunto_vi}</td>*/
 
 //Modal info quote
+{
+    /* <td><button type="button" class="btn btn-success" onclick="openModalInfo('${reply[i].nombre_us}', '${reply[i].nombre_pa}', '${reply[i].asunto_vi}'); return false;">Información</button></td>
+                        <td><button type="button" class="btn btn-warning" onclick="openModalUpdate(${reply[i].id_vi}); return false;">Actualizar</button></td>
+                        <td><button type="button" class="btn btn-danger" onclick="openModalCancel(${reply[i].id_vi}); return false;">Cancelar</button></td> */
+}
+
 function openModalInfo(nombre_us, nombre_pa, asunto_vi) {
     alert(nombre_us);
     alert(nombre_pa);
