@@ -19,9 +19,15 @@ class FacturaVisitaController extends Controller
     public function directorioFacturasClinica(Request $request){
         $id_user=$request->session()->get('id_user_session');
         if (isset($id_user)) {
-            $facturas = DB::table('tbl_factura_clinica')
+            if ($request->session()->get('id_rol_session')==2) {
+                $facturas = DB::table('tbl_factura_clinica')
                 ->where('id_usuario_fk','=',$id_user)
                 ->get();
+            }else{
+                $facturas = DB::table('tbl_factura_clinica')
+                ->get();
+            }
+            
         }else{
             return redirect('/login');
             

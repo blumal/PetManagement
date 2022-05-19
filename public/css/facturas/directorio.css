@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
-
 * {
     font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
@@ -16,7 +15,7 @@ body {
     background: linear-gradient(#1f2dc4, transparent);
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
@@ -122,4 +121,18 @@ header {
     margin-top: 3%;
     background-color: white;
     padding-bottom: -5%;
+}
+
+@media (max-width: 800px) {
+    .column-3 {
+        width: 40%;
+        margin-left: 3.5%;
+    }
+}
+
+@media (max-width: 400px) {
+    .column-3 {
+        width: 80%;
+        margin-left: 3.5%;
+    }
 }

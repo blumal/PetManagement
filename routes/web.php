@@ -208,6 +208,7 @@ Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']
 Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
+Route::post('/activarPaciente',[PacienteController::class, 'activarPaciente']);
 Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
 Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);
