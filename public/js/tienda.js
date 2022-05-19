@@ -5,18 +5,19 @@ window.onload = function() {
     document.getElementById('search').addEventListener("input", function(event) {
         searchBarEmpty()
     });
-    var header = document.getElementById('Header')
 
-    window.addEventListener("scroll", function() {
-        var scroll = window.scrollY;
-        if (scrollY > 0) {
-            header.style.backgroundColor = '#8590ff';
+    // var nav = document.getElementById('nav')
 
-        } else {
-            header.style.backgroundColor = 'transparent';
-        }
+    // window.addEventListener("scroll", function() {
+    //     var scroll = window.scrollY;
+    //     if (scrollY > 0) {
+    //         nav.style.backgroundColor = '#8590ff';
 
-    })
+    //     } else {
+    //         nav.style.backgroundColor = 'transparent';
+    //     }
+
+    // })
 
 
 }

@@ -51,6 +51,12 @@ body {
 
 a {
     text-decoration: none !important;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: white;
 }
 
 
@@ -148,8 +154,8 @@ a {
 
 @media (max-width: 800px) {
     #nav {
-        background-color: #ffffff;
-        transition: none;
+        background-color: transparent;
+        transition: 0.5s;
     }
     .nav_container {
         padding-left: 4%;
@@ -203,13 +209,28 @@ a {
     /* ---------- TWITTER ---------- */
     .twitter {
         position: static;
-        margin: 10% 10% 10% 0%;
         box-shadow: 0px 0px 7px 10px #292f33;
         background-color: #292f33;
         border-radius: 5px;
     }
+    /* ---------- OTROS ------------- */
+    .column-2{    
+        width: 90%;
+        margin: 32px;
+        float: left;
+    }
+    .flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+    }
+    a {
+        text-decoration: none !important;
+        color: white;
+    }
 }
-
 
 /* ---------- FOOTER ---------- */
 

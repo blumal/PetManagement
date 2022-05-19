@@ -209,3 +209,26 @@ table {
 .content_up {
     text-align: center;
 }
+
+/* -------------- TABLAS  ----------------- */
+
+.table-responsive{
+    margin-top: 6.1%;
+}
+
+.table{
+    vertical-align: middle;
+    width: 98%;
+}
+
+/* ------------ RESPONSIVE --------------- */
+
+@media (max-width: 800px) {
+    .table-responsive{
+        margin-top: 21%;
+    }
+    .filtro{
+        margin-top: 4%;
+        width: 65%;
+    }
+}

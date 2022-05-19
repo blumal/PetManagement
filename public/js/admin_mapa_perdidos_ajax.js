@@ -51,6 +51,7 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
+            recarga += '<div class="table-responsive">';
             recarga += '<table class="table" id="table">';
             recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Fecha de perdida</th><th scope="col">Propietario</th><th scope="col">Calle donde se perdió</th><th scope="col">Foto</th><th scope="col">CP</th><th scope="col">Númeor de la calle</th><th scope="col">Hora de desaparición</th><th scope="col">Estado</th><th scope="col"></th><th scope="col">Editar</th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
@@ -78,6 +79,7 @@ function leerJS() {
                     //Activo =1 inactivo=0 1 verde 0 rojo hacer if
                 recarga += '</tr>';
                 recarga += '</table>';
+                recarga += '</div>';
             }
             //Introducimos la recarga en la tabla
             tabla.innerHTML = recarga;

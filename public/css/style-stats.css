@@ -75,3 +75,13 @@ h1{
     color: white;
     font-weight: bolder;
 }
+
+@media (max-width: 800px) {
+    .column-2{
+        width: 93%;
+    }
+    .column-1{
+        width: 94%;
+        margin-left: 0;
+    }
+}

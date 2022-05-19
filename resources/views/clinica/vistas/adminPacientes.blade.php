@@ -34,11 +34,11 @@
         <form class="filtro" method="post" onsubmit="return false;">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
-               <input type="search" id="search" name="nombre_paciente" class="form-control" placeholder="Buscar por nombre del paciente..." aria-label="Search" onkeyup="leerPacientes(); return false;"/>
+               <input type="search" id="search" name="nombre_paciente" class="form-control" placeholder="Filtrar por nombre" aria-label="Search" onkeyup="leerPacientes(); return false;"/>
             </div>
          </form>
     </div>
-    <div {{-- class="table-responsive" --}}>
+    <div class="table-responsive">
         <table class="table" id="mytable">
             <tr class="fila-1">
                 <th scope="col">Foto</th>

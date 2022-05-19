@@ -51,6 +51,7 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
+            recarga += '<div class="table-responsive">';
             recarga += '<table class="table" id="table">';
             recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Nif</th><th scope="col">Email</th><th scope="col">Dirección</th><th scope="col">Número</th><th scope="col">CP</th><th scope="col">Telf 1</th><th scope="col">Telf 2</th><th scope="col">Hora apertura</th><th scope="col">Hora cierre</th><th scope="col">Url web</th><th scope="col">Foto</th><th scope="col">Icono</th><th scope="col">Tipo</th><th scope="col">Editar</th><th scope="col">Operativo</th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
@@ -84,6 +85,7 @@ function leerJS() {
                 }
                 recarga += '</tr>';
                 recarga += '</table>';
+                recarga +='</div>';
             }
             //Introducimos la recarga en la tabla
             tabla.innerHTML = recarga;

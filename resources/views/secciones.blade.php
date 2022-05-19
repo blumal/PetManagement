@@ -20,7 +20,21 @@ ob_start();
     <title>Document</title>
 </head>
 <body>
-    <header id="Header">
+    <nav id="nav">
+        <div class="nav_container">
+            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
+            <label for="menu" class="nav_label">
+                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
+            </label>
+            <input type="checkbox" id="menu" class="nav_input">
+            <!--Menu header-->
+            <div class="nav_menu">
+                <a href="{{url("logout")}}" class="login_item">Logout</a>
+            </div>
+        </div>
+        <script src="./js/home.js"></script>
+    </nav>
+    {{-- <header id="Header">
         <div class="logo">
             <img src="./img/imagenesWeb/logo.png">
         </div>
@@ -28,9 +42,10 @@ ob_start();
         <form action="{{url('/logout')}}" method="GET" class="logout">
                 <a><button><img class="imglogout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></button></a>
         </form>
-    </header>
+    </header> --}}
     <div class="row-c">
         <div class="secciones">
+            <h2>PANEL DEL ADMINISTRADOR</h2>
             <div class="column-3">
                 <div class="seccion">
                     <form {{-- action="{{url('/cpanelUsrs')}}" --}} method="GET">

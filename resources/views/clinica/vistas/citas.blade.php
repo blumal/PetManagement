@@ -46,7 +46,7 @@
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
                 @if (!Session::get('email_session'))
                     <form class="nav_item">
-                        <a href="{{url("modificarPerfil")}}" class="nav_ite">Mi Perfil</a>
+                        <a class="profile" href="{{url("modificarPerfil")}}" class="nav_ite">Mi Perfil</a>
                         <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
                     </form>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
@@ -155,11 +155,11 @@
                     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
                     @if (session()->get('id_rol_session')==3)
                         <center>
-                            <form action="{{url("/directorioGenerarFactura")}}" method="post">
+                            <form action="{{url("/directorioGenerarFactura")}}" method="get">
                                 @csrf
                                 <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
                             </form>
-                            <form action="{{url("/FacturasClinica")}}" method="post">
+                            <form action="{{url("/FacturasClinica")}}" method="get">
                                 @csrf
                                 <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
                             </form>
