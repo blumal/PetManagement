@@ -20,7 +20,7 @@
     <form action="FacturasTienda" method="post">
         @csrf
         
-        <input type="hidden" name="id_user" value=1>
+        <input type="hidden" name="id_user" value={{Session::get('id_user_session')}}>
         <input class="ver_factura" type="submit" value="Ver facturas anteriores">
     </form>
     <img src="storage/img/imagenesWeb/logo.png" alt="" class="logo">
