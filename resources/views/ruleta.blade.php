@@ -28,35 +28,6 @@
         <div class="mark-winner"></div>
       </div>
     </div>
-  {{-- <div id="premio">
-
-    <table style=" margin: 0 auto;">
-      <tr>
-        <td>
-          <p class="elije">ELIJE TU CORTESIA:</p>
-        </td>
-        <td><img src="{{asset('http://localhost/www/PetManagement/storage/app/public/img/cortesia.png')}}" class="imgSorpresa"></td>
-
-      </tr>
-      <tr>
-        <td>
-          <p class="contador">TURNOS: 0</p>
-        </td>
-      </tr>
-    </table>
-  <div class="vara"></div>
-  <div>
-    <img src="{{asset('http://localhost/www/PetManagement/storage/app/public/img/imagen.png')}}" id="ruleta">
-  </div>
-  <div>
-    <div id="sonido" style="display: none;">
-      <iframe src="sonido/ruleta.mp3" id="audio"></iframe>
-
-    </div>
-  </div> --}}
-
-
-  {{-- <script src="js/jquery.min.js"></script> --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="js/ruleta.js"></script>
 </body>

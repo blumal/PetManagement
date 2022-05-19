@@ -36,11 +36,9 @@
                         <br>
                         <input type="hidden" name="id_factura_clinica" value="<?php echo $facturas[$i]->id_fc?>">
                         <input class="ver_factura" type="submit" value="Ver factura">
-                    </form>
-                <br>
+                    </form>     
                 </div>
             </div>
-            <br>
         @endfor
     </div>
 </body>
