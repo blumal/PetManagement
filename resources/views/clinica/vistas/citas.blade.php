@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('cliente_session'))
+@if (!Session::get('id_user_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -191,7 +191,7 @@
                 <input type="submit" class="previous_visits_button" value="   Rellenar Visita   ">
             </form>
 
-            <form action="{{url("/FacturasClinica")}}" method="post">
+            <form action="{{url("/FacturasClinica")}}" method="get">
                 @csrf
                 <input type="submit" class="previous_visits_button" value="Ver  antiguas visitas">
             </form>

@@ -138,12 +138,19 @@
                             </div>
                             
                         </div>
+                        <div>
+                            <div class="form-group-2 mx-sm-2">
+                            @if($errors->any())
+                                <p style="color: red">{{$errors->first()}}</p>
+                            @endif
+                            </div>
+                        </div>
                         <div class="form-group mx-sm-3">
                             <input type="submit" class="btn btn-block ingresar" value="REGISTRARME">
                         </div>
                         <div class="form-group mx-sm-3 text-left">
                             <span class="">Ya tienes una cuenta?</span>
-                            <span><a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/login" class="olvide1">Iniciar sesión</a></span>
+                            <span><a href="/login" class="olvide1">Iniciar sesión</a></span>
                         </div>
                     </form>
                 {{-- </div>

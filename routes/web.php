@@ -91,7 +91,7 @@ Route::get('entretenimiento', function () {
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 // LOGIN LOGOUT Y DEMÁS DE USUARIO
-Route::get('/login', [UsuarioController::class, 'login']);
+Route::get('/login/{id?}', [UsuarioController::class, 'login']);
 Route::post('/login-proc', [UsuarioController::class, 'loginProc']);
 
 Route::get('registro', function () {return view('login/registro');});
@@ -99,7 +99,8 @@ Route::post('/regis-proc', [UsuarioController::class, 'regisProc']);
 
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [UsuarioController::class, 'logout']);
-Route::get('/perfil', function () {return view('login/editarPerfil');});
+
+Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 
 //Actualizar Perfil usuario
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
@@ -145,6 +146,8 @@ Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo'
 
 Route::get('/premio',[FacturaVisitaController::class, 'premio']);
 
+Route::get('/premio_promo',[FacturaVisitaController::class, 'premio_promo']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 
@@ -163,6 +166,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //Ruta para entrar a facturas visitas
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
 Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 
@@ -214,6 +218,7 @@ Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']
 Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
+Route::post('/activarPaciente',[PacienteController::class, 'activarPaciente']);
 Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
 Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);

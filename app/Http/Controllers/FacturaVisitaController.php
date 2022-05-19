@@ -17,14 +17,19 @@ class FacturaVisitaController extends Controller
 
     //FUNCION PARA MOSTRAR TODAS LAS FACTURAS CLINICAS DE UN USER
     public function directorioFacturasClinica(Request $request){
-        $id_user= $request['id_user'];
+        $id_user=$request->session()->get('id_user_session');
         if (isset($id_user)) {
-            $facturas = DB::table('tbl_factura_clinica')
+            if ($request->session()->get('id_rol_session')==2) {
+                $facturas = DB::table('tbl_factura_clinica')
                 ->where('id_usuario_fk','=',$id_user)
                 ->get();
-        }else{
-            $facturas = DB::table('tbl_factura_clinica')
+            }else{
+                $facturas = DB::table('tbl_factura_clinica')
                 ->get();
+            }
+            
+        }else{
+            return redirect('/login');
             
         }
         
@@ -151,6 +156,16 @@ class FacturaVisitaController extends Controller
         try {
             DB::table('tbl_clientes_promo')->where('fk_id_us','=',$request['id_usr'])
             ->update(['comprobar_cli_pro' => 1]);
+                return response()->json(array('resultado'=> 'Ok'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function premio_promo(Request $request){
+        try {
+            DB::insert('insert into tbl_usuarios_promos_activas (fk_id_usr, fk_id_promo) values (?, ?)',
+                [$request['id_usr'], $request['id_promo']]);
                 return response()->json(array('resultado'=> 'OK'));
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
