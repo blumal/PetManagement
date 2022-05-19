@@ -1,10 +1,12 @@
 window.onload = function() {
     id_usr = document.getElementById('id_usr').value;
     comprobar_compra();
+    id_promo = [];
     n_promo = [];
     v_promo = [];
     n_promo_rand = [];
-    ruleta_colores();
+    id_promo_rand = [];
+    /* ruleta_colores(); */
 }
 
 function objetoAjax() {
@@ -46,7 +48,7 @@ function comprobar_compra() {
                 console.log('N COMPRAS: ' + respuesta[i].id_fc);
                 compra += respuesta[i];
             } */
-            if (compra % 5 == 0) {
+            if (compra > 0 && compra % 5 == 0) {
                 //Comprobamos si ha jugado ya
                 comprobar_promo();
             } else {
@@ -94,7 +96,7 @@ function comprobar_promo() {
 }
 
 function volver_home() {
-    window.location.href = "/www/PetManagement/public/";
+    window.location.href = "http://localhost/www/PetManagement/public/";
 }
 
 function ruleta_jug() {
@@ -110,15 +112,19 @@ function ruleta_jug() {
             //recogemos los datos que nos devuelve el json en la variable respuesta
             var respuesta = JSON.parse(this.responseText);
             for (let i = 0; i < respuesta.length; i++) {
+                id_promo.push(respuesta[i]);
                 n_promo.push(respuesta[i].promocion_pro);
                 v_promo.push(respuesta[i].porcentaje_pro);
             }
             /* console.log(n_promo);
             console.log(v_promo); */
         }
+        console.log(id_promo);
         console.log(n_promo);
         n_promo_rand = n_promo.sort(function() { return Math.random() - 0.5 });
+        id_promo_rand = id_promo.sort(function() { return Math.random() - 0.5 });
         console.log(n_promo_rand);
+        console.log(id_promo_rand);
         ruleta_colores();
     }
     ajax.send(formData);
@@ -130,22 +136,22 @@ function ruleta_colores() {
     let context = canvas.getContext("2d");
     let center = canvas.width / 2;
 
-    for (let i = 0; i < n_promo_rand.length; i++) {
+    for (let i = 0; i < id_promo_rand.length; i++) {
         context.beginPath();
         context.moveTo(center, center);
-        context.arc(center, center, center - 20, i * 2 * Math.PI / n_promo_rand.length, (i + 1) * 2 * Math.PI /
-            n_promo_rand.length);
+        context.arc(center, center, center - 20, i * 2 * Math.PI / id_promo_rand.length, (i + 1) * 2 * Math.PI /
+            id_promo_rand.length);
         context.lineTo(center, center);
         context.fillStyle = random_color();
         context.fill();
         context.save();
         context.translate(center, center);
-        context.rotate(3 * 2 * Math.PI / (5 * n_promo_rand.length) + i * 2 * Math.PI / n_promo_rand.length);
+        context.rotate(3 * 2 * Math.PI / (5 * id_promo_rand.length) + i * 2 * Math.PI / id_promo_rand.length);
         context.translate(-center, -center);
         context.font = "22px Sans Serif";
         context.textAlign = "right";
         context.fillStyle = "white";
-        context.fillText(n_promo_rand[i], canvas.width - 30, center);
+        context.fillText(id_promo_rand[i]['promocion_pro'], canvas.width - 30, center);
         context.restore();
     }
 }
@@ -202,19 +208,21 @@ function sortear() {
 }
 
 function premio() {
-    usr_jug();
     swal.fire({
-        /* title: n_promo_rand[1], */
+        /* title: id_promo_rand[1], */
         /* icon: "success", */
         imageUrl: 'https://c.tenor.com/6B-Jw3LhNpMAAAAC/felicidades-congratulations.gif',
         title: 'Te ha tocado: ',
-        html: n_promo_rand[1],
+        html: id_promo_rand[1]['promocion_pro'],
         timer: 2000,
         showConfirmButton: false,
         allowOutsideClick: false
     });
-    /* alert(n_promo_rand[1]); */
-
+    setTimeout(function() {
+        usr_jug();
+    }, 2000);
+    /* alert(id_promo_rand[1]); */
+    console.log(id_promo_rand[1]['id_pro']);
 }
 
 function usr_jug() {
@@ -231,15 +239,61 @@ function usr_jug() {
             console.log(this.responseText);
             //recogemos los datos que nos devuelve el json en la variable respuesta
             var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta);
-            if (respuesta == 'Ok') {
+            console.log(respuesta['resultado']);
+            if (respuesta['resultado'] == 'Ok') {
                 console.log(respuesta)
+                premio_promo();
             }
         }
     }
     ajax.send(formData);
 }
 
+
+function premio_promo() {
+    id_premio = id_promo_rand[1]['id_pro'];
+    var formData = new FormData();
+    //Enviamso el token
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    //Enviamos el metodo que en este caso es get
+    formData.append('id_usr', id_usr);
+    formData.append('id_promo', id_premio);
+    formData.append('_method', 'get');
+    var ajax = objetoAjax();
+    ajax.open("POST", "premio_promo", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(this.responseText);
+            //recogemos los datos que nos devuelve el json en la variable respuesta
+            var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
+            if (respuesta['resultado'] == 'OK') {
+                Swal.fire({
+                    icon: "info",
+                    title: 'Podrás utilizar este descuento a partir de la próxima visita.',
+                    html: 'Se te redigirá a otra página en <strong></strong> segundos.<br/><br/>',
+                    timer: 5000,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        timerInterval = setInterval(() => {
+                            Swal.getHtmlContainer().querySelector('strong')
+                                .textContent = (Swal.getTimerLeft() / 1000)
+                                .toFixed(0)
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                })
+                setTimeout(function() {
+                    volver_home();
+                }, 5000);
+            }
+        }
+    }
+    ajax.send(formData);
+}
 /* const ruleta = document.querySelector('#ruleta');
 
 ruleta.addEventListener('click', girar);

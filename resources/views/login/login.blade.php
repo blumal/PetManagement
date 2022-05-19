@@ -60,6 +60,7 @@
             <div class="col-md-6 col-sm-8 col-xl-5 col-lg-5 formulario">
                 <form action="{{url("login-proc")}}" method="post" onsubmit="return validateLogin();">
                     @csrf
+                    <input type="hidden" id="rul" name='rul' value="{{$id}}">
                     <div class="form-group text-center pt-3">
                         <h1>INICIAR SESIÓN</h1>
                     </div>
