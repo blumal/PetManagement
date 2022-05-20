@@ -55,7 +55,7 @@ function idFilters() {
                     <td>${reply[i].hora_vi}</td>
                     <td>${reply[i].estado_est}</td>
                     <td>
-                        <form action="editarcitaempleado/${reply[i].id_vi}" method="post">
+                        <form action="infocitaempleado/${reply[i].id_vi}" method="post">
                             <input type="hidden" name="_token" id="csrf-token" value="${token}"/>
                             <button type="submit" class="btn btn-success">Información</button>
                         </form>

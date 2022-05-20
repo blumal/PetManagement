@@ -27,7 +27,7 @@ class EmpleadoController extends Controller
         return response()->json($quotes);
     }
     //Recogida datos de la visita
-    public function quotesEdit($id_vi){
+    public function quotesInfo($id_vi){
         $quotedatas = DB::table("tbl_visita")
             ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
@@ -35,6 +35,14 @@ class EmpleadoController extends Controller
             ->where('tbl_visita.id_vi', '=', $id_vi)
             ->get();
         return view('empleados/infogestioncitas', compact('quotedatas'));
+    }
+
+    public function quotesEdit($id_vi){
+        $quoteedit = DB::table("tbl_visita")
+            ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
+            ->where('tbl_visita.id_vi', '=', $id_vi)
+            ->get();
+        return view('empleados/editcita', compact('quoteedit'));
     }
 }
  

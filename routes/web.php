@@ -268,4 +268,4 @@ Route::post('filter', [EmpleadoController::class, 'quotesFilter']);
 //Editar citas
 Route::post('editarcitaempleado/{id_vi}', [EmpleadoController::class, 'quotesEdit']);
 //Información de la cita
-Route::post('infogestioncitas', [EmpleadoController::class, 'quoteInfo']); 
+Route::post('infocitaempleado/{id_vi}', [EmpleadoController::class, 'quotesInfo']); 
