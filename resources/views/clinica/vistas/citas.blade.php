@@ -44,18 +44,16 @@
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                @if (!Session::get('email_session'))
-                    <form class="nav_item">
-                        <a class="profile" href="{{url("modificarPerfil")}}" class="nav_ite">Mi Perfil</a>
+                @if (Session::get('cliente_session'))
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
                         <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                    </form>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else
                     <a href="{{url("login")}}" class="login_item">Login</a>
                 @endif
             </div>
         </div>
-        <script src="./js/home.js"></script>
+        <script src="./js/nav_mapas.js"></script>
     </nav>
     <div class="row-c flex">
         <div class="slider">
@@ -148,7 +146,7 @@
                             <form action="{{url("/FacturasClinica")}}" method="post">
                                 @csrf
                                 <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-                                <input type="submit" class="previous_visits_button" value="Consultar mis visitas anteriores">
+                                <input type="submit" class="previous_visits_button pvb" value="Consultar mis visitas anteriores">
                             </form>
                         </center>
                     @endif

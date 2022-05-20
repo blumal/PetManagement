@@ -59,6 +59,16 @@ a:hover {
     color: white;
 }
 
+.twitter{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+/* ------------------- STATS ------------------- */
+.contenedor_grafico{
+    margin-left: 2%;
+    width: 105%;
+}
 
 /* ---------- NAV BAR ---------- */
 
@@ -229,6 +239,14 @@ a:hover {
     a {
         text-decoration: none !important;
         color: white;
+    }
+    /* ------------------- STATS ------------------- */
+    .contenedor_grafico{
+        margin-left: -9%;
+        width: 115%;
+    }
+    #chart_visitasxmeses {
+        height: auto !important;
     }
 }
 

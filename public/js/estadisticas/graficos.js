@@ -118,7 +118,7 @@ function chartCreate() {
                 return getGradient(ctx, chartArea);
             },
             backgroundColor: 'black',
-            borderColor: 'cyan',
+            borderColor: 'fuchsia',
             data: dataY
         }]
     };
@@ -325,7 +325,7 @@ function chartCreateVisitasMeses() {
         datasets: [{
             label: 'Numero de visitas por mes',
             backgroundColor: 'black',
-            borderColor: 'fuchsia',
+            borderColor: 'blue',
             data: dataYvisitaspormeses,
             //data: [10, 20, 30, 40, 50, 60, 70],
         }]

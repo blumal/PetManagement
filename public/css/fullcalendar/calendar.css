@@ -215,6 +215,14 @@ a {
     .profile{
         color: #ffffff;
     }
+    /* ------------------ OTROS --------------- */
+    .previous_visits_button {
+        width: 70% !important;
+        padding: 10px !important;
+    }
+    .pvb{
+        margin-bottom: 3% !important;
+    }
 }
 
 
@@ -435,7 +443,7 @@ textarea {
 /*Button facturas*/
 
 .previous_visits_button {
-    width: 22%;
+    width: 25%;
     padding: 10px 24px;
     border-radius: 30px;
     background-color: #1f2cc4;
@@ -451,6 +459,10 @@ textarea {
     color: #ffffff;
     background-color: #000000;
     border-color: black;
+}
+
+.pvb{
+    margin-bottom: 2%;
 }
 
 
