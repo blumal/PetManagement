@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (Session::get('id_rol_session')==2)
+@if (!Session::get('id_rol_session')==2)
 
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
@@ -18,14 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    <header id="Header">
-        <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
-        </div>
-        <div class="logout">
-            <img onclick="location.href = '/logout'" class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px">
-        </div>
-    </header>
+    @include('comun.navegacion')
     <div class="row-c">
         <div class="column-3">
             <div class="input">
