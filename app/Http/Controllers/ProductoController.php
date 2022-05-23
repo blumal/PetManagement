@@ -37,8 +37,18 @@ class ProductoController extends Controller
     }
 
     public function productos() {
-        $productos=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda`;");
+        $productos=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk, tbl_articulo_tienda.tipo_categoria_art FROM `tbl_articulo_tienda`;");
         return response()->json($productos);
+    }
+
+    public function getProduct(Request $request) {
+        $datos = $request->except('_token');
+        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma, tbl_articulo_tienda.tipo_categoria_art, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$datos['id']]);
+        $categorias=DB::select("SELECT tbl_categoria_articulo.id_cat, tbl_categoria_articulo.texto_cat, tbl_categoria_articulo.precio_cat, tbl_categoria_articulo.articulo_fk, tbl_categoria_articulo.cantidad FROM `tbl_categoria_articulo` WHERE articulo_fk=? AND cantidad>0 ORDER BY precio_cat ASC",[$datos['id']]);
+        $campos=array();
+        array_push($campos,$producto);
+        array_push($campos,$categorias);
+        return response()->json($campos);
     }
 
     public function filtroSearchBar(Request $request) {
@@ -59,9 +69,31 @@ class ProductoController extends Controller
                 } 
             }
             $marcas=DB::select($sql);
-            $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
-            $tipo=DB::select($tiposql);
-            $productos=array();
+            if (isset($datos['palabras'])) {
+                $palabras=json_encode($datos['palabras']);
+            }
+            if (isset($palabras)) {
+                $array=array();
+           foreach ($datos['palabras'] as $palabra) {
+            $palabraql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$palabra."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$palabra."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+               $Arraypalabra=DB::select($palabraql);
+               foreach ($Arraypalabra as $palabra) {
+                   array_push($array,$palabra);
+               }
+           }
+           $tipo=array();
+           $arraycount=count($array);
+           for ($i=0; $i < $arraycount; $i++) { 
+               for ($j=0; $j < $arraycount; $j++) { 
+                   if ($i!=$j) {
+                    if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
+                        array_push($tipo,$array[$i]);
+                    }
+                   }
+                   
+               }
+           }
+           $productos=array();
             foreach ($tipo as $productoT) {
                 foreach ($marcas as $productoM) {
                     if ($productoT == $productoM) {
@@ -69,13 +101,43 @@ class ProductoController extends Controller
                     }
                 }
             }
-        return response()->json($productos);
+            return response()->json($productos);
+            }else {
+                return response()->json($marcas);
+            }
+            
+            
+            
             
        }else {
+          $array=array();
+           foreach ($datos['palabras'] as $palabra) {
+            $palabraql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$palabra."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$palabra."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+               $Arraypalabra=DB::select($palabraql);
+               foreach ($Arraypalabra as $palabra) {
+                   array_push($array,$palabra);
+               }
+           }
+           $tipo=array();
+           $arraycount=count($array);
+           for ($i=0; $i < $arraycount; $i++) { 
+               for ($j=0; $j < $arraycount; $j++) { 
+                   if ($i!=$j) {
+                    if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
+                        array_push($tipo,$array[$i]);
+                    }
+                   }
+                   
+               }
+           }
+           return response()->json($tipo);
+           //Antiguo
+           /*
             $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
             $tipo=DB::select($tiposql);
             return response()->json($tipo);
-            
+            */
+            //Antiguo
        }
         
     }
@@ -120,9 +182,16 @@ class ProductoController extends Controller
     }
 
     public function producto($id) {
-        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $producto=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_marca.marca_ma, tbl_articulo_tienda.tipo_categoria_art, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_marca ON tbl_articulo_tienda.id_marca_fk=tbl_marca.id_ma WHERE tbl_articulo_tienda.id_art=?",[$id]);
         $fotos=DB::select("SELECT tbl_foto.foto_f FROM `tbl_foto` WHERE tbl_foto.articulo_tienda_fk=?",[$id]);
-        return view('producto', compact('producto', 'fotos'));
+        $categorias=DB::select("SELECT tbl_categoria_articulo.id_cat, tbl_categoria_articulo.texto_cat, tbl_categoria_articulo.precio_cat, tbl_categoria_articulo.articulo_fk, tbl_categoria_articulo.cantidad FROM `tbl_categoria_articulo` WHERE articulo_fk=? AND cantidad>0 ORDER BY precio_cat ASC",[$id]);
+        return view('producto', compact('producto', 'fotos', 'categorias'));
+    }
+
+    public function productosSimilares(Request $request) {
+        $datos = $request->except('_token');
+        $productosSimilares=DB::select("SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.foto_art FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.tipo_categoria_art=tbl_tipo_articulo.id_ta WHERE tbl_articulo_tienda.id_tipo_articulo_fk=?",[$datos['id']]);
+        return response()->json($productosSimilares);
     }
 
     public function marcaProducto(Request $request) {
@@ -131,7 +200,31 @@ class ProductoController extends Controller
         return response()->json($marca);
     }
 
+    public function productosOpiniones(Request $request) {
+        $datos = $request->except('_token');
+        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=? ORDER BY id_op DESC",[$datos['id']]);
+        return response()->json($opiniones);
+    }
+    public function productosOpinionesTodas(Request $request) {
+        $datos = $request->except('_token');
+        $opiniones=DB::select("SELECT tbl_opinion_articulo.id_op, tbl_opinion_articulo.texto_op, tbl_opinion_articulo.valoracion_op, tbl_usuario.nombre_us, tbl_usuario.apellido1_us, tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_opinion_articulo ON tbl_articulo_tienda.id_art=tbl_opinion_articulo.articulo_fk INNER JOIN tbl_usuario ON tbl_opinion_articulo.usuario_fk=tbl_usuario.id_us WHERE tbl_articulo_tienda.id_art=? ORDER BY id_op DESC",[$datos['id']]);
+        return response()->json($opiniones);
+    }
+
+    public function limiteCarrito(Request $request) {
+        $datos = $request->except('_token');
+        $cantidad=DB::select("SELECT tbl_categoria_articulo.cantidad FROM `tbl_categoria_articulo` WHERE tbl_categoria_articulo.id_cat=?",[$datos['subcategoria']]);
+        return response()->json($cantidad);
+    }
+
+    public function insertarOpinion(Request $request) {
+        $datos = $request->except('_token');
+        DB::select("INSERT INTO `tbl_opinion_articulo` (`id_op`, `texto_op`, `valoracion_op`, `usuario_fk`, `articulo_fk`) VALUES (NULL, ?, ?, 2, ?)",[$datos['comentario'],$datos['valoracion'],$datos['producto']]);
+        return response()->json(array('resultado'=> 'OK'));
+    }
+
     //sesiones carrito
+    /*
     public function addToCart($id)
     {
         $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
@@ -151,13 +244,13 @@ class ProductoController extends Controller
                     ]
             ];
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return response()->json($cart);
         }
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
             $cart[$id]['cantidad']++;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return response()->json($cart);
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
@@ -168,12 +261,14 @@ class ProductoController extends Controller
             "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return response()->json($cart);
     }
-    public function addToCartProducto($id, $cantidad)
+    */
+    public function addToCartProducto($id, $cantidad, $subcategoria)
     {
         $path="producto/".$id;
         $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
+        $productPrice=DB::select("SELECT tbl_Categoria_Articulo.id_cat, tbl_Categoria_Articulo.texto_cat, tbl_Categoria_Articulo.precio_cat FROM `tbl_categoria_articulo` WHERE id_cat=?",[$subcategoria]);
         if(!$product) {
             abort(404);
         }
@@ -181,33 +276,37 @@ class ProductoController extends Controller
         //
         if(!$cart) {
             $cart = [
-                    $id => [
+
+                    $subcategoria => [
+
                         "id" => $product[0]->id_art,
                         "nombre" => $product[0]->nombre_art,
+                        "subcategoria_texto" => $productPrice[0]->texto_cat,
                         "cantidad" => $cantidad,
-                        "precio" => $product[0]->precio_art,
+                        "precio" => $productPrice[0]->precio_cat,
                         "foto" => $product[0]->foto_art
                     ]
             ];
             session()->put('cart', $cart);
-            return Redirect::to($path);
+            return response()->json($cart);
         }
         //
-        if(isset($cart[$id])) {
-            $cantidad=$cantidad+$cart[$id]['cantidad'];
-            $cart[$id]['cantidad']=$cantidad;
+        if(isset($cart[$subcategoria])) {
+            $cantidad=$cantidad+$cart[$subcategoria]['cantidad'];
+            $cart[$subcategoria]['cantidad']=$cantidad;
             session()->put('cart', $cart);
-            return Redirect::to($path);
+            return response()->json($cart);
         }
         //
-        $cart[$id] = [
+        $cart[$subcategoria] = [
             "nombre" => $product[0]->nombre_art,
+            "subcategoria_texto" => $productPrice[0]->texto_cat,
             "cantidad" => $cantidad,
-            "precio" => $product[0]->precio_art,
+            "precio" => $productPrice[0]->precio_cat,
             "foto" => $product[0]->foto_art
         ];
         session()->put('cart', $cart);
-        return Redirect::to($path);
+        return response()->json($cart);
     }
 
     public function updateCart(Request $request)
@@ -232,6 +331,12 @@ class ProductoController extends Controller
             }
             session()->flash('success', 'Product removed successfully');
         }
+    }
+
+    public function cogerSesion(Request $request) {
+        //CAMBIAR SESION CART POR LA DE USER
+        $cart = session()->get('cart');
+        return response()->json($cart);
     }
 
     /*Dinero*/
@@ -284,7 +389,6 @@ class ProductoController extends Controller
         }
 
     }
-    
     public function compra(Request $request){
         date_default_timezone_set('EUROPE/Madrid');
 
