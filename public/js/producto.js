@@ -523,6 +523,8 @@ function enviarOpinion(idUser) {
     formData.append('producto', producto);
     formData.append('valoracion', valoracion);
     formData.append('comentario', comentario);
+    formData.append('usuario', usuario);
+
     //formData.append('usuario', usuario);
     var ajax = objetoAjax();
     ajax.open("post", "../insertarOpinion", true);
@@ -566,10 +568,11 @@ function cogerSesion() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
-            if (respuesta.length == 0) {
+            console.log(respuesta)
+            if (!Number.isInteger(respuesta)) {
                 var div = document.getElementById('div-boton-valorar');
                 var html = "<button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='cogerSesion()'>Valorar este producto</button>"
-                html += "<p style='margin-top: 2%;'>Necesitas <a href='../carrito' style='color: #1f2cc4;'>iniciar sesión</a> para poder valorar.</p>";
+                html += "<p style='margin-top: 2%;'>Necesitas <a href='../login' style='color: #1f2cc4;'>iniciar sesión</a> para poder valorar.</p>";
                 div.innerHTML = html;
             } else {
                 modalValorar(respuesta)

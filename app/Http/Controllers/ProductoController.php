@@ -219,7 +219,7 @@ class ProductoController extends Controller
 
     public function insertarOpinion(Request $request) {
         $datos = $request->except('_token');
-        DB::select("INSERT INTO `tbl_opinion_articulo` (`id_op`, `texto_op`, `valoracion_op`, `usuario_fk`, `articulo_fk`) VALUES (NULL, ?, ?, 2, ?)",[$datos['comentario'],$datos['valoracion'],$datos['producto']]);
+        DB::select("INSERT INTO `tbl_opinion_articulo` (`id_op`, `texto_op`, `valoracion_op`, `usuario_fk`, `articulo_fk`) VALUES (NULL, ?, ?, ?, ?)",[$datos['comentario'],$datos['valoracion'],$datos['usuario'],$datos['producto']]);
         return response()->json(array('resultado'=> 'OK'));
     }
 
@@ -335,8 +335,8 @@ class ProductoController extends Controller
 
     public function cogerSesion(Request $request) {
         //CAMBIAR SESION CART POR LA DE USER
-        $cart = session()->get('cart');
-        return response()->json($cart);
+        $user = session()->get('id_user_session');
+        return response()->json($user);
     }
 
     /*Dinero*/
