@@ -436,7 +436,7 @@ class ProductoController extends Controller
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-                "amount" => $request->precio_total,
+                "amount" => 100,
                 "currency" => "eur",
                 "source" => $request->stripeToken,
                 "description" => "Test payment."

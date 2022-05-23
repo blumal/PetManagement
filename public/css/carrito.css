@@ -4,9 +4,10 @@
     color: #333333;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
+
 
 /*header*/
 
@@ -203,4 +204,18 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 0 5%;
+}
+
+.rowpay2 {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+
+.rowpay2 img {
+    width: 75%;
+}
+
+.dropdown-menu {
+    width: 25%;
 }

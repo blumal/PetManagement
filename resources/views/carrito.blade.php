@@ -30,6 +30,7 @@
     <script src="./js/home.js"></script>
 </header>
 <body>
+
     <div class="div-1">
     <table id="cart" class="table table-hover table-condensed border">
         <thead>
@@ -80,21 +81,21 @@
                 <button class= "pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart"> </i> Pagar</button>
             </form></td> --}}
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
-            <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
-                <button class= "btn btn-volver pagar" id="logout"  data-toggle="dropdown" type="button">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</span>
-                </button>
                 <div class="div-dropmenu">
                     <div class="dropdown">
+                        <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+                            <button class= "btn btn-volver pagar" id="logout"  data-toggle="dropdown" type="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</span>
+                            </button>
                         <div class="dropdown-menu">
-                            <div class="2rowpay">
+                            <div class="rowpay2">
                                 <a href="{{url('stripe')}}">
-                                    <img src="tarjeta.img" alt="">
+                                    <img src="../public/img/tarjeta.png" alt="hola">
                                 </a>
                             </div>
-                            <div class="2rowpay">
+                            <div class="rowpay2">
                                 <a href="{{url('enviarDinero/'.$total)}}" method="GET" name="Pagar" value="Pagar">
-                                    <img src="paypal.img" alt="">
+                                    <img src="../public/img/paypal.png" alt="hola">
                                 </a>
                             </div>
                         </div>

@@ -29,7 +29,7 @@
 
 <body>
     <div class="container">
-        <h1>Laravel 8 - Stripe Payment Gateway Integration Example <br/> Tutsmake.com</h1>
+        <h1>Test Stripe <br/></h1>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default credit-card-box">
@@ -37,7 +37,6 @@
                         <div class="row display-tr">
                             <h3 class="panel-title display-td">Payment Details</h3>
                             <div class="display-td">
-                                <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
                             </div>
                         </div>
                     </div>
@@ -48,7 +47,7 @@
                             <p>{{ Session::get('success') }}</p>
                         </div>
                         @endif
-                        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                        <form role="form" action="{{ url('stripePost') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                             @csrf
                             <div class='form-row row'>
                                 <div class='col-xs-12 form-group required'>
@@ -135,7 +134,7 @@
                 var token = response['id'];
                 $form.find('input[type=text]').empty();
                 $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                $form.append("<input type='hidden' name='PrecioTotal' value='" + PrecioTotal + "'/>");
+                // $form.append("<input type='hidden' name='PrecioTotal' value='" + PrecioTotal + "'/>");
                 $form.get(0).submit();
             }
         }
