@@ -12,22 +12,23 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/mapa-perdidos.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/style-home.css')}}"> --}}
     <link rel="icon" href="./img/imagenesWeb/logo.png">
 </head>
 <body>
     @include('comun.navegacion')
-    <div id="map">
-
-    </div>
     <div>
         <form action="{{url('/an_perd')}}" method="GET">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
                 <button type="submit" ><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
             </div>
-         </form>
+        </form>
     </div>
+    <div id="map">
+        
+    </div>
+    
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/mapas-establecimientos.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/style-home.css')}}"> --}}
     <link rel="icon" href="./img/imagenesWeb/logo.png">
 </head>
 <body>

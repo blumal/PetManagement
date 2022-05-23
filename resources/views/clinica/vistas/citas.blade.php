@@ -28,7 +28,37 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
+<<<<<<< HEAD
     @include('comun.navegacion')
+=======
+    <nav id="nav">
+        <div class="nav_container">
+            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
+            <label for="menu" class="nav_label">
+                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
+            </label>
+            <input type="checkbox" id="menu" class="nav_input">
+            <!--Menu header-->
+            <div class="nav_menu">
+                <a href="{{url("/")}}" class="nav_item">Home</a>
+                <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
+                <a href="{{url("citas")}}" class="nav_item">Clínica</a>
+                <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
+                <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
+                <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
+                <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
+                @if (Session::get('cliente_session'))
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
+                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                    <a href="{{url("logout")}}" class="login_item">Logout</a>
+                @else
+                    <a href="{{url("login")}}" class="login_item">Login</a>
+                @endif
+            </div>
+        </div>
+        <script src="./js/home.js"></script>
+    </nav>
+>>>>>>> Pre-Alpha
     <div class="row-c flex">
         <div class="slider">
            <ul>
@@ -80,7 +110,7 @@
                             <h3>Solicitud próxima visita</h3><br/>
                             <div class="modal-citas-content-form">
                                 {{-- <form action="{{url('insertcita')}}" method="get"> --}}
-                                <form onsubmit="insertDatas(); return false;">
+                                <form style="margin: 0% 5%;" onsubmit="insertDatas(); return false;">
                                     @csrf
                                     <label for="fecha_vi">Introduzca la fecha de la visita: *</label><br/><br/>
                                         <input type="date" name="fecha_vi" id="fecha_vi" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> onchange="hourOptions(); return false;"><br/><br/>
@@ -120,18 +150,18 @@
                             <form action="{{url("/FacturasClinica")}}" method="post">
                                 @csrf
                                 <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-                                <input type="submit" class="previous_visits_button" value="Consultar mis visitas anteriores">
+                                <input type="submit" class="previous_visits_button pvb" value="Consultar mis visitas anteriores">
                             </form>
                         </center>
                     @endif
                     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
                     @if (session()->get('id_rol_session')==3)
                         <center>
-                            <form action="{{url("/directorioGenerarFactura")}}" method="post">
+                            <form action="{{url("/directorioGenerarFactura")}}" method="get">
                                 @csrf
                                 <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
                             </form>
-                            <form action="{{url("/FacturasClinica")}}" method="post">
+                            <form action="{{url("/FacturasClinica")}}" method="get">
                                 @csrf
                                 <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
                             </form>

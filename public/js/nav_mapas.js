@@ -5,6 +5,6 @@ window.addEventListener("scroll", function() {
     if (scroll > 0) {
         nav.style.backgroundColor = '#8590FF';
     } else {
-        nav.style.backgroundColor = 'transparent';
+        nav.style.backgroundColor = '#8590FF';
     }
 })

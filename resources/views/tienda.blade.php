@@ -28,8 +28,6 @@
 @include('comun.navegacion')
 <body>
     <div class="row-c">
-
-    
     <div class="div1">
         <div class="filtros-precio-marca">
             <div class="filtro-precio">

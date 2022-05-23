@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="./js/valid_contacto.js"></script>
-    <link rel="stylesheet" href="{{asset('css/style-home.css')}}">  
+    <link rel="stylesheet" href="{{asset('css/style-contacto.css')}}">  
     <title>LOGIN</title>
     <link rel="icon" href="./img/imagenesWeb/logo.png">
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
@@ -27,8 +27,8 @@
     @include('comun.navegacion')
     <div class="row-c flex">
         <div class="column-2">
-            <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
-                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%;">
+            <div class="row-c formulario-1">
+                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario">
                     <form action="{{url('/enviarCorreoContacto')}}" method="post" onsubmit="return validateContacto();">
                         @csrf
                         <div class="form-group text-center pt-3">
@@ -54,14 +54,12 @@
             </div>
         </div>
         <div class="column-2">
-            <div class="container">
-                <div class="row-c flex justify-content-center pt-8 mt-5 m-2">
-                    <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 9%; padding-right: 75px;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="mapa-contacto"></iframe>
-                        <div class="form-group sm-5" style="margin-right: 33px;">
-                            <h3 class="text-light">Telf: +34 612345678</h3>
-                            <h3 class="text-light">grouppetmanagement@gmail.com</h3>
-                        </div>
+            <div class="row-c formulario-2">
+                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 20%;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="450" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="form-group telf-mail sm-5">
+                        <h3 class="text-light">Telf: +34 612345678</h3>
+                        <h3 class="text-light">grouppetmanagement@gmail.com</h3>
                     </div>
                 </div>
             </div>

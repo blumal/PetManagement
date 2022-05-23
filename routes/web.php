@@ -46,13 +46,23 @@ Route::get('animales_perdidos', [mapas::class,'animales_perdidos']);
 
 Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimientos']);
 
+Route::get('adminMapasPerdidos', [mapas::class,'adminMapasPerdidos']);
+
 Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
+
+Route::get('filtroMapasPerdidos', [mapas::class,'filtroMapasPerdidos']);
 
 Route::post('crearMapasEstablecimientos',[mapas::class, 'crearMapasEstablecimientos']);
 
+Route::post('crearMapasPerdidos',[mapas::class, 'crearMapasPerdidos']);
+
 Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
 
+Route::put('modificarMapasPerdidos',[mapas::class, 'modificarMapasPerdidos']);
+
 Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
+
+Route::delete('eliminarMapasPerdidos',[mapas::class, 'eliminarMapasPerdidos']);
 
 Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);
 
