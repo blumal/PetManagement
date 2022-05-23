@@ -209,6 +209,23 @@ a {
     .nav_input:checked+.nav_menu {
         clip-path: circle(100% at center);
     }
+    /*Tabla citas*/
+    .filter1 {
+        margin-left: 5%;
+        margin-right: 3%;
+    }
+    .filter2 {
+        padding-right: 0;
+    }
+    .num-cita{
+        width: 124px;
+    }
+    .table-responsive {
+        margin-top: 5%;
+    }
+    .container {
+        margin-top: 34% !important;
+    }
 }
 
 
@@ -230,5 +247,9 @@ a {
     padding-right: 10%;
 }
 
+.table-responsive {
+    margin-top: 5%;
+}
 
-/*Tabla citas*/
+
+

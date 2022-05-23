@@ -1,7 +1,4 @@
-window.onload = function() {
-    hourOptions();
-}
-
+//Verificación select
 function hourOptions() {
     //Fecha
     var fecha_vi = document.getElementById('fecha_vi').value;
@@ -33,4 +30,58 @@ function hourOptions() {
         }
     }
     document.getElementById('hora_vi').innerHTML = horasDispo;
+}
+
+//Objeto ajax
+function objetoAjax() {
+    var xmlhttp = false;
+    try {
+        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+        try {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (E) {
+            xmlhttp = false;
+        }
+    }
+    if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+
+function UpdateQuote(){
+    //Inicialización objeto Ajax
+    var ajax = objetoAjax();
+    //Nuevo objeto
+    formdata = new FormData();
+    //Datos del html
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('_method', 'POST');
+    formdata.append('id_vi', document.getElementById('id_vi').value);
+    formdata.append('email_us', document.getElementById('email_us').value);
+    formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
+    formdata.append('hora_vi', document.getElementById('hora_vi').value);
+
+    //Datos fichero web que apunta a la función que recoge el JSON
+    //Debo volver a la raíz para poder llamar a la ruta
+    ajax.open("POST", "../updatingquote", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(this.responseText);
+            var reply = JSON.parse(this.responseText);
+            if (reply.result == "OK") {
+                //Intercambio los datos antiguos con los actualizados
+                document.getElementById('fecha_old').value = document.getElementById('fecha_vi').value;
+                document.getElementById('hora_old').value = document.getElementById('hora_vi').value;
+                alertify
+                    .alert("Actualización de visitas", "Se ha enviado un mail al cliente con las modificaciones previamente efectuadas", function() {
+                        alertify.success('Visita modificada correctamente');
+                    });
+            } else {
+                alertify.error("Ha ocurrido un error en la actualización de datos");
+            }
+        }
+    }
+    ajax.send(formdata);
 }

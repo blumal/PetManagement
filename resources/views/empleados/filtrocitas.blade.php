@@ -46,13 +46,13 @@
             <div class="container">
                 <h1>Visitas agendadas</h1>
                 <div class="filter1 column-3">
-                    <input type="number" id="id_vi" placeholder="nº de cita" onkeyup="idFilters(); return false;">
+                    <input class="num-cita" type="number" id="id_vi" placeholder="nº de cita" onkeyup="idFilters(); return false;">
                 </div>
                 <div class="filter2 column-3">
                     <input type="text" id="dni_us" placeholder="DNI del cliente" onkeyup="idFilters(); return false;">
                 </div>
                 <br/>
-                <div class="table_container">
+                <div class="table-responsive">
                         <table class="table table-hover" id="table-g"></table>
                 </div>
             </div>

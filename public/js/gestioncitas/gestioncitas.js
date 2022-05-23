@@ -46,6 +46,8 @@ function idFilters() {
                 <th scope="col">Hora de cita</th>
                 <th scope="col">Estado de la visita</th>
                 <th scope="col">Acciones</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>`;
             console.log(reply);
             for (let i = 0; i < reply.length; i++) {

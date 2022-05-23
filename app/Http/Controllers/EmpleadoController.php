@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Mail\Mailtocustomers;
+use Illuminate\Support\Facades\Mail;
 class EmpleadoController extends Controller
 {
     public function empleadoDatas(){
@@ -26,6 +27,7 @@ class EmpleadoController extends Controller
             ->get();
         return response()->json($quotes);
     }
+
     //Recogida datos de la visita
     public function quotesInfo($id_vi){
         $quotedatas = DB::table("tbl_visita")
@@ -36,7 +38,7 @@ class EmpleadoController extends Controller
             ->get();
         return view('empleados/infogestioncitas', compact('quotedatas'));
     }
-
+    //Recogida de datos para poder editar en un futuro
     public function quotesEdit($id_vi){
         $quoteedit = DB::table("tbl_visita")
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
@@ -44,5 +46,42 @@ class EmpleadoController extends Controller
             ->get();
         return view('empleados/editcita', compact('quoteedit'));
     }
+
+    //Actualización de datos de la cita
+    public function updatequoteProc(Request $request){
+        //Fecha actual
+        $today = date("Y-m-d");
+
+        //Validación datos que se esperan
+        $datas = $request->validate([
+            'fecha_vi' => 'required|date|after_or_equal:today',
+            'hora_vi' => 'required|string|max:5',
+            'email_us' => 'required|string|max:70',
+            'id_vi' => 'required|integer'
+        ]);
+
+        try {
+            $checkdatas = DB::table('tbl_visita')
+                ->where('fecha_vi', '=', $request['fecha_vi'])
+                ->where('hora_vi', '=', $request['hora_vi'])
+                ->count();
+            if ($checkdatas < 3) {
+                //Actualización de datos
+                DB::update('UPDATE tbl_visita 
+                    SET fecha_vi=?, hora_vi=? 
+                    WHERE id_vi=?', 
+                    [$request->input('fecha_vi'), $request->input('hora_vi'), $request->input('id_vi')]);
+                $sub = "Modificación de cita";
+                $enviar = new Mailtocustomers($datas, 1);
+                $enviar->sub = $sub;
+                Mail::to('100006203.joan23@fje.edu')->send($enviar);
+                return response()->json(array('result'=> 'OK'));
+            }else{
+                return response()->json(array('result'=> 'NOK'));
+            }
+        } catch (\Throwable $e) {
+            return response()->json(array('result'=> 'NOK'.$e->getMessage()));
+        }
+    }   
 }
  

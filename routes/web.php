@@ -266,6 +266,8 @@ Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
 Route::get('/homeempleado', [EmpleadoController::class, 'empleadoDatas']);
 Route::post('filter', [EmpleadoController::class, 'quotesFilter']);
 //Editar citas
-Route::post('editarcitaempleado/{id_vi}', [EmpleadoController::class, 'quotesEdit']);
+Route::post('/editarcitaempleado/{id_vi}', [EmpleadoController::class, 'quotesEdit']);
 //Información de la cita
-Route::post('infocitaempleado/{id_vi}', [EmpleadoController::class, 'quotesInfo']); 
+Route::post('/infocitaempleado/{id_vi}', [EmpleadoController::class, 'quotesInfo']);
+//Actualización datos cita
+Route::post('updatingquote', [EmpleadoController::class, 'updatequoteProc']);
