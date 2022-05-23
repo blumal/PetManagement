@@ -785,7 +785,7 @@ function limite() {
     SI ESE PRODUCTO YA ESTÁ EN LA SESION, SUMAR LA CANTIDAD YA METIDA CON LA QUE SE VA A METER, Y COMPARAR*/
     var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
     var cantidad = $('#input-cantidad').val();
-    console.log(sesion)
+    //console.log(sesion)
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('subcategoria', subcategoria);

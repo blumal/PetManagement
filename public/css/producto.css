@@ -923,8 +923,262 @@ footer {
 
 /* 100% Image Width on Smaller Screens modal IMG*/
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1250px) {
     .modal-content {
         width: 100%;
+    }
+    .caption-descripcion {
+        margin-top: 5vh;
+    }
+    .producto-precio {
+        margin-top: 3vh;
+    }
+    .container_prod {
+        margin-top: 20%;
+    }
+    .producto {
+        margin-top: 20%;
+    }
+    .comentario-valoracion textarea {
+        width: 100%;
+        height: 20vh;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .caption-descripcion {
+        margin-top: 10vh;
+    }
+    .producto-precio {
+        margin-top: 5vh;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .carrito-drop {
+        transform: scale(1.3);
+    }
+    .container_prod {
+        width: 90%;
+        height: 70vh;
+        margin-top: 55%;
+        margin-left: 3%;
+        margin-right: 3%;
+        float: left;
+    }
+    .producto {
+        width: 90%;
+        height: auto;
+        margin-top: 0%;
+        margin-left: 5%;
+        float: left;
+        color: #333333;
+    }
+    .nombre {
+        text-align: center;
+    }
+    .div-dropmenu {
+        position: absolute;
+        top: 17%;
+        right: 35%;
+    }
+    .dropdown .dropdown-menu {
+        padding: 20px;
+        top: 30px !important;
+        width: 300% !important;
+        left: -55px !important;
+        box-shadow: 0px 5px 30px black;
+    }
+    .div-tipo {
+        height: auto;
+    }
+    .carrito-cantidad {
+        margin-top: 15%;
+    }
+    .cantidad {
+        width: 100%;
+        margin-top: 5%;
+    }
+    .input-cantidad {
+        margin-right: 0%;
+        width: 50%;
+    }
+    .cantidad-precio {
+        width: 45%;
+        margin-left: 5%;
+    }
+    .anadir-carrito {
+        width: 100%;
+    }
+    .btn-carrito {
+        transform: scaleY(1.2);
+    }
+    .productos-similares {
+        margin-top: 5vh;
+    }
+    .productos-similares p {
+        text-align: center;
+    }
+    .carousel,
+    .slide {
+        margin-left: 5%;
+        width: 90%;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none;
+    }
+    .producto-similar {
+        float: left;
+        width: 100%;
+        margin-right: 0%;
+        margin-left: 0%;
+        height: 75vh;
+    }
+    .thumbnail {
+        position: relative;
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+    .thumbnail img {
+        width: 100%;
+        height: 100%;
+    }
+    .caption-titulo {
+        height: auto;
+    }
+    .caption-titulo h5 {
+        text-align: center;
+    }
+    .caption-descripcion {
+        height: auto;
+        margin-top: 3%;
+    }
+    .caption-descripcion p {
+        text-align: left;
+        margin-bottom: 0%;
+    }
+    .producto-precio {
+        margin-top: 0%;
+    }
+    .producto-precio p {
+        font-size: 5vh;
+    }
+    .opiniones {
+        width: 100%;
+        height: auto;
+        font-size: 3vh;
+        font-weight: bold;
+        margin-left: 0%;
+        margin-top: 3%;
+        text-align: center;
+    }
+    .nose-p {
+        text-align: center;
+        margin-left: 2%;
+        margin-right: 2%;
+        float: left;
+    }
+    .ml-2 {
+        display: none;
+    }
+    .div-nose {
+        margin-bottom: 3%;
+    }
+    .div-valoracion {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+    .div-valoracion .mt-4 {
+        margin-left: 2% !important;
+        margin-right: 2% !important;
+    }
+    .div-valoracion .mt-2 {
+        margin-left: 2% !important;
+        margin-right: 2% !important;
+    }
+    .div-opiniones {
+        width: 100%;
+        height: auto;
+        margin-left: 0%;
+    }
+    .opinion-nombre {
+        text-align: center;
+        width: 100%;
+    }
+    .opinion-texto {
+        width: 100%;
+    }
+    .opinion-texto p {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .btn-valorar {
+        transform: scale(1.6);
+    }
+    .comentario-valoracion textarea {
+        width: 100%;
+        height: 20vh;
+    }
+    .modal-content3 {
+        top: 15%;
+        left: 5%;
+        width: 90%;
+        margin: 0%;
+    }
+    .close {
+        position: absolute;
+        top: 10vh;
+        right: 5px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .modal-content {
+        top: 5%;
+        margin: 0%;
+        display: block;
+        width: 100%;
+        height: 75%;
+        max-width: 700px;
+    }
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        margin-top: 5vh;
+    }
+    .modal-content2 {
+        top: 20%;
+        left: 5%;
+        width: 90%;
+        margin: 0%;
+        height: auto;
+    }
+    .div-modal i {
+        transform: scale(1.5) !important;
+    }
+    .div-modal p {
+        height: 15vh;
+    }
+    .div-seguir {
+        width: 100%;
+        margin-top: 4vh;
+        margin-bottom: 2vh;
+        margin-left: 1%;
+    }
+    .div-pagar {
+        width: 100%;
+        margin-top: 0vh;
+        margin-bottom: vh;
+    }
+    .btn-pagar {
+        height: 6vh;
     }
 }

@@ -568,8 +568,9 @@ function cogerSesion() {
             var respuesta = JSON.parse(this.responseText);
             if (respuesta.length == 0) {
                 var div = document.getElementById('div-boton-valorar');
-                var html = "<p style='margin-top: 2%;'>Necesitas <a href='../carrito' style='color: #1f2cc4;'>iniciar sesión</a> para poder valorar.</p>";
-                div.innerHTML += html;
+                var html = "<button type='button' class='btn btn-primary btn-sm btn-valorar' onclick='cogerSesion()'>Valorar este producto</button>"
+                html += "<p style='margin-top: 2%;'>Necesitas <a href='../carrito' style='color: #1f2cc4;'>iniciar sesión</a> para poder valorar.</p>";
+                div.innerHTML = html;
             } else {
                 modalValorar(respuesta)
             }
