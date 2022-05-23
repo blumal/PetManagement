@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/mapas-establecimientos.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/style-home.css')}}"> --}}
     <link rel="icon" href="./img/imagenesWeb/logo.png">
 </head>
 <body>
@@ -33,17 +33,15 @@
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
                 @if (Session::get('cliente_session'))
-                    <form class="nav_item">
-                        <a href="{{url("modificarPerfil")}}">Mi Perfil</a>
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
                         <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                    </form>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else
                     <a href="{{url("login")}}" class="login_item">Login</a>
                 @endif
             </div>
         </div>
-        <script src="./js/home.js"></script>
+        <script src="./js/nav_mapas.js"></script>
     </nav>
     <div id="map">
         
