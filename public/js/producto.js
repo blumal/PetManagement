@@ -279,7 +279,7 @@ function opiniones() {
             var divProductos = document.getElementsByClassName("opiniones")[0];
             var media = 0;
             divProductos.innerHTML = "";
-            var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
+            var html = "<div class='opiniones-titulo' style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
             if (respuesta.length > 0) {
                 console.log(respuesta.length)
                 html += "<div class='div-opiniones mb-5'>";
