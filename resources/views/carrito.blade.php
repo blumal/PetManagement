@@ -83,15 +83,17 @@
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
                 <div class="div-dropmenu">
                     <div class="dropdown">
-                        <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+                        <td colspan="2">
                             <button class= "btn btn-volver pagar" id="logout"  data-toggle="dropdown" type="button">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</span>
                             </button>
                         <div class="dropdown-menu">
                             <div class="rowpay2">
-                                <a href="{{url('stripe')}}">
-                                    <img src="../public/img/tarjeta.png" alt="hola">
-                                </a>
+                                <form action="{{url('stripe')}}">
+                                    <input type="hidden" name="preciototal" value="{{$total}}">
+                                    <input type="submit" id="envizr" name='btn' value="">
+                                    {{-- <img src="../public/img/tarjeta.png" alt="hola"> --}}
+                                </form>
                             </div>
                             <div class="rowpay2">
                                 <a href="{{url('enviarDinero/'.$total)}}" method="GET" name="Pagar" value="Pagar">
@@ -102,7 +104,7 @@
 
                     </div>
                 </div>
-            </form></td>
+            </td>
         </tr>
         </tfoot>
     </table>

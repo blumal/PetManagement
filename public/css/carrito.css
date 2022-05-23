@@ -219,3 +219,12 @@ footer {
 .dropdown-menu {
     width: 25%;
 }
+
+#envizr {
+    background-image: url(../img/tarjeta.png);
+    background-size: cover;
+    background-position: center;
+    width: 75%;
+    float: left;
+    height: 75px;
+}

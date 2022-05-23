@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laravel 8 - Stripe Payment Gateway Integration Tutorial Example - Tutsmake.com</title>
+    <title>PetManagment - Pago con tarjeta</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style type="text/css">
@@ -29,13 +29,13 @@
 
 <body>
     <div class="container">
-        <h1>Test Stripe <br/></h1>
+        <h1>Pet Management <br/></h1>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default credit-card-box">
                     <div class="panel-heading display-table">
                         <div class="row display-tr">
-                            <h3 class="panel-title display-td">Payment Details</h3>
+                            <h3 class="panel-title display-td">Detalles del pago</h3>
                             <div class="display-td">
                             </div>
                         </div>
@@ -51,23 +51,23 @@
                             @csrf
                             <div class='form-row row'>
                                 <div class='col-xs-12 form-group required'>
-                                    <label class='control-label'>Name on Card</label> <input class='form-control' size='4' type='text'>
+                                    <label class='control-label'>Titular de la tarjeta</label> <input class='form-control' size='4' type='text'>
                                 </div>
                             </div>
                             <div class='form-row row'>
                                 <div class='col-xs-12 form-group card required'>
-                                    <label class='control-label'>Card Number</label> <input autocomplete='off' class='form-control card-number' size='20' type='text'>
+                                    <label class='control-label'>Número de tarjeta</label> <input autocomplete='off' class='form-control card-number' size='20' type='text'>
                                 </div>
                             </div>
                             <div class='form-row row'>
                                 <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                    <label class='control-label'>CVC</label> <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+                                    <label class='control-label'>CVV</label> <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
                                 </div>
                                 <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                    <label class='control-label'>Expiration Month</label> <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+                                    <label class='control-label'>Mes de caducidad</label> <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
                                 </div>
                                 <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                    <label class='control-label'>Expiration Year</label> <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+                                    <label class='control-label'>Año de caducidad</label> <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
                                 </div>
                             </div>
                             <div class='form-row row'>
@@ -76,9 +76,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" id="envizr" name="preciototal" value="{{$preciototal}}">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pagar Ahora</button>
                                 </div>
                             </div>
                         </form>
@@ -118,7 +119,8 @@
                     number: $('.card-number').val(),
                     cvc: $('.card-cvc').val(),
                     exp_month: $('.card-expiry-month').val(),
-                    exp_year: $('.card-expiry-year').val()
+                    exp_year: $('.card-expiry-year').val(),
+                    // preciototal: $('#envizr').val()
                 }, stripeResponseHandler);
             }
         });
@@ -131,10 +133,12 @@
                     .text(response.error.message);
             } else {
                 /* token contains id, last4, and card type */
+                // return console.log(response);
                 var token = response['id'];
+                var preciototal = $('#envizr').val()
                 $form.find('input[type=text]').empty();
                 $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                // $form.append("<input type='hidden' name='PrecioTotal' value='" + PrecioTotal + "'/>");
+                $form.append("<input type='hidden' name='preciototal2' value='" + preciototal + "'/>");
                 $form.get(0).submit();
             }
         }

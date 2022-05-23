@@ -427,19 +427,22 @@ class ProductoController extends Controller
     }
 
     /*Tarjeta de credito*/
-    public function stripe()
+    public function stripe(Request $request)
     {
-        return view('stripe');
+        $preciototal=$request->input('preciototal');
+        // return dd($preciototal);
+        return view('stripe', compact('preciototal'));
     }
 
     public function stripePost(Request $request)
     {
+        $amo = $request->preciototal*100;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-                "amount" => 100,
+                "amount" => $amo,
                 "currency" => "eur",
                 "source" => $request->stripeToken,
-                "description" => "Test payment."
+                "description" => "PetManagement"
         ]);
    
         Session::flash('success', 'Payment successful!');
