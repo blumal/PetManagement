@@ -18,9 +18,12 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <script src="lib/sweet-alert.min.js"></script> --}}
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/geoguesser-game.css')}}">
+    <link rel="stylesheet" href="{{asset('css/juegos/petguesser/geoguesser-game.css')}}">
 </head>
 <body>
+<<<<<<< HEAD
+    @include('comun.navegacion')
+=======
     <header id="Header">
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
@@ -45,6 +48,7 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
+>>>>>>> Pre-Alpha
     {{-- <input type="hidden" id="valor_cons_geo" value="1"> --}}
     <div id="map">
         <div class="img_geo" id="img_geo">

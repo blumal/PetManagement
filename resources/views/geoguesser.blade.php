@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{{asset('css/geoguesser.css')}}">
 </head>
 <body>
+<<<<<<< HEAD
+    @include('comun.navegacion')
+=======
     <header id="Header">
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
@@ -37,6 +40,7 @@
         </ul>
         <script src="./js/home.js"></script>
     </header>
+>>>>>>> Pre-Alpha
     <div id="img_geo" class="img_geo">
         <h1>ANIMAL GEOGUESSER</h1>
     </div>

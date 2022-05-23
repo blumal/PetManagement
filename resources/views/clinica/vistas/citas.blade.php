@@ -28,6 +28,9 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
+<<<<<<< HEAD
+    @include('comun.navegacion')
+=======
     <nav id="nav">
         <div class="nav_container">
             <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
@@ -55,6 +58,7 @@
         </div>
         <script src="./js/home.js"></script>
     </nav>
+>>>>>>> Pre-Alpha
     <div class="row-c flex">
         <div class="slider">
            <ul>
