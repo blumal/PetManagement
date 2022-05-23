@@ -138,7 +138,7 @@ class UsuarioController extends Controller
                     return redirect('/ruleta');
                 }else{
                     //No establecemos sesión y lo devolvemos a login
-                    return redirect('/login');
+                    return Redirect::back()->withErrors(['Los datos introducidos no son correctos', 'Error password']);
                 }
             } catch (\Throwable $e) {
                 return $e->getMessage();
@@ -169,6 +169,7 @@ class UsuarioController extends Controller
                 $request->session()->put('trabajador_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('nombre_session', $usuario[0]->nombre_us);
                 return redirect('/');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
@@ -178,6 +179,7 @@ class UsuarioController extends Controller
                 $request->session()->put('admin_session', $request->email_us);
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('nombre_session', $usuario[0]->nombre_us);
                 return redirect('/cpanel');
             }else if($userId_compr[0]->rol_ro=='cliente'){
                 //Establecemos sesión
@@ -191,13 +193,15 @@ class UsuarioController extends Controller
                 $an_asociado = DB::table('tbl_pacienteanimal_clinica')->where('propietario_fk', '=', $id_usuario)->get();
                 $request->session()->put('animales_asociados', $an_asociado);
                 $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('nombre_session', $usuario[0]->nombre_us);
                 return redirect('/');
             }else{
                 //No establecemos sesión y lo devolvemos a login
-                return redirect('/login');
+                return "polla";
+                return Redirect::back()->withErrors(['Los datos introducidos no son correctos', 'Error password']);
             }
         } catch (\Throwable $e) {
-            return $e->getMessage();
+            return Redirect::back()->withErrors(['Los datos introducidos no son correctos', 'Error password']);
         }
     }
     }

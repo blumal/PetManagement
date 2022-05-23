@@ -7,19 +7,13 @@
     <link rel="stylesheet" href="./css/facturas/directorio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans%3A400%2C400italic%2C600%2C700%2C700italic%7COswald%3A400%2C300%7CVollkorn%3A400%2C400italic'>
-<link rel="stylesheet" href="./css/juegos/directorio.css">    
+<link rel="stylesheet" href="./css/juegos/directorio.css">  
+<link rel="stylesheet" href="{{asset('css/style-home.css')}}">  
 <title>Directorio Juegos</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    <header id="Header">
-        <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
-        </div>
-        <div class="logout">
-            <img onclick="location.href = '/logout'" class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px">
-        </div>
-    </header>
+  @include('comun.navegacion')
     
     <main class="main-content">
         <section class="slideshow">

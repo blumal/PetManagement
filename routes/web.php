@@ -158,7 +158,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
-Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
+Route::get('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 
 Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 

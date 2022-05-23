@@ -125,14 +125,14 @@ header {
 
 @media (max-width: 800px) {
     .column-3 {
-        width: 40%;
+        width: 44%;
         margin-left: 3.5%;
     }
 }
 
 @media (max-width: 400px) {
     .column-3 {
-        width: 80%;
+        width: 95%;
         margin-left: 3.5%;
     }
 }
