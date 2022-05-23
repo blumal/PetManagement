@@ -47,23 +47,72 @@ CREATE TABLE `tbl_articulo_tienda` (
   `id_foto_fk` int(11) DEFAULT NULL,
   `id_marca_fk` int(11) DEFAULT NULL,
   `id_tipo_articulo_fk` int(11) DEFAULT NULL,
-  `descripcion_art` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `foto_art` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
+  `descripcion_art` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `foto_art` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tipo_categoria_art` enum('Peso','Capacidad','Medida','Cantidad') COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_articulo_tienda`
 --
 
-INSERT INTO `tbl_articulo_tienda` (`id_art`, `nombre_art`, `precio_art`, `codigobarras_art`, `id_foto_fk`, `id_marca_fk`, `id_tipo_articulo_fk`, `descripcion_art`, `foto_art`) VALUES
-(1, 'Agua', '0.99', '45457363', NULL, 11, 1, 'de', NULL),
-(2, 'Cepillo Puas', '9.12', '63629336', NULL, 1, 2, 'de', NULL),
-(3, 'Pienso Perro 500g', '2.99', '26422068', NULL, 1, 1, 'de', NULL),
-(4, 'Coca cola perros', '1.99', '40215337', NULL, 2, 1, 'de', NULL),
-(5, 'Rascador con poste de sisals color Marrón y Beige', '48.99', NULL, NULL, 22, 11, 'de', NULL),
-(6, 'Patasbox tarta de cumpleaños de peluche para perros', '10.90', NULL, NULL, 4, 10, 'de', NULL),
-(7, 'Comida de escamas para peces tropicales', '1.90', NULL, NULL, 19, 8, 'de', NULL),
-(8, 'Kit terrario gecko cresta', '253.10', NULL, NULL, 10, 16, 'de', NULL);
+INSERT INTO `tbl_articulo_tienda` (`id_art`, `nombre_art`, `precio_art`, `codigobarras_art`, `id_foto_fk`, `id_marca_fk`, `id_tipo_articulo_fk`, `descripcion_art`, `foto_art`, `tipo_categoria_art`) VALUES
+(1, 'Agua', '0.99', '45457363', NULL, 11, 1, 'de', 'foto1.jpg', 'Capacidad'),
+(2, 'Cepillo Puas', '9.12', '63629336', NULL, 1, 2, 'de', 'foto4.jpg', 'Medida'),
+(3, 'Pienso Perro 500g', '2.99', '26422068', NULL, 1, 1, 'de', 'foto3.jpg', 'Peso'),
+(4, 'Coca cola perros', '1.99', '40215337', NULL, 2, 1, 'de', 'foto2.jpg', 'Capacidad'),
+(5, 'Rascador con poste de sisals color Marrón y Beige', '48.99', NULL, NULL, 22, 11, 'de', 'foto5.jpg', 'Cantidad'),
+(6, 'Patasbox tarta de cumpleaños de peluche para perros', '10.90', NULL, NULL, 4, 10, 'de', 'foto6.jpg', 'Peso'),
+(7, 'Comida de escamas para peces tropicales', '1.90', NULL, NULL, 19, 8, 'de', 'foto7.jpg', 'Medida'),
+(8, 'Kit terrario gecko cresta', '253.10', NULL, NULL, 10, 16, 'de', 'foto8.jpg', 'Capacidad'),
+(9, 'Pienso Criadores para perros adultos Cordero y arroz', '59.99', NULL, NULL, 6, 1, 'El pienso natural super premium Criadores Adulto con cordero y arroz está formulado especialmente para perros adultos ( 10 kg) con problemas digestivos o para animales con tendencia a desarrollar alergias alimentarias.', 'foto1.jpg', 'Peso'),
+(10, 'Collar regulable CaponeTheDog para perros estampado Donuts', '13.95', NULL, NULL, 1, 10, '¿Moda y diversión de la mano? Bueno más bien de la pata. Lleva a tu mascota con las últimas tendencias con este fantástico collar con estampado frutal, porque a tu mascota a veces le gusta hacer el mono.', 'foto2.jpg', 'Medida'),
+(11, 'Royal Canin Maxi Adult', '17.99', NULL, NULL, 7, 1, 'Royal Canin Maxi Adult es un alimento para perros de 26 a 44 kg, desde los 15 meses a los 5 años; que ayudará a tu mascota a mantener el peso ideal y un óptimo estado de salud, cubriendo las necesidades concretas de tu perro grande.', 'foto3.jpg', 'Peso'),
+(12, 'Arena aglomerante para gatos olor a talco perfumado', '8.95', NULL, NULL, 14, 18, 'Si estás pensando en cuál es la mejor arena para tu gato, TK-Pet te da la opción de siempre, pero mejorada. Su nueva gama de arenas para felinos tiene una excelente calidad libre de polvo. ', 'foto4.jpg', 'Peso'),
+(13, 'Rascador con poste de sisals color Marrón y Beige', '48.99', NULL, NULL, 22, 11, 'Con este rascador para gatos de alta calidad sus gatos podrán rascarse, posarse, esconderse, trepar y relajarse cuando quieran.Gracias a lo cual, estarán mucho más relajados y tranquilos, sin estrés ni perturbaciones siendo así más felices. Este rascador es un producto que se adapta a cualquier decoración.', 'foto5.jpg', 'Medida'),
+(14, 'Patasbox tarta de cumpleaños de peluche para perros', '10.90', NULL, NULL, 4, 10, 'La tarta de peluche de patasbox se convertirá en el favorito de tu perro y no podía faltar en tu colección de juguetes. Además es un juguete 2 en 1 para que tu perro tenga el doble de diversión no sólo en su cumpleaños sino durante todo el año.', 'foto6.jpg', 'Medida'),
+(15, 'Comida de escamas para peces tropicales', '1.90', NULL, NULL, 19, 8, 'La alimentación es muy importante para tus peces ya que gracias a ella tus peces pueden vivir cómodamente sin problemas de salud. Una alimentación específica es muy importante ya que influirá en factores como la actividad diaria que puedan tener tus peces, su vitalidad, sus colores.', 'foto7.jpg', 'Capacidad'),
+(16, 'Kit terrario gecko cresta', '253.10', NULL, NULL, 10, 16, 'Todos los componentes del Kit Hábitat de Gecko Crestado se basan en conocimientos adquiridos durante un expedición al gecko crestado en combinación con información sobre la cría en cautividad de conocidos criadores de gecko crestado.', 'foto8.jpg', 'Medida'),
+(17, 'Comida húmeda para perros Breed Up Senior de pavo con batata', '2.49', NULL, NULL, 3, 1, 'La comida húmeda para perros Breed Up Senior de pavo con batata es un alimento elaborado para aportar a tu mascota los nutrientes necesarios durante su edad madura.', 'foto9.jpg', 'Peso'),
+(18, 'Pienso súperpremium para gatos Breed Up Adult Chicken con pollo', '15.99', NULL, NULL, 3, 6, 'Los gatos adultos necesitan un alimento completo que les aporte a diario toda la energía que necesitan para soportar sus largas jornadas de paseos y cacerías así como que los proteja de los problemas relacionados con la edad.', 'foto10.jpg', 'Peso'),
+(19, 'Bebedero automático de volumen constante de aluminio', '39.99', NULL, NULL, 12, 9, 'Este bebedero es ideal para perros y gatos que pasan muchas horas solos en la casa o para un hogar con varios animales. Mantiene un nivel de agua constante, renovándola continuamente gracias a la válvula de nivel para alta presión.', 'foto11.jpg', 'Medida'),
+(20, 'Comida húmeda Royal Canin Mini Adult', '4.09', NULL, NULL, 7, 1, 'La comida húmeda Royal Canin Mini Adult proporciona a tu perro todos los nutrientes que necesita para que goce de una salud óptima. Con una cantidad de energía adaptada a su edad y a su tamaño para que sus requerimientos energéticos estén cubiertos y tenga una gran vitalidad. La receta está formulada para perros adultos de raza pequeña, hasta 10 kg de peso.', 'foto12.jpg', 'Peso'),
+(21, 'Royal Canin Sensitivity Control Húmedo Pollo', '3.29', NULL, NULL, 7, 1, 'Royal Canin Sensitivity Control es un alimento húmedo dietético medicado con bajo contenido de grasa, indicado para los perros con regímenes de eliminación, alergias alimentarias que tengan efectos dermatológicos o digestivos, intolerancia alimentaria y enfermedad inflamatoria crónica del intestino. Este alimento está formulado específicamente para reducir la intolerancia a ingredientes y nutrientes.', 'foto13.jpg', 'Peso');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_categoria_articulo`
+--
+
+CREATE TABLE `tbl_categoria_articulo` (
+  `id_cat` int(11) NOT NULL,
+  `texto_cat` varchar(50) DEFAULT NULL,
+  `precio_cat` decimal(6,2) DEFAULT NULL,
+  `articulo_fk` int(11) DEFAULT NULL,
+  `cantidad` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_categoria_articulo`
+--
+
+INSERT INTO `tbl_categoria_articulo` (`id_cat`, `texto_cat`, `precio_cat`, `articulo_fk`, `cantidad`) VALUES
+(1, '3 kg', '59.99', 1, 1000),
+(2, '28-44 cm x 2,5 cm', '13.95', 2, 1000),
+(3, '4 kg', '17.99', 3, 100),
+(4, '10 kg', '8.95', 4, 1000),
+(5, '44 cm x 40 cm x 50 cm', '48.99', 5, 1000),
+(6, '17 cm x 8 cm x 7 cm', '10.90', 6, 1000),
+(7, '100 mL', '1.90', 7, 1000),
+(8, '30 cm x 30 cm x 45 cm', '253.10', 8, 1000),
+(9, '400 g', '2.49', 9, 1000),
+(10, '2.5 kg', '15.90', 10, 1000),
+(11, '23 x 22 cm', '39.99', 11, 1000),
+(12, '15 kg', '52.99', 3, 50),
+(13, '8 kg', '30.99', 3, 80),
+(14, '3 x 85 g', '4.09', 12, 1000),
+(15, '420 g', '3.29', 13, 1000);
 
 -- --------------------------------------------------------
 
@@ -262,7 +311,9 @@ INSERT INTO `tbl_detallefactura_tienda` (`id_dft`, `id_articulo_fk`, `cantidad_d
 (127, 4, 1, 101),
 (128, 1, 1, 102),
 (129, 4, 6, 103),
-(130, 8, 8, 104);
+(130, 8, 8, 104),
+(131, 5, 1, 105),
+(132, 2, 1, 106);
 
 -- --------------------------------------------------------
 
@@ -525,7 +576,9 @@ INSERT INTO `tbl_factura_tienda` (`id_ft`, `fecha_ft`, `hora_ft`, `total_ft`, `i
 (101, '2022-05-19', '17:17:11', '1.99', 1, 5),
 (102, '2022-05-19', '17:17:34', '0.99', 1, 5),
 (103, '2022-05-19', '17:17:57', '11.94', 1, 5),
-(104, '2022-05-19', '17:18:48', '2024.80', 1, 5);
+(104, '2022-05-19', '17:18:48', '2024.80', 1, 5),
+(105, '2022-05-23', '15:49:27', '48.99', 1, 5),
+(106, '2022-05-23', '16:20:15', '13.95', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -544,7 +597,10 @@ CREATE TABLE `tbl_foto` (
 --
 
 INSERT INTO `tbl_foto` (`id_f`, `foto_f`, `articulo_tienda_fk`) VALUES
-(1, 'foto6.jpg', 6);
+(1, 'royal1.jpg', 3),
+(2, 'royal2.jpg', 3),
+(3, 'royal3.jpg', 3),
+(4, 'royal4.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -612,6 +668,35 @@ INSERT INTO `tbl_marca` (`id_ma`, `marca_ma`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tbl_opinion_articulo`
+--
+
+CREATE TABLE `tbl_opinion_articulo` (
+  `id_op` int(11) NOT NULL,
+  `texto_op` varchar(2000) DEFAULT NULL,
+  `valoracion_op` int(1) DEFAULT NULL,
+  `usuario_fk` int(11) DEFAULT NULL,
+  `articulo_fk` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_opinion_articulo`
+--
+
+INSERT INTO `tbl_opinion_articulo` (`id_op`, `texto_op`, `valoracion_op`, `usuario_fk`, `articulo_fk`) VALUES
+(1, ' Le encanta este pienso y hace super bien sus cacas, el pelo le brilla y el perro está fuerte y con mucha energía. Lo recomiendo para los pastores alemanes, ya que lleva mucha proteína y condrosan para las articulaciones.', 3, 1, 3),
+(2, 'Fenomenal, muy buen precio-calidad y a mis 3 perros grandes les encanta. Mi perro (que no suele comer por las mañanas porque no quiere levantarse del suelo), se lo come hasta tumbado.', 4, 1, 3),
+(3, 'Mi veterinario me lo recomendó, lo come mi Golden retriver de 2 años y medio y le sienta genial, le brilla el pelo y esta fuerte como un toro!', 5, 2, 3),
+(22, 'Composición ok, precio muy bien', 5, 2, 1),
+(23, 'tu puta madre', 5, 1, 3),
+(24, 'Jose', 3, 2, 10),
+(25, 'Ahora peor', 2, 2, 10),
+(26, 'Bien', 0, 2, 2),
+(27, 'Muy bien', 5, 2, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tbl_pacienteanimal_clinica`
 --
 
@@ -663,7 +748,22 @@ CREATE TABLE `tbl_producto_clinica` (
 INSERT INTO `tbl_producto_clinica` (`id_prod`, `producto_pro`, `precio_pro`, `codigobarras_pro`, `id_tipo_producto_fk`) VALUES
 (1, 'Visita clínica', '4.99', '0000000001', 5),
 (2, 'Parche algodon', '2.99', '28943734987', 4),
-(3, 'Inyeccion Anestesia 50mg', '29.99', '12832123465', 3);
+(3, 'Inyeccion Anestesia 50mg', '29.99', '12832123465', 3),
+(4, 'Anestesia 50mg', '6.99', NULL, 3),
+(5, 'Placa titanio craneo moldeable', '599.00', NULL, 5),
+(6, 'Cono antimordida', '39.00', NULL, 5),
+(7, 'Puntos sutura', '2.99', NULL, 4),
+(8, 'Sedante animal grande', '19.99', NULL, 3),
+(9, 'Antibioticos animales pequeños/medianos', '4.99', NULL, 3),
+(10, 'Radiografia', '29.99', NULL, 5),
+(11, 'Rasuramiento de pelo', '4.99', NULL, 5),
+(12, 'Esterilización', '49.99', NULL, 5),
+(13, 'Metro esparadrapo', '1.99', NULL, 4),
+(14, 'Chequeo médico general mascota', '49.99', NULL, 5),
+(15, 'Chequeo médico general animal grande', '89.99', NULL, 5),
+(16, 'Anti-parasitos 3 dosis', '19.99', NULL, 5),
+(17, 'Combinado vitaminas', '5.99', NULL, 5),
+(18, 'Limpiador oidos', '9.99', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -892,7 +992,7 @@ INSERT INTO `tbl_usuario` (`id_us`, `nombre_us`, `apellido1_us`, `apellido2_us`,
 (2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '123', 1, NULL, NULL, NULL),
 (3, 'Eric', 'Martín', NULL, '1223124', 'traba@jador.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 3, 3, 3, NULL),
 (4, 'Marina', 'Martinez', 'Lopez', '1234566S', 'Marina@mail.com', '123', 2, 3, 3, NULL),
-(5, 'Gerard5', 'Gomez', 'Monterroso', '1234566S', 'gomezmonterroso14@gmail.com', 'b9f3daea9961ce7544e5680220a1fac28fc673d4c53cf5dd078f341889b3074fc377ce63043023bdd168ed3eba7075d70011b9e88b8f92cce37afd1f1b3b9108', 2, 1, 2, NULL),
+(5, 'Gerard', 'Gomez', 'Monterroso', '1234566S', 'gomezmonterroso14@gmail.com', 'b9f3daea9961ce7544e5680220a1fac28fc673d4c53cf5dd078f341889b3074fc377ce63043023bdd168ed3eba7075d70011b9e88b8f92cce37afd1f1b3b9108', 2, 1, 2, NULL),
 (8, 'Gerard', 'Gomez', NULL, '21782389D', 'gomezmonterroso141@gmail.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 2, 12, 12, NULL);
 
 -- --------------------------------------------------------
@@ -985,6 +1085,13 @@ ALTER TABLE `tbl_articulo_tienda`
   ADD KEY `fk_articulo_foto` (`id_foto_fk`);
 
 --
+-- Indices de la tabla `tbl_categoria_articulo`
+--
+ALTER TABLE `tbl_categoria_articulo`
+  ADD PRIMARY KEY (`id_cat`),
+  ADD KEY `articulo_categoria_fk` (`articulo_fk`);
+
+--
 -- Indices de la tabla `tbl_clientes_promo`
 --
 ALTER TABLE `tbl_clientes_promo`
@@ -1062,6 +1169,14 @@ ALTER TABLE `tbl_geoguesser`
 --
 ALTER TABLE `tbl_marca`
   ADD PRIMARY KEY (`id_ma`);
+
+--
+-- Indices de la tabla `tbl_opinion_articulo`
+--
+ALTER TABLE `tbl_opinion_articulo`
+  ADD PRIMARY KEY (`id_op`),
+  ADD KEY `articulo_opinion_fk` (`articulo_fk`),
+  ADD KEY `usuario_opinion_fk` (`usuario_fk`);
 
 --
 -- Indices de la tabla `tbl_pacienteanimal_clinica`
@@ -1171,7 +1286,13 @@ ALTER TABLE `tbl_animales_perdidos`
 -- AUTO_INCREMENT de la tabla `tbl_articulo_tienda`
 --
 ALTER TABLE `tbl_articulo_tienda`
-  MODIFY `id_art` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_art` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_categoria_articulo`
+--
+ALTER TABLE `tbl_categoria_articulo`
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_clientes_promo`
@@ -1189,7 +1310,7 @@ ALTER TABLE `tbl_detallefactura_clinica`
 -- AUTO_INCREMENT de la tabla `tbl_detallefactura_tienda`
 --
 ALTER TABLE `tbl_detallefactura_tienda`
-  MODIFY `id_dft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id_dft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_direccion`
@@ -1219,13 +1340,13 @@ ALTER TABLE `tbl_factura_clinica`
 -- AUTO_INCREMENT de la tabla `tbl_factura_tienda`
 --
 ALTER TABLE `tbl_factura_tienda`
-  MODIFY `id_ft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id_ft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_foto`
 --
 ALTER TABLE `tbl_foto`
-  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_geoguesser`
@@ -1240,6 +1361,12 @@ ALTER TABLE `tbl_marca`
   MODIFY `id_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT de la tabla `tbl_opinion_articulo`
+--
+ALTER TABLE `tbl_opinion_articulo`
+  MODIFY `id_op` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- AUTO_INCREMENT de la tabla `tbl_pacienteanimal_clinica`
 --
 ALTER TABLE `tbl_pacienteanimal_clinica`
@@ -1249,7 +1376,7 @@ ALTER TABLE `tbl_pacienteanimal_clinica`
 -- AUTO_INCREMENT de la tabla `tbl_producto_clinica`
 --
 ALTER TABLE `tbl_producto_clinica`
-  MODIFY `id_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_promocion`
@@ -1299,126 +1426,4 @@ ALTER TABLE `tbl_tipo_articulo`
 ALTER TABLE `tbl_tipo_sociedad`
   MODIFY `id_ts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT de la tabla `tbl_usuario`
---
-ALTER TABLE `tbl_usuario`
-  MODIFY `id_us` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
--- AUTO_INCREMENT de la tabla `tbl_usuarios_promos_activas`
---
-ALTER TABLE `tbl_usuarios_promos_activas`
-  MODIFY `id_pa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `tbl_visita`
---
-ALTER TABLE `tbl_visita`
-  MODIFY `id_vi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `tbl_animales_perdidos`
---
-ALTER TABLE `tbl_animales_perdidos`
-  ADD CONSTRAINT `fk_animales_perdidos_estado` FOREIGN KEY (`id_estado_fk`) REFERENCES `tbl_estado` (`id_est`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_animales_perdidos_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_articulo_tienda`
---
-ALTER TABLE `tbl_articulo_tienda`
-  ADD CONSTRAINT `fk_articulo_foto` FOREIGN KEY (`id_foto_fk`) REFERENCES `tbl_foto` (`id_f`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_articulo_marca` FOREIGN KEY (`id_marca_fk`) REFERENCES `tbl_marca` (`id_ma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_articulo_tipo_articulo` FOREIGN KEY (`id_tipo_articulo_fk`) REFERENCES `tbl_tipo_articulo` (`id_ta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_detallefactura_clinica`
---
-ALTER TABLE `tbl_detallefactura_clinica`
-  ADD CONSTRAINT `fk_detallefactura_clinica_factura_clinica` FOREIGN KEY (`id_factura_fk`) REFERENCES `tbl_factura_clinica` (`id_fc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detallefactura_clinica_producto` FOREIGN KEY (`id_producto_fk`) REFERENCES `tbl_producto_clinica` (`id_prod`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_detallefactura_tienda`
---
-ALTER TABLE `tbl_detallefactura_tienda`
-  ADD CONSTRAINT `fk_detallefactura_tienda_articulo` FOREIGN KEY (`id_articulo_fk`) REFERENCES `tbl_articulo_tienda` (`id_art`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detallefactura_tienda_factura_tienda` FOREIGN KEY (`id_factura_tienda_fk`) REFERENCES `tbl_factura_tienda` (`id_ft`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_direccion_geoguesser`
---
-ALTER TABLE `tbl_direccion_geoguesser`
-  ADD CONSTRAINT `tbl_direccion_geoguesser_ibfk_1` FOREIGN KEY (`fk_id_geo`) REFERENCES `tbl_geoguesser` (`id_geo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tbl_factura_clinica`
---
-ALTER TABLE `tbl_factura_clinica`
-  ADD CONSTRAINT `fk_factura_promocion` FOREIGN KEY (`id_promocion_fk`) REFERENCES `tbl_promocion` (`id_pro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_visita` FOREIGN KEY (`id_visita_fk`) REFERENCES `tbl_visita` (`id_vi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_veterinario` FOREIGN KEY (`id_veterinario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_factura_tienda`
---
-ALTER TABLE `tbl_factura_tienda`
-  ADD CONSTRAINT `fk_facturatienda_promocion` FOREIGN KEY (`id_promocion_fk`) REFERENCES `tbl_promocion` (`id_pro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_facturatienda_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_foto`
---
-ALTER TABLE `tbl_foto`
-  ADD CONSTRAINT `artuclo_tienda_fk` FOREIGN KEY (`articulo_tienda_fk`) REFERENCES `tbl_articulo_tienda` (`id_art`);
-
---
--- Filtros para la tabla `tbl_pacienteanimal_clinica`
---
-ALTER TABLE `tbl_pacienteanimal_clinica`
-  ADD CONSTRAINT `fk_usuario_pacienteanimal` FOREIGN KEY (`propietario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_producto_clinica`
---
-ALTER TABLE `tbl_producto_clinica`
-  ADD CONSTRAINT `fk_producto_clinica_tipo_articulo` FOREIGN KEY (`id_tipo_producto_fk`) REFERENCES `tbl_tipo_articulo` (`id_ta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_sociedad`
---
-ALTER TABLE `tbl_sociedad`
-  ADD CONSTRAINT `fk_sociedad_direccion` FOREIGN KEY (`id_direccion_fk`) REFERENCES `tbl_direccion` (`id_di`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sociedad_telefono` FOREIGN KEY (`id_telefono_fk`) REFERENCES `tbl_telefono` (`id_tel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sociedad_tipo_sociedad` FOREIGN KEY (`id_tipo_sociedad_fk`) REFERENCES `tbl_tipo_sociedad` (`id_ts`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sociedad_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_stock`
---
-ALTER TABLE `tbl_stock`
-  ADD CONSTRAINT `fk_stock_articulo` FOREIGN KEY (`id_articulo_fk`) REFERENCES `tbl_articulo_tienda` (`id_art`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_usuario`
---
-ALTER TABLE `tbl_usuario`
-  ADD CONSTRAINT `fk_usuario_direccion1` FOREIGN KEY (`id_direccion1_fk`) REFERENCES `tbl_direccion` (`id_di`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_direccion2` FOREIGN KEY (`id_direccion2_fk`) REFERENCES `tbl_direccion` (`id_di`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_rol` FOREIGN KEY (`id_rol_fk`) REFERENCES `tbl_rol` (`id_ro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_telefono` FOREIGN KEY (`id_telefono_fk`) REFERENCES `tbl_telefono` (`id_tel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tbl_visita`
---
-ALTER TABLE `tbl_visita`
-  ADD CONSTRAINT `fk_visita_estado` FOREIGN KEY (`id_estado_fk`) REFERENCES `tbl_estado` (`id_est`),
-  ADD CONSTRAINT `fk_visita_pacienteanimal` FOREIGN KEY (`id_pacienteanimal_fk`) REFERENCES `tbl_pacienteanimal_clinica` (`id_pa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_visita_usuario` FOREIGN KEY (`id_usuario_fk`) REFERENCES `tbl_usuario` (`id_us`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;

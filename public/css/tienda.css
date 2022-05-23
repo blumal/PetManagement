@@ -2,12 +2,18 @@
 
 * {
     font-family: 'Montserrat Alternates', sans-serif;
-    margin: 0%;
+    margin: 0;
+    padding: 0;
     color: #333333;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+body {
+    position: absolute;
+    text-decoration: none;
 }
 
 a{
@@ -17,6 +23,7 @@ a{
 /* ---------- NAV BAR ---------- */
 
 #nav {
+    position: fixed;
     width: 100%;
     transition: 0.5s;
     margin-top: 0px;
@@ -53,6 +60,7 @@ a{
     list-style-type: none;
     justify-content: center;
     align-items: center;
+    z-index: 999;
     /* display: grid;
     grid-auto-flow: column;
     gap: 3em; */
@@ -112,13 +120,14 @@ a{
     }
     .nav_container {
         padding-left: 4%;
+        /* z-index: 999; */
     }
     /*Icono*/
     .nav_label {
         /*Mostramos el contenido*/
         display: block;
         cursor: pointer;
-        z-index: 999;
+        z-index: 9999;
     }
     .nav_menu {
         grid-auto-flow: column;
@@ -171,6 +180,7 @@ a{
     a {
         text-decoration: none !important;
         color: white;
+        z-index: 9999;
     }
 }
 
@@ -542,7 +552,7 @@ a{
 
 .div-dropmenu {
     position: absolute;
-    top: 20%;
+    /* top: 20%; */
     right: 8%;
 }
 
