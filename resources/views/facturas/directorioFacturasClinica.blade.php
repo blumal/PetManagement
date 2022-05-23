@@ -19,7 +19,7 @@
 <body>
     <header id="nav">
         <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
+            <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
         </div>
         
         <div class="logout">
@@ -35,7 +35,13 @@
                 <div class="seccion">
                     <form action="FacturaClinica/view" method="post">
                         @csrf
-                        Factura <?php echo $facturas[$i]->fecha_fc?>
+                        Factura {{$facturas[$i]->fecha_fc}}
+                        <br>
+                        Hora -> {{$facturas[$i]->hora_fc}}
+                        <br>
+                        Total -> {{$facturas[$i]->total_fc}}€
+                        <br>
+                        Veterinario -> {{$facturas[$i]->nombre_us}} {{$facturas[$i]->apellido1_us}}
                         <br>
                         <input type="hidden" name="id_factura_clinica" value="<?php echo $facturas[$i]->id_fc?>">
                         <input class="ver_factura" type="submit" value="Ver factura">

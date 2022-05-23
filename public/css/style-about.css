@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
-
 * {
     font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
@@ -8,29 +7,28 @@
     --second-color: #ffffff;
 }
 
-body{
+body {
     position: relative;
     background: linear-gradient(#0015ff5b, #00a2ff51);
-    
 }
 
-.column-1{
+.column-1 {
     width: 100%;
     text-align: center;
     margin-top: 10%;
 }
 
-.column-2{
+.column-2 {
     width: 50%;
     float: left;
 }
 
-.column-3{
+.column-3 {
     width: 33.3%;
     float: left;
 }
 
-.column-4{
+.column-4 {
     width: 25%;
     float: left;
 }
@@ -48,7 +46,7 @@ body{
     flex-direction: column;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
@@ -217,31 +215,37 @@ a{
     .column-1{
         margin-top: 35%;
     }
+    body{
+        text-align: center;
+    }
 
 }
+
 
 /* ---------- CENTRO ---------- */
 
-h1{
+h1 {
     text-align: center;
 }
 
-.foto{
+.foto {
     width: 20%;
     padding: 0% 0% 2% 0%;
 }
 
-.content{
+.content {
+    margin-top: 30%;
     margin: 0% 10% 5% 10%;
 }
 
-p{
+p {
     font-size: 18px;
 }
 
+
 /* ---------- FOOTER ---------- */
 
-footer{
+footer {
     width: auto;
     position: relative;
     bottom: 0;
@@ -254,12 +258,13 @@ footer{
     flex-direction: column;
 }
 
-.logo{
+.logo {
     height: 80px;
     margin-bottom: 1rem;
 }
 
-.social-icons-container, .footer-menu-container{
+.social-icons-container,
+.footer-menu-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -267,7 +272,7 @@ footer{
     margin-bottom: 1rem;
 }
 
-.social-icon{
+.social-icon {
     height: 50px;
     width: 50px;
     border-radius: 50px;
@@ -276,35 +281,35 @@ footer{
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
-    margin:1rem;
+    margin: 1rem;
 }
 
-.social-icon:hover{
+.social-icon:hover {
     background-color: #121212;
     filter: invert(1);
 }
 
-.social-icon:nth-of-type(2){
+.social-icon:nth-of-type(2) {
     background-image: url(../img/imagenesWeb/TelegramBlanco.png);
 }
 
-.footer-menu-container{
+.footer-menu-container {
     list-style-type: none;
     color: #f2f2f2;
     font-size: 18px;
 }
 
-.footer-item{
+.footer-item {
     margin: 1rem 1.5rem;
     cursor: pointer;
     opacity: 0.6;
 }
 
-.footer-item:hover{
+.footer-item:hover {
     opacity: 1;
 }
 
-.copyright{
+.copyright {
     color: #f2f2f2;
     opacity: 0.3;
     text-align: center;

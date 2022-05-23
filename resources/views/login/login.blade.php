@@ -71,6 +71,13 @@
                     <div class="form-group mx-sm-4 pb-1">
                         <input type="submit" class="btn btn-block ingresar" value="INICIAR SESIÓN">
                     </div>
+                    <div>
+                        <div class="form-group mx-sm-4 pb-2 text-left">
+                        @if($errors->any())
+                            <p style="color: red">{{$errors->first()}}</p>
+                        @endif
+                        </div>
+                    </div>
                     <div class="form-group mx-sm-4 pb-2 text-left">
                         <a href="{{url("login/contraseña")}}"><span>Te has olvidado la contraseña?</a></span>
                     </div>
