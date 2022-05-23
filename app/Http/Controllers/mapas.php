@@ -10,7 +10,7 @@ class mapas extends Controller
     public function mapa_establecimientos(){
         //Le devolvemos a la vista del mapa que muestra los establecimientos
         $datos = DB::table("tbl_tipo_sociedad")->select('*')->get();
-        return view('mapa_establecimientos', compact('datos'));
+        return view('mapas/mapa_establecimientos', compact('datos'));
     }
 
     public function markersEstablecimientos(){
@@ -39,12 +39,12 @@ class mapas extends Controller
 
     public function mapa_animales_perdidos(){
         //Le devolvemos a la vista del mapa que muestra los animales perdidos
-        return view('mapa_animales_perdidos');
+        return view('mapas/mapa_animales_perdidos');
     }
 
     public function animales_perdidos(){
         //Le devolvemos a la vista del mapa que muestra los animales perdidos
-        return view('animales_perdidos');
+        return view('mapas/animales_perdidos');
     }
 
     public function markersAnimalesPerdidos(){
