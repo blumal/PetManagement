@@ -53,7 +53,7 @@
                 @endif
             </div>
         </div>
-        <script src="./js/nav_mapas.js"></script>
+        <script src="./js/home.js"></script>
     </nav>
     <div class="row-c flex">
         <div class="slider">
@@ -106,7 +106,7 @@
                             <h3>Solicitud próxima visita</h3><br/>
                             <div class="modal-citas-content-form">
                                 {{-- <form action="{{url('insertcita')}}" method="get"> --}}
-                                <form onsubmit="insertDatas(); return false;">
+                                <form style="margin: 0% 5%;" onsubmit="insertDatas(); return false;">
                                     @csrf
                                     <label for="fecha_vi">Introduzca la fecha de la visita: *</label><br/><br/>
                                         <input type="date" name="fecha_vi" id="fecha_vi" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> onchange="hourOptions(); return false;"><br/><br/>

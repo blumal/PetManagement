@@ -148,7 +148,7 @@
                         </div>
                         <div class="form-group mx-sm-3 text-left">
                             <span class="">Ya tienes una cuenta?</span>
-                            <span><a href="/login" class="olvide1">Iniciar sesión</a></span>
+                            <span><a href="{{url("login")}}" class="olvide1">Iniciar sesión</a></span>
                         </div>
                     </form>
                 {{-- </div>
