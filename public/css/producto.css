@@ -1087,6 +1087,10 @@ footer {
         margin-top: 3%;
         text-align: center;
     }
+    .opiniones-titulo p {
+        float: none !important;
+        text-align: center !important;
+    }
     .nose-p {
         text-align: center;
         margin-left: 2%;
