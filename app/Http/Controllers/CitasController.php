@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailtocustomers;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
+
 /* use QRcode; */
 
 class CitasController extends Controller
@@ -208,7 +210,18 @@ class CitasController extends Controller
         } catch (\Exception $e) {
             return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
         }
-      }
-  
+    }
+    public function MensajeContacto(Request $request){
+        $datas = $request->except('_token', '_method');
+        try {
+            $sub = "Solicitud de contacto";
+            $enviar = new Mailtocustomers($datas,1);
+            $enviar->sub = $sub;
+            Mail::to("grouppetmanagement@gmail.com")->send($enviar);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }
 
