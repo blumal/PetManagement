@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/style-contacto.css')}}">
+    <link rel="stylesheet" href="{{asset('css/contacto/style-contacto.css')}}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -15,50 +15,27 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="./js/valid_contacto.js"></script>
+    <link rel="stylesheet" href="{{asset('css/style-contacto.css')}}">  
     <title>LOGIN</title>
     <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 
     <title>Login</title>
 </head>
 
 <body>
-    <nav id="nav">
-        <div class="nav_container">
-            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
-            <label for="menu" class="nav_label">
-                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
-            </label>
-            <input type="checkbox" id="menu" class="nav_input">
-            <!--Menu header-->
-            <div class="nav_menu">
-                <a href="{{url("/")}}" class="nav_item">Home</a>
-                <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
-                <a href="{{url("citas")}}" class="nav_item">Clínica</a>
-                <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
-                <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
-                <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
-                <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                @if (Session::get('cliente_session'))
-                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
-                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                    <a href="{{url("logout")}}" class="login_item">Logout</a>
-                @else
-                    <a href="{{url("login")}}" class="login_item">Login</a>
-                @endif
-            </div>
-        </div>
-        <script src="./js/nav_mapas.js"></script>
-    </nav>
+    @include('comun.navegacion')
     <div class="row-c flex">
         <div class="column-2">
             <div class="row-c formulario-1">
                 <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario">
-                    <form {{-- action="{{url('')}}" --}} method="post" onsubmit="return validateContacto();">
+                    <form action="{{url('/enviarCorreoContacto')}}" method="post" onsubmit="return validateContacto();">
+                        @csrf
                         <div class="form-group text-center pt-3">
                             <h1 class="text-light">Consultanos cualquier duda que tengas!</h1>
                         </div>
                         <div class="form-group mx-sm-4 pb-2">
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="Nombre">
                         </div>
                         <div class="form-group mx-sm-4 pb-2">
                             <input type="text" class="form-control" id="apellido" placeholder="Apellido" name="Apellido">
@@ -70,7 +47,7 @@
                             <textarea class="form-control" placeholder="Mensaje" name="Mensaje" id="mensaje" cols="30" rows="5.5"></textarea>
                         </div>
                         <div class="form-group mx-sm-4 pb-4">
-                            <input type="submit" class="btn btn-block ingresar" value="ENVIAR">
+                            <input id="submitContacto" type="submit" class="btn btn-block ingresar" value="ENVIAR">
                         </div>
                     </form>
                 </div>

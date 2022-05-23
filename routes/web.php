@@ -191,6 +191,10 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 //FIN FACTURAS
 
+//INCIO MAIL CONTACTO
+Route::post('enviarCorreoContacto', [CitasController::class, 'MensajeContacto']);
+//FIN MAIL CONTACTO
+
 //INICIO ESTADISTICAS
 Route::get('/stats', [EstadisticaController::class, 'test']);
 Route::post('/estadisticas/recogerStats', [EstadisticaController::class, 'leerStats']);
