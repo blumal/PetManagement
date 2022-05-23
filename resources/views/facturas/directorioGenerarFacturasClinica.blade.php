@@ -18,7 +18,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    @include('comun.navegacion')
+    <header id="Header">
+        <div class="logo">
+            <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
+        </div>
+        <div class="logout">
+            <a href="{{url("logout")}}"><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></a>
+        </div>
+    </header>
     <div class="row-c">
         <div class="column-3">
             <div class="input">

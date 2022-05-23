@@ -19,7 +19,7 @@
 <body>
     <header id="Header">
         <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
+            <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
         </div>
         <div class="logout">
             <a href="{{url("logout")}}"><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></a>
