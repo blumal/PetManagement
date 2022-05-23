@@ -1,0 +1,45 @@
+{
+    "name": "illuminate/config",
+    "description": "The Illuminate Config package.",
+    "license": "MIT",
+    "homepage": "https://laravel.com",
+    "support": {
+        "issues": "https://github.com/laravel/framework/issues",
+        "source": "https://github.com/laravel/framework"
+    },
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        }
+    ],
+    "require": {
+<<<<<<< HEAD
+        "php": "^8.0.2",
+        "illuminate/collections": "^9.0",
+        "illuminate/contracts": "^9.0"
+=======
+        "php": "^7.3|^8.0",
+        "illuminate/collections": "^8.0",
+        "illuminate/contracts": "^8.0"
+>>>>>>> origin/New-FakeMain
+    },
+    "autoload": {
+        "psr-4": {
+            "Illuminate\\Config\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "9.x-dev"
+=======
+            "dev-master": "8.x-dev"
+>>>>>>> origin/New-FakeMain
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}

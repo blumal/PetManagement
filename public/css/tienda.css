@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+
 * {
+    font-family: 'Montserrat Alternates', sans-serif;
     margin: 0%;
     color: #333333;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none !important;
 }
 
 header {
@@ -21,12 +28,15 @@ header {
     height: 100px;
     transition: 0.5s;
     z-index: 999;
-    background-color: #8590ff;
+}
+
+ul{
+    margin-bottom: 0rem;
 }
 
 .logo {
-    padding-top: 15px;
-    height: 90%;
+    height: 80%;
+    margin-top: 1%;
 }
 
 .scrolled-search {
@@ -59,7 +69,7 @@ header {
 .cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: #1f2cc4;
+    background-color: var(--main-color);
     color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
@@ -72,7 +82,21 @@ header {
     background-color: #000000;
 }
 
-body {}
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;   
+}
 
 .div-1 {
     float: left;
@@ -835,7 +859,7 @@ footer {
     width: 50px;
     border-radius: 50px;
     border: 1px solid #f2f2f2;
-    background-image: url(../storage/img/imagenesWeb/TwitterBlanco.png);
+    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
@@ -848,7 +872,7 @@ footer {
 }
 
 .social-icon:nth-of-type(2) {
-    background-image: url(../storage/img/imagenesWeb/TelegramBlanco.png);
+    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
 }
 
 .footer-menu-container {

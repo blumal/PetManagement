@@ -14,19 +14,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script language="javascript" src="../js/producto.js"></script>
-    <link rel="stylesheet" href="../css/producto.css">
+    <link rel="stylesheet" href="{{asset('css/producto.css')}}">
     <title>PetManagment - {{$producto[0]->nombre_art}}</title>
 </head>
 <header id="Header">
-    <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">
+    <img src="../img/imagenesWeb/logo.png" alt="" class="logo">
     <!--Menu header-->
     <ul class="main-menu">
-        <form action="{{url("home")}}" method="get"><li class="menu-item">Home</li></form>
-        <form action="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></form>
-        <form action="{{url("clinica")}}" method="get"><li class="menu-item">Clínica</li></form>
-        <form action="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></form>
-        <form action="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></form>
-        <form action="{{url("login")}}" method="get"><li class="cta">Login</li></form>
+        @if (Session::get('cliente_session'))
+            <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+            <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+            <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+            {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+            <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+            <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+            <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+            <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+            <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
+                <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+            </form>
+            <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
+        @else
+            <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+            <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+            <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+            {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+            <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+            <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+            <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+            <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+            <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
+        @endif
     </ul>
     <script src="./js/home.js"></script>
 </header>
@@ -145,7 +163,7 @@
     </div>
 </body>
 <footer>
-    <img src="../storage/img/imagenesWeb/logo.png" alt="" class="logo">
+    <img src="../img/imagenesWeb/logo.png" alt="" class="logo">
     <div class="social-icons-container">
         <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
         <a href="https://www.t.me/petmanagement" class="social-icon"></a>

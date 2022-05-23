@@ -1,0 +1,146 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+/* ---------- HEADER ---------- */
+/* ul{
+    margin-top: 0;
+    margin-bottom: 0rem;
+} */
+
+header {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    height: 100px;
+    transition: 0.5s;
+    z-index: 999;
+}
+
+.logo {
+    height: 90%;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+/* ul{
+    margin-top: 0;
+    margin-bottom: 0rem;
+} */
+
+.main-menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.menu-item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.cta {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: var(--main-color);
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.filtro {
+    display: flex;
+    width: 100%;
+    height: 5%;
+    justify-content: center;
+    margin-top: 8%;
+    text-align: center;
+}
+
+.btn_filtro {
+    width: 100px;
+    height: 100%;
+    color: white;
+    background-color: #1f2cc4;
+    border: 10px;
+    border-radius: 7px;
+    margin: 1%;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn_filtro:hover {
+    background-color: black;
+    transition: 0.5s;
+}
+
+.classtype {
+    transform: scale(1.12);
+    -webkit-animation-timing-function: cubic-bezier(.075, .82, .165, 1);
+    animation-timing-function: cubic-bezier(.075, .82, .165, 1);
+    box-shadow: 0 2px 17px 0 #000000;
+    outline: none;
+}
+
+.btn_rut {
+    border-radius: 5px;
+    border-color: transparent;
+    color: #ffffff;
+    background-color: rgb(40, 125, 204);
+    width: 48%;
+    cursor: pointer;
+    margin: 1%;
+}
+
+.btn_rut:hover {
+    border-color: rgb(67, 40, 204);
+}

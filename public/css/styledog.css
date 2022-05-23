@@ -1,0 +1,17 @@
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
+.img_an {
+    height: 200px;
+    width: 200px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+button {
+    z-index: 9999999;
+}
