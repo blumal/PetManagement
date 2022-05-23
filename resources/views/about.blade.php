@@ -11,23 +11,21 @@
 </head>
 <body>
     @include('comun.navegacion')
-    <div class="column-1">
-        <img src="./img/imagenesWeb/logo.png" class="foto">
-    </div>
-    <div class="content">
-        <h1>Pet Management</h1>
-        <br>
-        <p>
-            Clínica Veterinaria Animal Services nace con la idea de crear una Clínica Veterinaria que se diferencie del resto por la calidad de servicio, responsabilidad y compromiso que tu engreído merece.
-            
-            Consideramos a las mascotas como un miembro más de la familia y estamos conscientes de lo que eso representa. Es por esto que nos caracterizamos por poseer una línea ética definida y compartida por todo nuestro equipo.
-            
-            Clínica Veterinaria ROKA es sinónimo de responsabilidad, dedicación y entrega.</p>
-        <br>
-        <p>Prestamos servicios veterinarios de medicina, cirugía, asesoramientos técnicos y proyectos veterinarios en nuestras modernas y completas instalaciones como Hospital Veterinario. Contamos con servicio de Urgencias Veterinarias las 24h.</p>
-        <br>
-        <p>Este ha sido el reusltado de un trabajo creado por cuatro estudiantes con el fin de aprobar un proyecto final</p>
+    <div class="row-c flex">
+        <div class="column-1">
+            <img src="./img/imagenesWeb/logo.png" class="foto">
+        </div>
+        <div class="content">
+            <h1>Pet Management</h1>
+            <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+            "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec dignissim libero. Sed pellentesque volutpat metus, sit amet efficitur velit rutrum id. Phasellus condimentum justo nec magna viverra tristique. Praesent faucibus luctus libero, et tempus augue eleifend ut. In ac commodo urna. Vivamus vel lacinia augue. Donec hendrerit, odio non auctor rhoncus, mi justo tempus erat, sit amet dictum nisi urna sed orci. Nam hendrerit lacus sed risus sollicitudin, non volutpat lorem tempus. Sed non elit aliquam, hendrerit dolor sit amet, condimentum metus. Phasellus dictum nunc turpis, at porttitor erat convallis nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas posuere elit id nibh dictum, at fringilla mi euismod. In quis accumsan nibh, a vulputate nibh.</p>
 
+            <p>Pellentesque vehicula mollis nibh sed ullamcorper. Vivamus pretium nunc a orci laoreet, eget vulputate risus rutrum. Sed fermentum sapien urna. Nunc tempus quam varius ante laoreet, sed luctus urna mattis. Sed venenatis fermentum sodales. Donec justo neque, dapibus in bibendum non, auctor ut nisl. Vivamus orci felis, euismod non rhoncus nec, congue hendrerit ex. Mauris pellentesque, mauris ullamcorper fermentum pretium, turpis nisl accumsan mi, in semper justo nisl ut nunc. Sed elementum eros sit amet augue ullamcorper mollis.</p>
+
+            <p>Mauris ut nunc at felis vulputate varius id id sem. Mauris mollis faucibus eros, ultricies iaculis leo. Morbi placerat sed dui et interdum. Etiam volutpat ex posuere dolor egestas fringilla. Integer sagittis nunc sed ex efficitur interdum. Phasellus egestas enim in turpis volutpat finibus. Nullam vulputate venenatis egestas. Nulla eu massa vehicula, dapibus lorem eu, bibendum erat. Cras vel pellentesque sapien. Quisque egestas varius ipsum vel vestibulum. Vestibulum pharetra placerat elit nec pellentesque. Pellentesque consectetur turpis vel vulputate facilisis. Sed bibendum, nibh id fermentum fringilla, lacus turpis facilisis magna, et tristique est purus nec velit. Maecenas rutrum luctus cursus. Ut et aliquet neque, eget imperdiet quam. Donec sed leo sit amet dui imperdiet semper a vitae est.</p>
+
+        </div>
     </div>
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">

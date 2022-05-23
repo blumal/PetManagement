@@ -30,37 +30,33 @@
 </head>
 
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            @if (Session::get('cliente_session'))
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
-                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                </form>
-                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
-            @else
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
-            @endif
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    <nav id="nav">
+        <div class="nav_container">
+            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
+            <label for="menu" class="nav_label">
+                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
+            </label>
+            <input type="checkbox" id="menu" class="nav_input">
+            <!--Menu header-->
+            <div class="nav_menu">
+                <a href="{{url("/")}}" class="nav_item">Home</a>
+                <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
+                <a href="{{url("citas")}}" class="nav_item">Clínica</a>
+                <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
+                <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
+                <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
+                <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
+                @if (Session::get('cliente_session'))
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
+                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                    <a href="{{url("logout")}}" class="login_item">Logout</a>
+                @else
+                    <a href="{{url("login")}}" class="login_item">Login</a>
+                @endif
+            </div>
+        </div>
+        <script src="./js/nav_mapas.js"></script>
+    </nav>
     <div class="container">
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">

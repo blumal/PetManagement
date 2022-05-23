@@ -161,10 +161,6 @@ h4{
     padding: 10vh;
 }
 
-table{
-    margin-left: 0;
-}
-
 /* Titulo Zona Admin */
 
 .titulo-admin {
@@ -400,4 +396,27 @@ table{
 .btn-editar:hover {
     color: #ffffff;
     background-color: #000000;
+}
+
+/* -------------- TABLAS  ----------------- */
+
+.table-responsive{
+    margin-top: 6.1%;
+}
+
+.table{
+    vertical-align: middle;
+    width: 98%;
+}
+
+/* ------------ RESPONSIVE --------------- */
+
+@media (max-width: 800px) {
+    .table-responsive{
+        margin-top: 21%;
+    }
+    .filtro{
+        margin-top: 4%;
+        width: 65%;
+    }
 }

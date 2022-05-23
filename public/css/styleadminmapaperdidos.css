@@ -2,8 +2,8 @@
 
 * {
     font-family: 'Montserrat Alternates', sans-serif;
-    margin: 0;
-    padding: 0.3%;
+    margin: 1%;
+    padding: 0;
 }
 
 body {
@@ -14,10 +14,6 @@ body {
 
 a{
     text-decoration: none !important;
-}
-
-.an_div{
-    text-align: center;
 }
 
 .head_admin {
@@ -75,6 +71,11 @@ h1{
 img {
     width: 30px;
     height: 30px;
+}
+
+.fotoMascota {
+    width: 80px;
+    height: 60px;
 }
 
 /* Boton crear un establecimiento */
