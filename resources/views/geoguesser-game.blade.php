@@ -18,7 +18,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <script src="lib/sweet-alert.min.js"></script> --}}
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/geoguesser-game.css')}}">
+    <link rel="stylesheet" href="{{asset('css/juegos/petguesser/geoguesser-game.css')}}">
 </head>
 <body>
     @include('comun.navegacion')

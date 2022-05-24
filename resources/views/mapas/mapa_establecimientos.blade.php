@@ -16,6 +16,7 @@
     <link rel="icon" href="./img/imagenesWeb/logo.png">
 </head>
 <body>
+<<<<<<< HEAD:resources/views/mapa_establecimientos.blade.php
     <nav id="nav">
         <div class="nav_container">
             <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
@@ -43,6 +44,9 @@
         </div>
     <script src="./js/nav_mapas.js"></script>
     </nav>
+=======
+    @include('comun.navegacion')
+>>>>>>> 4fc89df8ff6c2d9c3fd9a93aa77b306feea61ca5:resources/views/mapas/mapa_establecimientos.blade.php
     <div id="map">
         
     </div>

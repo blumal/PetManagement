@@ -279,7 +279,7 @@ function opiniones() {
             var divProductos = document.getElementsByClassName("opiniones")[0];
             var media = 0;
             divProductos.innerHTML = "";
-            var html = "<div style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
+            var html = "<div class='opiniones-titulo' style='width: 100%'><p style='float:left; margin: 0%'>Opiniones sobre " + nombreProducto + "</p><span class='badge badge-pill badge-danger ml-2'>" + respuesta.length + "</span></div>";
             if (respuesta.length > 0) {
                 console.log(respuesta.length)
                 html += "<div class='div-opiniones mb-5'>";
@@ -462,19 +462,62 @@ function modal() {
 
 function modalValorar(idUser) {
     $("#btn-valorar").click(function() {
-        enviarOpinion(idUser);
+        if ($("#comentario").val().length < 1) {
+            alert('Rellena el campo')
+        } else {
+            enviarOpinion(idUser);
+        }
+
     });
+    //HAY QUE REESCRIBIRLO OTRA VEZ POR BUG
     var modal = document.getElementById("myModal3");
     var span = document.getElementsByClassName("close3")[0];
     modal.style.display = "block";
     span.onclick = function() {
         modal.style.display = "none";
+        var div = document.getElementsByClassName("div-modal3")[0];
+        html = `<span class="close3">&times;</span>
+            <div class="text-center mt-3 titulo-valoracion"><h3>Valoración</h3></div>
+            <div class="text-center mt-3 rating">
+                <span class="rating__result"></span> 
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+            </div>
+            <div class="text-center mt-3 mb-3 comentario-valoracion">
+                <h3>Tu comentario</h3>
+                <textarea class="mt-2 pl-2 pr-1" id="comentario" cols="70" rows="3"></textarea>
+            </div>
+            <div class="text-center mb-4"><button id="btn-valorar" type='button' class='btn btn-primary btn-lg btn-enviar'>Valorar producto</button></div>
+            `;
+        div.innerHTML = html;
+        opiniones();
 
     }
     window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
-
+                var div = document.getElementsByClassName("div-modal3")[0];
+                html = `<span class="close3">&times;</span>
+            <div class="text-center mt-3 titulo-valoracion"><h3>Valoración</h3></div>
+            <div class="text-center mt-3 rating">
+                <span class="rating__result"></span> 
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+               <i class="rating__star far fa-star"></i>
+            </div>
+            <div class="text-center mt-3 mb-3 comentario-valoracion">
+                <h3>Tu comentario</h3>
+                <textarea class="mt-2 pl-2 pr-1" id="comentario" cols="70" rows="3"></textarea>
+            </div>
+            <div class="text-center mb-4"><button id="btn-valorar" type='button' class='btn btn-primary btn-lg btn-enviar'>Valorar producto</button></div>
+            `;
+                div.innerHTML = html;
+                opiniones();
             }
         }
         //NO TOCAR

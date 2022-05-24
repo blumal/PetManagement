@@ -10,7 +10,6 @@ body {
     position: relative;
     background: #c6c2b7 !important;
     box-sizing: border-box;
-
 }
 
 a {
@@ -30,6 +29,10 @@ a {
 .column-3 {
     width: 33.3%;
     float: left;
+}
+
+#cuerpo {
+    padding-top: 10%;
 }
 
 .row-c:after {
@@ -141,7 +144,7 @@ header {
     list-style-type: none;
 }
 
-.visita{
+.visita {
     padding-top: 10%;
     margin: 0 3%;
 }
@@ -158,27 +161,33 @@ header {
 }
 
 @media (max-width: 800px) {
+    #cuerpo {
+        padding-top: 20%;
+    }
     .column-3 {
         width: 100%;
     }
     .column-2 {
         width: 100%;
     }
-    .flex{
+    .flex {
         flex-direction: column;
     }
-    .logo{
+    .logo {
         margin: 4%;
     }
-    .logout{
+    .logout {
         margin: 13% 0% 0% 0%;
     }
-    .visita{
+    .visita {
         padding-top: 35%;
     }
 }
 
 @media (max-width: 400px) {
+    #cuerpo {
+        padding-top: 25%;
+    }
     .column-3 {
         width: 95%;
         margin-left: 3.5%;
