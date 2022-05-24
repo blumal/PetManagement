@@ -17,12 +17,13 @@
     <link rel="stylesheet" href="{{asset('css/tienda.css')}}">
     <title>PetManagment - Tienda</title>
 </head>
-<form action="FacturasTienda" method="post">
+<form action="FacturasTienda" method="post" width="1000px">
     @csrf
     
     <input type="hidden" name="id_user" value={{Session::get('id_user_session')}}>
     <center>
-    <input id="ver_factura" type="submit" value="Ver facturas anteriores"  width="1000px">
+    <input id="ver_factura" type="submit" value="Ver facturas anteriores" style="padding-left: 44%;
+    padding-right: 44%;">
     </center>
 </form>
 @include('comun.navegacion')
