@@ -21,6 +21,36 @@ a {
 }
 
 
+/* ---------- HEADER ---------- */
+
+header {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    transition: 0.5s;
+    height: 100px;
+    z-index: 999;
+    background-color: #8590ff;
+}
+
+.logo {
+    height: 90%;
+    width: 7%;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+
 /* ul{
     margin-top: 0;
     margin-bottom: 0rem;
@@ -72,22 +102,23 @@ a {
     background-color: white;
     z-index: 9999;
     border-radius: 5px;
-    margin-top: 1vh;
+    margin-top: 10px;
     margin-right: 10px;
     padding: 5px;
 }
 
-.img_geo:hover {
+.img_geo:hover,
+.img_geo:active {
     transition: 0.5s;
     width: 40%;
     height: auto;
 }
 
 #map {
+    margin-top: 100px;
     height: 83.5vh;
     width: 100%;
     z-index: 1;
-    top: 16.5vh;
 }
 
 .img_an {
