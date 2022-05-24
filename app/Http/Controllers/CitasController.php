@@ -141,7 +141,7 @@ class CitasController extends Controller
     }
 
     public function an_perd(){
-        return view('animales_perdidos');
+        return view('mapas/animales_perdidos');
     }
 
     //Resultados actuales o futuros implementados en la api
