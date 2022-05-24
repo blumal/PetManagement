@@ -156,6 +156,7 @@
             <div class="text-center mt-3 mb-3 comentario-valoracion">
                 <h3>Tu comentario</h3>
                 <textarea class="mt-2 pl-2 pr-1" id="comentario" cols="70" rows="3"></textarea>
+                <p id='error-textarea'></p>
             </div>
             <div class="text-center mb-4"><button id="btn-valorar" type='button' class='btn btn-primary btn-lg btn-enviar'>Valorar producto</button></div>
           </div>

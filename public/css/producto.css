@@ -398,7 +398,7 @@ header {
 }
 
 .caption-titulo {
-    height: 15vh;
+    height: 17vh;
 }
 
 .caption-descripcion {
@@ -440,6 +440,7 @@ header {
     font-size: 3vh;
     color: #d124ba;
     font-weight: bold;
+    margin-top: 5%;
 }
 
 .productos-similares a {
@@ -645,6 +646,10 @@ header {
 .comentario-valoracion textarea {
     resize: none;
     width: 100%;
+}
+
+#error-textarea {
+    color: red;
 }
 
 .btn-enviar {
@@ -962,6 +967,9 @@ footer {
 @media only screen and (max-width: 1000px) {
     .caption-descripcion {
         margin-top: 10vh;
+    }
+    .producto-similar {
+        height: auto;
     }
     .producto-precio {
         margin-top: 5vh;
