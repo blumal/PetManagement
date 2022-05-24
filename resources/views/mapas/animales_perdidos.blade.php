@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('cliente_session'))
+@if (!Session::get('id_user_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -20,7 +20,7 @@
     <div class="head_admin">
         {{-- Boton para volver a la vista del panel de control --}}
     <div class="back">
-        <div><a class="btn btn-info" href="">Back</a></div>
+        <div><a href="{{url('mapa_animales_perdidos')}}" method="GET" class="btn btn-info" href="">Back</a></div>
     </div>
         @if($errors->any())
         <div>

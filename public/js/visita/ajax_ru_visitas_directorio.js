@@ -22,6 +22,12 @@ function leerVisitas() {
     var fecha_visita = document.getElementById("fecha_visita").value;
     var token = document.getElementById('token').getAttribute("content");
 
+    if (fecha_visita == "") {
+        let yourDate = new Date()
+        fecha = yourDate.toISOString().split('T')[0]
+        fecha_visita = fecha
+    }
+
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('fecha_visita', fecha_visita);
@@ -96,3 +102,4 @@ function validarFacturas() {
         return true;
     }
 }
+leerVisitas();

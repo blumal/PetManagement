@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('cliente_session'))
+@if (!Session::get('id_user_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -28,6 +28,9 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
+<<<<<<< HEAD
+    @include('comun.navegacion')
+=======
     <nav id="nav">
         <div class="nav_container">
             <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
@@ -44,11 +47,9 @@
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                @if (!Session::get('email_session'))
-                    <form class="nav_item">
-                        <a href="{{url("modificarPerfil")}}" class="nav_ite">Mi Perfil</a>
+                @if (Session::get('cliente_session'))
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
                         <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                    </form>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else
                     <a href="{{url("login")}}" class="login_item">Login</a>
@@ -57,6 +58,7 @@
         </div>
         <script src="./js/home.js"></script>
     </nav>
+>>>>>>> Pre-Alpha
     <div class="row-c flex">
         <div class="slider">
            <ul>
@@ -108,7 +110,7 @@
                             <h3>Solicitud próxima visita</h3><br/>
                             <div class="modal-citas-content-form">
                                 {{-- <form action="{{url('insertcita')}}" method="get"> --}}
-                                <form onsubmit="insertDatas(); return false;">
+                                <form style="margin: 0% 5%;" onsubmit="insertDatas(); return false;">
                                     @csrf
                                     <label for="fecha_vi">Introduzca la fecha de la visita: *</label><br/><br/>
                                         <input type="date" name="fecha_vi" id="fecha_vi" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> onchange="hourOptions(); return false;"><br/><br/>
@@ -148,18 +150,18 @@
                             <form action="{{url("/FacturasClinica")}}" method="post">
                                 @csrf
                                 <input type="hidden" name="id_user" value={{ session()->get('id_user_session') }}>
-                                <input type="submit" class="previous_visits_button" value="Consultar mis visitas anteriores">
+                                <input type="submit" class="previous_visits_button pvb" value="Consultar mis visitas anteriores">
                             </form>
                         </center>
                     @endif
                     {{--Generar facturas a partir de visitas, solo para trabajadores--}}
                     @if (session()->get('id_rol_session')==3)
                         <center>
-                            <form action="{{url("/directorioGenerarFactura")}}" method="post">
+                            <form action="{{url("/directorioGenerarFactura")}}" method="get">
                                 @csrf
                                 <input type="submit" class="previous_visits_button" value="  Rellenar Visita  ">
                             </form>
-                            <form action="{{url("/FacturasClinica")}}" method="post">
+                            <form action="{{url("/FacturasClinica")}}" method="get">
                                 @csrf
                                 <input type="submit" class="previous_visits_button" value="Ver antiguas visitas">
                             </form>
@@ -191,7 +193,7 @@
                 <input type="submit" class="previous_visits_button" value="   Rellenar Visita   ">
             </form>
 
-            <form action="{{url("/FacturasClinica")}}" method="post">
+            <form action="{{url("/FacturasClinica")}}" method="get">
                 @csrf
                 <input type="submit" class="previous_visits_button" value="Ver  antiguas visitas">
             </form>

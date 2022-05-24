@@ -1,5 +1,6 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('email_session'))
+@if (!Session::get('id_rol_session')==2)
+
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -19,10 +20,10 @@
 <body>
     <header id="Header">
         <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
+            <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
         </div>
         <div class="logout">
-            <img onclick="location.href = '/logout'" class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px">
+            <a href="{{url("logout")}}"><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></a>
         </div>
     </header>
     <div class="row-c">

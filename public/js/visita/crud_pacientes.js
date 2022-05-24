@@ -43,7 +43,7 @@ function leerPacientes() {
                 "<th scope='col'>Nombre científico</th>" +
                 "<th scope='col'>Raza</th>" +
                 "<th scope='col'>Editar</th>" +
-                "<th scope='col'>Eliminar</th>" +
+                "<th scope='col'>Activar/Desactivar</th>" +
                 "</tr>"
             for (let i = 0; i < respuesta.length; i++) {
 
@@ -53,25 +53,48 @@ function leerPacientes() {
                 if (respuesta[i].n_id_nacional == null) {
                     respuesta[i].n_id_nacional = ""
                 }
-                tabla.innerHTML += "<tr class='fila-2'>" +
-                    "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar'></td>" +
-                    "<td>" + respuesta[i].nombre_pa + "</td>" +
-                    "<td>" + respuesta[i].peso_pa + "</td>" +
-                    "<td>" + respuesta[i].n_id_nacional + "</td>" +
-                    "<td>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</td>" +
-                    "<td>" + respuesta[i].fecha_nacimiento + "</td>" +
-                    "<td>" + respuesta[i].nombrecientifico_pa + "</td>" +
-                    "<td>" + respuesta[i].raza_pa + "</td>" +
-                    "<td>" +
-                    "<form action='/editarPaciente' method='post'>" +
-                    "<input type='hidden' name='_token' id='csrf-token' value=" + token + " />" +
-                    "<input type='hidden' name='id_paciente' value=" + respuesta[i].id_pa + ">" +
-                    "<input type='submit' value='Editar' class='btn btn-secondary'>" +
-                    "</form>" +
-                    "</td>" +
-                    "<td>" +
-                    "<button type='button' class='btn btn-danger' onclick='eliminarPaciente(" + respuesta[i].id_pa + ")'>Eliminar</button>" +
-                    "</td>"
+                if (respuesta[i].activo == 1) {
+                    tabla.innerHTML += "<tr class='fila-2'>" +
+                        "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar' ></td>" +
+                        "<td>" + respuesta[i].nombre_pa + "</td>" +
+                        "<td>" + respuesta[i].peso_pa + "</td>" +
+                        "<td>" + respuesta[i].n_id_nacional + "</td>" +
+                        "<td>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</td>" +
+                        "<td>" + respuesta[i].fecha_nacimiento + "</td>" +
+                        "<td>" + respuesta[i].nombrecientifico_pa + "</td>" +
+                        "<td>" + respuesta[i].raza_pa + "</td>" +
+                        "<td>" +
+                        "<form action='/editarPaciente' method='post'>" +
+                        "<input type='hidden' name='_token' id='csrf-token' value=" + token + " />" +
+                        "<input type='hidden' name='id_paciente' value=" + respuesta[i].id_pa + ">" +
+                        "<input type='submit' value='Editar' class='btn btn-secondary'>" +
+                        "</form>" +
+                        "</td>" +
+                        "<td>" +
+                        "<button type='button' class='btn btn-danger' onclick='eliminarPaciente(" + respuesta[i].id_pa + ")'>Desactivar</button>" +
+                        "</td>"
+                } else {
+                    tabla.innerHTML += "<tr class='fila-2'>" +
+                        "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar' style='filter: grayscale(100%);'></td>" +
+                        "<td>" + respuesta[i].nombre_pa + "</td>" +
+                        "<td>" + respuesta[i].peso_pa + "</td>" +
+                        "<td>" + respuesta[i].n_id_nacional + "</td>" +
+                        "<td>" + respuesta[i].nombre_us + " " + respuesta[i].apellido1_us + "</td>" +
+                        "<td>" + respuesta[i].fecha_nacimiento + "</td>" +
+                        "<td>" + respuesta[i].nombrecientifico_pa + "</td>" +
+                        "<td>" + respuesta[i].raza_pa + "</td>" +
+                        "<td>" +
+                        "<form action='/editarPaciente' method='post'>" +
+                        "<input type='hidden' name='_token' id='csrf-token' value=" + token + " />" +
+                        "<input type='hidden' name='id_paciente' value=" + respuesta[i].id_pa + ">" +
+                        "<input type='submit' value='Editar' class='btn btn-secondary'>" +
+                        "</form>" +
+                        "</td>" +
+                        "<td>" +
+                        "<button type='button' class='btn btn-success' onclick='activarPaciente(" + respuesta[i].id_pa + ")'>Activar</button>" +
+                        "</td>"
+                }
+
             }
         }
     }
@@ -79,7 +102,7 @@ function leerPacientes() {
 }
 
 function eliminarPaciente(id_paciente) {
-    if (window.confirm("Quieres eliminar el paciente?")) {
+    if (window.confirm("Quieres desactivar al paciente?")) {
         var formData = new FormData();
 
         formData.append('_token', document.getElementById('token').getAttribute("content"));
@@ -89,13 +112,41 @@ function eliminarPaciente(id_paciente) {
         ajax.open("POST", "eliminarPaciente", true);
         ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
+                console.log(this.responseText)
                 var respuesta = JSON.parse(this.responseText);
                 console.log(respuesta);
                 if (respuesta == "OK") {
                     document.getElementById('mensaje').style.color = "red";
-                    document.getElementById('mensaje').innerHTML = "Registro eliminado correctamente"
+                    document.getElementById('mensaje').innerHTML = "Registro desactivado correctamente"
                 } else {
-                    document.getElementById('mensaje').innerHTML = "Registro no eliminado"
+                    document.getElementById('mensaje').innerHTML = "Registro no desactivado"
+                }
+            }
+        }
+        ajax.send(formData);
+
+    }
+    leerPacientes()
+}
+
+function activarPaciente(id_paciente) {
+    if (window.confirm("Quieres activar al paciente?")) {
+        var formData = new FormData();
+
+        formData.append('_token', document.getElementById('token').getAttribute("content"));
+        formData.append('id_paciente', id_paciente);
+
+        var ajax = objetoAjax();
+        ajax.open("POST", "activarPaciente", true);
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                console.log(respuesta);
+                if (respuesta == "OK") {
+                    document.getElementById('mensaje').style.color = "red";
+                    document.getElementById('mensaje').innerHTML = "Registro activado correctamente"
+                } else {
+                    document.getElementById('mensaje').innerHTML = "Registro no activado"
                 }
             }
         }

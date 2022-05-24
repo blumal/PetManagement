@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailtocustomers;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
+
 /* use QRcode; */
 
 class CitasController extends Controller
@@ -131,8 +133,7 @@ class CitasController extends Controller
         return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
-        //Falta
-        /* return view(''); */
+        return view('admin_mapa_perdidos');
     }
     
     public function cpanelMapa(){
@@ -197,7 +198,7 @@ class CitasController extends Controller
                     $sub = "Confirmación de cita";
                     $enviar = new Mailtocustomers($datas, $lastid);
                     $enviar->sub = $sub;
-                    Mail::to(session('email_session'))->send($enviar);
+                    Mail::to(session('cliente_session'))->send($enviar);
                     /* Mail::to(session('email_session'))->send(new Mailtocustomers($datas)); */
                     return response()->json(array('resultado'=> 'OK'));
                 }else{
@@ -208,7 +209,18 @@ class CitasController extends Controller
         } catch (\Exception $e) {
             return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
         }
-      }
-  
+    }
+    public function MensajeContacto(Request $request){
+        $datas = $request->except('_token', '_method');
+        try {
+            $sub = "Solicitud de contacto";
+            $enviar = new Mailtocustomers($datas,1);
+            $enviar->sub = $sub;
+            Mail::to("grouppetmanagement@gmail.com")->send($enviar);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }
 

@@ -18,24 +18,38 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <script src="lib/sweet-alert.min.js"></script> --}}
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/geoguesser-game.css')}}">
+    <link rel="stylesheet" href="{{asset('css/juegos/petguesser/geoguesser-game.css')}}">
 </head>
 <body>
+<<<<<<< HEAD
+    @include('comun.navegacion')
+=======
     <header id="Header">
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <!--Menu header-->
         <ul class="main-menu">
-            <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
-            <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
-            <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
-            <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
-            <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-            <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
-            <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
+            <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
+                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
+                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
+                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
+                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
+                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
+                {{-- <form><a href="{{url("entretenimiento")}}" method="get"><li class="menu-item">Entretenimiento</li></a></form> --}}
+                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
+                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
+            @if (Session::get('cliente_session'))
+                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
+                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                </form>
+                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
+            @else
+                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
+            @endif
         </ul>
+        <script src="./js/home.js"></script>
     </header>
-    <input type="hidden" id="valor_cons_geo" value="1">
+>>>>>>> Pre-Alpha
+    {{-- <input type="hidden" id="valor_cons_geo" value="1"> --}}
     <div id="map">
         <div class="img_geo" id="img_geo">
             {{-- <h3>Tigre</h3>

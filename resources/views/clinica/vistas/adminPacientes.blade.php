@@ -34,14 +34,49 @@
         <form class="filtro" method="post" onsubmit="return false;">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
-               <input type="search" id="search" name="nombre_paciente" class="form-control" placeholder="Buscar por nombre del paciente..." aria-label="Search" onkeyup="leerPacientes(); return false;"/>
+               <input type="search" id="search" name="nombre_paciente" class="form-control" placeholder="Filtrar por nombre" aria-label="Search" onkeyup="leerPacientes(); return false;"/>
             </div>
          </form>
     </div>
-    <div {{-- class="table-responsive" --}}>
+    <div class="table-responsive">
         <table class="table" id="mytable">
-            
-        </table>
+            <tr class="fila-1">
+                <th scope="col">Foto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Peso (kg)</th>
+                <th scope="col">Nº Identifiación</th>
+                <th scope="col">Propietario</th>
+                <th scope="col">Fecha nacimiento</th>
+                <th scope="col">Nombre científico</th>
+                <th scope="col">Raza</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+            @forelse ($pacientes as $paciente)
+            <tr class="fila-2">
+                <td><img src="../storage/{{$paciente->foto_pa}}" class="avatar"></td>
+                <td>{{$paciente->nombre_pa}}</td>
+                <td>{{$paciente->peso_pa}}</td>
+                <td>{{$paciente->n_id_nacional}}</td>
+                <td>{{$paciente->nombre_us}} {{$paciente->apellido1_us}}</td>
+                <td>{{$paciente->fecha_nacimiento}}</td>
+                <td>{{$paciente->nombrecientifico_pa}}</td>
+                <td>{{$paciente->raza_pa}}</td>
+                <td>
+                    <form action="{{url("/editarPaciente")}}" method="post">
+                        @csrf
+                        <input type="hidden" name="id_paciente" value="{{$paciente->id_pa}}">
+                        <input type="submit" value="Editar" class="btn btn-secondary">
+                    </form>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarPaciente('{{$paciente->id_pa}}')">Eliminar</button>
+                </td>
+            </tr>
+            @empty
+            <tr class="fila-2"><td>No hay pacientes registrados</td></tr>
+            @endforelse
+            </table>
         </div>
     </div>
     <script>leerPacientes();</script>

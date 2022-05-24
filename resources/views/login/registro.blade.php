@@ -23,25 +23,33 @@
 </head>
 
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public" method="get"><li class="menu-item">Home</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/tienda" method="get"><li class="menu-item">Tienda</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/citas" method="get"><li class="menu-item">Clínica</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/contacto" method="get"><li class="menu-item">Contacto</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/about" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_animales_perdidos" method="get"><li class="menu-item">Perdidos</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_establecimientos" method="get"><li class="menu-item">Establecimientos</li></a>
-            @if (Session::get('email_session'))
-                <a href="{{url("logout")}}" method="get"><li class="cta">Logout</li></form></a>
-            @else
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
-            @endif
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    <nav id="nav">
+        <div class="nav_container">
+            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
+            <label for="menu" class="nav_label">
+                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
+            </label>
+            <input type="checkbox" id="menu" class="nav_input">
+            <!--Menu header-->
+            <div class="nav_menu">
+                <a href="{{url("/")}}" class="nav_item">Home</a>
+                <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
+                <a href="{{url("citas")}}" class="nav_item">Clínica</a>
+                <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
+                <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
+                <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
+                <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
+                @if (Session::get('cliente_session'))
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
+                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                    <a href="{{url("logout")}}" class="login_item">Logout</a>
+                @else
+                    <a href="{{url("login")}}" class="login_item">Login</a>
+                @endif
+            </div>
+        </div>
+        <script src="./js/nav_mapas.js"></script>
+    </nav>
     <div class="container">
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">
@@ -128,12 +136,19 @@
                             </div>
                             
                         </div>
+                        <div>
+                            <div class="form-group-2 mx-sm-2">
+                            @if($errors->any())
+                                <p style="color: red">{{$errors->first()}}</p>
+                            @endif
+                            </div>
+                        </div>
                         <div class="form-group mx-sm-3">
                             <input type="submit" class="btn btn-block ingresar" value="REGISTRARME">
                         </div>
                         <div class="form-group mx-sm-3 text-left">
                             <span class="">Ya tienes una cuenta?</span>
-                            <span><a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/login" class="olvide1">Iniciar sesión</a></span>
+                            <span><a href="{{url("login")}}" class="olvide1">Iniciar sesión</a></span>
                         </div>
                     </form>
                 {{-- </div>
