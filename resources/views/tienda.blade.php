@@ -438,17 +438,4 @@
     </ul>
     <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
 </footer>
-<script>
-  var ver_facturas = document.getElementById('ver_factura')
-ver_facturas.style.border = 'none';
-
-window.addEventListener("scroll", function() {
-    var scroll = window.scrollY;
-    if (scrollY > 0) {
-        ver_facturas.style.backgroundColor = '#8590FF';
-    } else {
-        ver_facturas.style.backgroundColor = 'white';
-    }
-})
-</script>
 </html>
