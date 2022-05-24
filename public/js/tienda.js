@@ -13,8 +13,10 @@ window.onload = function() {
                 if (scrollY > 0) {
                     header.style.backgroundColor = '#8590ff';
 
+
                 } else {
                     header.style.backgroundColor = '#8590ff';
+
                 }
 
             })
