@@ -17,9 +17,11 @@
     <link rel="stylesheet" href="{{asset('css/tienda.css')}}">
     <title>PetManagment - Tienda</title>
 </head>
+@include('comun.navegacion')
 <body>
-    @include('comun.navegacion')
-    <div class="row-c">
+    <div class="row-c flex">
+
+    
     <div class="div1">
         <div class="filtros-precio-marca">
             <div class="filtro-precio">

@@ -40,7 +40,7 @@ a {
     width: 100%;
     transition: 0.5s;
     margin-top: 0px;
-    z-index: 9999;
+    z-index: 999999999;
 }
 
 .nav_container {
@@ -195,6 +195,34 @@ a {
         text-decoration: none !important;
         color: white;
     }
+    .form-outline{
+        display: flex;
+        margin: 30% 0% 0% 60% !important;
+        padding-right: 2%;
+    }
+    
+    .addPet{
+        border-radius: 20px;
+        background-color: #000000;
+        padding: 5%;
+        text-align: center;
+        border-color: #000000;
+        color: #ffffff;
+        cursor: pointer;
+        transition: 0.5s;
+        list-style-type: none;
+    }
+    
+    .addPet:hover{
+        color: #ffffff;
+        background-color: #000000;
+        border-color: #000000;
+        border-radius: 30px;
+        -webkit-transform: scale(5);
+        transform: scale(0.9);
+        transition: 1s;
+        /* filter: invert(1);*/
+    }
 }
 
 /* ------------------------------------------------------------------- */
@@ -202,4 +230,33 @@ a {
 .img_an {
     height: 200px;
     width: 190px;
+}
+
+.form-outline{
+    display: flex;
+    margin: 9% 0% 0% 88%;
+    padding-right: 2%;
+}
+
+.addPet{
+    border-radius: 20px;
+    background-color: #000000;
+    padding: 5%;
+    text-align: center;
+    border-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.5s;
+    list-style-type: none;
+}
+
+.addPet:hover{
+    color: #ffffff;
+    background-color: #000000;
+    border-color: #000000;
+    border-radius: 30px;
+    -webkit-transform: scale(5);
+    transform: scale(0.9);
+    transition: 1s;
+    /* filter: invert(1);*/
 }
