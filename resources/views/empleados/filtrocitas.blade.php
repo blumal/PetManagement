@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--Librería Sweet Alert-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
+    {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.js"></script> --}}
     <!--Librería Alertify-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
@@ -52,13 +53,13 @@
     </nav>
     <center>
         <div class="row-c flex">
-            <div class="container">
+            <div class="container p-5">
                 <h1>Visitas agendadas</h1>
-                <div class="filter1 column-3">
-                    <input class="num-cita" type="number" id="id_vi" placeholder="nº de cita" onkeyup="idFilters(); return false;">
+                <div class="form-group pt-3">
+                    <input type="number" class="form-control" id="id_vi" placeholder="nº de cita" onkeyup="idFilters(); return false;">
                 </div>
-                <div class="filter2 column-3">
-                    <input type="text" id="dni_us" placeholder="DNI del cliente" onkeyup="idFilters(); return false;">
+                <div class="form-group pt-3">
+                    <input type="text" class="form-control" id="dni_us" placeholder="DNI del cliente" onkeyup="idFilters(); return false;">
                 </div>
                 <br/>
                 <div class="table-responsive">

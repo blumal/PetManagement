@@ -39,6 +39,7 @@ function idFilters() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var reply = JSON.parse(this.responseText);
+            console.log(reply);
             var reload = '';
             reload += `<tr>
                 <th scope="col">ID de visita</th>
@@ -50,7 +51,6 @@ function idFilters() {
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>`;
-            console.log(reply);
             for (let i = 0; i < reply.length; i++) {
                 reload += `<tr><td>${reply[i].id_vi}</td>
                     <td>${reply[i].dni_us}</td>
@@ -70,7 +70,7 @@ function idFilters() {
                         </form>
                     </td>
                     <td>
-                        <form method="post" onsubmit="DeleteQuote(${reply[i].id_vi}); return false;">
+                        <form method="post" onsubmit="confirmDel(${reply[i].id_vi}); return false;">
                             <input type="hidden" id="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger">Cancelar</button>
                         </form>
@@ -82,6 +82,24 @@ function idFilters() {
         }
     }
     ajax.send(formdata);
+}
+
+function confirmDel(id_vi){
+    swal({
+            title: "¿Segur@ de que deseas cancelar esta cita?",
+            text: "La acción no se podrá revertir!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Se ha eliminado el registro correctamente :)", {
+                    icon: "success",
+                });
+                DeleteQuote(id_vi);
+            }
+        });
 }
 
 //Eliminar cita
@@ -102,9 +120,9 @@ function DeleteQuote(id_vi){
             console.log(this.responseText);
             var reply = JSON.parse(this.responseText);
             if (reply.result == "OK") {
-                alert('success');
+                console.log('Success');
             } else {
-                alert('error');
+                swal("Opss...", "Error: " + result, "success");
             }
             //Para poder ver los cambios sin recargar la página debemos volver a llamar a la función del filtro
             idFilters()
@@ -112,3 +130,5 @@ function DeleteQuote(id_vi){
     }
     ajax.send(formdata);
 }
+
+

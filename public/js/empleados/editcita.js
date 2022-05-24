@@ -96,3 +96,32 @@ function UpdateQuote(){
     }
     ajax.send(formdata);
 }
+
+function changeStatus(id_vi){
+    //Inicialización objeto Ajax
+    var ajax = objetoAjax();
+
+    //Nuevo objeto
+    formdata = new FormData();
+
+    //Datos del form
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('_method', 'PUT');
+    formdata.append('id_vi', id_vi);
+
+    //Datos fichero web que apunta a la función que recoge el JSON
+    //Debo volver a la raíz para poder llamar a la ruta
+    ajax.open("POST", "../updatestatus/" + id_vi, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(this.responseText);
+            var reply = JSON.parse(this.responseText);
+            if (reply.result == "OK") {
+                alertify.success("Visita iniciada correctamente");
+            } else {
+                alertify.error("Ha ocurrido un error en la actualización de datos" + result);
+            }
+        }
+    }
+    ajax.send(formdata);
+}

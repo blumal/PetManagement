@@ -6,6 +6,7 @@ use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailtocustomers;
+use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Support\Facades\Mail;
 class EmpleadoController extends Controller
 {
@@ -17,7 +18,7 @@ class EmpleadoController extends Controller
         //Query citas
         $today = now()->format('Y-m-d');
         $quotes=DB::table("tbl_visita")
-            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
+            ->leftJoin('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
             ->join('tbl_estado', 'tbl_visita.id_estado_fk', '=', 'tbl_estado.id_est')
             ->where('tbl_visita.fecha_vi', '>=', $today)
@@ -31,7 +32,7 @@ class EmpleadoController extends Controller
     //Recogida datos de la visita
     public function quotesInfo($id_vi){
         $quotedatas = DB::table("tbl_visita")
-            ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
+            ->leftJoin('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
             ->join('tbl_estado', 'tbl_visita.id_estado_fk', '=', 'tbl_estado.id_est')
             ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
@@ -84,11 +85,27 @@ class EmpleadoController extends Controller
             return response()->json(array('result'=> 'NOK'.$e->getMessage()));
         }
     }
+
+    //Actualización estado de cita
+    public function updateStatus($id_vi){
+        try {
+            DB::table('tbl_visita')
+                ->where('tbl_visita.id_vi', '=', $id_vi)
+                ->update([
+                    'id_estado_fk' => 2
+                ]);
+            return response()->json(array('result'=> 'OK'));
+        } catch (\Throwable $e) {
+            return response()->json(array('result'=> 'NOK'.$e->getMessage()));
+        }
+    }
     
     //Eliminación de cita
     public function deleteQuote($id_vi){
         try {
-            DB::table('tbl_visita')->where('id_vi', $id_vi)->delete();
+            DB::table('tbl_visita')
+                ->where('id_vi', $id_vi)
+                ->delete();
             return response()->json(array('result'=> 'OK'));
         } catch (\Throwable $e) {
             return response()->json(array('result'=> 'NOK'.$e->getMessage()));
