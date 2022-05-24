@@ -17,6 +17,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
     </head>
 <body>
+
     @include('comun.navegacion')
     <div id="cuerpo">
         <div class="row-c">
@@ -35,6 +36,7 @@
                             <input class="ver_factura" type="submit" value="Ver factura">
                         </form>
                     </div>
+
                 </div>
             @endfor
         </div>

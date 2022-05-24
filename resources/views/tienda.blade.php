@@ -412,6 +412,7 @@
       </div>
     </div>
 </div>
+
 @if (Session::get('id_user_session'))
   <form action="FacturasTienda" method="post" width="1000px">
     @csrf
@@ -421,7 +422,6 @@
     </center>
   </form>
 @endif
-
 </body>
 <footer>
     <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
