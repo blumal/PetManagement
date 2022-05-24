@@ -24,6 +24,8 @@
 <img hidden src="/img/juego_ranita/right.png" id="derecha">
 <img hidden src="/img/juego_ranita/heart8.png" id="corazon">
 <img hidden src="/img/juego_ranita/logo.png" id="logo">
+<img hidden src="/img/juego_ranita/tierra.jpeg" id="tierra">
+<img hidden src="/img/juego_ranita/fuego.png" id="fuego">
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@300;400&display=swap');

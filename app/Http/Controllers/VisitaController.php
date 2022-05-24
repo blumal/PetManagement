@@ -176,7 +176,7 @@ class VisitaController extends Controller
 
     //CRUD PACIENTES
     public function VisitasAjax (Request $request){
-
+        
         $animal_asociado = DB::table('tbl_visita')
             ->where('fecha_vi','=',$request->fecha_visita)
             ->where('id_estado_fk','=',2)
@@ -198,9 +198,6 @@ class VisitaController extends Controller
                     ->get();
             }
         }
-        
-        
-        return $visitas;
         
         /*$cliente = DB::table('tbl_usuario')
             ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
