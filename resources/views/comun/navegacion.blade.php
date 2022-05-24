@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +7,6 @@
     <link rel="stylesheet" href="{{asset('css/comun/nav.css')}}">
     <title></title>
 </head>
-=======
->>>>>>> Pre-Alpha
 <body>
     @if (Session::get('id_rol_session')==2)
     <nav id="nav">
