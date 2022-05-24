@@ -412,15 +412,15 @@
       </div>
     </div>
 </div>
-<form action="FacturasTienda" method="post" width="1000px">
-  @csrf
-  
-  <input type="hidden" name="id_user" value={{Session::get('id_user_session')}}>
-  <center>
-  <input id="ver_factura" type="submit" value="Ver facturas anteriores" style="padding-left: 44%;
-  padding-right: 44%;">
-  </center>
-</form>
+@if (Session::get('id_user_session'))
+  <form action="FacturasTienda" method="post" width="1000px">
+    @csrf
+    <center>
+    <input id="ver_factura" type="submit" value="Ver facturas anteriores" style="padding-left: 44%;
+    padding-right: 44%;">
+    </center>
+  </form>
+@endif
 
 </body>
 <footer>
