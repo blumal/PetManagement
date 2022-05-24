@@ -211,7 +211,7 @@ h4{
     left: -1%;
     top: -2%;
     width: 100%;
-    height: 100%;
+    height: 110%;
     padding-left: 25%;
     padding-top: 2.5%;
     padding-bottom: 2%;
@@ -418,5 +418,43 @@ h4{
     .filtro{
         margin-top: 4%;
         width: 65%;
+    }
+
+    /* ------ MODALES -------- */
+    .modalbox_crear {
+        padding-left: 5%;
+        padding-top: 30%;
+    }
+    .modalcrear_header {
+        width: 40vh;
+        height: 13vh;
+    }
+    .modalcrear {
+        margin-top: -3%;
+        width: 40vh;
+    }
+    .inputcrear {
+        width: 35vh;
+    }
+    .close_crear {
+        margin-left: 36vh;
+    }
+    .modalbox_editar {
+        padding-left: 5%;
+        padding-top: 30%;
+    }
+    .modaleditar_header {
+        width: 40vh;
+        height: 13vh;
+    }
+    .modaleditar {
+        margin-top: -3%;
+        width: 40vh;
+    }
+    .inputeditar {
+        width: 35vh;
+    }
+    .close_editar {
+        margin-left: 36vh;
     }
 }
