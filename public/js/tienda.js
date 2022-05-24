@@ -714,7 +714,7 @@ function modal(id) {
             var respuesta = JSON.parse(this.responseText);
             var divModal = document.getElementsByClassName("div-modal")[0];
             var html = "<span class='close2'>&times;</span>";
-            html += "<div class='div-img'><img src='storage/uploads/" + respuesta[0][0].foto_art + "'></div>";
+            html += "<div class='div-img'><img src='storage/uploads/" + respuesta[0][0].foto_art + "'><p id='error-carrito'></p></div>";
             html += "<div class='modal-texto' id-producto='" + respuesta[0][0].id_art + "'>";
             html += "<h5>" + respuesta[0][0].nombre_art + "</h5>";
             html += "<p class='text-uppercase bold'>" + respuesta[0][0].tipo_categoria_art + ":</p>";
@@ -798,7 +798,7 @@ function limite() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (cantidad > respuesta[0].cantidad) {
-                alert("Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.")
+                $("#error-carrito").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
             } else {
                 addToCart()
             }

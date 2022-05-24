@@ -660,6 +660,14 @@ ul {
     height: 100%;
 }
 
+#error-carrito {
+    margin-top: 2%;
+    color: red;
+    font-size: 2vh;
+    text-align: center;
+    font-weight: bold;
+}
+
 .modal-texto {
     float: left;
     width: 60%;
@@ -1165,5 +1173,8 @@ footer {
     }
     .btn-pagar3 {
         height: 6vh;
+    }
+    .div-modal {
+        width: 100%;
     }
 }
