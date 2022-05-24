@@ -112,6 +112,7 @@ function eliminarPaciente(id_paciente) {
         ajax.open("POST", "eliminarPaciente", true);
         ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
+                console.log(this.responseText)
                 var respuesta = JSON.parse(this.responseText);
                 console.log(respuesta);
                 if (respuesta == "OK") {

@@ -665,11 +665,11 @@ CREATE TABLE `tbl_usuario` (
 --
 
 INSERT INTO `tbl_usuario` (`id_us`, `nombre_us`, `apellido1_us`, `apellido2_us`, `dni_us`, `email_us`, `pass_us`, `id_rol_fk`, `id_telefono_fk`, `id_direccion1_fk`, `id_direccion2_fk`) VALUES
-(1, 'Paco', 'Lopez', 'Lopez', '67896066S', 'paquito@mail.com', '123', 2, 1, 1, NULL),
-(2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '123', 1, NULL, NULL, NULL),
-(3, 'traba', 'jador', NULL, '1223124', 'traba@jador.com', '123', 3, 3, 3, NULL),
-(4, 'Marina', 'Martinez', 'Lopez', '1234566S', 'Marina@mail.com', '123', 2, 3, 3, NULL),
-(5, 'Gerard', 'Gomez', NULL, '1234566S', 'gomezmonterroso14@gmail.com', '123', 2, 1, 2, NULL);
+(1, 'Paco', 'Lopez', 'Lopez', '67896066S', 'paquito@mail.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 2, 1, 1, NULL),
+(2, 'dani', 'ruano', 'ruano', '12378945', 'dani@e.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 1, NULL, NULL, NULL),
+(3, 'traba', 'jador', NULL, '1223124', 'traba@jador.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 3, 3, 3, NULL),
+(4, 'Marina', 'Martinez', 'Lopez', '1234566S', 'Marina@mail.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 2, 3, 3, NULL),
+(5, 'Gerard', 'Gomez', NULL, '1234566S', 'gomezmonterroso14@gmail.com', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 2, 1, 2, NULL);
 
 -- --------------------------------------------------------
 
