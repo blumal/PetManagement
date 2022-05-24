@@ -781,6 +781,7 @@ function calcularPrecio(precio) {
 
 }
 
+//LIMITE PARA AÑADIR AL CARRITO
 function limite() {
     cogerNombre();
 }
@@ -870,3 +871,5 @@ function limite2() {
     }
     ajax.send(formData);
 }
+
+//FIN LIMITE PARA AÑADIR AL CARRITO
