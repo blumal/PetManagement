@@ -16,7 +16,7 @@
     <link rel="icon" href="./img/imagenesWeb/logo.png">
 </head>
 <body>
-<<<<<<< HEAD:resources/views/mapa_animales_perdidos.blade.php
+
     <nav id="nav">
         <div class="nav_container">
             <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
@@ -33,9 +33,9 @@
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Animales Perdidos</a>
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                @if (Session::get('cliente_session'))
-                        <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
-                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
+                @if (Session::get('id_user_session')) 
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}}!</a>
+                        <input type="hidden" id="id_us" value="{{Session::get('id_user_session')}}"></a>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else
                     <a href="{{url("login")}}" class="login_item">Inicia sesión</a>
@@ -55,24 +55,7 @@
             </form>
             
         </div>
-<<<<<<< HEAD:resources/views/mapa_animales_perdidos.blade.php
-=======
-=======
-    @include('comun.navegacion')
-    <div>
-        <form action="{{url('/an_perd')}}" method="GET">
-            <input type="hidden" name="_method" value="POST" id="postFiltro">
-            <div class="form-outline">
-                <button type="submit" ><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
-            </div>
-        </form>
->>>>>>> 4fc89df8ff6c2d9c3fd9a93aa77b306feea61ca5:resources/views/mapas/mapa_animales_perdidos.blade.php
->>>>>>> Pre-Alpha:resources/views/mapas/mapa_animales_perdidos.blade.php
     </div>
-    <div id="map">
-        
-    </div>
-    
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>

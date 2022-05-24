@@ -560,7 +560,7 @@ footer {
         font-weight: bolder;
         font-family: 'Courier New', Courier, monospace;
         background-color: #5E6DFF;
-        /* margin: auto; */
+        margin-top: 40%;
         /* padding: 1.7%; */
         /* border: 1px solid #000; */
         width: 85%;
