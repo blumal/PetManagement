@@ -17,14 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/tienda.css')}}">
     <title>PetManagment - Tienda</title>
 </head>
-<form action="FacturasTienda" method="post">
-    @csrf
-    
-    <input type="hidden" name="id_user" value={{Session::get('id_user_session')}}>
-    <center>
-    <input id="ver_factura" type="submit" value="Ver facturas anteriores"  width="1000px">
-    </center>
-</form>
+
 @include('comun.navegacion')
 <body>
     <div class="row-c">
@@ -420,7 +413,15 @@
     </div>
 </div>
 
-
+@if (Session::get('id_user_session'))
+  <form action="FacturasTienda" method="post" width="1000px">
+    @csrf
+    <center>
+    <input id="ver_factura" type="submit" value="Ver facturas anteriores" style="padding-left: 44%;
+    padding-right: 44%;">
+    </center>
+  </form>
+@endif
 </body>
 <footer>
     <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
@@ -437,17 +438,4 @@
     </ul>
     <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
 </footer>
-<script>
-  var ver_facturas = document.getElementById('ver_factura')
-ver_facturas.style.border = 'none';
-
-window.addEventListener("scroll", function() {
-    var scroll = window.scrollY;
-    if (scrollY > 0) {
-        ver_facturas.style.backgroundColor = '#8590FF';
-    } else {
-        ver_facturas.style.backgroundColor = 'white';
-    }
-})
-</script>
 </html>
