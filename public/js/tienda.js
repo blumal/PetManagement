@@ -204,7 +204,7 @@ function productos() {
     ajax.open("POST", "productos", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
-            console.log(this.responseText)
+            //console.log(this.responseText)
             var respuesta = JSON.parse(this.responseText);
             divProductos.innerHTML = "";
             var html = "<p>Lo más vendido</p>";
@@ -400,7 +400,6 @@ function filtro() {
 
     //NUEVO
     var palabras = nombre.split(" ");
-    console.log(palabras)
     for (let i = 0; i < palabras.length; ++i) {
         if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y" || palabras[i] == "") {} else {
             formData.append('palabras[]', palabras[i]);
@@ -554,7 +553,6 @@ function filtro3() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var divProductos = document.getElementsByClassName("productos")[0];
             var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta)
             divProductos.innerHTML = "";
             var marcasHTML = []
             $('input[name="marcas"]:checked').each(function() {
@@ -784,11 +782,12 @@ function calcularPrecio(precio) {
 }
 
 function limite() {
-    /*NO ESTA SOLUCIONADO, HABRIA QUE CAMBIAR TODA LA ESTRUCTURA DEL ARRAY DE SESION, RECORRERLO, VER
-    SI ESE PRODUCTO YA ESTÁ EN LA SESION, SUMAR LA CANTIDAD YA METIDA CON LA QUE SE VA A METER, Y COMPARAR*/
+    //NUEVO
+    cogerNombre();
+    //Llama funcion, esa funcion llama otra funcion, esa funcion llama a otra funcion y así vamos escribiendo todo
+    //FIN NUEVO
     var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
     var cantidad = $('#input-cantidad').val();
-    //console.log(sesion)
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('subcategoria', subcategoria);
@@ -801,6 +800,44 @@ function limite() {
                 $("#error-carrito").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
             } else {
                 addToCart()
+            }
+        }
+    }
+    ajax.send(formData);
+}
+
+function cogerNombre() {
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('subcategoria', subcategoria);
+    var ajax = objetoAjax();
+    ajax.open("post", "cogerNombre", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var nombre = respuesta[0].nombre_art;
+            cogerCarrito(nombre)
+        }
+    }
+    ajax.send(formData);
+}
+
+function cogerCarrito(nombre) {
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    var ajax = objetoAjax();
+    ajax.open("post", "cogerCarrito", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            respuesta = Object.keys(respuesta).map((key) => [Number(key), respuesta[key]]);
+            for (let i = 0; i < respuesta.length; i++) {
+                if (respuesta[i][1].nombre.includes(nombre)) {
+                    console.log(respuesta[i][1].nombre)
+                    console.log(respuesta[i][1].cantidad)
+                }
+
             }
         }
     }

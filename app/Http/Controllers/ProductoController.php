@@ -216,6 +216,11 @@ class ProductoController extends Controller
         $cantidad=DB::select("SELECT tbl_categoria_articulo.cantidad FROM `tbl_categoria_articulo` WHERE tbl_categoria_articulo.id_cat=?",[$datos['subcategoria']]);
         return response()->json($cantidad);
     }
+    public function cogerNombre(Request $request) {
+        $datos = $request->except('_token');
+        $nombre=DB::select("SELECT tbl_articulo_tienda.nombre_art FROM tbl_articulo_tienda INNER JOIN tbl_categoria_articulo ON tbl_articulo_tienda.id_art=tbl_categoria_articulo.articulo_fk WHERE tbl_categoria_articulo.id_cat=?",[$datos['subcategoria']]);
+        return response()->json($nombre);
+    }
 
     public function insertarOpinion(Request $request) {
         $datos = $request->except('_token');
@@ -334,9 +339,12 @@ class ProductoController extends Controller
     }
 
     public function cogerSesion(Request $request) {
-        //CAMBIAR SESION CART POR LA DE USER
         $user = session()->get('id_user_session');
         return response()->json($user);
+    }
+    public function cogerCarrito(Request $request) {
+        $cart = session()->get('cart');
+        return response()->json($cart);
     }
 
     /*Dinero*/
