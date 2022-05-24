@@ -17,17 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 <body>
-    <header id="nav">
-        <div class="logo">
-            <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
-        </div>
-        
-        <div class="logout">
-            <a href="{{url("citas")}}" class="nav_item">Back</a>
-            <a href="{{url("logout")}}" class="login_item">Logout</a>
-        </div>
-        <script src="./js/home.js"></script>
-    </header>
+    @include('comun.navegacion')
 
     <div class="row-c visita">
         @for ($i = 0; $i < count($facturas); $i++)
