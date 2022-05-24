@@ -8,9 +8,10 @@ body {
     margin: 0;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
+
 
 /* Clear floats after the columns */
 
@@ -216,4 +217,10 @@ header {
 
 #footer2 {
     background-color: #000000;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

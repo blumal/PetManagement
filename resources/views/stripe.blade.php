@@ -17,6 +17,7 @@
         
         .display-tr {
             display: table-row;
+            text-align: center;
         }
         
         .display-td {
@@ -24,13 +25,51 @@
             vertical-align: middle;
             width: 61%;
         }
+        .container {
+            text-align: center
+        }
+        .container h1 {
+            padding-top: 8vh;
+        }
+        .row{
+            padding-top: 0%;
+            text-align: center;
+        }
+        .panel-title{
+            text-align: center;
+        }
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .heh {
+            height: 50vh;
+        }
+        .formulario {
+            background: rgba(31, 45, 196, 0.659);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgb(0, 0, 0);
+            color: white;
+        }
+        .card {
+            background: transparent;
+            color: white;
+        }
+        body {
+            position: relative;
+            background-image: url(./img/imagenesWeb/fotosSlider/foto-slider-4.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+}
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Pet Management <br/></h1>
-        <div class="row">
+        <div class="row flex heh">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default credit-card-box">
                     <div class="panel-heading display-table">
@@ -40,6 +79,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="panel-body">
                         @if (Session::has('success'))
                         <div class="alert alert-success text-center">
@@ -47,7 +87,7 @@
                             <p>{{ Session::get('success') }}</p>
                         </div>
                         @endif
-                        <form role="form" action="{{ url('stripePost') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                        <form role="form" action="{{ url('stripePost') }}" method="post" class="require-validation formulario" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                             @csrf
                             <div class='form-row row'>
                                 <div class='col-xs-12 form-group required'>
@@ -70,12 +110,12 @@
                                     <label class='control-label'>Año de caducidad</label> <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
                                 </div>
                             </div>
-                            <div class='form-row row'>
+                            {{-- <div class='form-row row'>
                                 <div class='col-md-12 error form-group hide'>
                                     <div class='alert-danger alert'>Please correct the errors and try again.
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <input type="hidden" id="envizr" name="preciototal" value="{{$preciototal}}">
                             <div class="row">
                                 <div class="col-xs-12">

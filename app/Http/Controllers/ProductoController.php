@@ -447,7 +447,7 @@ class ProductoController extends Controller
    
         Session::flash('success', 'Payment successful!');
            
-        return back();
+        return redirect('comprafinalizada');
     }
     /**
      * Show the form for editing the specified resource.

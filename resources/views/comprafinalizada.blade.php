@@ -33,5 +33,4 @@
     <a href="{{ url('tienda')}}" >
         <p class="seguir"><b>Ir a la página principal</b></p>
     </a>
-</div>
-
+</div>  

@@ -89,7 +89,8 @@
                             </button>
                         <div class="dropdown-menu">
                             <div class="rowpay2">
-                                <form action="{{url('stripe')}}">
+                                <form action="{{url('stripe')}}" method="post">
+                                    @csrf
                                     <input type="hidden" name="preciototal" value="{{$total}}">
                                     <input type="submit" id="envizr" name='btn' value="">
                                     {{-- <img src="../public/img/tarjeta.png" alt="hola"> --}}
