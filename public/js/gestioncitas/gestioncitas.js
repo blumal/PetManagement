@@ -20,6 +20,7 @@ function objetoAjax() {
     return xmlhttp;
 }
 
+//Filtro AJAX citas
 function idFilters() {
     //Recojo variables
     var table = document.getElementById('table-g');
@@ -69,8 +70,8 @@ function idFilters() {
                         </form>
                     </td>
                     <td>
-                        <form action="editarcitaempleado/${reply[i].id_vi}" method="post">
-                            <input type="hidden" name="_token" id="csrf-token" value="${token}"/>
+                        <form method="post" onsubmit="DeleteQuote(${reply[i].id_vi}); return false;">
+                            <input type="hidden" id="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger">Cancelar</button>
                         </form>
                     </td>
@@ -82,29 +83,32 @@ function idFilters() {
     }
     ajax.send(formdata);
 }
-/*<th scope="col">Cliente</th>
-<th scope="col">Motivo de la visita</th>*/
-/*<td>${reply[i].nombre_us}</td>
-                    <td>${reply[i].asunto_vi}</td>*/
 
-//Modal info quote
-{
-    /* <td><button type="button" class="btn btn-success" onclick="openModalInfo('${reply[i].nombre_us}', '${reply[i].nombre_pa}', '${reply[i].asunto_vi}'); return false;">Información</button></td>
-                        <td><button type="button" class="btn btn-warning" onclick="openModalUpdate(${reply[i].id_vi}); return false;">Actualizar</button></td>
-                        <td><button type="button" class="btn btn-danger" onclick="openModalCancel(${reply[i].id_vi}); return false;">Cancelar</button></td> */
-}
+//Eliminar cita
+function DeleteQuote(id_vi){
+    //Inicialización objeto Ajax
+    var ajax = objetoAjax();
+    //Nuevo objeto
+    formdata = new FormData();
+    //form
+    formdata.append('_token', document.getElementById('token').getAttribute("content"));
+    formdata.append('_method', 'DELETE');
+    formdata.append('id_vi', id_vi);
 
-function openModalInfo(nombre_us, nombre_pa, asunto_vi) {
-    alert(nombre_us);
-    alert(nombre_pa);
-    alert(asunto_vi);
-}
-
-//Update quote
-function openModalUpdate(id_vi) {
-    alert(id_vi);
-}
-//Delete quote
-function openModalCancel(id_vi) {
-    alert(id_vi);
+    //Datos fichero web que apunta a la función que recoge el JSON
+    ajax.open("POST", "deletequote/" + id_vi, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(this.responseText);
+            var reply = JSON.parse(this.responseText);
+            if (reply.result == "OK") {
+                alert('success');
+            } else {
+                alert('error');
+            }
+            //Para poder ver los cambios sin recargar la página debemos volver a llamar a la función del filtro
+            idFilters()
+        }
+    }
+    ajax.send(formdata);
 }

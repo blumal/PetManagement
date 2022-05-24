@@ -34,6 +34,7 @@ class EmpleadoController extends Controller
             ->join('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
             ->join('tbl_estado', 'tbl_visita.id_estado_fk', '=', 'tbl_estado.id_est')
+            ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
             ->where('tbl_visita.id_vi', '=', $id_vi)
             ->get();
         return view('empleados/infogestioncitas', compact('quotedatas'));
@@ -74,7 +75,7 @@ class EmpleadoController extends Controller
                 $sub = "Modificación de cita";
                 $enviar = new Mailtocustomers($datas, 1);
                 $enviar->sub = $sub;
-                Mail::to('100006203.joan23@fje.edu')->send($enviar);
+                Mail::to($request['email_us'])->send($enviar);
                 return response()->json(array('result'=> 'OK'));
             }else{
                 return response()->json(array('result'=> 'NOK'));
@@ -82,6 +83,16 @@ class EmpleadoController extends Controller
         } catch (\Throwable $e) {
             return response()->json(array('result'=> 'NOK'.$e->getMessage()));
         }
-    }   
+    }
+    
+    //Eliminación de cita
+    public function deleteQuote($id_vi){
+        try {
+            DB::table('tbl_visita')->where('id_vi', $id_vi)->delete();
+            return response()->json(array('result'=> 'OK'));
+        } catch (\Throwable $e) {
+            return response()->json(array('result'=> 'NOK'.$e->getMessage()));
+        }
+    }
 }
  

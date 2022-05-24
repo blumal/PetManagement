@@ -271,3 +271,5 @@ Route::post('/editarcitaempleado/{id_vi}', [EmpleadoController::class, 'quotesEd
 Route::post('/infocitaempleado/{id_vi}', [EmpleadoController::class, 'quotesInfo']);
 //Actualización datos cita
 Route::post('updatingquote', [EmpleadoController::class, 'updatequoteProc']);
+//Eliminación de cita
+Route::delete('/deletequote/{id_vi}', [EmpleadoController::class, 'deleteQuote']);

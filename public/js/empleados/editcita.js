@@ -51,6 +51,17 @@ function objetoAjax() {
 }
 
 function UpdateQuote(){
+    //Variables
+    var fecha_vi = document.getElementById('fecha_vi').value;
+    var hora_vi = document.getElementById('hora_vi').value;
+
+    //Validación datos cliente
+    if (fecha_vi == '' && hora_vi == ''){
+        alertify.error("Los campos fecha y hora son obligatorios *");
+    }else if(fecha_vi == ''){
+        alertify.warning("Rellene el campo fecha *");
+    }
+
     //Inicialización objeto Ajax
     var ajax = objetoAjax();
     //Nuevo objeto
@@ -60,8 +71,8 @@ function UpdateQuote(){
     formdata.append('_method', 'POST');
     formdata.append('id_vi', document.getElementById('id_vi').value);
     formdata.append('email_us', document.getElementById('email_us').value);
-    formdata.append('fecha_vi', document.getElementById('fecha_vi').value);
-    formdata.append('hora_vi', document.getElementById('hora_vi').value);
+    formdata.append('fecha_vi', fecha_vi);
+    formdata.append('hora_vi', hora_vi);
 
     //Datos fichero web que apunta a la función que recoge el JSON
     //Debo volver a la raíz para poder llamar a la ruta

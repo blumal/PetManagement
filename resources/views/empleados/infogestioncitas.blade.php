@@ -12,18 +12,27 @@
     <center>
         <h1>Datos de la cita</h1>
     </center>
-    @foreach ($quotedatas as $item)
-        <h3>Datos del cliente</h3>
-            <p>Visita nº: {{$item->id_vi}}</p>
-            <p>Fecha de la visita: {{$item->fecha_vi}}</p>
-            <p>Hora agendada: {{$item->hora_vi}}h</p>
-            <p>Estado de la visita: {{$item->estado_est}}</p>
-            <p>Nombre del cliente: {{$item->nombre_us}}</p>
-        <h3>Datos del paciente</h3>
-            <p>Nombre: {{$item->nombre_pa}} </p>
-            <p>Raza: {{$item->raza_pa}}</p>
-            <p>Peso: {{$item->peso_pa}}Kg</p>
-            <p>Motivo de la visita: {{$item->asunto_vi}}</p>
-    @endforeach
+    <div class="container p-5">
+        @foreach ($quotedatas as $item)
+            <h3>Datos del cliente</h3>
+                <p>Visita nº: {{$item->id_vi}}</p>
+                <p>Fecha de la visita: {{$item->fecha_vi}}</p>
+                <p>Hora agendada: {{$item->hora_vi}}h</p>
+                <p>Estado de la visita: {{$item->estado_est}}</p>
+                <p>Nombre del cliente: {{$item->nombre_us}} {{$item->apellido1_us}} {{$item->apellido2_us}}</p>
+                <p>Contacto del cliente: {{$item->contacto1_tel}}-{{$item->contacto2_tel}}</p>
+            <h3>Datos del paciente</h3>
+                <p>Nombre: {{$item->nombre_pa}} </p>
+                <p>Raza: {{$item->raza_pa}}</p>
+                <p>Peso: {{$item->peso_pa}}Kg</p>
+                <p>Motivo de la visita: {{$item->asunto_vi}}</p>
+        @endforeach
+        <form action="{{url('/homeempleado')}}" method="get">
+            @csrf
+            <div class="form-group pt-3">
+                <input class="btn btn-dark" type="submit" value="Back">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

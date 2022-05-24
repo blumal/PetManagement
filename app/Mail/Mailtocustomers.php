@@ -34,6 +34,7 @@ class Mailtocustomers extends Mailable
      */
     public function build()
     {   
+        //En base a los asuntos se returna una vista
         if ($this->sub=="Confirmación de compra") {
             return $this->view('facturas/envio/mailFacturaTienda')->subject($this->sub);
         }elseif($this->sub=="Confirmación de visita"){

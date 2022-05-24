@@ -33,11 +33,11 @@
                         <input type="text" class="form-control" id="hora_old" value="{{$item->hora_vi}}" disabled=»disabled»>
                     </div>
                     <div class="form-group pt-3">
-                        <label>Programar nueva fecha</label>
+                        <label>Programar nueva fecha *</label>
                         <input type="date" class="form-control" name="fecha_vi" id="fecha_vi" value="" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> onchange="hourOptions(); return false;">
                     </div>
                     <div class="form-group pt-3">
-                        <label for="hora_vi">Programar nueva hora</label>
+                        <label for="hora_vi">Programar nueva hora *</label>
                             <select class="form-control" name="hora_vi" id="hora_vi">
                                 <option value="">--Horas disponibles--</option>
                             </select>

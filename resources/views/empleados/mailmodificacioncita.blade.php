@@ -9,10 +9,9 @@
 <body>
     <h1>Modificaciones efectuadas correctamente en su cita</h1>
     <ul>
-        <li>Nº cita: 000</li>
-        <li>Nueva fecha de la visita:</li>
-        <li>Hora solicitada</li>
-        <br/><br/>
+        <li>Nº cita: 000{{$datas['id_vi']}}</li>
+        <li>Nueva fecha de la visita: {{$datas['fecha_vi']}}</li>
+        <li>Hora solicitada: {{$datas['hora_vi']}}</li>
     </ul>
     <center>
         <h3>Gracias por la confianza</h3>
