@@ -133,15 +133,15 @@ class CitasController extends Controller
         return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
-        return view('admin_mapa_perdidos');
+        return view('mapas/admin_mapa_perdidos');
     }
     
     public function cpanelMapa(){
-        return view('admin_mapa_establecimientos');
+        return view('mapas/admin_mapa_establecimientos');
     }
 
     public function an_perd(){
-        return view('animales_perdidos');
+        return view('mapas/animales_perdidos');
     }
 
     //Resultados actuales o futuros implementados en la api
