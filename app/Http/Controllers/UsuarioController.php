@@ -159,6 +159,9 @@ class UsuarioController extends Controller
                 ->where('tbl_usuario.email_us','=',$userId['email_us'])
                 ->where('tbl_usuario.pass_us','=',$password_hash)
                 ->get();
+            if ($userId_compr[0]->activo_us==0) {
+                return Redirect::back()->withErrors(['El usuario introducido no está activo', 'Error password']);
+            }
             //return $userId_compr;
             //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
             if ($userId_compr[0]->rol_ro=='trabajador'){
@@ -308,5 +311,92 @@ class UsuarioController extends Controller
         Mail::to($mail)->send($enviar);
 
         return redirect('/login');
+    }
+
+    //CRUD ADMIN
+
+    public function adminUsuarios(){
+        try {
+
+                DB::beginTransaction();
+                $clientes = DB::table('tbl_usuario')
+                    ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+                    ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                    ->get();
+                DB::commit();
+
+                DB::beginTransaction();
+                $clientes = DB::table('tbl_usuario')
+                    ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+                    ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                    ->get();
+                DB::commit();
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+        
+        return view('usuarios/adminUsuario', compact('clientes')); 
+    }
+    public function leerClientes(Request $request){
+        try {
+            if ($request['nombre_paciente']!=null) {
+                DB::beginTransaction();
+                $clientes = DB::table('tbl_usuario')
+                    ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+                    ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                    ->where('nombre_us', 'like', '%'.$request['nombre_cliente'].'%')
+                    ->orderBy('tbl_usuario.activo_us','desc')
+                    ->get();
+                DB::commit();
+            }else{
+                DB::beginTransaction();
+                $clientes = DB::table('tbl_usuario')
+                    ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
+                    ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
+                    ->orderBy('tbl_usuario.activo_us','desc')
+                    ->get();
+                DB::commit();
+            }
+            return response()->json($clientes);
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+    }
+    public function eliminarCliente(Request $request){
+        $id_cliente=$request['id_cliente'];
+        try {
+            DB::beginTransaction();
+            $cliente_desactualizado = DB::table('tbl_usuario')
+                ->where('id_us', $id_cliente)
+                ->limit(1)
+                ->update(
+                    ['activo_us' => 0]
+                );
+            DB::commit();
+            return response()->json("OK");
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+    }
+
+    public function activarCliente(Request $request){
+        $id_cliente=$request['id_cliente'];
+        try {
+            DB::beginTransaction();
+            $cliente_desactualizado = DB::table('tbl_usuario')
+                ->where('id_us', $id_cliente)
+                ->limit(1)
+                ->update(
+                    ['activo_us' => 1]
+                );
+            DB::commit();
+            return response()->json("OK");
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
     }
 }

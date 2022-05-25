@@ -229,6 +229,14 @@ Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteE
 
 // FIN CRUD PACIENTES
 
+//INICIO CRUD CLIENTES
+
+Route::get('/adminUsuarios',[UsuarioController::class, 'adminUsuarios']);
+Route::post('/eliminarCliente',[UsuarioController::class, 'eliminarCliente']);
+Route::post('/activarCliente',[UsuarioController::class, 'activarCliente']);
+Route::post('/leerClientes',[UsuarioController::class, 'leerClientes']);
+
+// FIN CRUD CLIENTES
 
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
