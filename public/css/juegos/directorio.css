@@ -265,3 +265,8 @@ body {
     fill: #fff;
     transition: left 0.2s ease;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}

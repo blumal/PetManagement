@@ -23,25 +23,7 @@
 </head>
 
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public" method="get"><li class="menu-item">Home</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/tienda" method="get"><li class="menu-item">Tienda</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/citas" method="get"><li class="menu-item">Clínica</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/contacto" method="get"><li class="menu-item">Contacto</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/about" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_animales_perdidos" method="get"><li class="menu-item">Perdidos</li></a>
-            <a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/mapa_establecimientos" method="get"><li class="menu-item">Establecimientos</li></a>
-            @if (Session::get('email_session'))
-                <a href="{{url("logout")}}" method="get"><li class="cta">Logout</li></form></a>
-            @else
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
-            @endif
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    @include('comun.navegacion')
     <div class="container">
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">
@@ -128,12 +110,19 @@
                             </div>
                             
                         </div>
+                        <div>
+                            <div class="form-group-2 mx-sm-2">
+                            @if($errors->any())
+                                <p style="color: red">{{$errors->first()}}</p>
+                            @endif
+                            </div>
+                        </div>
                         <div class="form-group mx-sm-3">
                             <input type="submit" class="btn btn-block ingresar" value="REGISTRARME">
                         </div>
                         <div class="form-group mx-sm-3 text-left">
                             <span class="">Ya tienes una cuenta?</span>
-                            <span><a href="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/login" class="olvide1">Iniciar sesión</a></span>
+                            <span><a href="{{url("login")}}" class="olvide1">Iniciar sesión</a></span>
                         </div>
                     </form>
                 {{-- </div>

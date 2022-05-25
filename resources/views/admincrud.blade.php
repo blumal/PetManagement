@@ -30,11 +30,11 @@
         <form class="filtro" method="post" onsubmit="return false;">
             <input type="hidden" name="_method" value="POST" id="postFiltro">
             <div class="form-outline">
-               <input type="search" id="search" name="nombre_art" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
+               <input type="search" id="search" name="nombre_art" class="form-control" placeholder="Filtrar por nombre" aria-label="Search" onkeyup="filtro(); return false;"/>
             </div>
          </form>
     </div>
-    <div>
+    <div class="table-responsive">
         <table class="table" id="table">
             <tr class="fila-1">
                 <th scope="col">#</th>

@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('cliente_session'))
+@if (!Session::get('id_user_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -25,72 +25,58 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     {{-- validacion perfil --}}
-    <script src="./js/valid_perfil.js"></script>
+    <script src="./js/login_registro/valid_perfil.js"></script>
     <title>Perfil</title>
 </head>
 
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            @if (Session::get('cliente_session'))
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
-                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                </form>
-                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
-            @else
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
-            @endif
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    @include('comun.navegacion')
     <div class="container">
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">
-                <form action="{{url('modificarPerfil')}}" method="POST" onsubmit="return validatePerfil();">
+                <form action="{{url('/modificarPerfilPost')}}" method="POST" onsubmit="return validatePerfil();">
+                    @csrf
                     <div class="form-group text-center">
                         <h3 class="form-group" style="margim-top: -5px !important; margin-bottom: -10px !important;">MI PERFIL</h3>
                     </div>
                     @foreach ($profile as $perfil)
                     
-                        {{-- <input type="hidden" name="id_us" value="{{$perfil->id_us}}"> --}}
+                        <input type="hidden" name="id_us" value="{{$perfil->id_us}}">
                         
                         <span>Datos personales</span>
-                        <div class="form-group-2 mx-sm-2">
-                            <input type="text" class="form-control" name="email_us" id="email_us" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="nombre_us" id="nombre_us" placeholder="Nombre *" value="{{$perfil->nombre_us}}">
+                            </div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="email_us" id="email_us" style="visibility: hidden;" placeholder="Correo electrónico *" value="{{$perfil->email_us}}">
+                            </div>
                         </div>
+                        <div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="apellido_us1" id="apellido1_us" placeholder="Apellido 1 *" value="{{$perfil->apellido1_us}}">
+                            </div>
+                            <div class="form-group-1 mx-sm-2">
+                                <input type="text" class="form-control" name="apellido_us2" id="apellido_us2" placeholder="Apellido 2" value="{{$perfil->apellido2_us}}" autocomplete="new-password">
+                            </div>
+                        </div>
+                        
                         <span>Contraseñas</span>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Contraseña actual">
+                                <input type="password" class="form-control" name="old_pass" id="pass_us" placeholder="Contraseña actual" autocomplete="none">
                             </div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" style="visibility: hidden;" id="pass_us" placeholder="Contraseña *">
+                                <input type="password" class="form-control"  style="visibility: hidden;" name="pass_us_no" id="pass_us" placeholder="Nueva contraseña">
                             </div>
+                            
                         </div>
                         <div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control" name="pass_us" id="pass_us" placeholder="Nueva contraseña">
+                                <input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="Nueva contraseña">
                             </div>
                             <div class="form-group-1 mx-sm-2">
-                                <input type="password" class="form-control"  id="pass_us" placeholder="Confirmar nueva contraseña">
+                                <input type="password" class="form-control" name="new_pass_confirm" id="new_pass_confirm" placeholder="Confirmar nueva contraseña">
                             </div>
                         </div>
                         <span>Contacto</span>
@@ -131,7 +117,13 @@
                                 <input type="text" class="form-control" name="puerta_di" id="puerta_di" placeholder="Puerta" value="{{$perfil->puerta_di}}">
                             </div>
                         </div>
-                        
+                    <div>
+                        <div class="form-group-2 mx-sm-2">
+                        @if($errors->any())
+                            <p style="color: red">{{$errors->first()}}</p>
+                        @endif
+                        </div>
+                    </div>
                     <div class="form-group mx-sm-3">
                         <input type="submit" class="btn btn-block ingresar" value="GUARDAR">
                     </div>

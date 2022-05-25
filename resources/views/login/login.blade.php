@@ -24,42 +24,13 @@
 </head>
 
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            @if (Session::get('cliente_session'))
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
-                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                </form>
-                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
-            @else
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
-            @endif
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    @include('comun.navegacion')
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 m-1">
             <div class="col-md-6 col-sm-8 col-xl-5 col-lg-5 formulario">
                 <form action="{{url("login-proc")}}" method="post" onsubmit="return validateLogin();">
                     @csrf
+                    <input type="hidden" id="rul" name='rul' value="{{$id}}">
                     <div class="form-group text-center pt-3">
                         <h1>INICIAR SESIÓN</h1>
                     </div>
@@ -73,6 +44,13 @@
                     {{-- @error('pass_us') --}}
                     <div class="form-group mx-sm-4 pb-1">
                         <input type="submit" class="btn btn-block ingresar" value="INICIAR SESIÓN">
+                    </div>
+                    <div>
+                        <div class="form-group mx-sm-4 pb-2 text-left">
+                        @if($errors->any())
+                            <p style="color: red">{{$errors->first()}}</p>
+                        @endif
+                        </div>
                     </div>
                     <div class="form-group mx-sm-4 pb-2 text-left">
                         <a href="{{url("login/contraseña")}}"><span>Te has olvidado la contraseña?</a></span>
