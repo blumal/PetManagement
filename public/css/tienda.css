@@ -319,7 +319,7 @@ ul {
 
 .div-categoria {
     float: left;
-    width: 20%;
+    width: 21%;
     font-size: 3vh;
     margin-left: 3%;
     margin-bottom: 5vh;
@@ -330,6 +330,7 @@ ul {
     background-color: #1f2cc4;
     color: white;
     transition: all 0.3s;
+    font-size: 3vh;
 }
 
 .btn-categoria:focus {
@@ -365,6 +366,10 @@ ul {
 
 .dropdown-toggle::after {
     display: none;
+}
+
+.dropdown-item {
+    font-size: 2.5vh !important;
 }
 
 .dropdown-menu {
