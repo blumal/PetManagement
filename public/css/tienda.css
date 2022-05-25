@@ -927,6 +927,7 @@ footer {
     margin: 1rem 1.5rem;
     cursor: pointer;
     opacity: 0.6;
+    color: white;
 }
 
 .footer-item:hover {
