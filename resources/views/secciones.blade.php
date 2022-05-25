@@ -48,7 +48,7 @@ ob_start();
             <h2>PANEL DEL ADMINISTRADOR</h2>
             <div class="column-3">
                 <div class="seccion">
-                    <form {{-- action="{{url('/cpanelUsrs')}}" --}} method="GET">
+                    <form action="{{url('/adminUsuarios')}}"method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit" ><img class="sala" src="./img/imagenesWeb/usuario.png" width="200px" height="200px"></button><br><br>
