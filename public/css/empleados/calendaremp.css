@@ -1,0 +1,68 @@
+* {
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin: 0;
+    padding: 0;
+    --main-color: #1f2cc4;
+    --second-color: #ffffff;
+}
+
+body {
+    position: relative;
+    background: white;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.column-1 {
+    width: 100%;
+    /* margin: 0% 5% 4% 5%; */
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendarestructure {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    /* padding: 1%; */
+    width: 80%;
+    box-shadow: 0px 5px 7px 5px rgba(211, 210, 210, 0.582);
+    /* background-color: #6267FF; */
+    border-radius: 20px;
+}
+
+#calendar {
+    padding: 2%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#calendar button {
+    background-color: #6267FF;
+}
+
+#calendar h2 {
+    color: #6267FF;
+}
+
+@media(max-width: 800px) {
+    .calendarestructure {
+        width: 90%;
+    }
+    #calendar button {
+        padding: 1px;
+    }
+}
