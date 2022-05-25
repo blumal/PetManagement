@@ -1,0 +1,155 @@
+/* ---------- NAV BAR ---------- */
+
+#nav {
+    position: fixed;
+    width: 100%;
+    transition: 0.5s;
+    margin-top: 0px;
+    z-index: 999;
+}
+
+.nav_container {
+    display: flex;
+    width: 100%;
+    /*Utiliza el mismo margen que en el @media*/
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 999;
+    padding-left: 1%;
+    padding-right: 5%;
+}
+
+.nav_logo {
+    width: 80px;
+    z-index: 999;
+}
+
+.nav_img {
+    width: 25px;
+    padding-top: 1%;
+    padding-right: 5px;
+    z-index: 999;
+}
+
+.nav_menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    /* display: grid;
+    grid-auto-flow: column;
+    gap: 3em; */
+}
+
+.nav_item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.login_item {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1f2cc4;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+}
+
+.login_item:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.nav_item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.nav_input:checked+.nav_menu {
+    background: white;
+}
+
+.nav_label,
+.nav_input {
+    display: none;
+}
+
+
+/*MENU RESPONSIVE + EFECTS*/
+
+@media (max-width: 800px) {
+    #nav {
+        background-color: #ffffff;
+        transition: none;
+    }
+    .nav_container {
+        padding-left: 4%;
+    }
+    /*Icono*/
+    .nav_label {
+        /*Mostramos el contenido*/
+        display: block;
+        cursor: pointer;
+        z-index: 999;
+    }
+    .nav_menu {
+        grid-auto-flow: column;
+        padding-top: 20%;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /*Efecto apertura*/
+        clip-path: circle(0 at center);
+        transition: clip-path 1s ease-in-out;
+    }
+    /*Items menú*/
+    .nav_item {
+        width: 65%;
+        padding: 17px;
+        border-radius: 25px;
+        background-color: #6267FF;
+        box-shadow: 0px 6px 10px rgb(0 0 0 /50%);
+        color: #ffffff;
+        margin-bottom: 1%;
+    }
+    .login_item {
+        width: 65%;
+        padding: 17px;
+        border-radius: 25px;
+        background-color: #FF9900;
+        color: #ffffff;
+    }
+    /* .nav_item:hover {} */
+    .nav_input:checked+.nav_menu {
+        clip-path: circle(100% at center);
+    }
+    /* ---------- TWITTER ---------- */
+    .twitter {
+        position: static;
+        margin: 10% 10% 10% 0%;
+        box-shadow: 0px 0px 7px 10px #292f33;
+        background-color: #292f33;
+        border-radius: 5px;
+    }
+}

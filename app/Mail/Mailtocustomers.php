@@ -43,6 +43,8 @@ class Mailtocustomers extends Mailable
             return $this->view('login/envio/mailPassword')->subject($this->sub);
         }elseif($this->sub=="Modificación de cita"){
             return $this->view('empleados/mailmodificacioncita')->subject($this->sub);
+        }elseif($this->sub=="Solicitud de contacto"){
+            return $this->view('login/envio/contacto')->subject($this->sub);
         }
         else{
             return $this->view('clinica/vistas/mailtocustomer')->subject($this->sub);

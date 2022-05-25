@@ -39,6 +39,7 @@
         <input class="previous_visits_button" type="submit" value="Ver factura">
     </form>
 
+
     <center>
         <h3>Gracias por la confianza</h3>
     </center>
