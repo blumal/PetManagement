@@ -97,6 +97,24 @@ function UpdateQuote(){
     ajax.send(formdata);
 }
 
+function preChange(id_vi){
+    swal({
+            title: "¿Segur@ de que deseas iniciar la cita?",
+            text: "La acción no se podrá revertir!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("La cita se ha iniciado correctamente :)", {
+                    icon: "success",
+                });
+                changeStatus(id_vi);
+            }
+        });
+}
+
 function changeStatus(id_vi){
     //Inicialización objeto Ajax
     var ajax = objetoAjax();
@@ -117,9 +135,9 @@ function changeStatus(id_vi){
             console.log(this.responseText);
             var reply = JSON.parse(this.responseText);
             if (reply.result == "OK") {
-                alertify.success("Visita iniciada correctamente");
+                console.log('success');
             } else {
-                alertify.error("Ha ocurrido un error en la actualización de datos" + result);
+                swal("Opss...", "Error: " + result);
             }
         }
     }

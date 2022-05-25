@@ -1,3 +1,10 @@
+@if (!Session::get('id_rol_session') == 3)
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--Librería Sweet Alert-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css">
     <!--Librería Alertify-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
@@ -38,7 +47,7 @@
             @endif
             <p>Motivo de la visita: {{$item->asunto_vi}}</p>
         @endforeach
-        <form method="post" onsubmit="changeStatus({{$item->id_vi}}); return false;">
+        <form method="post" onsubmit="preChange({{$item->id_vi}}); return false;">
             @csrf
             <div class="form-group pt-3">
                 <input class="btn btn-success" type="submit" value="Iniciar cita">

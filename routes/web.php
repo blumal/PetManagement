@@ -263,6 +263,11 @@ Route::get('comprado',[ProductoController::class, 'compra']);
 Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
 
 //Empleados
+//Datos calendario
+Route::get('/calendaremp', [EmpleadoController::class, 'calendarEmp']);
+//Mostrar datos calendario
+//Api
+Route::get('showquotes', [EmpleadoController::class, 'showQuotes']);
 Route::get('/homeempleado', [EmpleadoController::class, 'empleadoDatas']);
 Route::post('filter', [EmpleadoController::class, 'quotesFilter']);
 //Editar citas

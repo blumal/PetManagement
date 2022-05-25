@@ -14,10 +14,25 @@ class EmpleadoController extends Controller
         return view('empleados/filtrocitas');
     }
 
+    //Vista calendario
+    public function calendarEmp(){
+        return view('empleados/calendaremp');
+    }
+
+    //Recogida de datos JSON de las citas
+
+    public function showQuotes(){
+        $today = now()->format('Y-m-d');
+        $citas = DB::select("SELECT fecha_vi, hora_vi FROM tbl_visita WHERE fecha_vi >= '$today'");
+        return response()->json($citas);
+    }
+
+
     public function quotesFilter(Request $request){
         //Query citas
         $today = now()->format('Y-m-d');
         $quotes=DB::table("tbl_visita")
+        //Leftjoin -> hay datos nulos
             ->leftJoin('tbl_pacienteanimal_clinica', 'tbl_visita.id_pacienteanimal_fk', '=', 'tbl_pacienteanimal_clinica.id_pa')
             ->join('tbl_usuario', 'tbl_visita.id_usuario_fk', '=', 'tbl_usuario.id_us')
             ->join('tbl_estado', 'tbl_visita.id_estado_fk', '=', 'tbl_estado.id_est')
@@ -70,9 +85,9 @@ class EmpleadoController extends Controller
             if ($checkdatas < 3) {
                 //Actualización de datos
                 DB::update('UPDATE tbl_visita 
-                    SET fecha_vi=?, hora_vi=? 
+                    SET fecha_vi=?, hora_vi=?, id_estado_fk=? 
                     WHERE id_vi=?', 
-                    [$request->input('fecha_vi'), $request->input('hora_vi'), $request->input('id_vi')]);
+                    [$request->input('fecha_vi'), $request->input('hora_vi'), 1, $request->input('id_vi')]);
                 $sub = "Modificación de cita";
                 $enviar = new Mailtocustomers($datas, 1);
                 $enviar->sub = $sub;

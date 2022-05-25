@@ -1,3 +1,10 @@
+@if (!Session::get('id_rol_session') == 3)
+    <?php
+        //Si la session no esta definida te redirige al login, la session se crea en el método.
+        return redirect()->to('login')->send();
+    ?>
+@endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

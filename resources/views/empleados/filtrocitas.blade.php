@@ -4,6 +4,7 @@
         return redirect()->to('login')->send();
     ?>
 @endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@
             <input type="checkbox" id="menu" class="nav_input">
             <!--Menu header-->
             <div class="nav_menu">
-                <a href="#{{-- {{url("/")}} --}}" class="nav_item">Calendario</a>
+                <a href="{{url("/calendaremp")}}" class="nav_item">Calendario</a>
                 <a href="#{{-- {{url("tienda")}} --}}" class="nav_item">Gestión de citas</a>
                 <a href="#{{-- {{url("citas")}} --}}" class="nav_item">Administración de pacientes</a>
                 <a href="#{{-- {{url("contacto")}} --}}" class="nav_item">Administración de visitas</a>
@@ -63,7 +64,7 @@
                 </div>
                 <br/>
                 <div class="table-responsive">
-                        <table class="table table-hover" id="table-g"></table>
+                    <table class="table table-hover" id="table-g"></table>
                 </div>
             </div>
         </div>

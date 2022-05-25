@@ -122,7 +122,7 @@ function DeleteQuote(id_vi){
             if (reply.result == "OK") {
                 console.log('Success');
             } else {
-                swal("Opss...", "Error: " + result, "success");
+                swal("Opss...", "Error: " + result);
             }
             //Para poder ver los cambios sin recargar la página debemos volver a llamar a la función del filtro
             idFilters()
