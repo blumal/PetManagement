@@ -712,7 +712,7 @@ function modal(id) {
             var respuesta = JSON.parse(this.responseText);
             var divModal = document.getElementsByClassName("div-modal")[0];
             var html = "<span class='close2'>&times;</span>";
-            html += "<div class='div-img'><img src='storage/uploads/" + respuesta[0][0].foto_art + "'><p id='error-carrito'></p></div>";
+            html += "<div class='div-img'><img src='storage/uploads/" + respuesta[0][0].foto_art + "'><span class='popuptext' id='myPopup'></span></div>";
             html += "<div class='modal-texto' id-producto='" + respuesta[0][0].id_art + "'>";
             html += "<h5>" + respuesta[0][0].nombre_art + "</h5>";
             html += "<p class='text-uppercase bold'>" + respuesta[0][0].tipo_categoria_art + ":</p>";
@@ -804,6 +804,7 @@ function cogerNombre() {
 }
 
 function cogerCarrito(nombre) {
+    pasar = 0;
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     var ajax = objetoAjax();
@@ -812,15 +813,19 @@ function cogerCarrito(nombre) {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             respuesta = Object.keys(respuesta).map((key) => [Number(key), respuesta[key]]);
+            //console.log(respuesta[0][0])
+            //console.log(respuesta[1][0])
+            var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
             for (let i = 0; i < respuesta.length; i++) {
-                if (respuesta[i][1].nombre.includes(nombre)) {
-                    console.log(respuesta[i][1].nombre)
-                    console.log(respuesta[i][1].cantidad)
+                if (respuesta[i][0] == subcategoria) {
+                    //console.log(respuesta[i][1].nombre)
+                    //console.log(respuesta[i][1].cantidad)
                     cantidad2 = respuesta[i][1].cantidad;
+                    pasar = 1;
                     restarCantidades(cantidad2);
                 }
             }
-            if (typeof cantidad2 == 'undefined') {
+            if (pasar == 0) {
                 limite2();
             }
         }
@@ -842,7 +847,13 @@ function restarCantidades(cantidad2) {
             cantidadFinal = respuesta[0].cantidad - cantidad2
             console.log(cantidadFinal)
             if (cantidad > cantidadFinal) {
-                $("#error-carrito").text("*Solo puedes comprar un máximo de " + cantidadFinal + " unidades de este producto.*")
+                //$("#error-carrito").text("*Solo puedes comprar un máximo de " + cantidadFinal + " unidades de este producto.*")
+                $("#myPopup").text("*Solo puedes comprar un máximo de " + cantidadFinal + " unidades de este producto.*")
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                setTimeout(function() {
+                    popup.classList.remove("show");
+                }, 4000);
             } else {
                 addToCart()
             }
@@ -863,7 +874,13 @@ function limite2() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (cantidad > respuesta[0].cantidad) {
-                $("#error-carrito").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
+                //$("#error-carrito").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
+                $("#myPopup").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                setTimeout(function() {
+                    popup.classList.remove("show");
+                }, 4000);
             } else {
                 addToCart()
             }

@@ -833,6 +833,40 @@ ul {
 }
 
 
+/*popup*/
+
+
+/* The actual popup */
+
+.popuptext {
+    visibility: hidden;
+    width: auto;
+    background-color: white;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 8px;
+    position: absolute;
+    z-index: 1;
+    top: -20%;
+    left: 20%;
+    margin-left: -80px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* Toggle this class - hide and show the popup */
+
+.show {
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+
 /*footer*/
 
 footer {
