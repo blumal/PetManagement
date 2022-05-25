@@ -173,7 +173,7 @@ class UsuarioController extends Controller
                 $request->session()->put('id_user_session', $id_usuario);
                 $request->session()->put('id_rol_session', $rol_usuario);
                 $request->session()->put('nombre_session', $usuario[0]->nombre_us);
-                return redirect('/');
+                return redirect('/homeempleado');
             }else if($userId_compr[0]->rol_ro=='admin'){
                 //Establecemos sesión
                 $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
@@ -306,7 +306,7 @@ class UsuarioController extends Controller
         $datas=[$regen_password];
         //Envío de mail
         $sub = "Cambio de contraseña";
-        $enviar = new Mailtocustomers($datas,1);
+        $enviar = new Mailtocustomers($datas, 1);
         $enviar->sub = $sub;
         Mail::to($mail)->send($enviar);
 
