@@ -17,11 +17,12 @@ a {
 
 .an_div {
     text-align: center;
+    margin-top: 20px;
     width: 80%;
     margin-left: 10%;
-    border-style: solid;
+    /* border-style: solid;
     border-color: rgb(27, 27, 27);
-    border-radius: 5px;
+    border-radius: 5px; */
 }
 
 .head_admin {
@@ -35,7 +36,7 @@ a {
 }
 
 .btn-info {
-    color: black;
+    color: white;
     display: flex;
     text-align: center;
 }
@@ -59,7 +60,7 @@ h1 {
 }
 
 .ttl {
-    display: flex;
+    /* display: flex; */
     text-align: center;
     width: 50%;
     top: 0;
@@ -89,7 +90,7 @@ h1 {
 }
 
 .input_sel_c {
-    width: 33.333333333%;
+    width: 33.33333333%;
     float: left;
     text-align: center;
 }
