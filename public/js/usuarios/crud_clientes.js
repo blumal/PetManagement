@@ -17,6 +17,35 @@ function objetoAjax() {
     return xmlhttp;
 }
 
+function cambiarRol(id_user, mail) {
+    var id_rol = document.getElementById(mail).value
+
+    var formData = new FormData();
+    var token = document.getElementById('token').getAttribute("content");
+
+    formData.append('_token', token);
+    formData.append('id_rol', id_rol);
+    formData.append('id_user', id_user);
+
+    var ajax = objetoAjax();
+    ajax.open("POST", "cambiarRol", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+
+            var respuesta = JSON.parse(this.responseText);
+            if (respuesta == "OK") {
+                document.getElementById('mensaje').style.color = "green";
+                document.getElementById('mensaje').innerHTML = "Rol ajustado correctamente"
+            } else {
+                document.getElementById('mensaje').style.color = "red";
+                document.getElementById('mensaje').innerHTML = "Rol ajustado incorrectamente. Intentalo de nuevo más tarde"
+            }
+
+        }
+    }
+    ajax.send(formData);
+}
+
 function leerClientes() {
     tabla = document.getElementById('mytable');
 
@@ -24,8 +53,10 @@ function leerClientes() {
     var token = document.getElementById('token').getAttribute("content");
     var busqueda = document.getElementById('search').value;
 
+    console.log(busqueda)
+
     formData.append('_token', token);
-    formData.append('nombre_paciente', busqueda);
+    formData.append('nombre_usuario', busqueda);
     var ajax = objetoAjax();
     ajax.open("POST", "leerClientes", true);
     ajax.onreadystatechange = function() {
@@ -57,40 +88,52 @@ function leerClientes() {
                 }
 
                 if (respuesta[i].id_rol_fk == 1) {
-                    respuesta[i].id_rol_fk = "Admin"
+                    respuesta[i].id_rol_fk_name = "Admin"
                 } else if (respuesta[i].id_rol_fk == 3) {
-                    respuesta[i].id_rol_fk = "Trabajador"
+                    respuesta[i].id_rol_fk_name = "Trabajador"
                 } else {
-                    respuesta[i].id_rol_fk = "Cliente"
+                    respuesta[i].id_rol_fk_name = "Cliente"
                 }
 
+                var select_rol = ""
+                if (respuesta[i].id_rol_fk == 1) {
+                    select_rol = "<option selected value = 1>Admin</option>" +
+                        "<option value = 2>Cliente </option>" +
+                        "<option value = 3>Trabajador</option>"
+                } else if (respuesta[i].id_rol_fk == 2) {
+                    select_rol = "<option value = 1>Admin</option>" +
+                        "<option selected value = 2>Cliente </option>" +
+                        "<option value = 3> Trabajador</option>"
+                } else {
+                    select_rol = "<option value = 1>Admin</option>" +
+                        "<option value = 2> Cliente </option>" +
+                        "<option selected value = 3> Trabajador</option>"
+                }
 
+                var user_activo = ""
                 if (respuesta[i].activo_us == 1) {
-                    tabla.innerHTML += "<tr class='fila-2'>" +
-                        "<td>" + respuesta[i].nombre_us + "</td>" +
-                        "<td>" + respuesta[i].apellido1_us + " " + respuesta[i].apellido2_us + "</td>" +
-                        "<td>" + respuesta[i].dni_us + "</td>" +
-                        "<td>" + respuesta[i].email_us + "</td>" +
-                        "<td>" + respuesta[i].contacto1_tel + "</td>" +
-                        "<td>" + respuesta[i].nombre_di + " " + respuesta[i].numero_di + ", " + respuesta[i].piso_di + " " + respuesta[i].puerta_di + ", " + respuesta[i].cp_di + "</td>" +
-                        "<td>" + respuesta[i].id_rol_fk + "</td>" +
-                        "<td>" +
+                    user_activo = "<td>" +
                         "<button type='button' class='btn btn-danger' onclick='eliminarCliente(" + respuesta[i].id_us + ")'>Desactivar</button>" +
                         "</td>"
                 } else {
-                    tabla.innerHTML += "<tr class='fila-2'>" +
-                        "<td>" + respuesta[i].nombre_us + "</td>" +
-                        "<td>" + respuesta[i].apellido1_us + " " + respuesta[i].apellido2_us + "</td>" +
-                        "<td>" + respuesta[i].dni_us + "</td>" +
-                        "<td>" + respuesta[i].email_us + "</td>" +
-                        "<td>" + respuesta[i].contacto1_tel + "</td>" +
-                        "<td>" + respuesta[i].nombre_di + " " + respuesta[i].numero_di + ", " + respuesta[i].piso_di + " " + respuesta[i].puerta_di + ", " + respuesta[i].cp_di + "</td>" +
-                        "<td>" + respuesta[i].id_rol_fk + "</td>" +
-                        "<td>" +
+                    user_activo = "<td>" +
                         "<button type='button' class='btn btn-success' onclick='activarCliente(" + respuesta[i].id_us + ")'>Activar</button>" +
                         "</td>"
                 }
 
+                tabla.innerHTML += "<tr class='fila-2'>" +
+                    "<td>" + respuesta[i].nombre_us + "</td>" +
+                    "<td>" + respuesta[i].apellido1_us + " " + respuesta[i].apellido2_us + "</td>" +
+                    "<td>" + respuesta[i].dni_us + "</td>" +
+                    "<td>" + respuesta[i].email_us + "</td>" +
+                    "<td>" + respuesta[i].contacto1_tel + "</td>" +
+                    "<td>" + respuesta[i].nombre_di + " " + respuesta[i].numero_di + ", " + respuesta[i].piso_di + " " + respuesta[i].puerta_di + ", " + respuesta[i].cp_di + "</td>" +
+                    "<td>" +
+                    "<select name='id_rol' id=" + respuesta[i].email_us + " onchange=cambiarRol(" + respuesta[i].id_us + ",'" + respuesta[i].email_us + "')> " +
+                    select_rol +
+                    "</select>" +
+                    "</td>" +
+                    user_activo
             }
         }
     }

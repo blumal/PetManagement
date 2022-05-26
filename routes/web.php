@@ -241,6 +241,7 @@ Route::get('/adminUsuarios',[UsuarioController::class, 'adminUsuarios']);
 Route::post('/eliminarCliente',[UsuarioController::class, 'eliminarCliente']);
 Route::post('/activarCliente',[UsuarioController::class, 'activarCliente']);
 Route::post('/leerClientes',[UsuarioController::class, 'leerClientes']);
+Route::post('/cambiarRol',[UsuarioController::class, 'cambiarRol']);
 
 // FIN CRUD CLIENTES
 

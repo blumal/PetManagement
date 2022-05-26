@@ -346,12 +346,12 @@ class UsuarioController extends Controller
     }
     public function leerClientes(Request $request){
         try {
-            if ($request['nombre_paciente']!=null) {
+            if ($request['nombre_usuario']!=null) {
                 DB::beginTransaction();
                 $clientes = DB::table('tbl_usuario')
                     ->join('tbl_direccion', 'tbl_usuario.id_direccion1_fk', '=', 'tbl_direccion.id_di')
                     ->join('tbl_telefono', 'tbl_usuario.id_telefono_fk', '=', 'tbl_telefono.id_tel')
-                    ->where('nombre_us', 'like', '%'.$request['nombre_cliente'].'%')
+                    ->where('nombre_us', 'like', '%'.$request['nombre_usuario'].'%')
                     ->orderBy('tbl_usuario.activo_us','desc')
                     ->get();
                 DB::commit();
@@ -387,6 +387,26 @@ class UsuarioController extends Controller
             return $error -> getMessage();
         }
     }
+    public function cambiarRol(Request $request){
+        $id_rol=$request['id_rol'];
+        $id_user=$request['id_user'];
+
+        try {
+            DB::beginTransaction();
+            $cambio_rol_user = DB::table('tbl_usuario')
+                ->where('id_us', $id_user)
+                ->limit(1)
+                ->update(
+                    ['id_rol_fk' => $id_rol]
+                );
+            DB::commit();
+            return response()->json("OK");
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+    }
+    
 
     public function activarCliente(Request $request){
         $id_cliente=$request['id_cliente'];
