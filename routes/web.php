@@ -310,12 +310,28 @@ Route::post('crear',[ProductoController::class,'crear']);
 Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
+
+Route::post('sub/{id}',[ProductoController::class,'sub']);
+
+Route::delete('eliminarsub/{id}',[ProductoController::class,'eliminarsub']);
+
+Route::post('crearsub/{id}',[ProductoController::class,'crearsub']);
+
+Route::put('editarsub',[ProductoController::class,'editarsub']);
+
+Route::put('update_s',[ProductoController::class,'update_s']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
 
 Route::get('comprado',[ProductoController::class, 'compra']);
 
 Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
+
+
+Route::post('stripe', [ProductoController::class, 'stripe']);
+
+Route::post('stripePost', [ProductoController::class, 'stripePost']);
+
 
 //Empleados
 //Datos calendario

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Session;
+use Stripe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductoCrear;
@@ -473,10 +474,11 @@ class ProductoController extends Controller
      } 
     public function mostrarProductoCrud(){
         //$listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_foto on tbl_foto.id_f=tbl_articulo_tienda.id_foto_fk inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
-        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk');
+        $listaProducto= DB::select('select * from tbl_articulo_tienda inner join tbl_marca on tbl_marca.id_ma=tbl_articulo_tienda.id_marca_fk inner join tbl_tipo_articulo on tbl_tipo_articulo.id_ta=tbl_articulo_tienda.id_tipo_articulo_fk ');
         $dbMarcas=DB::select('select * from tbl_marca;');
         $dbTipos=DB::select('select * from tbl_tipo_articulo;');
-        return view('admincrud', compact('listaProducto','dbMarcas','dbTipos'));
+        $dbCategorias=DB::select('select * from tbl_categoria_articulo;');
+        return view('admincrud', compact('listaProducto','dbMarcas','dbTipos','dbCategorias'));
     }
 
    public function show(Request $request){
@@ -497,6 +499,7 @@ class ProductoController extends Controller
             DB::beginTransaction();
             //$id3=DB::select('select id_foto_fk from tbl_articulo_tienda where id_art =?',[$id]);
             // return $id2[0]->id_direccion_fk;
+            DB::table('tbl_categoria_articulo')->where('articulo_fk','=',$id)->delete();
             DB::table('tbl_articulo_tienda')->where('id_art','=',$id)->delete();
             //DB::table('tbl_foto')->where('id_f','=',$id3[0]->id_foto_fk)->delete();
             DB::commit();
@@ -517,7 +520,9 @@ class ProductoController extends Controller
             }
             //DB::insert('insert into tbl_foto (foto_f) values(?)',[$ffoto]);
             //$id4 = DB::select('select id_f from tbl_foto where foto_f =?',[$ffoto]);
-            DB::insert('insert into tbl_articulo_tienda (nombre_art,descripcion_art,precio_art,codigobarras_art,foto_art,id_marca_fk,id_tipo_articulo_fk) values (?,?,?,?,?,?,?)',[$request->input('nombre_art'),$request->input('descripcion_art'),$request->input('precio_art'),$request->input('codigobarras_art'),($ffoto),$request->input('id_marca_fk'),$request->input('id_tipo_articulo_fk')]);  
+            DB::insert('insert into tbl_articulo_tienda (nombre_art,descripcion_art,precio_art,codigobarras_art,foto_art,id_marca_fk,id_tipo_articulo_fk) values (?,?,?,?,?,?,?)',[$request->input('nombre_art'),$request->input('descripcion_art'),$request->input('precio_art'),$request->input('codigobarras_art'),($ffoto),$request->input('id_marca_fk'),$request->input('id_tipo_articulo_fk')]);
+            // $id0 = DB::select('select id_art from tbl_articulo_tienda order by id_art desc limit 1');
+            // DB::insert('insert into tbl_stock (id_articulo_fk,cantidad_st) values (?,?)',[$id0[0]->id_art,$request->input('cantidad_st')]);
             return response()->json(array('resultado'=> 'OK'));
         }catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
@@ -541,11 +546,103 @@ class ProductoController extends Controller
             //DB::update('update tbl_foto set foto_f=? where id_f=?',[$ffoto2,$id6[0]->id_foto_fk]);
             //$id4 = DB::select('select id_f from tbl_foto where foto_f =?',[$ffoto2]);
             DB::update('update tbl_articulo_tienda set nombre_art=?, descripcion_art=?, precio_art=?, codigobarras_art=?, foto_art=?, id_marca_fk =?, id_tipo_articulo_fk=? where id_art=?',[$request->input('nombre_art_e'),$request->input('descripcion_art_e'),$request->input('precio_art_e'),$request->input('codigobarras_art_e'),($ffoto2),$request->input('id_marca_fk_e'),$request->input('id_tipo_articulo_fk_e'),$request->input('id_art_e')]);
+            //DB::update('update tbl_stock set cantidad_st=? where id_articulo_fk=?',[$request->input('cantidad_st_e'),$request->input('id_art_e')]);
             //return response()->json(array('resultado'=> 'NOK: '.$request->input('id_us')));
             return response()->json(array('resultado'=> 'OK'));
         } catch (\Throwable $th) {
             return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
-    
+
+    public function sub($id) {
+        $listaCategoria=DB::select('select * from tbl_categoria_articulo where articulo_fk = ?',[$id]);
+        return response()->json($listaCategoria);
+    }
+
+    public function eliminarsub($idsub){
+        //return $id2[0]->id_direccion_fk;
+        try {
+            DB::beginTransaction();
+            //$id3=DB::select('select id_foto_fk from tbl_articulo_tienda where id_art =?',[$id]);
+            // return $id2[0]->id_direccion_fk;
+            DB::table('tbl_categoria_articulo')->where('id_cat','=',$idsub)->delete();
+            //DB::table('tbl_foto')->where('id_f','=',$id3[0]->id_foto_fk)->delete();
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Exception $th){
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function crearsub($id){
+        //return $id2[0]->id_direccion_fk;
+        try {
+            DB::beginTransaction();
+            //$id3=DB::select('select id_foto_fk from tbl_articulo_tienda where id_art =?',[$id]);
+            // return $id2[0]->id_direccion_fk;
+            DB::insert('insert into tbl_categoria_articulo (texto_cat,precio_cat,articulo_fk,cantidad) values (?,?,?,?)',[NULL,NULL,$id,NULL]);
+            //DB::table('tbl_foto')->where('id_f','=',$id3[0]->id_foto_fk)->delete();
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Exception $th){
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    public function editarsub(Request $request) {
+        try {
+            DB::update('update tbl_categoria_articulo set texto_cat=?, precio_cat=?, cantidad=? where id_cat=?',[$request->input('texto_cat'),$request->input('precio_cat'),$request->input('cantidad'),$request->input('id_cat')]);
+            //return response()->json(array('resultado'=> 'NOKl: '.$request->input('id_cat')));
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    /*Tarjeta de credito*/
+    public function stripe(Request $request)
+    {
+        $preciototal=$request->input('preciototal');
+        // return dd($preciototal);
+        return view('stripe', compact('preciototal'));
+    }
+
+    public function stripePost(Request $request)
+    {
+        $amo = $request->preciototal*100;
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $amo,
+                "currency" => "eur",
+                "source" => $request->stripeToken,
+                "description" => "PetManagement"
+        ]);
+   
+        Session::flash('success', 'Payment successful!');
+           
+        return redirect('comprafinalizada');
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Producto $producto)
+    {
+        //
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Producto $producto)
+    {
+        //
+    }
+
 }

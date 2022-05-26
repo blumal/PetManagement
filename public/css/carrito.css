@@ -222,6 +222,48 @@ footer .logo{
     padding: 0 5%;
 }
 
+
+.rowpay2 {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+
+.rowpay2 img {
+    width: 75%;
+}
+
+.dropdown-menu {
+    width: 25%;
+}
+
+#envizr {
+    background-image: url(../img/tarjeta.png);
+    background-size: cover;
+    background-position: center;
+    width: 75%;
+    float: left;
+    height: 75px;
+    border: 0;
+}
+
+
+/* @media only screen and (max-width: 1000px) {
+    .col-sm-9 {
+        font-size: 20vh;
+        display: block;
+        text-align: center;
+    }
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    a {
+        text-decoration: none !important;
+    }
+} */
+
 @media only screen and (max-width: 800px) {
     #cart,
     .table,
@@ -237,3 +279,4 @@ footer .logo{
         width: 100%;
     }
 }
+

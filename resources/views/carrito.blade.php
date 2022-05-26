@@ -41,6 +41,7 @@
     <script src="./js/home.js"></script>
 </header>
 <body>
+
     <div class="div-1">
     <table id="cart" class="table table-hover table-condensed border">
         <thead>
@@ -87,13 +88,35 @@
         <tr>
             <td><a href="{{ url('tienda') }}" class="btn btn-volver"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
             <td colspan="2" class="hidden-xs"></td>
-            <td><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+            {{-- <td><form action="{{url('enviarDinero/'.$total)}}" method="GET">
                 <button class= "pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart"> </i> Pagar</button>
-            </form></td>
+            </form></td> --}}
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
-            <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
-                <button class= "btn btn-volver pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart i-pagar"> </i> Pagar</button>
-            </form></td>
+                <div class="div-dropmenu">
+                    <div class="dropdown">
+                        <td colspan="2">
+                            <button class= "btn btn-volver pagar" id="logout"  data-toggle="dropdown" type="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</span>
+                            </button>
+                        <div class="dropdown-menu">
+                            <div class="rowpay2">
+                                <form action="{{url('stripe')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="preciototal" value="{{$total}}">
+                                    <input type="submit" id="envizr" name='btn' value="">
+                                    {{-- <img src="../public/img/tarjeta.png" alt="hola"> --}}
+                                </form>
+                            </div>
+                            <div class="rowpay2">
+                                <a href="{{url('enviarDinero/'.$total)}}" method="GET" name="Pagar" value="Pagar">
+                                    <img src="../public/img/paypal.png" alt="hola">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
         </tr>
         </tfoot>
     </table>
