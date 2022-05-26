@@ -23,7 +23,7 @@
         </div>
         
         <div class="logout">
-            <a href="{{url("citas")}}" class="nav_item">Back</a>
+            <a href="{{url("tienda")}}" class="nav_item">Back</a>
             <a href="{{url("logout")}}" class="login_item">Logout</a>
         </div>
         <script src="./js/home.js"></script>
