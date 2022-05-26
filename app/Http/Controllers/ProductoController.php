@@ -83,16 +83,19 @@ class ProductoController extends Controller
            }
            $tipo=array();
            $arraycount=count($array);
-           for ($i=0; $i < $arraycount; $i++) { 
-               for ($j=0; $j < $arraycount; $j++) { 
-                   if ($i!=$j) {
-                    if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
-                        array_push($tipo,$array[$i]);
+           if ($arraycount!=1) {
+            for ($i=0; $i < $arraycount; $i++) { 
+                for ($j=0; $j < $arraycount; $j++) { 
+                    if ($i!=$j) {
+                     if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
+                         array_push($tipo,$array[$i]);
+                     }
                     }
-                   }
-                   
-               }
+                    
+                }
+            }
            }
+           
            $productos=array();
             foreach ($tipo as $productoT) {
                 foreach ($marcas as $productoM) {
