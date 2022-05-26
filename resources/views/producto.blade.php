@@ -46,7 +46,7 @@
             <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
         @endif
     </ul>
-    <script src="./js/home.js"></script>
+    <script src="../js/home.js"></script>
 </header>
 <body>
     <div class="div1">
