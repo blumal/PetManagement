@@ -142,6 +142,7 @@ a{
     #nav {
         background-color: transparent;
         transition: 0.5s;
+        margin-top: -1%;
     }
     .nav_container {
         padding-left: 4%;
@@ -226,6 +227,10 @@ a{
     h2{
         text-align: center;
         padding: 0% !important;
+        text-align: center;
+        font-size: 21px !important;
+        margin-top: 3.5%;
+        margin-right: 3%;
     }
 }
 
@@ -236,7 +241,7 @@ header {
 }
 
 h2{
-    padding: 1% 0% 3% 30%;
+    padding: 0% 0% 0% 5%;
     /* float: left; */
     color: white;
 }
@@ -262,7 +267,7 @@ h2{
 }
 
 .secciones{
-    margin: 2% 7% 0% 7%;
+    margin: 6% 7% 0% 7%;
 }
 
 .seccion {
