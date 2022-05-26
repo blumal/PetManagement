@@ -401,7 +401,7 @@ function filtro() {
     //NUEVO
     var palabras = nombre.split(" ");
     for (let i = 0; i < palabras.length; ++i) {
-        if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y" || palabras[i] == "") {} else {
+        if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
             formData.append('palabras[]', palabras[i]);
         }
     };
