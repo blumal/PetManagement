@@ -10,7 +10,7 @@
                 
 </head>
 
-<body>
+<body style="background-color: #c6c2b7">
   
 <canvas width="624" height="720" id="game"></canvas>
 <img hidden src="/img/juego_ranita/48.png" id="jose">
@@ -24,10 +24,11 @@
 <img hidden src="/img/juego_ranita/right.png" id="derecha">
 <img hidden src="/img/juego_ranita/heart8.png" id="corazon">
 <img hidden src="/img/juego_ranita/logo.png" id="logo">
+<img hidden src="/img/juego_ranita/tierra.jpeg" id="tierra">
+<img hidden src="/img/juego_ranita/fuego.png" id="fuego">
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@300;400&display=swap');
   </style>
-<script src="{{asset('js/juegos/ranita/script.js')}}"></script>
 </body>
 </html>

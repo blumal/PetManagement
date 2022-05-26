@@ -68,6 +68,9 @@ Sprite.prototype.render = function() {
     if (this.shape === 'rect') {
         // by using a size less than the grid we can ensure there is a visual space
         // between each row
+        var img_tierra = document.getElementById("tierra")
+        var patron_tierra = context.createPattern(img_tierra, 'repeat');
+        context.fillStyle = patron_tierra;
         context.fillRect(this.x, this.y + gridGap / 2, this.size, grid - gridGap);
     } else if (this.shape === 'frog') {
 
@@ -87,6 +90,10 @@ Sprite.prototype.render = function() {
     // to get the radius. also the x/y position needs to be centered instead of
     // the top-left corner of the sprite
     else {
+        var img_fuego = document.getElementById("fuego")
+        var patron_fuego = context.createPattern(img_fuego, 'repeat');
+        context.fillStyle = patron_fuego;
+
         context.beginPath();
         context.arc(
             this.x + this.size / 2, this.y + this.size / 2,
@@ -125,7 +132,7 @@ var patterns = [
         spacing: [0, 2, 0, 2, 0, 2, 0, 4],
         color: '#de0004',
         size: grid,
-        shape: 'circle',
+        shape: 'rect',
         speed: -1
     },
 
@@ -152,7 +159,7 @@ var patterns = [
         spacing: [0, 0, 1],
         color: '#de0004',
         size: grid,
-        shape: 'circle',
+        shape: 'rect',
         speed: -1
     },
 
@@ -163,8 +170,8 @@ var patterns = [
     {
         spacing: [3, 8],
         color: '#c2c4da',
-        size: grid * 2,
-        shape: 'rect',
+        size: grid,
+        shape: 'circle',
         speed: -1
     },
 
@@ -173,7 +180,7 @@ var patterns = [
         spacing: [14],
         color: '#c2c4da',
         size: grid,
-        shape: 'rect',
+        shape: 'circle',
         speed: 0.75
     },
 
@@ -182,7 +189,7 @@ var patterns = [
         spacing: [3, 3, 7],
         color: '#de3cdd',
         size: grid,
-        shape: 'rect',
+        shape: 'circle',
         speed: -0.75
     },
 
@@ -191,7 +198,7 @@ var patterns = [
         spacing: [3, 3, 7],
         color: '#0bcb00',
         size: grid,
-        shape: 'rect',
+        shape: 'circle',
         speed: 0.5
     },
 
@@ -200,7 +207,7 @@ var patterns = [
         spacing: [4],
         color: '#e5e401',
         size: grid,
-        shape: 'rect',
+        shape: 'circle',
         speed: -0.5
     },
 

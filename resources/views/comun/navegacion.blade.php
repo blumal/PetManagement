@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +7,6 @@
     <link rel="stylesheet" href="{{asset('css/comun/nav.css')}}">
     <title></title>
 </head>
-=======
->>>>>>> Pre-Alpha
 <body>
     @if (Session::get('id_rol_session')==2)
     <nav id="nav">
@@ -29,7 +26,7 @@
                 <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 @if (Session::get('cliente_session'))
-                        <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}} !</a>
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}}!</a>
                         <input type="hidden" id="id_us" value="{{Session::get('id_user_session')}}"></a>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else
@@ -49,12 +46,12 @@
             <input type="checkbox" id="menu" class="nav_input">
             <!--Menu header-->
             <div class="nav_menu">
-                <a href="{{url("citas")}}" class="nav_item">Pacientes</a>
+                <a href="{{url("adminPacientes")}}" class="nav_item">Pacientes</a>
                 <a href="{{url("adminCitas")}}" class="nav_item">Admin Citas</a>
                 <a href="{{url("directorioGenerarFactura")}}" class="nav_item">Admin Visitas</a>
                 <a href="{{url("chat")}}" class="nav_item">Chat</a>
-                <a href="{{url("mapas/mapa_animales_perdidos")}}" class="nav_item">Animales Perdidos</a>
-                <a href="{{url("mapas/mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
+                <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Animales Perdidos</a>
+                <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
                 @if (Session::get('id_user_session'))
                     <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}}!</a>
                     <input type="hidden" id="id_us" value="{{Session::get('id_user_session')}}"></a>
@@ -102,10 +99,11 @@
                 <div class="nav_menu">
                     <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
                     <a href="{{url("citas")}}" class="nav_item">Clínica</a>
+                    <a href="{{url("juegos")}}" class="nav_item">Juegos</a>
                     <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
                     <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
-                    <a href="{{url("mapas/mapa_animales_perdidos")}}" class="nav_item">Animales Perdidos</a>
-                    <a href="{{url("mapas/mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
+                    <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Animales Perdidos</a>
+                    <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
                     @if (Session::get('cliente_session'))
                             <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
                             <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>

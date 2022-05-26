@@ -51,7 +51,7 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
-            recarga += '<div class="table-responsive">';
+            recarga += '<div class="table-responsive">'
             recarga += '<table class="table" id="table">';
             recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Fecha de perdida</th><th scope="col">Propietario</th><th scope="col">Calle donde se perdió</th><th scope="col">Foto</th><th scope="col">CP</th><th scope="col">Númeor de la calle</th><th scope="col">Hora de desaparición</th><th scope="col">Estado</th><th scope="col"></th><th scope="col">Editar</th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
@@ -118,7 +118,7 @@ function modificar(id_ape, nombre_ape, descripcion_ape, fecha_perdida_ape, nombr
 
     contenido += '<input type="hidden" name="id_ape" id="id_ape" value="' + id_ape + '">'
     contenido += '<input type="hidden" name="id_us" id="id_us" value="' + id_us + '">'
-    contenido += '<input type="hidden" name="id_est" id="id_est" value="' + id_est + '">'
+    contenido += '<input type="hidden" name="id_est" id="id_est" value="' + id_est + '"><br><br>'
     contenido += '<input type="submit" class="btn btn-success" value="Modificar">'
     contenido += '</form>'
     enter.innerHTML = contenido;

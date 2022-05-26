@@ -49,9 +49,9 @@ class PacienteController extends Controller
         try {
             DB::beginTransaction();
 
-            DB::insert('insert into tbl_pacienteanimal_clinica (nombre_pa, peso_pa,n_id_nacional,fecha_nacimiento,foto_pa,propietario_fk,nombrecientifico_pa,raza_pa)
-            values (?, ?, ?, ?, ?, ?, ?, ?)',
-            [$datos['nombre_paciente'], $datos['peso_paciente'], $datos['nirn_paciente'], $datos['fecha_nacimiento_paciente'], $datos['foto_paciente'], $datos['id_dueno_paciente'], $datos['nombre_cientifico_paciente'], $datos['raza_paciente']]);
+            DB::insert('insert into tbl_pacienteanimal_clinica (nombre_pa, peso_pa,n_id_nacional,fecha_nacimiento,foto_pa,propietario_fk,nombrecientifico_pa,raza_pa,activo)
+            values (?, ?, ?, ?, ?, ?, ?, ?,?)',
+            [$datos['nombre_paciente'], $datos['peso_paciente'], $datos['nirn_paciente'], $datos['fecha_nacimiento_paciente'], $datos['foto_paciente'], $datos['id_dueno_paciente'], $datos['nombre_cientifico_paciente'], $datos['raza_paciente'],1]);
 
             DB::commit();
         } catch (\Exception $error) {
@@ -64,11 +64,10 @@ class PacienteController extends Controller
     public function adminPacientes(){
         try {
             DB::beginTransaction();
-            $pacientes = DB::select("select * FROM tbl_pacienteanimal_clinica
-        INNER JOIN tbl_usuario ON tbl_pacienteanimal_clinica.propietario_fk=tbl_usuario.id_us");
-            /* $pacientes= DB::table('tbl_pacienteanimal_clinica')
+            
+            $pacientes= DB::table('tbl_pacienteanimal_clinica')
                     ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
-                    ->get(); */
+                    ->get();
             DB::commit();
         } catch (\Exception $error) {
             DB::rollback();
@@ -118,16 +117,16 @@ class PacienteController extends Controller
         }
     }
     public function leerPacientes(Request $request){
-        if ($request['nombre_paciente']==null) {
-            $pacientes= DB::table('tbl_pacienteanimal_clinica')
-                    ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
-                    ->orderBy('activo','desc')
-                    ->get();
-        }else{
+        if ($request['nombre_paciente']!=null) {
             $pacientes= DB::table('tbl_pacienteanimal_clinica')
                     ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
                     ->where('nombre_pa', 'like', '%'.$request['nombre_paciente'].'%')
-                    ->orderBy('activo','desc')
+                    ->orderBy('tbl_pacienteanimal_clinica.activo','desc')
+                    ->get();
+        }else{
+            $pacientes= DB::table('tbl_pacienteanimal_clinica')
+                    ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us') 
+                    ->orderBy('tbl_pacienteanimal_clinica.activo','desc')
                     ->get();
         }
         

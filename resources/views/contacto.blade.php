@@ -32,7 +32,7 @@
                     <form action="{{url('/enviarCorreoContacto')}}" method="post" onsubmit="return validateContacto();">
                         @csrf
                         <div class="form-group text-center pt-3">
-                            <h1 class="text-light">Consultanos cualquier duda que tengas!</h1>
+                            <h1>Consultanos cualquier duda que tengas!</h1>
                         </div>
                         <div class="form-group mx-sm-4 pb-2">
                             <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="Nombre">
@@ -55,8 +55,8 @@
         </div>
         <div class="column-2">
             <div class="row-c formulario-2">
-                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario" style="margin-top: 20%;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="450" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario2" style="margin-top: 20%;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="450" height="466" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <div class="form-group telf-mail sm-5">
                         <h3 class="text-light">Telf: +34 612345678</h3>
                         <h3 class="text-light">grouppetmanagement@gmail.com</h3>

@@ -9,7 +9,7 @@
 
 body {
     position: relative;
-    background: linear-gradient(transparent, #3759c0b0);
+    background: #ffffff;
     text-decoration: none;
 }
 
@@ -95,7 +95,7 @@ a:hover {
 
 .nav_logo {
     width: 80px;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .nav_img {
