@@ -94,6 +94,8 @@ class ProductoController extends Controller
                     
                 }
             }
+           }else {
+            array_push($tipo,$array[0]);
            }
            
            $productos=array();
