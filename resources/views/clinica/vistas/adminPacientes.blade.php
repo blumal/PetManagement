@@ -21,7 +21,7 @@
     <title>Admin pacientes</title>
 </head>
 <body>
-    <form class="head" action="{{url('/cpanel')}}" method="GET">
+    <form class="head" action="{{url('/')}}" method="GET">
         <button type="submit" value="logout" class="btn btn-info">Back</button>
         <h1>Animales</h1>
     </form>  

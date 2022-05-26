@@ -47,7 +47,7 @@
             <!--Menu header-->
             <div class="nav_menu">
                 <a href="{{url("adminPacientes")}}" class="nav_item">Pacientes</a>
-                <a href="{{url("adminCitas")}}" class="nav_item">Admin Citas</a>
+                <a href="{{url("homeempleado")}}" class="nav_item">Admin Citas</a>
                 <a href="{{url("directorioGenerarFactura")}}" class="nav_item">Admin Visitas</a>
                 <a href="{{url("chat")}}" class="nav_item">Chat</a>
                 <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Animales Perdidos</a>

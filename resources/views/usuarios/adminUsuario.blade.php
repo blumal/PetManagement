@@ -61,7 +61,6 @@
                 @else
                 <td>Admin</td> 
                 @endif
-                
                 <td>
                     <button type="button" class="btn btn-danger" onclick="eliminarCliente('{{$cliente->id_us}}')">Eliminar</button>
                 </td>

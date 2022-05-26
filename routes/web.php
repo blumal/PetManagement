@@ -107,6 +107,12 @@ Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
 Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
 
+//ACTIVAR USUARIO
+Route::get('/activar', function () {return view('login/activarUsuario');});
+Route::post('/activarPOST',[UsuarioController::class, 'activarUsuario']);
+
+
+
 //FINAL RUTAS USUARIO
 
 
@@ -223,7 +229,6 @@ Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']
 Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
-Route::post('/activarPaciente',[PacienteController::class, 'activarPaciente']);
 Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
 Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);
@@ -236,6 +241,7 @@ Route::get('/adminUsuarios',[UsuarioController::class, 'adminUsuarios']);
 Route::post('/eliminarCliente',[UsuarioController::class, 'eliminarCliente']);
 Route::post('/activarCliente',[UsuarioController::class, 'activarCliente']);
 Route::post('/leerClientes',[UsuarioController::class, 'leerClientes']);
+Route::post('/cambiarRol',[UsuarioController::class, 'cambiarRol']);
 
 // FIN CRUD CLIENTES
 
