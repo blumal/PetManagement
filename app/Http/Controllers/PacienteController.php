@@ -49,9 +49,9 @@ class PacienteController extends Controller
         try {
             DB::beginTransaction();
 
-            DB::insert('insert into tbl_pacienteanimal_clinica (nombre_pa, peso_pa,n_id_nacional,fecha_nacimiento,foto_pa,propietario_fk,nombrecientifico_pa,raza_pa)
-            values (?, ?, ?, ?, ?, ?, ?, ?)',
-            [$datos['nombre_paciente'], $datos['peso_paciente'], $datos['nirn_paciente'], $datos['fecha_nacimiento_paciente'], $datos['foto_paciente'], $datos['id_dueno_paciente'], $datos['nombre_cientifico_paciente'], $datos['raza_paciente']]);
+            DB::insert('insert into tbl_pacienteanimal_clinica (nombre_pa, peso_pa,n_id_nacional,fecha_nacimiento,foto_pa,propietario_fk,nombrecientifico_pa,raza_pa,activo)
+            values (?, ?, ?, ?, ?, ?, ?, ?,?)',
+            [$datos['nombre_paciente'], $datos['peso_paciente'], $datos['nirn_paciente'], $datos['fecha_nacimiento_paciente'], $datos['foto_paciente'], $datos['id_dueno_paciente'], $datos['nombre_cientifico_paciente'], $datos['raza_paciente'],1]);
 
             DB::commit();
         } catch (\Exception $error) {
@@ -78,12 +78,38 @@ class PacienteController extends Controller
         return view('clinica/vistas/adminPacientes', compact('pacientes'));   
     }
     public function eliminarPaciente(Request $request){
+        $id_paciente=$request['id_paciente'];
         try {
             DB::beginTransaction();
-            $id_paciente=$request['id_paciente'];
+            $paciente_desactualizado = DB::table('tbl_pacienteanimal_clinica')
+                ->where('id_pa', $id_paciente)
+                ->limit(1)
+                ->update(
+                    ['activo' => 0]
+                );
+            
             //DB::table('tbl_pacienteanimal_clinica')->where('id_pa',"=", $request['id_paciente'])->delete();
             //DB::table('tbl_pacienteanimal_clinica')->where('id_pa', '=',8)->delete();
-            DB::delete('delete from tbl_pacienteanimal_clinica where id_pa = ?',[$id_paciente]);
+            DB::commit();
+            return response()->json("OK");
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+    }
+    public function activarPaciente(Request $request){
+        $id_paciente=$request['id_paciente'];
+        try {
+            DB::beginTransaction();
+            $paciente_desactualizado = DB::table('tbl_pacienteanimal_clinica')
+                ->where('id_pa', $id_paciente)
+                ->limit(1)
+                ->update(
+                    ['activo' => 1]
+                );
+            
+            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa',"=", $request['id_paciente'])->delete();
+            //DB::table('tbl_pacienteanimal_clinica')->where('id_pa', '=',8)->delete();
             DB::commit();
             return response()->json("OK");
         } catch (\Exception $error) {
@@ -95,11 +121,13 @@ class PacienteController extends Controller
         if ($request['nombre_paciente']==null) {
             $pacientes= DB::table('tbl_pacienteanimal_clinica')
                     ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
+                    ->orderBy('activo','desc')
                     ->get();
         }else{
             $pacientes= DB::table('tbl_pacienteanimal_clinica')
                     ->join('tbl_usuario', 'tbl_pacienteanimal_clinica.propietario_fk', '=', 'tbl_usuario.id_us')
                     ->where('nombre_pa', 'like', '%'.$request['nombre_paciente'].'%')
+                    ->orderBy('activo','desc')
                     ->get();
         }
         

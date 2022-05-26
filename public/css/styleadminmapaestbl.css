@@ -2,8 +2,8 @@
 
 * {
     font-family: 'Montserrat Alternates', sans-serif;
-    margin: 1%;
-    padding: 0;
+    margin: 0;
+    padding: 0.3%;
 }
 
 body {
@@ -14,6 +14,10 @@ body {
 
 a{
     text-decoration: none !important;
+}
+
+.an_div{
+    text-align: center;
 }
 
 .head_admin {
@@ -208,4 +212,27 @@ table {
 
 .content_up {
     text-align: center;
+}
+
+/* -------------- TABLAS  ----------------- */
+
+.table-responsive{
+    margin-top: 6.1%;
+}
+
+.table{
+    vertical-align: middle;
+    width: 98%;
+}
+
+/* ------------ RESPONSIVE --------------- */
+
+@media (max-width: 800px) {
+    .table-responsive{
+        margin-top: 21%;
+    }
+    .filtro{
+        margin-top: 4%;
+        width: 65%;
+    }
 }

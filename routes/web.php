@@ -47,13 +47,23 @@ Route::get('animales_perdidos', [mapas::class,'animales_perdidos']);
 
 Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimientos']);
 
+Route::get('adminMapasPerdidos', [mapas::class,'adminMapasPerdidos']);
+
 Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
+
+Route::get('filtroMapasPerdidos', [mapas::class,'filtroMapasPerdidos']);
 
 Route::post('crearMapasEstablecimientos',[mapas::class, 'crearMapasEstablecimientos']);
 
+Route::post('crearMapasPerdidos',[mapas::class, 'crearMapasPerdidos']);
+
 Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
 
+Route::put('modificarMapasPerdidos',[mapas::class, 'modificarMapasPerdidos']);
+
 Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
+
+Route::delete('eliminarMapasPerdidos',[mapas::class, 'eliminarMapasPerdidos']);
 
 Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);
 
@@ -82,7 +92,7 @@ Route::get('entretenimiento', function () {
 /* Route::get('tienda', [CitasController::class, 'tienda']); */
 
 // LOGIN LOGOUT Y DEMÁS DE USUARIO
-Route::get('/login', [UsuarioController::class, 'login']);
+Route::get('/login/{id?}', [UsuarioController::class, 'login']);
 Route::post('/login-proc', [UsuarioController::class, 'loginProc']);
 
 Route::get('registro', function () {return view('login/registro');});
@@ -90,7 +100,8 @@ Route::post('/regis-proc', [UsuarioController::class, 'regisProc']);
 
 //Ruta que nos lleva a funcion que elimina todas las sesiones
 Route::get('/logout', [UsuarioController::class, 'logout']);
-Route::get('/perfil', function () {return view('login/editarPerfil');});
+
+Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 
 //Actualizar Perfil usuario
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
@@ -125,6 +136,19 @@ Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
 Route::get('/an_perd', [CitasController::class, 'an_perd']);
 
+//Ruleta premios
+Route::get('/ruleta',[FacturaVisitaController::class, 'ruleta']);
+
+Route::get('/ruleta_promo',[FacturaVisitaController::class, 'ruleta_promo']);
+
+Route::get('/comprobar_compra',[FacturaVisitaController::class, 'comprobar_compra']);
+
+Route::get('/comprobar_promo',[FacturaVisitaController::class, 'comprobar_promo']);
+
+Route::get('/premio',[FacturaVisitaController::class, 'premio']);
+
+Route::get('/premio_promo',[FacturaVisitaController::class, 'premio_promo']);
+
 //INICIO RUTAS FACTURAS
 //FACTURAS TIENDA//
 
@@ -143,8 +167,9 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 //Ruta para entrar a facturas visitas
 //Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
+Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
-Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
+Route::get('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 
 Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 
@@ -166,6 +191,10 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+
+//INCIO MAIL CONTACTO
+Route::post('enviarCorreoContacto', [CitasController::class, 'MensajeContacto']);
+//FIN MAIL CONTACTO
 
 //INICIO ESTADISTICAS
 Route::get('/stats', [EstadisticaController::class, 'test']);
@@ -194,6 +223,7 @@ Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']
 Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
+Route::post('/activarPaciente',[PacienteController::class, 'activarPaciente']);
 Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
 Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);
@@ -235,14 +265,23 @@ Route::post('marcas',[ProductoController::class,'marcas']);
 Route::post('tiposPrincipales',[ProductoController::class,'tiposPrincipales']);
 Route::post('productos',[ProductoController::class,'productos']);
 Route::get('producto/{id}',[ProductoController::class,'producto']);
+Route::post('productosSimilares',[ProductoController::class,'productosSimilares']);
+Route::post('productosOpiniones',[ProductoController::class,'productosOpiniones']);
+Route::post('productosOpinionesTodas',[ProductoController::class,'productosOpinionesTodas']);
 Route::post('marcaProducto',[ProductoController::class,'marcaProducto']);
 Route::post('filtroSearchBar',[ProductoController::class,'filtroSearchBar']);
 Route::post('filtroCatPrinc',[ProductoController::class,'filtroCatPrinc']);
+Route::post('getProduct',[ProductoController::class,'getProduct']);
+Route::post('limiteCarrito',[ProductoController::class,'limiteCarrito']);
+Route::post('insertarOpinion',[ProductoController::class,'insertarOpinion']);
+
 //sesiones
 Route::get('add-to-cart/{id}',[ProductoController::class,'addToCart']);
-Route::get('add-to-cart-producto/{id}/{cantidad}',[ProductoController::class,'addToCartProducto']);
+Route::get('add-to-cart-producto/{id}/{cantidad}/{subcategoria}',[ProductoController::class,'addToCartProducto']);
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
+Route::post('cogerSesion',[ProductoController::class,'cogerSesion']);
+
 
 /*Crud */
 
