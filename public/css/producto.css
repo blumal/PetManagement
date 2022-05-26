@@ -480,7 +480,7 @@ a {
 }
 
 .caption-titulo {
-    height: 15vh;
+    height: 17vh;
 }
 
 .caption-descripcion {
@@ -522,6 +522,7 @@ a {
     font-size: 3vh;
     color: #d124ba;
     font-weight: bold;
+    margin-top: 5%;
 }
 
 .productos-similares a {
@@ -729,6 +730,10 @@ a {
     width: 100%;
 }
 
+#error-textarea {
+    color: red;
+}
+
 .btn-enviar {
     background-color: #1f2cc4;
     border-color: #1f2cc4;
@@ -800,6 +805,7 @@ footer {
     margin: 1rem 1.5rem;
     cursor: pointer;
     opacity: 0.6;
+    color: white;
 }
 
 .footer-item:hover {
@@ -823,6 +829,40 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 0 5%;
+}
+
+
+/*popup*/
+
+
+/* The actual popup */
+
+.popuptext {
+    visibility: hidden;
+    width: auto;
+    background-color: white;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 8px;
+    position: fixed;
+    z-index: 9999;
+    top: 20%;
+    left: 35%;
+    margin-left: -80px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* Toggle this class - hide and show the popup */
+
+.show {
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
 }
 
 
@@ -1044,6 +1084,9 @@ footer {
 @media only screen and (max-width: 1000px) {
     .caption-descripcion {
         margin-top: 10vh;
+    }
+    .producto-similar {
+        height: auto;
     }
     .producto-precio {
         margin-top: 5vh;
