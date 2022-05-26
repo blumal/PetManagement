@@ -81,6 +81,7 @@
                 </div>
                 <div class="anadir-carrito"><a onclick="limite()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
             </div>
+            <span class='popuptext' id='myPopup'></span>
             <div class="div-dropmenu">
                 <div class="dropdown">
                     <button type="button" class="btn btn-info carrito-drop" data-toggle="dropdown">

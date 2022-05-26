@@ -631,9 +631,88 @@ function cogerSesion() {
     ajax.send(formData);
 }
 
+//LIMITE PARA AÑADIR AL CARRITO
 function limite() {
-    /*NO ESTA SOLUCIONADO, HABRIA QUE CAMBIAR TODA LA ESTRUCTURA DEL ARRAY DE SESION, RECORRERLO, VER
-    SI ESE PRODUCTO YA ESTÁ EN LA SESION, SUMAR LA CANTIDAD YA METIDA CON LA QUE SE VA A METER, Y COMPARAR*/
+    cogerNombre();
+}
+
+function cogerNombre() {
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('subcategoria', subcategoria);
+    var ajax = objetoAjax();
+    ajax.open("post", "../cogerNombre", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var nombre = respuesta[0].nombre_art;
+            cogerCarrito(nombre)
+        }
+    }
+    ajax.send(formData);
+}
+
+function cogerCarrito(nombre) {
+    pasar = 0;
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    var ajax = objetoAjax();
+    ajax.open("post", "../cogerCarrito", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            respuesta = Object.keys(respuesta).map((key) => [Number(key), respuesta[key]]);
+            //console.log(respuesta[0][0])
+            //console.log(respuesta[1][0])
+            var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+            for (let i = 0; i < respuesta.length; i++) {
+                if (respuesta[i][0] == subcategoria) {
+                    //console.log(respuesta[i][1].nombre)
+                    //console.log(respuesta[i][1].cantidad)
+                    cantidad2 = respuesta[i][1].cantidad;
+                    pasar = 1;
+                    restarCantidades(cantidad2);
+                }
+            }
+            if (pasar == 0) {
+                limite2();
+            }
+        }
+    }
+    ajax.send(formData);
+}
+
+function restarCantidades(cantidad2) {
+    var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
+    var cantidad = $('#input-cantidad').val();
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('subcategoria', subcategoria);
+    var ajax = objetoAjax();
+    ajax.open("post", "../limiteCarrito", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            cantidadFinal = respuesta[0].cantidad - cantidad2
+            console.log(cantidadFinal)
+            if (cantidad > cantidadFinal) {
+                //$("#error-carrito").text("*Solo puedes comprar un máximo de " + cantidadFinal + " unidades de este producto.*")
+                $("#myPopup").text("*Solo puedes comprar un máximo de " + cantidadFinal + " unidades de este producto.*")
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                setTimeout(function() {
+                    popup.classList.remove("show");
+                }, 4000);
+            } else {
+                addToCart()
+            }
+        }
+    }
+    ajax.send(formData);
+}
+
+function limite2() {
     var subcategoria = document.querySelector('input[name="tipos"]:checked').value;
     var cantidad = $('#input-cantidad').val();
     var formData = new FormData();
@@ -645,7 +724,13 @@ function limite() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (cantidad > respuesta[0].cantidad) {
-                alert("Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.")
+                //$("#error-carrito").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
+                $("#myPopup").text("*Solo puedes comprar un máximo de " + respuesta[0].cantidad + " unidades de este producto.*")
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                setTimeout(function() {
+                    popup.classList.remove("show");
+                }, 4000);
             } else {
                 addToCart()
             }
@@ -653,3 +738,5 @@ function limite() {
     }
     ajax.send(formData);
 }
+
+//FIN LIMITE PARA AÑADIR AL CARRITO
