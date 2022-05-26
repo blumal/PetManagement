@@ -51,7 +51,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="http://localhost/petmanagement/public/cpanelTienda" method="GET">
+                    <form action="{{url('/admincrud')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit"><img class="sala" src="./img/imagenesWeb/carrito-de-compras.png" width="200px" height="200px"></button><br><br>
@@ -62,7 +62,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="http://localhost/petmanagement/public/adminPacientes" method="GET">
+                    <form action="{{url('/adminPacientes')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit"><img class="sala" src="./img/imagenesWeb/pata.png" width="200px" height="200px"></button><br><br>
@@ -73,7 +73,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="http://localhost/petmanagement/public/cpanelAnimalesPerdidos" method="GET">
+                    <form action="{{url('/cpanelAnimalesPerdidos')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit"><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
@@ -84,7 +84,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="http://localhost/petmanagement/public/cpanelMapa" method="GET">
+                    <form action="{{url('/cpanelMapa')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit"><img class="sala" src="./img/imagenesWeb/veterinario.png" width="200px" height="200px"></button><br><br>
@@ -95,7 +95,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="http://localhost/petmanagement/public/stats" method="GET">
+                    <form action="{{url('/stats')}}" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit"><img class="sala" src="./img/imagenesWeb/analisis.png" width="200px" height="200px"></button><br><br>
