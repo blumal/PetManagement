@@ -35,7 +35,7 @@
     <div class="container p-5">
         @foreach ($quotedatas as $item)
             <h3>Datos del cliente</h3>
-                <p><span>nº de cita: </span>{{$item->id_vi}}</p>
+                <p><span>nº de cita: </span> 000{{$item->id_vi}}</p>
                 <p><span>Fecha de la visita: </span>{{$item->fecha_vi}}</p>
                 <p><span>Hora agendada: </span>{{$item->hora_vi}}h</p>
                 <p><span>Estado de la visita: </span>{{$item->estado_est}}</p>
@@ -58,7 +58,7 @@
         </form>
         <div class="form-group pt-3">
             <button type="submit" class="btn btn-primary"><a href="mailto:{{$item->email_us}}?Subject=PetManagement">Mail to</a></button>
-        <div>
+        </div>
         <form action="{{url('/homeempleado')}}" method="get">
             @csrf
             <div class="form-group pt-3">
