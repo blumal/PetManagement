@@ -295,6 +295,8 @@ Route::get('add-to-cart-producto/{id}/{cantidad}/{subcategoria}',[ProductoContro
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
 Route::post('cogerSesion',[ProductoController::class,'cogerSesion']);
+Route::post('cogerNombre',[ProductoController::class,'cogerNombre']);
+Route::post('cogerCarrito',[ProductoController::class,'cogerCarrito']);
 
 
 /*Crud */
