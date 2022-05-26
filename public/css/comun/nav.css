@@ -5,7 +5,7 @@
     width: 100%;
     transition: 0.5s;
     margin-top: 0px;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .nav_container {
@@ -16,21 +16,21 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    z-index: 999;
+    z-index: 9999;
     padding-left: 1%;
     padding-right: 5%;
 }
 
 .nav_logo {
     width: 80px;
-    z-index: 999;
+    z-index: 99999;
 }
 
 .nav_img {
     width: 25px;
     padding-top: 1%;
     padding-right: 5px;
-    z-index: 999;
+    z-index: 99999;
 }
 
 .nav_menu {
@@ -79,7 +79,7 @@
 }
 
 .nav_input:checked+.nav_menu {
-    background: white;
+    /* background: white; */
 }
 
 .nav_label,
@@ -92,6 +92,7 @@
 
 @media (max-width: 800px) {
     #nav {
+        /* background-color: #ffffff; */
         transition: none;
     }
     .nav_container {
@@ -142,6 +143,9 @@
     /* .nav_item:hover {} */
     .nav_input:checked+.nav_menu {
         clip-path: circle(100% at center);
+    }
+    #nav a{
+        z-index: 99999;
     }
     /* ---------- TWITTER ---------- */
     .twitter {

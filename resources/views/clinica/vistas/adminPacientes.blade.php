@@ -23,7 +23,7 @@
 <body>
     <form class="head" action="{{url('/')}}" method="GET">
         <button type="submit" value="logout" class="btn btn-info">Back</button>
-        <h1>Pacientes</h1>
+        <h1>Animales</h1>
     </form>  
     <div>
         <div id="mensaje"></div>

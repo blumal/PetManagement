@@ -26,7 +26,7 @@
                 <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
                 <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
                 @if (Session::get('cliente_session'))
-                        <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}} !</a>
+                        <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}}!</a>
                         <input type="hidden" id="id_us" value="{{Session::get('id_user_session')}}"></a>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else

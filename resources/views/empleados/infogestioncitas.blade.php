@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>    
     <!--JS-->
     <script src="{{asset('js/empleados/editcita.js')}}"></script>
+    <!--CSS--> 
+    <link rel="stylesheet" href="{{asset('css/empleados/infocita.css')}}">
     <!--TOKEN-->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <title>Información de la cita</title>
@@ -33,19 +35,20 @@
     <div class="container p-5">
         @foreach ($quotedatas as $item)
             <h3>Datos del cliente</h3>
-                <p>Visita nº: {{$item->id_vi}}</p>
-                <p>Fecha de la visita: {{$item->fecha_vi}}</p>
-                <p>Hora agendada: {{$item->hora_vi}}h</p>
-                <p>Estado de la visita: {{$item->estado_est}}</p>
-                <p>Nombre del cliente: {{$item->nombre_us}} {{$item->apellido1_us}} {{$item->apellido2_us}}</p>
-                <p>Contacto del cliente: {{$item->contacto1_tel}}-{{$item->contacto2_tel}}</p>
+                <p><span>nº de cita: </span> 000{{$item->id_vi}}</p>
+                <p><span>Fecha de la visita: </span>{{$item->fecha_vi}}</p>
+                <p><span>Hora agendada: </span>{{$item->hora_vi}}h</p>
+                <p><span>Estado de la visita: </span>{{$item->estado_est}}</p>
+                <p><span>Nombre del cliente: </span>{{$item->nombre_us}} {{$item->apellido1_us}} {{$item->apellido2_us}}</p>
+                <p><span>Contacto del cliente: </span>{{$item->contacto1_tel}}-{{$item->contacto2_tel}}</p>
+                <p><span>Email de cliente: </span>{{$item->email_us}}</p>
                 <h3>Datos del paciente</h3>
             @if ($item->nombre_pa != '')
-                <p>Nombre: {{$item->nombre_pa}} </p>
-                <p>Raza: {{$item->raza_pa}}</p>
-                <p>Peso: {{$item->peso_pa}}Kg</p>
+                <p><span>Nombre: </span>{{$item->nombre_pa}} </p>
+                <p><span>Raza: </span>{{$item->raza_pa}}</p>
+                <p><span>Peso: </span>{{$item->peso_pa}}Kg</p>
             @endif
-            <p>Motivo de la visita: {{$item->asunto_vi}}</p>
+            <p><span>Motivo de la visita: </span>{{$item->asunto_vi}}</p>
         @endforeach
         <form method="post" onsubmit="preChange({{$item->id_vi}}); return false;">
             @csrf
@@ -53,6 +56,9 @@
                 <input class="btn btn-success" type="submit" value="Iniciar cita">
             </div>
         </form>
+        <div class="form-group pt-3">
+            <button type="submit" class="btn btn-primary"><a href="mailto:{{$item->email_us}}?Subject=PetManagement">Mail to</a></button>
+        </div>
         <form action="{{url('/homeempleado')}}" method="get">
             @csrf
             <div class="form-group pt-3">
