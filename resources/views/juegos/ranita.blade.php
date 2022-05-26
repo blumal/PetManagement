@@ -10,7 +10,7 @@
                 
 </head>
 
-<body>
+<body style="background-color: #c6c2b7">
   
 <canvas width="624" height="720" id="game"></canvas>
 <img hidden src="/img/juego_ranita/48.png" id="jose">
@@ -30,6 +30,5 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@300;400&display=swap');
   </style>
-<script src="{{asset('js/juegos/ranita/script.js')}}"></script>
 </body>
 </html>

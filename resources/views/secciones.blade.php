@@ -22,36 +22,28 @@ ob_start();
 <body>
     <nav id="nav">
         <div class="nav_container">
-            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
+            <img src="http://localhost/petmanagement/public/img/visitas/Logo.png" alt="" class="nav_logo">
+            <h2>PANEL DEL ADMINISTRADOR</h2>
             <label for="menu" class="nav_label">
-                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
+                <img src="http://localhost/petmanagement/public/img/visitas/menu (4).png" alt="" class="nav_img">
             </label>
             <input type="checkbox" id="menu" class="nav_input">
             <!--Menu header-->
             <div class="nav_menu">
-                <a href="{{url("logout")}}" class="login_item">Logout</a>
+                <a href="http://localhost/petmanagement/public/logout" class="login_item">Logout</a>
             </div>
         </div>
-        <script src="./js/home.js"></script>
+    <script src="./js/home.js"></script>
     </nav>
-    {{-- <header id="Header">
-        <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
-        </div>
-        <h2>PANEL DEL ADMINISTRADOR</h2>
-        <form action="{{url('/logout')}}" method="GET" class="logout">
-                <a><button><img class="imglogout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></button></a>
-        </form>
-    </header> --}}
+    
     <div class="row-c">
         <div class="secciones">
-            <h2>PANEL DEL ADMINISTRADOR</h2>
             <div class="column-3">
                 <div class="seccion">
-                    <form {{-- action="{{url('/cpanelUsrs')}}" --}} method="GET">
+                    <form action="{{url('/adminUsuarios')}}"method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
-                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/usuario.png" width="200px" height="200px"></button><br><br>
+                            <button type="submit"><img class="sala" src="./img/imagenesWeb/usuario.png" width="200px" height="200px"></button><br><br>
                         </div>
                     </form>
                     Usuarios
@@ -59,10 +51,10 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="{{url('/cpanelTienda')}}" method="GET">
+                    <form action="http://localhost/petmanagement/public/cpanelTienda" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
-                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/carrito-de-compras.png" width="200px" height="200px"></button><br><br>
+                            <button type="submit"><img class="sala" src="./img/imagenesWeb/carrito-de-compras.png" width="200px" height="200px"></button><br><br>
                         </div>
                     </form>
                     Productos tienda
@@ -70,10 +62,10 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="{{url('/adminPacientes')}}" method="GET">
+                    <form action="http://localhost/petmanagement/public/adminPacientes" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
-                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/pata.png" width="200px" height="200px"></button><br><br>
+                            <button type="submit"><img class="sala" src="./img/imagenesWeb/pata.png" width="200px" height="200px"></button><br><br>
                         </div>
                     </form>
                     Animales
@@ -81,10 +73,10 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="{{url('/cpanelAnimalesPerdidos')}}" method="GET">
+                    <form action="http://localhost/petmanagement/public/cpanelAnimalesPerdidos" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
-                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
+                            <button type="submit"><img class="sala" src="./img/imagenesWeb/buscar.png" width="200px" height="200px"></button><br><br>
                         </div>
                     </form>
                     Mascotas perdidas
@@ -92,10 +84,10 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="{{url('/cpanelMapa')}}" method="GET">
+                    <form action="http://localhost/petmanagement/public/cpanelMapa" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
-                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/veterinario.png" width="200px" height="200px"></button><br><br>
+                            <button type="submit"><img class="sala" src="./img/imagenesWeb/veterinario.png" width="200px" height="200px"></button><br><br>
                         </div>
                     </form>
                     Establecimientos
@@ -103,10 +95,10 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-                    <form action="{{url('/stats')}}" method="GET">
+                    <form action="http://localhost/petmanagement/public/stats" method="GET">
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
-                            <button type="submit" ><img class="sala" src="./img/imagenesWeb/analisis.png" width="200px" height="200px"></button><br><br>
+                            <button type="submit"><img class="sala" src="./img/imagenesWeb/analisis.png" width="200px" height="200px"></button><br><br>
                         </div>
                     </form>
                     Gráficos / Estadisticas
@@ -114,5 +106,6 @@ ob_start();
             </div>
         </div>    
     </div>
+
 </body>
 </html>
