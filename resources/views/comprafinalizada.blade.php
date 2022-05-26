@@ -26,11 +26,14 @@
         </div>
 </div>
 
-<div class="row" id="">
-    <div class="titulo">
-        <h2>La compra se ha realizado con éxito</h2>
-    </div> 
+<div class="row flex rrr">
     <a href="{{ url('tienda')}}" >
         <p class="seguir"><b>Ir a la página principal</b></p>
     </a>
-</div>  
+</div>
+<div class="row flex" id="">
+    <div class="titulo">
+        <h2>La compra se ha realizado con éxito!</h2>
+        <h2>Revise su bandeja de entrada</h2>
+    </div>
+</div> 
