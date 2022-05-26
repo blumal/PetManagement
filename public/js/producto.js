@@ -8,16 +8,7 @@ window.onload = function() {
 
     var header = document.getElementById('Header')
 
-    window.addEventListener("scroll", function() {
-        var scroll = window.scrollY;
-        if (scrollY > 0) {
-            header.style.backgroundColor = '#8590ff';
 
-        } else {
-            header.style.backgroundColor = '8590ff';
-        }
-
-    })
 
     var precio = $(".tipo:first").find('p:eq(1)').text();
     precio = precio.substring(0, precio.length - 1);

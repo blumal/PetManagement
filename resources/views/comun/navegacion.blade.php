@@ -34,7 +34,7 @@
                 @endif
             </div>
         </div>
-    <script src="./js/home.js"></script>
+    <script src="/js/home.js"></script>
     </nav>
     @elseif(Session::get('id_rol_session')==3)
     <nav id="nav">
@@ -61,7 +61,7 @@
                 @endif
             </div>
         </div>
-    <script src="./js/home.js"></script>
+    <script src="/js/home.js"></script>
     </nav>
     @elseif(Session::get('id_rol_session')==1)
     <nav id="nav">
