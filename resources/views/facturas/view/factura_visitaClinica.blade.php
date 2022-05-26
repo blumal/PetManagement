@@ -1,5 +1,5 @@
 <!--Método comprobación de sesión-->
-@if (!Session::get('email_session'))
+@if (!Session::get('id_user_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         return redirect()->to('login')->send();
@@ -226,7 +226,7 @@
             <td><?php echo $items_clinica[$numero_items-1]->precio_pro ?></td>
             <td><?php echo ($items_clinica[$numero_items-1]->precio_pro*$items_clinica[$numero_items-1]->cant_dfc) ?>€</td>
             <?php $subtotal=$subtotal+($items_clinica[$numero_items-1]->precio_pro*$items_clinica[$numero_items-1]->precio_pro)?>
-            <?php $subtotal= bcdiv($subtotal,1,2);?>
+            <?php $subtotal= bcdiv($factura[0]->total_fc/(100-$factura[0]->porcentaje_pro)*100,1,2);?>
         </tr>
     
 
@@ -254,7 +254,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Total: <?php echo $factura[0]->total_fc ?>€</b></td>
+            <td><b> Total: <?php echo $factura[0]->total_fc ?>€ (Sin IVA -> <?php echo BCDIV($factura[0]->total_fc/1.21,1,2) ?>€)</b></td>
         </tr>
     </table>
     Estimado <?php echo $cliente[0]->nombre_us;?>,<br><br>

@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/fontsawe/css/all.css" rel="stylesheet">
     <script defer src="/fontsawe/js/all.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
     <style>
@@ -11229,43 +11232,48 @@
                                 <div id="form-message-success" class="mb-4">
                                     Your message was sent, thank you!
                                 </div>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate="novalidate" action="{{url("cerrarVisita")}}">
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validarFacturas();" action="{{url("cerrarVisita")}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="name">Nombre Animal</label>
-                                                <p name="name" id="name" placeholder="Name">{{$paciente[0]->nombre_pa}}</p>
+                                                @if (isset($paciente[0]->nombre_pa))
+                                                    <p name="name" id="name" placeholder="Name">{{$paciente[0]->nombre_pa}}</p>
+                                                @else
+                                                    <p name="name" id="name" placeholder="Name">Sin registrar</p>
+                                                @endif
+                                                
                                                 <!--<input type="text" class="form-control" name="name" id="name" placeholder="Name">-->
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="email">Total Factura</label>
-                                                <input type="number" class="form-control" name="total_factura" id="total_factura" placeholder="69,69">
+                                                <input type="number" step="any" min="0" class="form-control" name="total_factura" id="total_factura" placeholder="69,69">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Asunto</label>
-                                                <p name="name" id="name" placeholder="Name">{{$visita[0]->asunto_vi}}</p>
+                                                <p name="name" id="asunto" placeholder="Name">{{$visita[0]->asunto_vi}}</p>
                                                 <!--<input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto de la visita..." value="">-->
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Fecha intervención</label>
-                                                <input type="date" class="form-control" name="fecha_factura" id="subject" >
+                                                <input type="date" class="form-control" name="fecha_factura" id="fecha_factura" >
                                             </div>
                                             <div class="form-group">
                                                 <label class="label" for="subject">Hora intervención</label>
-                                                <input type="time" class="form-control" name="hora_factura" id="subject" >
+                                                <input type="time" class="form-control" name="hora_factura" id="hora_factura" >
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="#">Diagnostico</label>
-                                                <textarea name="diagnostico" class="form-control" id="message" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
+                                                <textarea name="diagnostico" class="form-control" id="diagnostico" cols="30" rows="4" placeholder="Diagnostico del veterinario..."></textarea>
                                             </div>
                                         </div>
 
@@ -11291,7 +11299,7 @@
                                             <label for="promociones" class="label" for="#">Selecciona promocion de la visita:</label>
                                                 <select id="promociones" name="promocion" id="id_promocion">        
                                                     @for ($i = 0; $i < count($promociones); $i++)
-                                                        <option class="form-control" value="{{$promociones[$i]->id_pro}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
+                                                        <option class="form-control" value="{{$promociones[$i]->id_pa}}">{{$promociones[$i]->promocion_pro}} {{$promociones[$i]->porcentaje_pro}}%</option>
                                                     @endfor
                                                 </select>
                                         </div>
@@ -11303,6 +11311,7 @@
                                             <div class="form-group">
                                                 <input type="hidden" value="{{$cliente[0]->id_us}}" name="id_usuario">
                                                 <input type="hidden" value="{{$visita[0]->id_vi}}" name="id_visita">
+                                                <input type="hidden" value={{Session::get('id_user_session')}} name="id_veterinario">
                                                 <input type="submit" value="Generar factura" class="btn btn-primary">
                                                 <div class="submitting"></div>
                                             </div>
@@ -11312,7 +11321,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex align-items-stretch">
-                            <div class="info-wrap w-100 p-5 img" style="background-image:url({{$paciente[0]->foto_pa}})">
+                            <div class="info-wrap w-100 p-5 img" style="background-image:url(storage/{{$paciente[0]->foto_pa}});background-size: fill;">
                             </div>
                         </div>
                     </div>
@@ -11322,4 +11331,5 @@
     </div>
 </body>
 <script defer src="./js/visita/script.js"></script>
+<script src="./js/visita/ajax_ru_visitas_directorio.js"></script>
 </html>

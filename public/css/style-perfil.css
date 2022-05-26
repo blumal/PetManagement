@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+
+* {
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    position: relative;
+    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/foto_registree.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+/* ---------- Registro ---------- */
+
+.container{
+    padding-top: 5%;
+}
+
+h3{
+    margin-top: -5px !important;
+    margin-bottom: -10px !important;
+    font-weight: bolder;
+}
+
+.formulario {
+    /* background: rgb(0 0 0 / 43%); */
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(0 0 0);
+    color: rgb(0, 0, 0);
+    /* se descomenta esto si al final en el registro se pone un icono a la derecha y el formulario a la izquierda
+    width: 70%; */
+    width: 50%;
+    margin-top: 4.5%;
+}
+
+span{
+    font-weight: bolder;
+}
+
+.form-group-1 {
+    margin-bottom: 1%;
+    width: 46.9%;
+    float: left;
+    box-sizing: border-box;
+    /* filter: invert(1);*/
+}
+
+.form-group-2 {
+    margin-bottom: 2%;
+    box-sizing: border-box;
+}
+
+.form-group-4 {
+    margin-bottom: 2%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.formIzquierda{
+    float: left;
+    width: 69%;
+}
+
+.formDerecha{
+    float: right;
+    width: 31%;
+    text-align: center;
+    margin: 25% 0% 0% 0%;
+}
+
+.form-control {
+    background: rgb(0, 0, 0, .3);
+    border-style: none;
+    transition: 0.5s ease-in;
+    outline: none;
+    box-shadow: none;
+    color: #ffffff;
+    /* font-weight: bolder; */
+    /* filter: invert(1);*/
+}
+
+.form-control:focus {
+    background: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+.ingresar {
+    background: #222A3F;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
+    transition: 0.5s ease-in;
+}
+
+.ingresar:hover {
+    color: white;
+}
+
+.olvide {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+}
+
+.olvide:hover {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+.olvide1 {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    font-size: 15px;
+    font-weight: 700!important;
+    /* border: 2px solid white; */
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .5);
+}
+
+.olvide1:hover {
+    color: white;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+/* ---------- NAV BAR ---------- */
+
+#nav {
+    position: fixed;
+    width: 100%;
+    transition: 0.5s;
+    margin-top: 0px;
+    z-index: 999;
+}
+
+.nav_container {
+    display: flex;
+    width: 100%;
+    /*Utiliza el mismo margen que en el @media*/
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 999;
+    padding-left: 1%;
+    padding-right: 5%;
+}
+
+.nav_logo {
+    width: 80px;
+    z-index: 999;
+}
+
+.nav_img {
+    width: 25px;
+    padding-top: 1%;
+    padding-right: 5px;
+    z-index: 999;
+}
+
+.nav_menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* display: grid;
+    grid-auto-flow: column;
+    gap: 3em; */
+}
+
+.nav_item {
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #000000;
+}
+
+.profile{
+    color: #000000;
+}
+
+.login_item {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1f2cc4;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+}
+
+.login_item:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.nav_item:hover {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px 24px;
+}
+
+.scrolled-search {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.nav_input:checked+.nav_menu {
+    background: white;
+}
+
+.nav_label,
+.nav_input {
+    display: none;
+}
+
+
+/*MENU RESPONSIVE + EFECTS*/
+
+@media (max-width: 800px) {
+    #nav {
+        transition: 0.5s;
+    }
+    .nav_container {
+        padding-left: 4%;
+    }
+    /*Icono*/
+    .nav_label {
+        /*Mostramos el contenido*/
+        display: block;
+        cursor: pointer;
+        z-index: 999;
+    }
+    .nav_menu {
+        grid-auto-flow: column;
+        padding-top: 20%;
+        position: fixed;
+        top: 0;
+        background-color: #1d2641 !important;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /*Efecto apertura*/
+        clip-path: circle(0 at center);
+        transition: clip-path 1s ease-in-out;
+    }
+    /*Items menú*/
+    .nav_item {
+        width: 65%;
+        padding: 17px;
+        border-radius: 25px;
+        background-color: #6267FF;
+        box-shadow: 0px 6px 10px rgb(0 0 0 /50%);
+        color: #ffffff;
+        margin-bottom: 1%;
+    }
+    .login_item {
+        width: 65%;
+        padding: 17px;
+        border-radius: 25px;
+        background-color: #FF9900;
+        color: #ffffff;
+    }
+    /* .nav_item:hover {} */
+    .nav_input:checked+.nav_menu {
+        clip-path: circle(100% at center);
+    }
+    /* ---------- TWITTER ---------- */
+    .twitter {
+        position: static;
+        margin: 10% 10% 10% 0%;
+        box-shadow: 0px 0px 7px 10px #292f33;
+        background-color: #292f33;
+        border-radius: 5px;
+    }
+    /* --------------- OTROS ---------------- */
+    body{
+        background: #c6c2b7;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .form-group-1{
+        width: 50%;
+    }
+    .container{
+        padding-top: 30%;
+    }
+    .formulario{
+        /* background: rgb(0 0 0 / 60%); */
+        padding-top: 5%;
+        color: #000000;
+        width: 95%;
+    }
+    .profile{
+        color: #ffffff !important;
+    }
+}

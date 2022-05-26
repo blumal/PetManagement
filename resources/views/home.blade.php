@@ -5,25 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    
     <link rel="icon" href="./img/imagenesWeb/logo.png">
     <title>Home</title>
 </head>
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            <a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a>
-            <a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a>
-            <a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a>
-            <a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a>
-            <a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a>
-            <a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a>
-            <a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a>
-                <a href="{{url("login")}}" method="get"><li class="cta">Login</li></form></a>
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    @include('comun.navegacion')
     <div>
         <img src="./img/imagenesWeb/home.jpg" class="foto">
     </div>
@@ -35,11 +23,8 @@
         </div>
 
         <div class="column-2">
-            <div>
-                Where does it come from?
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+            <div class="contenedor_grafico">
+                <canvas id="chart_visitasxmeses"></canvas>
             </div>
         </div>
     </div>
@@ -58,5 +43,7 @@
         </ul>
         <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{asset('js/estadisticas/graficos.js')}}"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
 * {
+    font-family: 'Montserrat Alternates', sans-serif;
     margin: 0%;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     color: #333333;
 }
 
@@ -8,7 +10,7 @@ html {
     scroll-behavior: smooth;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
@@ -29,12 +31,6 @@ header {
     height: 100px;
     transition: 0.5s;
     z-index: 999;
-    background-color: #8590ff;
-}
-
-.logo {
-    padding-top: 15px;
-    height: 90%;
 }
 
 .scrolled-search {
@@ -67,7 +63,7 @@ header {
 .cta {
     padding: 10px 24px;
     border-radius: 30px;
-    background-color: #1f2cc4;
+    background-color: var(--main-color);
     color: #ffffff;
     margin: 0 1rem;
     font-weight: 600;
@@ -80,13 +76,29 @@ header {
     background-color: #000000;
 }
 
+.cta-logout {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #006d9c;
+    color: #ffffff;
+    margin: 0 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cta-logout:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+
 
 /*Fotos*/
 
 .container_prod {
     width: 30%;
     height: 100vh;
-    margin-top: 12%;
+    margin-top: 15%;
     margin-left: 10%;
     float: left;
 }
@@ -94,7 +106,7 @@ header {
 .img_pral {
     width: 100%;
     height: 70%;
-    cursor: pointer;
+    cursor: zoom-in;
     /*border: 1px solid #000;*/
 }
 
@@ -109,6 +121,13 @@ header {
     /*border: 1px solid #000;*/
     float: left;
     cursor: pointer;
+    border: 1px solid #ffffff;
+    border-radius: 3%;
+    margin-top: 2vh;
+}
+
+[class *="subImg_"]:hover {
+    border: 1px solid #1f2cc4;
 }
 
 [class *="subImg_"] img {
@@ -124,7 +143,7 @@ header {
 .producto {
     width: 50%;
     height: 100vh;
-    margin-top: 12%;
+    margin-top: 15%;
     margin-left: 2%;
     float: left;
     color: #333333;
@@ -141,6 +160,53 @@ header {
 
 .marca {
     font-size: 1.8vh;
+}
+
+
+/*tipos*/
+
+.div-tipo {
+    float: left;
+    width: 100%;
+    height: 20vh;
+}
+
+.tipo-nombre p {
+    text-transform: uppercase;
+    font-size: 2.5vh;
+    font-weight: bold;
+}
+
+.tipo {
+    border-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    float: left;
+    margin-right: 1.5%;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.tipo:hover {}
+
+.tipo-border {}
+
+.tipo-texto p {
+    margin-top: 1vh;
+    margin-left: 1.5vh;
+    margin-right: 1.5vh;
+    margin-bottom: 0vh;
+    font-weight: bold;
+    font-size: 2vh;
+    color: #575757;
+}
+
+.precio-texto p {
+    font-size: 3vh;
+    color: #d124ba;
+    font-weight: bold;
+    margin-left: 1.5vh;
+    margin-bottom: 1vh;
+    margin-right: 3vh;
 }
 
 .precio p {
@@ -218,7 +284,7 @@ header {
 .dropdown .dropdown-menu {
     padding: 20px;
     top: 30px !important;
-    width: 350px !important;
+    width: 390px !important;
     left: -110px !important;
     box-shadow: 0px 5px 30px black;
 }
@@ -245,12 +311,15 @@ header {
     margin: 0px;
     color: #000;
     font-weight: 500;
+    font-size: 2.5vh;
+    text-align: left;
 }
 
 .cart-detail .price {
     font-size: 12px;
     margin-right: 10px;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 2.5vh;
 }
 
 .cart-detail .count {
@@ -303,6 +372,295 @@ header {
 
 .color {
     color: #1f2cc4;
+    font-weight: bold;
+}
+
+
+/*productos similares*/
+
+.productos-similares {
+    float: left;
+    width: 90%;
+    height: 100%;
+    font-size: 3vh;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+.producto-similar {
+    float: left;
+    width: 16%;
+    margin-right: 6%;
+    margin-left: 2%;
+    cursor: pointer;
+    transition: all 0.5s;
+    height: 75vh;
+}
+
+.caption-titulo {
+    height: 17vh;
+}
+
+.caption-descripcion {
+    height: 7vh;
+}
+
+.thumbnail {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail .caption {
+    margin: 7px;
+    font-size: 2vh;
+    font-weight: normal;
+}
+
+.btn-holder {
+    text-align: center;
+}
+
+.btn-carrito {
+    background-color: #1f2cc4;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-carrito:hover {
+    background-color: #3240d4;
+    color: white;
+}
+
+.producto-precio p {
+    font-size: 3vh;
+    color: #d124ba;
+    font-weight: bold;
+    margin-top: 5%;
+}
+
+.productos-similares a {
+    text-decoration: none;
+}
+
+
+/*carousel*/
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.carousel-control-prev {
+    position: absolute;
+    left: -5vh;
+    margin-left: 0;
+    width: 2%
+}
+
+.carousel-control-next {
+    position: absolute;
+    right: 8vh;
+    margin-right: 0;
+    width: 2%
+}
+
+
+/*opiniones*/
+
+.opiniones {
+    float: left;
+    width: 90%;
+    height: 100%;
+    font-size: 3vh;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+.div-opiniones {
+    float: left;
+    width: 70%;
+    height: 100%;
+    margin-left: 0%;
+}
+
+.opinion {
+    float: left;
+    width: 100%;
+    margin-top: 2%;
+    font-weight: normal;
+    font-size: 2.3vh;
+}
+
+.div-valoracion {
+    float: left;
+    width: 30%;
+    height: 100%;
+    font-weight: normal;
+    font-size: 2.3vh;
+}
+
+.div-valoracion i,
+.opinion-nombre i {
+    color: #1f2cc4;
+    transform: scale(1.3);
+    margin-right: 2%;
+}
+
+.opinion-nombre {
+    float: left;
+    width: 20%;
+}
+
+.opinion-texto {
+    float: left;
+    width: 70%;
+    text-align: justify;
+}
+
+.btn-mas {
+    border-color: #1f2cc4;
+    color: #1f2cc4;
+}
+
+.btn-mas:hover {
+    background-color: #1f2cc4;
+    border-color: #1f2cc4;
+}
+
+.btn-mas:focus {
+    box-shadow: 0px 5px 30px #1f2cc4;
+    background-color: white;
+    border-color: white;
+}
+
+.btn-valorar {
+    background-color: #1f2cc4;
+    border-color: #1f2cc4;
+    transition: all 0.3s;
+}
+
+.btn-valorar:hover {
+    background-color: #3240d4;
+    border-color: #3240d4;
+}
+
+
+/*opiniones modal valorar*/
+
+.modal3 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content3 {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.4s;
+    animation-name: zoom;
+    animation-duration: 0.4s
+}
+
+
+/*valoracion estrellas*/
+
+.rating {
+    position: relative;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3em;
+    padding: 5px;
+    margin-right: 2vh;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 2px #b3acac;
+}
+
+.rating__result {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-10px) translateX(-5px);
+    z-index: -9;
+    font: 3em Arial, Helvetica, sans-serif;
+    color: #ebebeb8e;
+    pointer-events: none;
+}
+
+.rating__star {
+    font-size: 1.3em;
+    cursor: pointer;
+    color: #1f2cc4;
+    transition: filter linear .3s;
+}
+
+.rating__star:hover {
+    filter: drop-shadow(1px 1px 4px #1f2cc4);
+}
+
+
+/* The Close Button */
+
+.close3 {
+    color: #333333;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close3:hover,
+.close3:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.div-modal3 {
+    padding: 2px 16px;
+}
+
+.comentario-valoracion textarea {
+    resize: none;
+    width: 100%;
+}
+
+#error-textarea {
+    color: red;
+}
+
+.btn-enviar {
+    background-color: #1f2cc4;
+    border-color: #1f2cc4;
+    transition: all 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #3240d4;
+    border-color: #3240d4;
 }
 
 
@@ -323,7 +681,6 @@ footer {
 
 .logo {
     height: 80px;
-    margin-bottom: 1rem;
 }
 
 .social-icons-container,
@@ -340,7 +697,7 @@ footer {
     width: 50px;
     border-radius: 50px;
     border: 1px solid #f2f2f2;
-    background-image: url(../storage/img/imagenesWeb/TwitterBlanco.png);
+    background-image: url(../img/imagenesWeb/TwitterBlanco.png);
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
@@ -353,7 +710,7 @@ footer {
 }
 
 .social-icon:nth-of-type(2) {
-    background-image: url(../storage/img/imagenesWeb/TelegramBlanco.png);
+    background-image: url(../img/imagenesWeb/TelegramBlanco.png);
 }
 
 .footer-menu-container {
@@ -366,6 +723,7 @@ footer {
     margin: 1rem 1.5rem;
     cursor: pointer;
     opacity: 0.6;
+    color: white;
 }
 
 .footer-item:hover {
@@ -389,4 +747,508 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 0 5%;
+}
+
+
+/*popup*/
+
+
+/* The actual popup */
+
+.popuptext {
+    visibility: hidden;
+    width: auto;
+    background-color: white;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 8px;
+    position: fixed;
+    z-index: 9999;
+    top: 20%;
+    left: 35%;
+    margin-left: -80px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* Toggle this class - hide and show the popup */
+
+.show {
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+
+/*modal img*/
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 5vh;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content (image) */
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 30%;
+    height: 80%;
+    max-width: 700px;
+}
+
+
+/* Caption of Modal Image */
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+}
+
+
+/* Add Animation */
+
+.modal-content,
+#caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+
+/* The Close Button */
+
+.close {
+    position: absolute;
+    top: 13vh;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*modal añadir carrito*/
+
+
+/* Modal Content */
+
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content2 {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.4s;
+    animation-name: zoom;
+    animation-duration: 0.4s
+}
+
+
+/* The Close Button */
+
+.close2 {
+    color: #333333;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close2:hover,
+.close2:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.div-modal {
+    padding: 2px 16px;
+}
+
+.div-modal i {
+    color: rgb(75, 255, 40);
+}
+
+.div-seguir,
+.div-pagar {
+    float: left;
+    width: 48%;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}
+
+.div-pagar a {
+    text-decoration: none;
+}
+
+.btn-pagar {
+    border-color: #1f2cc4;
+    background-color: #1f2cc4;
+}
+
+.btn-pagar:hover {
+    background-color: #3240d4;
+    border-color: #3240d4;
+}
+
+.btn-pagar:focus {
+    box-shadow: 0px 5px 30px #1f2cc4;
+    background-color: #3240d4;
+    border-color: #3240d4;
+}
+
+
+/* 100% Image Width on Smaller Screens modal IMG*/
+
+@media only screen and (max-width: 1250px) {
+    .modal-content {
+        width: 100%;
+    }
+    .caption-descripcion {
+        margin-top: 5vh;
+    }
+    .producto-precio {
+        margin-top: 3vh;
+    }
+    .container_prod {
+        margin-top: 20%;
+    }
+    .producto {
+        margin-top: 20%;
+    }
+    .comentario-valoracion textarea {
+        width: 100%;
+        height: 20vh;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .caption-descripcion {
+        margin-top: 10vh;
+    }
+    .producto-similar {
+        height: auto;
+    }
+    .producto-precio {
+        margin-top: 5vh;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .productos-similares {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .productos-similares {
+        display: block;
+    }
+    .carrito-drop {
+        transform: scale(1.3);
+    }
+    .container_prod {
+        width: 90%;
+        height: 70vh;
+        margin-top: 55%;
+        margin-left: 3%;
+        margin-right: 3%;
+        float: left;
+    }
+    .producto {
+        width: 90%;
+        height: auto;
+        margin-top: 0%;
+        margin-left: 5%;
+        float: left;
+        color: #333333;
+    }
+    .nombre {
+        text-align: center;
+    }
+    .div-dropmenu {
+        position: absolute;
+        top: 17%;
+        right: 35%;
+    }
+    .dropdown .dropdown-menu {
+        padding: 20px;
+        top: 30px !important;
+        width: 300% !important;
+        left: -55px !important;
+        box-shadow: 0px 5px 30px black;
+    }
+    .div-tipo {
+        height: auto;
+    }
+    .carrito-cantidad {
+        margin-top: 15%;
+    }
+    .cantidad {
+        width: 100%;
+        margin-top: 5%;
+    }
+    .input-cantidad {
+        margin-right: 0%;
+        width: 50%;
+    }
+    .cantidad-precio {
+        width: 45%;
+        margin-left: 5%;
+    }
+    .anadir-carrito {
+        width: 100%;
+    }
+    .btn-carrito {
+        transform: scaleY(1.2);
+    }
+    .productos-similares {
+        margin-top: 5vh;
+    }
+    .productos-similares p {
+        text-align: center;
+    }
+    .carousel,
+    .slide {
+        margin-left: 5%;
+        width: 90%;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none;
+    }
+    .producto-similar {
+        float: left;
+        width: 100%;
+        margin-right: 0%;
+        margin-left: 0%;
+        height: auto;
+    }
+    .thumbnail {
+        position: relative;
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+    .thumbnail img {
+        width: 100%;
+        height: 100%;
+    }
+    .caption-titulo {
+        height: auto;
+    }
+    .caption-titulo h5 {
+        text-align: center;
+    }
+    .caption-descripcion {
+        height: auto;
+        margin-top: 3%;
+    }
+    .caption-descripcion p {
+        text-align: left;
+        margin-bottom: 0%;
+    }
+    .producto-precio {
+        margin-top: 0%;
+    }
+    .producto-precio p {
+        font-size: 5vh;
+    }
+    .opiniones {
+        width: 100%;
+        height: auto;
+        font-size: 3vh;
+        font-weight: bold;
+        margin-left: 0%;
+        margin-top: 3%;
+        text-align: center;
+    }
+    .opiniones-titulo p {
+        float: none !important;
+        text-align: center !important;
+    }
+    .nose-p {
+        text-align: center;
+        margin-left: 2%;
+        margin-right: 2%;
+        float: left;
+    }
+    .ml-2 {
+        display: none;
+    }
+    .div-nose {
+        margin-bottom: 3%;
+    }
+    .div-valoracion {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+    .div-valoracion .mt-4 {
+        margin-left: 2% !important;
+        margin-right: 2% !important;
+    }
+    .div-valoracion .mt-2 {
+        margin-left: 2% !important;
+        margin-right: 2% !important;
+    }
+    .div-opiniones {
+        width: 100%;
+        height: auto;
+        margin-left: 0%;
+    }
+    .opinion-nombre {
+        text-align: center;
+        width: 100%;
+    }
+    .opinion-texto {
+        width: 100%;
+    }
+    .opinion-texto p {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .btn-valorar {
+        transform: scale(1.6);
+    }
+    .comentario-valoracion textarea {
+        width: 100%;
+        height: 20vh;
+    }
+    .modal-content3 {
+        top: 15%;
+        left: 5%;
+        width: 90%;
+        margin: 0%;
+    }
+    .close {
+        position: absolute;
+        top: 10vh;
+        right: 5px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .modal-content {
+        top: 5%;
+        margin: 0%;
+        display: block;
+        width: 100%;
+        height: 75%;
+        max-width: 700px;
+    }
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        margin-top: 5vh;
+    }
+    .modal-content2 {
+        top: 20%;
+        left: 5%;
+        width: 90%;
+        margin: 0%;
+        height: auto;
+    }
+    .div-modal i {
+        transform: scale(1.5) !important;
+    }
+    .div-modal p {
+        height: 15vh;
+    }
+    .div-seguir {
+        width: 100%;
+        margin-top: 4vh;
+        margin-bottom: 2vh;
+        margin-left: 1%;
+    }
+    .div-pagar {
+        width: 100%;
+        margin-top: 0vh;
+        margin-bottom: vh;
+    }
+    .btn-pagar {
+        height: 6vh;
+    }
 }
