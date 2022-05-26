@@ -19,6 +19,7 @@
     <title>Calendario</title>
 </head>
 <body>
+    @include('comun.navegacion')
     <div class="row-c flex">
         <div class="calendarestructure column-1">
             <center>

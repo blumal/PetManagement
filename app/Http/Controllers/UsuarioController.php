@@ -200,7 +200,6 @@ class UsuarioController extends Controller
                 return redirect('/');
             }else{
                 //No establecemos sesión y lo devolvemos a login
-                return "polla";
                 return Redirect::back()->withErrors(['Los datos introducidos no son correctos', 'Error password']);
             }
         } catch (\Throwable $e) {
@@ -261,14 +260,21 @@ class UsuarioController extends Controller
                     'pass_us'=>$pwd,
                     'id_rol_fk'=>2,
                     'id_telefono_fk'=>$id_telefono,
-                    'id_direccion1_fk'=>$id_direccion1
+                    'id_direccion1_fk'=>$id_direccion1,
+                    'activo_us'=>0
                     ]);
                 DB::commit();
                 //Establecemos sesión
 
-                $request->session()->put('cliente_session', $request['email_us']);
-                $request->session()->put('id_user_session', $id_user);
-                $request->session()->put('id_rol_session', 2);
+                $mail=$request['email_us'];
+                $datas=["jose"];
+                //Envío de mail
+                $sub = "Activación de usuario";
+                $enviar = new Mailtocustomers($datas, 1);
+                $enviar->sub = $sub;
+                Mail::to($mail)->send($enviar);
+
+
                 return redirect('/');
             }else {
                 //No establecemos sesión y lo devolvemos a login
@@ -394,6 +400,86 @@ class UsuarioController extends Controller
                 );
             DB::commit();
             return response()->json("OK");
+        } catch (\Exception $error) {
+            DB::rollback();
+            return $error -> getMessage();
+        }
+    }
+
+    /*public function testmail(){
+        $mail="gomezmonterroso14@gmail.com";
+                $datas=["Jose"];
+                //Envío de mail
+                $sub = "Activación de usuario";
+                $enviar = new Mailtocustomers($datas, 1);
+                $enviar->sub = $sub;
+                Mail::to($mail)->send($enviar);
+    }*/
+
+    public function activarUsuario(Request $request){
+        $request->validate([
+            'email_us' => 'required|string|max:70',
+            'pass_us' => 'required|string|max:50'
+        ]);
+        $password_hash=hash('sha512',$request['pass_us']);
+        //return $password_hash;
+        try {
+            //recogemos los datos, teniendo exepciones, como el token que utiliza laravel y el método
+            $userId = $request->except('_token', '_method');
+            $userId_compr=DB::table("tbl_usuario")
+                ->join('tbl_rol', 'tbl_usuario.id_rol_fk', '=', 'tbl_rol.id_ro')
+                ->where('tbl_usuario.email_us','=',$userId['email_us'])
+                ->where('tbl_usuario.pass_us','=',$password_hash)
+                ->get();
+            if ($userId_compr[0]->activo_us==0) {
+                DB::beginTransaction();
+                    $cliente_activado = DB::table('tbl_usuario')
+                    ->where('email_us', $userId['email_us'])
+                    ->limit(1)
+                    ->update(
+                        ['activo_us' => 1]
+                    );
+                DB::commit();
+            }else{
+                return Redirect::back()->withErrors(['El usuario introducido ya está activo', 'Error password']);
+            }
+            //return $userId_compr;
+            //En caso de que nuestra consulta de como resultado 1, gracias a count haz...
+            if ($userId_compr[0]->rol_ro=='trabajador'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
+                $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
+                $request->session()->put('trabajador_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('nombre_session', $usuario[0]->nombre_us);
+                return redirect('/homeempleado');
+            }else if($userId_compr[0]->rol_ro=='admin'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
+                $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
+                $request->session()->put('admin_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+                $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('nombre_session', $usuario[0]->nombre_us);
+                return redirect('/cpanel');
+            }else if($userId_compr[0]->rol_ro=='cliente'){
+                //Establecemos sesión
+                $usuario = DB::table('tbl_usuario')->where('email_us', '=', $userId['email_us'])->where('pass_us', '=', $password_hash)->get();
+                $id_usuario=$usuario[0]->id_us;
+                $rol_usuario=$usuario[0]->id_rol_fk;
+                $request->session()->put('cliente_session', $request->email_us);
+                $request->session()->put('id_user_session', $id_usuario);
+
+                //Envíamos los registros del usuario que ha iniciado sesión
+                $an_asociado = DB::table('tbl_pacienteanimal_clinica')->where('propietario_fk', '=', $id_usuario)->get();
+                $request->session()->put('animales_asociados', $an_asociado);
+                $request->session()->put('id_rol_session', $rol_usuario);
+                $request->session()->put('nombre_session', $usuario[0]->nombre_us);
+                return redirect('/');
+            }
         } catch (\Exception $error) {
             DB::rollback();
             return $error -> getMessage();

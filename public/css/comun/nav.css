@@ -92,7 +92,6 @@
 
 @media (max-width: 800px) {
     #nav {
-        background-color: #ffffff;
         transition: none;
     }
     .nav_container {
