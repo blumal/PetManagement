@@ -2,7 +2,8 @@
     color: white; 
     background-color: #c6c2b7; 
     border-radius: 20px; width: 80%; 
-    margin-top: 2%; margin-bottom: 2%; 
+    margin-top: 2%; 
+    margin-bottom: 2%; 
 }
 
 a{ text-decoration: none; 

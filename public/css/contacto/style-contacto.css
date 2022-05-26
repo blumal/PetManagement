@@ -7,7 +7,8 @@
 }
 body {
     position: relative;
-    background-image: /* linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), */url(../img/imagenesWeb/veterinaria-perro.jpg);
+    background-image: url(../../img/fotosAnimal/fondo-contacto2.jpg);
+    background-position: center;
     --main-color: #1f2cc4;
     background-size: cover;
     background-attachment: fixed;
@@ -40,11 +41,19 @@ h1{
 }
 
 .formulario {
-    background: rgba(31, 45, 196, 0.659);
+    background: rgba(0, 0, 0, 40%);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 30px rgb(0, 0, 0);
-    color: white;
+    color: black;
+}
+
+.formulario2 {
+    background: rgba(0, 0, 0, 70%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgb(0, 0, 0);
+    color: black;
 }
 
 .form-control {
@@ -288,6 +297,9 @@ h1{
     .formulario{
         padding: 5% 5% 0% 5%;
     }
+    .formulario2{
+        padding: 5% 5% 0% 5%;
+    }
     iframe{
         width: 357px;
         height: 300px;
@@ -301,6 +313,7 @@ h1{
     }
     h3{
         font-size: 18px !important;
+        font-weight: normal !important;
     }
     .telf-mail{
         padding-bottom: 2%;
@@ -326,4 +339,5 @@ h1{
 
 h3{
     font-size: 24px;
+    font-weight: bolder;
 }

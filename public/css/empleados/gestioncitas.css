@@ -238,5 +238,13 @@ a {
     margin-top: 4%;
 }
 
+.table-responsive a{
+    text-decoration: none;
+    color: white;
+}
+
+.table{
+    text-decoration: none;
+}
 
 

@@ -30,6 +30,5 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@300;400&display=swap');
   </style>
-<script src="{{asset('js/juegos/ranita/script.js')}}"></script>
 </body>
 </html>
