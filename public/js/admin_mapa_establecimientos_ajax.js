@@ -154,7 +154,7 @@ function modificar(id_s, nombre_s, nif_s, email_s, nombre_di, numero_di, cp_di, 
     contenido += '<input type="hidden" name="id_s" id="id_s" value="' + id_s + '">'
     contenido += '<input type="hidden" name="id_tel" id="id_tel" value="' + id_tel + '">'
     contenido += '<input type="hidden" name="id_di" id="id_di" value="' + id_di + '">'
-    contenido += '<input type="hidden" name="id_ts" id="id_ts" value="' + id_ts + '">'
+    contenido += '<input type="hidden" name="id_ts" id="id_ts" value="' + id_ts + '"><br><br>'
     contenido += '<input type="submit" class="btn btn-success" value="Modificar">'
     contenido += '</form>'
     enter.innerHTML = contenido;
