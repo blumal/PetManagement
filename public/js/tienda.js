@@ -400,11 +400,16 @@ function filtro() {
 
     //NUEVO
     var palabras = nombre.split(" ");
-    for (let i = 0; i < palabras.length; ++i) {
-        if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
-            formData.append('palabras[]', palabras[i]);
-        }
-    };
+    if (palabras.length != 1) {
+        for (let i = 0; i < palabras.length; ++i) {
+            if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
+                formData.append('palabras[]', palabras[i]);
+            }
+        };
+    } else {
+        formData.append('palabrastring', nombre);
+    }
+
     //FIN NUEVO
     var ajax = objetoAjax();
 
@@ -536,13 +541,15 @@ function filtro3() {
     formData.append('orden', orden);
 
     //NUEVO
-    if (nombre == "") {} else {
-        var palabras = nombre.split(" ");
+    var palabras = nombre.split(" ");
+    if (palabras.length != 1) {
         for (let i = 0; i < palabras.length; ++i) {
             if (palabras[i] == "de" || palabras[i] == "para" || palabras[i] == "e" || palabras[i] == "y") {} else {
                 formData.append('palabras[]', palabras[i]);
             }
         };
+    } else {
+        formData.append('palabrastring', nombre);
     }
 
     //FIN NUEVO
