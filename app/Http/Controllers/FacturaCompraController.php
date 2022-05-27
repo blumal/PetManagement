@@ -56,6 +56,7 @@ class FacturaCompraController extends Controller
                 $items_compra=DB::table('tbl_detallefactura_tienda')
                 ->where('id_factura_tienda_fk','=',$id_factura)
                 ->join('tbl_articulo_tienda', 'tbl_detallefactura_tienda.id_articulo_fk', '=', 'tbl_articulo_tienda.id_art')
+                ->join('tbl_categoria_articulo', 'tbl_articulo_tienda.id_art', '=', 'tbl_categoria_articulo.articulo_fk')
                 ->get();
                 //return $items_compra;
                 //return $factura;
@@ -98,6 +99,7 @@ class FacturaCompraController extends Controller
                 $items_compra=DB::table('tbl_detallefactura_tienda')
                         ->where('id_factura_tienda_fk','=',$id_factura)
                         ->join('tbl_articulo_tienda', 'tbl_detallefactura_tienda.id_articulo_fk', '=', 'tbl_articulo_tienda.id_art')
+                        ->join('tbl_categoria_articulo', 'tbl_articulo_tienda.id_art', '=', 'tbl_categoria_articulo.articulo_fk')
                         ->get();
                 $download=1;
                 //$data = Employee::all();

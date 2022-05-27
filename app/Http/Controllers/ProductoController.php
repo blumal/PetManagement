@@ -274,7 +274,7 @@ class ProductoController extends Controller
     {
         $path="producto/".$id;
         $product = DB::select("SELECT tbl_articulo_tienda.id_art,tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art,tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art,tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.foto_art,tbl_articulo_tienda.id_marca_fk,tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` WHERE tbl_articulo_tienda.id_art=?",[$id]);
-        $productPrice=DB::select("SELECT tbl_Categoria_Articulo.id_cat, tbl_Categoria_Articulo.texto_cat, tbl_Categoria_Articulo.precio_cat FROM `tbl_categoria_articulo` WHERE id_cat=?",[$subcategoria]);
+        $productPrice=DB::select("SELECT tbl_Categoria_Articulo.id_cat, tbl_Categoria_Articulo.texto_cat, tbl_Categoria_Articulo.precio_cat,tbl_Categoria_Articulo.articulo_fk  FROM `tbl_categoria_articulo` WHERE id_cat=?",[$subcategoria]);
         if(!$product) {
             abort(404);
         }
@@ -305,6 +305,7 @@ class ProductoController extends Controller
         }
         //
         $cart[$subcategoria] = [
+            "id" => $productPrice[0]->articulo_fk,
             "nombre" => $product[0]->nombre_art,
             "subcategoria_texto" => $productPrice[0]->texto_cat,
             "cantidad" => $cantidad,
@@ -410,10 +411,10 @@ class ProductoController extends Controller
         
 
         $carrito=$request->session()->get('cart');
-        foreach ($carrito as $item_Compra) {
-            $total_factura= $total_factura + ($item_Compra['cantidad']*$item_Compra['precio']);
+
+        foreach ($carrito as $id_categoria =>$info_categoria) {
+            $total_factura= $total_factura + ($info_categoria['cantidad']*$info_categoria['precio']);
         }
-       
 
         DB::beginTransaction();
         $id_factura_tienda = DB::table('tbl_factura_tienda')->insertGetId(
@@ -422,9 +423,9 @@ class ProductoController extends Controller
             'total_ft'=>$total_factura,
             'id_promocion_fk'=>$id_promocion_fk,
             'id_usuario_fk'=>$id_user_session ]);
-        foreach ($carrito as $item_compra) {
+        foreach ($carrito as $id_categoria =>$info_categoria) {
             DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
-            [$item_compra['id'],$item_compra['cantidad'],$id_factura_tienda]);
+            [$id_categoria,$info_categoria['cantidad'],$id_factura_tienda]);
         }
         DB::commit();
 
