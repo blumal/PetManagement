@@ -700,7 +700,7 @@ function marcasEmpty() {
         marcasHTML = marcasHTML.toString();
         if (document.getElementById("search").value == "") {
             $('.productos').find('p:first').text("Resultados por marcas '" + marcasHTML + "'")
-            filtro3();
+                //filtro3();
         } else {
             $('.productos').find('p:first').text("Resultados por '" + document.getElementById("search").value + "' y marcas '" + marcasHTML + "'")
         }
