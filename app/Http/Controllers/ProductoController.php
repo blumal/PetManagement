@@ -622,6 +622,73 @@ class ProductoController extends Controller
         ]);
    
         Session::flash('success', 'Payment successful!');
+
+        date_default_timezone_set('EUROPE/Madrid');
+
+        $total_factura=0;
+        $id_promocion_fk=1;
+        $id_user_session=$request->session()->get('id_user_session');
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        $localtime = date('H:i:s', strtotime($time));
+        
+
+        $carrito=$request->session()->get('cart');
+
+        foreach ($carrito as $id_categoria =>$info_categoria) {
+            $total_factura= $total_factura + ($info_categoria['cantidad']*$info_categoria['precio']);
+        }
+
+        DB::beginTransaction();
+        $id_factura_tienda = DB::table('tbl_factura_tienda')->insertGetId(
+            [ 'fecha_ft' => $date,
+            'hora_ft'=> $localtime,
+            'total_ft'=>$total_factura,
+            'id_promocion_fk'=>$id_promocion_fk,
+            'id_usuario_fk'=>$id_user_session ]);
+        foreach ($carrito as $id_categoria =>$info_categoria) {
+            DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
+            [$id_categoria,$info_categoria['cantidad'],$id_factura_tienda]);
+        }
+        DB::commit();
+
+        //COMPROBACION NUMERO DE COMPRAS PARA RULETA
+
+        $premio=0;
+        DB::beginTransaction();
+        $numero_compras = DB::table('tbl_factura_tienda')->where('id_usuario_fk', '=', $id_user_session)
+            ->count();
+        $ha_tenido_promo = DB::table('tbl_clientes_promo')->where('fk_id_us', '=', $id_user_session)
+            ->count();
+        if (($numero_compras % 5) == 0) {
+            if ($ha_tenido_promo>0) {
+                DB::table('tbl_clientes_promo')
+                    ->where('fk_id_us', $id_user_session)  // find your user by their email
+                    ->limit(1)  // optional - to ensure only one record is updated.
+                    ->update( [ 'comprobar_cli_pro' => 0] );
+                $premio=1;
+            }else{
+                DB::insert('insert into tbl_clientes_promo (comprobar_cli_pro, fk_id_us) values (?, ?)',
+                [0, $id_user_session]);
+                $premio=1;
+            }
+        }
+        DB::commit();
+
+        //Envío de mail
+        $sub = "Confirmación de compra";
+        $datas=[$localtime,$date,$total_factura,$id_factura_tienda,$premio];
+        $enviar = new Mailtocustomers($datas,1);
+        //,$total_factura,$localtime,$date
+        $enviar->sub = $sub;
+        Mail::to(session('cliente_session'))->send($enviar);
+        //Mail::to("gomezmonterroso14@gmail.com")->send($enviar);
+        /*
+        for ($i=1; $i < (count($carrito)+1); $i++) {
+            DB::insert('insert into tbl_detallefactura_tienda (id_articulo_fk,cantidad_dft,id_factura_tienda_fk) values (?,?,?)',
+            [$carrito[$i]['id'],$carrito[$i]['cantidad'],$id_factura_tienda]);
+        }
+        */
         $request->session()->forget('cart');
         return redirect('comprafinalizada');
     }
