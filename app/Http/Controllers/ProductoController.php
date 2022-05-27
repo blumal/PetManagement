@@ -622,7 +622,7 @@ class ProductoController extends Controller
         ]);
    
         Session::flash('success', 'Payment successful!');
-           
+        $request->session()->forget('cart');
         return redirect('comprafinalizada');
     }
     /**
