@@ -1,7 +1,7 @@
 /* ---------- NAV BAR ---------- */
 
 #nav {
-    position: fixed;
+    position: flex;
     width: 100%;
     transition: 0.5s;
     margin-top: 0px;

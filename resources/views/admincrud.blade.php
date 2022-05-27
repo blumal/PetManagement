@@ -5,7 +5,7 @@
         //Si la session no esta definida te redirige al login, la session se crea en el método.
         // return redirect()->to('login')->send();
     ?>
-@endif --}}
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script src="../public/js/ajax.js"></script>
-    <script src="../public/js/code.js"></script>
+    <script src="{{asset('js/ajax.js')}}"></script>
+    <script src="{{asset('js/code.js')}}"></script>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/05807278a7.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
