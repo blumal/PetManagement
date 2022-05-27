@@ -144,6 +144,14 @@ class CitasController extends Controller
         return view('mapas/animales_perdidos');
     }
 
+    public function adm_an_perd(Request $request){
+        $datos=DB::select('SELECT tbl_animales_perdidos.*, tbl_usuario.*, tbl_estado.* FROM `tbl_animales_perdidos` 
+        INNER JOIN tbl_usuario ON tbl_animales_perdidos.id_usuario_fk = tbl_usuario.id_us 
+        INNER JOIN tbl_estado ON tbl_animales_perdidos.id_estado_fk = tbl_estado.id_est
+        WHERE tbl_usuario.id_us like ? ORDER BY tbl_animales_perdidos.nombre_ape ASC', [$request->input('id_us')]);
+        return view('mapas/adm_animales_perdidos', compact('datos'));
+    }
+
     //Resultados actuales o futuros implementados en la api
     public function showcitas(){
         $today = now()->format('Y-m-d');

@@ -136,6 +136,8 @@ Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
 Route::get('/an_perd', [CitasController::class, 'an_perd']);
 
+Route::get('/adm_an_perd', [CitasController::class, 'adm_an_perd']);
+
 //Ruleta premios
 Route::get('/ruleta',[FacturaVisitaController::class, 'ruleta']);
 

@@ -37,9 +37,9 @@
     </div> --}}
     <div class="content_up">
         <div>
-            <form class="crear" id="boton">
+            {{-- <form class="crear" id="boton">
                 <a name="Crear" value="Crear" onclick="crearJS()" id="crear" value="Crear Mascota Perdida">Crear</a>
-            </form>
+            </form> --}}
             <form class="filtro" method="post" onsubmit="return false;">
                 {{-- <input type="hidden" name="_method" value="POST" id="postFiltro"> --}}
                 <div class="form-outline">

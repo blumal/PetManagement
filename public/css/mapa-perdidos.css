@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
-
 * {
     font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
@@ -22,6 +21,7 @@ a {
     text-decoration: none !important;
 }
 
+
 /* ul{
     margin-top: 0;
     margin-bottom: 0rem;
@@ -31,6 +31,7 @@ a {
     margin-left: 10px;
     margin-top: 7rem !important;
 }
+
 
 /* ---------- NAV BAR ---------- */
 
@@ -121,6 +122,7 @@ a {
     display: none;
 }
 
+
 /*MENU RESPONSIVE + EFECTS*/
 
 @media (max-width: 800px) {
@@ -166,7 +168,6 @@ a {
         color: #ffffff;
         margin-bottom: 1%;
     }
-
     .login_item {
         width: 65%;
         padding: 17px;
@@ -195,13 +196,12 @@ a {
         text-decoration: none !important;
         color: white;
     }
-    .form-outline{
+    .form-outline {
         display: flex;
         margin: 30% 0% 0% 60% !important;
         padding-right: 2%;
     }
-    
-    .addPet{
+    .addPet {
         border-radius: 20px;
         background-color: #000000;
         padding: 5%;
@@ -212,8 +212,7 @@ a {
         transition: 0.5s;
         list-style-type: none;
     }
-    
-    .addPet:hover{
+    .addPet:hover {
         color: #ffffff;
         background-color: #000000;
         border-color: #000000;
@@ -225,6 +224,7 @@ a {
     }
 }
 
+
 /* ------------------------------------------------------------------- */
 
 .img_an {
@@ -232,13 +232,13 @@ a {
     width: 190px;
 }
 
-.form-outline{
+.form-outline {
     display: flex;
     margin: 9% 0% 0% 88%;
     padding-right: 2%;
 }
 
-.addPet{
+.addPet {
     border-radius: 20px;
     background-color: #000000;
     padding: 5%;
@@ -250,7 +250,7 @@ a {
     list-style-type: none;
 }
 
-.addPet:hover{
+.addPet:hover {
     color: #ffffff;
     background-color: #000000;
     border-color: #000000;

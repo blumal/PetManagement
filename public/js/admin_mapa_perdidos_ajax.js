@@ -50,31 +50,27 @@ function leerJS() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
             var recarga = '';
             recarga += '<div class="table-responsive">';
             recarga += '<table class="table" id="table">';
-            recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Fecha de perdida</th><th scope="col">Propietario</th><th scope="col">Calle donde se perdió</th><th scope="col">Foto</th><th scope="col">CP</th><th scope="col">Númeor de la calle</th><th scope="col">Hora de desaparición</th><th scope="col">Estado</th><th scope="col"></th><th scope="col">Editar</th></tr>';
+            recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Foto</th><th scope="col">Propietario</th><th scope="col">Fecha Perdida</th><th scope="col">Hora perdida</th><th scope="col">Calle</th><th scope="col">Númeor de la calle</th><th scope="col">CP</th><th scope="col">Estado</th><th scope="col">Editar</th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += '<tr class="fila-2">';
                 recarga += '<td scope="row">' + respuesta[i].nombre_ape + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].descripcion_ape + '</td>'
-                recarga += '<td scope="row">' + respuesta[i].fecha_perdida_ape + '</td>'
+                recarga += '<td scope="row"><img class="fotoMascota" src="../storage/app/public/' + respuesta[i].foto_ape + '"></td>'
                 recarga += '<td scope="row">' + respuesta[i].nombre_us + '</td>'
-                recarga += '<td scope="row">' + respuesta[i].direccion_perdida_ape + '</td>'
-                recarga += '<td scope="row"><img class="fotoMascota" src="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/' + respuesta[i].foto_ape + '"></td>'
-                recarga += '<td scope="row">' + respuesta[i].cp_ape + '</td>'
-                recarga += '<td scope="row">' + respuesta[i].calle_ape + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].fecha_perdida_ape + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].hora_des_ape + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].direccion_perdida_ape + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].calle_ape + '</td>'
+                recarga += '<td scope="row">' + respuesta[i].cp_ape + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].estado_est + '</td>'
-                if (respuesta[i].estado_est = 4) {
-                    recarga += '<td scope="row"><img src="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/img/rojo.png"></td>'
-                } else if (respuesta[i].estado_est == 5) {
-                    recarga += '<td scope="row"><img src="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/img/verde.png"></td>'
-                }
                 recarga += '<td scope="row"><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_ape + ',\'' + respuesta[i].nombre_ape + '\',\'' + respuesta[i].descripcion_ape +
-                    '\',\'' + respuesta[i].fecha_perdida_ape + '\',\'' + respuesta[i].nombre_us + '\',' + respuesta[i].direccion_perdida_ape + ',' +
-                    respuesta[i].estado_est + ',' + respuesta[i].cp_ape + ',' + respuesta[i].calle_ape + ',\'' +
-                    respuesta[i].hora_des_ape + '); return false;">Editar</button></td>'
+                    '\',\'' + respuesta[i].fecha_perdida_ape + '\',\'' + respuesta[i].direccion_perdida_ape + '\',' +
+                    respuesta[i].id_estado_fk + ',' + respuesta[i].cp_ape + ',' + respuesta[i].calle_ape + ',\'' +
+                    respuesta[i].hora_des_ape + '\',' + respuesta[i].id_usuario_fk + '); return false;">Editar</button></td>'
                     /* recarga += '<td><button onclick="borrar(' + respuesta[i].id_ape + ',' + respuesta[i].id_ts + ',' + respuesta[i].id_di + ',' + respuesta[i].id_tel + '); return false;">Eliminar</button></td>' */
                     //Activo =1 inactivo=0 1 verde 0 rojo hacer if
                 recarga += '</tr>';
@@ -88,8 +84,7 @@ function leerJS() {
     ajax.send(formData);
 }
 
-function modificar(id_ape, nombre_ape, descripcion_ape, fecha_perdida_ape, nombre_us, direccion_perdida_ape, estado_est, cp_ape, calle_ape, hora_des_ape,
-    id_us, id_est) {
+function modificar(id_ape, nombre_ape, descripcion_ape, fecha_perdida_ape, direccion_perdida_ape, estado_est, cp_ape, calle_ape, hora_des_ape) {
     modal.style.display = "block";
     enter = document.getElementById("contenido")
     var contenido = ''
@@ -99,27 +94,32 @@ function modificar(id_ape, nombre_ape, descripcion_ape, fecha_perdida_ape, nombr
     contenido += '<input type="text" name="nombre_ape" id="nombre_ape" value="' + nombre_ape + '"><br>'
     contenido += '<p><b>Descripción</b><p>'
     contenido += '<input type="text" name="descripcion_ape" id="descripcion_ape" value="' + descripcion_ape + '"><br>'
+    contenido += '<p><b>Foto Mascota <br>(Si no quieres cambiar la foto deja el campo vacio)</b><p>'
+    contenido += '<input type="file" name="foto_ape" id="foto_ape"><br>'
     contenido += '<p><b>Fecha de perdida</b><p>'
-    contenido += '<input type="email" name="fecha_perdida_ape" id="fecha_perdida_ape" value="' + fecha_perdida_ape + '"><br>'
-    contenido += '<p><b>Propietario</b><p>'
-    contenido += '<input type="text" name="nombre_us" id="nombre_us" value="' + nombre_us + '"><br>'
-    contenido += '<p><b>Dirección de la perdida</b><p>'
-    contenido += '<input type="number" name="direccion_perdida_ape" id="direccion_perdida_ape" value="' + direccion_perdida_ape + '"><br>'
-    contenido += '<p><b>CP</b><p>'
-    contenido += '<input type="number" name="cp_ape" id="cp_ape" value="' + cp_ape + '"><br>'
-    contenido += '<p><b>Calle</b><p>'
-    contenido += '<input type="number" name="calle_ape" id="calle_ape" value="' + calle_ape + '"><br>'
+    contenido += '<input type="date" name="fecha_perdida_ape" id="fecha_perdida_ape" value="' + fecha_perdida_ape + '"><br>'
     contenido += '<p><b>Hora de desaparición</b><p>'
     contenido += '<input type="time" name="hora_des_ape" id="hora_des_ape" value="' + hora_des_ape + '">'
-    contenido += '<p><b>Foto Mascota (Si no quieres cambiar la foto deja el campo vacio)</b><p>'
-    contenido += '<input type="file" name="foto_ape" id="foto_ape"><br>'
+    contenido += '<p><b>Calle</b><p>'
+    contenido += '<input type="text" name="direccion_perdida_ape" id="direccion_perdida_ape" value="' + direccion_perdida_ape + '"><br>'
+    contenido += '<p><b>N Calle</b><p>'
+    contenido += '<input type="text" name="calle_ape" id="calle_ape" value="' + calle_ape + '"><br>'
+    contenido += '<p><b>CP</b><p>'
+    contenido += '<input type="text" name="cp_ape" id="cp_ape" value="' + cp_ape + '"><br>'
     contenido += '<p><b>Estado</b><p>'
-    contenido += '<input type="number" name="estado_est" id="estado_est" value="' + estado_est + '">'
-
+    if (estado_est == 4) {
+        contenido += '<select name="estado_est" id="estado_est">'
+        contenido += '<option value="4">Perdido</option>'
+        contenido += '<option value="5">Encontrado</option>'
+        contenido += '</select>'
+    } else if (estado_est == 5) {
+        contenido += '<select name="estado_est" id="estado_est">'
+        contenido += '<option value="5">Encontrado</option>'
+        contenido += '<option value="4">Perdido</option>'
+        contenido += '</select>'
+    }
     contenido += '<input type="hidden" name="id_ape" id="id_ape" value="' + id_ape + '">'
-    contenido += '<input type="hidden" name="id_us" id="id_us" value="' + id_us + '">'
-    contenido += '<input type="hidden" name="id_est" id="id_est" value="' + id_est + '">'
-    contenido += '<input type="submit" class="btn btn-success" value="Modificar">'
+    contenido += '<br><br><input type="submit" class="btn btn-success" value="Modificar">'
     contenido += '</form>'
     enter.innerHTML = contenido;
 }
@@ -189,7 +189,7 @@ function borrar(id_ape, id_us, id_est) {
     formData.append('id_ape', id_ape);
     formData.append('id_us', id_us);
     formData.append('id_est', id_est);
-    
+
 
     /* Inicializar un objeto AJAX */
     var ajax = objetoAjax();
