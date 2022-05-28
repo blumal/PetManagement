@@ -50,7 +50,7 @@
     </div>
     <p id="mensaje"></p>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
-    <div class="style_table">
+    <div class="table-responsive">
         <table id="tabla">
 
         </table>

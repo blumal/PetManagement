@@ -34,12 +34,12 @@
         
         @if ($datas[4]==1)
             <h3>Con esta compra has ganado un descuento en tu próxima visita</h3>
-            <a href="http://localhost:8000/login/1">Haz click aqui para descubrir tu recompensa</a>
+            <a href="{{url('/login/1')}}">Haz click aqui para descubrir tu recompensa</a>
         @endif
         
     </ul>
 
-    <form action="http://localhost:8000/FacturasTienda" method="get">
+    <form action="{{url('/FacturasTienda')}}" method="get">
         Revisa tus últimas facturas en nuestra tienda
         <input class="previous_visits_button" type="submit" value="Ver factura">
     </form>

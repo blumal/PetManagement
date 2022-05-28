@@ -51,10 +51,8 @@
     <p id="mensaje"></p>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
     <div class="table-responsive">
-        <div class="style_table">
-            <table id="tabla">
-            </table>
-        </div>
+        <table id="tabla">
+        </table>
     </div>
     <div id="myModal" class="modal">
         <!-- Modal content -->
