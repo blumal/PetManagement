@@ -64,7 +64,7 @@ a {
 }
 
 .cuadro{
-    box-shadow: 0 0 30px rgb(0, 0, 0);
+    box-shadow: 0 0 5px rgb(0, 0, 0);
     text-align: center;
     border-radius: 10px;
     margin: 5%;
