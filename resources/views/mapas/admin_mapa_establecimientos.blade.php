@@ -11,10 +11,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Mapa Establecimientos</title>
+    <title>Admin Establecimientos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styleadminmapaestbl.css">
+    <link rel="stylesheet" href="{{asset('css/styleadminmapaestbl.css')}}">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 <body>
     <form class="head" action="{{url('/cpanel')}}" method="GET">
@@ -63,6 +64,6 @@
         </div>
       </div>
     {{-- Link con el ajax --}}
-    <script src="./js/admin_mapa_establecimientos_ajax.js"></script>
+    <script src="{{asset('js/admin_mapa_establecimientos_ajax.js')}}"></script>
 </body>
 </html>

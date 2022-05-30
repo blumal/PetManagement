@@ -16,9 +16,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script src="js/visita/crud_pacientes.js"></script>
+    <script src="{{asset('js/visita/crud_pacientes.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/CRUDPacientes/estilos_crud.css')}}">
     <title>Admin pacientes</title>
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 <body>
     <form class="head" action="{{url('/cpanel')}}" method="GET">
@@ -54,7 +55,7 @@
             </tr>
             @forelse ($pacientes as $paciente)
             <tr class="fila-2">
-                <td><img src="../storage/{{$paciente->foto_pa}}" class="avatar"></td>
+                <td><img src="{{asset('/storage/app/public/uploads/').$paciente->foto_pa}}" class="avatar"></td>           
                 <td>{{$paciente->nombre_pa}}</td>
                 <td>{{$paciente->peso_pa}}</td>
                 <td>{{$paciente->n_id_nacional}}</td>

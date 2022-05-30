@@ -26,7 +26,7 @@
     <script src="{{asset('js/gestioncitas/gestioncitas.js')}}"></script>
     <!--CSS--> 
     <link rel="stylesheet" href="{{asset('css/empleados/gestioncitas.css')}}">
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <!--TOKEN-->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <title>Gestión de citas</title>

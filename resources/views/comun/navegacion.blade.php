@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/comun/nav.css')}}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <title></title>
 </head>
 <body>
@@ -34,7 +35,7 @@
                 @endif
             </div>
         </div>
-    <script src="/js/home.js"></script>
+    <script src="{{asset('js/home.js')}}"></script>
     </nav>
     @elseif(Session::get('id_rol_session')==3)
     <nav id="nav">
@@ -61,7 +62,7 @@
                 @endif
             </div>
         </div>
-    <script src="/js/home.js"></script>
+    <script src="{{asset('js/home.js')}}"></script>
     </nav>
     @elseif(Session::get('id_rol_session')==1)
     <nav id="nav">
@@ -85,7 +86,7 @@
                 @endif
             </div>
         </div>
-    <script src="./js/home.js"></script>
+    <script src="{{asset('js/home.js')}}"></script>
     </nav>
     @elseif(!Session::get('id_rol_session'))
         <nav id="nav">
@@ -113,7 +114,7 @@
                     @endif
                 </div>
             </div>
-        <script src="./js/home.js"></script>
+        <script src="{{asset('js/home.js')}}"></script>
         </nav>
     @endif
 </body>

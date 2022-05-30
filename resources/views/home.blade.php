@@ -6,19 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <title>Home</title>
 </head>
 <body>
     @include('comun.navegacion')
     <div>
-        <img src="./img/imagenesWeb/home.jpg" class="foto">
+        <img src="{{asset('img/imagenesWeb/home.jpg')}}" class="foto">
     </div>
     <div class="row-c flex">
         <div class="column-2">
             <div class="twitter">
-                <a class="twitter-timeline" data-lang="en" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/twitter?ref_src=twsrc%5Etfw">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <a class="twitter-timeline" data-lang="en" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/management_pet">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
         </div>
 
@@ -29,9 +28,9 @@
         </div>
     </div>
     <footer>
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
         <div class="social-icons-container">
-            <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+            <a href="https://www.twitter.com/management_pet" class="social-icon"></a>
             <a href="https://www.t.me/petmanagement" class="social-icon"></a>
         </div>
         <ul class="footer-menu-container">
