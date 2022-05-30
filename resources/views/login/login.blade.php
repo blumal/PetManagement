@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="form-group mx-sm-4 pb-2 text-left">
-                        <a href="{{url("login/contraseña")}}"><span>Te has olvidado la contraseña?</a></span>
+                        <a href="{{url("login/contrasena")}}"><span>Te has olvidado la contraseña?</a></span>
                     </div>
                     <div class="form-group mx-sm-4 text-left">
                         <span class="">Aún no estas registrado?</span>
