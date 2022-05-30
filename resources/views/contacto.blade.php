@@ -16,11 +16,9 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="./js/valid_contacto.js"></script>
     <link rel="stylesheet" href="{{asset('css/style-contacto.css')}}">  
-    <title>LOGIN</title>
+    <title>Contacto</title>
     <link rel="icon" href="./img/imagenesWeb/logo.png">
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
-
-    <title>Login</title>
 </head>
 
 <body>

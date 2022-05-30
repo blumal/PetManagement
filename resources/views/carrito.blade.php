@@ -16,31 +16,8 @@
     <link rel="stylesheet" href="{{asset('css/carrito.css')}}">
     <title>PetManagment - Carrito</title>
 </head>
-<header id="Header">
-    <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-    <!--Menu header-->
-    <ul class="main-menu">
-        <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-            <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-            <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-            {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-            <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-            <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-            {{-- <form><a href="{{url("entretenimiento")}}" method="get"><li class="menu-item">Entretenimiento</li></a></form> --}}
-            <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-            <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-        @if (Session::get('cliente_session'))
-            <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
-                <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-            </form>
-            <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
-        @else
-            <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
-        @endif
-    </ul>
-    <script src="./js/home.js"></script>
-</header>
 <body>
+    @include('comun.navegacion')
     <div class="div-1">
     <table id="cart" class="table table-hover table-condensed border">
         <thead>
@@ -87,13 +64,35 @@
         <tr>
             <td><a href="{{ url('tienda') }}" class="btn btn-volver"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
             <td colspan="2" class="hidden-xs"></td>
-            <td><form action="{{url('enviarDinero/'.$total)}}" method="GET">
+            {{-- <td><form action="{{url('enviarDinero/'.$total)}}" method="GET">
                 <button class= "pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart"> </i> Pagar</button>
-            </form></td>
+            </form></td> --}}
             <td class="hidden-xs text-center"><strong>Total {{ $total }}€</strong></td>
-            <td colspan="2"><form action="{{url('enviarDinero/'.$total)}}" method="GET">
-                <button class= "btn btn-volver pagar" id="logout" type="submit" name="Pagar" value="Pagar"><i class="far fa-shopping-cart i-pagar"> </i> Pagar</button>
-            </form></td>
+                <div class="div-dropmenu">
+                    <div class="dropdown">
+                        <td colspan="2">
+                            <button class= "btn btn-volver pagar" id="logout"  data-toggle="dropdown" type="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</span>
+                            </button>
+                        <div class="dropdown-menu">
+                            <div class="rowpay2">
+                                <form action="{{url('stripe')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="preciototal" value="{{$total}}">
+                                    <input type="submit" id="envizr" name='btn' value="">
+                                    {{-- <img src="../public/img/tarjeta.png" alt="hola"> --}}
+                                </form>
+                            </div>
+                            <div class="rowpay2">
+                                <a href="{{url('enviarDinero/'.$total)}}" method="GET" name="Pagar" value="Pagar">
+                                    <img src="{{asset('img/imagenesWeb/paypal_logo.png')}}" alt="hola">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
         </tr>
         </tfoot>
     </table>

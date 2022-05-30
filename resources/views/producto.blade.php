@@ -17,33 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/producto.css')}}">
     <title>PetManagment - {{$producto[0]->nombre_art}}</title>
 </head>
-<nav id="nav">
-    <div class="nav_container">
-        <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
-        <label for="menu" class="nav_label">
-            <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
-        </label>
-        <input type="checkbox" id="menu" class="nav_input">
-        <!--Menu header-->
-        <div class="nav_menu">
-            <a href="{{url("/")}}" class="nav_item">Home</a>
-            <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
-            <a href="{{url("citas")}}" class="nav_item">Clínica</a>
-            <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
-            <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
-            <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
-            <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-            @if (Session::get('cliente_session'))
-                    <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
-                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                <a href="{{url("logout")}}" class="login_item">Logout</a>
-            @else
-                <a href="{{url("login")}}" class="login_item">Login</a>
-            @endif
-        </div>
-    </div>
-    <script src="./js/nav_mapas.js"></script>
-</nav>
+@include('comun.navegacion')
 <body>
     <div class="div1">
         <div class="container_prod" id="galeria">
@@ -77,6 +51,7 @@
                 </div>
                 <div class="anadir-carrito"><a onclick="limite()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
             </div>
+            <span class='popuptext' id='myPopup'></span>
             <div class="div-dropmenu">
                 <div class="dropdown">
                     <button type="button" class="btn btn-info carrito-drop" data-toggle="dropdown">
@@ -152,6 +127,7 @@
             <div class="text-center mt-3 mb-3 comentario-valoracion">
                 <h3>Tu comentario</h3>
                 <textarea class="mt-2 pl-2 pr-1" id="comentario" cols="70" rows="3"></textarea>
+                <p id='error-textarea'></p>
             </div>
             <div class="text-center mb-4"><button id="btn-valorar" type='button' class='btn btn-primary btn-lg btn-enviar'>Valorar producto</button></div>
           </div>
