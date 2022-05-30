@@ -36,9 +36,8 @@
         </form>
     </div> --}}
     <div class="content_up">
-        <div>
             <form class="crear" id="boton">
-                <a name="Crear" value="Crear" onclick="crearJS()" id="crear" value="Crear Establecimiento">Crear</a>
+                <a name="Crear" value="Crear" onclick="crearJS()" id="crear" value="Crear Establecimiento">CREAR</a>
             </form>
             <form class="filtro" method="post" onsubmit="return false;">
                 {{-- <input type="hidden" name="_method" value="POST" id="postFiltro"> --}}
@@ -46,7 +45,6 @@
                     <input type="search" id="filtro" name="nombre_art" class="form-control" placeholder="Filtrar por nombre" aria-label="Search" onkeyup="leerJS(); return false;"/>
                 </div>
             </form>
-        </div>
     </div>
     <p id="mensaje"></p>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}

@@ -51,11 +51,7 @@ ob_start();
             </div>
             <div class="column-3">
                 <div class="seccion">
-<<<<<<< HEAD
-                    <form action="{{url('/cpanelTienda')}}" method="GET">
-=======
                     <form action="{{url('/admincrud')}}" method="GET">
->>>>>>> Pre-Alpha
                         <input type="hidden" name="_method" value="POST" id="postFiltro">
                         <div class="form-outline">
                             <button type="submit"><img class="sala" src="./img/imagenesWeb/carrito-de-compras.png" width="200px" height="200px"></button><br><br>

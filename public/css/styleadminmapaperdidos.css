@@ -112,10 +112,9 @@ img {
 }
 
 table {
-    float: right;
     text-align: center;
     width: 98%;
-    height: 50px;
+    /* height: 50px; */
 }
 
 .fila-1 {
@@ -222,7 +221,7 @@ table {
 /* -------------- TABLAS  ----------------- */
 
 .table-responsive {
-    margin-top: 9.1%;
+    margin-top: 8.1%;
 }
 
 .table {
@@ -240,5 +239,8 @@ table {
     .filtro {
         margin-top: 4%;
         width: 65%;
+    }
+    .modal{
+        top: -0.5%;
     }
 }
