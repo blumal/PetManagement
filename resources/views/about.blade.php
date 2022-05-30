@@ -13,7 +13,7 @@
     @include('comun.navegacion')
     <div class="row-c flex">
         <div class="column-1">
-            <img src="./img/imagenesWeb/logo.png" class="foto">
+            <img src="{{asset('/img/imagenesWeb/logo.png')}}" class="foto">
         </div>
         <div class="content">
             <h1>Pet Management</h1>
