@@ -14,17 +14,17 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
-    <script src="./js/valid_contacto.js"></script>
+    <script src="{{asset('js/valid_contacto.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/style-contacto.css')}}">  
     <title>Contacto</title>
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
 </head>
 
 <body>
     @include('comun.navegacion')
     <div>
-        <img src="./img/fotosAnimal/fondo-contacto3.jpg" class="foto">
+        <img src="{{asset('img/fotosAnimal/fondo-contacto3.jpg')}}" class="foto">
     </div>
     <div class="explicacion">
         <h2>Contacta con el servicio de Pet Management</h2>
@@ -36,14 +36,14 @@
     <div class="row-c flex" style="margin-top: 5%;">
         <div class="column-4">
             <div class="cuadro">
-                <img src="./img/contacto/ubicacion.gif" alt="">
+                <img src="{{asset('img/contacto/ubicacion.gif')}}" alt="">
                 <h4>Dirección</h4>
                 <p class="cuerpo" style="margin-top: 5%;">Av. Mare de Déu de Bellvitge, 100, 110, 08907 L'Hospitalet de Llobregat, Barcelona</p>
             </div>
         </div>
         <div class="column-4">
             <div class="cuadro">
-                <img src="./img/contacto/reloj.gif" alt="">
+                <img src="{{asset('img/contacto/reloj.gif')}}" alt="">
                 <h4>Horarios</h4>
                 <p class="titulo" style="margin-top: 5%;">Consultas/Dudas</p>
                 <p class="cuerpo">Lunes a sábado 9h a 20:30h</p>
@@ -53,7 +53,7 @@
         </div>
         <div class="column-4">
             <div class="cuadro">
-                <img src="./img/contacto/llamada-de-emergencia.gif" alt="">
+                <img src="{{asset('img/contacto/llamada-de-emergencia.gif')}}" alt="">
                 <h4>Teléfonos</h4>
                 <p class="titulo" style="margin-top: 5%;">Teléfono</p>
                 <p class="cuerpo">93 483 74 58</p>
@@ -63,7 +63,7 @@
         </div>
         <div class="column-4">
             <div class="cuadro">
-                <img src="./img/contacto/mensaje.gif" alt="">
+                <img src="{{asset('img/contacto/mensaje.gif')}}" alt="">
                 <h4>Email</h4>
                 <p class="cuerpo" style="margin-top: 12%;">grouppetmanagement@gmail.com</p>
             </div>
@@ -102,7 +102,7 @@
         </div>
     </div>
     <footer>
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
         <div class="social-icons-container">
             <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
             <a href="https://www.t.me/petmanagement" class="social-icon"></a>

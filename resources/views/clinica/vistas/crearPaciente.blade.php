@@ -12,13 +12,14 @@
     <title>Registro paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('css/CRUDPacientes/estilos_crear.css')}}">
-    <link href="/fontsawe/css/all.css" rel="stylesheet">
-    <script defer src="/fontsawe/js/all.js"></script>
+    <link href="{{asset('fontsawe/css/all.css')}}" rel="stylesheet">
+    <script defer src="{{asset('fontsawe/js/all.js')}}"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script src="js/visita/crud_pacientes.js"></script>
+    <script src="{{asset('js/visita/crud_pacientes.js')}}"></script>
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     
 
     <style>
@@ -11293,5 +11294,5 @@
         </div>
     </div>
 </body>
-<script defer src="./js/visita/script.js"></script>
+<script defer src="{{asset('js/visita/script.js')}}"></script>
 </html>

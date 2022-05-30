@@ -21,6 +21,7 @@
     <script src="{{asset('js/empleados/editcita.js')}}"></script>
     <!--TOKEN-->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <title>Actualización de cita</title>
 </head>
 <body>

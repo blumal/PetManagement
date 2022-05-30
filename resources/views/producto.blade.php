@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script type="text/javascript" src="../js/iconos_g.js"></script>
+    <script type="text/javascript" src="{{asset('js/iconos_g.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../js/jquery.js"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script language="javascript" src="../js/producto.js"></script>
+    <script language="javascript" src="{{asset('js/producto.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/producto.css')}}">
-    <title>PetManagment - {{$producto[0]->nombre_art}}</title>
+    <title>{{$producto[0]->nombre_art}}</title>
 </head>
 @include('comun.navegacion')
 <body>
@@ -107,7 +107,7 @@
             <p class="text-center mt-5"><i class="fa fa-thumbs-up fa-5x"></i></p>
             <h4 class="text-center mt-3"></h4>
             <div class="div-seguir mr-1"><button type='button' class='btn btn-outline-primary btn-block btn-mas salir'>Seguir mirando</button></div>
-            <div class="div-pagar ml-1"><a href="../carrito"><button type='button' class='btn btn-primary btn-block btn-pagar'>Ir a pagar</button></a></div>
+            <div class="div-pagar ml-1"><a href="{{asset('carrito')}}"><button type='button' class='btn btn-primary btn-block btn-pagar'>Ir a pagar</button></a></div>
           </div>
         </div>
     </div>
@@ -135,7 +135,7 @@
     </div>
 </body>
 <footer>
-    <img src="../img/imagenesWeb/logo.png" alt="" class="logo">
+    <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
     <div class="social-icons-container">
         <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
         <a href="https://www.t.me/petmanagement" class="social-icon"></a>
