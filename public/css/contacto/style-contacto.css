@@ -7,11 +7,16 @@
 }
 body {
     position: relative;
-    background-image: url(../../img/fotosAnimal/fondo-contacto2.jpg);
+    /* background-image: url(../../img/fotosAnimal/fondo-contacto.jpg); */
     background-position: center;
     --main-color: #1f2cc4;
-    background-size: cover;
-    background-attachment: fixed;
+    /* background-size: cover; */
+    /* background-attachment: fixed; */
+}
+
+.column-4 {
+    width: 25%;
+    float: left;
 }
 
 .row-c:after {
@@ -26,11 +31,73 @@ body {
     justify-content: center;
 }
 
+.foto {
+    width: 100%;
+}
+
 a {
     text-decoration: none !important;
 }
 
-/* ---------- LOGIN ---------- */
+/* ----------- ANTES DEL FORMULARIO -------------- */
+.explicacion{
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+    margin-top: 5%;
+    margin-bottom: 1.5%;
+    border-top: double;
+    border-bottom: double;
+}
+
+.explicacion h2{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    font-weight: bolder;
+}
+
+.explicacion p{
+    margin: 0% 5% 0% 5%;
+    padding-bottom: 3%;
+}
+
+.cuadro{
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 10px;
+    margin: 5%;
+    height: 19rem;
+}
+
+.cuadro h4{
+    font-weight: bolder;
+    color: blue;
+}
+
+.cuadro img{
+    width: 20%;
+    margin-top: 7%;
+}
+
+.titulo{
+    font-weight: bolder;
+    margin-bottom: -1.5rem;
+}
+
+.cuerpo{
+    margin: 7% 7% 0% 7%;
+    padding-bottom: 5%;
+}
+
+/* ---------- Formulario de consulta ---------- */
+
+.column-2{
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+}
 
 .container{
     padding-top: 5%;
@@ -48,12 +115,9 @@ h1{
     color: black;
 }
 
-.formulario2 {
-    background: rgba(0, 0, 0, 70%);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgb(0, 0, 0);
-    color: black;
+.formulario-1{
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .form-control {
@@ -292,6 +356,7 @@ h1{
         width: 100%;
     }
     .column-2{
+        margin-top: 0%;
         margin-left: -40px;
     }
     .formulario{
@@ -301,14 +366,14 @@ h1{
         padding: 5% 5% 0% 5%;
     }
     iframe{
-        width: 357px;
-        height: 300px;
+        width: 100%;
+        height: 350px;
     }
     .formulario-2{
         margin-left: 10%;
     }
     .formulario-1{
-        margin-top: 35% !important;
+        margin-top: 10% !important;
         margin-left: 10%;
     }
     h3{
@@ -318,6 +383,14 @@ h1{
     .telf-mail{
         padding-bottom: 2%;
     }
+    .explicacion{
+        width: 85%;
+        margin-left: 6.75%;
+        margin-top: 2.5%;
+    }
+    .column-4{
+        width: 100%;
+    }
 }
 
 @media (max-width: 375px) {
@@ -326,18 +399,74 @@ h1{
     }
 }
 
-/* ------------- TODO DENTRO DEL BODY -------------------- */
+/* ---------- FOOTER ---------- */
 
-.formulario-1{
-    margin-top: 14%;
-    margin-left:10%;
+footer {
+    width: auto;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 8%;
+    background-color: #414141;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.telf-mail{
-    margin-right: 110px;
+.logo {
+    height: 80px;
+    margin-bottom: 1rem;
 }
 
-h3{
-    font-size: 24px;
-    font-weight: bolder;
+.social-icons-container,
+.footer-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: 1px solid #f2f2f2;
+    background-image: url(../../img/imagenesWeb/TwitterBlanco.png);
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    margin: 1rem;
+}
+
+.social-icon:hover {
+    background-color: #121212;
+    filter: invert(1);
+}
+
+.social-icon:nth-of-type(2) {
+    background-image: url(../../img/imagenesWeb/TelegramBlanco.png);
+}
+
+.footer-menu-container {
+    list-style-type: none;
+    color: #f2f2f2;
+    font-size: 18px;
+}
+
+.footer-item {
+    margin: 1rem 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.footer-item:hover {
+    opacity: 1;
+}
+
+.copyright {
+    color: #f2f2f2;
+    opacity: 0.3;
+    text-align: center;
 }

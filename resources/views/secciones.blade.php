@@ -22,15 +22,15 @@ ob_start();
 <body>
     <nav id="nav">
         <div class="nav_container">
-            <img src="http://localhost/petmanagement/public/img/visitas/Logo.png" alt="" class="nav_logo">
+            <img src="{{url('/img/visitas/Logo.png')}}" alt="" class="nav_logo">
             <h2>PANEL DEL ADMINISTRADOR</h2>
             <label for="menu" class="nav_label">
-                <img src="http://localhost/petmanagement/public/img/visitas/menu (4).png" alt="" class="nav_img">
+                <img src="{{url('/img/visitas/menu (4).png')}}" alt="" class="nav_img">
             </label>
             <input type="checkbox" id="menu" class="nav_input">
             <!--Menu header-->
             <div class="nav_menu">
-                <a href="http://localhost/petmanagement/public/logout" class="login_item">Logout</a>
+                <a href="{{url('/logout')}}" class="login_item">Logout</a>
             </div>
         </div>
     <script src="./js/home.js"></script>

@@ -287,7 +287,7 @@ function sub(idajax) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 console.log(respuesta)
-                recarga += '<tr>';
+                recarga += '<tr class="fila-1">';
 
                 recarga += '<th scope="col">#</th>';
                 recarga += '<th scope="col">Valor</th>';
@@ -296,7 +296,7 @@ function sub(idajax) {
                 recarga += '<th scope="col" colspan="2">Acciones</th>';
                 recarga += '</tr>';
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += '<tr>';
+                    recarga += '<tr class="fila-2">';
                     recarga += '<form id="formUpdate' + respuesta[i].id_cat + '" method="post">';
                     recarga += '<td scope="row">' + respuesta[i].id_cat + '</td>';
                     if (respuesta[i].texto_cat == null) {
