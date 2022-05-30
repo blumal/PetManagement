@@ -11,7 +11,7 @@
     <h4>Estás muy cerca de ser parte de una familia, sigue los pasos a continuación para activar tu usuario</h4>
     <ol>
         <li>Accede al siguiente link</li>
-        <li><a href="http://localhost:8000/activar">https://animalservices.ml/activar</a></li>
+        <li><a href="{{url('/activar')}}">https://animalservices.ml/activar</a></li>
         <li>Introduce tus datos que acabas de crear</li>
         <li>Disfruta de nuestros servicios</li>
     </ol>

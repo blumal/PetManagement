@@ -34,7 +34,7 @@
         <li>Diagnostico: {{$datas[3]}}</li>
     </ul>
 
-    <form action="http://localhost:8000/FacturasClinica" method="get">
+    <form action="{{url('/FacturasClinica')}}" method="get">
         Revisa tus últimas facturas en nuestra clínica
         <input class="previous_visits_button" type="submit" value="Ver factura">
     </form>

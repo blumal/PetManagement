@@ -42,12 +42,10 @@
     </div>
 
 
-    <div>
+    <div class="table-responsive">
         <?php
         $suma=0;
         ?>
-
-    <div class="table-responsive">
 
         <table class="table" id="table">
             <tr class="fila-1">
@@ -160,7 +158,7 @@
 
                 <div id="mensaje">
                 </div>
-                <button class="botoncrear" type="submit" value="Crear"><b>CREAR</b></button>
+                <button class="btn btn-success" type="submit" value="Crear">CREAR</button>
                 <input type="hidden" name="_method" value="POST" id="createNote">
 
             </form>
@@ -174,17 +172,19 @@
             <button class="boton2" type="submit" value="Crear" onclick="abrirmodal_s();closeModal_2();sub(document.getElementById('idajax').value);"><b>Gestionar subcategorias y stock</b></button>
         </div>
     </div>
-    <div id="message" style="color:green"></div>
+    <div id="message" style="color:rgb(255, 255, 255)"></div>
 
     <div class="modalbox_s" id="modalbox_s">
         <div class="modal_s" id="modal_s">
             <div id="sub1">
                 <span class="close" onclick="closeModal_s(); return false;">&times;</span>             
-                <h2><b>EDITAR SUBCATEGORIAS</b></h2>
+                <h2>EDITAR SUBCATEGORIAS</h2>
                 <input type="hidden" id="idajax">
-                <table id="sub2" class="table">
+                <div class="table-responsive">
+                    <table id="sub2" class="table">
 
-                </table>
+                    </table>
+                </div>
                 <button type="button" class="fa-solid fa-plus" aria-hidden="true" onclick="crearsub(document.getElementById('idajax').value);return false;">
                 </button>
             </div>
