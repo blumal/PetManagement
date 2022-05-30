@@ -23,10 +23,59 @@
 
 <body>
     @include('comun.navegacion')
+    <div>
+        <img src="./img/fotosAnimal/fondo-contacto3.jpg" class="foto">
+    </div>
+    <div class="explicacion">
+        <h2>Contacta con el servicio de Pet Management</h2>
+        <p>¿Tienes alguna duda o consulta relacionada con la salud o los cuidados de tu mascota?
+            Si es así ponte en contacto con nosotros.
+            Donde un especialista, se encargará de atenderte y asesorarte en todo lo que pueda.
+            Estaremos encantados de poder ayudarte.</p>
+    </div>
+    <div class="row-c flex" style="margin-top: 5%;">
+        <div class="column-4">
+            <div class="cuadro">
+                <img src="./img/contacto/ubicacion.gif" alt="">
+                <h4>Dirección</h4>
+                <p class="cuerpo" style="margin-top: 5%;">Av. Mare de Déu de Bellvitge, 100, 110, 08907 L'Hospitalet de Llobregat, Barcelona</p>
+            </div>
+        </div>
+        <div class="column-4">
+            <div class="cuadro">
+                <img src="./img/contacto/reloj.gif" alt="">
+                <h4>Horarios</h4>
+                <p class="titulo" style="margin-top: 5%;">Consultas/Dudas</p>
+                <p class="cuerpo">Lunes a sábado 9h a 20:30h</p>
+                <p class="titulo">Reservar cita</p>
+                <p class="cuerpo">Reserva tu cita a cualquier hora a través de nuestra web</p>
+            </div>
+        </div>
+        <div class="column-4">
+            <div class="cuadro">
+                <img src="./img/contacto/llamada-de-emergencia.gif" alt="">
+                <h4>Teléfonos</h4>
+                <p class="titulo" style="margin-top: 5%;">Teléfono</p>
+                <p class="cuerpo">93 483 74 58</p>
+                <p class="titulo">WhatsApp</p>
+                <p class="cuerpo">612 345 678</p>
+            </div>
+        </div>
+        <div class="column-4">
+            <div class="cuadro">
+                <img src="./img/contacto/mensaje.gif" alt="">
+                <h4>Email</h4>
+                <p class="cuerpo" style="margin-top: 12%;">grouppetmanagement@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="100%" height="350" style="border:0;margin-top: 5%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
     <div class="row-c flex">
         <div class="column-2">
-            <div class="row-c formulario-1">
-                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario">
+            <div class="row-c flex formulario-1">
+                <div class="col-md-8 col-sm-4 col-lg-12 formulario">
                     <form action="{{url('/enviarCorreoContacto')}}" method="post" onsubmit="return validateContacto();">
                         @csrf
                         <div class="form-group text-center pt-3">
@@ -51,19 +100,22 @@
                 </div>
             </div>
         </div>
-        <div class="column-2">
-            <div class="row-c formulario-2">
-                <div class="col-md-6 col-sm-8 col-xl-10 col-lg-5 formulario2" style="margin-top: 20%;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.633997111862!2d2.109928312080577!3d41.34998745902146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498d64bd023fd%3A0x26089fc39cb352a3!2sCentro%20de%20Estudios%20Joan%20XXIII!5e0!3m2!1ses!2ses!4v1651241294826!5m2!1ses!2ses" width="450" height="466" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div class="form-group telf-mail sm-5">
-                        <h3 class="text-light">Telf: +34 612345678</h3>
-                        <h3 class="text-light">grouppetmanagement@gmail.com</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
+    <footer>
+        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <div class="social-icons-container">
+            <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+            <a href="https://www.t.me/petmanagement" class="social-icon"></a>
+        </div>
+        <ul class="footer-menu-container">
+            <li class="footer-item">Legal</li>
+            <li class="footer-item">Cookies</li>
+            <li class="footer-item">Privacidad</li>
+            <li class="footer-item">Shipping</li>
+            <li class="footer-item">Equipo</li>
+        </ul>
+        <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
+    </footer>
 
 </body>
 

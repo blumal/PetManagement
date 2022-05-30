@@ -11038,10 +11038,10 @@
         }
         .container {
             /* width: 100%; */
-            padding-right: 0%;
-            padding-left: 0;
-            margin-right: 0;
-            margin-left: 2%;
+            /* padding-right: 0%; */
+            /* padding-left: 0; */
+            /* margin-right: 0; */
+            /* margin-left: 0%; */
         }
         .wrapper {
             width: 83%;
