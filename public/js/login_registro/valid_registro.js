@@ -20,7 +20,6 @@ function validateRegistro() {
 
     if (nombre_us == "" || dni_us == "" || apellido1_us == "" || pass_us1 == "" || pass_us2 == "" || email_us == "" || contacto1_tel == "" || nombre_di == "" || cp_di == "" || numero_di == "") {
         alertify.error('Rellene los campos obligatorios marcados con un *');
-        console.log("falso")
         return false;
     } else {
 
@@ -35,6 +34,7 @@ function validateRegistro() {
             if (letras[resto] == dni_us.substr(8).toUpperCase()) {
                 return true;
             } else {
+                alertify.error('El DNI no es correcto');
                 return false;
             }
         }
