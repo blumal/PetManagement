@@ -178,9 +178,9 @@
         <div class="modal_s" id="modal_s">
             <div id="sub1">
                 <span class="close" onclick="closeModal_s(); return false;">&times;</span>             
-                <h2>EDITAR SUBCATEGORIAS</h2>
+                <h2 class="titulo-h2">EDITAR SUBCATEGORIAS</h2>
                 <input type="hidden" id="idajax">
-                <div class="table-responsive">
+                <div class="table-responsive" style="margin-top: 5%;margin-right: 2.5%;">
                     <table id="sub2" class="table">
 
                     </table>
