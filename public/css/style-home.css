@@ -9,7 +9,7 @@
 
 body {
     position: relative;
-    background: linear-gradient(transparent, #3759c0b0);
+    background: white;
     text-decoration: none;
 }
 
@@ -216,6 +216,7 @@ a:hover {
     .nav_input:checked+.nav_menu {
         clip-path: circle(100% at center);
     }
+
     /* ---------- TWITTER ---------- */
     .twitter {
         position: static;
@@ -250,7 +251,89 @@ a:hover {
     }
 }
 
+ /*------------First content-----------*/
+ .content1{
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 3%;
+    padding: 3%;
+    background-color: #e1a5fd;
+    color: white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.content1:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+.content2{
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-left: 3%;
+    border-radius: 20px;
+}
+
+.content2:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+img.content2{
+    width: 42% !important;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+img.content2:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+
+
+.servicesinfo{
+    margin-top: 4%;
+}
+
+.servicesinfo h2{
+    color: #8590FF;
+}
+
+.services-box, .specialities-box, .shopinfo-box{
+    margin-top: 4%;
+    padding: 3%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.services-box:hover, .specialities-box:hover, .shopinfo-box:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+.services-box{
+    margin-right: 3%;
+    background-color: #e1a5fd;
+    color: white;
+}
+
+.specialities-box h3{
+    color: #8590FF; 
+}
+.shopinfo-box{
+    margin-left: 3%;
+    background-color: #e1a5fd;
+    color: white;
+}
+
+
+
+
+
+
 /* ---------- FOOTER ---------- */
+
 
 footer {
     width: auto;
