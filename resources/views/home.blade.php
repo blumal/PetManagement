@@ -15,6 +15,12 @@
     <div>
         <img src="./img/imagenesWeb/home.jpg" class="foto">
     </div>
+    </br>
+    <center>
+        <div class="tittle-home">
+            <img src="{{asset('img/pawprint.png')}}" alt="">
+        </div>
+    </center>
     <div class="row-c flex">
         <div class="content1 column-2">
             <h1>Team</h1>
@@ -65,13 +71,16 @@
     </div>
     <div class="row-c flex">
         <div class="twitter column-2">
-            <a class="twitter-timeline" data-lang="en" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/twitter?ref_src=twsrc%5Etfw">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <h3>Conoce nuestras últimas noticias y actualizaciones desde twitter</h3>
+            </br>
+            <a class="twitter-timeline" data-lang="en" data-width="550" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/thedeadpol">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-    
         <div class="contenedor_grafico column-2">
+            <h3>Hazte una idea de cuantos clientes tenemos por mes, ¿serás tú el próximo?</h3>
             <canvas id="chart_visitasxmeses"></canvas>
         </div>
     </div>
+    </br>
     <footer>
         <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
         <div class="social-icons-container">

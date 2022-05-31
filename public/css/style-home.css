@@ -59,17 +59,6 @@ a:hover {
     color: white;
 }
 
-.twitter{
-    margin-bottom: 5%;
-    margin-top: 5%;
-}
-
-/* ------------------- STATS ------------------- */
-.contenedor_grafico{
-    margin-left: 2%;
-    width: 105%;
-}
-
 /* ---------- NAV BAR ---------- */
 
 #nav {
@@ -252,6 +241,10 @@ a:hover {
 }
 
  /*------------First content-----------*/
+ .tittle-home{
+    color: #8590FF;
+ }
+
  .content1{
     margin-top: 5%;
     margin-left: 2%;
@@ -290,8 +283,6 @@ img.content2:hover{
     transition: transform .5s;
 }
 
-
-
 .servicesinfo{
     margin-top: 4%;
 }
@@ -327,10 +318,19 @@ img.content2:hover{
     color: white;
 }
 
+.twitter{
+    margin-top: 4%;
+    margin-right: 2%;
+    color: #8590FF;
+}
 
+/* ------------------- STATS ------------------- */
+.contenedor_grafico{
+    margin-left: 2%;
+    margin-top: 3%;
+    color: #8590FF
 
-
-
+}
 
 /* ---------- FOOTER ---------- */
 
