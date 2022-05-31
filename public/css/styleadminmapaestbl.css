@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
-
 * {
     font-family: 'Montserrat Alternates', sans-serif;
     margin: 0;
@@ -12,11 +11,11 @@ body {
     background-color: #4a4a4a;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
-.an_div{
+.an_div {
     text-align: center;
 }
 
@@ -36,20 +35,20 @@ a{
     text-align: center;
 }
 
-.head{
+.head {
     text-align: center;
 }
 
-.head button{
+.head button {
     float: left;
 }
 
-h1{
+h1 {
     color: white;
     font-weight: bolder;
 }
 
-.modal-h1 h1{
+.modal-h1 h1 {
     color: black;
     font-weight: bolder;
 }
@@ -77,8 +76,10 @@ img {
     height: 30px;
 }
 
+
 /* Boton crear un establecimiento */
-.crear{
+
+.crear {
     padding: 0.375rem 0.75rem;
     border-radius: 30px;
     background-color: #006d9c;
@@ -90,16 +91,17 @@ img {
     float: left;
 }
 
+
 /* Filtro */
 
-.filtro{
+.filtro {
     float: left;
     width: 30%;
 }
 
-.crear:hover{
+.crear:hover {
     color: #ffffff;
-    background-color: #000000;   
+    background-color: #000000;
 }
 
 .btn_form {
@@ -109,13 +111,13 @@ img {
 }
 
 table {
-    float: right;
+    /* float: right; */
     text-align: center;
     width: 98%;
     height: 50px;
 }
 
-.fila-1{
+.fila-1 {
     background-color: #000000;
     color: white;
     height: 50px;
@@ -123,13 +125,14 @@ table {
     /* font-size: 14.5px; */
 }
 
-.fila-2{
+.fila-2 {
     color: white;
     background-color: #383838;
     /* font-size: 14.5px; */
     width: 100%;
     height: 50px;
 }
+
 
 /* th {
     background-color: #352F2F;
@@ -214,24 +217,26 @@ table {
     text-align: center;
 }
 
+
 /* -------------- TABLAS  ----------------- */
 
-.table-responsive{
+.table-responsive {
     margin-top: 6.1%;
 }
 
-.table{
+.table {
     vertical-align: middle;
     width: 98%;
 }
 
+
 /* ------------ RESPONSIVE --------------- */
 
 @media (max-width: 800px) {
-    .table-responsive{
+    .table-responsive {
         margin-top: 21%;
     }
-    .filtro{
+    .filtro {
         margin-top: 4%;
         width: 65%;
     }
