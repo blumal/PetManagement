@@ -81,8 +81,8 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
-Route::get('login/contraseña', function () {
-    return view('login/contraseña');
+Route::get('login/contrasena', function () {
+    return view('login/contrasena');
 });
 
 Route::get('entretenimiento', function () {
