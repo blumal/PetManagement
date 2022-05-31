@@ -208,6 +208,7 @@ a:hover {
 
     /* ---------- TWITTER ---------- */
     .twitter {
+        text-align: center;
         position: static;
         margin: 10% 0% 10% 0% !important;
         border-radius: 5px;
@@ -235,11 +236,13 @@ a:hover {
     }
     /* ------------------- STATS ------------------- */
     .contenedor_grafico{
-        margin-left: -9%;
-        width: 115%;
+        margin-left: 10% !important;
+        width: 100%;
+        text-align: center;
     }
     #chart_visitasxmeses {
-        height: auto !important;
+        height: 200px !important;
+        margin-top: 5%;
     }
 }
 
