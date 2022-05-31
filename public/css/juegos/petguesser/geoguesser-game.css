@@ -72,7 +72,7 @@ a {
     background-color: white;
     z-index: 9999;
     border-radius: 5px;
-    margin-top: 100px;
+    margin-top: 1vh;
     margin-right: 10px;
     padding: 5px;
 }
@@ -87,6 +87,7 @@ a {
     height: 83.5vh;
     width: 100%;
     z-index: 1;
+    top: 16.5vh;
 }
 
 .img_an {

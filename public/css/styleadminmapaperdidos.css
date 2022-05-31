@@ -111,10 +111,20 @@ img {
     background-color: #352F2F;
 }
 
-table {
+table{
     text-align: center;
     width: 98%;
     /* height: 50px; */
+}
+
+table,
+th {
+    padding: 10px;
+}
+
+table,
+td {
+    padding: 10px;
 }
 
 .fila-1 {

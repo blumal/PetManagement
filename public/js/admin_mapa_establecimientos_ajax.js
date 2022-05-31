@@ -67,8 +67,8 @@ function leerJS() {
                 recarga += '<td scope="row">' + respuesta[i].horario_apertura_s + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].horario_cierre_s + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].url_web + '</td>'
-                recarga += '<td scope="row"><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_sociedad + '"></td>'
-                recarga += '<td scope="row"><img src="http://localhost/www/PetManagement/storage/app/public/' + respuesta[i].foto_icono_sociedad + '"></td>'
+                recarga += '<td scope="row"><img src="../storage/app/public/' + respuesta[i].foto_sociedad + '"></td>'
+                recarga += '<td scope="row"><img src="../storage/app/public/' + respuesta[i].foto_icono_sociedad + '"></td>'
                 recarga += '<td scope="row">' + respuesta[i].sociedad_ts + '</td>'
                 recarga += '<td scope="row"><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_s + ',\'' + respuesta[i].nombre_s + '\',\'' + respuesta[i].nif_s +
                     '\',\'' + respuesta[i].email_s + '\',\'' + respuesta[i].nombre_di + '\',' + respuesta[i].numero_di + ',' +
@@ -85,7 +85,7 @@ function leerJS() {
                 }
                 recarga += '</tr>';
                 recarga += '</table>';
-                recarga +='</div>';
+                recarga += '</div>';
             }
             //Introducimos la recarga en la tabla
             tabla.innerHTML = recarga;
