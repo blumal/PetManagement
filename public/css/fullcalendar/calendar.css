@@ -305,6 +305,13 @@ a {
         width: 90%;
         margin-left: 3.5%;
     }
+
+    .info-citas{
+        margin-top: 5%;
+        padding: 3%;
+        margin-left: 2%;
+        margin-right: 5%;
+    }
     /* .flex {
         display: block;
         align-items: center;
@@ -347,6 +354,7 @@ a {
 @media(max-width: 800px) {
     .calendarestructure {
         width: 90%;
+        margin-top: 5%;
     }
     #calendar button {
         padding: 1px;

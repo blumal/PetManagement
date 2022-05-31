@@ -87,10 +87,11 @@
 /*MENU RESPONSIVE + EFECTS*/
 
 @media (max-width: 800px) {
-    #nav {
-        /* background-color: #ffffff; */
+   /*  #nav {
+        background-color: #ffffff;
         transition: none;
-    }
+    } */
+
     .nav_container {
         padding-left: 4%;
     }
@@ -142,13 +143,5 @@
     }
     #nav a {
         z-index: 99999;
-    }
-    /* ---------- TWITTER ---------- */
-    .twitter {
-        position: static;
-        margin: 10% 10% 10% 0%;
-        box-shadow: 0px 0px 7px 10px #292f33;
-        background-color: #292f33;
-        border-radius: 5px;
     }
 }

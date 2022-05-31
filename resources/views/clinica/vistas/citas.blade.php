@@ -43,6 +43,7 @@
     <div class="row-c">
         <div class="info-citas column-2">
             <h1>¿Qué son las citas?</h1>
+            </br>
             <p>Nuestro apartado de citas consiste en mostrar la disponibilidad de la clínica</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa corporis quos a, sit quisquam quia similique, dolore ullam atque, delectus neque. Natus placeat perspiciatis magni autem? Quasi a nisi similique!
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptatum tenetur recusandae accusantium ipsam nam in cumque mollitia odio nemo dolor illum repellendus quaerat, nihil nostrum magnam! Repudiandae, aut repellendus?
@@ -51,6 +52,7 @@
         </div>
         <div class="info-citas column-2">
             <h1>¿Cómo funcionan?</h1>
+            </br>
             <p>Nuestro apartado de citas consiste en mostrar la disponibilidad de la clínica</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa corporis quos a, sit quisquam quia similique, dolore ullam atque, delectus neque. Natus placeat perspiciatis magni autem? Quasi a nisi similique!
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptatum tenetur recusandae accusantium ipsam nam in cumque mollitia odio nemo dolor illum repellendus quaerat, nihil nostrum magnam! Repudiandae, aut repellendus?
