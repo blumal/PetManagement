@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <title>Mail</title>
 </head>
 <style>
@@ -34,12 +35,12 @@
         
         @if ($datas[4]==1)
             <h3>Con esta compra has ganado un descuento en tu próxima visita</h3>
-            <a href="http://localhost:8000/login/1">Haz click aqui para descubrir tu recompensa</a>
+            <a href="{{url('/login/1')}}">Haz click aqui para descubrir tu recompensa</a>
         @endif
         
     </ul>
 
-    <form action="http://localhost:8000/FacturasTienda" method="get">
+    <form action="{{url('/FacturasTienda')}}" method="get">
         Revisa tus últimas facturas en nuestra tienda
         <input class="previous_visits_button" type="submit" value="Ver factura">
     </form>
@@ -63,7 +64,7 @@
                     <table style="WIDTH: 414px" cellSpacing="0" cellPadding="0" border="0">
                         <tr>
                             <td style="padding-right:0px" valign="top">
-                                <a href="{logoURL}" target="_blank" rel="noopener"></a>
+                                <a href="{{asset('logoURL')}}" target="_blank" rel="noopener"></a>
                             </td>
                             <td width="30" valign="top" style="FONT-SIZE: 9pt; FONT-FAMILY: Arial, sans-serif; line-height:11pt ">
 
@@ -86,7 +87,7 @@
                                 <span style="color:#101010;"> Daniel Ruano - Gerard Gómez<br></span>
                                 
                                 
-                                <br><a href="http://localhost:8000" target="_blank" rel="noopener" style=" text-decoration:none;"><strong style="color:#037edd; font-family:Arial, sans-serif;">www.petmanagement.com</strong></a>
+                                <br><a href="https://animalservices.x10.mx/petman/public/" target="_blank" rel="noopener" style=" text-decoration:none;"><strong style="color:#037edd; font-family:Arial, sans-serif;">www.petmanagement.com</strong></a>
 
                             </td>
                         </tr>

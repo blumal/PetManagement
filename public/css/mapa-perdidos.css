@@ -130,6 +130,9 @@ a {
         background-color: #8590ff;
         transition: 0.5s;
     }
+    #nav a{
+        z-index: 99999;
+    }
     .nav_container {
         padding-left: 4%;
     }

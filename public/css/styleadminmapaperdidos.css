@@ -111,11 +111,9 @@ img {
     background-color: #352F2F;
 }
 
-table {
-    /* float: right; */
     text-align: center;
     width: 98%;
-    height: 50px;
+    /* height: 50px; */
 }
 
 table,
@@ -232,7 +230,7 @@ td {
 /* -------------- TABLAS  ----------------- */
 
 .table-responsive {
-    margin-top: 6.1%;
+    margin-top: 8.1%;
 }
 
 .table {
@@ -250,5 +248,8 @@ td {
     .filtro {
         margin-top: 4%;
         width: 65%;
+    }
+    .modal{
+        top: -0.5%;
     }
 }

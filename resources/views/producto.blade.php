@@ -5,45 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script type="text/javascript" src="../js/iconos_g.js"></script>
+    <script type="text/javascript" src="{{asset('js/iconos_g.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../js/jquery.js"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script language="javascript" src="../js/producto.js"></script>
+    <script language="javascript" src="{{asset('js/producto.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/producto.css')}}">
-    <title>PetManagment - {{$producto[0]->nombre_art}}</title>
+    <title>{{$producto[0]->nombre_art}}</title>
 </head>
-<nav id="nav">
-    <div class="nav_container">
-        <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
-        <label for="menu" class="nav_label">
-            <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
-        </label>
-        <input type="checkbox" id="menu" class="nav_input">
-        <!--Menu header-->
-        <div class="nav_menu">
-            <a href="{{url("/")}}" class="nav_item">Home</a>
-            <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
-            <a href="{{url("citas")}}" class="nav_item">Clínica</a>
-            <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
-            <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
-            <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
-            <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-            @if (Session::get('cliente_session'))
-                    <a class="nav_item" href="{{url("modificarPerfil")}}">Mi Perfil</a>
-                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                <a href="{{url("logout")}}" class="login_item">Logout</a>
-            @else
-                <a href="{{url("login")}}" class="login_item">Login</a>
-            @endif
-        </div>
-    </div>
-    <script src="./js/nav_mapas.js"></script>
-</nav>
+@include('comun.navegacion')
 <body>
     <div class="div1">
         <div class="container_prod" id="galeria">
@@ -77,6 +51,7 @@
                 </div>
                 <div class="anadir-carrito"><a onclick="limite()" class="btn btn-block btn-carrito">Añadir al carrito</a></div>
             </div>
+            <span class='popuptext' id='myPopup'></span>
             <div class="div-dropmenu">
                 <div class="dropdown">
                     <button type="button" class="btn btn-info carrito-drop" data-toggle="dropdown">
@@ -132,7 +107,7 @@
             <p class="text-center mt-5"><i class="fa fa-thumbs-up fa-5x"></i></p>
             <h4 class="text-center mt-3"></h4>
             <div class="div-seguir mr-1"><button type='button' class='btn btn-outline-primary btn-block btn-mas salir'>Seguir mirando</button></div>
-            <div class="div-pagar ml-1"><a href="../carrito"><button type='button' class='btn btn-primary btn-block btn-pagar'>Ir a pagar</button></a></div>
+            <div class="div-pagar ml-1"><a href="{{asset('carrito')}}"><button type='button' class='btn btn-primary btn-block btn-pagar'>Ir a pagar</button></a></div>
           </div>
         </div>
     </div>
@@ -152,6 +127,7 @@
             <div class="text-center mt-3 mb-3 comentario-valoracion">
                 <h3>Tu comentario</h3>
                 <textarea class="mt-2 pl-2 pr-1" id="comentario" cols="70" rows="3"></textarea>
+                <p id='error-textarea'></p>
             </div>
             <div class="text-center mb-4"><button id="btn-valorar" type='button' class='btn btn-primary btn-lg btn-enviar'>Valorar producto</button></div>
           </div>
@@ -159,7 +135,7 @@
     </div>
 </body>
 <footer>
-    <img src="../img/imagenesWeb/logo.png" alt="" class="logo">
+    <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
     <div class="social-icons-container">
         <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
         <a href="https://www.t.me/petmanagement" class="social-icon"></a>

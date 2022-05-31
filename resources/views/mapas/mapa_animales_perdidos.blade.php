@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mapa Establecimientos</title>
-    <link rel="stylesheet" href="css/styledog.css">
+    <title>Animales perdidos</title>
+    <link rel="stylesheet" href="{{asset('css/styledog.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
@@ -13,15 +13,15 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/mapa-perdidos.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('css/style-home.css')}}"> --}}
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 <body>
 
     <nav id="nav">
         <div class="nav_container">
-            <a href="{{url("/")}}"><img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo"></a>
+            <a href="{{url("/")}}"><img src="{{url('img/visitas/Logo.png')}}" alt="" class="nav_logo"></a>
             <label for="menu" class="nav_label">
-                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
+                <img src="{{url('img/visitas/menu (4).png')}}" alt="" class="nav_img">
             </label>
             <input type="checkbox" id="menu" class="nav_input">
             <!--Menu header-->
@@ -42,7 +42,7 @@
                 @endif
             </div>
         </div>
-    <script src="./js/nav_mapas.js"></script>
+    <script src="{{asset('js/nav_mapas.js')}}"></script>
     </nav>
     
     <div id="map">
@@ -50,7 +50,7 @@
             <form action="{{url('/an_perd')}}" method="GET">
                 <input type="hidden" name="_method" value="POST" id="postFiltro">
                 <div class="form-outline">
-                    <button type="submit" class="addPet"><img class="sala" src="./img/imagenesWeb/buscar.png" width="100px" height="100px">Anunciar animal perdido</button><br><br>
+                    <button type="submit" class="addPet"><img class="sala" src="{{asset('img/imagenesWeb/buscar.png')}}" width="100px" height="100px">Anunciar animal perdido</button><br><br>
                 </div>
             </form>
             @if (Session::get('id_user_session')) 
@@ -95,6 +95,6 @@
     <!-- Enlace a API para hacer el geocidng Direcciones <-> Coordanedadas  NO TOCAR -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
     <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.js"></script>
-    <script src="js/mapa_animales_perdidos.js"></script>
+    <script src="{{asset('js/mapa_animales_perdidos.js')}}"></script>
 </body>
 </html>

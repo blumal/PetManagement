@@ -84,7 +84,7 @@ img {
     border-radius: 30px;
     background-color: #006d9c;
     color: #ffffff !important;
-    margin: 1.15rem 1rem;
+    margin: 0.35rem 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
@@ -111,10 +111,9 @@ img {
 }
 
 table {
-    /* float: right; */
     text-align: center;
-    width: 98%;
-    height: 50px;
+    width: 100%;
+    /* height: 50px; */
 }
 
 .fila-1 {
@@ -165,8 +164,8 @@ table {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    left: -1%;
-    top: -2%;
+    left: 0%;
+    top: 0%;
     width: 100%;
     /* Full width */
     height: 100%;
@@ -186,7 +185,7 @@ table {
     background-color: #fefefe;
     margin: 5% auto;
     /* 15% from the top and centered */
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid #888;
     width: 80%;
     /* Could be more or less, depending on screen size */
@@ -220,8 +219,8 @@ table {
 
 /* -------------- TABLAS  ----------------- */
 
-.table-responsive {
-    margin-top: 6.1%;
+.table-responsive{
+    margin-top: 5%;
 }
 
 .table {
@@ -233,11 +232,14 @@ table {
 /* ------------ RESPONSIVE --------------- */
 
 @media (max-width: 800px) {
-    .table-responsive {
-        margin-top: 21%;
+    .table-responsive{
+        margin-top: 18%;
     }
     .filtro {
         margin-top: 4%;
         width: 65%;
+    }
+    .crear{
+        margin: 1.25rem 1rem;
     }
 }

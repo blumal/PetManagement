@@ -26,32 +26,13 @@
     <script src="{{asset('js/gestioncitas/gestioncitas.js')}}"></script>
     <!--CSS--> 
     <link rel="stylesheet" href="{{asset('css/empleados/gestioncitas.css')}}">
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <!--TOKEN-->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <title>Gestión de citas</title>
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav_container">
-            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
-            <label for="menu" class="nav_label">
-                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
-            </label>
-            <input type="checkbox" id="menu" class="nav_input">
-            <!--Menu header-->
-            <div class="nav_menu">
-                <a href="{{url("/calendaremp")}}" class="nav_item">Calendario</a>
-                <a href="#{{-- {{url("tienda")}} --}}" class="nav_item">Gestión de citas</a>
-                <a href="#{{-- {{url("citas")}} --}}" class="nav_item">Administración de pacientes</a>
-                <a href="#{{-- {{url("contacto")}} --}}" class="nav_item">Administración de visitas</a>
-                <a href="#{{-- {{url("contacto")}} --}}" class="nav_item">Animales perdidos</a>
-                <a href="#{{-- {{url("contacto")}} --}}" class="nav_item">Mi perfil</a>
-                <a href="{{url("logout")}}" class="login_item">Logout</a>
-            </div>
-        </div>
-        <script src="./js/home.js"></script>
-    </nav>
+    @include('comun.navegacion')
     <center>
         <div class="row-c flex">
             <div class="container p-5">

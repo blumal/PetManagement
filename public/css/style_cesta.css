@@ -9,9 +9,10 @@ body {
     margin: 0;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
+
 
 /* Clear floats after the columns */
 
@@ -38,8 +39,7 @@ header {
 .seguir {
     text-decoration: none;
     color: #3f00eb;
-    float: right;
-    padding-right: 10%;
+    font-size: 3vh;
 }
 
 .seguir:hover {
@@ -48,9 +48,9 @@ header {
 }
 
 .titulo {
-    padding-top: 40px;
     float: left;
-    padding-left: 12%;
+    font-size: 3vh;
+    text-align: center;
 }
 
 .zoom {
@@ -217,4 +217,21 @@ header {
 
 #footer2 {
     background-color: #000000;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rrr {
+    padding-left: 80%;
+}
+
+body {
+    position: relative;
+    background-image: url(../img/imagenesWeb/fotosSlider/animales23.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
 }

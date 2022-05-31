@@ -19,14 +19,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/style-perfil.css')}}">
     {{-- icono barra del navegador --}}
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     {{-- Bibliotecas validacion Alertify --}}
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     {{-- validacion perfil --}}
-    <script src="./js/login_registro/valid_perfil.js"></script>
-    <title>Perfil</title>
+    <script src="{{asset('js/login_registro/valid_perfil.js')}}"></script>
+    <title>Mi Perfil</title>
 </head>
 
 <body>

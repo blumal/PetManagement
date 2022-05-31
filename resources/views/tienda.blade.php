@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script type="text/javascript" src="js/iconos_g.js"></script>
+    <script type="text/javascript" src="{{asset('js/iconos_g.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/jquery.js"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script language="javascript" src="./js/tienda.js"></script>
+    <script language="javascript" src="{{asset('js/tienda.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/tienda.css')}}">
-    <title>PetManagment - Tienda</title>
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
+    <title>Tienda</title>
 </head>
 
 @include('comun.navegacion')
@@ -74,7 +75,7 @@
                         @foreach(session('cart') as $id => $details)
                             <div class="row cart-detail">
                                 <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                    <img src="storage/uploads/{{ $details['foto'] }}"/>
+                                    <img src="{{asset('/storage/app/public/uploads/').$details['foto'] }}"/>
                                 </div>
                                 <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                     <p>{{ $details['nombre'] }} ({{ $details['subcategoria_texto'] }})</p>
@@ -424,7 +425,7 @@
 @endif
 </body>
 <footer>
-    <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+    <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
     <div class="social-icons-container">
         <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
         <a href="https://www.t.me/petmanagement" class="social-icon"></a>
