@@ -85,7 +85,7 @@ function leerJS() {
                 }
                 recarga += '</tr>';
                 recarga += '</table>';
-                recarga +='</div>';
+                recarga += '</div>';
             }
             //Introducimos la recarga en la tabla
             tabla.innerHTML = recarga;
