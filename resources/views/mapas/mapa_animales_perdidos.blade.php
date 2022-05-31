@@ -35,7 +35,7 @@
                 <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
                 @if (Session::get('id_user_session')) 
                         <a class="nav_item" href="{{url("modificarPerfil")}}">¡Hola {{Session::get('nombre_session')}}!</a>
-                        <input type="hidden" id="id_us" value="{{Session::get('id_user_session')}}"></a>
+                        <input type="hidden" name="id_us" id="id_us" value="{{Session::get('id_user_session')}}"></a>
                     <a href="{{url("logout")}}" class="login_item">Logout</a>
                 @else
                     <a href="{{url("login")}}" class="login_item">Inicia sesión</a>
@@ -46,14 +46,24 @@
     </nav>
     
     <div id="map">
-        <div class="seccion">
+        <div>
             <form action="{{url('/an_perd')}}" method="GET">
                 <input type="hidden" name="_method" value="POST" id="postFiltro">
                 <div class="form-outline">
                     <button type="submit" class="addPet"><img class="sala" src="{{asset('img/imagenesWeb/buscar.png')}}" width="100px" height="100px">Anunciar animal perdido</button><br><br>
                 </div>
             </form>
-            
+            @if (Session::get('id_user_session')) 
+                        <form action="{{url('/adm_an_perd')}}" method="GET">
+                            <input type="hidden" name="_method" value="POST" id="postFiltro">
+                            <input type="hidden" name="id_us" id="id_us" value="{{Session::get('id_user_session')}}">
+                            <div class="form-outline">
+                                <button type="submit" class="addPet"><img class="sala" src="./img/imagenesWeb/buscar.png" width="100px" height="100px">Aministrar animal perdido</button><br><br>
+                            </div>
+                        </form>
+                @else
+                    
+                @endif
         </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
