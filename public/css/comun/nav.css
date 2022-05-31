@@ -1,7 +1,7 @@
 /* ---------- NAV BAR ---------- */
 
 #nav {
-    position: fixed;
+    position: flex;
     width: 100%;
     transition: 0.5s;
     margin-top: 0px;
@@ -78,10 +78,6 @@
     pointer-events: all;
 }
 
-.nav_input:checked+.nav_menu {
-    /* background: white; */
-}
-
 .nav_label,
 .nav_input {
     display: none;
@@ -144,7 +140,7 @@
     .nav_input:checked+.nav_menu {
         clip-path: circle(100% at center);
     }
-    #nav a{
+    #nav a {
         z-index: 99999;
     }
     /* ---------- TWITTER ---------- */

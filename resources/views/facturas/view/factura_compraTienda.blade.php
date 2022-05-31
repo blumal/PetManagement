@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
     <style>
@@ -197,24 +197,24 @@ img {
         <tr class="item">
             <td><?php echo $items_compra[$i]->nombre_art ?></td>
             <td><?php echo $items_compra[$i]->cantidad_dft ?></td>
-            <td><?php echo $items_compra[$i]->precio_art ?>€</td>
-            <td><?php echo ($items_compra[$i]->precio_art*$items_compra[$i]->cantidad_dft) ?>€</td>
-            <?php $subtotal=$subtotal+($items_compra[$i]->cantidad_dft*$items_compra[$i]->precio_art)?>
+            <td><?php echo $items_compra[$i]->precio_cat ?>€</td>
+            <td><?php echo ($items_compra[$i]->precio_cat*$items_compra[$i]->cantidad_dft) ?>€</td>
+            <?php $subtotal=$subtotal+($items_compra[$i]->cantidad_dft*$items_compra[$i]->precio_cat)?>
         </tr>
         @endfor
         <tr class="item last">
             <td><?php echo $items_compra[$numero_items-1]->nombre_art ?></td>
             <td><?php echo $items_compra[$numero_items-1]->cantidad_dft ?></td>
-            <td><?php echo $items_compra[$numero_items-1]->precio_art ?></td>
-            <td><?php echo ($items_compra[$numero_items-1]->precio_art*$items_compra[$numero_items-1]->cantidad_dft) ?>€</td>
-            <?php $subtotal=$subtotal+($items_compra[$numero_items-1]->cantidad_dft*$items_compra[$numero_items-1]->precio_art)?>
+            <td><?php echo $items_compra[$numero_items-1]->precio_cat ?></td>
+            <td><?php echo ($items_compra[$numero_items-1]->precio_cat*$items_compra[$numero_items-1]->cantidad_dft) ?>€</td>
+            <?php $subtotal=$subtotal+($items_compra[$numero_items-1]->cantidad_dft*$items_compra[$numero_items-1]->precio_cat)?>
         </tr>
 
         <tr class="total">
             <td></td>
             <td></td>
             <td></td>
-            <td><b> Subtotal: <?php echo $subtotal ?>€</b></td>
+            <td><b> Subtotal: <?php echo $factura[0]->total_ft ?>€</b></td>
         </tr>
         <tr class="heading">
             <td>Descuento</td>
@@ -237,16 +237,15 @@ img {
             <td><b> Total: <?php echo $factura[0]->total_ft ?>€ (Sin IVA -> <?php echo BCDIV($factura[0]->total_ft/1.21,1,2) ?>€)</b></td>
         </tr>
     </table>
-    Estimado <?php echo $cliente[0]->nombre_us;?>,<br><br>
-    Nunca habría sido posible crecer, ni llegar hasta donde estamos, sin tu apoyo. 
-    Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
-    <?php echo $clinica[0]->nombre_s ?>.
-    <br>
+    
     <?php if (isset($download)) {
         # code...
     }else{
-
-    ?>
+        ?>Estimado <?php echo  $cliente[0]->nombre_us;?>,<br><br>
+        Nunca habría sido posible crecer, ni llegar hasta donde estamos, sin tu apoyo. 
+        Gracias a tu confianza en nuestra tienda online, nos hemos convertido en uno de los ecommerce de referencia en nuestro sector. <br></br>
+    <?php echo $clinica[0]->nombre_s ?>
+    <br>
     <br>
     <form action="/FacturaTienda/download" method="post">
         @csrf

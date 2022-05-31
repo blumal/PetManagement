@@ -11,10 +11,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Mapa Perdidos</title>
+    <title>Admin animales perdidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styleadminmapaperdidos.css">
+    <link rel="stylesheet" href="{{asset('css/styleadminmapaperdidos.css')}}">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 <body>
     <form class="head" action="{{url('/cpanel')}}" method="GET">
@@ -51,10 +52,8 @@
     <p id="mensaje"></p>
     {{-- Div donde pondremos el contenido de la recarga del ajax --}}
     <div class="table-responsive">
-        <div class="style_table">
-            <table id="tabla">
-            </table>
-        </div>
+        <table id="tabla">
+        </table>
     </div>
     <div id="myModal" class="modal">
         <!-- Modal content -->
@@ -66,6 +65,6 @@
         </div>
       </div>
     {{-- Link con el ajax --}}
-    <script src="./js/admin_mapa_perdidos_ajax.js"></script>
+    <script src="{{asset('js/admin_mapa_perdidos_ajax.js')}}"></script>
 </body>
 </html>
