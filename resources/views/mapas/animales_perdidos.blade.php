@@ -12,9 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Animales Perdidos</title>
-    <link rel="stylesheet" href="css/styleadminmapaestbl.css">
+    <link rel="stylesheet" href="{{asset('css/styleadminmapaestbl.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="token" content="{{csrf_token()}}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 <body>
     <div class="head_admin">
@@ -65,6 +66,6 @@
             <button class="btn btn-outline-info" type="submit">Ver Mapa animales perdidos</button>
         </form>
     </div>
-    <script src="js/crear_animales_perdidos.js"></script>
+    <script src="{{asset('js/crear_animales_perdidos.js')}}"></script>
 </body>
 </html>

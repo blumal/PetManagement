@@ -55,7 +55,7 @@ function leerPacientes() {
                 }
                 if (respuesta[i].activo == 1) {
                     tabla.innerHTML += "<tr class='fila-2'>" +
-                        "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar' ></td>" +
+                        "<td><img src='../storage/app/public/" + respuesta[i].foto_pa + "' class='avatar' ></td>" +
                         "<td>" + respuesta[i].nombre_pa + "</td>" +
                         "<td>" + respuesta[i].peso_pa + "</td>" +
                         "<td>" + respuesta[i].n_id_nacional + "</td>" +
@@ -75,7 +75,7 @@ function leerPacientes() {
                         "</td>"
                 } else {
                     tabla.innerHTML += "<tr class='fila-2'>" +
-                        "<td><img src='../storage/" + respuesta[i].foto_pa + "' class='avatar' style='filter: grayscale(100%);'></td>" +
+                        "<td><img src='../storage/app/public/" + respuesta[i].foto_pa + "' class='avatar' style='filter: grayscale(100%);'></td>" +
                         "<td>" + respuesta[i].nombre_pa + "</td>" +
                         "<td>" + respuesta[i].peso_pa + "</td>" +
                         "<td>" + respuesta[i].n_id_nacional + "</td>" +

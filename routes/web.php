@@ -81,8 +81,8 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
-Route::get('login/contraseña', function () {
-    return view('login/contraseña');
+Route::get('login/contrasena', function () {
+    return view('login/contrasena');
 });
 
 Route::get('entretenimiento', function () {
@@ -106,6 +106,12 @@ Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 //Actualizar Perfil usuario
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
 Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
+
+//ACTIVAR USUARIO
+Route::get('/activar', function () {return view('login/activarUsuario');});
+Route::post('/activarPOST',[UsuarioController::class, 'activarUsuario']);
+
+
 
 //FINAL RUTAS USUARIO
 
@@ -223,13 +229,21 @@ Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']
 Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
-Route::post('/activarPaciente',[PacienteController::class, 'activarPaciente']);
 Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
 Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);
 
 // FIN CRUD PACIENTES
 
+//INICIO CRUD CLIENTES
+
+Route::get('/adminUsuarios',[UsuarioController::class, 'adminUsuarios']);
+Route::post('/eliminarCliente',[UsuarioController::class, 'eliminarCliente']);
+Route::post('/activarCliente',[UsuarioController::class, 'activarCliente']);
+Route::post('/leerClientes',[UsuarioController::class, 'leerClientes']);
+Route::post('/cambiarRol',[UsuarioController::class, 'cambiarRol']);
+
+// FIN CRUD CLIENTES
 
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
@@ -281,6 +295,8 @@ Route::get('add-to-cart-producto/{id}/{cantidad}/{subcategoria}',[ProductoContro
 Route::patch('update-cart',[ProductoController::class,'updateCart']);
 Route::delete('remove-from-cart',[ProductoController::class,'removeFromCart']);
 Route::post('cogerSesion',[ProductoController::class,'cogerSesion']);
+Route::post('cogerNombre',[ProductoController::class,'cogerNombre']);
+Route::post('cogerCarrito',[ProductoController::class,'cogerCarrito']);
 
 
 /*Crud */
@@ -294,12 +310,28 @@ Route::post('crear',[ProductoController::class,'crear']);
 Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
+
+Route::post('sub/{id}',[ProductoController::class,'sub']);
+
+Route::delete('eliminarsub/{id}',[ProductoController::class,'eliminarsub']);
+
+Route::post('crearsub/{id}',[ProductoController::class,'crearsub']);
+
+Route::put('editarsub',[ProductoController::class,'editarsub']);
+
+Route::put('update_s',[ProductoController::class,'update_s']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
 
 Route::get('comprado',[ProductoController::class, 'compra']);
 
 Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
+
+
+Route::post('stripe', [ProductoController::class, 'stripe']);
+
+Route::post('stripePost', [ProductoController::class, 'stripePost']);
+
 
 //Empleados
 //Datos calendario

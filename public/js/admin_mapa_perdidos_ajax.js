@@ -51,7 +51,7 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
-            recarga += '<div class="table-responsive">';
+            recarga += '<div class="table-responsive">'
             recarga += '<table class="table" id="table">';
             recarga += '<tr class="fila-1"><th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Fecha de perdida</th><th scope="col">Propietario</th><th scope="col">Calle donde se perdió</th><th scope="col">Foto</th><th scope="col">CP</th><th scope="col">Númeor de la calle</th><th scope="col">Hora de desaparición</th><th scope="col">Estado</th><th scope="col"></th><th scope="col">Editar</th></tr>';
             for (let i = 0; i < respuesta.length; i++) {
@@ -67,9 +67,9 @@ function leerJS() {
                 recarga += '<td scope="row">' + respuesta[i].hora_des_ape + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].estado_est + '</td>'
                 if (respuesta[i].estado_est = 4) {
-                    recarga += '<td scope="row"><img src="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/img/rojo.png"></td>'
+                    recarga += '<td scope="row"><img src="{{url("/img/rojo.png")}}"></td>'
                 } else if (respuesta[i].estado_est == 5) {
-                    recarga += '<td scope="row"><img src="http://localhost/www/DAW/PROYECTOS/Proyecto-5/PetManagement/public/img/verde.png"></td>'
+                    recarga += '<td scope="row"><img src="{{url("/img/verde.png")}}"></td>'
                 }
                 recarga += '<td scope="row"><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_ape + ',\'' + respuesta[i].nombre_ape + '\',\'' + respuesta[i].descripcion_ape +
                     '\',\'' + respuesta[i].fecha_perdida_ape + '\',\'' + respuesta[i].nombre_us + '\',' + respuesta[i].direccion_perdida_ape + ',' +
@@ -96,29 +96,29 @@ function modificar(id_ape, nombre_ape, descripcion_ape, fecha_perdida_ape, nombr
     contenido += '<form id="form_modif" onsubmit="editar(); return false;" enctype="multipart/form-data">'
     contenido += '<h3><b>Modificar</b></h3><br>'
     contenido += '<p><b>Nombre</b><p>'
-    contenido += '<input type="text" name="nombre_ape" id="nombre_ape" value="' + nombre_ape + '"><br>'
+    contenido += '<input type="text" class="btn btn-outline-dark" name="nombre_ape" id="nombre_ape" value="' + nombre_ape + '"><br>'
     contenido += '<p><b>Descripción</b><p>'
-    contenido += '<input type="text" name="descripcion_ape" id="descripcion_ape" value="' + descripcion_ape + '"><br>'
+    contenido += '<input type="text" class="btn btn-outline-dark" name="descripcion_ape" id="descripcion_ape" value="' + descripcion_ape + '"><br>'
     contenido += '<p><b>Fecha de perdida</b><p>'
-    contenido += '<input type="email" name="fecha_perdida_ape" id="fecha_perdida_ape" value="' + fecha_perdida_ape + '"><br>'
+    contenido += '<input type="email class="btn btn-outline-dark"" name="fecha_perdida_ape" id="fecha_perdida_ape" value="' + fecha_perdida_ape + '"><br>'
     contenido += '<p><b>Propietario</b><p>'
-    contenido += '<input type="text" name="nombre_us" id="nombre_us" value="' + nombre_us + '"><br>'
+    contenido += '<input type="text" class="btn btn-outline-dark" name="nombre_us" id="nombre_us" value="' + nombre_us + '"><br>'
     contenido += '<p><b>Dirección de la perdida</b><p>'
-    contenido += '<input type="number" name="direccion_perdida_ape" id="direccion_perdida_ape" value="' + direccion_perdida_ape + '"><br>'
+    contenido += '<input type="numbe class="btn btn-outline-dark"r" name="direccion_perdida_ape" id="direccion_perdida_ape" value="' + direccion_perdida_ape + '"><br>'
     contenido += '<p><b>CP</b><p>'
-    contenido += '<input type="number" name="cp_ape" id="cp_ape" value="' + cp_ape + '"><br>'
+    contenido += '<input type="numbe class="btn btn-outline-dark"r" name="cp_ape" id="cp_ape" value="' + cp_ape + '"><br>'
     contenido += '<p><b>Calle</b><p>'
-    contenido += '<input type="number" name="calle_ape" id="calle_ape" value="' + calle_ape + '"><br>'
+    contenido += '<input type="numbe class="btn btn-outline-dark"r" name="calle_ape" id="calle_ape" value="' + calle_ape + '"><br>'
     contenido += '<p><b>Hora de desaparición</b><p>'
-    contenido += '<input type="time" name="hora_des_ape" id="hora_des_ape" value="' + hora_des_ape + '">'
+    contenido += '<input type="time" class="btn btn-outline-dark" name="hora_des_ape" id="hora_des_ape" value="' + hora_des_ape + '">'
     contenido += '<p><b>Foto Mascota (Si no quieres cambiar la foto deja el campo vacio)</b><p>'
-    contenido += '<input type="file" name="foto_ape" id="foto_ape"><br>'
+    contenido += '<input type="file" class="btn btn-outline-dark" style="width: 100%;" name="foto_ape" id="foto_ape"><br>'
     contenido += '<p><b>Estado</b><p>'
-    contenido += '<input type="number" name="estado_est" id="estado_est" value="' + estado_est + '">'
+    contenido += '<input type="numbe class="btn btn-outline-dark"r" name="estado_est" id="estado_est" value="' + estado_est + '">'
 
     contenido += '<input type="hidden" name="id_ape" id="id_ape" value="' + id_ape + '">'
     contenido += '<input type="hidden" name="id_us" id="id_us" value="' + id_us + '">'
-    contenido += '<input type="hidden" name="id_est" id="id_est" value="' + id_est + '">'
+    contenido += '<input type="hidden" name="id_est" id="id_est" value="' + id_est + '"><br><br>'
     contenido += '<input type="submit" class="btn btn-success" value="Modificar">'
     contenido += '</form>'
     enter.innerHTML = contenido;
@@ -259,22 +259,22 @@ function crearJS() {
     contenido += '<h1>Crear Mascota Perdida</h1>'
     contenido += '</div>'
     contenido += '<form id="form_crear" onsubmit="crear(); return false;" enctype="multipart/form-data">'
-    contenido += '    <input type="text" class="btn btn-outline-dark" name="nombre" id="nombre" placeholder="Nombre">'
-    contenido += '    <textarea type="text" class="btn btn-outline-dark" name="descripcion" id="descripcion" placeholder="Descripción"></textarea>'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="nombre" id="nombre" placeholder="Nombre"><br><br>'
+    contenido += '    <textarea type="text" class="btn btn-outline-dark" name="descripcion" id="descripcion" placeholder="Descripción"></textarea><br><br>'
     contenido += '    <span>Fecha de la perdida</span>'
-    contenido += '    <input type="date" class="btn btn-outline-dark" name="fecha_perdida_ape" id="fecha_perdida_ape" placeholder="Fecha de la perdida">'
+    contenido += '    <input type="date" class="btn btn-outline-dark" name="fecha_perdida_ape" id="fecha_perdida_ape" placeholder="Fecha de la perdida"><br><br>'
     contenido += '    <input type="text" class="btn btn-outline-dark" name="propietario" id="propietario" placeholder="Nombre del propietario"><br><br>'
-    contenido += '    <input type="text" class="btn btn-outline-dark" name="direccion_perdida_ape" id="direccion_perdida_ape" placeholder="Calle donde se perdió">'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="direccion_perdida_ape" id="direccion_perdida_ape" placeholder="Calle donde se perdió"><br><br>'
     contenido += '    <span>Foto</span>'
-    contenido += '    <input type="file" class="btn btn-outline-dark" name="foto_ape" id="foto_ape">'
+    contenido += '    <input type="file" class="btn btn-outline-dark" style="width: 100%;" name="foto_ape" id="foto_ape"><br><br>'
     contenido += '    <span>Estado</span>'
     contenido += '    <select name="estado_est" class="btn btn-outline-dark" id="estado_est">'
     contenido += '        <option value="null">---</option>'
     contenido += '        <option value="4">Desaparecido</option>'
     contenido += '        <option value="5">Encontrado</option>'
     contenido += '    </select><br><br>'
-    contenido += '    <input type="number" class="btn btn-outline-dark" name="cp_ape" id="cp_ape" placeholder="CP">'
-    contenido += '    <input type="text" class="btn btn-outline-dark" name="calle_ape" id="calle_ape" placeholder="Número de la calle">'
+    contenido += '    <input type="number" class="btn btn-outline-dark" name="cp_ape" id="cp_ape" placeholder="CP"><br><br>'
+    contenido += '    <input type="text" class="btn btn-outline-dark" name="calle_ape" id="calle_ape" placeholder="Número de la calle"><br><br>'
     contenido += '    <span>Hora de la desparición</span>'
     contenido += '    <input type="time" class="btn btn-outline-dark" name="hora_des_ape" id="hora_des_ape" placeholder="Hora de la desaparición"><br><br>'
     contenido += '    <input type="submit" class="btn btn-success" value="Crear">'

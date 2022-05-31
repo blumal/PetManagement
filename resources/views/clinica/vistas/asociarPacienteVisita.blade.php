@@ -5,16 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Asociar Paciente a Visita</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="/fontsawe/css/all.css" rel="stylesheet">
-    <script defer src="/fontsawe/js/all.js"></script>
+    <link href="{{asset('fontsawe/css/all.css')}}" rel="stylesheet">
+    <script defer src="{{asset('fontsawe/js/all.js')}}"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="css/Visitas/style-asociPacienteVisita.css">
-    
-
-
+    <link rel="stylesheet" href="{{asset('css/Visitas/style-asociPacienteVisita.css')}}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 
 <body>
@@ -45,7 +43,7 @@
                                     <span class="fa fa-phone"></span>
                                 </div>
                                 <div class="text">
-                                    <p><span>Telefono</span> <a href="tel://1234567920">{{$cliente[0]->contacto1_tel}}</a></p>
+                                    <p><span>Telefono</span> <a href="">{{$cliente[0]->contacto1_tel}}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -139,6 +137,6 @@
         </div>
     </div>
 </body>
-<script defer src="./js/visita/script.js"></script>
-<script src="./js/visita/ajax_ru_visitas_directorio.js"></script>
+<script defer src="{{asset('js/visita/script.js')}}"></script>
+<script src="{{asset('js/visita/ajax_ru_visitas_directorio.js')}}"></script>
 </html>

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('css/fullcalendar/calendar.css')}}">
     <title>Citas</title>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
 </head>
 <body>
     @include('comun.navegacion')
@@ -171,7 +172,7 @@
     @endif --}}
     <br><br>
     <footer>
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
         <div class="social-icons-container">
             <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
             <a href="https://www.t.me/petmanagement" class="social-icon"></a>

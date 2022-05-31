@@ -9,7 +9,11 @@
 
 body {
     position: relative;
+<<<<<<< HEAD
     background: white;
+=======
+    background: #ffffff;
+>>>>>>> bae01c6a42d24771a1f6dc299f1f373d77b8cf5f
     text-decoration: none;
 }
 
@@ -84,7 +88,7 @@ a:hover {
 
 .nav_logo {
     width: 80px;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .nav_img {

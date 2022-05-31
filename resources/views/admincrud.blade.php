@@ -1,8 +1,9 @@
 <!--Método comprobación de sesión-->
+
 @if (!Session::get('admin_session'))
     <?php
         //Si la session no esta definida te redirige al login, la session se crea en el método.
-        return redirect()->to('login')->send();
+        // return redirect()->to('login')->send();
     ?>
 @endif
 <!DOCTYPE html>
@@ -12,11 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script src="../public/js/ajax.js"></script>
-    <script src="../public/js/code.js"></script>
+    <script src="{{asset('js/ajax.js')}}"></script>
+    <script src="{{asset('js/code.js')}}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/05807278a7.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/stylecrud.css')}}">
-    <title>AdminCrudTienda</title>
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
+    <title>Admin-Productos</title>
+
 </head>
 <body>
     <form class="head" action="{{url('/cpanel')}}" method="GET">
@@ -34,7 +39,13 @@
             </div>
          </form>
     </div>
+
+
     <div class="table-responsive">
+        <?php
+        $suma=0;
+        ?>
+
         <table class="table" id="table">
             <tr class="fila-1">
                 <th scope="col">#</th>
@@ -57,7 +68,7 @@
                 <td>{{$prod->tipo_articulo_ta}}</td>
                 <td>
                     {{-- Route::get('/clientes/{cliente}/edit',[ClienteController::class,'edit'])->name('clientes.edit'); --}}
-                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_editar({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
+                    <button class= "btn btn-secondary" type="submit" value="Edit" onclick="abrirmodal_2({{$prod->id_art}},'{{$prod->nombre_art}}','{{$prod->descripcion_art}}','{{$prod->precio_art}}','{{$prod->codigobarras_art}}','{{$prod->id_ma}}','{{$prod->id_tipo_articulo_fk}}');return false;">Editar</button>
                 </td>
                 <td>
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
@@ -75,11 +86,9 @@
 
     {{-- Modal para editar el producto --}}
     <div class="modalbox_editar" id="modalbox_editar">
-        <div class="modaleditar_header">
-            <span class="close_editar" onclick="closeModal_editar(); return false;">&times;</span>             
-            <h2 class="titulomodal">Editar Producto</h2>
-        </div>
-        <div class="modaleditar" id="modaleditar">    
+        <div class="modaleditar" id="modaleditar">
+            <span class="close" onclick="closeModal_editar(); return false;">&times;</span>             
+            <h2><b>EDITAR PRODUCTO</b></h2>
             <form id="formUpdate" method="post" onsubmit="actualizar();closeModal_editar();return false;" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" id="modifNote">
                 <input class="inputcrear" type="text" name="nombre_art_e" id="nombre_art_e" placeholder="Nombre">
@@ -101,7 +110,7 @@
                         <option value="{{$item2->id_ta}}">{{$item2->tipo_articulo_ta}}</option>
                     @endforeach
                 </select>
-                <a class="btn-crear" type="submit" value="Editar">EDITAR</a>
+                <button class="btn btn-primary" style="margin-left: 44%; margin-top: 3%;" type="submit" value="Editar">EDITAR</button>
                 <input type="hidden" name="id_art_e" id="idUpdate">
             </form>
         </div>
@@ -143,13 +152,40 @@
                         <option value="{{$item2->id_ta}}">{{$item2->tipo_articulo_ta}}</option>
                     @endforeach
                 </select>
-                <form id="mensaje">
-                    <a class="btn-crear" type="submit" value="Crear">CREAR</a>
-                    <input type="hidden" name="_method" value="POST" id="createNote">
-                </form>
+
+                <div id="mensaje">
+                </div>
+                <button class="btn btn-success" type="submit" value="Crear">CREAR</button>
+                <input type="hidden" name="_method" value="POST" id="createNote">
+
             </form>
         </div>
     </div>
-    <div id="message" style="color:green"></div>
+    <div class="modalbox_2" id="modalbox_2">
+        <div class="modal2" id="modal2">
+            <span class="close_2" onclick="closeModal_2(); return false;">&times;</span>    
+            <button class="boton2" type="submit" value="Edit" onclick="abrirmodal_editar();closeModal_2();">Editar</button>
+            <br>
+            <button class="boton2" type="submit" value="Crear" onclick="abrirmodal_s();closeModal_2();sub(document.getElementById('idajax').value);"><b>Gestionar subcategorias y stock</b></button>
+        </div>
+    </div>
+    <div id="message" style="color:rgb(255, 255, 255)"></div>
+
+    <div class="modalbox_s" id="modalbox_s">
+        <div class="modal_s" id="modal_s">
+            <div id="sub1">
+                <span class="close" onclick="closeModal_s(); return false;">&times;</span>             
+                <h2 class="titulo-h2">EDITAR SUBCATEGORIAS</h2>
+                <input type="hidden" id="idajax">
+                <div class="table-responsive" style="margin-top: 5%;margin-right: 2.5%;">
+                    <table id="sub2" class="table">
+
+                    </table>
+                </div>
+                <button type="button" class="fa-solid fa-plus" aria-hidden="true" onclick="crearsub(document.getElementById('idajax').value);return false;">
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
