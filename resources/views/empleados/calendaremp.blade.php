@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/empleados/calendaremp.css')}}">
     <!--TOKEN-->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <title>Calendario</title>
 </head>
 <body>

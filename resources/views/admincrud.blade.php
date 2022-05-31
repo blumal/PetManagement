@@ -15,13 +15,12 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="{{asset('js/ajax.js')}}"></script>
     <script src="{{asset('js/code.js')}}"></script>
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/05807278a7.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/stylecrud.css')}}">
-
-    <title>Productos Admin</title>
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
+    <title>Admin-Productos</title>
 
 </head>
 <body>
@@ -87,11 +86,9 @@
 
     {{-- Modal para editar el producto --}}
     <div class="modalbox_editar" id="modalbox_editar">
-        <div class="modaleditar_header">
-            <span class="close_editar" onclick="closeModal_editar(); return false;">&times;</span>             
-            <h2 class="titulomodal">Editar Producto</h2>
-        </div>
-        <div class="modaleditar" id="modaleditar">    
+        <div class="modaleditar" id="modaleditar">
+            <span class="close" onclick="closeModal_editar(); return false;">&times;</span>             
+            <h2><b>EDITAR PRODUCTO</b></h2>
             <form id="formUpdate" method="post" onsubmit="actualizar();closeModal_editar();return false;" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" id="modifNote">
                 <input class="inputcrear" type="text" name="nombre_art_e" id="nombre_art_e" placeholder="Nombre">
@@ -113,7 +110,7 @@
                         <option value="{{$item2->id_ta}}">{{$item2->tipo_articulo_ta}}</option>
                     @endforeach
                 </select>
-                <a class="btn-crear" type="submit" value="Editar">EDITAR</a>
+                <button class="btn btn-primary" style="margin-left: 44%; margin-top: 3%;" type="submit" value="Editar">EDITAR</button>
                 <input type="hidden" name="id_art_e" id="idUpdate">
             </form>
         </div>

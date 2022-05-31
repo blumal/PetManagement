@@ -99,7 +99,7 @@ function addToCart() {
             for (let i in respuesta) {
                 html += "<div class='row cart-detail'>";
                 html += "<div class='col-lg-4 col-sm-4 col-4 cart-detail-img'>";
-                html += "<img src='../storage/uploads/" + respuesta[i].foto + "'/>";
+                html += "<img src='../storage/app/public/" + respuesta[i].foto + "'/>";
                 html += "</div>";
                 html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
                 html += "<p>" + respuesta[i].nombre + " (" + respuesta[i].subcategoria_texto + ")</p>";
