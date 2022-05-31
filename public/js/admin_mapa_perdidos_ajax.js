@@ -67,11 +67,6 @@ function leerJS() {
                 recarga += '<td scope="row">' + respuesta[i].calle_ape + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].cp_ape + '</td>'
                 recarga += '<td scope="row">' + respuesta[i].estado_est + '</td>'
-                if (respuesta[i].estado_est = 4) {
-                    recarga += '<td scope="row"><img src="{{url("/img/rojo.png")}}"></td>'
-                } else if (respuesta[i].estado_est == 5) {
-                    recarga += '<td scope="row"><img src="{{url("/img/verde.png")}}"></td>'
-                }
                 recarga += '<td scope="row"><button class="btn btn-warning" onclick="modificar(' + respuesta[i].id_ape + ',\'' + respuesta[i].nombre_ape + '\',\'' + respuesta[i].descripcion_ape +
                     '\',\'' + respuesta[i].fecha_perdida_ape + '\',\'' + respuesta[i].direccion_perdida_ape + '\',' +
                     respuesta[i].id_estado_fk + ',' + respuesta[i].cp_ape + ',' + respuesta[i].calle_ape + ',\'' +
@@ -111,18 +106,6 @@ function modificar(id_ape, nombre_ape, descripcion_ape, fecha_perdida_ape, direc
     contenido += '<input type="text" name="calle_ape" id="calle_ape" value="' + calle_ape + '"><br>'
     contenido += '<p><b>CP</b><p>'
     contenido += '<input type="text" name="cp_ape" id="cp_ape" value="' + cp_ape + '"><br>'
-    contenido += '<p><b>Estado</b><p>'
-    if (estado_est == 4) {
-        contenido += '<select name="estado_est" id="estado_est">'
-        contenido += '<option value="4">Perdido</option>'
-        contenido += '<option value="5">Encontrado</option>'
-        contenido += '</select>'
-    } else if (estado_est == 5) {
-        contenido += '<select name="estado_est" id="estado_est">'
-        contenido += '<option value="5">Encontrado</option>'
-        contenido += '<option value="4">Perdido</option>'
-        contenido += '</select>'
-    }
     contenido += '<input type="hidden" name="id_ape" id="id_ape" value="' + id_ape + '">'
     contenido += '<br><br><input type="submit" class="btn btn-success" value="Modificar">'
     contenido += '</form>'
