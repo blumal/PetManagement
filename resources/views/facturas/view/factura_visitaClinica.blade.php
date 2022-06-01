@@ -114,7 +114,7 @@
             width: 200px;
         }
     </style>
-    <link rel="stylesheet" href="../css/facturas/vista_factura.css">
+    <link rel="stylesheet" href="{{asset('css/facturas/vista_factura.css')}}">
 </head>
 <body>
     

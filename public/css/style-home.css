@@ -9,7 +9,7 @@
 
 body {
     position: relative;
-    background: linear-gradient(transparent, #3759c0b0);
+    background: white;
     text-decoration: none;
 }
 
@@ -51,8 +51,13 @@ body {
 
 a {
     text-decoration: none !important;
+    color: black;
 }
 
+a:hover {
+    text-decoration: none !important;
+    color: white;
+}
 
 /* ---------- NAV BAR ---------- */
 
@@ -79,7 +84,7 @@ a {
 
 .nav_logo {
     width: 80px;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .nav_img {
@@ -148,8 +153,8 @@ a {
 
 @media (max-width: 800px) {
     #nav {
-        background-color: #ffffff;
-        transition: none;
+        background-color: transparent;
+        transition: 0.5s;
     }
     .nav_container {
         padding-left: 4%;
@@ -200,18 +205,178 @@ a {
     .nav_input:checked+.nav_menu {
         clip-path: circle(100% at center);
     }
+
     /* ---------- TWITTER ---------- */
     .twitter {
+        text-align: center;
         position: static;
-        margin: 10% 10% 10% 0%;
-        box-shadow: 0px 0px 7px 10px #292f33;
-        background-color: #292f33;
+        margin: 10% 0% 10% 0% !important;
         border-radius: 5px;
+        padding: 4%;
+    }
+    .twitter iframe{
+        margin-left: 0;
+    }
+    /* ---------- OTROS ------------- */
+    .column-2{    
+        width: 90%;
+        margin: 32px;
+        float: left;
+    }
+    .flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+    }
+    a {
+        text-decoration: none !important;
+        color: white;
+    }
+    /* ------------------- STATS ------------------- */
+    .contenedor_grafico{
+        margin-left: 10% !important;
+        width: 100%;
+        text-align: center;
+    }
+    #chart_visitasxmeses {
+        height: 200px !important;
+        margin-top: 5%;
     }
 }
 
+ /*------------First content-----------*/
+ .tittle-home{
+    color: #8590FF;
+ }
+
+ .content1{
+    margin-top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 3%;
+    background-color: #8590ff;
+    color: white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.content1:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+.content2{
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-left: 3%;
+    border-radius: 20px;
+}
+
+.content2:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+img.content2{
+    width: 42% !important;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+img.content2:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+.servicesinfo{
+    margin-top: 4%;
+}
+
+.servicesinfo h2{
+    color: #8590FF;
+}
+
+.services-box, .specialities-box, .shopinfo-box{
+    margin-top: 4%;
+    padding: 3%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.content1 img, .services-box img, .specialities-box img, .shopinfo-box img{
+    margin-top: 5%;
+}
+
+.services-box:hover, .specialities-box:hover, .shopinfo-box:hover{
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+.services-box{
+    margin-right: 3%;
+    background-color: #8590ff;
+    color: white;
+}
+
+.specialities-box h3{
+    color: #8590FF; 
+}
+.shopinfo-box{
+    margin-left: 3%;
+    background-color: #8590ff;
+    color: white;
+}
+
+.twitter{
+    margin-top: 4%;
+    margin-right: 2%;
+    color: #8590FF;
+}
+
+.twitter-timeline{
+    margin-left: 5.5%;
+}
+/* ------------------- STATS ------------------- */
+.contenedor_grafico{
+    margin-left: 2%;
+    margin-top: 3%;
+    color: #8590FF
+
+}
+
+@media (max-width: 800px) {
+    .content1:hover, .content2:hover, img.content2:hover, .services-box:hover, .specialities-box:hover, .shopinfo-box:hover{
+        transform: none;
+        transition: none;
+    }
+
+    .content1, .content2, img.content2, .services-box, .specialities-box, .shopinfo-box{
+        text-align: center;
+    }
+
+    img.content2{
+        width: 85% !important;
+    }
+    .servicesinfo{
+        margin-bottom: 9%;
+    }
+    .content1 img, .services-box img, .specialities-box img, .shopinfo-box img{
+        margin-bottom: 3%;
+    }
+    .services-box, .specialities-box, .shopinfo-box{
+        margin-right: 3%;
+        margin-left: 3%;
+    }
+    .services-box, .specialities-box{
+        margin-bottom: 9%;
+    }
+
+    
+}
 
 /* ---------- FOOTER ---------- */
+
 
 footer {
     width: auto;

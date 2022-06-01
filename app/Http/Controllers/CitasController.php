@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailtocustomers;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
+
 /* use QRcode; */
 
 class CitasController extends Controller
@@ -131,16 +133,23 @@ class CitasController extends Controller
         return view('clinica/vistas/adminPacientes');
     }
     public function cpanelAnimalesPerdidos(){
-        //Falta
-        /* return view(''); */
+        return view('mapas/admin_mapa_perdidos');
     }
     
     public function cpanelMapa(){
-        return view('admin_mapa_establecimientos');
+        return view('mapas/admin_mapa_establecimientos');
     }
 
     public function an_perd(){
-        return view('animales_perdidos');
+        return view('mapas/animales_perdidos');
+    }
+
+    public function adm_an_perd(Request $request){
+        $datos=DB::select('SELECT tbl_animales_perdidos.*, tbl_usuario.*, tbl_estado.* FROM `tbl_animales_perdidos` 
+        INNER JOIN tbl_usuario ON tbl_animales_perdidos.id_usuario_fk = tbl_usuario.id_us 
+        INNER JOIN tbl_estado ON tbl_animales_perdidos.id_estado_fk = tbl_estado.id_est
+        WHERE tbl_usuario.id_us like ? ORDER BY tbl_animales_perdidos.nombre_ape ASC', [$request->input('id_us')]);
+        return view('mapas/adm_animales_perdidos', compact('datos'));
     }
 
     //Resultados actuales o futuros implementados en la api
@@ -208,7 +217,18 @@ class CitasController extends Controller
         } catch (\Exception $e) {
             return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
         }
-      }
-  
+    }
+    public function MensajeContacto(Request $request){
+        $datas = $request->except('_token', '_method');
+        try {
+            $sub = "Solicitud de contacto";
+            $enviar = new Mailtocustomers($datas,1);
+            $enviar->sub = $sub;
+            Mail::to("grouppetmanagement@gmail.com")->send($enviar);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }
 

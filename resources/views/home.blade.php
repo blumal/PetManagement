@@ -5,62 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/style-home.css')}}">
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     <title>Home</title>
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav_container">
-            <img src="{{url("img/visitas/Logo.png")}}" alt="" class="nav_logo">
-            <label for="menu" class="nav_label">
-                <img src="{{url("img/visitas/menu (4).png")}}" alt="" class="nav_img">
-            </label>
-            <input type="checkbox" id="menu" class="nav_input">
-            <!--Menu header-->
-            <div class="nav_menu">
-                <a href="{{url("/")}}" class="nav_item">Home</a>
-                <a href="{{url("tienda")}}" class="nav_item">Tienda</a>
-                <a href="{{url("citas")}}" class="nav_item">Clínica</a>
-                <a href="{{url("contacto")}}" class="nav_item">Contacto</a>
-                <a href="{{url("about")}}" class="nav_item">Sobre Nosotros</a>
-                <a href="{{url("mapa_animales_perdidos")}}" class="nav_item">Perdidos</a>
-                <a href="{{url("mapa_establecimientos")}}" class="nav_item">Establecimientos</a>
-                @if (Session::get('cliente_session'))
-                    <form class="nav_item">
-                        <a href="{{url("modificarPerfil")}}">Mi Perfil</a>
-                        <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                    </form>
-                    <a href="{{url("logout")}}" class="login_item">Logout</a>
-                @else
-                    <a href="{{url("login")}}" class="login_item">Login</a>
-                @endif
-            </div>
-        </div>
-        <script src="./js/home.js"></script>
-    </nav>
+    @include('comun.navegacion')
     <div>
-        <img src="./img/imagenesWeb/home.jpg" class="foto">
+        <img src="{{asset('img/imagenesWeb/home.jpg')}}" class="foto">
+    </div>
+    </br>
+    <center>
+        <div class="tittle-home">
+            <img src="{{asset('img/pawprint.png')}}" alt="">
+        </div>
+    </center>
+    <div class="row-c flex">
+        <div class="content1 column-2">
+            <h1>Team</h1>
+            </br>
+            <p>PetManagement está compuesto por un equipo multidisciplinar de profesionales que trabajan cada día siendo conscientes de que tu mascota es un miembro más de la familia y merece todo nuestro esfuerzo, cariño y dedicación. </p>
+            </br>
+            <p>L’Hospitalet está compuesto por un equipo multidisciplinar de profesionales que trabajan cada día siendo conscientes de que tu mascota es un miembro más de la familia y merece todo nuestro esfuerzo, cariño y dedicación.</p>
+            <center>
+                <img src="{{asset('img/brainstorm.png')}}" alt="">
+            </center>
+        </div>
+        <img src="{{asset('img/clinica.jpg')}}" class="content2 column-2" alt="">
     </div>
     <div class="row-c flex">
-        <div class="column-2">
-            <div class="twitter">
-                <a class="twitter-timeline" data-lang="en" data-width="850" data-height="700" data-dnt="true" data-theme="dark" href="https://twitter.com/twitter?ref_src=twsrc%5Etfw">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </div>
-
-        <div class="column-2">
-            <div>
-                Where does it come from?
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-            </div>
+        <div class="servicesinfo">
+            <center>
+                <h2>Servicios destacados</h2>
+                </br>
+                <p>En nuestra clínica podrás encontrar una amplia gama de servicios veterinarios destinados a ofrecer una atención integral a tu animal de compañía en cualquiera de las etapas de su vida.</p>
+            </center>
         </div>
     </div>
+    <div class="row-c flex">
+        <div class="services-box">
+            <h3>Servicios Veterinarios</h3>
+            </br>
+            <p>Ponemos especial énfasis en la prevención de enfermedades y realizamos las pruebas oportunas para obtener diagnósticos precisos y aplicar los tratamientos más adecuados. </p>
+            <center>
+                <img src="{{asset('img/veterinarian (2).png')}}" alt="">
+            </center>
+        </div>
+        <div class="specialities-box">
+            <h3>Especialidades veterinarias</h3>
+            </br>
+            <p>Abordamos diversas disciplinas de la medicina veterinaria: dermatología, oftalmología, sistema cardiorespiratorio, traumatología, neurología, oncología, y animales exóticos.</p>
+            <center>
+                <img src="{{asset('img/veterinarian (1).png')}}" alt="">
+            </center>
+        </div>
+        <div class="shopinfo-box">
+            <h3>Tienda para mascotas</h3>
+            </br>
+            <p>Una amplia gama de productos te espera en nuestro centro. Desde la mejor oferta alimenticia. hasta cualquier tipo de accesorio para el aseo, el descanso o el ocio.</p>
+            <center>
+                <img src="{{asset('img/pet-shop.png')}}" alt="">
+            </center>
+        </div>
+    </div>
+    <div class="row-c flex">
+        <div class="twitter column-2">
+            <h3>Conoce nuestras últimas noticias y actualizaciones desde twitter</h3>
+            </br>
+            <a class="twitter-timeline" data-lang="en" data-width="550" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/thedeadpol">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        <div class="contenedor_grafico column-2">
+            <h3>Hazte una idea de cuantos clientes tenemos por mes, ¿serás tú el próximo?</h3>
+            <canvas id="chart_visitasxmeses"></canvas>
+        </div>
+    </div>
+    </br>
     <footer>
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
+        <img src="{{asset('img/imagenesWeb/logo.png')}}" alt="" class="logo">
         <div class="social-icons-container">
-            <a href="https://www.twitter.com/petmanagement" class="social-icon"></a>
+            <a href="https://www.twitter.com/management_pet" class="social-icon"></a>
             <a href="https://www.t.me/petmanagement" class="social-icon"></a>
         </div>
         <ul class="footer-menu-container">
@@ -72,5 +95,7 @@
         </ul>
         <span class="copyright">&copy;2021, Pet Management. Todos los derechos reservados.</span>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{asset('js/estadisticas/graficos.js')}}"></script>
 </body>
 </html>

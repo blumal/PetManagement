@@ -11,6 +11,7 @@ function validatePerfil() {
     if (nombre_us == "" || apellido1_us == "" || email_us == "" || contacto1_tel == "" || nombre_di == "" || cp_di == "" || numero_di == "") {
         console.log("falso")
         alertify.error('Rellene los campos obligatorios marcados con un *');
+
         return false;
     } else {
         console.log("true")

@@ -107,7 +107,8 @@ header {
     padding: 5px;
 }
 
-.img_geo:hover {
+.img_geo:hover,
+.img_geo:active {
     transition: 0.5s;
     width: 40%;
     height: auto;

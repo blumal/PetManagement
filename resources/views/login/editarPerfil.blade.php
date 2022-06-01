@@ -19,48 +19,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/style-perfil.css')}}">
     {{-- icono barra del navegador --}}
-    <link rel="icon" href="./img/imagenesWeb/logo.png">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
     {{-- Bibliotecas validacion Alertify --}}
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     {{-- validacion perfil --}}
-    <script src="./js/login_registro/valid_perfil.js"></script>
-    <title>Perfil</title>
+    <script src="{{asset('js/login_registro/valid_perfil.js')}}"></script>
+    <title>Mi Perfil</title>
 </head>
 
 <body>
-    <header id="Header">
-        <img src="./img/imagenesWeb/logo.png" alt="" class="logo">
-        <!--Menu header-->
-        <ul class="main-menu">
-            @if (Session::get('cliente_session'))
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("modificarPerfil")}}" method="get"><li class="menu-item">Mi Perfil</li>
-                    <input type="hidden" id="id_us" value="<?php echo session('id_user_session')?>"></a>
-                </form>
-                <form><a href="{{url("logout")}}" method="get"><li class="cta-logout">Logout</li></a></form>
-            @else
-                <form><a href="{{url("/")}}" method="get"><li class="menu-item">Home</li></a></form>
-                <form><a href="{{url("tienda")}}" method="get"><li class="menu-item">Tienda</li></a></form>
-                <form><a href="{{url("citas")}}" method="get"><li class="menu-item">Clínica</li></a></form>
-                {{-- <form><a href="{{url("")}}" method="get"><li class="menu-item">Mapa</li></a></form> --}}
-                <form><a href="{{url("mapa_animales_perdidos")}}" method="get"><li class="menu-item">Perdidos</li></a></form>
-                <form><a href="{{url("mapa_establecimientos")}}" method="get"><li class="menu-item">Establecimientos</li></a></form>
-                <form><a href="{{url("contacto")}}" method="get"><li class="menu-item">Contacto</li></a></form>
-                <form><a href="{{url("about")}}" method="get"><li class="menu-item">Sobre Nosotros</li></a></form>
-                <form><a href="{{url("login")}}" method="get"><li class="cta">Login</li></a></form>
-            @endif
-        </ul>
-        <script src="./js/home.js"></script>
-    </header>
+    @include('comun.navegacion')
     <div class="container">
         <div class="row justify-content-center pt-2 mt-1">
             <div class="formulario">

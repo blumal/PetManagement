@@ -34,16 +34,25 @@ class Mailtocustomers extends Mailable
      */
     public function build()
     {   
+        //En base a los asuntos se returna una vista
         if ($this->sub=="Confirmación de compra") {
             return $this->view('facturas/envio/mailFacturaTienda')->subject($this->sub);
         }elseif($this->sub=="Confirmación de visita"){
             return $this->view('facturas/envio/mailFacturaVisita')->subject($this->sub);
         }elseif($this->sub=="Cambio de contraseña"){
             return $this->view('login/envio/mailPassword')->subject($this->sub);
+        }elseif($this->sub=="Modificación de cita"){
+            return $this->view('empleados/mailmodificacioncita')->subject($this->sub);
+        }elseif($this->sub=="Solicitud de contacto"){
+            return $this->view('login/envio/contacto')->subject($this->sub);
+        }elseif($this->sub=="Activación de usuario"){
+            return $this->view('login/envio/activacion')->subject($this->sub);
         }
         else{
             return $this->view('clinica/vistas/mailtocustomer')->subject($this->sub);
         }
+
+
         
         
         /* return $this->view('clinica/vistas/mailtocustomer', compact('datas')); */

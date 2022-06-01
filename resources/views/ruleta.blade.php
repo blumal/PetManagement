@@ -11,11 +11,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mapa Establecimientos</title>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/ruleta.css')}}">
+    <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
+    <title>Ruleta de premios</title>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
       </div>
     </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <script src="js/ruleta.js"></script>
+  <script src="{{asset('js/ruleta.js')}}"></script>
 </body>
 
 </html>

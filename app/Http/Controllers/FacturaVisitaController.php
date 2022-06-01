@@ -21,10 +21,14 @@ class FacturaVisitaController extends Controller
         if (isset($id_user)) {
             if ($request->session()->get('id_rol_session')==2) {
                 $facturas = DB::table('tbl_factura_clinica')
+                ->join('tbl_usuario', 'tbl_factura_clinica.id_veterinario_fk', '=', 'tbl_usuario.id_us')
                 ->where('id_usuario_fk','=',$id_user)
+                ->orderBy('id_fc','desc')
                 ->get();
             }else{
                 $facturas = DB::table('tbl_factura_clinica')
+                ->join('tbl_usuario', 'tbl_factura_clinica.id_veterinario_fk', '=', 'tbl_usuario.id_us')
+                ->orderBy('id_fc','desc')
                 ->get();
             }
             

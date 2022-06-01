@@ -13,8 +13,10 @@ window.onload = function() {
                 if (scrollY > 0) {
                     header.style.backgroundColor = '#8590ff';
 
+
                 } else {
                     header.style.backgroundColor = '#8590ff';
+
                 }
 
             })
@@ -216,7 +218,7 @@ function productos() {
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='../storage/app/public/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
@@ -328,7 +330,7 @@ function addToCart() {
             for (let i in respuesta) {
                 html += "<div class='row cart-detail'>";
                 html += "<div class='col-lg-4 col-sm-4 col-4 cart-detail-img'>";
-                html += "<img src='storage/uploads/" + respuesta[i].foto + "'/>";
+                html += "<img src='../storage/app/public/" + respuesta[i].foto + "'/>";
                 html += "</div>";
                 html += "<div class='col-lg-8 col-sm-8 col-8 cart-detail-product'>";
                 html += "<p>" + respuesta[i].nombre + " (" + respuesta[i].subcategoria_texto + ")</p>";
@@ -438,7 +440,7 @@ function filtro() {
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='../storage/app/public/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
@@ -503,7 +505,7 @@ function filtro2(categoria) {
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='../storage/app/public/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
@@ -581,7 +583,7 @@ function filtro3() {
                 html += "<a href='producto/" + respuesta[i].id_art + "'>";
                 html += " <div class='producto' data-id='product" + respuesta[i].id_art + "'>";
                 html += "<div class='thumbnail'>";
-                html += "<div class='thumbnail-img'><img src='storage/uploads/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
+                html += "<div class='thumbnail-img'><img src='../storage/app/public/" + respuesta[i].foto_art + "' width='500' height='200'></div>";
                 html += "<div class='caption'>";
                 html += "<div class='caption-titulo'><h5>" + nombre + "</h5></div>";
                 html += "<div class='caption-descripcion'><p>" + descripcion + "</p></div>";
@@ -719,7 +721,7 @@ function modal(id) {
             var respuesta = JSON.parse(this.responseText);
             var divModal = document.getElementsByClassName("div-modal")[0];
             var html = "<span class='close2'>&times;</span>";
-            html += "<div class='div-img'><img src='storage/uploads/" + respuesta[0][0].foto_art + "'><span class='popuptext' id='myPopup'></span></div>";
+            html += "<div class='div-img'><img src='../storage/app/public/" + respuesta[0][0].foto_art + "'><span class='popuptext' id='myPopup'></span></div>";
             html += "<div class='modal-texto' id-producto='" + respuesta[0][0].id_art + "'>";
             html += "<h5>" + respuesta[0][0].nombre_art + "</h5>";
             html += "<p class='text-uppercase bold'>" + respuesta[0][0].tipo_categoria_art + ":</p>";

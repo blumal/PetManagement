@@ -6,6 +6,7 @@ use App\Models\FacturaCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Illuminate\Support\Facades\Session;
 
 class FacturaCompraController extends Controller
 {
@@ -17,10 +18,12 @@ class FacturaCompraController extends Controller
 
     //FUNCION PARA MOSTRAR TODAS LAS FACTURAS DE COMPRAS DE UN USER
     public function directorioFacturasTienda(Request $request){
-        $id_user= $request['id_user'];
+        
+        $id_user= Session::get('id_user_session');
         
         $facturas = DB::table('tbl_factura_tienda')
         ->where('id_usuario_fk','=',$id_user)
+        ->orderBy('id_ft','desc')
         ->get();
 
         return view('facturas/directorioFacturasTienda', compact('facturas'));
@@ -53,6 +56,7 @@ class FacturaCompraController extends Controller
                 $items_compra=DB::table('tbl_detallefactura_tienda')
                 ->where('id_factura_tienda_fk','=',$id_factura)
                 ->join('tbl_articulo_tienda', 'tbl_detallefactura_tienda.id_articulo_fk', '=', 'tbl_articulo_tienda.id_art')
+                ->join('tbl_categoria_articulo', 'tbl_articulo_tienda.id_art', '=', 'tbl_categoria_articulo.articulo_fk')
                 ->get();
                 //return $items_compra;
                 //return $factura;
@@ -95,6 +99,7 @@ class FacturaCompraController extends Controller
                 $items_compra=DB::table('tbl_detallefactura_tienda')
                         ->where('id_factura_tienda_fk','=',$id_factura)
                         ->join('tbl_articulo_tienda', 'tbl_detallefactura_tienda.id_articulo_fk', '=', 'tbl_articulo_tienda.id_art')
+                        ->join('tbl_categoria_articulo', 'tbl_articulo_tienda.id_art', '=', 'tbl_categoria_articulo.articulo_fk')
                         ->get();
                 $download=1;
                 //$data = Employee::all();

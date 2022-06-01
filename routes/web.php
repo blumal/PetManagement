@@ -12,6 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\DB;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\JuegosController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UsuarioController;
@@ -46,13 +47,23 @@ Route::get('animales_perdidos', [mapas::class,'animales_perdidos']);
 
 Route::get('adminMapasEstablecimientos', [mapas::class,'adminMapasEstablecimientos']);
 
+Route::get('adminMapasPerdidos', [mapas::class,'adminMapasPerdidos']);
+
 Route::get('filtroMapasEstablecimientos', [mapas::class,'filtroMapasEstablecimientos']);
+
+Route::get('filtroMapasPerdidos', [mapas::class,'filtroMapasPerdidos']);
 
 Route::post('crearMapasEstablecimientos',[mapas::class, 'crearMapasEstablecimientos']);
 
+Route::post('crearMapasPerdidos',[mapas::class, 'crearMapasPerdidos']);
+
 Route::put('modificarMapasEstablecimientos',[mapas::class, 'modificarMapasEstablecimientos']);
 
+Route::put('modificarMapasPerdidos',[mapas::class, 'modificarMapasPerdidos']);
+
 Route::delete('eliminarMapasEstablecimientos',[mapas::class, 'eliminarMapasEstablecimientos']);
+
+Route::delete('eliminarMapasPerdidos',[mapas::class, 'eliminarMapasPerdidos']);
 
 Route::post('crearAnimalPerdido',[mapas::class, 'crearAnimalPerdido']);
 
@@ -70,8 +81,8 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
-Route::get('login/contraseña', function () {
-    return view('login/contraseña');
+Route::get('login/contrasena', function () {
+    return view('login/contrasena');
 });
 
 Route::get('entretenimiento', function () {
@@ -95,6 +106,12 @@ Route::get('/perfil', [UsuarioController::class, 'modificarPerfil']);
 //Actualizar Perfil usuario
 Route::get('modificarPerfil', [UsuarioController::class, 'modificarPerfil']);
 Route::post('modificarPerfilPost',[UsuarioController::class, 'modificarPerfilPost']);
+
+//ACTIVAR USUARIO
+Route::get('/activar', function () {return view('login/activarUsuario');});
+Route::post('/activarPOST',[UsuarioController::class, 'activarUsuario']);
+
+
 
 //FINAL RUTAS USUARIO
 
@@ -124,6 +141,8 @@ Route::get('/cpanelAnimalesPerdidos', [CitasController::class, 'cpanelAnimalesPe
 Route::get('/cpanelMapa', [CitasController::class, 'cpanelMapa']);
 
 Route::get('/an_perd', [CitasController::class, 'an_perd']);
+
+Route::get('/adm_an_perd', [CitasController::class, 'adm_an_perd']);
 
 //Ruleta premios
 Route::get('/ruleta',[FacturaVisitaController::class, 'ruleta']);
@@ -158,7 +177,7 @@ Route::post('/FacturaTienda/download', [FacturaCompraController::class, 'createP
 Route::get('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 Route::post('/FacturasClinica', [FacturaVisitaController::class, 'directorioFacturasClinica']);
 
-Route::post('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
+Route::get('/directorioGenerarFactura', function () {return view('facturas/directorioGenerarFacturasClinica');});
 
 Route::post('/leer_visitas', [VisitaController::class, 'VisitasAjax']);
 
@@ -180,6 +199,10 @@ Route::post('calcular_total', [VisitaController::class, 'calcular_total']);
 
 
 //FIN FACTURAS
+
+//INCIO MAIL CONTACTO
+Route::post('enviarCorreoContacto', [CitasController::class, 'MensajeContacto']);
+//FIN MAIL CONTACTO
 
 //INICIO ESTADISTICAS
 Route::get('/stats', [EstadisticaController::class, 'test']);
@@ -208,13 +231,21 @@ Route::get('/registrarPaciente',[PacienteController::class, 'registrarPaciente']
 Route::post('/cerrarPaciente',[PacienteController::class, 'cerrarPaciente']);
 Route::get('/adminPacientes',[PacienteController::class, 'adminPacientes']);
 Route::post('/eliminarPaciente',[PacienteController::class, 'eliminarPaciente']);
-Route::post('/activarPaciente',[PacienteController::class, 'activarPaciente']);
 Route::post('/leerPacientes',[PacienteController::class, 'leerPacientes']);
 Route::post('/editarPaciente',[PacienteController::class, 'editarPaciente']);
 Route::post('/cerrarPacienteEditar',[PacienteController::class, 'cerrarPacienteEditar']);
 
 // FIN CRUD PACIENTES
 
+//INICIO CRUD CLIENTES
+
+Route::get('/adminUsuarios',[UsuarioController::class, 'adminUsuarios']);
+Route::post('/eliminarCliente',[UsuarioController::class, 'eliminarCliente']);
+Route::post('/activarCliente',[UsuarioController::class, 'activarCliente']);
+Route::post('/leerClientes',[UsuarioController::class, 'leerClientes']);
+Route::post('/cambiarRol',[UsuarioController::class, 'cambiarRol']);
+
+// FIN CRUD CLIENTES
 
 /*Carrito */
 Route::post('/carritoadd',[ProductoController::class, 'CartAdd']);
@@ -242,10 +273,8 @@ Route::post('regenerarPassword',[UsuarioController::class, 'regenerarPassword'])
 //Api Citas
 Route::get('showcitas', [CitasController::class, 'showcitas']);
 Route::post('insertcita', [CitasController::class, 'insertCita']);
+
 //TIENDA
-
-
-
 Route::get('tienda',[ProductoController::class,'tienda']);
 Route::get('carrito',[ProductoController::class,'carrito']);
 Route::post('marcas',[ProductoController::class,'marcas']);
@@ -283,9 +312,44 @@ Route::post('crear',[ProductoController::class,'crear']);
 Route::delete('eliminar/{id}',[ProductoController::class,'eliminar']);
 
 Route::put('actualizar',[ProductoController::class,'update']);
+
+Route::post('sub/{id}',[ProductoController::class,'sub']);
+
+Route::delete('eliminarsub/{id}',[ProductoController::class,'eliminarsub']);
+
+Route::post('crearsub/{id}',[ProductoController::class,'crearsub']);
+
+Route::put('editarsub',[ProductoController::class,'editarsub']);
+
+Route::put('update_s',[ProductoController::class,'update_s']);
 //compra
 Route::get('enviarDinero/{precio_total}/',[ProductoController::class, 'enviarDinero']);
 
 Route::get('comprado',[ProductoController::class, 'compra']);
 
 Route::get('/comprafinalizada',[ProductoController::class, 'mostrarCompra']);
+
+
+Route::post('stripe', [ProductoController::class, 'stripe']);
+
+Route::post('stripePost', [ProductoController::class, 'stripePost']);
+
+
+//Empleados
+//Datos calendario
+Route::get('/calendaremp', [EmpleadoController::class, 'calendarEmp']);
+//Mostrar datos calendario
+//Api
+Route::get('showquotes', [EmpleadoController::class, 'showQuotes']);
+Route::get('/homeempleado', [EmpleadoController::class, 'empleadoDatas']);
+Route::post('filter', [EmpleadoController::class, 'quotesFilter']);
+//Editar citas
+Route::post('/editarcitaempleado/{id_vi}', [EmpleadoController::class, 'quotesEdit']);
+//Información de la cita
+Route::post('/infocitaempleado/{id_vi}', [EmpleadoController::class, 'quotesInfo']);
+//Actualización datos cita
+Route::post('updatingquote', [EmpleadoController::class, 'updatequoteProc']);
+//Eliminación de cita
+Route::delete('/deletequote/{id_vi}', [EmpleadoController::class, 'deleteQuote']);
+//Actualización estado cita
+Route::put('/updatestatus/{id_vi}', [EmpleadoController::class, 'updateStatus']);

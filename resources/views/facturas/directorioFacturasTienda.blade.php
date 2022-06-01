@@ -11,35 +11,36 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/facturas/directorio.css">
+        <link rel="stylesheet" href="{{asset('css/facturas/directorio.css')}}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="icon" href="{{asset('img/imagenesWeb/logo.png')}}">
         <title>Historial Facturas Tienda</title>
         <meta name="csrf-token" content="{{ csrf_token() }}" id="token">
     </head>
 <body>
-    <header id="Header">
-        <div class="logo">
-            <img src="./img/imagenesWeb/logo.png">
-        </div>
-        <div class="logout">
-            <a href="{{url("logout")}}"><img class="logout" src="./img/imagenesWeb/logout.png" width="50px" height="50px"></a>
-        </div>
-    </header>
 
-    <div class="row-c">
-        @for ($i = 0; $i < count($facturas); $i++)
-            <div class="column-3">
-                <div class="seccion">
-                    <form action="FacturaTienda/view" method="post">
-                        @csrf
-                        Factura <?php echo $facturas[$i]->fecha_ft?>
-                        <br>
-                        <input type="hidden" name="id_factura_tienda" value="<?php echo $facturas[$i]->id_ft?>">
-                        <input class="ver_factura" type="submit" value="Ver factura">
-                    </form>
+    @include('comun.navegacion')
+    <div id="cuerpo">
+        <div class="row-c">
+            @for ($i = 0; $i < count($facturas); $i++)
+                <div class="column-3">
+                    <div class="seccion">
+                        <form action="FacturaTienda/view" method="post">
+                            @csrf
+                            Factura {{$facturas[$i]->fecha_ft}}
+                            <br>
+                            Hora -> {{$facturas[$i]->hora_ft}}
+                            <br>
+                            Total -> {{$facturas[$i]->total_ft}}€
+                            <br>
+                            <input type="hidden" name="id_factura_tienda" value="<?php echo $facturas[$i]->id_ft?>">
+                            <input class="ver_factura" type="submit" value="Ver factura">
+                        </form>
+                    </div>
+
                 </div>
-            </div>
-        @endfor
+            @endfor
+        </div>
     </div>
 </body>
 </html>

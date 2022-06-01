@@ -1,5 +1,4 @@
 /* Modal box */
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
 
 * {
@@ -17,44 +16,38 @@ body {
     background-repeat: no-repeat;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
-.head{
+.head {
     text-align: center;
 }
 
-.head button{
+.head button {
     float: left;
 }
 
-h1{
+h1 {
     color: white;
     font-weight: bolder;
 }
 
-h4{
-    text-align: left;
-    margin-left: 1%;
-}
-
-.filtro{
+.filtro {
     float: left;
     width: 30%;
 }
 
-.registros{
+.registros {
     margin: 1%;
 }
 
-.edit{
+.edit {
     border-radius: 20px;
     font-weight: bolder;
     background-color: #000000;
     color: white;
     padding: 3%;
-
     border-radius: 15px;
     border-color: #000000;
     color: #ffffff;
@@ -64,19 +57,18 @@ h4{
     transition: 0.5s;
 }
 
-.edit:hover{
+.edit:hover {
     color: #ffffff;
     background-color: #1f2cc4;
     border-color: #000000;
 }
 
-.delete{
+.delete {
     border-radius: 20px;
     font-weight: bolder;
     background-color: #000000;
     padding: 3%;
     border-color: #000000;
-
     border-radius: 15px;
     color: #ffffff;
     margin: 0 1rem;
@@ -85,19 +77,18 @@ h4{
     transition: 0.5s;
 }
 
-.delete:hover{
+.delete:hover {
     color: #ffffff;
     background-color: #ff0000;
     border-color: #000000;
 }
 
-.main-menu{
+.main-menu {
     display: flex;
     list-style-type: none;
     justify-content: center;
     align-items: center;
 }
-
 
 .modalbox {
     display: none;
@@ -119,15 +110,15 @@ h4{
     width: 30%;
     height: 80vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-
     border-radius: 20px;
 }
 
 .close {
-    font-size: 2.5vh;
-    margin-left: 61vh;
-    margin-bottom: 11vh;
+    font-size: 3.5vh;
+    margin-left: 0%;
+    margin-bottom: 0%;
     cursor: pointer;
+    float: right;
 }
 
 .close:hover {
@@ -137,32 +128,34 @@ h4{
 
 /* Zona admin */
 
-.fila-1{
-    background-color: #000000;
-    color: white;
+.table-responsive {
+    margin-top: 8%;
 }
 
-.fila-2{
-    color: white;
-    background-color: #383838;
+.table {
+    vertical-align: middle;
+    width: 98%;
 }
 
 .tabla {
-    color: #000000;
-
+    color: rgb(0, 0, 0);
     width: 200vh;
     margin: 2vh;
-
     width: 100%;
     margin: 2%;
-
     border-radius: 1vh;
     background-color: #ffffff !important;
     padding: 10vh;
 }
 
-table{
-    margin-left: 0;
+.fila-1 {
+    background-color: #000000;
+    color: white;
+}
+
+.fila-2 {
+    color: white;
+    background-color: #383838;
 }
 
 /* Titulo Zona Admin */
@@ -188,7 +181,8 @@ table{
     background-color: #383838;
 }
 
-.crear{
+.crear {
+
     padding: 0.375rem 0.75rem;
     border-radius: 30px;
     background-color: #006d9c;
@@ -200,9 +194,9 @@ table{
     float: left;
 }
 
-.crear:hover{
+.crear:hover {
     color: #ffffff;
-    background-color: #000000;   
+    background-color: #000000;
 }
 
 
@@ -215,7 +209,7 @@ table{
     left: -1%;
     top: -2%;
     width: 100%;
-    height: 100%;
+    height: 110%;
     padding-left: 25%;
     padding-top: 2.5%;
     padding-bottom: 2%;
@@ -244,6 +238,7 @@ table{
     padding: 0;
     width: 100vh;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    padding-bottom: 2%;
 }
 
 .close_crear {
@@ -265,11 +260,8 @@ table{
     background-color: rgb(255, 255, 255);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
-
     padding: 2vh;
-
     padding: 1vh;
-
 }
 
 .contraseñacrear {
@@ -281,6 +273,7 @@ table{
     margin-bottom: 0.5vh;
     padding: 2vh;
 }
+
 
 .btn-crear {
     width: 90%;
@@ -297,6 +290,7 @@ table{
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: 0.5s;
+    margin-left: 5.5%;
 }
 
 .btn-crear:hover {
@@ -304,7 +298,15 @@ table{
     background-color: #000000;
 }
 
+
 /* Modal box editar */
+
+.modaleditar_header{
+    background-color: #383838;
+    padding: 1%;
+    width: 100vh;
+    height: 17vh;
+}
 
 .modalbox_editar {
     display: none;
@@ -321,27 +323,13 @@ table{
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.titulomodal {
-    color: white;
-    padding-left: 1vh;
-}
-
-.modaleditar_header {
-    background-color: #383838;
-    margin-bottom: 0;
-    padding: 1vh;
-    width: 100vh;
-    height: 15vh;
-    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-}
 
 .modaleditar {
     background-color: #fefefe;
-    text-align: center;
-    margin-top: -1%;
-    padding: 0;
+    margin-top: 3%;
+    padding: 20px;
     width: 100vh;
-    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    height: auto;
 }
 
 .close_editar {
@@ -356,48 +344,248 @@ table{
     opacity: 50%;
 }
 
-.inputeditar {
+
+
+/* Modal 2 */
+
+.modalbox_2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: -1%;
+    top: -2%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-left: 50vh;
+    padding-top: 20vh;
+    padding-bottom: 2vh;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal2_header {
+    background-color: #383838;
+    margin-bottom: 0;
+    padding: 1vh;
+    width: 100vh;
+    height: 15vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.titulomodal {
+    color: white;
+    padding-left: 1vh;
+}
+
+.modal2 {
+    background-color: #fefefe;
+    margin-top: 0;
+    padding: 20px;
+    width: 100vh;
+    height: 30vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.close_2 {
+    font-size: 2.5vh;
+    margin-left: 95vh;
+    margin-bottom: 11vh;
+    cursor: pointer;
+    color: black;
+}
+
+.close_2:hover {
+    opacity: 50%;
+}
+
+.boton2 {
     color: rgb(0, 0, 0);
     width: 95vh;
-    border-radius: 1vh;
-    background-color: rgb(255, 255, 255);
-    margin-top: 0.5vh;
-    margin-bottom: 0.5vh;
+    /* width: 95vh; */
 
-    padding: 2vh;
-
-    padding: 1vh;
-
-}
-
-.contraseñaeditar {
-    color: rgb(0, 0, 0);
-    width: 89vh;
     border-radius: 1vh;
     background-color: rgb(255, 255, 255);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
     padding: 2vh;
+
+    /* padding: 2vh; */
 }
 
-.btn-editar {
-    width: 90%;
-    display: inline-block;
-    font-weight: bolder;
-    color: #ffffff;
-    text-align: center;
-    background-color: #006d9c;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
+.boton2:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     transition: 0.5s;
 }
 
-.btn-editar:hover {
-    color: #ffffff;
-    background-color: #000000;
+
+/* Modal Sub */
+
+.modalbox_s {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: -1%;
+    top: -2%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-left: 20vh;
+    padding-right: 20vh;
+    padding-top: 20vh;
+    padding-bottom: 2vh;
+    background-color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modals_header {
+    background-color: #383838;
+    margin-bottom: 0;
+    padding: 1vh;
+    width: 100vh;
+    height: 15vh;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+.titulomodal {
+    color: white;
+    padding-left: 1vh;
+}
+
+.modal_s {
+    background-color: #fefefe;
+    padding: 1%;
+    width: auto;
+    height: auto;
+}
+
+.close_s {
+    font-size: 2.5vh;
+    margin-left: 95vh;
+    margin-bottom: 11vh;
+    cursor: pointer;
+    color: black;
+}
+
+.close_s:hover {
+    opacity: 50%;
+}
+
+.botons {
+    color: rgb(0, 0, 0);
+    width: 95vh;
+    /* width: 95vh; */
+
+    border-radius: 1vh;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    padding: 2vh;
+
+    /* padding: 2vh; */
+}
+
+.botons:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transition: 0.5s;
+}
+
+
+/* ------------ RESPONSIVE --------------- */
+
+@media (max-width: 800px) {
+    .table-responsive {
+        margin-top: 21%;
+    }
+    .filtro {
+        margin-top: 4%;
+        width: 65%;
+    }
+    /* ------ MODALES -------- */
+    .modalbox_crear {
+        padding-left: 5%;
+        padding-top: 30%;
+    }
+    .modalcrear_header {
+        width: 40vh;
+        height: 13vh;
+    }
+    .modalcrear {
+        margin-top: -3%;
+        width: 40vh;
+        padding-bottom: 4%;
+    }
+    .inputcrear {
+        width: 35vh;
+    }
+    .close_crear {
+        margin-left: 36vh;
+    }
+    .modalbox_editar {
+        padding-left: 5%;
+        padding-top: 30%;
+        top: -0.5%;
+    }
+    .modaleditar_header {
+        width: 40vh;
+        height: 13vh;
+    }
+    .modaleditar {
+        margin-top: -3%;
+        width: 40vh;
+    }
+    .inputeditar {
+        width: 35vh;
+    }
+    .close_editar {
+        margin-left: 36vh;
+    }
+
+    /* -------- MODALES DE EDITAR ---------- */
+    .boton2{
+        width: 36vh;
+    }
+    .close_2 {
+        font-size: 3.5vh;
+        margin-left: 0vh;
+        margin-bottom: 0vh;
+        cursor: pointer;
+        color: black;
+        float: right;
+    }
+    .modal2 {
+        background-color: #fefefe;
+        margin-top: 0;
+        padding: 20px;
+        width: auto;
+        height: auto;
+    }
+    .modalbox_2{
+        left: -1%;
+        top: -0.5%;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        padding-left: 2vh;
+        padding-right: 2vh;
+        padding-top: 30vh;
+        padding-bottom: 0vh;
+    }
+    .modalbox_s{
+        top: -0.5%;
+        padding-left: 1vh;
+        padding-right: 1vh;
+        padding-top: 25vh;
+    }
+    .titulo-h2{
+        padding-top: 2.5%;
+    }
+    .close {
+        margin-top: -2%;
+    }
+    .btn-primary{
+        margin-left: 36.5% !important;
+    }
 }
