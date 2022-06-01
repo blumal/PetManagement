@@ -20,6 +20,7 @@
 <body>
     @include('comun.navegacion')
     <div class="div-1">
+    <div class="table-responsive">
     <table id="cart" class="table table-hover table-condensed border">
         <thead>
         <tr>
@@ -97,6 +98,7 @@
         </tr>
         </tfoot>
     </table>
+    </div>
 </div>
     
 </body>
