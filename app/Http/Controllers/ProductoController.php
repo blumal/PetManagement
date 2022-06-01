@@ -84,16 +84,22 @@ class ProductoController extends Controller
            }
            $tipo=array();
            $arraycount=count($array);
-           for ($i=0; $i < $arraycount; $i++) { 
-               for ($j=0; $j < $arraycount; $j++) { 
-                   if ($i!=$j) {
-                    if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
-                        array_push($tipo,$array[$i]);
+           if ($arraycount!=1) {
+            for ($i=0; $i < $arraycount; $i++) { 
+                for ($j=0; $j < $arraycount; $j++) { 
+                    if ($i!=$j) {
+                     if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
+                         array_push($tipo,$array[$i]);
+                     }
                     }
-                   }
-                   
-               }
+                    
+                }
+            }
            }
+           else {
+            array_push($tipo,$array[0]);
+           }
+           
            $productos=array();
             foreach ($tipo as $productoT) {
                 foreach ($marcas as $productoM) {
@@ -103,7 +109,20 @@ class ProductoController extends Controller
                 }
             }
             return response()->json($productos);
-            }else {
+            }elseif (isset($datos['palabrastring'])) {
+                $palabraql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['palabrastring']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['palabrastring']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+                $tipo=DB::select($palabraql);
+                $productos=array();
+            foreach ($tipo as $productoT) {
+                foreach ($marcas as $productoM) {
+                    if ($productoT == $productoM) {
+                        array_push($productos,$productoT);
+                    }
+                }
+            }
+            return response()->json($productos);
+            }
+            else {
                 return response()->json($marcas);
             }
             
@@ -111,7 +130,11 @@ class ProductoController extends Controller
             
             
        }else {
-          $array=array();
+        if (isset($datos['palabras'])) {
+            $palabras=json_encode($datos['palabras']);
+        }
+        if (isset($palabras)) {
+            $array=array();
            foreach ($datos['palabras'] as $palabra) {
             $palabraql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$palabra."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$palabra."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
                $Arraypalabra=DB::select($palabraql);
@@ -121,17 +144,28 @@ class ProductoController extends Controller
            }
            $tipo=array();
            $arraycount=count($array);
-           for ($i=0; $i < $arraycount; $i++) { 
-               for ($j=0; $j < $arraycount; $j++) { 
-                   if ($i!=$j) {
-                    if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
-                        array_push($tipo,$array[$i]);
+           if ($arraycount!=1) {
+            for ($i=0; $i < $arraycount; $i++) { 
+                for ($j=0; $j < $arraycount; $j++) { 
+                    if ($i!=$j) {
+                     if ($array[$i]==$array[$j] && !in_array($array[$j], $tipo)) {
+                         array_push($tipo,$array[$i]);
+                     }
                     }
-                   }
-                   
-               }
+                    
+                }
+            }
+           }
+           else {
+            array_push($tipo,$array[0]);
            }
            return response()->json($tipo);
+        }else {
+            $palabraql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['palabrastring']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['palabrastring']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];
+            $Arraypalabra=DB::select($palabraql);
+            return response()->json($Arraypalabra);
+        }
+          
            //Antiguo
            /*
             $tiposql="SELECT tbl_articulo_tienda.id_art, tbl_articulo_tienda.nombre_art,tbl_articulo_tienda.foto_art, tbl_articulo_tienda.descripcion_art, tbl_articulo_tienda.precio_art, tbl_articulo_tienda.codigobarras_art, tbl_articulo_tienda.id_marca_fk, tbl_articulo_tienda.id_tipo_articulo_fk FROM `tbl_articulo_tienda` INNER JOIN tbl_tipo_articulo ON tbl_articulo_tienda.id_tipo_articulo_fk=tbl_tipo_articulo.id_ta WHERE (tbl_tipo_articulo.tipo_articulo_ta LIKE '%".$datos['nombre']."%' OR tbl_articulo_tienda.nombre_art LIKE '%".$datos['nombre']."%') ORDER BY tbl_articulo_tienda.precio_art ".$datos['orden'];

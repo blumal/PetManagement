@@ -1251,4 +1251,10 @@ footer {
     .btn-pagar {
         height: 6vh;
     }
+    .popuptext {
+        width: 100%;
+        top: 20%;
+        left: 0%;
+        margin-left: 0px;
+    }
 }
