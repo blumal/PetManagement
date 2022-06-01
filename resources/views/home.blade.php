@@ -26,7 +26,7 @@
             </br>
             <p>PetManagement está compuesto por un equipo multidisciplinar de profesionales que trabajan cada día siendo conscientes de que tu mascota es un miembro más de la familia y merece todo nuestro esfuerzo, cariño y dedicación. </p>
             </br>
-            <p>L’Hospitalet está compuesto por un equipo multidisciplinar de profesionales que trabajan cada día siendo conscientes de que tu mascota es un miembro más de la familia y merece todo nuestro esfuerzo, cariño y dedicación.</p>
+            <p>L'Hospitalet está compuesto por un equipo multidisciplinar de profesionales que trabajan cada día siendo conscientes de que tu mascota es un miembro más de la familia y merece todo nuestro esfuerzo, cariño y dedicación.</p>
             <center>
                 <img src="{{asset('img/brainstorm.png')}}" alt="">
             </center>
@@ -72,7 +72,7 @@
         <div class="twitter column-2">
             <h3>Conoce nuestras últimas noticias y actualizaciones desde twitter</h3>
             </br>
-            <a class="twitter-timeline" data-lang="en" data-width="550" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/thedeadpol">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" data-lang="en" data-width="550" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/management_pet">Tweets by Pet Management</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="contenedor_grafico column-2">
             <h3>Hazte una idea de cuantos clientes tenemos por mes, ¿serás tú el próximo?</h3>
